@@ -1,36 +1,34 @@
-#README-CN
-
 # OJ system
 
 ## Developer
 
  This system consists of
 
-​ **Yida Yang,** English name: **Bryan yang**
+ **Bryan yang,** Chinese name: **杨易达**
 
-​ **Liu Chaojia,** English name **JiaChao Liu**
+  **JiaZhao Liu**,** Chinese name:  **刘朝甲**
 
-​ **Liu Gang,** English name **Gang Liu**,
+**Gang Liu**,,**  Chinese name:  **刘港**,
 
-​ **Yang Chunyang, **English name **Yangchun Yang**
+**Yangchun Yang**, English name **杨春阳**
 
 **Cooperative development**
 
-​ Hereby thanks **Teacher Zhang Yijia for her guidance and help**
+ Hereby thanks **Teacher Zhang Yijia for her guidance and help**
 
 This project is open source on **Github and deployed in Harbin Guangsha University. **
 
 ## Environment preparation
 
-​ To run this program, you must have **Ubuntu** system,
+ To run this program, you must have **Ubuntu** system,
 
-​ Linux kernel version >= 3.10
+ Linux kernel version >= 3.10
 
-​ jdk1.8 version,
+ jdk1.8 version,
 
-​ mysql8.0,
+ mysql8.0,
 
-​ redis.
+ redis.
 
 ### go-judge system operation
 
@@ -38,7 +36,7 @@ This project is open source on **Github and deployed in Harbin Guangsha Universi
 
 <a href="">go_judge handbook</a>.
 
- 1. Download the binary precompiled file
+  1. Download the binary precompiled file
 
 https://github.com/criyle/go-judge/releases
 
@@ -190,4 +188,4 @@ todo
 
 ## Thanks
 
-​ Thanks to Mr. Zhang Yijia, thanks to all the members of the TML TEAM team for the cooperative development, thanks to all the people who helped us develop, and thanks to Haer Rongbin Guangsha College
+ Thanks to Mr. Zhang Yijia, thanks to all the members of the TML TEAM team for the cooperative development, thanks to all the people who helped us develop, and thanks to Haer Rongbin Guangsha College
