@@ -166,13 +166,116 @@ chmod +x 文件名
 
 #### java语言环境测试
 
-todo
+**接下来我们打开postman进行测试已post形式发送请求http://IP:5050/run携带参数**
+
+~~~json
+{
+    "cmd": [{
+        "args": ["/usr/bin/javac","-encoding","utf-8","Main.java"],
+        "env": ["PATH=/usr/bin:/bin"],
+        "files": [{
+            "content": ""
+        }, {
+            "name": "stdout",
+            "max": 102000
+        }, {
+            "name": "stderr",
+            "max": 102400
+        }],
+        "cpuLimit": 10000000000,
+        "memoryLimit": 104857600,
+        "procLimit": 50,
+        "copyIn": {
+            "Main.java": {
+                "content": "public class Main{  public static void main(String[] args){    System.out.println(\"hello world\");  }}"
+            }
+        },
+        "copyOut": ["stdout", "stderr"],
+        "copyOutCached": ["Main.java", "Main.class"],
+    }]
+}
+~~~
+
+**服务器反馈给我们的**
+
+~~~java
+[
+	{
+		"status": "Accepted",
+		"exitStatus": 0,
+		"time": 1355176000,
+		"memory": 77733888,
+		"runTime": 613378383,
+		"files": {
+			"stderr": "",
+			"stdout": ""
+		},
+		"fileIds": {
+			"Main.class": "WD6HUHUY",
+			"Main.java": "HFVY5JXI"
+		}
+	}
+]
+~~~
+
+**接下来我们根据Main的Id对他进行run**
+
+~~~bash
+{
+    "cmd": [{
+        "args": ["/usr/bin/java","Main"],
+        "env": ["PATH=/usr/bin:/bin"],
+        "files": [{
+            "content": "1 1"
+        }, {
+            "name": "stdout",
+            "max": 10240
+        }, {
+            "name": "stderr",
+            "max": 10240
+        }],
+        "cpuLimit": 10000000000,
+        "memoryLimit": 104857600,
+        "procLimit": 50,
+        "strictMemoryLimit": false,
+        "copyIn": {
+            "Main.class": {
+                "fileId": "WD6HUHUY"
+            }
+        }
+    }]
+}
+~~~
+
+**服务器的反馈结果**
+
+~~~bash
+[
+	{
+		"status": "Accepted",
+		"exitStatus": 0,
+		"time": 96107000,
+		"memory": 35115008,
+		"runTime": 66561063,
+		"files": {
+			"stderr": "",
+			"stdout": "hello world\n"
+		}
+	}
+]
+~~~
+
+
 
 #### 牛逼哄哄goLang   语言测试
 
 #### python3语言测试
 
+​	python沙盘运行环境由18级张智博适配
+
 #### python2语言测试
+
+​		python沙盘运行环境由18级张智博适配
 
 ## 后端启动 
 
