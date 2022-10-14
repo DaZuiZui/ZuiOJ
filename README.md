@@ -2,17 +2,7 @@
 
 ## Developer
 
- This system consists of
-
- **Bryan yang,** Chinese name: **杨易达**
-
-  **JiaZhao Liu**,** Chinese name:  **刘朝甲**
-
-**Gang Liu**,,**  Chinese name:  **刘港**,
-
-**Yangchun Yang**, English name **杨春阳**
-
-**Cooperative development**
+ 
 
  Hereby thanks **Teacher Zhang Yijia for her guidance and help**
 
