@@ -9,7 +9,7 @@ public class ProgramBo implements Serializable {
     private long topicId;       //题目ID
     private long userID;        //答题者的ID
     private String code;        //用户代码
-    private String language;    //语言
+    private int languageId;     //语言ID
 
     @Override
     public String toString() {
@@ -17,7 +17,7 @@ public class ProgramBo implements Serializable {
                 "topicId=" + topicId +
                 ", userID=" + userID +
                 ", code='" + code + '\'' +
-                ", language='" + language + '\'' +
+                ", languageId=" + languageId +
                 '}';
     }
 
@@ -45,21 +45,21 @@ public class ProgramBo implements Serializable {
         this.code = code;
     }
 
-    public String getLanguage() {
-        return language;
+    public int getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
     }
 
     public ProgramBo() {
     }
 
-    public ProgramBo(long topicId, long userID, String code, String language) {
+    public ProgramBo(long topicId, long userID, String code, int languageId) {
         this.topicId = topicId;
         this.userID = userID;
         this.code = code;
-        this.language = language;
+        this.languageId = languageId;
     }
 }
