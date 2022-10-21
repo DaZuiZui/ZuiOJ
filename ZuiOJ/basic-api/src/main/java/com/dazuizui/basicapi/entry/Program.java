@@ -1,4 +1,4 @@
 package com.dazuizui.basicapi.entry;
 
-public class program {
+public class Program {
 }
