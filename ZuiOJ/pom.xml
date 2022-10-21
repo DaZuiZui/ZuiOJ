@@ -14,8 +14,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>basic-api</module>
         <module>basic-demo</module>
     </modules>
+
     <name>ZuiOJ</name>
 
     <description> ZuiOJ System</description>
