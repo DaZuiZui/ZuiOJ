@@ -8,18 +8,13 @@ import org.springframework.web.bind.annotation.*;
  * @author Bryan yang(杨易达)
  * 在线判题系统控制器
  */
-@RequestMapping("/onlineJudge")
+@RequestMapping("/sandbox")
 @RestController
 public class OnlineJudgeController {
-    /**
-     * 判决代码
-     * @param programBo
-     * @return
-     */
-    @PatchMapping("/judge")
-    public String judgeTheProgram(@RequestBody ProgramBo programBo){
+    @PostMapping("/judge")
+    public String postByObject(@RequestBody ProgramBo beanRequest) {
 
-
-        return JSONArray.toJSONString("ASD");
+        return JSONArray.toJSONString(beanRequest);
     }
+
 }
