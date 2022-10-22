@@ -1,5 +1,6 @@
 package com.dazuizui.business.service;
 
+import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,4 +9,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ProgrammingLanguageService {
+    public long addProgrammingLanguageTable(ProgramBo programBo);
 }

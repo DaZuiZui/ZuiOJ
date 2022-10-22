@@ -1,6 +1,7 @@
 package com.dazuizui.business.mapper;
 
 
+import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,4 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ProgrammingLanguageMapper {
+    long insertAProgrammingLanguageTable(ProgramBo programBo);
 }

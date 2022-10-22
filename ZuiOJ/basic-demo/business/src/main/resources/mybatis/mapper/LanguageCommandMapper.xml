@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.LanguageCommandMapper">
+    <!--
+        根据语言id去查询
+        Query by language id
+    -->
+    <select id="selectByLanguageId" resultType="com.dazuizui.basicapi.entry.LanguageCommand">
+        select 
+            *
+        from
+            language_command
+        where
+            language_id = #{languageId}
+    </select>
+    
+</mapper>
