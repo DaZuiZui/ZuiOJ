@@ -1,5 +1,7 @@
 package com.dazuizui.online_judge.service;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,5 +19,5 @@ public interface OnlineJudgeService {
      * @return
      */
     @PatchMapping("/judge")
-    public String judgeTheProgram(@RequestBody ProgramBo programBo);
+    public JSONObject judgeTheProgram(@RequestBody ProgramBo programBo);
 }

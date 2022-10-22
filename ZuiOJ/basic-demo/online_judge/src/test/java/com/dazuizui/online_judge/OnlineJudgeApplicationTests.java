@@ -21,8 +21,7 @@ import java.util.List;
 class OnlineJudgeApplicationTests {
 
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     /**
      * @author Bryan Yang(杨易达)
@@ -50,7 +49,7 @@ class OnlineJudgeApplicationTests {
         cmd.set("procLimit",1024);
         //设置copyin以及代码内容
         JSONObject copyIn = new JSONObject();
-        copyIn.set("Main.java",new JSONObject().set("content","public class Lain{  public static void main(String[] args){    System.out.println(\"hello world\");  }}"));
+        copyIn.set("Main.java",new JSONObject().set("content","public class Main{  public static void main(String[] args){    System.out.println(\"hello world\");  }}"));
         //copyIn.set("Main.java",new JSONObject().set("content","public class Main{  public static void main(String[] args){    while(true){}  }}"));
         /*
         copyIn.set("Main.java",new JSONObject().set("content","import java.util.Scanner;\n" +
@@ -135,7 +134,5 @@ class OnlineJudgeApplicationTests {
         return JSONUtil.parseArray(responseEntity.getBody());
     }
 
-    public void executeProgram(){
 
-    }
 }

@@ -2,9 +2,12 @@ package com.dazuizui.business.service.impl;
 
 
 import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import com.dazuizui.basicapi.InitializerData;
+import com.dazuizui.basicapi.entry.ProblemLimit;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
+import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.service.OnlineJudgeService;
 import com.dazuizui.business.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ import java.util.List;
 public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     @Autowired
     private LanguageCommandMapper languageCommandMapper;
+    @Autowired
+    private ProblemLimitMapper problemLimitMapper;
 
     /**
      * 判决代码
@@ -26,18 +31,25 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
      */
     @Override
     public String judgeTheProgram(ProgramBo programBo){
-        System.out.println(InitializerData.langSystem);
+        /**
+         * 初始化代码运行还击那个
+         */
         HashMap<Integer, List<String>> map = InitializerData.langSystem.get(programBo.getLanguageId());
-        System.err.println(map);
         programBo.setEnv(Arrays.asList("PATH=/usr/bin:/bin"));
         programBo.setParseCodeArgs(map.get(new Integer(0)));
         programBo.setCopyOutCached(map.get(new Integer(2)));
-        programBo.setEnv(map.get(new Integer(1)));
-        System.out.println(com.alibaba.fastjson2.JSONArray.toJSONString(programBo));
-        //发起请求
-        JSONArray request = HttpUtil.request(programBo);
+        programBo.setRunCommandArgs(map.get(new Integer(1)));
+        /**
+         * 初始化题目限制
+         */
+        ProblemLimit problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(programBo.getTopicId());
+        programBo.setProblemLimit(problemLimit);
 
-        System.out.println(request);
+        //发起请求
+        JSONObject request = HttpUtil.request(programBo);
+
+
+        System.out.println("\n\n\n\nqwe"+request.get("status"));
         return "AC";
     }
 

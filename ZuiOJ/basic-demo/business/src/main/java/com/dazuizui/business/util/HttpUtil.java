@@ -15,12 +15,12 @@ import org.springframework.web.client.RestTemplate;
 public class HttpUtil {
 
 
-    public static JSONArray request(ProgramBo programBo){
+    public static JSONObject request(ProgramBo programBo){
         RestTemplate restTemplate = RestTemplateUtil.getInstance("utf-8");
         String url = "http://127.0.0.1:8005/sandbox/judge";
         String result = restTemplate.postForObject(url, programBo, String.class);
-        System.out.println("\n\n"+result);
+        JSONObject jsonObject = new JSONObject(result);
 
-        return null;
+        return jsonObject;
     }
 }

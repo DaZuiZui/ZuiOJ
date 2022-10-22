@@ -1,10 +1,13 @@
 package com.dazuizui.basicapi.entry.bo;
 
+import com.dazuizui.basicapi.entry.ProblemLimit;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * 用户提交的代码控制器
+ * https://blog.csdn.net/mryang125/article/details/80955558
  */
 public class ProgramBo implements Serializable {
     private long topicId;       //题目ID
@@ -16,7 +19,8 @@ public class ProgramBo implements Serializable {
     private List<String> RunCommandArgs;  //args命令
     private List<String> env;   //env
     private List<String> copyOutCached;     //输入输出文件
-    private String input;       //输入样例
+    private ProblemLimit problemLimit;
+    private String input;
 
     @Override
     public String toString() {
@@ -29,6 +33,7 @@ public class ProgramBo implements Serializable {
                 ", RunCommandArgs=" + RunCommandArgs +
                 ", env=" + env +
                 ", copyOutCached=" + copyOutCached +
+                ", problemLimit=" + problemLimit +
                 ", input='" + input + '\'' +
                 '}';
     }
@@ -97,6 +102,14 @@ public class ProgramBo implements Serializable {
         this.copyOutCached = copyOutCached;
     }
 
+    public ProblemLimit getProblemLimit() {
+        return problemLimit;
+    }
+
+    public void setProblemLimit(ProblemLimit problemLimit) {
+        this.problemLimit = problemLimit;
+    }
+
     public String getInput() {
         return input;
     }
@@ -108,7 +121,7 @@ public class ProgramBo implements Serializable {
     public ProgramBo() {
     }
 
-    public ProgramBo(long topicId, long userID, String code, Long languageId, List<String> parseCodeArgs, List<String> runCommandArgs, List<String> env, List<String> copyOutCached, String input) {
+    public ProgramBo(long topicId, long userID, String code, Long languageId, List<String> parseCodeArgs, List<String> runCommandArgs, List<String> env, List<String> copyOutCached, ProblemLimit problemLimit, String input) {
         this.topicId = topicId;
         this.userID = userID;
         this.code = code;
@@ -117,6 +130,7 @@ public class ProgramBo implements Serializable {
         RunCommandArgs = runCommandArgs;
         this.env = env;
         this.copyOutCached = copyOutCached;
+        this.problemLimit = problemLimit;
         this.input = input;
     }
 }

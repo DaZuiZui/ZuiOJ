@@ -14,7 +14,7 @@ class BusinessApplicationTests {
     private LanguageCommandMapper languageCommandMapper;
     @Test
     void contextLoads() {
-        System.out.println(languageCommandMapper.selectCommandByLanguageIdAndStatus(1,0));
+        System.out.println(256*1024*1024L);
     }
 
 }

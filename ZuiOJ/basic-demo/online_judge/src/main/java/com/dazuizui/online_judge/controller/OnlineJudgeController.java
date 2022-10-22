@@ -1,5 +1,6 @@
 package com.dazuizui.online_judge.controller;
 
+import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import com.dazuizui.online_judge.service.OnlineJudgeService;
@@ -22,8 +23,8 @@ public class OnlineJudgeController {
      */
     @PostMapping("/judge")
     public String postByObject(@RequestBody ProgramBo programBo) {
-        onlineJudgeService.judgeTheProgram(programBo);
-        return JSONArray.toJSONString(programBo);
+        JSONObject jsonObject = onlineJudgeService.judgeTheProgram(programBo);
+        return JSONArray.toJSONString(jsonObject);
     }
 
 }
