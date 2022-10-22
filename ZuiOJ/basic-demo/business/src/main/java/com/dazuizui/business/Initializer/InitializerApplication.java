@@ -49,7 +49,10 @@ public class InitializerApplication {
                     list.add(languageCommand.getCommand());
                 }else{
                     //添加命令
-                    HashMap<Integer, List<String>> map = new HashMap<>();
+                    HashMap<Integer, List<String>> map = InitializerData.langSystem.get(id);
+                    if (map == null){
+                        map = new HashMap<>();
+                    }
                     map.put(firsttarger,new ArrayList<>(list));
                     InitializerData.langSystem.put(id,map);
                     list.clear();
@@ -64,7 +67,11 @@ public class InitializerApplication {
                 InitializerData.langSystem.put(id,map);
                 list.clear();
             }
+
+
         }
         System.out.println(InitializerData.langSystem);
+        System.out.println("编程语言环境初始化完成");
+
     }
 }

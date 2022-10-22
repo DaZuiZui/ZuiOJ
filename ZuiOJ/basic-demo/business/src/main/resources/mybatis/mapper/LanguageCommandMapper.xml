@@ -35,7 +35,7 @@
             language_id = #{languageId}
         ORDER BY
                 STATUS
-                AND sequence ASC
+                or sequence ASC
     </select>
     
 </mapper>
