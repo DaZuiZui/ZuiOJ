@@ -14,7 +14,7 @@ public interface LanguageCommandMapper {
     * @param languageId
     * @return
     */
-   public List<LanguageCommand> selectByLanguageId(@Param("languageId") int languageId);
+   public List<LanguageCommand> selectByLanguageId(@Param("languageId") long languageId);
 
 
    /**
@@ -23,7 +23,7 @@ public interface LanguageCommandMapper {
     * @param languageId
     * @return
     */
-   public List<String> selectCommandByLanguageId(@Param("languageId") int languageId,@Param("status")int status);
+   public List<String> selectCommandByLanguageIdAndStatus(@Param("languageId") int languageId,@Param("status")int status);
 
 
 

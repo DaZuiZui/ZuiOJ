@@ -21,7 +21,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
      */
     @Override
     public String judgeTheProgram(ProgramBo programBo){
-        List<String> strings = languageCommandMapper.selectCommandByLanguageId(programBo.getLanguageId(), 0);
+        List<String> strings = languageCommandMapper.selectCommandByLanguageIdAndStatus(programBo.getLanguageId(), 0);
         System.out.println(strings);
         return JSONArray.toJSONString("AC");
     }

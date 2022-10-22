@@ -10,7 +10,7 @@
         根据语言id去查询command
         Query by language id
     -->
-    <select id="selectCommandByLanguageId" resultType="string">
+    <select id="selectCommandByLanguageIdAndStatus" resultType="string">
         select
             command
         from
@@ -27,14 +27,15 @@
         Query by language id
     -->
     <select id="selectByLanguageId" resultType="com.dazuizui.basicapi.entry.LanguageCommand">
-        select 
+        SELECT
             *
-        from
+        FROM
             language_command
-        where
+        WHERE
             language_id = #{languageId}
-        order by
-            sequence asc
+        ORDER BY
+                STATUS
+                AND sequence ASC
     </select>
     
 </mapper>

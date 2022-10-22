@@ -14,6 +14,8 @@ public class LanguageCommand {
     private String updateByName; //修改者name
     private Date updateTime; //修改时间
 
+    private int status;
+
     @Override
     public String toString() {
         return "LanguageCommand{" +
@@ -27,6 +29,7 @@ public class LanguageCommand {
                 ", updateById='" + updateById + '\'' +
                 ", updateByName='" + updateByName + '\'' +
                 ", updateTime=" + updateTime +
+                ", status=" + status +
                 '}';
     }
 
@@ -34,93 +37,94 @@ public class LanguageCommand {
         return id;
     }
 
-    public LanguageCommand setId(long id) {
+    public void setId(long id) {
         this.id = id;
-        return this;
     }
 
     public int getLanguageId() {
         return languageId;
     }
 
-    public LanguageCommand setLanguageId(int languageId) {
+    public void setLanguageId(int languageId) {
         this.languageId = languageId;
-        return this;
     }
 
     public String getCommand() {
         return command;
     }
 
-    public LanguageCommand setCommand(String command) {
+    public void setCommand(String command) {
         this.command = command;
-        return this;
     }
 
     public int getSequence() {
         return sequence;
     }
 
-    public LanguageCommand setSequence(int sequence) {
+    public void setSequence(int sequence) {
         this.sequence = sequence;
-        return this;
     }
 
     public String getCreateById() {
         return createById;
     }
 
-    public LanguageCommand setCreateById(String createById) {
+    public void setCreateById(String createById) {
         this.createById = createById;
-        return this;
     }
 
     public String getCreateByName() {
         return createByName;
     }
 
-    public LanguageCommand setCreateByName(String createByName) {
+    public void setCreateByName(String createByName) {
         this.createByName = createByName;
-        return this;
     }
 
     public Date getCreateTime() {
         return createTime;
     }
 
-    public LanguageCommand setCreateTime(Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-        return this;
     }
 
     public String getUpdateById() {
         return updateById;
     }
 
-    public LanguageCommand setUpdateById(String updateById) {
+    public void setUpdateById(String updateById) {
         this.updateById = updateById;
-        return this;
     }
 
     public String getUpdateByName() {
         return updateByName;
     }
 
-    public LanguageCommand setUpdateByName(String updateByName) {
+    public void setUpdateByName(String updateByName) {
         this.updateByName = updateByName;
-        return this;
     }
 
     public Date getUpdateTime() {
         return updateTime;
     }
 
-    public LanguageCommand setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-        return this;
     }
 
-    public LanguageCommand(long id, int languageId, String command, int sequence, String createById, String createByName, Date createTime, String updateById, String updateByName, Date updateTime) {
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public LanguageCommand() {
+    }
+
+    public LanguageCommand(long id, int languageId, String command, int sequence, String createById, String createByName, Date createTime, String updateById, String updateByName, Date updateTime, int status) {
         this.id = id;
         this.languageId = languageId;
         this.command = command;
@@ -131,8 +135,6 @@ public class LanguageCommand {
         this.updateById = updateById;
         this.updateByName = updateByName;
         this.updateTime = updateTime;
-    }
-
-    public LanguageCommand() {
+        this.status = status;
     }
 }
