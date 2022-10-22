@@ -5,9 +5,11 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import com.dazuizui.basicapi.InitializerData;
 import com.dazuizui.basicapi.entry.ProblemLimit;
+import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.mapper.ProblemLimitMapper;
+import com.dazuizui.business.mapper.QuestionCaseMapper;
 import com.dazuizui.business.service.OnlineJudgeService;
 import com.dazuizui.business.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,8 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     private LanguageCommandMapper languageCommandMapper;
     @Autowired
     private ProblemLimitMapper problemLimitMapper;
-
+    @Autowired
+    private QuestionCaseMapper questionCaseMapper;
     /**
      * 判决代码
      * @param programBo
@@ -44,6 +47,10 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
          */
         ProblemLimit problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(programBo.getTopicId());
         programBo.setProblemLimit(problemLimit);
+        /**
+         * 获取案例
+         */
+        List<QuestionCase> questionCases = questionCaseMapper.queryTheQuestionCasesByQuestionId(programBo.getTopicId());
 
         //发起请求
         JSONObject request = HttpUtil.request(programBo);

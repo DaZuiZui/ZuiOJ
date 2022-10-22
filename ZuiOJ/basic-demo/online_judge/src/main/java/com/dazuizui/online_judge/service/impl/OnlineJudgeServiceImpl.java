@@ -110,7 +110,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         // 设置线程限制
         cmd.set("procLimit",programBo.getProblemLimit().getProcLimit());
         JSONObject copyIn = new JSONObject();
-        copyIn.set("Main.class",new JSONObject().set("fileId",fileId));
+        copyIn.set(programBo.getCopyOutCached().get(1),new JSONObject().set("fileId",fileId));
         cmd.set("copyIn", copyIn);
 
         JSONArray request = request(cmd);
