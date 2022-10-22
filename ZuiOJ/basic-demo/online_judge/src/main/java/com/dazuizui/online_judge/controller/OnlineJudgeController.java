@@ -2,6 +2,8 @@ package com.dazuizui.online_judge.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
+import com.dazuizui.online_judge.service.OnlineJudgeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -11,10 +13,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sandbox")
 @RestController
 public class OnlineJudgeController {
+    @Autowired
+    private OnlineJudgeService onlineJudgeService;
+    /**
+     * 判决代码
+     * @param programBo
+     * @return
+     */
     @PostMapping("/judge")
-    public String postByObject(@RequestBody ProgramBo beanRequest) {
-
-        return JSONArray.toJSONString(beanRequest);
+    public String postByObject(@RequestBody ProgramBo programBo) {
+        onlineJudgeService.judgeTheProgram(programBo);
+        return JSONArray.toJSONString(programBo);
     }
 
 }

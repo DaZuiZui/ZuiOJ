@@ -10,6 +10,7 @@ import com.dazuizui.business.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,10 +28,13 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     public String judgeTheProgram(ProgramBo programBo){
         System.out.println(InitializerData.langSystem);
         HashMap<Integer, List<String>> map = InitializerData.langSystem.get(programBo.getLanguageId());
+        System.err.println(map);
+        programBo.setEnv(Arrays.asList("PATH=/usr/bin:/bin"));
         programBo.setParseCodeArgs(map.get(new Integer(0)));
-        programBo.setRunCommandArgs(map.get(new Integer(2)));
+        programBo.setCopyOutCached(map.get(new Integer(2)));
         programBo.setEnv(map.get(new Integer(1)));
         System.out.println(com.alibaba.fastjson2.JSONArray.toJSONString(programBo));
+        //发起请求
         JSONArray request = HttpUtil.request(programBo);
 
         System.out.println(request);

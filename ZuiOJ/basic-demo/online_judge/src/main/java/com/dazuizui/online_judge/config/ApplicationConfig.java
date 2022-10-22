@@ -10,13 +10,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class ApplicationConfig {
-    /**
-     * 创建RestTemplate交给IOC容器
-     * @return
-     */
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+
 }
 

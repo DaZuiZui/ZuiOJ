@@ -16,6 +16,7 @@ public class ProgramBo implements Serializable {
     private List<String> RunCommandArgs;  //args命令
     private List<String> env;   //env
     private List<String> copyOutCached;     //输入输出文件
+    private String input;       //输入样例
 
     @Override
     public String toString() {
@@ -28,6 +29,7 @@ public class ProgramBo implements Serializable {
                 ", RunCommandArgs=" + RunCommandArgs +
                 ", env=" + env +
                 ", copyOutCached=" + copyOutCached +
+                ", input='" + input + '\'' +
                 '}';
     }
 
@@ -95,10 +97,18 @@ public class ProgramBo implements Serializable {
         this.copyOutCached = copyOutCached;
     }
 
+    public String getInput() {
+        return input;
+    }
+
+    public void setInput(String input) {
+        this.input = input;
+    }
+
     public ProgramBo() {
     }
 
-    public ProgramBo(long topicId, long userID, String code, Long languageId, List<String> parseCodeArgs, List<String> runCommandArgs, List<String> env, List<String> copyOutCached) {
+    public ProgramBo(long topicId, long userID, String code, Long languageId, List<String> parseCodeArgs, List<String> runCommandArgs, List<String> env, List<String> copyOutCached, String input) {
         this.topicId = topicId;
         this.userID = userID;
         this.code = code;
@@ -107,5 +117,6 @@ public class ProgramBo implements Serializable {
         RunCommandArgs = runCommandArgs;
         this.env = env;
         this.copyOutCached = copyOutCached;
+        this.input = input;
     }
 }

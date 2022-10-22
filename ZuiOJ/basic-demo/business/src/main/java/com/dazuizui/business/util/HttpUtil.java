@@ -19,7 +19,7 @@ public class HttpUtil {
         RestTemplate restTemplate = RestTemplateUtil.getInstance("utf-8");
         String url = "http://127.0.0.1:8005/sandbox/judge";
         String result = restTemplate.postForObject(url, programBo, String.class);
-        System.out.println(result);
+        System.out.println("\n\n"+result);
 
         return null;
     }
