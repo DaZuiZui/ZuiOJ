@@ -3,6 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.LanguageCommandMapper">
+
+
+
+    <!--
+        根据语言id去查询command
+        Query by language id
+    -->
+    <select id="selectCommandByLanguageId" resultType="string">
+        select
+            command
+        from
+            language_command
+        where
+            language_id = #{languageId} and
+            status = #{status}
+        order by
+            sequence asc
+    </select>
+
     <!--
         根据语言id去查询
         Query by language id
@@ -14,6 +33,8 @@
             language_command
         where
             language_id = #{languageId}
+        order by
+            sequence asc
     </select>
     
 </mapper>

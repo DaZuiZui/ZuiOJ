@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 @SpringBootTest
@@ -31,9 +32,11 @@ class OnlineJudgeApplicationTests {
     void sendACode() {
         JSONObject cmd = new JSONObject();
         //设置args参数
-        cmd.set("args",Arrays.asList("/usr/bin/javac","-encoding","utf-8","Main.java"));
+        List<String> strings = Arrays.asList("/usr/bin/javac", "-encoding", "utf-8", "Main.java");
+        cmd.set("args",strings);
         //设置env
         cmd.set("env",Arrays.asList("PATH=/usr/bin:/bin"));
+
         //设置cmd的file参数
         JSONArray files = new JSONArray();
         files.put(new JSONObject().set("name","stdout").set("max",10240));

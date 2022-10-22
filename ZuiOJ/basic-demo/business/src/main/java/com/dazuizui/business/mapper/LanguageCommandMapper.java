@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.LanguageCommand;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 @Mapper
@@ -13,5 +14,17 @@ public interface LanguageCommandMapper {
     * @param languageId
     * @return
     */
-   public List<LanguageCommand> selectByLanguageId(int languageId);
+   public List<LanguageCommand> selectByLanguageId(@Param("languageId") int languageId);
+
+
+   /**
+    * 查询指令内容通过语言id
+    * Query instruction content by language id
+    * @param languageId
+    * @return
+    */
+   public List<String> selectCommandByLanguageId(@Param("languageId") int languageId,@Param("status")int status);
+
+
+
 }

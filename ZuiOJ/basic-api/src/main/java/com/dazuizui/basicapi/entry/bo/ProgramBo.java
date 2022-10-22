@@ -1,6 +1,7 @@
 package com.dazuizui.basicapi.entry.bo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 用户提交的代码控制器
@@ -10,6 +11,9 @@ public class ProgramBo implements Serializable {
     private long userID;        //答题者的ID
     private String code;        //用户代码
     private int languageId;     //语言ID
+
+    private List<String> args;  //args命令
+    private List<String> env;   //env
 
     @Override
     public String toString() {
