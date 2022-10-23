@@ -1,7 +1,5 @@
 package com.dazuizui.business.service.impl;
 
-
-import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import com.dazuizui.basicapi.InitializerData;
 import com.dazuizui.basicapi.entry.ProblemLimit;
@@ -48,16 +46,33 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         ProblemLimit problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(programBo.getTopicId());
         programBo.setProblemLimit(problemLimit);
         /**
-         * 获取案例
+         * 获取案例he
          */
+        JSONObject request = new JSONObject();
         List<QuestionCase> questionCases = questionCaseMapper.queryTheQuestionCasesByQuestionId(programBo.getTopicId());
 
-        //发起请求
-        JSONObject request = HttpUtil.request(programBo);
+        for (QuestionCase questionCase : questionCases) {
+            programBo.setInput(questionCase.getInputs());
+            //发起请求
+            request = HttpUtil.request(programBo);
 
+            if (!request.get("status").equals("Accepted")) {
+                break;
+            }
+            //判断答案是否正确
+            JSONObject jsonObject1 = new JSONObject(request.get("files"));
+            String stdout = jsonObject1.get("stdout").toString().trim();
+            System.out.println(questionCase.getAnswer()+"and"+stdout);
+            if (!stdout.equals(questionCase.getAnswer())) {
+                return "Anwser Error";
+            }
+        }
 
-        System.out.println("\n\n\n\nqwe"+request.get("status"));
-        return "AC";
+        /**
+         * 日志记录用户的状态
+         */
+
+        return (String) request.get("status");
     }
 
 

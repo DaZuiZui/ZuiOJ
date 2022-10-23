@@ -23,6 +23,20 @@ class OnlineJudgeApplicationTests {
 
     private RestTemplate restTemplate = new RestTemplate();
 
+    @Test
+    void test1(){
+        System.out.println("import java.util.Scanner;\n" +
+                "\n" +
+                "public class Main {\n" +
+                "    public static void main(String[] args) {\n" +
+                "        Scanner scanner = new Scanner(System.in);\n" +
+                "        int a = scanner.nextInt();\n" +
+                "        int b = scanner.nextInt();\n" +
+                "        System.out.println(a+b);\n" +
+                "    }\n" +
+                "}");
+    }
+
     /**
      * @author Bryan Yang(杨易达)
      * 发起一个Java代码编译
@@ -49,11 +63,10 @@ class OnlineJudgeApplicationTests {
         cmd.set("procLimit",1024);
         //设置copyin以及代码内容
         JSONObject copyIn = new JSONObject();
-        copyIn.set("Main.java",new JSONObject().set("content","public class Main{  public static void main(String[] args){    System.out.println(\"hello world\");  }}"));
-        //copyIn.set("Main.java",new JSONObject().set("content","public class Main{  public static void main(String[] args){    while(true){}  }}"));
+        //copyIn.set("Main.java",new JSONObject().set("content","public class Main{  public static void main(String[] args){    System.out.println(\"hello world\");  }}"));
+        copyIn.set("Main.java",new JSONObject().set("content","public class Main{  public static void main(String[] args){    while(true){}  }}"));
         /*
         copyIn.set("Main.java",new JSONObject().set("content","import java.util.Scanner;\n" +
-                "\n" +
                 "public class Main {\n" +
                 "    public static void main(String[] args) {\n" +
                 "        Scanner scanner = new Scanner(System.in);\n" +
@@ -62,8 +75,8 @@ class OnlineJudgeApplicationTests {
                 "        System.out.println(a+b);\n" +
                 "    }\n" +
                 "}"));
+*/
 
-         */
         cmd.set("copyIn", copyIn);
         // 设置copyOut
         cmd.set("copyOut", Arrays.asList("stdout","stderr"));

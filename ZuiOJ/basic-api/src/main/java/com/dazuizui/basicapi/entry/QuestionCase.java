@@ -9,7 +9,7 @@ import java.util.Date;
 public class QuestionCase implements Serializable {
     private long id;
     private long questionId;
-    private String input;
+    private String inputs;
     private String answer;
     private String createByName;
     private long   createById;
@@ -25,7 +25,7 @@ public class QuestionCase implements Serializable {
         return "QuestionCase{" +
                 "id=" + id +
                 ", questionId=" + questionId +
-                ", input='" + input + '\'' +
+                ", inputs='" + inputs + '\'' +
                 ", answer='" + answer + '\'' +
                 ", createByName='" + createByName + '\'' +
                 ", createById=" + createById +
@@ -54,12 +54,12 @@ public class QuestionCase implements Serializable {
         this.questionId = questionId;
     }
 
-    public String getInput() {
-        return input;
+    public String getInputs() {
+        return inputs;
     }
 
-    public void setInput(String input) {
-        this.input = input;
+    public void setInputs(String inputs) {
+        this.inputs = inputs;
     }
 
     public String getAnswer() {
@@ -137,10 +137,10 @@ public class QuestionCase implements Serializable {
     public QuestionCase() {
     }
 
-    public QuestionCase(long id, long questionId, String input, String answer, String createByName, long createById, Date createTime, long updateById, String updateByName, Date updateTime, int status, int delFlag) {
+    public QuestionCase(long id, long questionId, String inputs, String answer, String createByName, long createById, Date createTime, long updateById, String updateByName, Date updateTime, int status, int delFlag) {
         this.id = id;
         this.questionId = questionId;
-        this.input = input;
+        this.inputs = inputs;
         this.answer = answer;
         this.createByName = createByName;
         this.createById = createById;

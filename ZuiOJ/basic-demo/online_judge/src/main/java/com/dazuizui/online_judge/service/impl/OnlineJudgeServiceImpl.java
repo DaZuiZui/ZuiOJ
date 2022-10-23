@@ -50,7 +50,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         cmd.set("procLimit",programBo.getProblemLimit().getProcLimit());
         //设置copyin以及代码内容
         JSONObject copyIn = new JSONObject();
-        copyIn.set(programBo.getCopyOutCached().get(0),new JSONObject().set("content","public class Main{  public static void main(String[] args){    System.out.println(\"hello world\");  }}"));
+        copyIn.set("Main.java",new JSONObject().set("content",programBo.getCode()));
 
         cmd.set("copyIn", copyIn);
         // 设置copyOut
@@ -70,7 +70,6 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             String fileUUID = jsonObject1.get(programBo.getCopyOutCached().get(1)).toString();
             JSONArray jsonArray = executeCode(fileUUID, programBo.getInput(), programBo);
             JSONObject jsonObject2 = new JSONObject(jsonArray.get(0));
-            System.err.println(jsonObject2);
             return jsonObject2;
         }
 

@@ -4,6 +4,9 @@ import com.dazuizui.basicapi.entry.ProblemLimit;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ *
+ */
 @Mapper
 public interface ProblemLimitMapper {
     /**
