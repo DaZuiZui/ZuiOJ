@@ -6,7 +6,7 @@
 
  Hereby thanks **Teacher Zhang Yijia for her guidance and help**
 
-This project is open source on **Github and deployed in Harbin Guangsha University. **
+T 
 
 ## Environment preparation
 
