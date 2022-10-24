@@ -13,7 +13,7 @@
 
                  <button class="btn btn-primary" type="button" disabled v-bind:hidden="!formbutton" style="width:300px;height: 50px;"> 
                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                         正在登入中，请稍后......
+                         正在登入中，请稍后...
                  </button>
 
                  还没有账户?<a href="http://www.dazuizui.com/hlogin/pu/user/registered">点击我注册</a>
