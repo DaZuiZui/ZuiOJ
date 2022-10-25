@@ -1,14 +1,144 @@
 <template>
     <div>
-    
+        <div>
+            <Top></Top>
+        </div>
+
+        <div style="margin:50px"></div>
+
+        <div class="doc-container" id="blogindexarticle" style="background: url('http://userupfile.oss-cn-hangzhou.aliyuncs.com/public/root/IMG/WelcomeImage/Welcome.jpg');" v-cloak >
+            <div class="container-fixed"  style="width: 68%;">
+                <div class="col-content"  style="width: 100%;">
+                    <div class="inner">
+                        <article class="article-list bloglist" id="LAY_bloglist">              
+                            <div>
+                                <section class="article-item zoomIn article" style="border-radius:5px">
+                     
+                                    <h5 class="title">
+                                        <a href="#">哈尔滨广厦学院题库</a>
+                                    </h5>
+                              
+                                    <div class="content">
+                                        <div class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition" style="width: 100%;">
+                                            <div class="hidden-columns">
+                                                <div></div><div></div> <div></div>
+                                            </div>
+                                            <div class="el-table__header-wrapper">
+                                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__header"
+                                                style="width: 100%;">
+                                                    <colgroup>
+                                                        <col name="el-table_4_column_10" width="180">
+                                                        <col name="el-table_4_column_11" width="180">
+                                                        <col name="el-table_4_column_12" width="180">
+                                                        <col name="el-table_4_column_13" width="180">
+                                                    </colgroup>
+                                                    <thead class="">
+                                                        <tr class="">
+                                                            <th colspan="1" rowspan="1" class="el-table_4_column_10     is-leaf el-table__cell">
+                                                                <div class="cell">
+                                                                    <b>编号</b>
+                                                                </div>
+                                                            </th>
+                                                            <th colspan="1" rowspan="1" class="el-table_4_column_11     is-leaf el-table__cell">
+                                                                <div class="cell">
+                                                                    标题
+                                                                </div>
+                                                            </th>
+                                                            <th colspan="1" rowspan="1" class="el-table_4_column_12     is-leaf el-table__cell">
+                                                                <div class="cell">
+                                                                    通过率
+                                                                </div>
+                                                            </th>
+                                                            <th colspan="1" rowspan="1" class="el-table_4_column_13     is-leaf el-table__cell">
+                                                                <div class="cell">
+                                                                     难度
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="el-table__body-wrapper is-scrolling-none">
+                                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__body"
+                                                style="width: 100%;">
+                                                    <colgroup>
+                                                        <col name="el-table_4_column_10" width="180">
+                                                            <col name="el-table_4_column_11" width="180">
+                                                                <col name="el-table_4_column_12" width="180">
+                                                                <col name="el-table_4_column_13" width="180">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr class="el-table__row">
+                                                            <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
+                                                                <div class="cell">
+                                                                    P10001
+                                                                </div>
+                                                            </td>
+                                                            <td rowspan="1" colspan="1" class="el-table_4_column_11   el-table__cell">
+                                                                <div class="cell">
+                                                                    张义嘉老师的数学题
+                                                                </div>
+                                                            </td>
+                                                            <td rowspan="1" colspan="1" class="el-table_4_column_12   el-table__cell">
+                                                                <div class="cell">
+                                                                    100%
+                                                                </div>
+                                                            </td>
+                                                            <td rowspan="1" colspan="1" class="el-table_4_column_13   el-table__cell">
+                                                                <div class="cell">
+                                                                    简单
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="el-table__column-resize-proxy" style="display: none;">
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+
+                                    <aside class="f-oh footer">
+                                        <div class="f-fl tags">
+                                            <i class="el-icon-user-solid"></i>
+                                            <a class="tag" href="#">张义嘉 & TLM TEAM</a>
+                                        </div>
+                                        <div class="f-fr"> 
+                                            <span class="read">
+                                                <i class="fa fa-eye fs-16"></i>
+                                                <i class="num">By 张义嘉 & TLM TEAM</i>
+                                            </span>
+                                        </div>
+                                    </aside>
+                                </section>
+
+                            </div>
+
+                      
+                        </article>
+
+                            
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div>
+            <Foot></Foot>
+        </div>
     </div>
   </template>
   
   
   <script>
-   export default {
-       name: "questionlist",     //对外开放打包
-  
+    import Foot from '../frame/Foot.vue'; 
+    import Top from '../frame/Top.vue';
+
+    export default {
+       name: "anwserQuestions",     //对外开放打包
+       components: { Foot,Top },
        data() {
            return{
                
@@ -16,70 +146,11 @@
        },
   
        mounted(){
-           this.getIpAndState();
-    
+   
        },
   
        methods: {
-           //获取登入ip和地区
-           getIpAndState(){
-               var cip = returnCitySN["cip"];
-               var cstate = returnCitySN["cname"];
-               //给vuedata对象里的字段赋值
-               this.user.ip    = cip
-               this.user.state = cstate;
-  
-               var inhome = this.states.indexOf(cstate); // 2
-            if(inhome < 0){
-             
-           }
-           },
-  
-           //提交登入
-           submit(){
-               this.formbutton = true;
-               this.$axios.post("http://www.dazuizui.com/user/p/userlogin",this.user)
-               .then(function(response){
-                   switch(response.data.id){
-                       //登入成功
-                       case "0x0000":{
-                           //将登入信息存入cookie
-                           setCookie ("token",response.data.errorinformation);
-                            alert("登入成功！");
-                           window.location.href="http://www.dazuizui.com/hblog/";
-                           break;
-                        
-                       }
-                       case "0x0001":{
-                           alert("账号或者密码错误");
-                             window.location.href="http://www.dazuizui.com/pu/user/login";
-                           break;
-                       }
-                       case "0x0002":{
-                           alert("账号或者密码错误");
-                   
-                           window.location.href="http://www.dazuizui.com/pu/user/login";
-                           break;
-                       }
-                       case "0x0003":{
-                           alert("账号或者密码错误");
-                    
-                           window.location.href="http://www.dazuizui.com/pu/user/login";
-                           break;
-                       }
-                   }
-  
-                   
-               }).catch(res =>{
-                   alert("服务器繁忙，稍后在尝试");
-               })
-           },
+   
        }
    }
-  </script>
-  
-  <style scoped>
-  @import 'https://dazuiblog.oss-cn-hangzhou.aliyuncs.com/webstatic/dazuiblog/userlogin.css';
-  @import 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css'; 
-  </style>
-  
+</script> 
