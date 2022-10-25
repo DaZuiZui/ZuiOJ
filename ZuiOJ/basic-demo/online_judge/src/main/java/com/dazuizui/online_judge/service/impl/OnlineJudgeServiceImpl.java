@@ -6,7 +6,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import com.dazuizui.online_judge.service.OnlineJudgeService;
-import com.sun.org.apache.regexp.internal.RE;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -50,7 +50,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         cmd.set("procLimit",programBo.getProblemLimit().getProcLimit());
         //设置copyin以及代码内容
         JSONObject copyIn = new JSONObject();
-        copyIn.set("Main.java",new JSONObject().set("content",programBo.getCode()));
+        copyIn.set(programBo.getCopyOutCached().get(0),new JSONObject().set("content",programBo.getCode()));
 
         cmd.set("copyIn", copyIn);
         // 设置copyOut

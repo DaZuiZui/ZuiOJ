@@ -36,7 +36,7 @@
                                             <option value="2">C++</option>
                                         </select>
                                         
-                                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;"> 提交我的程序</button> 
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> 提交我的程序</button> 
 
 
                                         <div class="input-group">
@@ -92,7 +92,7 @@
            return{
                program:{
                     code: '',
-                    topicID: 1,
+                    topicId: 1,
                     languageId: 0,
                }
            }
@@ -105,6 +105,10 @@
        methods: {
             submit(){
                 console.log(this.program);
+                this.$axios.post("http://127.0.0.1:8001/onlineJudge/judge",this.program)
+               .then(res =>{
+                    alert(res.data);
+               })
             }
        }
    }
