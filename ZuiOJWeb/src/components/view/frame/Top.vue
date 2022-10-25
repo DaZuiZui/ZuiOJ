@@ -6,11 +6,12 @@
                     <img src="http://www.gsxy.cn//lib/template/scheme/images/gs_xy_logo.png" id="logo" width="250px" height="60px" style="float: left;">
                     <nav class="nav" id="nav">
                         <ul>
-                            <li :class="systemcurrent1">
-                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About TLM Team</a></li>
-                            <li :class="systemcurrent2"><a href="http://127.0.0.1/hblog/"  target="top" >题库</a></li>
-                            <li :class="systemcurrent3"><a href="http://127.0.0.1/h/blog/blogging" target="">社区</a></li>
-                            <li :class="systemcurrent4"><a href="http://127.0.0.1/h/hblog/blogrool" target="">竞赛</a></li>
+                            <li>
+                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About TLM Team</a>
+                            </li>
+                            <li><a href="http://127.0.0.1/hblog/"           target="top" >题库</a></li>
+                            <li><a href="http://127.0.0.1/h/blog/blogging"  target="">社区</a></li>
+                            <li><a href="http://127.0.0.1/h/hblog/blogrool" target="">竞赛</a></li>
                         </ul>   
                  
                     </nav>
@@ -24,7 +25,7 @@
                             <span class="el-dropdown-link">
                                 <li>
                                     <el-avatar
-                                        :src="user.profilephotourl">
+                                        src="">
                                     </el-avatar>
                                 </li>
                             </span>
@@ -37,11 +38,11 @@
                                                 <el-aside width="55px">      
                                                         <div style="margin-top: 20px;margin-left:15px;">
                                                             <el-avatar
-                                                                :src="user.profilephotourl">  
+                                                                src="">  
                                                         </el-avatar> 
                                                     </div>
                                                 </el-aside>
-                                                <el-container v-if="user.name != null">
+                                                <el-container v-if="tmp != null">
                                                     <el-main>
                                                         账号: y51288033@outlook.com <br>
                                                         昵称: Yida Yang
@@ -59,16 +60,13 @@
                                         <hr>
                                     </div>
 
-                                    <div style="margin: auto;"  v-if="user.name == null">                              
+                                    <div style="margin: auto;"  v-if="tmp == null">                              
                                         <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" v-on:click="goSigin()" ><i class="el-icon-user"></i>点击我去登入</li>
                                     </div>
 
                                     <div style="margin: auto;" v-else>                              
                                         <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" v-on:click="goInfomation()" ><i class="el-icon-user"></i>我的个人信息</li>
                                         <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" v-on:click="goMyBlog()" ><i class="el-icon-user"></i>我的个人博客</li>
-                                        <div v-if="user.role == 'admin'" >
-                                            <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  v-on:click="goAdminPanel()"><i class="el-icon-back"></i>管理圆的面板</li>
-                                        </div>
                                         <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" v-on:click="gowriteOff()"><i class="el-icon-back"></i>退出我的账户</li>
                                     </div>
                                 </div>
@@ -83,20 +81,10 @@
 
 <script>
     export default {
-        name: 'Top',
+        
         data(){
             return{
-                 user:{
-                    username: null,
-                    password: null,
-                    roel: null,
-                    profilephotourl: null,
-                },
-                systemcurrent1: null,
-                systemcurrent2: null,
-                systemcurrent3: null,
-                systemcurrent4: null,
-                token: null,
+                 tmp: true
               
             }
         },
@@ -154,23 +142,7 @@
                  window.location.href="http://127.0.0.1/h/pr/user/adminindex";
              },
 
-             //检查用户是否登入
-             checkinsin(){
-                //获取token
-                this.token = getCookie("token");
-                //解析token
-                this.$axios.post("http://127.0.0.1/user/p/checkinsin?token="+this.token)
-                .then((response) => {
-                    if(response.data.errorinformation != null && response.data.username == null ){
-                        //登入信息过期    
-                        
-                    }else{
-                        //登入信息未过期
-                            //保存数据
-                            this.user = response.data;
-                        }
-                 })
-             },
+          
          }
     }
 </script>
