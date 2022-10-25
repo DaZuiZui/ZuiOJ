@@ -1,26 +1,6 @@
 <template>
   <div>
-      <div style="width:500px;">
-         <div class="main animated zoomIn" v-cloak>
-             <form  v-on:submit.prevent="submit()">
-                 <img class="mb-4" src="http://userupfile.oss-cn-hangzhou.aliyuncs.com/public/root/IMG/Logo1.png" alt="" width="250" height="250">
-                 <h1 class="h3 mb-3 font-weight-normal"></h1>
-                 <label class="sr-only">Username</label>
-                 <input type="text" class="form-control" placeholder="username" required="" autofocus="" id="username" name="username" v-model="user.username">
-                 <label class="sr-only">Password</label>
-                 <input type="password" class="form-control" placeholder="password" required="" id="password" name="password"  v-model="user.password">
-                 <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"  style="width:300px;height: 50px;"  v-bind:hidden="formbutton" > 登入</button> 
-
-                 <button class="btn btn-primary" type="button" disabled v-bind:hidden="!formbutton" style="width:300px;height: 50px;"> 
-                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                         正在登入中，请稍后...
-                 </button>
-
-                 还没有账户?<a href="http://www.dazuizui.com/hlogin/pu/user/registered">点击我注册</a>
-                 <p class="mt-5 mb-3 text-muted">© 2020 - 2021 &nbsp;哇塞大嘴好帅(我爱大嘴网)</p>
-             </form>
-         </div>
-      </div>
+      
   </div>
 </template>
 
