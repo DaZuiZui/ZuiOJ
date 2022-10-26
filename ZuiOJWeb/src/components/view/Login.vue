@@ -3,8 +3,8 @@
         <div style="width:500px;">
            <div class="main animated zoomIn" v-cloak>
                <form  v-on:submit.prevent="submit()">
-                   <img class="mb-4" src="http://userupfile.oss-cn-hangzhou.aliyuncs.com/public/root/IMG/Logo1.png" alt="" width="250" height="250">
-                   <h1 class="h3 mb-3 font-weight-normal"></h1>
+                   <img class="mb-4" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.diyimeikao.com%2Fd%2Ffile%2F2020%2F06-09%2Fe1d4fcfe4634c23da6557187efa26470.jpg&refer=http%3A%2F%2Fwww.diyimeikao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1669307272&t=1c131671d42d483f392bd35db47b874a" alt="" width="250" height="250">
+                   <h1 class="h3 mb-3 font-weight-normal">GuangSha TLMOJ System</h1>
                    <label class="sr-only">Username</label>
                    <input type="text" class="form-control" placeholder="username" required="" autofocus="" id="username" name="username" v-model="user.username">
                    <label class="sr-only">Password</label>
@@ -17,7 +17,7 @@
                    </button>
   
                    还没有账户?<a href="http://www.dazuizui.com/hlogin/pu/user/registered">点击我注册</a>
-                   <p class="mt-5 mb-3 text-muted">© 2020 - 2021 &nbsp;哇塞大嘴好帅(我爱大嘴网)</p>
+                   <p class="mt-5 mb-3 text-muted">© 2020 - 2021 &nbsp;张义嘉老师 & TLM团队</p>
                </form>
            </div>
         </div>

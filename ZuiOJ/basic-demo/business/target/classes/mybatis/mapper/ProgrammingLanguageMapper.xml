@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.ProgrammingLanguageMapper">
+    <resultMap id="ProgrammingLanguage" type="com.dazuizui.basicapi.entry.ProgrammingLanguage">
+        <result property="id" column="id"></result>
+        <result property="language" column="language"></result>
+        <result property="createByName" column="createByName"></result>
+        <result property="createById" column="createById"></result>
+        <result property="createTime" column="createTime"></result>
+        <result property="updateById" column="updateById"></result>
+        <result property="updateByName" column="updateByName"></result>
+        <result property="updateTime" column="updateTime"></result>
+        <result property="status" column="status"></result>
+        <result property="delFlag" column="delFlag"></result>
+    </resultMap>
+
+    <!--
+       获取全部语言数据
+   -->
+    <select id="getAllLanguage" resultMap="ProgrammingLanguage">
+        select
+            id,language
+        from
+            programming_language
+        where
+            status = 0 and
+            del_flag = 0
+    </select>
+
+
+</mapper>

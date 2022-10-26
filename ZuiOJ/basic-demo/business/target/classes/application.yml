@@ -1,0 +1,26 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: app-user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.20.0.147:3306/zuioj
+    username: root
+    password: TLMTEAMYLL4523..
+  redis:
+    # Redis Url
+    host: 127.0.0.1
+    # Redis 端口
+    port: 6379
+    # Redis 密码
+    # password: 您的密码
+    # 设置数据库序号
+    database: 0
+  servlet:
+    #文件上传
+    multipart:
+      enabled: true #是否启用http上传处理
+      max-request-size: 500MB #最大请求文件的大小
+      max-file-size: 500MB #设置单个文件最大长度
+      file-size-threshold: 20MB #当文件达到多少时进行磁盘写入

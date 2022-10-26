@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.LanguageCommandMapper">
+
+
+
+    <!--
+        根据语言id去查询command
+        Query by language id
+    -->
+    <select id="selectCommandByLanguageIdAndStatus" resultType="string">
+        select
+            command
+        from
+            language_command
+        where
+            language_id = #{languageId} and
+            status = #{status}
+        order by
+            sequence asc
+    </select>
+
+    <!--
+        根据语言id去查询
+        Query by language id
+    -->
+    <select id="selectByLanguageId" resultType="com.dazuizui.basicapi.entry.LanguageCommand">
+        SELECT
+            *
+        FROM
+            language_command
+        WHERE
+            language_id = #{languageId}
+        ORDER BY
+                STATUS
+                or sequence ASC
+    </select>
+    
+</mapper>

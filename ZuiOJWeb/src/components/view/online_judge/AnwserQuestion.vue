@@ -51,12 +51,12 @@
                                     <aside class="f-oh footer">
                                         <div class="f-fl tags">
                                             <i class="el-icon-user-solid"></i>
-                                            <a class="tag" href="#">张义嘉 & TLM TEAM</a>
+                                            <a class="tag" href="#">张义嘉老师 & TLM团队</a>
                                         </div>
                                         <div class="f-fr"> 
                                             <span class="read">
                                                 <i class="fa fa-eye fs-16"></i>
-                                                <i class="num">By 张义嘉 & TLM TEAM</i>
+                                                <i class="num">By 张义嘉老师 & TLM团队</i>
                                             </span>
                                         </div>
                                     </aside>
