@@ -82,6 +82,7 @@
   
   
   <script>
+    import {synRequest} from "../../../../static/request.js";
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
 
@@ -94,7 +95,7 @@
                     code: '',
                     topicId: 1,
                     languageId: 0,
-               }
+               },
            }
        },
   
@@ -103,17 +104,16 @@
        },
   
        methods: {
-            submit(){
-                console.log(this.program);
-                this.$axios.post("http://127.0.0.1:8001/onlineJudge/judge",this.program)
-               .then(res =>{
-                    alert(res.data);
-               })
+            async submit(){
+                //处决代码
+                var object =  await synRequest("/onlineJudge/judge",this.program);
+                alert(object);
             }
        }
    }
   </script>
 
 <style scoped>
-@import 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css'; 
+  
+    @import 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css'; 
 </style>
