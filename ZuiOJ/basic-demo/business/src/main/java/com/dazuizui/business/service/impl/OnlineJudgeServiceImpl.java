@@ -10,6 +10,7 @@ import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
 import com.dazuizui.business.service.OnlineJudgeService;
 import com.dazuizui.business.util.HttpUtil;
+import com.dazuizui.business.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     private ProblemLimitMapper problemLimitMapper;
     @Autowired
     private QuestionCaseMapper questionCaseMapper;
+    @Autowired
+    private RedisUtil redisUtil;
+
     /**
      * 判决代码
      * @param programBo
@@ -48,9 +52,17 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         /**
          * 获取案例he
          */
-        JSONObject request = new JSONObject();
-        List<QuestionCase> questionCases = questionCaseMapper.queryTheQuestionCasesByQuestionId(programBo.getTopicId());
+        List<QuestionCase> questionCases = redisUtil.getListInRedis("ZuiOJ:QuestionBack:QuestionID:"+programBo.getTopicId());
+        System.out.println(questionCases.size());
+        if (questionCases.size() == 0){
+            questionCases = questionCaseMapper.queryTheQuestionCasesByQuestionId(programBo.getTopicId());
+            //写入redis
+            redisUtil.putListInRedis("ZuiOJ:QuestionBack:QuestionID:"+programBo.getTopicId(),60*60*24*15,questionCases);
+            System.out.println("in db");
+        }
 
+
+        JSONObject request = new JSONObject();
         for (QuestionCase questionCase : questionCases) {
             programBo.setInput(questionCase.getInputs());
             //发起请求

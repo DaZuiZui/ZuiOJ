@@ -17,6 +17,7 @@ spring:
     # password: 您的密码
     # 设置数据库序号
     database: 0
+
   servlet:
     #文件上传
     multipart:
