@@ -7,7 +7,7 @@
                     <nav class="nav" id="nav">
                         <ul>
                             <li>
-                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About TLM Team</a>
+                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About TLMOJ</a>
                             </li>
                             <li><a href="http://127.0.0.1/hblog/"           target="top" >题库</a></li>
                             <li><a href="http://127.0.0.1/h/blog/blogging"  target="">社区</a></li>
@@ -95,7 +95,7 @@
             //检查用户是否登入
        
             console.log("。。。。。");
-            console.log("%c                                           哇塞大嘴好帥 - 我爱大嘴网 - Hong Kong S.A.R"," text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:1.2em");
+            console.log("%c                                           若你拥有梦想，想和一些优秀的人做有趣的事情，那来加入GuangShaTLM团队。   --TLM Team"," text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:1.2em");
         },
 
          methods: {
