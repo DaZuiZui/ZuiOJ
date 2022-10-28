@@ -61,7 +61,8 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             }
             //判断答案是否正确
             JSONObject jsonObject1 = new JSONObject(request.get("files"));
-            String stdout = jsonObject1.get("stdout").toString().trim();
+            String stdout = jsonObject1.get("stdout").toString() ;
+            stdout =  stdout.replace("\n","\\n").trim();
             System.out.println(questionCase.getAnswer()+"and"+stdout);
             if (!stdout.equals(questionCase.getAnswer())) {
                 return "Anwser Error";
