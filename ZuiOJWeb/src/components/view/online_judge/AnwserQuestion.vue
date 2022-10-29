@@ -83,9 +83,11 @@
   
   <script>
     import {synRequest} from "../../../../static/request.js";
+    import global       from "../../../../static/request.js";
+    
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
-
+  
     export default {
        name: "anwserQuestions",     //对外开放打包
        components: { Foot,Top },
@@ -100,7 +102,7 @@
        },
   
        mounted(){
-          
+            console.log(global.apiUrl)
        },
   
        methods: {
@@ -114,6 +116,5 @@
   </script>
 
 <style scoped>
-  
     @import 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css'; 
 </style>
