@@ -2,7 +2,7 @@ package com.dazuizui.business;
 
 import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
-import com.dazuizui.business.service.onlineJudge.impl.LanguageCommandService;
+import com.dazuizui.business.service.onlineJudge.LanguageCommandService;
 import com.dazuizui.business.util.RedisUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

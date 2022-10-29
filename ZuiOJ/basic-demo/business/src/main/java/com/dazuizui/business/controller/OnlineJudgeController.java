@@ -1,7 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
-import com.dazuizui.business.service.onlineJudge.impl.OnlineJudgeService;
+import com.dazuizui.business.service.onlineJudge.OnlineJudgeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

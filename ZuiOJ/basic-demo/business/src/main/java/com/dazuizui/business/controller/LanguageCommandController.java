@@ -1,7 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.dazuizui.basicapi.entry.LanguageCommand;
-import com.dazuizui.business.service.onlineJudge.impl.LanguageCommandService;
+import com.dazuizui.business.service.onlineJudge.LanguageCommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

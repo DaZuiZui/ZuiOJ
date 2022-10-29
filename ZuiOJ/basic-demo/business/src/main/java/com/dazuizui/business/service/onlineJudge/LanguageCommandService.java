@@ -1,4 +1,4 @@
-package com.dazuizui.business.service.onlineJudge.impl;
+package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.LanguageCommand;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;

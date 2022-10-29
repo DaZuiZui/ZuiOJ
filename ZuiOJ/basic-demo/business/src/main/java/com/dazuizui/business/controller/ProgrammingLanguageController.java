@@ -1,7 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
-import com.dazuizui.business.service.onlineJudge.impl.ProgrammingLanguageService;
+import com.dazuizui.business.service.onlineJudge.ProgrammingLanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
