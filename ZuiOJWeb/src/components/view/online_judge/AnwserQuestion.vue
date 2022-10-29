@@ -15,7 +15,7 @@
                                 <section class="article-item zoomIn article" style="border-radius:5px">
                      
                                     <h5 class="title">
-                                        <a href="#">哈尔滨广厦学院题库</a>
+                                        <a href="#">P10001 张义嘉老师的数学题</a>
                                     </h5>
                               
                                    
@@ -35,7 +35,17 @@
                                     
                                               </div>
                                               <div class="col">
-                                  
+                                                <div v-if="res != null">
+                                                    <div v-if="res.status == 'Accepted'">
+                                                        运行结果： <b style="color:green;font-size:16px">{{res.status}}</b> 
+                                                        运行时间 <b style="font-size:16px">{{res.runTime}}</b>纳秒 
+                                                        所用内存 <b style="font-size:16px">{{res.memory}}</b>B(byte)
+                                                    </div>
+                                                    <div v-else>
+                                                        运行结果： <b style="color:red;font-size:16px">{{res.status}}</b> 
+                                                    </div>
+                                                </div>
+                                           
                                                 <select class="form-control form-control-lg" v-model="program.languageId">
                                                     <option value="-1"  disabled>--请选择您的编程语言--</option>
                                                     <option value="1">Java</option>
@@ -104,6 +114,10 @@
                     topicId: 1,
                     languageId: -1,
                },
+               res: {
+                    status: "",
+                    runTime: 0,
+                },
            }
        },
   
@@ -114,8 +128,8 @@
        methods: {
             async submit(){
                 //处决代码
-                var object =  await synRequest("/onlineJudge/judge",this.program);
-                alert(object);
+                this.res =  await synRequest("/onlineJudge/judge",this.program);
+                console.log(this.res);
             }
        }
    }

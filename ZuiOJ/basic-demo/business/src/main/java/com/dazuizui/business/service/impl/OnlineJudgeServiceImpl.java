@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.impl;
 
 import cn.hutool.json.JSONObject;
+import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.InitializerData;
 import com.dazuizui.basicapi.entry.ProblemLimit;
 import com.dazuizui.basicapi.entry.QuestionCase;
@@ -79,7 +80,8 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             stdout =  stdout.replace("\n","\\n").trim();
             System.out.println(questionCase.getAnswer()+"and"+stdout);
             if (!stdout.equals(questionCase.getAnswer())) {
-                return "Anwser Error";
+                request.set("status","Answer error");
+                return JSONArray.toJSONString(request);
             }
         }
 
@@ -87,7 +89,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
          * 日志记录用户的状态
          */
 
-        return (String) request.get("status");
+        return JSONArray.toJSONString(request);
     }
 
 
