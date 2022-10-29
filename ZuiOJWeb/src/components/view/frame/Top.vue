@@ -44,8 +44,8 @@
                                                 </el-aside>
                                                 <el-container v-if="tmp != null">
                                                     <el-main>
-                                                        账号: y51288033@outlook.com <br>
-                                                        昵称: Yida Yang
+                                                        账号: {{$store.state.user.username}} <br>
+                                                        昵称: {{$store.state.user.name}}
                                                     </el-main>
                                                 </el-container>
 

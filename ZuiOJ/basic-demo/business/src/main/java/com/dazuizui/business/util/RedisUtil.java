@@ -13,9 +13,31 @@ public class RedisUtil {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 设置key String类型
+     * @param key
+     * @param timeout
+     * @param data
+     * @return
+     */
+    public long  putListInRedis(String key,long timeout,Object data){
+        redisTemplate.opsForValue().set(key,data);
+        redisTemplate.expire(key,timeout,TimeUnit.SECONDS);
+        return 1;
+    }
 
     /**
-     * key
+     * 获取key值
+     * @param key
+     * @return
+     */
+    public Object getStringInRedis(String key){
+        return redisTemplate.opsForValue().get(key);
+    }
+
+
+    /**
+     * get list
      * @param key
      * @return
      */

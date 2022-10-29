@@ -26,6 +26,8 @@ public class User implements Serializable {
     private int delFlag;
     private int status;
     private int type;
+    private int role;
+    private int grade;
 
     @Override
     public String toString() {
@@ -49,6 +51,8 @@ public class User implements Serializable {
                 ", delFlag=" + delFlag +
                 ", status=" + status +
                 ", type=" + type +
+                ", role=" + role +
+                ", grade=" + grade +
                 '}';
     }
 
@@ -204,10 +208,26 @@ public class User implements Serializable {
         this.type = type;
     }
 
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
     public User() {
     }
 
-    public User(long id, String username, String name, String studentId, int sex, String password, String idCard, int collegeId, int majorId, int classId, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type) {
+    public User(long id, String username, String name, String studentId, int sex, String password, String idCard, int collegeId, int majorId, int classId, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, int grade) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -227,5 +247,7 @@ public class User implements Serializable {
         this.delFlag = delFlag;
         this.status = status;
         this.type = type;
+        this.role = role;
+        this.grade = grade;
     }
 }

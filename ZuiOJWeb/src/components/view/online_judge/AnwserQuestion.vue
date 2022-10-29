@@ -122,7 +122,7 @@
        },
   
        mounted(){
-  
+ 
             //console.log(global.apiUrl+"asd")
        },
   
