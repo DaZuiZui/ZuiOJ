@@ -16,7 +16,7 @@ public class LanguageCommandServiceImpl implements LanguageCommandService {
     /**
      * 根据语言id去查询
      * Query by language id
-     *      
+     *
      * @param languageId
      * @return
      */

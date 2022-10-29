@@ -112,16 +112,10 @@
                                         </div>
                                     </aside>
                                 </section>
-
                             </div>
-
-                      
                         </article>
-
-                            
                     </div>
                 </div>
-                
             </div>
         </div>
 
@@ -147,13 +141,13 @@
        },
   
        mounted(){
-            alert("asd");
-            alert(global.user.username);
+            console.log("todo"+this.$store.state.user.username);
        },
   
        methods: {
             toQuestion(){
-               window.location.href="http://localhost:8080/question/AnwserQuestion";
+               //window.location.href="http://localhost:8080/question/AnwserQuestion";
+               this.$router.push('/question/AnwserQuestion');
             }
        }
    }

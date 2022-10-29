@@ -122,7 +122,8 @@
        },
   
        mounted(){
-            console.log(global.apiUrl+"asd")
+  
+            //console.log(global.apiUrl+"asd")
        },
   
        methods: {

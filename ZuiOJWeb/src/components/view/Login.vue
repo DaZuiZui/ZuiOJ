@@ -59,9 +59,16 @@
                 if(object.code == "0x0001"){
                     alert(object.message);
                     global.user =  object.data;
-                    this.$store.commit("userinfo",object.data);
-                    console.log(this.$store.state.userinfo);
-                   // window.location.href="http://127.0.0.1:8080/question/QuestionList";
+                    //to save one data
+                  
+                    //this.$store.commit("setUser",object.data);
+                    //to change
+                    this.$store.dispatch('setUser',object.data)
+                    //console.log("todo"+this.$store.state.user.username);
+                    //this.$store.commit("setUser",null);
+                    //window.location.href="http://127.0.0.1:8080/question/QuestionList";
+                    //now lets to change the href
+                    this.$router.push('/question/QuestionList');
                 }
             },
        }
