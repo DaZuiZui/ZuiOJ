@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
- 
+import store from './store'
  
 Vue.use(ElementUI);
 Vue.config.productionTip = false
@@ -14,6 +14,7 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -135,6 +135,7 @@
   <script>
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
+    import global from "../../../../static/entry.js";
 
     export default {
        name: "anwserQuestions",     //对外开放打包
@@ -146,7 +147,8 @@
        },
   
        mounted(){
-   
+            alert("asd");
+            alert(global.user.username);
        },
   
        methods: {

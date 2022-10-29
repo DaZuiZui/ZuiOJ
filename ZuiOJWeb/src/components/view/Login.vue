@@ -17,7 +17,7 @@
                    </button>
   
                    还没有账户?<a href="http://www.dazuizui.com/hlogin/pu/user/registered">点击我注册</a>
-                   <p class="mt-5 mb-3 text-muted">© 2020 - 2021 &nbsp;张义嘉老师 & TLM团队</p>
+                   <p class="mt-5 mb-3 text-muted">© 2022 - 2022 &nbsp;张义嘉老师 & TLM团队</p>
                </form>
            </div>
         </div>
@@ -27,7 +27,8 @@
   
   <script>
    import Axios from 'axios'
-   import {synlogin} from "../../../static/request.js";
+   import {synRequest} from "../../../static/request.js";
+   import global from "../../../static/entry.js";
    export default {
        name: "login",     //对外开放打包
   
@@ -51,8 +52,17 @@
        methods: {
            //提交登入
            async submit(){
-                var object = await synlogin("/user/userlogin",this.user);
-                console.log(object);
+                var object = await synRequest("/user/userlogin",this.user);
+                /*
+                 * 登入成功
+                 */
+                if(object.code == "0x0001"){
+                    alert(object.message);
+                    global.user =  object.data;
+                    this.$store.commit("userinfo",object.data);
+                    console.log(this.$store.state.userinfo);
+                   // window.location.href="http://127.0.0.1:8080/question/QuestionList";
+                }
             },
        }
    }

@@ -1,11 +1,11 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.service.user.UserService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户模板登入
@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @RestController
 public class UserController {
+    @Autowired
+    private UserService userService;
+
     /**
      * 用户登入
      * @return
      */
     @ApiOperation("用户登入")
     @PostMapping("/userlogin")
-    public String userLogin(){
-        return JSONArray.toJSONString("login");
+    public String userLogin(@RequestBody User user){
+        return userService.userLogin(user);
     }
 }
