@@ -58,6 +58,7 @@
                                                     </thead>
                                                 </table>
                                             </div>
+                                            
                                             <div class="el-table__body-wrapper is-scrolling-none">
                                                 <table cellspacing="0" cellpadding="0" border="0" class="el-table__body"
                                                 style="width: 100%;">
@@ -96,7 +97,6 @@
                                             <div class="el-table__column-resize-proxy" style="display: none;">
                                             </div>
                                         </div>
-                                      
                                     </div>
 
                                     <aside class="f-oh footer">
@@ -112,13 +112,8 @@
                                         </div>
                                     </aside>
                                 </section>
-
                             </div>
-
-                      
-                        </article>
-
-                            
+                        </article>                         
                     </div>
                 </div>
                 
