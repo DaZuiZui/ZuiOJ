@@ -18,34 +18,40 @@
                                         <a href="#">哈尔滨广厦学院题库</a>
                                     </h5>
                               
+                                   
+
                                     <div class="content">
-                                       张义嘉老师最近在做一道数学题，当数字太大的时候张老师运算会很久，他想设计一个程序来帮助他做题。<br>
-                                       输入2个数字输出结果<br>
-                                       例子A<br>
-                                       Input: <br>
-                                       1 1<br>
-                                       Out:<br>
-                                       2
-                                         <b>注意答案会超过int范围</b>
-
-
-                                         <select class="form-control form-control-lg" v-model="program.languageId">
-                                            <option value="-1"  disabled>--请选择您的编程语言--</option>
-                                            <option value="1">Java</option>
-                                            <option value="2">C lang</option>
-                                            <option value="2">C++</option>
-                                        </select>
-                                        
-                                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> 提交我的程序</button> 
-
-
-                                        <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">type code</span>
+                                        <div class="container">
+                                            <div class="row row-cols-2">
+                                              <div class="col">
+                                                    张义嘉老师最近在做一道数学题，当数字太大的时候张老师运算会很久，他想设计一个程序来帮助他做题。<br>
+                                                    输入2个数字输出结果<br>
+                                                    例子A<br>
+                                                    Input: <br>
+                                                    1 1<br>
+                                                    Out:<br>
+                                                    2
+                                                  <b>注意答案会超过int范围</b>
+                                    
+                                              </div>
+                                              <div class="col">
+                                  
+                                                <select class="form-control form-control-lg" v-model="program.languageId">
+                                                    <option value="-1"  disabled>--请选择您的编程语言--</option>
+                                                    <option value="1">Java</option>
+                                                    <option value="2">C lang</option>
+                                                    <option value="2">C++</option>
+                                                </select>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">type code</span>
+                                                    </div>
+                                                    <textarea class="form-control" aria-label="With textarea" v-model="program.code" style="height:550px; resize:none"></textarea>
+                                                </div>
+                                                <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> Submit</button> 
+                                              </div>
+                                            </div>
                                         </div>
-                                        <textarea class="form-control" aria-label="With textarea" v-model="program.code"></textarea>
-                                        </div>
-
                                     </div>
 
                                     <aside class="f-oh footer">
@@ -83,8 +89,8 @@
   
   <script>
     import {synRequest} from "../../../../static/request.js";
-    import global       from "../../../../static/request.js";
-    
+    import global from "../../../../static/entry.js";
+
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
   
@@ -96,13 +102,13 @@
                program:{
                     code: '',
                     topicId: 1,
-                    languageId: 0,
+                    languageId: -1,
                },
            }
        },
   
        mounted(){
-            console.log(global.apiUrl)
+            console.log(global.apiUrl+"asd")
        },
   
        methods: {
