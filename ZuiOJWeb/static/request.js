@@ -18,4 +18,3 @@ export async function  synRequest(controller,data) {
        return arr;
 }
 
- 

@@ -3,6 +3,7 @@ package com.dazuizui.business.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.service.user.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/user")
 @RestController
+@Api(value = "用户模板控制器",tags = {"用户模板控制器"})
 public class UserController {
     @Autowired
     private UserService userService;
@@ -26,4 +28,11 @@ public class UserController {
     public String userLogin(@RequestBody User user){
         return userService.userLogin(user);
     }
+
+
+    @ApiOperation("解析用户token")
+    public String analysis(@RequestParam("token")String token){
+        return "";
+    }
+
 }
