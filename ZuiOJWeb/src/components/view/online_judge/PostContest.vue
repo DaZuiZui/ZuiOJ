@@ -31,9 +31,9 @@
                                                 <option value="-1"  disabled>--请选择比赛类型--</option>
                                                 <option value="1">个人赛</option>
                                                 <option value="2">团队赛</option>
-                                                <option value="3">信息学院专业社团周测特别版</option>
-                                                <option value="2">哈尔滨广厦学院考试特别版本</option>
-                                                <option value="3">特别团体测试考试版本特别版本</option>
+                                                <option value="3" disabled>信息学院专业社团周测特别版</option>
+                                                <option value="2" disabled>哈尔滨广厦学院考试特别版本</option>
+                                                <option value="3" disabled>特别团体测试考试版本特别版本</option>
                                             </select>
 
                                             <b>题目内容</b> 
