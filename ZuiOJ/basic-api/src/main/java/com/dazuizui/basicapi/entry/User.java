@@ -28,6 +28,8 @@ public class User implements Serializable {
     private int type;
     private int role;
     private int grade;
+    private String headPortrait;
+
 
     @Override
     public String toString() {
@@ -53,6 +55,7 @@ public class User implements Serializable {
                 ", type=" + type +
                 ", role=" + role +
                 ", grade=" + grade +
+                ", headPortrait='" + headPortrait + '\'' +
                 '}';
     }
 
@@ -224,10 +227,18 @@ public class User implements Serializable {
         this.grade = grade;
     }
 
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
+
     public User() {
     }
 
-    public User(long id, String username, String name, String studentId, int sex, String password, String idCard, int collegeId, int majorId, int classId, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, int grade) {
+    public User(long id, String username, String name, String studentId, int sex, String password, String idCard, int collegeId, int majorId, int classId, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, int grade, String headPortrait) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -249,5 +260,7 @@ public class User implements Serializable {
         this.type = type;
         this.role = role;
         this.grade = grade;
+        this.headPortrait = headPortrait;
     }
 }
+

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div  v-cloak>
         <header class="gird-header" >
             <div class="header-fixed">
                 <div class="header-inner">
@@ -25,7 +25,7 @@
                             <span class="el-dropdown-link">
                                 <li>
                                     <el-avatar
-                                        src="">
+                                        :src="this.$store.state.user.headPortrait">
                                     </el-avatar>
                                 </li>
                             </span>
@@ -38,14 +38,14 @@
                                                 <el-aside width="55px">      
                                                         <div style="margin-top: 20px;margin-left:15px;">
                                                             <el-avatar
-                                                                src="">  
+                                                                :src="this.$store.state.user.headPortrait">  
                                                         </el-avatar> 
                                                     </div>
                                                 </el-aside>
                                                 <el-container v-if="tmp != null">
                                                     <el-main>
-                                                        账号: {{$store.state.user.username}} <br>
-                                                        昵称: {{$store.state.user.name}}
+                                                        账号: {{this.$store.state.user.username}}<br>
+                                                        昵称: {{this.$store.state.user.name}}
                                                     </el-main>
                                                 </el-container>
 
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+    import {synRequestGet} from "../../../../static/request.js";
     export default {
         
         data(){
@@ -90,15 +91,30 @@
         },
         //自启动
         mounted(){
-            //初始化
-            //this.systemcurrent = "";
-            //检查用户是否登入
+            
+            this.check();
        
             console.log("。。。。。");
             console.log("%c                                           若你拥有梦想，想和一些优秀的人做有趣的事情，那来加入GuangShaTLM团队。   --TLM Team"," text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:1.2em");
         },
 
          methods: {
+            async check(){
+    
+                /*
+                 * fresh 防止vuex丢失
+                 */
+                if(this.$store.state.user == null){
+                    var object = await synRequestGet("/user/analysis?token="+getCookie("token"),null);
+                    console.log("SAD"+object.data);
+                    if(object.code == "0x0005"){
+                        alert(object.code);
+                    }
+                     
+                    this.$store.dispatch('setUser',object.data);
+                    console.log(this.$store.state.user);
+                }
+            }, 
              //退出账户
              gowriteOff(){
                 setCookie("token","null");

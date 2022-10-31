@@ -16,7 +16,8 @@
             class_id,
             role,
             grade,
-            status
+            status,
+            head_portrait
         from
             user
         where

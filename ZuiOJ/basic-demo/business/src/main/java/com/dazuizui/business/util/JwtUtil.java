@@ -43,6 +43,7 @@ public class JwtUtil {
         map.put("role",user.getRole());
         map.put("grade",user.getGrade());
         map.put("status",user.getStatus());
+        map.put("headPortrait",user.getHeadPortrait());
         builder.addClaims(map); //添加载荷
 
         //1.算法 2.密钥

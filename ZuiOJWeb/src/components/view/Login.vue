@@ -58,17 +58,13 @@
                  */
                 if(object.code == "0x0001"){
                     alert(object.message);
-                    global.user =  object.data;
-                    //to save one data
-                  
-                    //this.$store.commit("setUser",object.data);
-                    //to change
-                    this.$store.dispatch('setUser',object.data)
-                    //console.log("todo"+this.$store.state.user.username);
-                    //this.$store.commit("setUser",null);
-                    //window.location.href="http://127.0.0.1:8080/question/QuestionList";
-                    //now lets to change the href
+                    setCookie ("token",object.data.jwt);
+                    global.user =  object.data.userinfo;
+                    this.$store.dispatch('setUser',object.data.userinfo);
+                    //console.log("todo11"+this.$store.state.user.username);
                     this.$router.push('/question/QuestionList');
+                }else if(object.code == "0x0003"){
+                    alert("您的密码错误");
                 }
             },
        }

@@ -30,9 +30,15 @@ public class UserController {
     }
 
 
+    /**
+     * 解析token
+     * @param token
+     * @return
+     */
     @ApiOperation("解析用户token")
+    @GetMapping("/analysis")
     public String analysis(@RequestParam("token")String token){
-        return "";
+        return userService.analysis(token);
     }
 
 }

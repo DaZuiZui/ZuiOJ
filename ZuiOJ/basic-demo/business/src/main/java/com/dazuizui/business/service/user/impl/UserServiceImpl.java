@@ -1,6 +1,5 @@
 package com.dazuizui.business.service.user.impl;
 
-import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String userLogin(User user) {
         //查看账号密码是否正确
-        User userInDB = (User) redisUtil.getStringInRedis("DaZuiOj:user:info:"+user.getUsername());
+        User userInDB = null; //(User) redisUtil.getStringInRedis("DaZuiOj:user:info:"+user.getUsername());
         if (userInDB == null){
             userInDB = userMapper.userLogin(user);
             if (userInDB == null){
@@ -46,11 +45,43 @@ public class UserServiceImpl implements UserService {
             return JSONArray.toJSONString(new ResponseVo<>("密码错误",null,"0x0003"));
         }
         //生成JWT
-        String jwt = JwtUtil.createJWT(user);
+        String jwt = JwtUtil.createJWT(userInDB);
         //封装返回
         Map<String,Object> map = new HashMap<>();
         map.put("jwt",jwt);
         map.put("userinfo",userInDB);
         return JSONArray.toJSONString(new ResponseVo<>("登入成功",map,"0x0001"));
+    }
+
+    /**
+     * 解析token
+     * @param token
+     * @return
+     */
+    @Override
+    public String analysis(String token) {
+        Map<String, Object> map = null;
+        try {
+            map = JwtUtil.analysis(token);
+        } catch (Exception e) {
+            return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,"0x0005"));
+        }
+
+        User user = new User();
+        System.out.println(map.get("id"));
+        user.setId((Integer) map.get("id"));
+        user.setUsername((String) map.get("username"));
+        user.setStudentId((String) map.get("studentId"));
+        user.setName((String) map.get("name"));
+        user.setSex((Integer) map.get("sex"));
+        user.setIdCard((String) map.get("idCard"));
+        user.setCollegeId((Integer) map.get("collegeId"));
+        user.setMajorId((Integer) map.get("majorId"));
+        user.setClassId((Integer) map.get("classId"));
+        user.setRole((Integer) map.get("role"));
+        user.setGrade((Integer) map.get("grade"));
+        user.setStatus((Integer) map.get("status"));
+        System.out.println(user);
+        return JSONArray.toJSONString(new ResponseVo<>("null",user,"0x0006"));
     }
 }

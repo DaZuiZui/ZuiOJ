@@ -130,7 +130,7 @@
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
     import global from "../../../../static/entry.js";
-
+    import {synRequestGet} from "../../../../static/request.js";
     export default {
        name: "anwserQuestions",     //对外开放打包
        components: { Foot,Top },
@@ -141,12 +141,13 @@
        },
   
        mounted(){
-            console.log("todo"+this.$store.state.user.username);
+           
        },
   
        methods: {
+           
             toQuestion(){
-               //window.location.href="http://localhost:8080/question/AnwserQuestion";
+               
                this.$router.push('/question/AnwserQuestion');
             }
        }
