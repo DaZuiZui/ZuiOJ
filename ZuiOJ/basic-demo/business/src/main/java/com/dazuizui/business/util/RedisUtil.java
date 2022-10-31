@@ -35,6 +35,19 @@ public class RedisUtil {
         return redisTemplate.opsForValue().get(key);
     }
 
+    /**
+     * 设置string类型
+     * @param key
+     * @param timeout
+     * @param data
+     * @return
+     */
+    public long setStringInRedis(String key,long timeout,Object data){
+        redisTemplate.opsForValue().set(key,data);
+        redisTemplate.expire(key,timeout,TimeUnit.SECONDS);
+        return -1;
+    }
+
 
     /**
      * get list
