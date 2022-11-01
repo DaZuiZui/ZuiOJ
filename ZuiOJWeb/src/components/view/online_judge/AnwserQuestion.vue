@@ -17,8 +17,6 @@
                                     <h5 class="title">
                                         <a href="#">P10001 张义嘉老师的数学题</a>
                                     </h5>
-                              
-                                   
 
                                     <div class="content">
                                         <div class="container">
@@ -77,13 +75,8 @@
                                         </div>
                                     </aside>
                                 </section>
-
                             </div>
-
-                      
                         </article>
-
-                            
                     </div>
                 </div>
                 
