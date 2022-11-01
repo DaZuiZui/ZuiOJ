@@ -24,6 +24,7 @@ public class Contest implements Serializable {
     private int contestType;
     private int parsingRule;
     private int postMatchProcessing;    //赛后处理方式
+ 
 
     @Override
     public String toString() {

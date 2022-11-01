@@ -22,6 +22,10 @@ public class QuestionBankBo implements Serializable {
     private String htmlCn;
     private String mdEn;
     private String htmlEn;
+    private long   contestId;
+
+    public QuestionBankBo() {
+    }
 
     @Override
     public String toString() {
@@ -44,6 +48,7 @@ public class QuestionBankBo implements Serializable {
                 ", htmlCn='" + htmlCn + '\'' +
                 ", mdEn='" + mdEn + '\'' +
                 ", htmlEn='" + htmlEn + '\'' +
+                ", contestId=" + contestId +
                 '}';
     }
 
@@ -191,10 +196,15 @@ public class QuestionBankBo implements Serializable {
         this.htmlEn = htmlEn;
     }
 
-    public QuestionBankBo() {
+    public long getContestId() {
+        return contestId;
     }
 
-    public QuestionBankBo(long id, String shortName, String englishName, String chineseName, long grade, String createByName, Date createTime, long updateById, String updateByName, Date updateTime, int status, int delFlag, int questionType, long createById, String mdCn, String htmlCn, String mdEn, String htmlEn) {
+    public void setContestId(long contestId) {
+        this.contestId = contestId;
+    }
+
+    public QuestionBankBo(long id, String shortName, String englishName, String chineseName, long grade, String createByName, Date createTime, long updateById, String updateByName, Date updateTime, int status, int delFlag, int questionType, long createById, String mdCn, String htmlCn, String mdEn, String htmlEn, long contestId) {
         this.id = id;
         this.shortName = shortName;
         this.englishName = englishName;
@@ -213,5 +223,6 @@ public class QuestionBankBo implements Serializable {
         this.htmlCn = htmlCn;
         this.mdEn = mdEn;
         this.htmlEn = htmlEn;
+        this.contestId = contestId;
     }
 }
