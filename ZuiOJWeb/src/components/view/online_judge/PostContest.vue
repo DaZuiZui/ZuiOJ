@@ -20,10 +20,9 @@
                               
                                      
                                     <div class="content">
-                                      
                                             <b>比赛标题</b> 
                                             <div>
-                                                <el-input v-model="conTestInfo.title" placeholder="Pleace enter title"></el-input>
+                                                <el-input v-model="conTestInfo.name" placeholder="Pleace enter title"></el-input>
                                             </div>
                                             
                                             <b>比赛类型</b> 
@@ -36,12 +35,12 @@
                                             </select>
 
                                             <b>赛制选择</b> 
-                                            <select class="form-control form-control-lg" v-model="conTestInfo.contestType">
+                                            <select class="form-control form-control-lg" v-model="conTestInfo.parsingRule">
                                                 <option value="-1"  disabled>--请选择比赛赛制--</option>
                                                 <option value="1">ACM赛制</option>
-                                                <option value="2">Leetcode赛制</option>
-                                                <option value="3">ACM混合赛制(包含选择题、填空题)</option>
-                                                <option value="3">Leetcode混合赛制(包含选择题、填空题)</option>
+                                                <option value="2" disabled>Leetcode赛制</option>
+                                                <option value="3" disabled>ACM混合赛制(包含选择题、填空题)</option>
+                                                <option value="3" disabled>Leetcode混合赛制(包含选择题、填空题)</option>
                                             </select>
 
                                             <b>比赛时间</b> 
@@ -58,10 +57,7 @@
                                                 </el-date-picker>
                                               </div>
 
-                                        
-
-                                            <b>比赛介绍</b> 
-                                            
+                                            <b>比赛介绍</b>     
                                             <!--编辑器区域-->
                                             <div  style=" width:100%"> 
                                                 <mavon-editor  
@@ -141,7 +137,10 @@
                     context: "",
                     html: "",
                     title: "",
+                    startTime: new Date(),
+                    endTime: new Date(),
                     contestType: -1,
+                    parsingRule: -1,
                },
                nonPowerToken: "",
                //比赛时间区间
@@ -171,18 +170,18 @@
             },
 
             async submit(){
-                console.log(this.timeInterval);
-                /*
+                this.conTestInfo.startTime = this.timeInterval[0];
+                this.conTestInfo.endTime   = this.timeInterval[1];
+
                 this.conTestInfo.Idemtoken = this.nonPowerToken;
                 var object = null;
                 try{
                     object = await synRequest("/contest/postContest?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.conTestInfo);
                     //重新获取幂等性token
-                    this.getNonPowerToken().GET;
+                    this.getNonPowerToken();
                 }catch(e){
                     alert("异常操作，未获取幂等性");
                 }
-                */
             }
        }
    }
