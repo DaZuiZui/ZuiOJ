@@ -7,7 +7,7 @@
                     <nav class="nav" id="nav">
                         <ul>
                             <li>
-                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About TLMOJ</a>
+                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About</a>
                             </li>
                             <li><a href="http://127.0.0.1/hblog/"           target="top" >题库</a></li>
                             <li><a href="http://127.0.0.1/h/blog/blogging"  target="">社区</a></li>

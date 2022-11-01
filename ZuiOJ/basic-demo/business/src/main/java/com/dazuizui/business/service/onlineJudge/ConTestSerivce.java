@@ -1,6 +1,6 @@
 package com.dazuizui.business.service.onlineJudge;
 
-import com.dazuizui.basicapi.entry.ConTest;
+import com.dazuizui.basicapi.entry.Contest;
 import org.springframework.stereotype.Service;
 
 
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ConTestSerivce {
-    public String postContest(ConTest conTest);
+    public String postContest(Contest conTest);
 }

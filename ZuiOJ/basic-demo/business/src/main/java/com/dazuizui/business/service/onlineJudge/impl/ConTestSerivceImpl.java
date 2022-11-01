@@ -1,7 +1,7 @@
 package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.ConTest;
+import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.ConTestMapper;
 import com.dazuizui.business.service.onlineJudge.ConTestSerivce;
@@ -26,7 +26,8 @@ public class ConTestSerivceImpl implements ConTestSerivce {
      */
     @Override
     @Transactional
-    public String postContest(ConTest conTest) {
+    public String postContest(Contest conTest) {
+        System.out.println(conTest);
         long l = conTestMapper.insertConTest(conTest);
         if (l == 0){
             //todo error

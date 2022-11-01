@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 考试实体类
  */
-public class ConTest implements Serializable {
+public class Contest implements Serializable {
     private long id; //比赛id
     private String name;//比赛昵称
     private Date startTime; //开始时间
@@ -22,10 +22,12 @@ public class ConTest implements Serializable {
     private int status;
     private int delFlag;
     private int contestType;
+    private int parsingRule;
+    private int postMatchProcessing;    //赛后处理方式
 
     @Override
     public String toString() {
-        return "ConTest{" +
+        return "Contest{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", startTime=" + startTime +
@@ -41,6 +43,8 @@ public class ConTest implements Serializable {
                 ", status=" + status +
                 ", delFlag=" + delFlag +
                 ", contestType=" + contestType +
+                ", parsingRule=" + parsingRule +
+                ", postMatchProcessing=" + postMatchProcessing +
                 '}';
     }
 
@@ -164,10 +168,26 @@ public class ConTest implements Serializable {
         this.contestType = contestType;
     }
 
-    public ConTest() {
+    public int getParsingRule() {
+        return parsingRule;
     }
 
-    public ConTest(long id, String name, Date startTime, Date endTime, String mdText, String htmlText, String createById, String createByName, Date createTime, String updateById, String updateByName, Date updateTime, int status, int delFlag, int contestType) {
+    public void setParsingRule(int parsingRule) {
+        this.parsingRule = parsingRule;
+    }
+
+    public int getPostMatchProcessing() {
+        return postMatchProcessing;
+    }
+
+    public void setPostMatchProcessing(int postMatchProcessing) {
+        this.postMatchProcessing = postMatchProcessing;
+    }
+
+    public Contest() {
+    }
+
+    public Contest(long id, String name, Date startTime, Date endTime, String mdText, String htmlText, String createById, String createByName, Date createTime, String updateById, String updateByName, Date updateTime, int status, int delFlag, int contestType, int parsingRule, int postMatchProcessing) {
         this.id = id;
         this.name = name;
         this.startTime = startTime;
@@ -183,5 +203,7 @@ public class ConTest implements Serializable {
         this.status = status;
         this.delFlag = delFlag;
         this.contestType = contestType;
+        this.parsingRule = parsingRule;
+        this.postMatchProcessing = postMatchProcessing;
     }
 }

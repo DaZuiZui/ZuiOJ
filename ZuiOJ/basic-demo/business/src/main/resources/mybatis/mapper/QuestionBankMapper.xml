@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.QuestionBankMapper">
+    <insert id="postQuestion" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            question_bank
+        value(
+            null,
+            #{shortName},
+            #{englishName},
+            #{chineseName},
+            #{grade},
+            #{questionType},
+            #{createById},
+            #{createByName},
+            #{createTime},
+            #{updateById},
+            #{updateByName},
+            #{updateTime},
+            #{status},
+            0
+        )
+    </insert>
+
+    <insert id="postQuestionDetailed">
+        insert into
+            question_bank_detailed
+        value(
+            null,
+            #{id},
+            #{mdCn},
+            #{htmlCn},
+            #{mdEn},
+            #{htmlCn}
+        )
+    </insert>
+</mapper>

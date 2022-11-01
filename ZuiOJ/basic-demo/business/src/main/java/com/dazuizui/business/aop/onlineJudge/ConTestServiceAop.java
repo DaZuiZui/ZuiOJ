@@ -1,6 +1,5 @@
 package com.dazuizui.business.aop.onlineJudge;
 
-import com.dazuizui.basicapi.entry.ConTest;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
 

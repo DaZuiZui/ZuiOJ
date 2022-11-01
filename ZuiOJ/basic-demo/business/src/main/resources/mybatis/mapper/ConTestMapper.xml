@@ -10,8 +10,10 @@
                 null,
                 #{name},
                 #{startTime},
+                #{parsingRule},
                 #{contestType},
                 #{endTime},
+                #{postMatchProcessing},
                 #{createById},
                 #{createByName},
                 #{createTime},
@@ -34,4 +36,13 @@
             #{htmlText}
         )
     </insert>
+
+    <select id="queryTheContestById" resultType="com.dazuizui.basicapi.entry.Contest">
+        select
+            id,
+            name,
+            startTime,
+            contestType,
+            endTime,
+    </select>
 </mapper>

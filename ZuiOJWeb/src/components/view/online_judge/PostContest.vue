@@ -30,17 +30,38 @@
                                                 <option value="-1"  disabled>--请选择比赛类型--</option>
                                                 <option value="1">个人赛</option>
                                                 <option value="2">团队赛</option>
+                                                <option value="5">计算机程序设计考试系统</option>
                                                 <option value="3">信息学院专业社团个人赛周测特别版</option>
                                                 <option value="4">信息学院专业社团团队赛周测特别版</option>
                                             </select>
+
+                                            <div v-if="conTestInfo.contestType == 5">
+                                                <b>考试规则：</b>   <el-link type="danger">信息学院专业社团特别版考试系统仅有专业社团管理账户有权力使用</el-link>
+                                                <select class="form-control form-control-lg">
+                                                    <option value="-1"  disabled>--请选择考试规则--</option>
+                                                    <option value="1">仅统计分数</option>
+                                                    <option value="2">仅统计排名，分数隐藏</option>
+                                                    <option value="5">匿名考试，仅管理员得知数据</option>
+                                                    <option value="4">全都统计</option>
+                                                    <option value="3">信息学院专业社团特别版考试系统 - 仅在广厦专业社团使用</option>
+                                                    
+                                                </select>
+                                            </div>
 
                                             <b>赛制选择</b> 
                                             <select class="form-control form-control-lg" v-model="conTestInfo.parsingRule">
                                                 <option value="-1"  disabled>--请选择比赛赛制--</option>
                                                 <option value="1">ACM赛制</option>
-                                                <option value="2" disabled>Leetcode赛制</option>
-                                                <option value="3" disabled>ACM混合赛制(包含选择题、填空题)</option>
-                                                <option value="3" disabled>Leetcode混合赛制(包含选择题、填空题)</option>
+                                                <option value="2" >Leetcode赛制</option>
+                                                <option value="3" >ACM混合赛制(包含选择题、填空题)</option>
+                                                <option value="3" >Leetcode混合赛制(包含选择题、填空题)</option>
+                                            </select>
+
+                                            <b>赛后规则</b> 
+                                            <select class="form-control form-control-lg" v-model="conTestInfo.postMatchProcessing">
+                                                <option value="-1"  disabled>--请选择赛后规则--</option>
+                                                <option value="1">赛后题目转为公开题目</option>
+                                                <option value="2">赛后题目转为私有题目</option>
                                             </select>
 
                                             <b>比赛时间</b> 
@@ -63,7 +84,7 @@
                                                 <mavon-editor  
                                                     codeStyle=""   
                                                     placeholder="请输入您的文章"
-                                                    v-model="conTestInfo.context"
+                                                    v-model="conTestInfo.mdText"
                                                     @change="change"
                                                 /> 
                                                 <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> Submit</button> 
@@ -134,8 +155,9 @@
                 },
 
                conTestInfo:{
-                    context: "",
-                    html: "",
+                    postMatchProcessing: -1,
+                    mdText: "",
+                    htmlText: "",
                     title: "",
                     startTime: new Date(),
                     endTime: new Date(),
@@ -162,7 +184,7 @@
             //Markdown解析
             change(value, render) {
                 // render 为 markdown 解析后的结果
-                this.conTestInfo.html = render;
+                this.conTestInfo.htmlText = render;
             },
 
             toQuestion(){
