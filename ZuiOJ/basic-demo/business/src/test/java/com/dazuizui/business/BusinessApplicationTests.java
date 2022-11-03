@@ -23,8 +23,8 @@ class BusinessApplicationTests {
     private RedisUtil redisUtil;
     @Test
     void contextLoads() {
-        List<QuestionCase> questionCases = redisUtil.getListInRedis("ZuiOJ:QuestionBack:QuestionID1");
-        System.out.println(questionCases);
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Integer.MIN_VALUE);
     }
 
 }

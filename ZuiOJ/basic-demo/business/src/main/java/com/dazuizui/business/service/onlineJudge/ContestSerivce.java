@@ -22,4 +22,11 @@ public interface ContestSerivce {
      * @return
      */
     public String getFutureEvents();
+
+
+    /**
+     * 获取全部赛制
+     * @return
+     */
+    public String getAllEvents();
 }

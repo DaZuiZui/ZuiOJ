@@ -31,8 +31,14 @@ public interface ContestMapper {
     public Contest queryTheContestById(@Param("id")long id);
 
     /**
-     * 获取未来赛制
+     * 获取未来赛事
      * @return
      */
     public List<Contest> getFutureEvents();
+
+    /**
+     * 获取往期赛事
+     * @return
+     */
+    public List<Contest> getPastevents();
 }

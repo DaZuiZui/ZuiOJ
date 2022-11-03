@@ -10,6 +10,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * @Author 杨易达
+ * 哈尔滨广厦学院OJ系统 竞赛aop 代码增强
+ */
 @Aspect
 @Component
 public class ConTestServiceAopImpl implements ConTestServiceAop {

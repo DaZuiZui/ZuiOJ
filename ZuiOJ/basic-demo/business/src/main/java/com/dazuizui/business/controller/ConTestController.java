@@ -41,4 +41,14 @@ public class ConTestController {
     public String getFutureEvents(){
         return conTestSerivce.getFutureEvents();
     }
+
+    /**
+     * 获取全部赛制
+     * @return
+     */
+    @ApiOperation("查看全部赛事")
+    @GetMapping("/allEvents")
+    public String getAllEvents(){
+        return conTestSerivce.getAllEvents();
+    }
 }

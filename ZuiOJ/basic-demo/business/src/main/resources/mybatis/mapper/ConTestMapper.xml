@@ -3,6 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ContestMapper">
+    <!--
+        获取往期赛制
+    -->
+    <select id="getPastevents" resultType="com.dazuizui.basicapi.entry.Contest">
+        SELECT
+            id,
+            name,
+            start_time,
+            parsing_rule,
+            contest_type,
+            end_time,
+            post_match_processing,
+            status
+        from
+            contest
+        where
+            now() &gt;= end_time and
+            del_flag = 0 and
+            status = 0;
+    </select>
+
+    <!--
+        获取未来赛制
+    -->
     <select id="getFutureEvents" resultType="com.dazuizui.basicapi.entry.Contest">
         SELECT
             id,
@@ -17,7 +41,8 @@
             contest
         where
             now() &lt; start_time and
-            del_flag = 0
+            del_flag = 0 and
+            status = 0;
     </select>
 
     <insert id="insertConTest">

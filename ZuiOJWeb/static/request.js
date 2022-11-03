@@ -13,7 +13,9 @@ export async function  synRequest(controller,data) {
     await Axios.post(global.apiUrl+":"+global.port+controller,data)
       .then(res =>{
             arr = res.data;
-        })
+        }).catch(res =>{
+        return null;
+    })
 
        return arr;
 }
@@ -30,7 +32,9 @@ export async function  synRequest(controller,data) {
     await Axios.get(global.apiUrl+":"+global.port+controller,data)
       .then(res =>{
             arr = res.data;
-        })
+        }).catch(res =>{
+        return null;
+    })
 
        return arr;
 }

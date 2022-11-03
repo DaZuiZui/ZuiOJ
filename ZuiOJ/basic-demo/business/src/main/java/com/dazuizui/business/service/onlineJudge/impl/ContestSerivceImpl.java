@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yida yang
@@ -52,5 +54,23 @@ public class ContestSerivceImpl implements ContestSerivce {
         //获取服务器时间
         List<Contest> futureEvents = conTestMapper.getFutureEvents();
         return JSONArray.toJSONString(new ResponseVo<>("获取未来赛制",futureEvents,"0x1003"));
+    }
+
+
+    /**
+     * 获取全部赛制
+     * @return
+     */
+    @Override
+    public String getAllEvents() {
+        //获取未来赛制
+        List<Contest> futureEvents = conTestMapper.getFutureEvents();
+        //获取往期赛制
+        List<Contest> pastevents = conTestMapper.getPastevents();
+        Map<String,List<Contest>> map = new HashMap<>();
+        map.put("future",futureEvents);
+        map.put("past",pastevents);
+
+        return JSONArray.toJSONString(new ResponseVo<>("获取全部赛制",map,"200"));
     }
 }
