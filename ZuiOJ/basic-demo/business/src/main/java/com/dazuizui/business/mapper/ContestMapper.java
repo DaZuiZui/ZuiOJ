@@ -4,8 +4,11 @@ import com.dazuizui.basicapi.entry.Contest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
+import java.util.List;
+
 @Mapper
-public interface ConTestMapper {
+public interface ContestMapper {
     /**
      * 插入比赛记录
      * @param conTest
@@ -26,4 +29,10 @@ public interface ConTestMapper {
      * @return
      */
     public Contest queryTheContestById(@Param("id")long id);
+
+    /**
+     * 获取未来赛制
+     * @return
+     */
+    public List<Contest> getFutureEvents();
 }

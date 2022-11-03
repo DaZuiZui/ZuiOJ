@@ -87,7 +87,7 @@
                                                     v-model="conTestInfo.mdText"
                                                     @change="change"
                                                 /> 
-                                                <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> Submit</button> 
+                                                <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()" :disabled="buttonSwitch"> Submit</button> 
                                             </div>
                                     </div>
                     
@@ -164,6 +164,10 @@
                     contestType: -1,
                     parsingRule: -1,
                },
+
+               //按钮选择器
+               buttonSwitch: false,
+
                nonPowerToken: "",
                //比赛时间区间
                timeInterval: [new Date(), new Date()],
@@ -192,6 +196,7 @@
             },
 
             async submit(){
+                this.buttonSwitch = !this.buttonSwitch;
                 this.conTestInfo.startTime = this.timeInterval[0];
                 this.conTestInfo.endTime   = this.timeInterval[1];
 
@@ -201,8 +206,11 @@
                     object = await synRequest("/contest/postContest?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.conTestInfo);
                     //重新获取幂等性token
                     this.getNonPowerToken();
+                    alert("添加成功");
+                    this.buttonSwitch = !this.buttonSwitch;
                 }catch(e){
                     alert("异常操作，未获取幂等性");
+                    this.buttonSwitch = !this.buttonSwitch;
                 }
             }
        }

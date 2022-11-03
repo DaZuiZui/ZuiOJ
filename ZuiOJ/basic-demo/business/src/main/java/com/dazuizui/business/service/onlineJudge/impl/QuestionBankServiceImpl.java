@@ -28,6 +28,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
      */
     @Override
     public String postQuestion(QuestionBankBo questionBankBo) {
+        System.err.println(questionBankBo);
         //普通添加题目
         if (questionBankBo.getQuestionType() == 2){
             questionBankBo.setStatus(1);        //status is 1，考试题目

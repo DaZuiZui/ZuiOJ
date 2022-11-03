@@ -29,9 +29,7 @@ export async function  synRequest(controller,data) {
     var arr = '';
     await Axios.get(global.apiUrl+":"+global.port+controller,data)
       .then(res =>{
-     
             arr = res.data;
-            console.log(arr);
         })
 
        return arr;
