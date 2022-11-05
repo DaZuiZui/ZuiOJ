@@ -23,6 +23,7 @@
                                             <div class="hidden-columns">
                                                 <div></div><div></div> <div></div>
                                             </div>
+
                                             <div class="el-table__header-wrapper">
                                                 <table cellspacing="0" cellpadding="0" border="0" class="el-table__header"
                                                 style="width: 100%;">
@@ -68,25 +69,33 @@
                                                                 <col name="el-table_4_column_13" width="180">
                                                     </colgroup>
                                                     <tbody>
-                                                        <tr class="el-table__row">
+                                                        <tr class="el-table__row" v-for="(question,index) in questionList" :key="index">
                                                             <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
                                                                 <div class="cell">
-                                                                    P10001
+                                                                    {{question.shortName}}
                                                                 </div>
                                                             </td>
                                                             <td rowspan="1" colspan="1" class="el-table_4_column_11   el-table__cell">
-                                                                <div class="cell" @click="toQuestion()">
-                                                                    <a herf="#">张义嘉老师的数学题</a>
+                                                                <div class="cell" @click="toQuestion(question.id)">
+                                                                    <a herf="#">{{question.chineseName}}</a>
                                                                 </div>
                                                             </td>
                                                             <td rowspan="1" colspan="1" class="el-table_4_column_12   el-table__cell">
                                                                 <div class="cell">
-                                                                    100%
+                                                                    待系统学习统计
                                                                 </div>
                                                             </td>
                                                             <td rowspan="1" colspan="1" class="el-table_4_column_13   el-table__cell">
                                                                 <div class="cell">
-                                                                    简单
+                                                                    <div v-if="question.grade == 1">
+                                                                        简单
+                                                                    </div>
+                                                                    <div v-else-if="question.grade == 2">
+                                                                        中等
+                                                                    </div>        
+                                                                     <div v-else >
+                                                                        困难
+                                                                    </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -130,25 +139,30 @@
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
     import global from "../../../../static/entry.js";
-    import {synRequestGet} from "../../../../static/request.js";
+    import {synRequestGet,synRequest} from "../../../../static/request.js";
     export default {
        name: "anwserQuestions",     //对外开放打包
        components: { Foot,Top },
        data() {
            return{
-               
+               questionList: [],
            }
        },
   
        mounted(){
-           
+           this.pagingToGetQuestion(0,50);
        },
   
        methods: {
-           
-            toQuestion(){
-               
-               this.$router.push('/question/AnwserQuestion');
+            //获取题目
+            async pagingToGetQuestion(pages,number){
+                var object = await synRequestGet("/question/pagingToGetQuestion?pages="+pages+"&number="+number);
+                this.questionList = object.data;
+            },
+            
+            //跳转题目
+            toQuestion(id){
+               this.$router.push('/question/AnwserQuestion?id='+id);
             }
        }
    }

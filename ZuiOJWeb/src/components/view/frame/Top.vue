@@ -9,9 +9,9 @@
                             <li>
                                 <a href="http://127.0.0.1/h/aboutdazui" target="_top">About</a>
                             </li>
-                            <li><a href="http://127.0.0.1/hblog/"           target="top" >题库</a></li>
+                            <li><a href="#" @click="goQuestionBank()"   target="top" >题库</a></li>
                             <li><a href="http://127.0.0.1/h/blog/blogging"  target="">社区</a></li>
-                            <li><a href="http://127.0.0.1/h/hblog/blogrool" target="">竞赛</a></li>
+                            <li><a href="#" @click="goContestList()"    target="">竞赛</a></li>
                         </ul>   
                  
                     </nav>
@@ -99,6 +99,16 @@
         },
 
          methods: {
+            //前往竞赛集合列表
+            goContestList(){
+                this.$router.push('/contest/list');
+            },
+            //前往题库
+            goQuestionBank(){
+                this.$router.push('/question/QuestionList');
+            },
+
+
             async check(){
     
                 /*
@@ -107,6 +117,10 @@
                 if(this.$store.state.user == null){
                     var object = await synRequestGet("/user/analysis?token="+getCookie("token"),null);
                     console.log("SAD"+object.data);
+                    if(object == null){
+                        alert("您的身份验证已经过期")
+                    }
+
                     if(object.code == "0x0005"){
                         alert(object.code);
                     }

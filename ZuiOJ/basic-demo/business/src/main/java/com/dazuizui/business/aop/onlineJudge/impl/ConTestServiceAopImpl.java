@@ -1,7 +1,6 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.business.aop.onlineJudge.ConTestServiceAop;
-import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

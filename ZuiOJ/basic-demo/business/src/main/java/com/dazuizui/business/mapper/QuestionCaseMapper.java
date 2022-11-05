@@ -11,5 +11,10 @@ import java.util.List;
  */
 @Mapper
 public interface QuestionCaseMapper {
+    /**
+     * 通过问题id查询题目案例
+     * @param questionId
+     * @return
+     */
     public List<QuestionCase> queryTheQuestionCasesByQuestionId(@Param("questionId")long questionId);
 }

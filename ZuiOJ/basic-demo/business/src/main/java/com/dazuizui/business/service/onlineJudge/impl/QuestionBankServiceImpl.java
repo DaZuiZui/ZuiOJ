@@ -2,13 +2,17 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
+import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.mapper.QuestionBankMapper;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *
@@ -45,5 +49,18 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
 
         return JSONArray.toJSONString(new ResponseVo<>("添加成功",null,"0x2001"));
+    }
+
+    /**
+     * 分页获取题目
+     * @param pages
+     * @param number
+     * @return
+     */
+    @Override
+    public String pagingToGetQuestion(@Param("pages") int pages, @Param("number") int number) {
+        //查看全部题库
+        List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestion(pages, number);
+        return JSONArray.toJSONString(new ResponseVo<>("分页查询问题",questionBanks,"200"));
     }
 }

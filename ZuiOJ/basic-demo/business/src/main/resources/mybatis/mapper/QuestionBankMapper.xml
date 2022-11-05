@@ -3,6 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionBankMapper">
+
+    <select id="pagingToGetQuestion" resultType="com.dazuizui.basicapi.entry.QuestionBank">
+        select
+            id,
+            short_name,
+            chinese_name,
+            grade
+        from
+            question_bank
+        where
+            status = 0 and
+            del_flag = 0
+        limit
+            #{pages},
+            #{number}
+    </select>
+
+    <!--
+        提交问题
+    -->
     <insert id="postQuestion" useGeneratedKeys="true" keyProperty="id">
         insert into
             question_bank

@@ -1,7 +1,11 @@
 package com.dazuizui.business.mapper;
 
+import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface QuestionBankMapper {
@@ -17,5 +21,14 @@ public interface QuestionBankMapper {
      * @return
      */
     public Long postQuestionDetailed(QuestionBankBo questionBankBo);
+
+
+    /**
+     * 分页查找数据
+     * @param pages
+     * @param number
+     * @return
+     */
+    public List<QuestionBank> pagingToGetQuestion(@Param("pages") int pages, @Param("number") int number);
 
 }

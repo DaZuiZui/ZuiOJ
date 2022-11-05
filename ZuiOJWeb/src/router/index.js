@@ -9,6 +9,7 @@ import QuestionList   from '@/components/view/online_judge/QuestionList'
 import AnwserQuestion from '@/components/view/online_judge/AnwserQuestion'
 import PostContest    from '@/components/view/online_judge/PostContest'
 import PostQuestion   from '@/components/view/online_judge/PostQuestion'
+import ContestList    from '@/components/view/online_judge/ContestList'
 
 Vue.use(Router)
 Vue.prototype.$axios = Axios;
@@ -56,6 +57,11 @@ export default new Router({
     {
       path: '/question/posting',
       component: PostQuestion
+    },
+    //比赛集合
+    {
+      path: '/contest/list',
+      component: ContestList
     }
   ]
 })
