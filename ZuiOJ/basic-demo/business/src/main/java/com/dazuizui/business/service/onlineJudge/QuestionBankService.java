@@ -26,4 +26,12 @@ public interface QuestionBankService {
     @ApiOperation("分页获取题库")
     @GetMapping("/pagingToGetQuestion")
     public String pagingToGetQuestion(@Param("pages") int pages, @Param("number") int number);
+
+    /**
+     * 通过id获取题目
+     * @param id
+     * @param questionType
+     * @return
+     */
+    public String getQuestionById(@RequestParam("id")Long id,@RequestParam("questionType") Long questionType);
 }

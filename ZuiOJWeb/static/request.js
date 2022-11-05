@@ -14,6 +14,7 @@ export async function  synRequest(controller,data) {
       .then(res =>{
             arr = res.data;
         }).catch(res =>{
+        alert("您的身份验证已经过期");
         return null;
     })
 
@@ -33,6 +34,7 @@ export async function  synRequest(controller,data) {
       .then(res =>{
             arr = res.data;
         }).catch(res =>{
+        alert("您的身份验证已经过期");
         return null;
     })
 

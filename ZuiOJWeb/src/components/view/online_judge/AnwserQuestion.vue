@@ -15,21 +15,16 @@
                                 <section class="article-item zoomIn article" style="border-radius:5px">
                      
                                     <h5 class="title">
-                                        <a href="#">P10001 张义嘉老师的数学题</a>
+                                        <a href="#">{{question.shortName}} {{question.chineseName}}</a>
                                     </h5>
 
                                     <div class="content">
                                         <div class="container">
                                             <div class="row row-cols-2">
                                               <div class="col">
-                                                    张义嘉老师最近在做一道数学题，当数字太大的时候张老师运算会很久，他想设计一个程序来帮助他做题。<br>
-                                                    输入2个数字输出结果<br>
-                                                    例子A<br>
-                                                    Input: <br>
-                                                    1 1<br>
-                                                    Out:<br>
-                                                    2
-                                                  <b>注意答案会超过int范围</b>
+                                                  <div v-html="question.htmlCn">
+
+                                                  </div>
                                     
                                               </div>
                                               <div class="col">
@@ -65,12 +60,12 @@
                                     <aside class="f-oh footer">
                                         <div class="f-fl tags">
                                             <i class="el-icon-user-solid"></i>
-                                            <a class="tag" href="#">张义嘉老师 & TLM团队</a>
+                                            <a class="tag" href="#">{{question.createByName}}</a>
                                         </div>
                                         <div class="f-fr"> 
                                             <span class="read">
                                                 <i class="fa fa-eye fs-16"></i>
-                                                <i class="num">By 张义嘉老师 & TLM团队</i>
+                                                <i class="num">此模板开发人员 By 张义嘉老师 & TLM团队</i>
                                             </span>
                                         </div>
                                     </aside>
@@ -91,7 +86,7 @@
   
   
   <script>
-    import {synRequest} from "../../../../static/request.js";
+    import {synRequest,synRequestGet} from "../../../../static/request.js";
     import global from "../../../../static/entry.js";
 
     import Foot from '../frame/Foot.vue'; 
@@ -111,15 +106,23 @@
                     status: "",
                     runTime: 0,
                 },
+                question: null,
            }
        },
   
        mounted(){
- 
+            //获取题目
+            this.getQuestionById();
             //console.log(global.apiUrl+"asd")
        },
   
        methods: {
+            async getQuestionById(){
+                var object = await synRequestGet("/question/getQuestionById?token="+getCookie("token")+"&id=1&questionType=1");
+                this.question = object.data;
+                console.log(object)
+            },  
+
             async submit(){
                 //处决代码
                 this.res =  await synRequest("/onlineJudge/judge",this.program);
