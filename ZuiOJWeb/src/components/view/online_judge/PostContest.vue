@@ -119,7 +119,7 @@
   <script>
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
-    import {synRequestGet,synRequest} from "../../../../static/request.js";
+    import {synRequestGet,synRequestPost} from "../../../../static/request.js";
 
     export default {
        name: "PostContest",     //对外开放打包
@@ -203,7 +203,7 @@
                 this.conTestInfo.Idemtoken = this.nonPowerToken;
                 var object = null;
                 try{
-                    object = await synRequest("/contest/postContest?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.conTestInfo);
+                    object = await synRequestPost("/contest/postContest?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.conTestInfo);
                     //重新获取幂等性token
                     this.getNonPowerToken();
                     alert("添加成功");

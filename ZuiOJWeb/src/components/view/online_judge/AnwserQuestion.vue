@@ -125,7 +125,7 @@
 
             async submit(){
                 //处决代码
-                this.res =  await synRequest("/onlineJudge/judge",this.program);
+                this.res =  await synRequestPost("/onlineJudge/judge",this.program);
                 console.log(this.res);
             }
        }

@@ -10,6 +10,8 @@ import AnwserQuestion from '@/components/view/online_judge/AnwserQuestion'
 import PostContest    from '@/components/view/online_judge/PostContest'
 import PostQuestion   from '@/components/view/online_judge/PostQuestion'
 import ContestList    from '@/components/view/online_judge/ContestList'
+import Register       from '@/components/view/user/Register'
+import AboutUs        from '@/components/view/about/AboutUs'
 
 Vue.use(Router)
 Vue.prototype.$axios = Axios;
@@ -62,6 +64,16 @@ export default new Router({
     {
       path: '/contest/list',
       component: ContestList
-    }
+    },
+    //用户注册
+    {
+      path: '/user/register/community',
+      component: Register
+    },
+    //关于我们
+    {
+      path: '/about/aboutUs',
+      component: AboutUs
+    },
   ]
 })

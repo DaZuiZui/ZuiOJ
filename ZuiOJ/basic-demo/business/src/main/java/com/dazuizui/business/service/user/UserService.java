@@ -23,4 +23,12 @@ public interface UserService {
      * @return
      */
     public String analysis(@RequestParam("token")String token);
+
+
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    public String register( User user);
 }

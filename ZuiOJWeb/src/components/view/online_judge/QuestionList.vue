@@ -139,7 +139,7 @@
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
     import global from "../../../../static/entry.js";
-    import {synRequestGet,synRequest} from "../../../../static/request.js";
+    import {synRequestGet,synRequestPost} from "../../../../static/request.js";
     export default {
        name: "anwserQuestions",     //对外开放打包
        components: { Foot,Top },

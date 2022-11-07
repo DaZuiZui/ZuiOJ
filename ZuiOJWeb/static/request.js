@@ -8,7 +8,7 @@ import Axios  from 'axios'
  * @param {*} data 
  * @returns 
  */
-export async function  synRequest(controller,data) {
+export async function  synRequestPost(controller,data) {
     var arr = '';
     await Axios.post(global.apiUrl+":"+global.port+controller,data)
       .then(res =>{

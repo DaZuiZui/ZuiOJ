@@ -10,6 +10,7 @@ import com.dazuizui.business.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,5 +84,31 @@ public class UserServiceImpl implements UserService {
         user.setStatus((Integer) map.get("status"));
         System.out.println(user);
         return JSONArray.toJSONString(new ResponseVo<>("null",user,"0x0006"));
+    }
+
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    @Override
+    public String register(User user) {
+        if (user == null){
+            return JSONArray.toJSONString(new ResponseVo<>("is null",null,"500"));
+        }
+        //校验学号还有用户名是否唯一
+        User userInDB = userMapper.checkUsernameAndStudentId(user);
+        if (userInDB != null){
+            return JSONArray.toJSONString(new ResponseVo<>("用户名或者学号必须保证唯一",null,"500"));
+        }
+
+        //写入mysql
+        user.setCreateTime(new Date());
+        Long aLong = userMapper.register(user);
+        if (aLong <= 0){
+            return JSONArray.toJSONString(new ResponseVo<>("error",null,"500"));
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,"200"));
     }
 }

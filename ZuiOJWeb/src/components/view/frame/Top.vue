@@ -7,7 +7,7 @@
                     <nav class="nav" id="nav">
                         <ul>
                             <li>
-                                <a href="http://127.0.0.1/h/aboutdazui" target="_top">About</a>
+                                <a href="" target="_top" @click="goAboutUs()">About</a>
                             </li>
                             <li><a href="#" @click="goQuestionBank()"   target="top" >题库</a></li>
                             <li><a href="http://127.0.0.1/h/blog/blogging"  target="">社区</a></li>
@@ -99,6 +99,9 @@
         },
 
          methods: {
+            goAboutUs(){
+                this.$router.push('/about/aboutUs');
+            },
             //前往竞赛集合列表
             goContestList(){
                 this.$router.push('/contest/list');

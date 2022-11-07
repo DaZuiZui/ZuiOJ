@@ -27,7 +27,7 @@
   
   <script>
    import Axios from 'axios'
-   import {synRequest} from "../../../static/request.js";
+   import {synRequestPost} from "../../../static/request.js";
    import global from "../../../static/entry.js";
    export default {
        name: "login",     //对外开放打包
@@ -52,7 +52,7 @@
        methods: {
            //提交登入
            async submit(){
-                var object = await synRequest("/user/userlogin",this.user);
+                var object = await synRequestPost("/user/userlogin",this.user);
                 /*
                  * 登入成功
                  */

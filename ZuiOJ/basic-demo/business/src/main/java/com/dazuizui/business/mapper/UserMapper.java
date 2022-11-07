@@ -11,4 +11,18 @@ public interface UserMapper {
      * @return
      */
     public User userLogin(User user);
+
+    /**
+     * 校验用户名和学号是否唯一
+     * @param user
+     * @return
+     */
+    public User checkUsernameAndStudentId(User user);
+
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
+    public Long register(User user);
 }

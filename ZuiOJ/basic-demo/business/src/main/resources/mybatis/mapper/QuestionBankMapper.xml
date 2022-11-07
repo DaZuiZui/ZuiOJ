@@ -4,6 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionBankMapper">
 
+    <select id="getQuestionById" resultType="com.dazuizui.basicapi.entry.vo.QuestionBankVo">
+        SELECT
+            t1.id,
+            t1.short_name,
+            t1.chinese_name,
+            t1.english_name,
+            t1.grade,
+            t1.question_type,
+            t1.create_by_name,
+            t2.html_cn
+        FROM
+            question_bank t1
+                LEFT JOIN
+            question_bank_detailed t2
+            on
+                t1.id = #{id}  and
+                t2.question_id =#{id}
+        where
+            t1.status = #{status} and
+            t1.del_flag = #{delFlag}
+    </select>
+
+    <!--
+        分页查询问题
+    -->
     <select id="pagingToGetQuestion" resultType="com.dazuizui.basicapi.entry.QuestionBank">
         select
             id,

@@ -3,6 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.UserMapper">
+    <!--
+        根据用户名或者学号查询用户 只获取一个
+    -->
+    <select id="checkUsernameAndStudentId" resultType="com.dazuizui.basicapi.entry.User">
+        select
+            id
+        from
+            user
+        where
+            username = #{username} or
+            student_id = #{studentId}
+        limit 1
+    </select>
+
+
+    <!--
+        根据username查询用户
+    -->
     <select id="userLogin" resultType="com.dazuizui.basicapi.entry.User">
         select
             username,
@@ -24,4 +42,35 @@
             username = #{username}
         limit 1
     </select>
+
+
+    <insert id="register">
+        insert into
+            user
+        value(
+            null,
+            #{username},
+            #{studentId},
+            #{name},
+            #{sex},
+            #{password},
+            '',
+            #{collegeId},
+            #{majorId},
+            #{classId},
+            1,
+            2021,
+            #{year},
+            #{mouth},
+            '',
+            #{createTime},
+            null,
+            null,
+            #{updateTime},
+            #{updateById},
+            #{updateByName},
+            0,
+            0
+        )
+    </insert>
 </mapper>

@@ -54,6 +54,6 @@ public class QuestionBankController {
     @GetMapping("/getQuestionById")
     public String getQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Long questionType){
          System.err.println(ThreadLocalUtil.mapThreadLocalOfJWT.get());
-         return "";
+         return questionBankService.getQuestionById(id, questionType);
     }
 }

@@ -41,4 +41,15 @@ public class UserController {
         return userService.analysis(token);
     }
 
+
+    /**
+     * 注册账号
+     * @param user
+     * @return
+     */
+    @ApiOperation("注册用户")
+    @PostMapping("/register")
+    public String register(@RequestBody User user){
+        return userService.register(user);
+    }
 }
