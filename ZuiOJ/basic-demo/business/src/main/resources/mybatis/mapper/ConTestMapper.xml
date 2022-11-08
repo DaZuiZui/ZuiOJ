@@ -4,6 +4,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ContestMapper">
     <!--
+        获取比赛介绍信息
+    -->
+    <select id="getEventById" resultType="com.dazuizui.basicapi.entry.Contest">
+        SELECT
+            t1.id,
+            t1.name,
+            t1.start_time,
+            t1.parsing_rule,
+            t1.contest_type,
+            t1.end_time,
+            t1.post_match_processing,
+            t2.html_text,
+            t2.md_text
+        from
+            contest t1
+                LEFT JOIN
+            contest_detailed t2
+            on
+                t1.id =  t2.contest_id
+        where t1.id = #{id}
+
+    </select>
+    <!--
         获取往期赛制
     -->
     <select id="getPastevents" resultType="com.dazuizui.basicapi.entry.Contest">
@@ -40,12 +63,12 @@
         from
             contest
         where
-            now() &lt; start_time and
+            now() &lt;= end_time and
             del_flag = 0 and
             status = 0;
     </select>
 
-    <insert id="insertConTest">
+    <insert id="insertConTest" useGeneratedKeys="true" keyProperty="id">
         insert into
             contest
         value(
@@ -68,7 +91,7 @@
     </insert>
 
 
-    <insert id="insertConTestDetailed">
+    <insert id="insertConTestDetailed" >
         insert into
             contest_detailed
         value(

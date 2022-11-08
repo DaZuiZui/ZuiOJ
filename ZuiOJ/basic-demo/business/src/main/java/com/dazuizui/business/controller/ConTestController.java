@@ -51,4 +51,27 @@ public class ConTestController {
     public String getAllEvents(){
         return conTestSerivce.getAllEvents();
     }
+
+    /**
+     * 通过id获取比赛赛事
+     * @param id
+     * @return
+     */
+    @ApiOperation("通过id获取比赛赛事")
+    @GetMapping("/getEventById")
+    public String getEventById(@RequestParam("id")Long id){
+        return conTestSerivce.getEventById(id);
+    }
+
+    /**
+     * @author (Bryan yang)杨易达
+     * 比赛选手举报
+     * @param reportMessageText 举报信息文本
+     * @return
+     */
+    @ApiOperation("比赛选手举报")
+    @GetMapping("/competitorReport")
+    public String competitorReport(@RequestParam("reportMessageText") String reportMessageText){
+        return conTestSerivce.competitorReport(reportMessageText);
+    }
 }

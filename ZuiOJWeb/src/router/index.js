@@ -12,6 +12,7 @@ import PostQuestion   from '@/components/view/online_judge/PostQuestion'
 import ContestList    from '@/components/view/online_judge/ContestList'
 import Register       from '@/components/view/user/Register'
 import AboutUs        from '@/components/view/about/AboutUs'
+import ViewEvent      from '@/components/view/online_judge/ViewEvents'
 
 Vue.use(Router)
 Vue.prototype.$axios = Axios;
@@ -75,5 +76,10 @@ export default new Router({
       path: '/about/aboutUs',
       component: AboutUs
     },
+    //查看赛事
+    {
+      path: '/contest/ViewEvent',
+      component: ViewEvent,
+    }
   ]
 })

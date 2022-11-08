@@ -2,6 +2,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.Contest;
+import com.dazuizui.basicapi.entry.vo.ContestInfoVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
@@ -72,5 +73,29 @@ public class ContestSerivceImpl implements ContestSerivce {
         map.put("past",pastevents);
 
         return JSONArray.toJSONString(new ResponseVo<>("获取全部赛制",map,"200"));
+    }
+
+    /**
+     * 比赛选手举报
+     * @param reportMessageText
+     * @return
+     */
+    @Override
+    public String competitorReport(String reportMessageText) {
+        return null;
+    }
+
+    /**
+     * 通过id获取赛制
+     * @param id 赛制id
+     * @return
+     */
+    @Override
+    public String getEventById(Long id) {
+        Contest contest = conTestMapper.getEventById(id);
+        ContestInfoVo contestInfoVo = new ContestInfoVo();
+        contestInfoVo.setContest(contest);
+        System.out.println(contest);
+        return JSONArray.toJSONString(new ResponseVo<>("获取赛制通过id",contestInfoVo,"200"));
     }
 }

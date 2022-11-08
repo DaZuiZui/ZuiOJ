@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService {
         user.setRole((Integer) map.get("role"));
         user.setGrade((Integer) map.get("grade"));
         user.setStatus((Integer) map.get("status"));
+        user.setHeadPortrait((String) map.get("headPortrait"));
         System.out.println(user);
         return JSONArray.toJSONString(new ResponseVo<>("null",user,"0x0006"));
     }

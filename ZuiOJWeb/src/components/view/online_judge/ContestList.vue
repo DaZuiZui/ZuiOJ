@@ -262,6 +262,10 @@
        },
   
        methods: {
+            goViewEvents(id){
+                this.$router.push('/contest/ViewEvent?id='+id);
+            },
+
             /*
              * 获取全部赛制
              */

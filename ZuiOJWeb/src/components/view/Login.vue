@@ -61,7 +61,7 @@
                     setCookie ("token",object.data.jwt);
                     global.user =  object.data.userinfo;
                     this.$store.dispatch('setUser',object.data.userinfo);
-                    //console.log("todo11"+this.$store.state.user.username);
+                    //console.log("todo11"+this.$store.state.user);
                     this.$router.push('/question/QuestionList');
                 }else if(object.code == "0x0003"){
                     alert("您的密码错误");

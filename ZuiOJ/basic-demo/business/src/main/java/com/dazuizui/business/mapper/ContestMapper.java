@@ -3,6 +3,7 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.Contest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
@@ -41,4 +42,12 @@ public interface ContestMapper {
      * @return
      */
     public List<Contest> getPastevents();
+
+
+    /**
+     * 通过id获取赛事
+     * @param id
+     * @return
+     */
+    public Contest getEventById(@RequestParam("id")Long id);
 }

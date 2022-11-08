@@ -2,6 +2,7 @@ package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.Contest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -29,4 +30,17 @@ public interface ContestSerivce {
      * @return
      */
     public String getAllEvents();
+
+    /**
+     * 比赛选手举报
+     * @param reportMessageText
+     * @return
+     */
+    public String competitorReport(@RequestParam("reportMessageText") String reportMessageText);
+    /**
+     * 通过id获取赛事
+     * @param id
+     * @return
+     */
+    public String getEventById(@RequestParam("id")Long id);
 }
