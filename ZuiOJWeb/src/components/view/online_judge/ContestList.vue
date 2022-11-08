@@ -87,7 +87,7 @@
                                                         <tr class="el-table__row" v-for="(contest,index) in futureList" :key="index">
                                                             <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
                                                                 <div class="cell">
-                                                                    <el-link type="primary">{{contest.name}}</el-link>
+                                                                    <el-link type="primary" @click="goViewEvents(contest.id)">{{contest.name}}</el-link>
                                                                 </div>
                                                             </td>
                                                             <td rowspan="1" colspan="1" class="el-table_4_column_11   el-table__cell">

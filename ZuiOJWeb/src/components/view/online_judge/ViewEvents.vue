@@ -19,8 +19,29 @@
                                     </h5>
                               
                                     <div class="content">
+
+                                        <div class="alert alert-primary" role="alert">
+                                            {{contest.name}}
+                                        </div>
+
                                         <!--介绍文本-->
-                                        <div v-html="contest.htmlText"></div>
+                                        <!--<div v-html="contest.htmlText"></div>-->
+
+                                        <mavon-editor v-model="contest.mdText"
+                                            :subfield="false"
+                                            :defaultOpen="'preview'"
+                                            :editable="false"
+                                            :toolbarsFlag="false"
+                                            :boxShadow=false
+                                            >
+                                        </mavon-editor>
+
+                                        <hr>
+                       
+                                        <!--报名-->
+                                        <b style="font-size:16px">您还未开始报名</b> <el-button type="primary" icon="el-icon-s-promotion">报名此竞赛</el-button>
+                                        <br><br>
+ 
                                     </div>
 
                                     <aside class="f-oh footer">
@@ -37,6 +58,10 @@
                                     </aside>
                                 </section>
                             </div>
+                        </article>
+
+                        <article class="article-list bloglist" id="LAY_bloglist" style="height:100px">
+                            <section class=" " style="border-radius:5px"> </section>
                         </article>
                     </div>
                 </div>
@@ -69,7 +94,8 @@
                     parsingRule: 1,
                     postMatchProcessing: 1,
                     startTime: new Date(),
-                    status: -1
+                    status: -1,
+                    mdText: "",
                }
            }
        },
@@ -93,3 +119,7 @@
        }
    }
 </script> 
+
+<style scoped>
+    @import '../../../../static/bootstrap-4.6.1-dist/css/bootstrap.min.css'
+</style>
