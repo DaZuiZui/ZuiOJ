@@ -1,6 +1,7 @@
 package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.Contest;
+import com.dazuizui.basicapi.entry.QuestionBank;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,5 +50,13 @@ public interface ContestMapper {
      * @param id
      * @return
      */
-    public Contest getEventById(@RequestParam("id")Long id);
+    public Contest getEventById(@Param("id")Long id);
+
+
+    /**
+     * 通过id获取赛事题目
+     * @param id
+     * @return
+     */
+    public List<QuestionBank> getQuestionListInContest(@Param("id")Long id);
 }

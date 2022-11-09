@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface QuestionAop {
     /**
      * 根据id获取题目
-     * @param token
-     * @param id
      * @return
      */
     public String getQuestionById(JoinPoint joinpoint);

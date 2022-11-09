@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionQuestionBankMapper">
+    <!--
+        添加比赛题目
+    -->
     <insert id="addQuestionInContest">
         INSERT INTO
             competition_question_bank

@@ -1,7 +1,9 @@
 package com.dazuizui.business.service.onlineJudge;
 
+import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -43,4 +45,13 @@ public interface ContestSerivce {
      * @return
      */
     public String getEventById(@RequestParam("id")Long id);
+
+    /**
+     * 报名比赛
+     * @param contestId
+     * @return
+     */
+    public String signUpForTheCompetition(Long contestId);
+
+
 }

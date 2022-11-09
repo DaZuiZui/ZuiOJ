@@ -8,11 +8,13 @@ public class ContestInfoVo implements Serializable {
 
     //比赛信息
     private Contest contest;
+    private boolean checkForEntry; //是否已经参加
 
     @Override
     public String toString() {
         return "ContestInfoVo{" +
                 "contest=" + contest +
+                ", checkForEntry=" + checkForEntry +
                 '}';
     }
 
@@ -24,12 +26,19 @@ public class ContestInfoVo implements Serializable {
         this.contest = contest;
     }
 
+    public boolean isCheckForEntry() {
+        return checkForEntry;
+    }
+
+    public void setCheckForEntry(boolean checkForEntry) {
+        this.checkForEntry = checkForEntry;
+    }
+
     public ContestInfoVo() {
     }
 
-    public ContestInfoVo(Contest contest) {
+    public ContestInfoVo(Contest contest, boolean checkForEntry) {
         this.contest = contest;
+        this.checkForEntry = checkForEntry;
     }
-
-
 }

@@ -119,18 +119,16 @@
                  */
                 if(this.$store.state.user == null){
                     var object = await synRequestGet("/user/analysis?token="+getCookie("token"),null);
-                    console.log("SAD"+object.data);
+                    console.log("get info");
                     if(object == null){
                         alert("您的身份验证已经过期")
                     }
-
                     if(object.code == "0x0005"){
                         alert(object.code);
                     }
-                     
                     this.$store.dispatch('setUser',object.data);
-               
                 }
+                console.log("SAD"+this.$store.state.user.id);
             }, 
              //退出账户
              gowriteOff(){

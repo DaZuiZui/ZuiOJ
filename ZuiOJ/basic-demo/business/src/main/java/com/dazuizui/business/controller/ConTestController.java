@@ -1,5 +1,6 @@
 package com.dazuizui.business.controller;
 
+import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import io.swagger.annotations.Api;
@@ -73,5 +74,15 @@ public class ConTestController {
     @GetMapping("/competitorReport")
     public String competitorReport(@RequestParam("reportMessageText") String reportMessageText){
         return conTestSerivce.competitorReport(reportMessageText);
+    }
+
+    /**
+     * 报名比赛
+     * @return
+     */
+    @ApiOperation("报名比赛")
+    @PostMapping("/signUp")
+    public String signUpForTheCompetition(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token,@RequestParam("contestId")Long contestId){
+        return conTestSerivce.signUpForTheCompetition(contestId);
     }
 }

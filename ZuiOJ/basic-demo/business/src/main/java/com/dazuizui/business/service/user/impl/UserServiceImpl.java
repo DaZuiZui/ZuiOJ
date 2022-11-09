@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         System.out.println(map.get("id"));
-        user.setId((Integer) map.get("id"));
+        user.setId(Long.valueOf((String)map.get("id")));
         user.setUsername((String) map.get("username"));
         user.setStudentId((String) map.get("studentId"));
         user.setName((String) map.get("name"));

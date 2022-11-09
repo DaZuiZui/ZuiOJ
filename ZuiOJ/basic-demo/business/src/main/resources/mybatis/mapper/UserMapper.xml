@@ -23,6 +23,7 @@
     -->
     <select id="userLogin" resultType="com.dazuizui.basicapi.entry.User">
         select
+            id,
             username,
             student_id,
             name,

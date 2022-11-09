@@ -31,7 +31,9 @@ public class JwtUtil {
 
         //自定义信息 自定义载荷
         Map<String,Object> map = new HashMap<>();
-        map.put("id",user.getId());
+        //防止不能存储Long
+        String idString = String.valueOf(user.getId());
+        map.put("id",idString);
         map.put("username",user.getUsername());
         map.put("studentId",user.getStudentId());
         map.put("name",user.getName());

@@ -4,7 +4,7 @@
             
             <br>©2022-2022 张义嘉 & TLM TEAM<br>
             Theme by <a href="https://gitee.com/yssgit/events" style="color:#d9d7d7">Yanshisan</a> |  
-            @Author: 张义嘉老师与TLM TEAM团队(刘港、杨易达、刘朝甲、杨春阳) in Guangsha | 黑ICP备 1008611
+            @Author: 张义嘉老师与TLM TEAM团队 in Guangsha | 黑ICP备 1008611
         </div>
     </div>
 </template>
