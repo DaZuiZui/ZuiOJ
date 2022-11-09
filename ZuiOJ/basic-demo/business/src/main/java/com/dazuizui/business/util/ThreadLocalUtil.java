@@ -9,4 +9,6 @@ import java.util.Map;
 public class ThreadLocalUtil {
     public static ThreadLocal<Map<String,Map<String,Object>>> mapThreadLocalOfJWT
             = ThreadLocal.withInitial(()-> new HashMap<String,Map<String,Object>>());
+
+    public static ThreadLocal<Map<String, String>> mapThreadLocal = ThreadLocal.withInitial(()->new HashMap<String, String>());
 }

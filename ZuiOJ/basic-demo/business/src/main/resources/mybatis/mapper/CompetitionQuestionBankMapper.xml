@@ -15,4 +15,24 @@
             #{contestId}
         )
     </insert>
+
+    <!--
+        获取比赛题目
+    -->
+    <select id="getQuestionListInContest" resultType="com.dazuizui.basicapi.entry.QuestionBank">
+        select
+            *
+        from
+            question_bank
+        where
+                id
+                in (
+                    select
+                        t1.question_id
+                    from
+                        competition_question_bank t1
+                    where
+                        t1.contest_id = #{contestId}
+                )
+    </select>
 </mapper>

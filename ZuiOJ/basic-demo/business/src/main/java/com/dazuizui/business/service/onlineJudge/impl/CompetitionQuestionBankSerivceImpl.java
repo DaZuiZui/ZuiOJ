@@ -1,18 +1,51 @@
 package com.dazuizui.business.service.onlineJudge.impl;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.service.onlineJudge.CompetitionQuestionBankService;
+import com.dazuizui.business.util.ThreadLocalUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 比赛与题关联实现接口
  */
+@Service
 public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBankService {
+    @Autowired
+    private CompetitionQuestionBankMapper competitionQuestionBankMapper;
+
     /**
      * 添加题在比赛题库中
+     * 哎
      * @return
      */
     @Override
     public String addQuestionInContest(CompetitionQuestionBank competitionQuestionBank) {
+
         return null;
+    }
+
+    /**
+     * 获取比赛题目
+     * @param contestId
+     * @return
+     */
+    @Override
+    public String getQuestionListInContest(Long contestId) {
+        //报错排查
+        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+            String errocode = ThreadLocalUtil.mapThreadLocal.get().get("error");
+            //todo 查询错误代码返回信息
+        }
+
+        //获取题库
+        List<CompetitionQuestionBank> questionListInContest = competitionQuestionBankMapper.getQuestionListInContest(contestId);
+
+        return JSONArray.toJSONString(new ResponseVo<>("获取比赛中的题库",questionListInContest,"200"));
     }
 }

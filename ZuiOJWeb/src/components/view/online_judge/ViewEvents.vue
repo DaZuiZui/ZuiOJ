@@ -39,7 +39,13 @@
                                         <hr>
 
                                         <!--报名-->
-                                        <div v-if="!checkForEntry">
+                                        <div v-if="checkForEntry == false && new Date() <= new Date(contest.endTime) && new Date() >= new Date(contest.startTime) ">
+                                            <div class="alert alert-danger" role="alert">
+                                                TLMOJ：此比赛已经截至报名时间，但是你可以查看比赛的现场直播<a href="#" class="alert-link">查看现场直播</a>. 
+                                            </div>
+                                        </div>
+                                         <!--报名-->
+                                        <div v-else-if="!checkForEntry">
                                             <b style="font-size:16px">您还未开始报名</b>
                                             <el-button type="primary" icon="el-icon-s-promotion" @click="signUp()" :disabled="switchbutton">报名此竞赛</el-button>
                                         </div>
@@ -107,7 +113,7 @@
                                                                     <col name="el-table_4_column_13" width="180">
                                                         </colgroup>
                                                         <tbody>
-                                                            <tr class="el-table__row" v-for="(question,index) in questionList" :key="index">
+                                                            <tr class="el-table__row" v-for="(question,index) in questionList" :key="index" >
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
                                                                     <div class="cell">
                                                                         {{question.shortName}}
@@ -120,20 +126,12 @@
                                                                 </td>
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_12   el-table__cell">
                                                                     <div class="cell">
-                                                                        待系统学习统计
+                                                                         {{question.createByName}}
                                                                     </div>
                                                                 </td>
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_13   el-table__cell">
                                                                     <div class="cell">
-                                                                        <div v-if="question.grade == 1">
-                                                                            简单
-                                                                        </div>
-                                                                        <div v-else-if="question.grade == 2">
-                                                                            中等
-                                                                        </div>        
-                                                                         <div v-else >
-                                                                            困难
-                                                                        </div>
+                                                                         未通过
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -208,6 +206,7 @@
                     startTime: new Date(),
                     status: -1,
                     mdText: "",
+                    createByName: "",
                },
                //幂等性
                nonPowerToken: "",
@@ -215,7 +214,9 @@
                switchbutton: false,
                //问题显示
                questionList: false,
+               //查看是否报名
                checkForEntry: false,
+               //比赛题目list集合
                questionList: [],
 
                //倒计时
@@ -232,7 +233,7 @@
   
        methods: {
             // 天 时 分 秒 格式化函数
-            countDown() {
+            async countDown() {
                 let d = parseInt(this.seconds / (24 * 60 * 60))
                 d = d < 10 ? "0" + d : d
                 let h = parseInt(this.seconds / (60 * 60) % 24);
@@ -256,9 +257,12 @@
                     //关闭计时器
                     window.clearInterval(this.clock);
                     //请求比赛题库
+                    var object = await synRequestGet("/CompetitionQuestionBank/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
+                    this.questionList = object.data;
                     return;
                 }
             },
+            
             //定时器没过1秒参数减1
             Time() {
                 this.clock = window.setInterval(() => {
@@ -293,9 +297,12 @@
                     //是否已经参赛
                     if(object.code == "666"){
                          this.checkForEntry = !this.checkForEntry;
+                      
                          return;
                     }
                     alert(object.message);
+                    //页面刷新，待优化
+                    this.getEventById();
                 }catch(e){
                     //重新更新幂等性
                     this.getNonPowerToken();
