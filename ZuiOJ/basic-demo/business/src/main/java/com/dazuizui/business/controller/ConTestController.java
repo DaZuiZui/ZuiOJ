@@ -60,7 +60,7 @@ public class ConTestController {
      */
     @ApiOperation("通过id获取比赛赛事")
     @GetMapping("/getEventById")
-    public String getEventById(@RequestParam("id")Long id){
+    public String getEventById(@RequestParam("toekn")String token ,@RequestParam("id")Long id){
         return conTestSerivce.getEventById(id);
     }
 
@@ -85,4 +85,6 @@ public class ConTestController {
     public String signUpForTheCompetition(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token,@RequestParam("contestId")Long contestId){
         return conTestSerivce.signUpForTheCompetition(contestId);
     }
+
+
 }

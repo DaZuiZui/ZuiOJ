@@ -10,11 +10,14 @@ import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.mapper.QuestionBankMapper;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.util.RedisUtil;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -35,7 +38,14 @@ public class QuestionBankServiceImpl implements QuestionBankService {
      */
     @Override
     public String postQuestion(QuestionBankBo questionBankBo) {
-        System.err.println(questionBankBo);
+        //初始化数据
+        Map<String, Object> map = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
+        String idInJWTString = (String) map.get("id");
+        Long idInJWt = Long.valueOf(idInJWTString);
+        questionBankBo.setCreateById(idInJWt);
+        questionBankBo.setCreateByName((String) map.get("name"));
+        questionBankBo.setCreateTime(new Date());
+
         //普通添加题目
         if (questionBankBo.getQuestionType() == 2){
             questionBankBo.setStatus(1);        //status is 1，考试题目
@@ -69,8 +79,8 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
     /**
      * 通过id获取题目
-     * @param id
-     * @param questionType
+     * @param id            题目id
+     * @param questionType  问题类型
      * @return
      */
     @Override

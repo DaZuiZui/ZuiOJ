@@ -15,4 +15,12 @@ public interface QuestionAop {
      * @return
      */
     public String getQuestionById(JoinPoint joinpoint);
+
+
+    /**
+     * 提交题目aop 主要负责获取用户信息鉴权
+     * @param joinpoint
+     * @return
+     */
+    public String postQuestion(JoinPoint joinpoint) throws Exception;
 }

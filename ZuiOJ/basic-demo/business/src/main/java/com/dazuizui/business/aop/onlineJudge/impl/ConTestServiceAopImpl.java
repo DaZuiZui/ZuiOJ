@@ -23,6 +23,9 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
     @Autowired
     private RedisTemplate redisTemplate;
 
+
+
+
     /**
      * 非幂等性问题代码aop增强
      * @param joinpoint
@@ -73,4 +76,31 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
 
         return null;
     }
+
+    /**
+     * 通过id获取赛事aop
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ConTestController.getEventById(..))")
+    public String getEventById(JoinPoint joinpoint) throws Exception {
+        //鉴权
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+            } catch (Exception e) {
+                throw new Exception("身份验证过期");
+
+            }
+        }
+        return null;
+    }
+
+
 }

@@ -21,4 +21,14 @@ public interface ConTestServiceAop {
      * @throws Exception
      */
     public String signUpForTheCompetition(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 通过id获取赛事
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String getEventById(JoinPoint joinpoint) throws Exception;
+
+
 }

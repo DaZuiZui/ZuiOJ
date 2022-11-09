@@ -102,6 +102,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         ContestInfoVo contestInfoVo = new ContestInfoVo();  //返回数据
 
         Map<String, Object> map = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
+        System.err.println(map);
         String idInJWTString = (String) map.get("id");
         Long idInJWt = Long.valueOf(idInJWTString);
         CompetitionInfo competitionInfo = new CompetitionInfo();
@@ -119,9 +120,9 @@ public class ContestSerivceImpl implements ContestSerivce {
             //todo 检测是否被封禁
 
             //todo 是否满足获取题库
+            System.err.println("????");
 
-
-            return JSONArray.toJSONString(new ResponseVo<>("获取赛制通过id",contestInfoVo,"200"));
+            return JSONArray.toJSONString(new ResponseVo<>("获取赛制通过id",contestInfoVo,"666"));
         }
         //todo 是否满足获取题库
 
