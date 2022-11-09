@@ -13,7 +13,6 @@
                         <article class="article-list bloglist" id="LAY_bloglist">              
                             <div>
                                 <section class="article-item zoomIn article" style="border-radius:5px">
-                     
                                     <h5 class="title">
                                         <a href="#">哈尔滨广厦学院题库</a>
                                     </h5>
