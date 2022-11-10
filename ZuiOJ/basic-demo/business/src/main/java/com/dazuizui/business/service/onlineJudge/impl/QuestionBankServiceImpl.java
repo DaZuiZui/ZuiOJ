@@ -84,17 +84,39 @@ public class QuestionBankServiceImpl implements QuestionBankService {
      * @return
      */
     @Override
-    public String getQuestionById(Long id, Long questionType) {
+    public String getQuestionById(Long id, Integer questionType) {
+        //错误判断
+        String errorcode = ThreadLocalUtil.mapThreadLocal.get().get("error");
+        if (errorcode != null && errorcode.length() >0) {
+            if (errorcode.equals("0x8769")){
+                return JSONArray.toJSONString(new ResponseVo<>("您没有报名权限",null,"501"));
+            }
+        }
+
         QuestionBankVo questionBankVo = null;
         //0.判断当前题目是否为比赛类型题目
         if (questionType != 1){
-            //todo 查看当前比赛选手是否有参赛
+            //查询redis是否存在
+            questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis("ZuiOJ:Question:"+id);
+            if (questionBankVo == null){
+                questionBankVo = questionBankMapper.getQuestionById(id,1,0);
+                System.err.println("yes");
+                //没有查找到题目
+                if (questionBankVo == null){
+                    return JSONArray.toJSONString(new ResponseVo<>("没找查找到题目",null,"200"));
+                }
+            }
+
+            //写入redis
+            redisUtil.setStringInRedis("ZuiOJ:Question:"+id,60*60*24*15,questionBankVo);
         }else{
            //1.获取题目在redis中
             questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis("ZuiOJ:Question:"+id);
             if (questionBankVo == null){
                 //去mysql中获取题目
                 questionBankVo = questionBankMapper.getQuestionById(id,0,0);
+
+
                 if (questionBankVo == null){
                     return JSONArray.toJSONString(new ResponseVo<>("没找查找到题目",null,"200"));
                 }

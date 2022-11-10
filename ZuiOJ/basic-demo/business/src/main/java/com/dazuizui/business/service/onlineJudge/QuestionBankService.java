@@ -33,5 +33,5 @@ public interface QuestionBankService {
      * @param questionType
      * @return
      */
-    public String getQuestionById(@RequestParam("id")Long id,@RequestParam("questionType") Long questionType);
+    public String getQuestionById(@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType);
 }

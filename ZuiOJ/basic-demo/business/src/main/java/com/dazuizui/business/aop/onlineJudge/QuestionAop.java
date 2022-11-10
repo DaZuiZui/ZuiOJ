@@ -14,7 +14,7 @@ public interface QuestionAop {
      * 根据id获取题目
      * @return
      */
-    public String getQuestionById(JoinPoint joinpoint);
+    public String getQuestionById(JoinPoint joinpoint) throws Exception;
 
 
     /**

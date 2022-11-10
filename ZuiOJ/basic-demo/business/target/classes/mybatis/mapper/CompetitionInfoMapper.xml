@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
+    <!--
+        查看选手是否参赛
+    -->
+    <select id="checkForEntry" resultType="com.dazuizui.basicapi.entry.CompetitionInfo">
+        select
+            id,
+            contest_id,
+            user_id
+        from
+            competition_info
+        where
+            contest_id = #{contestId} and
+            user_id    = #{userId}
+        limit 1
+    </select>
+    
+    <insert id="addCompetitionInfo">
+        insert into
+            competition_info
+        value(
+            null,
+            #{contestId},
+            #{userId},
+            #{createById},
+            #{createByName},
+            #{createTime},
+            #{updateById},
+            #{updateByName},
+            #{updateTime},
+            0,
+            0
+        )
+    </insert>
+</mapper>

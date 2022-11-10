@@ -23,9 +23,6 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
     @Autowired
     private RedisTemplate redisTemplate;
 
-
-
-
     /**
      * 非幂等性问题代码aop增强
      * @param joinpoint
@@ -99,6 +96,8 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
 
             }
         }
+
+
         return null;
     }
 

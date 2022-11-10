@@ -21,7 +21,7 @@ public class JwtUtil {
      * @return
      */
     public static String createJWT(User user){
-        System.err.println(user);
+
         //构建jwt令牌
         JwtBuilder builder = Jwts.builder();
         builder.setIssuer("DaZuiZui"); //颁发者

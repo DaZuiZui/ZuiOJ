@@ -52,8 +52,9 @@ public class QuestionBankController {
      */
     @ApiOperation("根据id获取题目")
     @GetMapping("/getQuestionById")
-    public String getQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Long questionType){
-         System.err.println(ThreadLocalUtil.mapThreadLocalOfJWT.get());
-         return questionBankService.getQuestionById(id, questionType);
+    public String getQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType,@RequestParam("contestId")Long contestId){
+         //System.err.println(ThreadLocalUtil.mapThreadLocalOfJWT.get());
+        System.out.println(contestId);
+        return questionBankService.getQuestionById(id, questionType);
     }
 }
