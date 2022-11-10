@@ -22,9 +22,15 @@
                                         <div class="container">
                                             <div class="row row-cols-2">
                                               <div class="col">
-                                                  <div v-html="question.htmlCn">
-
-                                                  </div>
+                                                <!--md text-->
+                                                <mavon-editor v-model="question.mdCn"
+                                                    :subfield="false"
+                                                    :defaultOpen="'preview'"
+                                                    :editable="false"
+                                                    :toolbarsFlag="false"
+                                                    :boxShadow=false
+                                                    >
+                                                </mavon-editor>
                                     
                                               </div>
                                               <div class="col">
@@ -86,7 +92,7 @@
   
   
   <script>
-    import {synRequest,synRequestGet} from "../../../../static/request.js";
+    import {synRequestPost,synRequestGet} from "../../../../static/request.js";
     import global from "../../../../static/entry.js";
 
     import Foot from '../frame/Foot.vue'; 
@@ -101,6 +107,7 @@
                     code: '',
                     topicId: 1,
                     languageId: -1,
+                    questionType: -1,
                },
                res: {
                     status: "",
@@ -113,14 +120,21 @@
        mounted(){
             //获取题目
             this.getQuestionById();
-            //console.log(global.apiUrl+"asd")
+            //更新题目信息
+            this.program.topicId = getQueryVariable("id");
+  
        },
   
        methods: {
             async getQuestionById(){
-                var object = await synRequestGet("/question/getQuestionById?token="+getCookie("token")+"&id=1&questionType=1");
+                var questionType = getQueryVariable("questionType");
+                var object = await synRequestGet("/question/getQuestionById?token="+getCookie("token")+"&id="+getQueryVariable("id")+"&questionType="+questionType+"&contestId="+getQueryVariable("contestId"));
+                if(object.code == "501"){
+                    alert("您没有报名此比赛，无权限访问");
+                    this.$router.push('/contest/list');
+                }
                 this.question = object.data;
-                console.log(object)
+     
             },  
 
             async submit(){

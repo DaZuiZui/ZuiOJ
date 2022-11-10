@@ -186,7 +186,6 @@
   <script>
     import Foot from '../frame/Foot.vue'; 
     import Top from '../frame/Top.vue';
-    import global from "../../../../static/entry.js";
     import {synRequestGet,synRequestPost} from "../../../../static/request.js";
     export default {
        name: "anwserQuestions",     //对外开放打包
@@ -310,9 +309,8 @@
           
             },
             
-            toQuestion(){
-               
-               this.$router.push('/question/AnwserQuestion');
+            toQuestion(id){
+               this.$router.push('/question/AnwserQuestion?id='+id+"&questionType=2&contestId="+getQueryVariable("id"));
             }
        }
    }

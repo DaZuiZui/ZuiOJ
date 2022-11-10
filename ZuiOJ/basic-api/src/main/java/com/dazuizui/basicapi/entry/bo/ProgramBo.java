@@ -21,6 +21,10 @@ public class ProgramBo implements Serializable {
     private List<String> copyOutCached;     //输入输出文件
     private ProblemLimit problemLimit;
     private String input;
+    //题目类型 1为普通题目，2为比赛题目
+    private Integer questionType;
+    //赛事id
+    private Long contestId;
 
     @Override
     public String toString() {
@@ -35,6 +39,8 @@ public class ProgramBo implements Serializable {
                 ", copyOutCached=" + copyOutCached +
                 ", problemLimit=" + problemLimit +
                 ", input='" + input + '\'' +
+                ", questionType=" + questionType +
+                ", contestId=" + contestId +
                 '}';
     }
 
@@ -118,10 +124,27 @@ public class ProgramBo implements Serializable {
         this.input = input;
     }
 
+    public Integer getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(Integer questionType) {
+        this.questionType = questionType;
+    }
+
+    public Long getContestId() {
+        return contestId;
+    }
+
+    public void setContestId(Long contestId) {
+        this.contestId = contestId;
+    }
+
     public ProgramBo() {
     }
 
-    public ProgramBo(long topicId, long userID, String code, Long languageId, List<String> parseCodeArgs, List<String> runCommandArgs, List<String> env, List<String> copyOutCached, ProblemLimit problemLimit, String input) {
+    public ProgramBo(long topicId, long userID, String code, Long languageId, List<String> parseCodeArgs, List<String> runCommandArgs, List<String> env, List<String> copyOutCached, ProblemLimit problemLimit, String input, Integer questionType, Long contestId) {
+
         this.topicId = topicId;
         this.userID = userID;
         this.code = code;
@@ -132,5 +155,7 @@ public class ProgramBo implements Serializable {
         this.copyOutCached = copyOutCached;
         this.problemLimit = problemLimit;
         this.input = input;
+        this.questionType = questionType;
+        this.contestId = contestId;
     }
 }

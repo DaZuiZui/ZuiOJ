@@ -162,7 +162,7 @@
             
             //跳转题目
             toQuestion(id){
-               this.$router.push('/question/AnwserQuestion?id='+id);
+               this.$router.push('/question/AnwserQuestion?id='+id+"&questionType=1&contestId=-1");
             }
        }
    }

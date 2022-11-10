@@ -12,6 +12,7 @@ import com.dazuizui.business.mapper.QuestionCaseMapper;
 import com.dazuizui.business.service.onlineJudge.OnlineJudgeService;
 import com.dazuizui.business.util.HttpUtil;
 import com.dazuizui.business.util.RedisUtil;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         programBo.setParseCodeArgs(map.get(new Integer(0)));
         programBo.setCopyOutCached(map.get(new Integer(2)));
         programBo.setRunCommandArgs(map.get(new Integer(1)));
+
         /**
          * 初始化题目限制
          */
@@ -74,6 +76,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             if (!request.get("status").equals("Accepted")) {
                 break;
             }
+
             //判断答案是否正确
             JSONObject jsonObject1 = new JSONObject(request.get("files"));
             String stdout = jsonObject1.get("stdout").toString() ;
@@ -85,10 +88,17 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             }
         }
 
+        //如果通过
+        if (request.get("status").equals("Accepted")) {
+            //查看是否为比赛题目
+            String JWTStringID = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+            Long id = Long.valueOf(JWTStringID);
+
+        }
+
         /**
          * 日志记录用户的状态
          */
-
         return JSONArray.toJSONString(request);
     }
 
