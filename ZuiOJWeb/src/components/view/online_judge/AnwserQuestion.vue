@@ -108,6 +108,7 @@
                     topicId: 1,
                     languageId: -1,
                     questionType: -1,
+                    contestId: -1,
                },
                res: {
                     status: "",
@@ -122,7 +123,8 @@
             this.getQuestionById();
             //更新题目信息
             this.program.topicId = getQueryVariable("id");
-  
+            this.program.questionType = getQueryVariable("questionType");
+            this.program.contestId    = getQueryVariable("contestId");
        },
   
        methods: {
@@ -139,7 +141,7 @@
 
             async submit(){
                 //处决代码
-                this.res =  await synRequestPost("/onlineJudge/judge",this.program);
+                this.res =  await synRequestPost("/onlineJudge/judge?token="+getCookie("token"),this.program);
                 console.log(this.res);
             }
        }

@@ -26,7 +26,7 @@ public class OnlineJudgeController {
      */
     @ApiOperation("题目判决")
     @PostMapping("/judge")
-    public String judgeTheProgram(@RequestBody ProgramBo programBo){
+    public String judgeTheProgram(@RequestParam("token")String token,@RequestBody ProgramBo programBo){
         System.out.println(programBo);
         return  onlineJudgeService.judgeTheProgram(programBo);
     }

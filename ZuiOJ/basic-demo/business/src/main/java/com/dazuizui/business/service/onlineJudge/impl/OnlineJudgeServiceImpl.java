@@ -3,18 +3,22 @@ package com.dazuizui.business.service.onlineJudge.impl;
 import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.InitializerData;
+import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.ProblemLimit;
 import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
+import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
+import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.service.onlineJudge.OnlineJudgeService;
 import com.dazuizui.business.util.HttpUtil;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +34,9 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     private QuestionCaseMapper questionCaseMapper;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private AcContestQuestionSerivce acContestQuestionSerivce;
+
 
     /**
      * 判决代码
@@ -39,6 +46,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
      * @return
      */
     @Override
+    @Transactional
     public String judgeTheProgram(ProgramBo programBo){
         /**
          * 初始化代码运行还击那个
@@ -74,7 +82,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             request = HttpUtil.request(programBo);
 
             if (!request.get("status").equals("Accepted")) {
-                break;
+               break;
             }
 
             //判断答案是否正确
@@ -84,18 +92,25 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             System.out.println(questionCase.getAnswer()+"and"+stdout);
             if (!stdout.equals(questionCase.getAnswer())) {
                 request.set("status","Answer error");
-                return JSONArray.toJSONString(request);
+                break;
             }
         }
 
-        //如果通过
-        if (request.get("status").equals("Accepted")) {
+        //如果通过并且是比赛类型的题目
+        if (programBo.getQuestionType() != 1 ) {
             //查看是否为比赛题目
             String JWTStringID = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
             Long id = Long.valueOf(JWTStringID);
-
+            AcContestQuestion acContestQuestion = new AcContestQuestion();
+            acContestQuestion.setContestId(programBo.getContestId());
+            acContestQuestion.setUserId(id);
+            acContestQuestion.setQuestionId(programBo.getTopicId());
+            //在比赛中标记记录
+            acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
+            //写入日记
         }
 
+        System.err.println(request.get("status"));
         /**
          * 日志记录用户的状态
          */
