@@ -3,8 +3,7 @@
 ## Developer
 
  
-
- Hereby thanks **Teacher Zhang Yijia for her guidance and help**
+ 
 
  
 
