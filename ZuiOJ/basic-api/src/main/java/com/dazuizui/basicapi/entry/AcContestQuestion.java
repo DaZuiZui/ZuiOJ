@@ -20,6 +20,7 @@ public class AcContestQuestion implements Serializable {
     private int status;      //状态
     private int delFlag;     //逻辑删除
     private Integer numberOfAttempts; //尝试次数
+    private Date firstAc;             //第一次ac时间
 
     @Override
     public String toString() {
@@ -37,6 +38,7 @@ public class AcContestQuestion implements Serializable {
                 ", status=" + status +
                 ", delFlag=" + delFlag +
                 ", numberOfAttempts=" + numberOfAttempts +
+                ", firstAc=" + firstAc +
                 '}';
     }
 
@@ -144,10 +146,18 @@ public class AcContestQuestion implements Serializable {
         this.numberOfAttempts = numberOfAttempts;
     }
 
+    public Date getFirstAc() {
+        return firstAc;
+    }
+
+    public void setFirstAc(Date firstAc) {
+        this.firstAc = firstAc;
+    }
+
     public AcContestQuestion() {
     }
 
-    public AcContestQuestion(Long id, Long contestId, Long questionId, Long userId, Long createById, String createByName, Date createTime, Long updateById, String updateByName, Date updateTime, int status, int delFlag, Integer numberOfAttempts) {
+    public AcContestQuestion(Long id, Long contestId, Long questionId, Long userId, Long createById, String createByName, Date createTime, Long updateById, String updateByName, Date updateTime, int status, int delFlag, Integer numberOfAttempts, Date firstAc) {
         this.id = id;
         this.contestId = contestId;
         this.questionId = questionId;
@@ -161,5 +171,6 @@ public class AcContestQuestion implements Serializable {
         this.status = status;
         this.delFlag = delFlag;
         this.numberOfAttempts = numberOfAttempts;
+        this.firstAc = firstAc;
     }
 }

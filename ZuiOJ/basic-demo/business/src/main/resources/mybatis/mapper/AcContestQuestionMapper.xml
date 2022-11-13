@@ -15,6 +15,7 @@
             #{acContestQuestion.questionId},
             #{acContestQuestion.userId},
             #{acContestQuestion.numberOfAttempts},
+            #{acContestQuestion.firstAc},
             #{acContestQuestion.createById},
             #{acContestQuestion.createByName},
             #{acContestQuestion.createTime},
@@ -33,7 +34,9 @@
         UPDATE
             ac_contest_question t1
         set
-            t1.number_of_attempts = #{acContestQuestion.numberOfAttempts} , status = #{status}
+            t1.number_of_attempts = #{acContestQuestion.numberOfAttempts} ,
+            status = #{status},
+            first_ac = #{acContestQuestion.firstAc}
         where
             contest_id  = #{acContestQuestion.contestId}  and
             question_id = #{acContestQuestion.questionId} and
@@ -46,7 +49,9 @@
     <select id="checkSubmissions" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">
         SELECT
             id,
-            number_of_attempts
+            number_of_attempts,
+            first_ac,
+            status
         from
             ac_contest_question
         where

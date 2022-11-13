@@ -2,6 +2,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
+import com.dazuizui.basicapi.entry.vo.ContestQuestionVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.service.onlineJudge.CompetitionQuestionBankService;
@@ -21,7 +22,7 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
 
     /**
      * 添加题在比赛题库中
-     * 哎
+     * out
      * @return
      */
     @Override
@@ -43,8 +44,13 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
             //todo 查询错误代码返回信息
         }
 
+        //获取比赛人ID
+        String idstring = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+
         //获取题库
-        List<CompetitionQuestionBank> questionListInContest = competitionQuestionBankMapper.getQuestionListInContest(contestId);
+        List<ContestQuestionVo> questionListInContest = competitionQuestionBankMapper.getQuestionListInContest(contestId,Long.valueOf(idstring));
+        System.err.println(questionListInContest);
+
 
         return JSONArray.toJSONString(new ResponseVo<>("获取比赛中的题库",questionListInContest,"200"));
     }

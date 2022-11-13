@@ -57,7 +57,7 @@
                                                     竞赛 <b>{{count}}</b>  后开启，请误更改您的本地时间，本地时间请确保使用中国北京时间，出现后果，后果自负,一切时间数据已服务器为准。
                                                 </div>
                                                 <div class="alert alert-danger" role="alert" v-else>
-                                                    竞赛已经开始祝你好运。 By 张义嘉老师 & TLM Team 团队
+                                                    竞赛已经开始祝你好运。 By 张义嘉老师 & TLM Team 团队    <el-link>查看排名榜<i class="el-icon-view el-icon--right"></i> </el-link>
                                                 </div>
                                             </div> 
 
@@ -74,6 +74,7 @@
                                                             <col name="el-table_4_column_11" width="180">
                                                             <col name="el-table_4_column_12" width="180">
                                                             <col name="el-table_4_column_13" width="180">
+                                                            <col name="el-table_4_column_14" width="180">
                                                         </colgroup>
                                                         <thead class="">
                                                             <tr class="">
@@ -97,6 +98,11 @@
                                                                          我的状态
                                                                     </div>
                                                                 </th>
+                                                                <th colspan="1" rowspan="1" class="el-table_4_column_14     is-leaf el-table__cell">
+                                                                    <div class="cell">
+                                                                         所需时间(含罚时)
+                                                                    </div>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -107,13 +113,14 @@
                                                     <table cellspacing="0" cellpadding="0" border="0" class="el-table__body"
                                                     style="width: 100%;">
                                                         <colgroup>
-                                                            <col name="el-table_4_column_10" width="180">
-                                                                <col name="el-table_4_column_11" width="180">
+                                                                    <col name="el-table_4_column_10" width="180">
+                                                                    <col name="el-table_4_column_11" width="180">
                                                                     <col name="el-table_4_column_12" width="180">
                                                                     <col name="el-table_4_column_13" width="180">
+                                                                    <col name="el-table_4_column_14" width="180">
                                                         </colgroup>
                                                         <tbody>
-                                                            <tr class="el-table__row" v-for="(question,index) in questionList" :key="index" >
+                                                            <tr class="el-table__row" v-for="(question,index) in questionList" :key="index" :style="question.firstAc == null ? '' : 'background-color: rgb(223, 240, 216)' ">
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
                                                                     <div class="cell">
                                                                         {{question.shortName}}
@@ -121,7 +128,8 @@
                                                                 </td>
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_11   el-table__cell">
                                                                     <div class="cell" @click="toQuestion(question.id)">
-                                                                        <a herf="#">{{question.chineseName}}</a>
+                                                                        <el-link type="primary">{{question.chineseName}}</el-link>
+                                                                     
                                                                     </div>
                                                                 </td>
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_12   el-table__cell">
@@ -130,8 +138,19 @@
                                                                     </div>
                                                                 </td>
                                                                 <td rowspan="1" colspan="1" class="el-table_4_column_13   el-table__cell">
-                                                                    <div class="cell">
+                                                                    <div class="cell" v-if="question.firstAc == null">
                                                                          未通过
+                                                                    </div>
+                                                                    <div class="cell" v-else>
+                                                                         (-{{question.numberOfAttempts}})通过
+                                                                    </div>
+                                                                </td>
+                                                                <td rowspan="1" colspan="1" class="el-table_4_column_14   el-table__cell" >
+                                                                    <div class="cell" v-if="question.firstAc != null">
+                                                                         {{((new Date(question.firstAc) - new Date(contest.startTime)) / 1000)+(question.numberOfAttempts*300)}} seconds
+                                                                    </div>
+                                                                    <div class="cell" v-else>
+                                                                          暂无成绩
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -192,6 +211,10 @@
        components: { Foot,Top },
        data() {
            return{
+               //表格样式
+               trOfTableDiv:{
+                 "style":"background-color: rgb(223, 240, 216);"
+               },
                count: '', //倒计时
                seconds: 864000 ,// 10天的秒数
                contest: {
@@ -206,6 +229,8 @@
                     status: -1,
                     mdText: "",
                     createByName: "",
+                    numberOfAttempts: 0,
+                    firstAc: new Date(),
                },
                //幂等性
                nonPowerToken: "",
@@ -257,6 +282,7 @@
                     window.clearInterval(this.clock);
                     //请求比赛题库
                     var object = await synRequestGet("/CompetitionQuestionBank/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
+        
                     this.questionList = object.data;
                     return;
                 }

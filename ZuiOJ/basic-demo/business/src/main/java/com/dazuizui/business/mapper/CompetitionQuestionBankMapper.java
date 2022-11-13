@@ -1,6 +1,7 @@
 package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
+import com.dazuizui.basicapi.entry.vo.ContestQuestionVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,5 +19,5 @@ public interface CompetitionQuestionBankMapper {
      * @param contestId
      * @return
      */
-    public List<CompetitionQuestionBank> getQuestionListInContest(@Param("contestId") Long contestId);
+    public List<ContestQuestionVo> getQuestionListInContest(@Param("contestId") Long contestId,@Param("userId")Long userId);
 }

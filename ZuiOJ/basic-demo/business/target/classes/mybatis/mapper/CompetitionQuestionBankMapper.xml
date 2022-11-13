@@ -19,14 +19,30 @@
     <!--
         获取比赛题目
     -->
-    <select id="getQuestionListInContest" resultType="com.dazuizui.basicapi.entry.QuestionBank">
+    <select id="getQuestionListInContest" resultType="com.dazuizui.basicapi.entry.vo.ContestQuestionVo">
         select
-            *
+            t3.id,
+            t3.short_name,
+            t3.chinese_name,
+            t3.grade,
+            t3.question_type,
+            t3.create_by_name,
+            t3.create_time,
+            t3.`status`,
+            t2.question_id,
+            t2.first_ac as 'firstAc',
+                t2.number_of_attempts
         from
-            question_bank
+            question_bank t3
+                left JOIN
+            ac_contest_question t2
+            on
+                t2.question_id = t3.id
         where
-                id
-                in (
+            t2.user_id = 1 and
+                t3.id
+                in
+                (
                     select
                         t1.question_id
                     from
@@ -34,5 +50,6 @@
                     where
                         t1.contest_id = #{contestId}
                 )
+
     </select>
 </mapper>
