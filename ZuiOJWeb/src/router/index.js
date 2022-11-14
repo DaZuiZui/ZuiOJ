@@ -13,6 +13,8 @@ import ContestList    from '@/components/view/online_judge/ContestList'
 import Register       from '@/components/view/user/Register'
 import AboutUs        from '@/components/view/about/AboutUs'
 import ViewEvent      from '@/components/view/online_judge/ViewEvents'
+import ViewRank       from '@/components/view/online_judge/ViewRank'
+
 
 Vue.use(Router)
 Vue.prototype.$axios = Axios;
@@ -80,6 +82,11 @@ export default new Router({
     {
       path: '/contest/ViewEvent',
       component: ViewEvent,
+    },
+    //榜单系统
+    {
+      path: '/contest/ranking',
+      component: ViewRank
     }
   ]
 })

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 比赛题目关联
+ */
 @Service
 public interface CompetitionQuestionBankService {
     /**

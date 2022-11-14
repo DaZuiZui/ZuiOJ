@@ -2,12 +2,11 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.InitializerData;
+import com.dazuizui.basicapi.entry.InitializerData;
 import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.ProblemLimit;
 import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
-import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
@@ -65,12 +64,12 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         /**
          * 获取案例he
          */
-        List<QuestionCase> questionCases = redisUtil.getListInRedis("ZuiOJ:QuestionBack:QuestionID:"+programBo.getTopicId());
+        List<QuestionCase> questionCases = redisUtil.getListInRedis("ZuiOJ:QuestionBack:Case:QuestionID:"+programBo.getTopicId());
         System.out.println(questionCases.size());
         if (questionCases.size() == 0){
             questionCases = questionCaseMapper.queryTheQuestionCasesByQuestionId(programBo.getTopicId());
             //写入redis
-            redisUtil.putListInRedis("ZuiOJ:QuestionBack:QuestionID:"+programBo.getTopicId(),60*60*24*15,questionCases);
+            redisUtil.putListInRedis("ZuiOJ:QuestionBack:Case:QuestionID:"+programBo.getTopicId(),60*60*24*15,questionCases);
             System.out.println("in db");
         }
 
@@ -88,8 +87,9 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             //判断答案是否正确
             JSONObject jsonObject1 = new JSONObject(request.get("files"));
             String stdout = jsonObject1.get("stdout").toString() ;
-            stdout =  stdout.replace("\n","\\n").trim();
-            System.out.println(questionCase.getAnswer()+"and"+stdout);
+            stdout = stdout.replace("\n","\\n").trim();
+            questionCase.setAnswer( questionCase.getAnswer().replace("\n","\\n").trim());
+            System.out.println(questionCase.getAnswer()+" and "+stdout);
             if (!stdout.equals(questionCase.getAnswer())) {
                 request.set("status","Answer error");
                 break;

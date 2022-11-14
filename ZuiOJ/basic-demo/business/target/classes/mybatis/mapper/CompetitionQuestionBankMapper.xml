@@ -29,27 +29,23 @@
             t3.create_by_name,
             t3.create_time,
             t3.`status`,
-            t2.question_id,
-            t2.first_ac as 'firstAc',
-                t2.number_of_attempts
+            t1.question_id,
+            t1.contest_id,
+            t4.question_id,
+            t4.user_id,
+            t4.first_ac,
+            t4.number_of_attempts
         from
             question_bank t3
-                left JOIN
-            ac_contest_question t2
+                inner JOIN
+            competition_question_bank t1
             on
-                t2.question_id = t3.id
-        where
-            t2.user_id = 1 and
-                t3.id
-                in
-                (
-                    select
-                        t1.question_id
-                    from
-                        competition_question_bank t1
-                    where
-                        t1.contest_id = #{contestId}
-                )
-
+                        t1.contest_id = #{contestId} and
+                        t3.id =  t1.question_id
+                LEFT JOIN
+            ac_contest_question t4
+            on
+                        t4.user_id  = #{userId} and
+                        t4.question_id = t3.id
     </select>
 </mapper>

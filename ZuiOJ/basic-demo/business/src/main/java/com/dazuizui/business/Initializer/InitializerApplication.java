@@ -1,6 +1,6 @@
 package com.dazuizui.business.Initializer;
 
-import com.dazuizui.basicapi.InitializerData;
+import com.dazuizui.basicapi.entry.InitializerData;
 import com.dazuizui.basicapi.entry.LanguageCommand;
 import com.dazuizui.basicapi.entry.ProgrammingLanguage;
 import com.dazuizui.business.mapper.LanguageCommandMapper;

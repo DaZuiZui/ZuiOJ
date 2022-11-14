@@ -3,6 +3,45 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
+
+    <select id="getTotal" resultType="com.dazuizui.basicapi.entry.GetTotal">
+        SELECT
+            count(q1.contest_id) as 'count',
+            q2.start_time as 'startTime'
+        FROM(
+                select
+                    contest_id
+                from
+                    ac_contest_question
+                where
+                    contest_id = #{contestId}
+                GROUP BY
+                    user_id) q1,
+            (
+                select start_time from contest where id = 28 LIMIT 1) q2
+    </select>
+
+    <!--
+        viewRanking
+    -->
+    <select id="viewRanking" resultType="com.dazuizui.basicapi.entry.Ranking">
+        SELECT
+            sum(unix_timestamp(first_ac)) - unix_timestamp(#{startTime}) + sum(number_of_attempts) * 300 as'second',
+            user_id,
+            create_by_name,COUNT(user_id) as'count'
+        from
+            ac_contest_question
+        where
+            contest_id = #{contestId} AND
+            `status` =1
+        GROUP BY
+            user_id
+        order by
+            count desc,second asc
+        limit
+            #{page},#{number}
+    </select>
+
     <!--
         查看选手是否参赛
     -->
@@ -18,7 +57,10 @@
             user_id    = #{userId}
         limit 1
     </select>
-    
+
+    <!--、
+        添加记录
+    -->
     <insert id="addCompetitionInfo">
         insert into
             competition_info

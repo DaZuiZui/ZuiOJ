@@ -57,7 +57,8 @@
                                                     竞赛 <b>{{count}}</b>  后开启，请误更改您的本地时间，本地时间请确保使用中国北京时间，出现后果，后果自负,一切时间数据已服务器为准。
                                                 </div>
                                                 <div class="alert alert-danger" role="alert" v-else>
-                                                    竞赛已经开始祝你好运。 By 张义嘉老师 & TLM Team 团队    <el-link>查看排名榜<i class="el-icon-view el-icon--right"></i> </el-link>
+                                                    竞赛已经开始祝你好运。 By 张义嘉老师 & TLM Team 团队    
+                                                    <el-link @click="goRankList()">查看排名榜<i class="el-icon-view el-icon--right"></i> </el-link>
                                                 </div>
                                             </div> 
 
@@ -256,6 +257,10 @@
        },
   
        methods: {
+            //前往榜单
+            goRankList(){
+                this.$router.push('/contest/ranking?contestId='+getQueryVariable("id")+"&title="+this.contest.name);
+            },
             // 天 时 分 秒 格式化函数
             async countDown() {
                 let d = parseInt(this.seconds / (24 * 60 * 60))

@@ -3,6 +3,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +26,18 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     public void submitAnswer(AcContestQuestion acContestQuestion,String status) {
         //在比赛信息标记通过
         AcContestQuestion acContestQuestionInDB = acContestQuestionMapper.checkSubmissions(acContestQuestion);
+        acContestQuestion.setCreateByName((String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("name"));
+        String idstring = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        acContestQuestion.setCreateById(Long.valueOf(idstring));
+        acContestQuestion.setCreateTime(new Date());
+
         /**
          * 如果没有提交记录就创建提交记录
          * 如果有提交记录，就当前比赛的题目的提交次数++
          * 第一次提交就ac的情况
          */
-        System.err.println(acContestQuestionInDB == null);
         if (acContestQuestionInDB == null){
+            System.out.println(status);
             if (status.equals("Accepted")){
                 acContestQuestion.setFirstAc(new Date());
                 acContestQuestion.setNumberOfAttempts(0);
@@ -48,21 +54,21 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
              * 此if条件是罚时
              * 如果已经AC但是没有通过，或者没有ac也没有通过就增加错误次数
              */
-            if (
-                (acContestQuestionInDB.getStatus() == 1 && !status.equals("Accepted")) ||
-                (acContestQuestionInDB.getStatus() == 0 && !status.equals("Accepted"))
-            ){
+            if (acContestQuestionInDB.getStatus() == 1 && !status.equals("Accepted")){
                 acContestQuestion.setFirstAc(acContestQuestionInDB.getFirstAc() == null ? null : acContestQuestionInDB.getFirstAc());
                 acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts()+1);
-                System.err.println(acContestQuestion);
+                acContestQuestionMapper.recordSubmissions(acContestQuestion,1);
+            }
+            //
+            else if (acContestQuestionInDB.getStatus() == 0 && !status.equals("Accepted")) {
+                acContestQuestion.setFirstAc(acContestQuestionInDB.getFirstAc() == null ? null : acContestQuestionInDB.getFirstAc());
+                acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts()+1);
                 acContestQuestionMapper.recordSubmissions(acContestQuestion,0);
-            }else if (status.equals("Accepted") && acContestQuestionInDB.getStatus() == 0){
-                System.err.println(acContestQuestion);
-                System.err.println(acContestQuestionInDB.getStatus());
-                /**
-                 * 如果是首次通过
-                 */
-                System.err.println("???");
+            }
+            /**
+             * 如果是首次通过
+             */
+            else if (status.equals("Accepted") && acContestQuestionInDB.getStatus() == 0){
                 acContestQuestion.setFirstAc(new Date());
                 acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts());
                 acContestQuestionMapper.recordSubmissions(acContestQuestion,1);

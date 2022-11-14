@@ -6,12 +6,16 @@ import com.dazuizui.business.aop.onlineJudge.QuestionAop;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
 
@@ -22,6 +26,8 @@ public class QuestionAopImpl implements QuestionAop {
     private RedisTemplate redisTemplate;
     @Autowired
     private CompetitionInfoMapper competitionInfoMapper;
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
 
     /**
      * 通过题目id获取题目的AOP

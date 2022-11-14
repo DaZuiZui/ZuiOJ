@@ -28,7 +28,6 @@
             on
                 t1.id =  t2.contest_id
         where t1.id = #{id}
-
     </select>
     <!--
         获取往期赛制
@@ -72,6 +71,9 @@
             status = 0;
     </select>
 
+    <!--
+        插入比赛信息
+    -->
     <insert id="insertConTest" useGeneratedKeys="true" keyProperty="id">
         insert into
             contest
@@ -94,7 +96,9 @@
             )
     </insert>
 
-
+    <!--
+        插入比赛信息详细
+    -->
     <insert id="insertConTestDetailed" >
         insert into
             contest_detailed
@@ -105,6 +109,8 @@
             #{htmlText}
         )
     </insert>
+
+
 
     <select id="queryTheContestById" resultType="com.dazuizui.basicapi.entry.Contest">
         select
