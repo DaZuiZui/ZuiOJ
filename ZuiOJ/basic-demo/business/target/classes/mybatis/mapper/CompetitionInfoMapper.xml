@@ -25,10 +25,11 @@
         viewRanking
     -->
     <select id="viewRanking" resultType="com.dazuizui.basicapi.entry.Ranking">
+
         SELECT
-            sum(unix_timestamp(first_ac)) - unix_timestamp(#{startTime}) + sum(number_of_attempts) * 300 as'second',
-            user_id,
-            create_by_name,COUNT(user_id) as'count'
+                sum(unix_timestamp(first_ac) -unix_timestamp(#{startTime}) )  + sum(number_of_attempts) * 300 as'second',
+                user_id,
+                create_by_name,COUNT(user_id) as'count'
         from
             ac_contest_question
         where
