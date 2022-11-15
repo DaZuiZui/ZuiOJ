@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
+    <!--
+        创建提交记录
+    -->
+    <insert id="acTheQuestionInDB">
+        insert into
+            ac_contest_question
+        value(
+            null,
+            #{acContestQuestion.contestId},
+            #{acContestQuestion.questionId},
+            #{acContestQuestion.userId},
+            #{acContestQuestion.numberOfAttempts},
+            #{acContestQuestion.firstAc},
+            #{acContestQuestion.createById},
+            #{acContestQuestion.createByName},
+            #{acContestQuestion.createTime},
+            #{acContestQuestion.updateById},
+            #{acContestQuestion.updateByName},
+            #{acContestQuestion.updateTime},
+            #{status},
+            0
+        )
+    </insert>
+
+    <!--
+        增加通过数量
+    -->
+    <update id="recordSubmissions">
+        UPDATE
+            ac_contest_question t1
+        set
+            t1.number_of_attempts = #{acContestQuestion.numberOfAttempts} ,
+            status = #{status},
+            first_ac = #{acContestQuestion.firstAc}
+        where
+            contest_id  = #{acContestQuestion.contestId}  and
+            question_id = #{acContestQuestion.questionId} and
+            user_id     = #{acContestQuestion.userId}
+    </update>
+
+    <!--
+        检测是否拥有提交
+    -->
+    <select id="checkSubmissions" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">
+        SELECT
+            id,
+            number_of_attempts,
+            first_ac,
+            status
+        from
+            ac_contest_question
+        where
+            contest_id  = #{contestId}  and
+            question_id = #{questionId} and
+            user_id     = #{userId}
+        limit 1
+    </select>
+</mapper>
+
