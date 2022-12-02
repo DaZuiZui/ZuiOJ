@@ -2,9 +2,6 @@
 
 ## Developer
 
- 
-
-  31
 
 ## Environment preparation
 
