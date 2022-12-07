@@ -1,8 +1,10 @@
 # OJ system
 
 ## Developer
-
-123
+**
+ 由于工作忙，停止更新10天。
+ Due to busy work, stop updating for 10 days.
+ **
 ## Environment preparation
 
  To run this program, you must have **Ubuntu** system,
