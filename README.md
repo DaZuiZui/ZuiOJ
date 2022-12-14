@@ -2,7 +2,7 @@
 
 ## Developer
 **
- 由于工作忙，停止更新10天。
+ 由于工作忙，停止更新10 天。
  Due to busy work, stop updating for 10 days.
  **
 ## Environment preparation
