@@ -3,49 +3,11 @@
         <div>
             <Top></Top>
         </div>
+
         <!-- Main content -->
-  
         <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
             <div class="container">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col" width="250px">#</th>
-                        <th scope="col">编号</th>
-                        <th scope="col">题目</th>
-                        <th scope="col">难度</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>等待统计</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  
-                  <!--分页部分-->
-                  <el-pagination
-                    :page-size="50"
-                    :pager-count="11"
-                    @current-change="getMerchantInformation"
-                    layout="prev, pager, next"
-                    :total="1000">
-                  </el-pagination>
+                 
             </div>
         </section>
  
