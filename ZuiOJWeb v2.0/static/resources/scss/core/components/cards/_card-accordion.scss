@@ -1,0 +1,47 @@
+//
+// Accordion
+//
+
+.accordion {
+    .card {
+        margin-bottom: 0;
+    }
+
+    .card-header {
+		position: relative;
+		cursor: pointer;
+
+		&:after {
+			content: '+';
+			position: absolute;
+			right: 1.5rem;
+			top: 50%;
+			transform: translateY(-50%);
+			font-family: $font-family-base;
+			font-weight: 700;
+		}
+	}
+
+	.card-header[aria-expanded="false"] {
+		&:after {
+			content: '+';
+		}
+	}
+
+	.card-header[aria-expanded="true"] {
+		&:after {
+			content: '-';
+		}
+
+		.heading {
+			color: theme-color("primary");
+		}
+	}
+}
+
+.accordion-spaced {
+    .card {
+        margin-bottom: 1.5rem;
+        @include border-radius($card-border-radius !important);
+    }
+}

@@ -1,0 +1,15 @@
+// Image alignment
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Image filters
+.img-grayscale {
+    filter: grayscale(100%);
+}
+
+.img-saturate {
+    filter: saturate(150%)
+}

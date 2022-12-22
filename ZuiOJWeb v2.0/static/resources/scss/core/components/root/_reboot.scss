@@ -1,0 +1,39 @@
+body,
+html {
+    overflow-x: hidden;
+}
+
+iframe {
+    border: 0;
+}
+
+figcaption,
+figure,
+main {
+    display: block;
+    margin: 0;
+}
+
+figure {
+    max-width: 100%;
+    min-height: 1px;
+}
+
+main {
+    position: relative;
+}
+
+button:focus {
+    outline: none;
+}
+
+svg {
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .img-fluid {
+        width: 100%;
+    }
+}

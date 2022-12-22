@@ -1,0 +1,6 @@
+:root {
+    @each $color, $value in $theme-colors {
+        --#{$color}-dark: #{darken($value, 10%)};
+        --#{$color}-light: #{lighten($value, 10%)};
+    }
+}

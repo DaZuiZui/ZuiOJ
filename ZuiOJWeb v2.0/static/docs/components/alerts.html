@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link active">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Alerts</h1>
+                    <p class="lead mb-0">Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages. This is probably the most amazing set of alerts available in a UI.</p>
+                    <div class="mt-4">
+                        <a href="http://getbootstrap.com/docs/4.4/components/alerts" target="_blank">
+                            <i data-feather="external-link" class="mr-2"></i> Bootstrap Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <h2 id="examples">Examples</h2>
+                <h3 id="default">Default</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-default" role="button" aria-expanded="false" aria-controls="alert-default">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-default">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="flushed-alert">Flushed alert</h3>
+                <p>Get a flash message that is full width and removes border and radius by adding the <code class="highlighter-rouge">.alert-flush</code> modifier class:</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-flush" role="button" aria-expanded="false" aria-controls="alert-flush">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-success alert-flush" role="alert">
+                            <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-flush">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success alert-flush"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="outline">Outline</h3>
+                <p>Create an outlined alert by using the same color options. All you have to do is to add the <code class="highlighter-rouge">.alert-outline-COLOR_NAME</code>, where color name is any of the theme’s colors (e.g: warning, success, danger, dark):</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-outline" role="button" aria-expanded="false" aria-controls="alert-outline">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-outline-success" role="alert">
+                            <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-outline">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-outline-success"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="multiple-alerts">Multiple alerts</h3>
+                <p>Should the need arise, you can quickly space out your flash message from surrounding content with a <code class="highlighter-rouge">.alert-messages</code> wrapper. Note the extra top and bottom margin in the example below.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-multiple" role="button" aria-expanded="false" aria-controls="alert-multiple">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert-messages">
+                            <div class="alert alert-success" role="alert">
+                                <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-multiple">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-messages"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="shadow">Shadow</h3>
+                <p>Add depth to any alert using the <code class="highlighter-rouge">.shadow</code>, <code class="highlighter-rouge">.shadow-*</code> utilities:</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alerts-shadow" role="button" aria-expanded="false" aria-controls="alerts-shadow">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-success shadow-lg" role="alert">
+                            <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alerts-shadow">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success shadow-lg"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="dismissible">Dismissible</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alerts-dismissible" role="button" aria-expanded="false" aria-controls="alerts-dismissible">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Heads up!</strong> This is a info alert with <a href="#" class="alert-link">an example link</a> — check it out!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alerts-dismissible">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success alert-dismissible fade show"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!<span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"close"</span> <span class="na">data-dismiss=</span><span class="s">"alert"</span> <span class="na">aria-label=</span><span class="s">"Close"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;span</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;</span><span class="ni">&amp;times;</span><span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success alert-dismissible fade show"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;strong&gt;</span>Heads up!<span class="nt">&lt;/strong&gt;</span> This is a info alert with <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"alert-link"</span><span class="nt">&gt;</span>an example link<span class="nt">&lt;/a&gt;</span> — check it out!<span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"close"</span> <span class="na">data-dismiss=</span><span class="s">"alert"</span> <span class="na">aria-label=</span><span class="s">"Close"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;span</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;</span><span class="ni">&amp;times;</span><span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="modern">Modern</h2>
+                <p>We love this modern type of alerts. Easy to get the attention without making it look too bad. Use the <code class="highlighter-rouge">.alert-modern</code> modifier class on any <code class="highlighter-rouge">.alert</code> element:</p>
+                <h3 id="default-1">Default</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-modern" role="button" aria-expanded="false" aria-controls="alert-modern">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-modern alert-primary">
+                            <span class="badge badge-warning badge-pill">
+                                Hot
+                            </span>
+                            <span class="alert-content">E-commerce module, new app pages and features</span>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-modern">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-modern alert-primary"</span><span class="nt">&gt;</span>
+    
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-warning badge-pill"</span><span class="nt">&gt;</span>
+    Hot
+<span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"alert-content"</span><span class="nt">&gt;</span>E-commerce module, new app pages and features<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="colors">Colors</h3>
+                <p>Same rules as for any alert. Use it in combination with any of the theme’s colors:</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-modern-success" role="button" aria-expanded="false" aria-controls="alert-modern-success">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-modern alert-success">
+                            <span class="badge badge-white badge-pill">
+                                New
+                            </span>
+                            <span class="alert-content">E-commerce module, new app pages and features</span>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-modern-success">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-modern alert-success"</span><span class="nt">&gt;</span>
+    
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-white badge-pill"</span><span class="nt">&gt;</span>
+    New
+<span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"alert-content"</span><span class="nt">&gt;</span>E-commerce module, new app pages and features<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-modern-colors" role="button" aria-expanded="false" aria-controls="alert-modern-colors">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-modern alert-dark">
+                            <span class="badge badge-danger badge-pill">
+                                New
+                            </span>
+                            <span class="alert-content">E-commerce module, new app pages and features</span>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-modern-colors">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-modern alert-dark"</span><span class="nt">&gt;</span>
+    
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-danger badge-pill"</span><span class="nt">&gt;</span>
+    New
+<span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"alert-content"</span><span class="nt">&gt;</span>E-commerce module, new app pages and features<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="outline-1">Outline</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-modern-outline-color" role="button" aria-expanded="false" aria-controls="alert-modern-outline-color">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-modern alert-outline-success">
+                            <span class="badge badge-success badge-pill">
+                                New
+                            </span>
+                            <span class="alert-content">E-commerce module, new app pages and features</span>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-modern-outline-color">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-modern alert-outline-success"</span><span class="nt">&gt;</span>
+    
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-success badge-pill"</span><span class="nt">&gt;</span>
+    New
+<span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"alert-content"</span><span class="nt">&gt;</span>E-commerce module, new app pages and features<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#alert-modern-outline-dark" role="button" aria-expanded="false" aria-controls="alert-modern-outline-dark">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="alert alert-modern alert-outline-danger">
+                            <span class="badge badge-danger badge-pill">
+                                New
+                            </span>
+                            <span class="alert-content">E-commerce module, new app pages and features</span>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="alert-modern-outline-dark">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-modern alert-outline-danger"</span><span class="nt">&gt;</span>
+    
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-danger badge-pill"</span><span class="nt">&gt;</span>
+    New
+<span class="nt">&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"alert-content"</span><span class="nt">&gt;</span>E-commerce module, new app pages and features<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#examples">Examples</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#default">Default</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#flushed-alert">Flushed alert</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#outline">Outline</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#multiple-alerts">Multiple alerts</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#shadow">Shadow</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#dismissible">Dismissible</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#modern">Modern</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#default-1">Default</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#colors">Colors</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#outline-1">Outline</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

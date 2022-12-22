@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link active">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Icons</h1>
+                    <p class="lead mb-0">Guidance and suggestions for using external icon libraries with our theme.</p>
+                </div>
+                <!-- Docs content -->
+                <h2 id="font">Font</h2>
+                <p>Get vector icons and social logos on your website with <a href="https://feathericons.com" target="_blank">Feather</a>, simply beautiful open source icons.</p>
+                <h3 id="usage">Usage</h3>
+                <p>In order to use these icons on your page you will need to include the following script at the end of the <code class="highlighter-rouge">&lt;body&gt;</code> section of your page before the theme’s main style:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/assets/libs/feather-icons/dist/feather.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h3 id="initialization">Initialization</h3>
+                <p>Start placing icons in your HTML’s <code class="highlighter-rouge">&lt;body&gt;</code>. We recommend using a consistent HTML element, like <i>. Find the right icon and learn how to reference it in your markup.</i></p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"monitor"</span><span class="nt">&gt;&lt;/i&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h2 id="examples">Examples</h2>
+                <p>Click on the icon to copy and paste it in your project:</p>
+                <div class="row type-example">
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="activity" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="activity"></i>
+                            </div>
+                            <span>activity</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="airplay" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="airplay"></i>
+                            </div>
+                            <span>airplay</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="alert-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="alert-circle"></i>
+                            </div>
+                            <span>alert-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="alert-octagon" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="alert-octagon"></i>
+                            </div>
+                            <span>alert-octagon</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="alert-triangle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="alert-triangle"></i>
+                            </div>
+                            <span>alert-triangle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="align-center" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="align-center"></i>
+                            </div>
+                            <span>align-center</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="align-justify" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="align-justify"></i>
+                            </div>
+                            <span>align-justify</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="align-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="align-left"></i>
+                            </div>
+                            <span>align-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="align-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="align-right"></i>
+                            </div>
+                            <span>align-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="anchor" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="anchor"></i>
+                            </div>
+                            <span>anchor</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="aperture" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="aperture"></i>
+                            </div>
+                            <span>aperture</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="archive" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="archive"></i>
+                            </div>
+                            <span>archive</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-down-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-down-circle"></i>
+                            </div>
+                            <span>arrow-down-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-down-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-down-left"></i>
+                            </div>
+                            <span>arrow-down-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-down-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-down-right"></i>
+                            </div>
+                            <span>arrow-down-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-down"></i>
+                            </div>
+                            <span>arrow-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-left-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-left-circle"></i>
+                            </div>
+                            <span>arrow-left-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-left"></i>
+                            </div>
+                            <span>arrow-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-right-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-right-circle"></i>
+                            </div>
+                            <span>arrow-right-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-right"></i>
+                            </div>
+                            <span>arrow-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-up-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-up-circle"></i>
+                            </div>
+                            <span>arrow-up-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-up-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-up-left"></i>
+                            </div>
+                            <span>arrow-up-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-up-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-up-right"></i>
+                            </div>
+                            <span>arrow-up-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="arrow-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="arrow-up"></i>
+                            </div>
+                            <span>arrow-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="at-sign" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="at-sign"></i>
+                            </div>
+                            <span>at-sign</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="award" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="award"></i>
+                            </div>
+                            <span>award</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bar-chart-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bar-chart-2"></i>
+                            </div>
+                            <span>bar-chart-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bar-chart" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bar-chart"></i>
+                            </div>
+                            <span>bar-chart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="battery-charging" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="battery-charging"></i>
+                            </div>
+                            <span>battery-charging</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="battery" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="battery"></i>
+                            </div>
+                            <span>battery</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bell-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bell-off"></i>
+                            </div>
+                            <span>bell-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bell" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bell"></i>
+                            </div>
+                            <span>bell</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bluetooth" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bluetooth"></i>
+                            </div>
+                            <span>bluetooth</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bold" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bold"></i>
+                            </div>
+                            <span>bold</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="book-open" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="book-open"></i>
+                            </div>
+                            <span>book-open</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="book" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="book"></i>
+                            </div>
+                            <span>book</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="bookmark" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="bookmark"></i>
+                            </div>
+                            <span>bookmark</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="box" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="box"></i>
+                            </div>
+                            <span>box</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="briefcase" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="briefcase"></i>
+                            </div>
+                            <span>briefcase</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="calendar" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="calendar"></i>
+                            </div>
+                            <span>calendar</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="camera-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="camera-off"></i>
+                            </div>
+                            <span>camera-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="camera" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="camera"></i>
+                            </div>
+                            <span>camera</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cast" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cast"></i>
+                            </div>
+                            <span>cast</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="check-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="check-circle"></i>
+                            </div>
+                            <span>check-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="check-square" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="check-square"></i>
+                            </div>
+                            <span>check-square</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="check" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="check"></i>
+                            </div>
+                            <span>check</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevron-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevron-down"></i>
+                            </div>
+                            <span>chevron-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevron-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevron-left"></i>
+                            </div>
+                            <span>chevron-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevron-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevron-right"></i>
+                            </div>
+                            <span>chevron-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevron-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevron-up"></i>
+                            </div>
+                            <span>chevron-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevrons-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevrons-down"></i>
+                            </div>
+                            <span>chevrons-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevrons-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevrons-left"></i>
+                            </div>
+                            <span>chevrons-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevrons-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevrons-right"></i>
+                            </div>
+                            <span>chevrons-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chevrons-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chevrons-up"></i>
+                            </div>
+                            <span>chevrons-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="chrome" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="chrome"></i>
+                            </div>
+                            <span>chrome</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="circle"></i>
+                            </div>
+                            <span>circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="clipboard" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="clipboard"></i>
+                            </div>
+                            <span>clipboard</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="clock" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="clock"></i>
+                            </div>
+                            <span>clock</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cloud-drizzle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cloud-drizzle"></i>
+                            </div>
+                            <span>cloud-drizzle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cloud-lightning" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cloud-lightning"></i>
+                            </div>
+                            <span>cloud-lightning</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cloud-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cloud-off"></i>
+                            </div>
+                            <span>cloud-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cloud-rain" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cloud-rain"></i>
+                            </div>
+                            <span>cloud-rain</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cloud-snow" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cloud-snow"></i>
+                            </div>
+                            <span>cloud-snow</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cloud" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cloud"></i>
+                            </div>
+                            <span>cloud</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="code" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="code"></i>
+                            </div>
+                            <span>code</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="codepen" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="codepen"></i>
+                            </div>
+                            <span>codepen</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="codesandbox" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="codesandbox"></i>
+                            </div>
+                            <span>codesandbox</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="coffee" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="coffee"></i>
+                            </div>
+                            <span>coffee</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="columns" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="columns"></i>
+                            </div>
+                            <span>columns</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="command" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="command"></i>
+                            </div>
+                            <span>command</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="compass" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="compass"></i>
+                            </div>
+                            <span>compass</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="copy" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="copy"></i>
+                            </div>
+                            <span>copy</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-down-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-down-left"></i>
+                            </div>
+                            <span>corner-down-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-down-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-down-right"></i>
+                            </div>
+                            <span>corner-down-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-left-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-left-down"></i>
+                            </div>
+                            <span>corner-left-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-left-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-left-up"></i>
+                            </div>
+                            <span>corner-left-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-right-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-right-down"></i>
+                            </div>
+                            <span>corner-right-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-right-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-right-up"></i>
+                            </div>
+                            <span>corner-right-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-up-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-up-left"></i>
+                            </div>
+                            <span>corner-up-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="corner-up-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="corner-up-right"></i>
+                            </div>
+                            <span>corner-up-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="cpu" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="cpu"></i>
+                            </div>
+                            <span>cpu</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="credit-card" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="credit-card"></i>
+                            </div>
+                            <span>credit-card</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="crop" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="crop"></i>
+                            </div>
+                            <span>crop</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="crosshair" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="crosshair"></i>
+                            </div>
+                            <span>crosshair</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="database" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="database"></i>
+                            </div>
+                            <span>database</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="delete" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="delete"></i>
+                            </div>
+                            <span>delete</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="disc" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="disc"></i>
+                            </div>
+                            <span>disc</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="dollar-sign" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="dollar-sign"></i>
+                            </div>
+                            <span>dollar-sign</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="download-cloud" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="download-cloud"></i>
+                            </div>
+                            <span>download-cloud</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="download" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="download"></i>
+                            </div>
+                            <span>download</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="droplet" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="droplet"></i>
+                            </div>
+                            <span>droplet</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="edit-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="edit-2"></i>
+                            </div>
+                            <span>edit-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="edit-3" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="edit-3"></i>
+                            </div>
+                            <span>edit-3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="edit" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="edit"></i>
+                            </div>
+                            <span>edit</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="external-link" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="external-link"></i>
+                            </div>
+                            <span>external-link</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="eye-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="eye-off"></i>
+                            </div>
+                            <span>eye-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="eye" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="eye"></i>
+                            </div>
+                            <span>eye</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="facebook" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="facebook"></i>
+                            </div>
+                            <span>facebook</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="fast-forward" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="fast-forward"></i>
+                            </div>
+                            <span>fast-forward</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="feather" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="feather"></i>
+                            </div>
+                            <span>feather</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="figma" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="figma"></i>
+                            </div>
+                            <span>figma</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="file-minus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="file-minus"></i>
+                            </div>
+                            <span>file-minus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="file-plus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="file-plus"></i>
+                            </div>
+                            <span>file-plus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="file-text" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="file-text"></i>
+                            </div>
+                            <span>file-text</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="file" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="file"></i>
+                            </div>
+                            <span>file</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="film" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="film"></i>
+                            </div>
+                            <span>film</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="filter" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="filter"></i>
+                            </div>
+                            <span>filter</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="flag" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="flag"></i>
+                            </div>
+                            <span>flag</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="folder-minus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="folder-minus"></i>
+                            </div>
+                            <span>folder-minus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="folder-plus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="folder-plus"></i>
+                            </div>
+                            <span>folder-plus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="folder" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="folder"></i>
+                            </div>
+                            <span>folder</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="framer" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="framer"></i>
+                            </div>
+                            <span>framer</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="frown" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="frown"></i>
+                            </div>
+                            <span>frown</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="gift" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="gift"></i>
+                            </div>
+                            <span>gift</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="git-branch" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="git-branch"></i>
+                            </div>
+                            <span>git-branch</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="git-commit" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="git-commit"></i>
+                            </div>
+                            <span>git-commit</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="git-merge" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="git-merge"></i>
+                            </div>
+                            <span>git-merge</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="git-pull-request" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="git-pull-request"></i>
+                            </div>
+                            <span>git-pull-request</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="github" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="github"></i>
+                            </div>
+                            <span>github</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="gitlab" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="gitlab"></i>
+                            </div>
+                            <span>gitlab</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="globe" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="globe"></i>
+                            </div>
+                            <span>globe</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="grid" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="grid"></i>
+                            </div>
+                            <span>grid</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="hard-drive" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="hard-drive"></i>
+                            </div>
+                            <span>hard-drive</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="hash" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="hash"></i>
+                            </div>
+                            <span>hash</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="headphones" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="headphones"></i>
+                            </div>
+                            <span>headphones</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="heart" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="heart"></i>
+                            </div>
+                            <span>heart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="help-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="help-circle"></i>
+                            </div>
+                            <span>help-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="hexagon" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="hexagon"></i>
+                            </div>
+                            <span>hexagon</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="home" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="home"></i>
+                            </div>
+                            <span>home</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="image" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="image"></i>
+                            </div>
+                            <span>image</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="inbox" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="inbox"></i>
+                            </div>
+                            <span>inbox</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="info" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="info"></i>
+                            </div>
+                            <span>info</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="instagram" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="instagram"></i>
+                            </div>
+                            <span>instagram</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="italic" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="italic"></i>
+                            </div>
+                            <span>italic</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="key" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="key"></i>
+                            </div>
+                            <span>key</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="layers" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="layers"></i>
+                            </div>
+                            <span>layers</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="layout" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="layout"></i>
+                            </div>
+                            <span>layout</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="life-buoy" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="life-buoy"></i>
+                            </div>
+                            <span>life-buoy</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="link-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="link-2"></i>
+                            </div>
+                            <span>link-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="link" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="link"></i>
+                            </div>
+                            <span>link</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="linkedin" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="linkedin"></i>
+                            </div>
+                            <span>linkedin</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="list" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="list"></i>
+                            </div>
+                            <span>list</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="loader" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="loader"></i>
+                            </div>
+                            <span>loader</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="lock" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="lock"></i>
+                            </div>
+                            <span>lock</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="log-in" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="log-in"></i>
+                            </div>
+                            <span>log-in</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="log-out" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="log-out"></i>
+                            </div>
+                            <span>log-out</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="mail" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="mail"></i>
+                            </div>
+                            <span>mail</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="map-pin" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="map-pin"></i>
+                            </div>
+                            <span>map-pin</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="map" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="map"></i>
+                            </div>
+                            <span>map</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="maximize-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="maximize-2"></i>
+                            </div>
+                            <span>maximize-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="maximize" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="maximize"></i>
+                            </div>
+                            <span>maximize</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="meh" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="meh"></i>
+                            </div>
+                            <span>meh</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="menu" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="menu"></i>
+                            </div>
+                            <span>menu</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="message-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="message-circle"></i>
+                            </div>
+                            <span>message-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="message-square" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="message-square"></i>
+                            </div>
+                            <span>message-square</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="mic-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="mic-off"></i>
+                            </div>
+                            <span>mic-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="mic" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="mic"></i>
+                            </div>
+                            <span>mic</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="minimize-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="minimize-2"></i>
+                            </div>
+                            <span>minimize-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="minimize" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="minimize"></i>
+                            </div>
+                            <span>minimize</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="minus-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="minus-circle"></i>
+                            </div>
+                            <span>minus-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="minus-square" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="minus-square"></i>
+                            </div>
+                            <span>minus-square</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="minus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="minus"></i>
+                            </div>
+                            <span>minus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="monitor" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="monitor"></i>
+                            </div>
+                            <span>monitor</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="moon" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="moon"></i>
+                            </div>
+                            <span>moon</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="more-horizontal" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="more-horizontal"></i>
+                            </div>
+                            <span>more-horizontal</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="more-vertical" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="more-vertical"></i>
+                            </div>
+                            <span>more-vertical</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="mouse-pointer" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="mouse-pointer"></i>
+                            </div>
+                            <span>mouse-pointer</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="move" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="move"></i>
+                            </div>
+                            <span>move</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="music" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="music"></i>
+                            </div>
+                            <span>music</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="navigation-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="navigation-2"></i>
+                            </div>
+                            <span>navigation-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="navigation" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="navigation"></i>
+                            </div>
+                            <span>navigation</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="octagon" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="octagon"></i>
+                            </div>
+                            <span>octagon</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="package" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="package"></i>
+                            </div>
+                            <span>package</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="paperclip" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="paperclip"></i>
+                            </div>
+                            <span>paperclip</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="pause-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="pause-circle"></i>
+                            </div>
+                            <span>pause-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="pause" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="pause"></i>
+                            </div>
+                            <span>pause</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="pen-tool" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="pen-tool"></i>
+                            </div>
+                            <span>pen-tool</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="percent" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="percent"></i>
+                            </div>
+                            <span>percent</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone-call" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone-call"></i>
+                            </div>
+                            <span>phone-call</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone-forwarded" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone-forwarded"></i>
+                            </div>
+                            <span>phone-forwarded</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone-incoming" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone-incoming"></i>
+                            </div>
+                            <span>phone-incoming</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone-missed" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone-missed"></i>
+                            </div>
+                            <span>phone-missed</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone-off"></i>
+                            </div>
+                            <span>phone-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone-outgoing" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone-outgoing"></i>
+                            </div>
+                            <span>phone-outgoing</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="phone" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="phone"></i>
+                            </div>
+                            <span>phone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="pie-chart" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="pie-chart"></i>
+                            </div>
+                            <span>pie-chart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="play-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="play-circle"></i>
+                            </div>
+                            <span>play-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="play" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="play"></i>
+                            </div>
+                            <span>play</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="plus-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="plus-circle"></i>
+                            </div>
+                            <span>plus-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="plus-square" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="plus-square"></i>
+                            </div>
+                            <span>plus-square</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="plus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="plus"></i>
+                            </div>
+                            <span>plus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="pocket" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="pocket"></i>
+                            </div>
+                            <span>pocket</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="power" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="power"></i>
+                            </div>
+                            <span>power</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="printer" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="printer"></i>
+                            </div>
+                            <span>printer</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="radio" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="radio"></i>
+                            </div>
+                            <span>radio</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="refresh-ccw" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="refresh-ccw"></i>
+                            </div>
+                            <span>refresh-ccw</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="refresh-cw" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="refresh-cw"></i>
+                            </div>
+                            <span>refresh-cw</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="repeat" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="repeat"></i>
+                            </div>
+                            <span>repeat</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="rewind" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="rewind"></i>
+                            </div>
+                            <span>rewind</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="rotate-ccw" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="rotate-ccw"></i>
+                            </div>
+                            <span>rotate-ccw</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="rotate-cw" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="rotate-cw"></i>
+                            </div>
+                            <span>rotate-cw</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="rss" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="rss"></i>
+                            </div>
+                            <span>rss</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="save" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="save"></i>
+                            </div>
+                            <span>save</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="scissors" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="scissors"></i>
+                            </div>
+                            <span>scissors</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="search" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="search"></i>
+                            </div>
+                            <span>search</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="send" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="send"></i>
+                            </div>
+                            <span>send</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="server" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="server"></i>
+                            </div>
+                            <span>server</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="settings" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="settings"></i>
+                            </div>
+                            <span>settings</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="share-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="share-2"></i>
+                            </div>
+                            <span>share-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="share" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="share"></i>
+                            </div>
+                            <span>share</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="shield-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="shield-off"></i>
+                            </div>
+                            <span>shield-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="shield" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="shield"></i>
+                            </div>
+                            <span>shield</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="shopping-bag" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="shopping-bag"></i>
+                            </div>
+                            <span>shopping-bag</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="shopping-cart" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="shopping-cart"></i>
+                            </div>
+                            <span>shopping-cart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="shuffle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="shuffle"></i>
+                            </div>
+                            <span>shuffle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="sidebar" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="sidebar"></i>
+                            </div>
+                            <span>sidebar</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="skip-back" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="skip-back"></i>
+                            </div>
+                            <span>skip-back</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="skip-forward" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="skip-forward"></i>
+                            </div>
+                            <span>skip-forward</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="slack" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="slack"></i>
+                            </div>
+                            <span>slack</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="slash" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="slash"></i>
+                            </div>
+                            <span>slash</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="sliders" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="sliders"></i>
+                            </div>
+                            <span>sliders</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="smartphone" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="smartphone"></i>
+                            </div>
+                            <span>smartphone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="smile" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="smile"></i>
+                            </div>
+                            <span>smile</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="speaker" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="speaker"></i>
+                            </div>
+                            <span>speaker</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="square" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="square"></i>
+                            </div>
+                            <span>square</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="star" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="star"></i>
+                            </div>
+                            <span>star</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="stop-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="stop-circle"></i>
+                            </div>
+                            <span>stop-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="sun" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="sun"></i>
+                            </div>
+                            <span>sun</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="sunrise" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="sunrise"></i>
+                            </div>
+                            <span>sunrise</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="sunset" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="sunset"></i>
+                            </div>
+                            <span>sunset</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="tablet" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="tablet"></i>
+                            </div>
+                            <span>tablet</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="tag" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="tag"></i>
+                            </div>
+                            <span>tag</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="target" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="target"></i>
+                            </div>
+                            <span>target</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="terminal" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="terminal"></i>
+                            </div>
+                            <span>terminal</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="thermometer" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="thermometer"></i>
+                            </div>
+                            <span>thermometer</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="thumbs-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="thumbs-down"></i>
+                            </div>
+                            <span>thumbs-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="thumbs-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="thumbs-up"></i>
+                            </div>
+                            <span>thumbs-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="toggle-left" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="toggle-left"></i>
+                            </div>
+                            <span>toggle-left</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="toggle-right" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="toggle-right"></i>
+                            </div>
+                            <span>toggle-right</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="trash-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="trash-2"></i>
+                            </div>
+                            <span>trash-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="trash" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="trash"></i>
+                            </div>
+                            <span>trash</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="trello" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="trello"></i>
+                            </div>
+                            <span>trello</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="trending-down" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="trending-down"></i>
+                            </div>
+                            <span>trending-down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="trending-up" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="trending-up"></i>
+                            </div>
+                            <span>trending-up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="triangle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="triangle"></i>
+                            </div>
+                            <span>triangle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="truck" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="truck"></i>
+                            </div>
+                            <span>truck</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="tv" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="tv"></i>
+                            </div>
+                            <span>tv</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="twitter" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="twitter"></i>
+                            </div>
+                            <span>twitter</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="type" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="type"></i>
+                            </div>
+                            <span>type</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="umbrella" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="umbrella"></i>
+                            </div>
+                            <span>umbrella</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="underline" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="underline"></i>
+                            </div>
+                            <span>underline</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="unlock" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="unlock"></i>
+                            </div>
+                            <span>unlock</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="upload-cloud" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="upload-cloud"></i>
+                            </div>
+                            <span>upload-cloud</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="upload" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="upload"></i>
+                            </div>
+                            <span>upload</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="user-check" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="user-check"></i>
+                            </div>
+                            <span>user-check</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="user-minus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="user-minus"></i>
+                            </div>
+                            <span>user-minus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="user-plus" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="user-plus"></i>
+                            </div>
+                            <span>user-plus</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="user-x" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="user-x"></i>
+                            </div>
+                            <span>user-x</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="user" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="user"></i>
+                            </div>
+                            <span>user</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="users" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="users"></i>
+                            </div>
+                            <span>users</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="video-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="video-off"></i>
+                            </div>
+                            <span>video-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="video" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="video"></i>
+                            </div>
+                            <span>video</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="voicemail" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="voicemail"></i>
+                            </div>
+                            <span>voicemail</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="volume-1" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="volume-1"></i>
+                            </div>
+                            <span>volume-1</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="volume-2" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="volume-2"></i>
+                            </div>
+                            <span>volume-2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="volume-x" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="volume-x"></i>
+                            </div>
+                            <span>volume-x</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="volume" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="volume"></i>
+                            </div>
+                            <span>volume</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="watch" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="watch"></i>
+                            </div>
+                            <span>watch</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="wifi-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="wifi-off"></i>
+                            </div>
+                            <span>wifi-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="wifi" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="wifi"></i>
+                            </div>
+                            <span>wifi</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="wind" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="wind"></i>
+                            </div>
+                            <span>wind</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="x-circle" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="x-circle"></i>
+                            </div>
+                            <span>x-circle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="x-octagon" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="x-octagon"></i>
+                            </div>
+                            <span>x-octagon</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="x-square" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="x-square"></i>
+                            </div>
+                            <span>x-square</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="x" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="x"></i>
+                            </div>
+                            <span>x</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="youtube" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="youtube"></i>
+                            </div>
+                            <span>youtube</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="zap-off" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="zap-off"></i>
+                            </div>
+                            <span>zap-off</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="zap" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="zap"></i>
+                            </div>
+                            <span>zap</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="zoom-in" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="zoom-in"></i>
+                            </div>
+                            <span>zoom-in</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="zoom-out" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <i data-feather="zoom-out"></i>
+                            </div>
+                            <span>zoom-out</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#font">Font</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#usage">Usage</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#initialization">Initialization</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#examples">Examples</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

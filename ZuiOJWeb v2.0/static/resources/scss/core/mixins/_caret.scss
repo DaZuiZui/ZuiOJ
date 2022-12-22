@@ -1,0 +1,57 @@
+@mixin caret-down {
+    content: "\f107";
+}
+
+@mixin caret-up {
+    content: "\f106";
+}
+
+@mixin caret-right {
+    content: "\f105";
+}
+
+@mixin caret-left {
+    content: "\f104";
+}
+
+@mixin caret($direction: down) {
+    @if $enable-caret {
+        &::after {
+            display: inline-block;
+            margin-left: .5rem;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: $icon-font-family;
+            font-weight: 700;
+            font-size: $caret-font-size;
+
+            @if $direction == down {
+                @include caret-down;
+            } @else if $direction == up {
+                @include caret-up;
+            } @else if $direction == right {
+                @include caret-right;
+            }
+        }
+
+        @if $direction == left {
+            &::after {
+                display: none;
+            }
+
+            &::before {
+                font-family: $icon-font-family;
+                font-weight: 700;
+                display: inline-block;
+                margin-right: .5rem;
+                @include caret-left;
+            }
+        }
+
+        &:empty::after {
+            margin-left: 0;
+        }
+    }
+}

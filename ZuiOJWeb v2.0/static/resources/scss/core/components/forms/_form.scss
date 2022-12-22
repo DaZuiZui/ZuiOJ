@@ -1,0 +1,138 @@
+//
+// Form
+//
+
+
+// Form control
+
+.form-control {
+    &:focus {
+        &::placeholder {
+            color: $input-focus-placeholder-color;
+        }
+    }
+}
+
+.form-control-muted {
+    background-color: $input-muted-bg;
+    border-color: $input-muted-bg;
+
+    &:focus {
+        background-color: $input-muted-bg;
+    }
+}
+
+.form-control-emphasized {
+    background-color: $input-emphasized-bg;
+    border-color: $input-emphasized-bg;
+    box-shadow: $input-emphasized-box-shadow;
+
+    &:focus {
+        background-color: $input-emphasized-focus-bg;
+        border-color: $input-emphasized-focus-border-color;
+        box-shadow: $input-emphasized-focus-box-shadow;
+    }
+}
+
+
+// Form control flush
+// Removes borders and paddings from inputs and text areas
+
+.form-control-flush {
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+    box-shadow: none;
+
+    &:focus {
+        background-color: transparent;
+        box-shadow: none;
+        border-width: 0;
+    }
+}
+
+
+// Textarea
+
+textarea[resize="none"] {
+    resize: none!important;
+}
+
+textarea[resize="both"] {
+    resize: both!important;
+}
+
+textarea[resize="vertical"] {
+    resize: vertical!important;
+}
+
+textarea[resize="horizontal"] {
+    resize: horizontal!important;
+}
+
+
+// Size variations
+
+.form-control-xl {
+    padding: $input-padding-y-xl $input-padding-x-xl;
+    font-size: $font-size-xl;
+    line-height: $input-line-height-xl;
+    @include border-radius($input-border-radius-xl);
+}
+
+
+// Color variations
+
+.form-primary {
+    .form-control {
+        color: color-yiq(theme-color("primary"));
+        background-color: darken(theme-color("primary"), 12%);
+        border: $input-border-width solid darken(theme-color("primary"), 12%);
+
+        &:focus {
+            background-color: darken(theme-color("primary"), 16%);
+            border: $input-border-width solid darken(theme-color("primary"), 16%);
+        }
+
+        // Placeholder
+        &::placeholder {
+            color: transparentize(color-yiq(theme-color("primary")), .2);
+        }
+    }
+}
+
+.form-warning {
+    .form-control {
+        color: color-yiq(theme-color("warning"));
+        background-color: darken(theme-color("warning"), 12%);
+        border: $input-border-width solid darken(theme-color("warning"), 12%);
+
+        &:focus {
+            background-color: darken(theme-color("warning"), 16%);
+            border: $input-border-width solid darken(theme-color("warning"), 16%);
+        }
+
+        // Placeholder
+        &::placeholder {
+            color: transparentize(color-yiq(theme-color("warning")), .2);
+        }
+    }
+}
+
+.form-danger {
+    .form-control {
+        color: color-yiq(theme-color("danger"));
+        background-color: darken(theme-color("danger"), 12%);
+        border: $input-border-width solid darken(theme-color("danger"), 12%);
+
+        &:focus {
+            background-color: darken(theme-color("danger"), 16%);
+            border: $input-border-width solid darken(theme-color("danger"), 16%);
+        }
+
+        // Placeholder
+        &::placeholder {
+            color: transparentize(color-yiq(theme-color("danger")), .2);
+        }
+    }
+}

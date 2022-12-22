@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../assets/libs/animate.css/animate.min.css">
+    <link rel="stylesheet" href="../../assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link active">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Cards</h1>
+                    <p class="lead mb-0">Our cards provide a flexible and extensible content container with multiple variants and options.</p>
+                    <div class="mt-4">
+                        <a href="http://getbootstrap.com/docs/4.4/components/card" target="_blank">
+                            <i data-feather="external-link" class="mr-2"></i> Bootstrap Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <!-- Core -->
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card" role="button" aria-expanded="false" aria-controls="card">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card">
+                            <img class="card-img-top" src="../../assets/img/theme/light/placeholder.png" alt="Card image cap" />
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text....</p>
+                                <a href="#" class="btn btn-sm btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"card-img-top"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/placeholder.png"</span> <span class="na">alt=</span><span class="s">"Card image cap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"card-title"</span><span class="nt">&gt;</span>Card title<span class="nt">&lt;/h5&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"card-text"</span><span class="nt">&gt;</span>Some quick example text....<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-sm btn-primary"</span><span class="nt">&gt;</span>Go somewhere<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="feature">Feature</h2>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-feature-1" role="button" aria-expanded="false" aria-controls="card-feature-1">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card shadow-none">
+                            <div class="p-3 d-flex">
+                                <div>
+                                    <div class="icon icon-shape rounded-circle bg-success text-white mr-4">
+                                        <i data-feather="check"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="h6">300+ components</span>
+                                    <p class="text-sm text-muted mb-0">
+                                        Built to be customized.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-feature-1">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow-none"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"p-3 d-flex"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"icon icon-shape rounded-circle bg-success text-white mr-4"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"check"</span><span class="nt">&gt;&lt;/i&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"h6"</span><span class="nt">&gt;</span>300+ components<span class="nt">&lt;/span&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-sm text-muted mb-0"</span><span class="nt">&gt;</span>
+                Built to be customized.
+            <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-feature-2" role="button" aria-expanded="false" aria-controls="card-feature-2">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card hover-translate-y-n10 hover-shadow-lg">
+                            <div class="card-body">
+                                <div class="pb-4">
+                                    <img alt="Image placeholder" src="../../assets/img/svg/icons/Code.svg" class="svg-inject" style="height: 50px; width: 50px;" />
+                                </div>
+                                <div class="pt-2 pb-3">
+                                    <h5>Modular</h5>
+                                    <p class="text-muted mb-0">
+                                        All components are built to be used in any combination.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-feature-2">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card hover-translate-y-n10 hover-shadow-lg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pb-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/svg/icons/Code.svg"</span> <span class="na">class=</span><span class="s">"svg-inject"</span> <span class="na">style=</span><span class="s">"height: 50px; width: 50px;"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pt-2 pb-3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5&gt;</span>Modular<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-muted mb-0"</span><span class="nt">&gt;</span>
+                All components are built to be used in any combination.
+            <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-feature-3" role="button" aria-expanded="false" aria-controls="card-feature-3">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card hover-translate-y-n10 hover-shadow-lg">
+                            <div class="card-body">
+                                <div class="pb-4">
+                                    <div class="icon bg-dark text-white rounded-circle icon-shape shadow">
+                                        <i data-feather="droplet"></i>
+                                    </div>
+                                </div>
+                                <div class="pt-2 pb-3">
+                                    <h5>Modular</h5>
+                                    <p class="text-muted mb-0">
+                                        All components are built to be used in any combination.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-feature-3">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card hover-translate-y-n10 hover-shadow-lg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pb-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"icon bg-dark text-white rounded-circle icon-shape shadow"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"droplet"</span><span class="nt">&gt;&lt;/i&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pt-2 pb-3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5&gt;</span>Modular<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-muted mb-0"</span><span class="nt">&gt;</span>
+                All components are built to be used in any combination.
+            <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="illustrations">Illustrations</h2>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-illustration" role="button" aria-expanded="false" aria-controls="card-illustration">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card mb-5 hover-translate-y-n10">
+                            <div class="d-flex p-5">
+                                <div>
+                                    <span class="badge badge-warning badge-pill">New</span>
+                                </div>
+                                <div class="pl-4">
+                                    <h5>Listen to the nature</h5>
+                                    <p>
+                                        Design made simple with a clean and smart HTML markup.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="../../assets/img/svg/illustrations/illustration-5.svg" class="img-fluid img-center" style="height: 200px;" />
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-illustration">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card mb-5 hover-translate-y-n10"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex p-5"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-warning badge-pill"</span><span class="nt">&gt;</span>New<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pl-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5&gt;</span>Listen to the nature<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;p&gt;</span>
+                Design made simple with a clean and smart HTML markup.
+            <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"../../assets/img/svg/illustrations/illustration-5.svg"</span> <span class="na">class=</span><span class="s">"img-fluid img-center"</span> <span class="na">style=</span><span class="s">"height: 200px;"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="authentication">Authentication</h2>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-login" role="button" aria-expanded="false" aria-controls="card-login">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card mb-0" style="max-width: 28rem;">
+                            <div class="p-5">
+                                <div>
+                                    <div class="mb-5 text-center">
+                                        <h6 class="h3 mb-1">Login</h6>
+                                        <p class="text-muted mb-0">Sign in to your account to continue.</p>
+                                    </div>
+                                    <span class="clearfix"></span>
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Email address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i data-feather="user"></i></span>
+                                                </div>
+                                                <input type="email" class="form-control" id="input-email" placeholder="name@example.com" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <label class="form-control-label">Password</label>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <a href="#" class="small text-muted text-underline--dashed border-primary" data-toggle="password-text" data-target="#input-password">Show password</a>
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i data-feather="key"></i></span>
+                                                </div>
+                                                <input type="password" class="form-control" id="input-password" placeholder="Password" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <button type="button" class="btn btn-block btn-primary">Sign in</button></div>
+                                    </form>
+                                    <div class="py-3 text-center">
+                                        <span class="text-xs text-uppercase">or</span>
+                                    </div>
+                                    <!-- Alternative login -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href="#" class="btn btn-block btn-neutral btn-icon mb-3 mb-sm-0">
+                                                <span class="btn-inner--icon"><img src="../../assets/img/icons/brands/github.svg" alt="Image placeholder" /></span>
+                                                <span class="btn-inner--text">Github</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="#" class="btn btn-block btn-neutral btn-icon">
+                                                <span class="btn-inner--icon"><img src="../../assets/img/icons/brands/google.svg" alt="Image placeholder" /></span>
+                                                <span class="btn-inner--text">Google</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- Links -->
+                                    <div class="mt-4 text-center"><small>Not registered?</small>
+                                        <a href="card.html" class="small font-weight-bold">Create account</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-login">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card mb-0"</span> <span class="na">style=</span><span class="s">"max-width: 28rem;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"p-5"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-5 text-center"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h6</span> <span class="na">class=</span><span class="s">"h3 mb-1"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/h6&gt;&lt;p</span> <span class="na">class=</span><span class="s">"text-muted mb-0"</span><span class="nt">&gt;</span>Sign in to your account to continue.<span class="nt">&lt;/p&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"clearfix"</span><span class="nt">&gt;&lt;/span&gt;&lt;form&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-control-label"</span><span class="nt">&gt;</span>Email address<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group-prepend"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"input-group-text"</span><span class="nt">&gt;&lt;i</span> <span class="na">data-feather=</span><span class="s">"user"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"input-email"</span> <span class="na">placeholder=</span><span class="s">"name@example.com"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group mb-0"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center justify-content-between"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-control-label"</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-2"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"small text-muted text-underline--dashed border-primary"</span> <span class="na">data-toggle=</span><span class="s">"password-text"</span> <span class="na">data-target=</span><span class="s">"#input-password"</span><span class="nt">&gt;</span>Show password<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group-prepend"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"input-group-text"</span><span class="nt">&gt;&lt;i</span> <span class="na">data-feather=</span><span class="s">"key"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"input-password"</span> <span class="na">placeholder=</span><span class="s">"Password"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mt-4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn btn-block btn-primary"</span><span class="nt">&gt;</span>Sign in<span class="nt">&lt;/button&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"py-3 text-center"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"text-xs text-uppercase"</span><span class="nt">&gt;</span>or<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="c">&lt;!-- Alternative login --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-sm-6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-block btn-neutral btn-icon mb-3 mb-sm-0"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"../../assets/img/icons/brands/github.svg"</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span><span class="nt">&gt;&lt;/span&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Github<span class="nt">&lt;/span&gt;</span>
+            <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-sm-6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-block btn-neutral btn-icon"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"../../assets/img/icons/brands/google.svg"</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span><span class="nt">&gt;&lt;/span&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Google<span class="nt">&lt;/span&gt;</span>
+            <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    
+    <span class="c">&lt;!-- Links --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mt-4 text-center"</span><span class="nt">&gt;&lt;small&gt;</span>Not registered?<span class="nt">&lt;/small&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"card.html"</span> <span class="na">class=</span><span class="s">"small font-weight-bold"</span><span class="nt">&gt;</span>Create account<span class="nt">&lt;/a&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="call-to-action">Call to action</h2>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-call-to-action-1" role="button" aria-expanded="false" aria-controls="card-call-to-action-1">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card shadow-lg border-0" style="max-width: 100%;">
+                            <div class="card-body px-5 py-5 text-center text-md-left">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-2">Do you gave any questions about Quick.</h5>
+                                        <p class="mb-0">
+                                            Our support team is available for you anytime.
+                                        </p>
+                                    </div>
+                                    <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+                                        <a href="#" class="btn btn-warning btn-icon rounded-pill">
+                                            <span class="btn-inner--icon">
+                                                <i data-feather="phone"></i>
+                                            </span>
+                                            <span class="btn-inner--text">Contact us</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-call-to-action-1">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow-lg border-0"</span> <span class="na">style=</span><span class="s">"max-width: 100%;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body px-5 py-5 text-center text-md-left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row align-items-center"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-6"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"mb-2"</span><span class="nt">&gt;</span>Do you gave any questions about Quick.<span class="nt">&lt;/h5&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"mb-0"</span><span class="nt">&gt;</span>
+                    Our support team is available for you anytime.
+                <span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-12 col-md-6 mt-4 mt-md-0 text-md-right"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-warning btn-icon rounded-pill"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"phone"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Contact us<span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#card-call-to-action-2" role="button" aria-expanded="false" aria-controls="card-call-to-action-2">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="card bg-section-dark border-0 rounded-lg" style="max-width: 100%;">
+                            <div class="card-body px-5">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center align-items-center mb-3">
+                                            <div>
+                                                <div class="icon icon-sm icon-shape bg-warning text-white rounded-circle mr-3">
+                                                    <i data-feather="airplay"></i>
+                                                </div>
+                                            </div>
+                                            <span class="h6 text-white mb-0">Quick</span>
+                                        </div>
+                                        <h5 class="text-white pt-4">Infinite solutions with only one template.</h5>
+                                        <p class="text-white opacity-8">
+                                            With an intuitive markup, powerful and lightning fast build tools, Quick has everything you need to turn your ideas into incredible products.
+                                        </p>
+                                    </div>
+                                    <div class="col-12 col-md-6 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end">
+                                        <a href="#" class="btn btn-white btn-icon">
+                                            <span class="btn-inner--text">Learn more</span>
+                                            <span class="btn-inner--icon">
+                                                <i data-feather="arrow-right" class="text-warning"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="card-call-to-action-2">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card bg-section-dark border-0 rounded-lg"</span> <span class="na">style=</span><span class="s">"max-width: 100%;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body px-5"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-6"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center align-items-center mb-3"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"icon icon-sm icon-shape bg-warning text-white rounded-circle mr-3"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"airplay"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"h6 text-white mb-0"</span><span class="nt">&gt;</span>Quick<span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"text-white pt-4"</span><span class="nt">&gt;</span>Infinite solutions with only one template.<span class="nt">&lt;/h5&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-white opacity-8"</span><span class="nt">&gt;</span>
+                    With an intuitive markup, powerful and lightning fast build tools, Quick has everything you need to turn your ideas into incredible products.
+                <span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-12 col-md-6 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-white btn-icon"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Learn more<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"arrow-right"</span> <span class="na">class=</span><span class="s">"text-warning"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#feature">Feature</a></li>
+                            <li class="toc-entry toc-h2"><a href="#illustrations">Illustrations</a></li>
+                            <li class="toc-entry toc-h2"><a href="#authentication">Authentication</a></li>
+                            <li class="toc-entry toc-h2"><a href="#call-to-action">Call to action</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Page JS -->
+    <script src="../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../../assets/libs/progressbar.js/dist/progressbar.min.js"></script>
+    <script src="../../assets/libs/autosize/dist/autosize.min.js"></script>
+    <script src="../../assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

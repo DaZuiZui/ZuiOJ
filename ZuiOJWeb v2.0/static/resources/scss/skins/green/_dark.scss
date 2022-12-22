@@ -1,0 +1,186 @@
+//
+// Skin: Blue
+// Mode: Dark
+//
+
+$white:    #FFFFFF !default;
+$gray-100: #F9FBFD !default;
+$gray-200: #EDF2F9 !default;
+$gray-300: #E3EBF6 !default;
+$gray-400: #D2DDEC !default;
+$gray-500: #B1C2D9 !default;
+$gray-600: #95AAC9 !default;
+$gray-700: #6E84A3 !default;
+$gray-800: #3B506C !default;
+$gray-900: #283E59 !default;
+$black:    #12263F !default;
+
+// Gray shades for dark mode
+
+$gray-600-dark: lighten($black, 6.5%) !default;
+$gray-700-dark: lighten($black, 7.5%) !default;
+$gray-800-dark: lighten($black, 3.5%) !default;
+$gray-900-dark: lighten($black, 2%) !default;
+$black-dark:    $black !default;
+
+// Colors
+
+$green:         #2DCA8C !default;
+
+// Theme colors
+
+$primary:       $green !default;
+$secondary:     $gray-700 !default;
+$neutral:       $gray-900 !default;
+$light:         $gray-600-dark !default;
+$dark:          $gray-800-dark !default;
+
+// Body
+
+$body-bg:       $black-dark !default;
+$body-color:    $gray-600 !default;
+
+
+// Sections
+
+$section-colors: () !default;
+$section-colors: map-merge((
+  "primary":      $body-bg,
+  "secondary":    darken($body-bg, 1.5%),
+  "light":        $gray-800-dark,
+  "dark":         darken($body-bg, 2%)
+), $section-colors);
+
+// Border
+
+$border-color:  $gray-700-dark !default;
+
+// Components
+
+$component-active-color:        $white !default;
+$component-active-bg:           darken($primary, 5%) !default;
+$component-active-border-color: darken($primary, 5%) !default;
+
+$component-hover-color:         $gray-900 !default;
+$component-hover-bg:            $gray-900 !default;
+$component-hover-border-color:  $gray-900 !default;
+
+// Headings
+
+$headings-color:                $gray-300 !default;
+
+// Buttons
+
+$btn-box-shadow:                inset 0 1px 0 rgba($black, .15) !default;
+$btn-active-box-shadow:         $btn-box-shadow !default;
+
+// Inputs
+
+$input-bg:                      $gray-700-dark !default;
+$input-disabled-bg:             $gray-200 !default;
+
+$input-color:                   $white !default;
+$input-border-color:            $gray-900-dark !default;
+
+$input-placeholder-color:       $gray-600 !default;
+
+$custom-control-indicator-bg:   $gray-600-dark !default;
+
+// Card
+
+$card-bg:                           $gray-800-dark !default;
+$card-border-color:                 $border-color !default;
+$card-color:                        $body-color !default;
+
+// Avatar
+
+$avatar-stack-border-color:         $gray-800-dark !default;
+
+// Dropdown
+
+$dropdown-bg:                       $dark !default;
+$dropdown-border-color:             $border-color !default;
+$dropdown-divider-bg:               $black !default;
+$dropdown-heading-color:            $gray-500 !default;
+
+$dropdown-link-color:               $gray-700 !default;
+
+$dropdown-link-hover-color:         $white !default;
+$dropdown-link-hover-bg:            transparent !default;
+
+// Divider
+
+$divider-border-color:              $white !default;
+
+// Navbar
+
+$navbar-dropdown-bg:                       $dark !default;
+$navbar-dropdown-heading-color:            lighten($gray-300, 7%) !default;
+
+$navbar-dropdown-link-color:               $gray-500 !default;
+$navbar-dropdown-link-bg:                  transparent !default;
+
+$navbar-dropdown-link-hover-color:         lighten($navbar-dropdown-link-color, 20%) !default;
+$navbar-dropdown-link-hover-bg:            lighten($navbar-dropdown-bg, 3%) !default;
+
+$navbar-dropdown-link-active-color:        $navbar-dropdown-link-hover-color !default;
+$navbar-dropdown-link-active-bg:           transparent !default;
+
+// List group
+
+$list-group-bg:                     $gray-900-dark !default;
+$list-group-border-color:           rgba(lighten($list-group-bg, 15%), .3) !default;
+
+$list-group-hover-bg:               lighten($list-group-bg, 3%) !default;
+
+$list-group-active-color:           $component-active-color !default;
+$list-group-active-bg:              $component-active-bg !default;
+$list-group-active-border-color:    $list-group-active-bg !default;
+
+$list-group-disabled-color:         $gray-600 !default;
+$list-group-disabled-bg:            $list-group-bg !default;
+
+$list-group-action-color:           $gray-700 !default;
+$list-group-action-hover-color:     $list-group-action-color !default;
+
+$list-group-action-active-color:    $list-group-action-color !default;
+$list-group-action-active-bg:       darken($list-group-bg, 3%) !default;
+
+// Modal
+
+$modal-content-bg:                  $card-bg !default;
+$modal-header-border-color:         $card-border-color !default;
+
+// Pagination
+
+$pagination-color:                  $gray-300 !default;
+$pagination-bg:                     $gray-900  !default;
+$pagination-border-color:           $gray-900 !default;
+
+$pagination-hover-color:            $gray-200 !default;
+$pagination-hover-bg:               $gray-800 !default;
+$pagination-hover-border-color:     $gray-800 !default;
+
+$pagination-active-color:           $component-active-color !default;
+$pagination-active-bg:              $component-active-bg !default;
+$pagination-active-border-color:    $pagination-active-bg !default;
+
+$pagination-disabled-color:         $gray-500 !default;
+$pagination-disabled-bg:            $gray-800 !default;
+$pagination-disabled-border-color:  $gray-800 !default;
+
+// Progress
+
+$progress-bg:                       $gray-800 !default;
+
+// Table
+
+$table-bg:                          transparent !default;
+$table-accent-bg:                   rgba($black, .3) !default;
+$table-hover-bg:                    $black !default;
+$table-active-bg:                   $table-hover-bg !default;
+$table-border-color:                $black !default;
+
+// Tooltip
+
+$tooltip-bg:                        $gray-800 !default;

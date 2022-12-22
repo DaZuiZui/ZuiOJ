@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../../assets/libs/flatpickr/dist/flatpickr.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link active">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Forms</h1>
+                    <p class="lead mb-0">Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.</p>
+                    <div class="mt-4">
+                        <a href="http://getbootstrap.com/docs/4.4/components/forms" target="_blank">
+                            <i data-feather="external-link" class="mr-2"></i> Bootstrap Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <h2 id="inputs">Inputs</h2>
+                <h3 id="default">Default</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#input" role="button" aria-expanded="false" aria-controls="input">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Default input" />
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="input">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Default input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="emphasized">Emphasized</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#input-emphasized" role="button" aria-expanded="false" aria-controls="input-emphasized">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-emphasized" placeholder="Emphasized input" />
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="input-emphasized">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control form-control-emphasized"</span> <span class="na">placeholder=</span><span class="s">"Emphasized input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="muted">Muted</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#input-muted" role="button" aria-expanded="false" aria-controls="input-muted">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-muted" placeholder="Muted input" />
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="input-muted">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control form-control-muted"</span> <span class="na">placeholder=</span><span class="s">"Muted input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="flushed">Flushed</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#input-flushed" role="button" aria-expanded="false" aria-controls="input-flushed">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-flush" placeholder="Flushed input" />
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="input-flushed">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control form-control-flush"</span> <span class="na">placeholder=</span><span class="s">"Flushed input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="options">Options</h2>
+                <h3 id="states">States</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#input-states" role="button" aria-expanded="false" aria-controls="input-states">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="form-group">
+                            <input type="text" class="form-control is-valid" placeholder="Is valid" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control is-invalid" placeholder="Is invalid" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Disabled" disabled="" />
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="input-states">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control is-valid"</span> <span class="na">placeholder=</span><span class="s">"Is valid"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control is-invalid"</span> <span class="na">placeholder=</span><span class="s">"Is invalid"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Disabled"</span> <span class="na">disabled</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="sizing">Sizing</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#input-sizing" role="button" aria-expanded="false" aria-controls="input-sizing">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-xl" placeholder="Extra large input" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Large input" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Normal input" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" placeholder="Small input" />
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="input-sizing">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control form-control-xl"</span> <span class="na">placeholder=</span><span class="s">"Extra large input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control form-control-lg"</span> <span class="na">placeholder=</span><span class="s">"Large input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Normal input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control form-control-sm"</span> <span class="na">placeholder=</span><span class="s">"Small input"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="textarea">Textarea</h2>
+                <h3 id="default-1">Default</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#textarea" role="button" aria-expanded="false" aria-controls="textarea">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <textarea class="form-control" placeholder="You can manually resize this textarea" rows="3"></textarea>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="textarea">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;textarea</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"You can manually resize this textarea"</span> <span class="na">rows=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/textarea&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="non-resizable">Non resizable</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#textarea-nonresizable" role="button" aria-expanded="false" aria-controls="textarea-nonresizable">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <textarea class="form-control" placeholder="This is a fixed height textarea" rows="3" resize="none"></textarea>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="textarea-nonresizable">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;textarea</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"This is a fixed height textarea"</span> <span class="na">rows=</span><span class="s">"3"</span> <span class="na">resize=</span><span class="s">"none"</span><span class="nt">&gt;&lt;/textarea&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h2 id="custom-forms">Custom forms</h2>
+                <h3 id="checkboxes">Checkboxes</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#checkbox" role="button" aria-expanded="false" aria-controls="checkbox">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                            <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="checkbox">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-checkbox"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span class="na">id=</span><span class="s">"customCheck1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span class="s">"customCheck1"</span><span class="nt">&gt;</span>Check this custom checkbox<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#checkbox-indeterminate" role="button" aria-expanded="false" aria-controls="checkbox-indeterminate">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2" data-toggle="indeterminate" />
+                            <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="checkbox-indeterminate">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-checkbox"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span class="na">id=</span><span class="s">"customCheck2"</span> <span class="na">data-toggle=</span><span class="s">"indeterminate"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span class="s">"customCheck2"</span><span class="nt">&gt;</span>Check this custom checkbox<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#checkbox-buttons" role="button" aria-expanded="false" aria-controls="checkbox-buttons">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="checkbox" name="options" id="checkboxButton1" autocomplete="off" checked="" /> Checkbox button
+                            </label>
+                        </div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="checkbox" name="options" id="checkboxButton2" autocomplete="off" checked="" /> Active
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="checkbox" name="options" id="checkboxButton3" autocomplete="off" /> Checkbox
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="checkbox" name="options" id="checkboxButton4" autocomplete="off" /> Checkbox
+                            </label>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="checkbox-buttons">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"btn-group btn-group-toggle"</span> <span class="na">data-toggle=</span><span class="s">"buttons"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary active"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"options"</span> <span class="na">id=</span><span class="s">"checkboxButton1"</span> <span class="na">autocomplete=</span><span class="s">"off"</span> <span class="na">checked</span><span class="nt">&gt;</span> Checkbox button
+    <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"btn-group btn-group-toggle"</span> <span class="na">data-toggle=</span><span class="s">"buttons"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary active"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"options"</span> <span class="na">id=</span><span class="s">"checkboxButton2"</span> <span class="na">autocomplete=</span><span class="s">"off"</span> <span class="na">checked</span><span class="nt">&gt;</span> Active
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"options"</span> <span class="na">id=</span><span class="s">"checkboxButton3"</span> <span class="na">autocomplete=</span><span class="s">"off"</span><span class="nt">&gt;</span> Checkbox
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"options"</span> <span class="na">id=</span><span class="s">"checkboxButton4"</span> <span class="na">autocomplete=</span><span class="s">"off"</span><span class="nt">&gt;</span> Checkbox
+    <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="radios">Radios</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#radio" role="button" aria-expanded="false" aria-controls="radio">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                            <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" />
+                            <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="radio">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadio1"</span> <span class="na">name=</span><span class="s">"customRadio"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span class="s">"customRadio1"</span><span class="nt">&gt;</span>Toggle this custom radio<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadio2"</span> <span class="na">name=</span><span class="s">"customRadio"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span class="s">"customRadio2"</span><span class="nt">&gt;</span>Or toggle this other custom radio<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#radio-inline" role="button" aria-expanded="false" aria-controls="radio-inline">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" />
+                            <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" />
+                            <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom radio</label>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="radio-inline">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio custom-control-inline"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadioInline1"</span> <span class="na">name=</span><span class="s">"customRadioInline1"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span class="s">"customRadioInline1"</span><span class="nt">&gt;</span>Toggle this custom radio<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio custom-control-inline"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadioInline2"</span> <span class="na">name=</span><span class="s">"customRadioInline1"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span class="s">"customRadioInline2"</span><span class="nt">&gt;</span>Or toggle this other custom radio<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#radio-buttons" role="button" aria-expanded="false" aria-controls="radio-buttons">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="custom-radio-3" id="radioButton1" autocomplete="off" /> Radio button
+                            </label>
+                        </div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="custom-radio-2" id="radioButton2" autocomplete="off" checked="" /> Active
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="custom-radio-2" id="radioButton3" autocomplete="off" /> Radio
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="custom-radio-2" id="radioButton4" autocomplete="off" /> Radio
+                            </label>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="radio-buttons">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"btn-group btn-group-toggle"</span> <span class="na">data-toggle=</span><span class="s">"buttons"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary active"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"custom-radio-3"</span> <span class="na">id=</span><span class="s">"radioButton1"</span> <span class="na">autocomplete=</span><span class="s">"off"</span><span class="nt">&gt;</span> Radio button
+    <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"btn-group btn-group-toggle"</span> <span class="na">data-toggle=</span><span class="s">"buttons"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary active"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"custom-radio-2"</span>  <span class="na">id=</span><span class="s">"radioButton2"</span> <span class="na">autocomplete=</span><span class="s">"off"</span> <span class="na">checked</span><span class="nt">&gt;</span> Active
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"custom-radio-2"</span>  <span class="na">id=</span><span class="s">"radioButton3"</span> <span class="na">autocomplete=</span><span class="s">"off"</span><span class="nt">&gt;</span> Radio
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"custom-radio-2"</span>  <span class="na">id=</span><span class="s">"radioButton4"</span> <span class="na">autocomplete=</span><span class="s">"off"</span><span class="nt">&gt;</span> Radio
+    <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="select-menu">Select menu</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#select-menu" role="button" aria-expanded="false" aria-controls="select-menu">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <select class="custom-select">
+                            <option selected="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="select-menu">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"custom-select"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">selected</span><span class="nt">&gt;</span>Open this select menu<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>One<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Two<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Three<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#select-menu-sizing" role="button" aria-expanded="false" aria-controls="select-menu-sizing">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <select class="custom-select custom-select-lg mb-3">
+                            <option selected="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <select class="custom-select custom-select-sm">
+                            <option selected="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="select-menu-sizing">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"custom-select custom-select-lg mb-3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">selected</span><span class="nt">&gt;</span>Open this select menu<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>One<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Two<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Three<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+
+<span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"custom-select custom-select-sm"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">selected</span><span class="nt">&gt;</span>Open this select menu<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>One<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Two<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Three<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#inputs">Inputs</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#default">Default</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#emphasized">Emphasized</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#muted">Muted</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#flushed">Flushed</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#options">Options</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#states">States</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#sizing">Sizing</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#textarea">Textarea</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#default-1">Default</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#non-resizable">Non resizable</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#custom-forms">Custom forms</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#checkboxes">Checkboxes</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#radios">Radios</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#select-menu">Select menu</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Page JS -->
+    <script src="../../assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="../../assets/libs/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="../../assets/libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="../../assets/libs/autosize/dist/autosize.min.js"></script>
+    <script src="../../assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <!-- Custom form validation -->
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

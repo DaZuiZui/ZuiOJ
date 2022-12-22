@@ -1,0 +1,35 @@
+//
+// Header
+//
+
+
+.header-transparent {
+	+ section {
+		padding-top: 7rem !important;
+	}
+
+	+ .header-1 {
+		padding-top: 14rem !important;
+	}
+}
+
+.header-account-page {
+	.btn-group-nav {
+		position: relative;
+		z-index: 1;
+		transform: translateY(50%);
+	}
+}
+
+// Header application
+
+@media (min-width: 768px) {
+	.header-web-app .row:last-of-type {
+		margin-bottom: -12rem;
+		z-index: 2;
+		position: relative;
+	}
+	.header-web-app + section {
+		padding-top: 12rem;
+	}
+}

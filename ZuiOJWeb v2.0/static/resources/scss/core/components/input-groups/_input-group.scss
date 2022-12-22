@@ -1,0 +1,43 @@
+//
+// Input group
+//
+
+
+.input-group-text {
+    transition: $input-transition;
+}
+
+
+// Flush
+
+.input-group-flush {
+    .form-control,
+    .input-group-text {
+        border: 0 !important;
+    }
+}
+
+
+// Focused state
+
+.focused {
+    // Add shadow on the input group (not on .form-control)
+    .input-group {
+        @if $enable-shadows {
+            box-shadow: $input-box-shadow, $input-focus-box-shadow;
+        } @else {
+            box-shadow: $input-focus-box-shadow;
+        }
+
+        .form-control {
+            box-shadow: none !important;
+        }
+    }
+
+    // Additional styles for the input addon element
+    .input-group-text {
+        color: $input-group-addon-focus-color;
+        background-color: $input-group-addon-focus-bg;
+        border-color: $input-group-addon-focus-border-color;
+    }
+}

@@ -1,0 +1,65 @@
+//
+// Progress
+//
+
+
+.progress-wrapper {
+    position: relative;
+    padding-top: 1.5rem;
+
+    .progress {
+        margin-bottom: $spacer;
+    }
+}
+
+.progress-inverse {
+    background-color: inverse($progress-bg);
+}
+
+.progress-heading {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    margin: 0 0 2px;
+    padding: 0;
+}
+
+.progress-text {
+    margin-bottom: 0;
+}
+
+
+// Sizing
+
+.progress-lg {
+    height: 1rem;
+}
+.progress-md {
+    height: .75rem;
+}
+.progress-sm {
+    height: .375rem;
+}
+.progress-xs {
+    height: .125rem;
+}
+
+
+// Progress prepend icons
+
+.progress-group {
+    position: relative
+}
+
+.progress-prepend-icon {
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 20px;
+    top: 50%;
+
+    &:not(:first-child) {
+        right: -17px;
+    }
+    &:not(:last-child) {
+        left: -17px;
+    }
+}

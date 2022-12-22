@@ -1,0 +1,42 @@
+@mixin alert-variant($background, $border, $color) {
+    color: color-yiq($background);
+    @include gradient-bg($background);
+    border-color: $border;
+
+    hr {
+        border-top-color: darken($border, 5%);
+    }
+
+    .alert-link {
+        color: color-yiq($background);
+        font-weight: $font-weight-bold; 
+        border-bottom: 1px dashed color-yiq($background);
+    }
+
+    .close > span:not(.sr-only) {
+        color: color-yiq($background);
+    }
+}
+
+
+//
+// Alert outline variant
+//
+
+@mixin alert-outline-variant($border, $color) {
+    background: transparent;
+    color: $color;
+    border-color: $border;
+
+    hr {
+        border-top-color: lighten($border, 5%);
+    }
+
+    .alert-link {
+        color: $color;
+    }
+
+    .alert-group-prepend {
+        border-right: 1px solid $border;
+    }
+}

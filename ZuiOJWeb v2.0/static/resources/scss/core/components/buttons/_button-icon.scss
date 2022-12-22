@@ -1,0 +1,61 @@
+//
+// Icon button
+//
+
+
+// Icons
+
+.btn svg:not(:first-child),
+.btn i:not(:first-child) {
+    margin-left: .5rem;
+}
+
+.btn svg:not(:last-child),
+.btn i:not(:last-child) {
+    margin-right: .5rem;
+}
+
+
+// Icons
+
+.btn-icon {
+    .btn-inner--text:not(:first-child) {
+        margin-left: .75em;
+    }
+    .btn-inner--text:not(:last-child) {
+        margin-right: .75em;
+    }
+
+    .btn-inner--icon {
+        img {
+            width: 20px;
+        }
+    }
+}
+
+// Icon only buttons (no text)
+
+.btn-icon-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.125rem;
+    height: 3.125rem;
+    padding: 0;
+
+    &.btn-xs {
+        width: 2rem;
+        height: 2rem;
+    }
+
+
+    &.btn-sm {
+        width: 2.4375rem;
+        height: 2.4375rem;
+    }
+
+    &.btn-lg {
+        width: 4rem;
+        height: 4rem;
+    }
+}

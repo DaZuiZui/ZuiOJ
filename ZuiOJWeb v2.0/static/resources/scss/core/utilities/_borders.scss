@@ -1,0 +1,44 @@
+//
+// Border
+//
+
+
+.border-sm { border-width: $border-width-sm !important;}
+.border-md { border-width: $border-width-md !important;}
+.border-lg { border-width: $border-width-lg !important;}
+
+// Border style
+
+.border-dashed { border-style: dashed !important; }
+.border-dotted { border-style: dotted !important; }
+.border-groove { border-style: groove !important; }
+
+// Border radius
+
+.rounded-xl {
+    @include border-radius($border-radius-xl !important);
+}
+
+.rounded-left-pill {
+    @include border-left-radius($rounded-pill !important);
+}
+
+.rounded-right-pill {
+    @include border-right-radius($rounded-pill !important);
+}
+
+.rounded-bottom-left {
+    border-bottom-left-radius: 90px;
+}
+
+// Border color variations
+
+@each $color, $value in $theme-colors {
+    .border-soft-#{$color}  {
+        border-color: lighten($value, 20%) !important;
+    }
+
+    .border-dark-#{$color}  {
+        border-color: darken($value, 5%) !important;
+    }
+}

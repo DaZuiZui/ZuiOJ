@@ -1,0 +1,93 @@
+// Spacing columns vertically
+
+.row-grid {
+    + .row-grid {
+        margin-top: 3rem;
+    }
+
+    > [class*="col-"] + [class*="col-"] {
+        margin-top: 3rem;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .row.row-grid {
+        > [class*="col-lg-"] + [class*="col-lg-"] {
+            margin-top: 0;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .row.row-grid {
+        > [class*="col-md-"] + [class*="col-md-"] {
+            margin-top: 0;
+        }
+    }
+}
+@include media-breakpoint-up(sm) {
+    .row.row-grid {
+        > [class*="col-sm-"] + [class*="col-sm-"] {
+            margin-top: 0;
+        }
+    }
+}
+
+// Spacing for elements with absolute position
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        @each $prop, $abbrev in (top: top) {
+            @each $size, $length in $spacers {
+
+                // Spacing (for elements with absolute position)
+                .top#{$infix}-#{$size} {
+                    top: $length !important;
+                }
+                .right#{$infix}-#{$size} {
+                    right: $length !important;
+                }
+                .bottom#{$infix}-#{$size} {
+                    bottom: $length !important;
+                }
+                .left#{$infix}-#{$size} {
+                    left: $length !important;
+                }
+
+                // Negative spacing
+                .top#{$infix}-n#{$size} {
+                    top: -$length !important;
+                }
+                .right#{$infix}-n#{$size} {
+                    right: -$length !important;
+                }
+                .bottom#{$infix}-n#{$size} {
+                    bottom: -$length !important;
+                }
+                .left#{$infix}-n#{$size} {
+                    left: -$length !important;
+                }
+            }
+        }
+    }
+}
+
+.center {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.middle {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+// Negative margin: works with negative-margin.js
+
+[data-negative-margin] {
+    &.is_stuck {
+        margin: 0 !important;
+    }
+}

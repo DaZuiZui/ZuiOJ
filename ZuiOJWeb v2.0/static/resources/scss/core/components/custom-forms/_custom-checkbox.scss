@@ -1,0 +1,20 @@
+//
+// Custom checkbox
+//
+
+
+.checklist {
+    .custom-control-input {
+        &:checked ~ .custom-control-label {
+            text-decoration: line-through;
+        }
+    }
+
+    .card {
+        margin-bottom: .5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

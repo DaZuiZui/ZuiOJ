@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Fancybox</h1>
+                    <p class="lead mb-0">A lightbox library for presenting various types of media. Responsive, touch-enabled and customizable.</p>
+                    <div class="mt-4">
+                        <a href="http://fancyapps.com/fancybox/3/docs/" target="_blank">
+                            <i data-feather="external-link"></i> Official Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <h2 id="usage">Usage</h2>
+                <h3 id="css">CSS</h3>
+                <p>In order to use this plugin on your page you will need to include the following styles in the <strong>Page CSS</strong> area from the page’s head section:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"../../assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css"</span><span class="nt">&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h3 id="js">JS</h3>
+                <p>In order to use this plugin on your page you will need to include the following script in the “Page JS” area from the page’s footer:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"../../assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h3 id="initialization">Initialization</h3>
+                <p>Add <code class="highlighter-rouge">data-fancybox</code> on any <code class="highlighter-rouge">&lt;a&gt;</code> element and make sure you add a correct image path inside the <code class="highlighter-rouge">href</code> attribute.</p>
+                <h2 id="examples">Examples</h2>
+                <h3 id="basic">Basic</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#fancybox-basic" role="button" aria-expanded="false" aria-controls="fancybox-basic">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <a href="../../assets/img/theme/light/img-1-1000x800.jpg" data-fancybox="" data-caption="My caption">
+                            <img src="../../assets/img/theme/light/img-1.jpg" class="w-50 img-fluid rounded" />
+                        </a>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="fancybox-basic">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../../assets/img/theme/light/img-1-1000x800.jpg"</span> <span class="na">data-fancybox</span> <span class="na">data-caption=</span><span class="s">"My caption"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1.jpg"</span> <span class="na">class=</span><span class="s">"w-50 img-fluid rounded"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/a&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="grouping">Grouping</h3>
+                <p>If you have a group of items, you can use the same attribute data-fancybox value for each of them to create a gallery. Each group should have a unique value.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#fancybox-grouping" role="button" aria-expanded="false" aria-controls="fancybox-grouping">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="../../assets/img/theme/light/img-1-1000x800.jpg" data-fancybox="group" data-caption="My caption">
+                                    <img src="../../assets/img/theme/light/img-1-1000x800.jpg" class="img-fluid rounded" />
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="../../assets/img/theme/light/img-2-1000x800.jpg" data-fancybox="group" data-caption="My caption">
+                                    <img src="../../assets/img/theme/light/img-2-1000x800.jpg" class="img-fluid rounded" />
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="fancybox-grouping">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-6"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../../assets/img/theme/light/img-1-1000x800.jpg"</span> <span class="na">data-fancybox=</span><span class="s">"group"</span> <span class="na">data-caption=</span><span class="s">"My caption"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x800.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-6"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../../assets/img/theme/light/img-2-1000x800.jpg"</span> <span class="na">data-fancybox=</span><span class="s">"group"</span> <span class="na">data-caption=</span><span class="s">"My caption"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x800.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="inline-html">Inline HTML</h3>
+                <p>For inline content, create a hidden element with unique id.</p>
+                <p>And then simply create a link having <code>data-src</code> attribute that matches ID of the element you want to open (preceded by a hash mark (#); in this example - #hidden-content):</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#fancybox-inline" role="button" aria-expanded="false" aria-controls="fancybox-inline">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <!-- Hidden content -->
+                        <div style="display: none;" id="fancybox_hidden_content">
+                            <h2>Hello</h2>
+                            <p>You are awesome.</p>
+                        </div>
+                        <!-- The button that will retrieve the content from the hidden div -->
+                        <a data-fancybox="" data-src="#fancybox_hidden_content" class="btn btn-dark btn-circle" href="javascript:;">
+                            Trigger the Fancybox
+                        </a>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="fancybox-inline">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- Hidden content --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"display: none;"</span> <span class="na">id=</span><span class="s">"fancybox_hidden_content"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;h2&gt;</span>Hello<span class="nt">&lt;/h2&gt;</span>
+	<span class="nt">&lt;p&gt;</span>You are awesome.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- The button that will retrieve the content from the hidden div --&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">data-fancybox</span> <span class="na">data-src=</span><span class="s">"#fancybox_hidden_content"</span> <span class="na">class=</span><span class="s">"btn btn-dark btn-circle"</span> <span class="na">href=</span><span class="s">"javascript:;"</span><span class="nt">&gt;</span>
+	Trigger the Fancybox
+<span class="nt">&lt;/a&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="iframe">Iframe</h3>
+                <p>If the content can be shown on a page, and placement in an iframe is not blocked by script or security configuration of that page, it can be presented in a fancyBox.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#fancybox-iframe" role="button" aria-expanded="false" aria-controls="fancybox-iframe">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <a href="javascript:;" class="btn btn-sm btn-dark btn-circle" data-fancybox="" data-type="iframe" data-src="http://codepen.io/fancyapps/full/jyEGGG/">Webpage</a>
+                        <a href="javascript:;" class="btn btn-sm btn-dark btn-circle" data-fancybox="" data-type="iframe" data-src="https://mozilla.github.io/pdf.js/web/viewer.html">Sample PDF</a>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="fancybox-iframe">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:;"</span> <span class="na">class=</span><span class="s">"btn btn-sm btn-dark btn-circle"</span> <span class="na">data-fancybox</span> <span class="na">data-type=</span><span class="s">"iframe"</span> <span class="na">data-src=</span><span class="s">"http://codepen.io/fancyapps/full/jyEGGG/"</span><span class="nt">&gt;</span>Webpage<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:;"</span> <span class="na">class=</span><span class="s">"btn btn-sm btn-dark btn-circle"</span> <span class="na">data-fancybox</span> <span class="na">data-type=</span><span class="s">"iframe"</span> <span class="na">data-src=</span><span class="s">"https://mozilla.github.io/pdf.js/web/viewer.html"</span><span class="nt">&gt;</span>Sample PDF<span class="nt">&lt;/a&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="embeding">Embeding</h3>
+                <p>Supported sites can be used with Fancybox by just providing the page URL.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#fancybox-embeding" role="button" aria-expanded="false" aria-controls="fancybox-embeding">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" data-fancybox="" class="btn btn-youtube btn-icon-label btn-circle">
+                            <span class="btn-inner--icon"><i class="fab fa-youtube"></i></span>
+                            <span class="btn-inner--text">Youtube</span>
+                        </a>
+                        <a href="https://www.google.com/maps/search/Empire+State+Building/" data-fancybox="" class="btn btn-google-plus btn-icon-label btn-circle">
+                            <span class="btn-inner--icon"><i class="fab fa-google-plus-g"></i></span>
+                            <span class="btn-inner--text">Google Map</span>
+                        </a>
+                        <a href="https://vimeo.com/191947042" data-fancybox="" class="btn btn-vimeo btn-icon-label btn-circle">
+                            <span class="btn-inner--icon"><i class="fab fa-vimeo-v"></i></span>
+                            <span class="btn-inner--text">Vimeo</span>
+                        </a>
+                        <a href="https://www.instagram.com/p/BjHaou8BIhj/?taken-by=webpixelsofficial" data-fancybox="" class="btn btn-instagram btn-icon-label btn-circle">
+                            <span class="btn-inner--icon"><i class="fab fa-instagram"></i></span>
+                            <span class="btn-inner--text">Instagram</span>
+                        </a>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="fancybox-embeding">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.youtube.com/watch?v=_sI_Ps7JSEk"</span> <span class="na">data-fancybox</span> <span class="na">class=</span><span class="s">"btn btn-youtube btn-icon-label btn-circle"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fab fa-youtube"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Youtube<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.google.com/maps/search/Empire+State+Building/"</span> <span class="na">data-fancybox</span> <span class="na">class=</span><span class="s">"btn btn-google-plus btn-icon-label btn-circle"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fab fa-google-plus-g"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Google Map<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://vimeo.com/191947042"</span> <span class="na">data-fancybox</span> <span class="na">class=</span><span class="s">"btn btn-vimeo btn-icon-label btn-circle"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fab fa-vimeo-v"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Vimeo<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.instagram.com/p/BjHaou8BIhj/?taken-by=webpixelsofficial"</span> <span class="na">data-fancybox</span> <span class="na">class=</span><span class="s">"btn btn-instagram btn-icon-label btn-circle"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--icon"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fab fa-instagram"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"btn-inner--text"</span><span class="nt">&gt;</span>Instagram<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/a&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#usage">Usage</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#css">CSS</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#js">JS</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#initialization">Initialization</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#examples">Examples</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#basic">Basic</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#grouping">Grouping</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#inline-html">Inline HTML</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#hello">Hello</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#iframe">Iframe</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#embeding">Embeding</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Page JS -->
+    <script src="../../assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

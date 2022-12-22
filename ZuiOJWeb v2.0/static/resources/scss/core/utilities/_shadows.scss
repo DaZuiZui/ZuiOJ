@@ -1,0 +1,33 @@
+[class*="shadow"] {
+	@if $enable-transitions {
+        transition: $transition-base;
+    }
+}
+
+// Additional shadow classes
+.shadow-xl { box-shadow: $box-shadow-xl !important; }
+.shadow-2xl { box-shadow: $box-shadow-2xl !important; }
+
+// Shadow classes for hover
+.hover-shadow-sm:hover { box-shadow: $box-shadow-sm !important; }
+.hover-shadow:hover { box-shadow: $box-shadow !important; }
+.hover-shadow-lg:hover { box-shadow: $box-shadow-lg !important; }
+.hover-shadow-xl:hover { box-shadow: $box-shadow-xl !important; }
+.hover-shadow-2xl:hover { box-shadow: $box-shadow-2xl !important; }
+.shadow-none,
+.hover-shadow-none:hover { box-shadow: none !important; }
+
+// Colored shadow classes
+@each $color, $value in $theme-colors {
+	.shadow-#{$color}-sm {
+		@include box-shadow(0 .125rem .25rem rgba(theme-color($color), .4) !important);
+	}
+
+	.shadow-#{$color} {
+		@include box-shadow(0 .5rem 1rem rgba(theme-color($color), .4) !important);
+	}
+
+	.shadow-#{$color}-lg {
+		@include box-shadow(0 1rem 3rem rgba(theme-color($color), .4) !important);
+	}
+}

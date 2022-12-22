@@ -1,0 +1,11 @@
+@mixin link-underline-variant($color) {
+	color: $color;
+
+	&:after {
+		background-color: $color;
+	}
+
+	&:hover {
+		color: darken($color, 10%);
+	}
+}

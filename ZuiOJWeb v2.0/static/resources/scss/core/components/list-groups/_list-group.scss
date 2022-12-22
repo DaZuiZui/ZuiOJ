@@ -1,0 +1,60 @@
+//
+// List group
+//
+
+.list-group {
+    list-style-type: none;
+}
+
+// Spaces list items
+
+.list-group-space {
+    .list-group-item {
+        margin-bottom: 1.5rem;
+        @include border-radius($list-group-border-radius);
+    }
+}
+
+// List group components
+
+.list-group-item {
+    font-size: $list-group-item-font-size
+}
+
+.list-group-img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    vertical-align: top;
+    margin: -.1rem 1.2rem 0 -.2rem;
+}
+
+.list-group-content {
+    flex: 1;
+    min-width: 0;
+
+    p {
+        line-height: 1.5;
+        margin: .2rem 0 0;
+    }
+}
+
+.list-group-heading {
+    color: $gray-800;
+
+    > small {
+        float: right;
+        color: $gray-500;
+        font-weight: 500;
+    }
+}
+
+
+// Size variations
+
+.list-group-sm {
+    .list-group-item {
+        padding: .675rem 1.25rem;
+        font-size: $font-size-sm;
+    }
+}

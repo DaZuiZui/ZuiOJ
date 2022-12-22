@@ -1,0 +1,94 @@
+//
+// Icon shapes
+//
+
+
+.icon-shape {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: $border-radius;
+	width: $icon-size;
+	height: $icon-size;
+
+	i {
+		font-size: 1.125rem;
+	}
+
+	svg {
+		width: $icon-size/ 2.5;
+		height: $icon-size/ 2.5;
+	}
+
+
+	&.icon-xl {
+		width: $icon-size-xl;
+		height: $icon-size-xl;
+
+		i {
+			font-size: 2.25rem;
+		}
+
+		svg {
+			width: $icon-size-xl/ 2.5;
+			height: $icon-size-xl/ 2.5;
+		}
+	}
+
+
+	&.icon-lg {
+		width: $icon-size-lg;
+		height: $icon-size-lg;
+
+		i {
+			font-size: 1.75rem;
+		}
+
+		svg {
+			width: $icon-size-lg/ 2.5;
+			height: $icon-size-lg/ 2.5;
+		}
+	}
+
+	&.icon-sm {
+		width: $icon-size-sm;
+		height: $icon-size-sm;
+
+		i {
+			font-size: $font-size-sm;
+		}
+
+		svg {
+			width: $icon-size-sm/ 2.5;
+			height: $icon-size-sm/ 2.5;
+		}
+	}
+
+	&.icon-xs {
+		width: $icon-size-xs;
+		height: $icon-size-xs;
+
+		i {
+			font-size: $font-size-xs;
+		}
+
+		svg {
+			width: $icon-size-xs/ 2.5;
+			height: $icon-size-xs/ 2.5;
+		}
+	}
+}
+
+// Color variations
+
+@each $color, $value in $theme-colors {
+    .icon-#{$color} {
+        @include icon-variant(theme-color-level($color, $icon-bg-level), $value);
+    }
+
+	.icon-outline-#{$color} {
+		@include icon-outline-variant($icon-border-width, $value);
+	}
+}

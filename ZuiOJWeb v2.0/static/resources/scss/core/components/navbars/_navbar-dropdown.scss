@@ -1,0 +1,308 @@
+//
+// Navbar dropdown
+//
+
+
+.navbar {
+    .dropdown-menu {
+        min-width: $navbar-dropdown-menu-width;
+        padding: $navbar-dropdown-padding-y $navbar-dropdown-padding-x;
+        background-color: $navbar-dropdown-bg;
+        border: $navbar-dropdown-border-width solid $navbar-dropdown-border-color;
+        @include border-radius($navbar-dropdown-border-radius);
+        @include box-shadow($navbar-dropdown-box-shadow);
+
+
+        // List group
+
+        .list-group {
+            // For items wrapped in divs
+            .list-group-item {
+                background: transparent;
+                padding-left: 0;
+                padding-right: 0;
+
+                &:hover {
+                    .heading {
+                        color: $navbar-dropdown-link-hover-color;
+                    }
+                }
+            }
+        }
+    }
+
+    // Dropdown items
+
+    .dropdown-header {
+        padding: 0;
+        color: $navbar-dropdown-heading-color;
+    }
+
+    .dropdown-item {
+        padding: $navbar-dropdown-item-padding-y $navbar-dropdown-item-padding-x;
+        color: $navbar-dropdown-link-color;
+        font-size: $navbar-dropdown-link-font-size;
+        font-weight: $navbar-dropdown-link-font-weight;
+
+        &:first-child {
+            @include border-top-radius($navbar-dropdown-border-radius);
+        }
+
+        &:last-child {
+            @include border-bottom-radius($navbar-dropdown-border-radius);
+        }
+
+        @include hover-focus {
+            color: $navbar-dropdown-link-hover-color;
+            text-decoration: none;
+            background: transparent;
+        }
+
+        &.active,
+        &:active {
+            color: $navbar-dropdown-link-active-color;
+            text-decoration: none;
+            @include gradient-bg($navbar-dropdown-link-active-bg);
+        }
+    }
+
+    // Dropdowm xl elements
+
+    .dropdown-img-left {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.625rem 1.75rem;
+        background: no-repeat center center/cover;
+        @include border-left-radius($dropdown-border-radius);
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(theme-color("primary"), .8);
+            border-radius: inherit;
+        }
+    }
+
+    .dropdown-menu-xl,
+    .dropdown-menu-lg {
+        padding: 2rem 2.5rem;
+
+        .dropdown-header {
+            padding-top: $navbar-dropdown-heading-padding-y;
+            padding-bottom: $navbar-dropdown-heading-padding-y;
+            color: theme-color("primary");
+        }
+    }
+}
+
+// Generate series of `.navbar-expand-*` responsive classes for configuring
+// where your navbar collapses.
+
+.navbar-expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        $next: breakpoint-next($breakpoint, $grid-breakpoints);
+        $infix: breakpoint-infix($next, $grid-breakpoints);
+
+        &#{$infix} {
+            @include media-breakpoint-down($breakpoint) {
+
+                .navbar-collapse {
+                    .dropdown-menu {
+                        padding-left: 0;
+                        padding-right: 0;
+                        background: transparent;
+                        @include border-radius(0);
+
+                        &.show {
+                            border-bottom: 1px solid $navbar-dropdown-divider-bg;
+                        }
+                    }
+
+                    .dropdown-menu-single {
+                        padding-left: 1rem;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        border-left: 3px solid theme-color("primary");
+
+                    }
+                    .dropdown-item {
+                        position: relative;
+                        font-size: $navbar-nav-link-font-size;
+                        font-weight: $navbar-nav-link-font-weight;
+                    }
+
+                    .dropdown-img-left {
+                        @include border-radius($dropdown-border-radius);
+                    }
+
+                    .dropdown-submenu {
+                        &.show {
+                            .dropdown-toggle:after {
+                                transform: rotate(90deg);
+                                @include transition($transition-base);
+                            }
+                        }
+                    }
+
+                    .delimiter {
+                        border-top: 1px solid $border-color;
+                        padding-top: 2.5rem;
+                    }
+
+                    .navbar-btn {
+                        width: 100%;
+                        margin-top: 1rem;
+                        padding: 1rem 1.75rem;
+                        background-color: transparent;
+                        color: theme-color("primary");
+                        border: 0;
+                        border-top: 1px solid $border-color;
+                        @include border-top-radius(0);
+                    }
+
+                    .nav-item.dropdown {
+                        .dropdown-toggle {
+                            &.nav-link {
+                                &:after {
+                                    transform: rotate(-90deg);
+                                    @include transition($transition-base);
+                                }
+                            }
+
+                            &:after {
+                                font-size: .75rem;
+                                float: right;
+                            }
+                        }
+
+                        &.show {
+                            .dropdown-toggle {
+                                &.nav-link {
+                                    &:after {
+                                        transform: rotate(0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include media-breakpoint-up($next) {
+                .dropdown:not(.dropdown-submenu):not(.dropdown-fluid) {
+                    > .dropdown-menu:not(.dropdown-menu-right) {
+                        margin-left: -1.25rem;
+                    }
+                    > .dropdown-menu-right {
+                        margin-right: -1.25rem;
+                    }
+                }
+
+                // Dropdown menu
+                .dropdown-menu {
+                    .list-group-emphasized > li {
+                        .list-group-item {
+                            transform: scale(1);
+                            @include transition($transition-base);
+                        }
+
+                        .media-body * {
+                            @include transition($transition-base);
+                        }
+
+                        &:hover {
+                            .list-group-item {
+                                z-index: 11;
+                                transform: scale(1.05);
+                                background-color: $navbar-dropdown-link-hover-bg;
+                                @include box-shadow($box-shadow);
+                                @include border-radius($navbar-dropdown-border-radius);
+                            }
+                        }
+                    }
+                }
+
+                // List group
+                .list-group {
+                    .list-group-item {
+                        &:first-child {
+                            @include border-top-radius($navbar-dropdown-border-radius);
+                        }
+
+                        &:last-child {
+                            @include border-bottom-radius($navbar-dropdown-border-radius);
+                        }
+                    }
+
+                    // For items wrapped in list items
+                    > li {
+                        &:first-child {
+                            .list-group-item {
+                                @include border-top-radius($navbar-dropdown-border-radius);
+                            }
+                        }
+
+                        &:last-child {
+                            .list-group-item {
+                                @include border-bottom-radius($navbar-dropdown-border-radius);
+                            }
+                        }
+                    }
+                }
+
+                // Additional dropdown background
+
+                .bg-dropdown-secondary {
+                    background-color: darken($navbar-dropdown-bg, 2%);
+                }
+
+                .dropdown-body-left {
+                    @include border-left-radius($dropdown-border-radius);
+                }
+
+                .dropdown-body-right {
+                    @include border-right-radius($dropdown-border-radius);
+                }
+
+                // Dropdown submenu
+                .dropdown-submenu {
+                    .dropdown-menu {
+                        min-width: 16rem;
+                        margin-left: 1rem;
+
+                        &:before {
+                            content: '';
+                            border-left: 1.5rem solid transparent;
+                            position: absolute;
+                            left: -1rem;
+                            top: 0;
+                            height: 100%;
+                        }
+                    }
+
+                    .dropdown-item {
+                        &:after {
+                            right: $navbar-dropdown-item-padding-x;
+                        }
+                    }
+                }
+
+                // Inner elements
+                .dropdown-body {
+                    padding: 2rem 2.5rem;
+                }
+
+                .delimiter {
+                    border-right: 1px solid $border-color;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Carousel</h1>
+                    <p class="lead mb-0">A slideshow component for cycling through elements—images or slides of text—like a carousel.</p>
+                    <div class="mt-4">
+                        <a href="http://getbootstrap.com/docs/4.4/components/carousel" target="_blank">
+                            <i data-feather="external-link" class="mr-2"></i> Bootstrap Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <h2 id="example">Example</h2>
+                <p>Carousels don’t automatically normalize slide dimensions. As such, you may need to use additional utilities or custom styles to appropriately size content. While carousels support previous/next controls and indicators, they’re not explicitly required. Add and customize as you see fit.</p>
+                <p><strong>The <code class="highlighter-rouge">.active</code> class needs to be added to one of the slides</strong> otherwise the carousel will not be visible. Also be sure to set a unique id on the <code class="highlighter-rouge">.carousel</code> for optional controls, especially if you’re using multiple carousels on a single page. Control and indicator elements must have a <code class="highlighter-rouge">data-target</code> attribute (or <code class="highlighter-rouge">href</code> for links) that matches the id of the <code class="highlighter-rouge">.carousel</code> element.</p>
+                <h3 id="slides-only">Slides only</h3>
+                <p>Here’s a carousel with slides only. Note the presence of the <code class="highlighter-rouge">.d-block</code> and <code class="highlighter-rouge">.w-100</code> on carousel images to prevent browser default image alignment.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#carousel" role="button" aria-expanded="false" aria-controls="carousel">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#777" width="100%" height="100%" /><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#666" width="100%" height="100%" /><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#555" width="100%" height="100%" /><text fill="#333" dy=".3em" x="50%" y="50%">Third slide</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="carousel">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"carouselExampleSlidesOnly"</span> <span class="na">class=</span><span class="s">"carousel slide"</span> <span class="na">data-ride=</span><span class="s">"carousel"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item active"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: First slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#777"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>First slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Second slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#666"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#444"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Second slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Third slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#333"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Third slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="with-controls">With controls</h3>
+                <p>Adding in the previous and next controls:</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#carousel-controls" role="button" aria-expanded="false" aria-controls="carousel-controls">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#777" width="100%" height="100%" /><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#666" width="100%" height="100%" /><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#555" width="100%" height="100%" /><text fill="#333" dy=".3em" x="50%" y="50%">Third slide</text>
+                                    </svg>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="carousel-controls">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"carouselExampleControls"</span> <span class="na">class=</span><span class="s">"carousel slide"</span> <span class="na">data-ride=</span><span class="s">"carousel"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item active"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: First slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#777"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>First slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Second slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#666"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#444"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Second slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Third slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#333"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Third slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-prev"</span> <span class="na">href=</span><span class="s">"#carouselExampleControls"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"prev"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-prev-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-next"</span> <span class="na">href=</span><span class="s">"#carouselExampleControls"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"next"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-next-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="with-indicators">With indicators</h3>
+                <p>You can also add the indicators to the carousel, alongside the controls, too.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#carousel-indicators" role="button" aria-expanded="false" aria-controls="carousel-indicators">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#777" width="100%" height="100%" /><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#666" width="100%" height="100%" /><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#555" width="100%" height="100%" /><text fill="#333" dy=".3em" x="50%" y="50%">Third slide</text>
+                                    </svg>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="carousel-indicators">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"carouselExampleIndicators"</span> <span class="na">class=</span><span class="s">"carousel slide"</span> <span class="na">data-ride=</span><span class="s">"carousel"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"carousel-indicators"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">data-target=</span><span class="s">"#carouselExampleIndicators"</span> <span class="na">data-slide-to=</span><span class="s">"0"</span> <span class="na">class=</span><span class="s">"active"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">data-target=</span><span class="s">"#carouselExampleIndicators"</span> <span class="na">data-slide-to=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">data-target=</span><span class="s">"#carouselExampleIndicators"</span> <span class="na">data-slide-to=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ol&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item active"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: First slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#777"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>First slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Second slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#666"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#444"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Second slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Third slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#333"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Third slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-prev"</span> <span class="na">href=</span><span class="s">"#carouselExampleIndicators"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"prev"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-prev-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-next"</span> <span class="na">href=</span><span class="s">"#carouselExampleIndicators"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"next"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-next-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="with-captions">With captions</h3>
+                <p>Add captions to your slides easily with the <code class="highlighter-rouge">.carousel-caption</code> element within any <code class="highlighter-rouge">.carousel-item</code>. They can be easily hidden on smaller viewports, as shown below, with optional <a href="/docs//utilities/display/">display utilities</a>. We hide them initially with <code class="highlighter-rouge">.d-none</code> and bring them back on medium-sized devices with <code class="highlighter-rouge">.d-md-block</code>.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#carousel-captions" role="button" aria-expanded="false" aria-controls="carousel-captions">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="bd-example">
+                            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide">
+                                            <title>Placeholder</title>
+                                            <rect fill="#777" width="100%" height="100%" /><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text>
+                                        </svg>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>First slide label</h5>
+                                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide">
+                                            <title>Placeholder</title>
+                                            <rect fill="#666" width="100%" height="100%" /><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text>
+                                        </svg>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Second slide label</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide">
+                                            <title>Placeholder</title>
+                                            <rect fill="#555" width="100%" height="100%" /><text fill="#333" dy=".3em" x="50%" y="50%">Third slide</text>
+                                        </svg>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Third slide label</h5>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="carousel-captions">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bd-example"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"carouselExampleCaptions"</span> <span class="na">class=</span><span class="s">"carousel slide"</span> <span class="na">data-ride=</span><span class="s">"carousel"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"carousel-indicators"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">data-target=</span><span class="s">"#carouselExampleCaptions"</span> <span class="na">data-slide-to=</span><span class="s">"0"</span> <span class="na">class=</span><span class="s">"active"</span><span class="nt">&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">data-target=</span><span class="s">"#carouselExampleCaptions"</span> <span class="na">data-slide-to=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">data-target=</span><span class="s">"#carouselExampleCaptions"</span> <span class="na">data-slide-to=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ol&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-inner"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item active"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: First slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#777"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>First slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-caption d-none d-md-block"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>First slide label<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Nulla vitae elit libero, a pharetra augue mollis interdum.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Second slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#666"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#444"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Second slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-caption d-none d-md-block"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Second slide label<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Third slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#333"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Third slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-caption d-none d-md-block"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Third slide label<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Praesent commodo cursus magna, vel scelerisque nisl consectetur.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-prev"</span> <span class="na">href=</span><span class="s">"#carouselExampleCaptions"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"prev"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-prev-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-next"</span> <span class="na">href=</span><span class="s">"#carouselExampleCaptions"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"next"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-next-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="crossfade">Crossfade</h3>
+                <p>Add <code class="highlighter-rouge">.carousel-fade</code> to your carousel to animate slides with a fade transition instead of a slide.</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#carousel-crossfade" role="button" aria-expanded="false" aria-controls="carousel-crossfade">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#777" width="100%" height="100%" /><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#666" width="100%" height="100%" /><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text>
+                                    </svg>
+                                </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide">
+                                        <title>Placeholder</title>
+                                        <rect fill="#555" width="100%" height="100%" /><text fill="#333" dy=".3em" x="50%" y="50%">Third slide</text>
+                                    </svg>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="carousel-crossfade">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"carouselExampleFade"</span> <span class="na">class=</span><span class="s">"carousel slide carousel-fade"</span> <span class="na">data-ride=</span><span class="s">"carousel"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item active"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: First slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#777"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>First slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Second slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#666"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#444"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Second slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"carousel-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"bd-placeholder-img bd-placeholder-img-lg d-block w-100"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"400"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span> <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span> <span class="na">focusable=</span><span class="s">"false"</span> <span class="na">role=</span><span class="s">"img"</span> <span class="na">aria-label=</span><span class="s">"Placeholder: Third slide"</span><span class="nt">&gt;&lt;title&gt;</span>Placeholder<span class="nt">&lt;/title&gt;&lt;rect</span> <span class="na">fill=</span><span class="s">"#555"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">/&gt;&lt;text</span> <span class="na">fill=</span><span class="s">"#333"</span> <span class="na">dy=</span><span class="s">".3em"</span> <span class="na">x=</span><span class="s">"50%"</span> <span class="na">y=</span><span class="s">"50%"</span><span class="nt">&gt;</span>Third slide<span class="nt">&lt;/text&gt;&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-prev"</span> <span class="na">href=</span><span class="s">"#carouselExampleFade"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"prev"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-prev-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"carousel-control-next"</span> <span class="na">href=</span><span class="s">"#carouselExampleFade"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-slide=</span><span class="s">"next"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"carousel-control-next-icon"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#example">Example</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#slides-only">Slides only</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#with-controls">With controls</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#with-indicators">With indicators</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#with-captions">With captions</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#crossfade">Crossfade</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

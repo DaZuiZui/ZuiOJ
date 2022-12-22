@@ -1,0 +1,47 @@
+//
+// Jumbotron
+//
+
+.jumbotron {
+    position: relative;
+
+    &:not([class*="rounded-"]) {
+        @include border-radius($jumbotron-border-radius);
+
+        > img {
+            @include border-radius($jumbotron-border-radius);
+        }
+    }
+
+    &.rounded-right {
+        @include border-radius(0 $jumbotron-border-radius $jumbotron-border-radius 0 !important);
+    }
+
+    &.rounded-left {
+        @include border-radius($jumbotron-border-radius 0 0 $jumbotron-border-radius !important);
+    }
+
+    &.rounded-top-right {
+        @include border-radius(0 $jumbotron-border-radius 0 0 !important);
+    }
+
+    &.rounded-top-left {
+        @include border-radius($jumbotron-border-radius 0 0 0 !important);
+    }
+
+    &.rounded-bottom-right {
+        @include border-radius(0 0 $jumbotron-border-radius 0 !important);
+    }
+
+    &.rounded-bottom-left {
+        @include border-radius(0 0 0 $jumbotron-border-radius !important);
+    }
+
+    &.rounded-diagonal-left {
+        @include border-radius($jumbotron-border-radius 0 $jumbotron-border-radius 0 !important);
+    }
+
+    &.rounded-diagonal-right {
+        @include border-radius(0 $jumbotron-border-radius 0 $jumbotron-border-radius !important);
+    }
+}

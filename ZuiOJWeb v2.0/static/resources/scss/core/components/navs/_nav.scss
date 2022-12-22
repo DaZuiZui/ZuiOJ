@@ -1,0 +1,70 @@
+//
+// Nav
+//
+
+.nav-link {
+    color: $nav-link-color;
+    font-size: $nav-link-font-size;
+
+    &:hover {
+        color: $nav-link-active-color;
+    }
+
+    &.active {
+        color: $nav-link-active-color;
+        font-weight: $nav-link-active-font-weight;
+    }
+}
+
+
+@include media-breakpoint-up(lg) {
+    .nav-link-badge {
+        position: relative;
+
+        .badge {
+            position: relative;
+            top: -15px;
+            left: -5px;
+        }
+
+        .nav-link-text {
+            position: relative;
+            &:before {
+                position: absolute;
+                top: 0;
+                left: -7px;
+                display: block;
+                width: 20px;
+                height: 20px;
+                margin: auto;
+                content: '';
+                transform: translate(-50%, -50%) rotate(100deg);
+                border-left: 1px dashed #fff;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+// Overflow nav
+
+.nav {
+    &.overflow-x {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 1px;
+
+        .nav-item {
+            width: auto;
+            max-width: 100%;
+            flex: 0 0 auto;
+        }
+    }
+}
+
+// Nav used inside containers
+
+.nav-header {
+    border-bottom-width: 0;
+}

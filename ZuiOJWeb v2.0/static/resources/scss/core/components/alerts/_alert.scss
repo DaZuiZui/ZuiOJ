@@ -1,0 +1,110 @@
+//
+// Alert
+// bootstrap overrides
+//
+
+
+.alert {
+    font-size: $alert-font-size;
+
+    strong {
+        font-weight: $font-weight-bold;
+    }
+
+    hr {
+        margin: $alert-padding-y 0;
+    }
+
+    p {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.alert-heading {
+    font-weight: $font-weight-bold;
+    font-size: $h4-font-size;
+    margin-top: .15rem;
+}
+
+
+// Flush alert
+
+.alert-flush {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+// Modern alert
+
+.alert-modern {
+    display: inline-block;
+    padding: .275rem 1rem .375rem .375rem;
+    @include border-radius($rounded-pill);
+    @include caret(right);
+
+    .badge + .alert-content {
+        margin-left: .5rem;
+    }
+
+    @include media-breakpoint-down(xs) {
+        text-align: center;
+
+        &:after {
+            content: ""
+        }
+
+        .alert-content {
+            display: block;
+            margin-top: .5rem;
+        }
+    }
+}
+
+// Dark alert
+
+.alert-dark {
+    background-color: $alert-dark-bg;
+    color: $alert-dark-color;
+    border: 0;
+
+    .alert-link {
+        color: $alert-dark-color;
+    }
+
+    .close {
+        &>span:not(.sr-only) {
+            color: lighten($alert-dark-color, 15%);
+        }
+
+        &:hover,
+        &:focus {
+            &>span:not(.sr-only) {
+                color: $alert-dark-color;
+            }
+        }
+    }
+
+    hr {
+        border-color: rgba(invert($alert-dark-bg), .1);
+    }
+}
+
+
+// Outline alerts
+
+[class*="alert-outline-"] {
+    border-right: 1px solid;
+
+    .alert-group-prepend {
+        padding-right: $alert-padding-x;
+    }
+}
+
+@each $color, $value in $theme-colors {
+    .alert-outline-#{$color} {
+        @include alert-outline-variant(theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+    }
+}

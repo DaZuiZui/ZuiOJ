@@ -1,0 +1,88 @@
+//
+// General
+//
+
+
+.btn {
+    position: relative;
+    @include transition($transition-base);
+
+    + .btn {
+        margin-left: .5rem;
+    }
+}
+
+.btn-group {
+    > .btn {
+        margin: 0;
+    }
+}
+
+// Fixes
+
+.btn-neutral {
+    background-color: transparent;
+    color: color-yiq(theme-color("neutral"));
+    border: 2px solid $border-color;
+
+    &:hover {
+        border-color: lighten(theme-color("primary"), 15%);
+        background-color: transparent;
+    }
+
+    &:not(:disabled):not(.disabled):focus,
+    &:not(:disabled):not(.disabled):active {
+        border-color: lighten(theme-color("primary"), 15%);
+        color: theme-color("primary");
+        background-color: transparent;
+    }
+
+    &:not(:disabled):not(.disabled).active {
+        border-color: theme-color("primary");
+        color: theme-color("primary");
+        background-color: theme-color("neutral");
+    }
+}
+
+// Sizes
+
+.btn-xs {
+    @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $btn-line-height-xs, $btn-border-radius-xs);
+}
+
+.btn-xl {
+    @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $font-size-xl, $btn-line-height-xl, $btn-border-radius-xl);
+}
+
+
+// Transparent buttons (remove horizontal paddings)
+
+.btn-nobg {
+    padding: 0;
+    background: transparent !important;
+
+    &:hover {
+        background: transparent !important;
+        border-color: transparent !important;
+    }
+}
+
+.btn-nobg--hover:hover {
+    background-color: transparent;
+}
+
+// Soft color variation
+
+@each $color, $value in $theme-colors {
+    .btn-soft-#{$color} {
+        @include button-soft-variant(theme-color-level($color, $btn-soft-bg-level), $value);
+    }
+}
+
+// Brand buttons
+
+@each $color, $value in $brand-colors {
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+    }
+}

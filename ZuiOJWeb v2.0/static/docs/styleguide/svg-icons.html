@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>SVG Icons</h1>
+                    <p class="lead mb-0">Make use of this exclusive pack of premium SVG icons included in the theme’s pack</p>
+                </div>
+                <!-- Docs content -->
+                <h2 id="svg">SVG</h2>
+                <p>Quick comes with a beautiful set of premium SVG icons.</p>
+                <h3 id="usage">Usage</h3>
+                <p>There are a few ways in which you can use these icons:</p>
+                <ul>
+                    <li>as static images</li>
+                    <li>injecting them directly into the DOM via the <code class="highlighter-rouge">&lt;img&gt;</code> tag using the &lt;a href=”../plugins/svg-injector.html”SVG Injector&lt;/a&gt; plugin</li>
+                </ul>
+                <h3 id="location">Location</h3>
+                <p>All the icon files are located in <code class="highlighter-rouge">assets/img/svg/icons/</code> folder.</p>
+                <h2 id="examples">Examples</h2>
+                <p>Click on the icon to copy and paste it in your project:</p>
+                <div class="row type-example">
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Add_to_cart_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Add_to_cart_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Add_to_cart_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Add_to_cart.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Add_to_cart.svg" style="height: 40px;" />
+                            </div>
+                            <span>Add_to_cart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="AI_Speaker.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/AI_Speaker.svg" style="height: 40px;" />
+                            </div>
+                            <span>AI_Speaker</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Airbuds.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Airbuds.svg" style="height: 40px;" />
+                            </div>
+                            <span>Airbuds</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Apple_Watch.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Apple_Watch.svg" style="height: 40px;" />
+                            </div>
+                            <span>Apple_Watch</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Apple.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Apple.svg" style="height: 40px;" />
+                            </div>
+                            <span>Apple</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Appreciation.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Appreciation.svg" style="height: 40px;" />
+                            </div>
+                            <span>Appreciation</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Apps.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Apps.svg" style="height: 40px;" />
+                            </div>
+                            <span>Apps</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="ATM_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/ATM_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>ATM_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="ATM.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/ATM.svg" style="height: 40px;" />
+                            </div>
+                            <span>ATM</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Audio.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Audio.svg" style="height: 40px;" />
+                            </div>
+                            <span>Audio</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Ball.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Ball.svg" style="height: 40px;" />
+                            </div>
+                            <span>Ball</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Ballance.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Ballance.svg" style="height: 40px;" />
+                            </div>
+                            <span>Ballance</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Bank.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Bank.svg" style="height: 40px;" />
+                            </div>
+                            <span>Bank</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Bannana.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Bannana.svg" style="height: 40px;" />
+                            </div>
+                            <span>Bannana</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Basketball.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Basketball.svg" style="height: 40px;" />
+                            </div>
+                            <span>Basketball</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Battery.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Battery.svg" style="height: 40px;" />
+                            </div>
+                            <span>Battery</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Benchpress.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Benchpress.svg" style="height: 40px;" />
+                            </div>
+                            <span>Benchpress</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Bike.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Bike.svg" style="height: 40px;" />
+                            </div>
+                            <span>Bike</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Blender.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Blender.svg" style="height: 40px;" />
+                            </div>
+                            <span>Blender</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Bluetooth.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Bluetooth.svg" style="height: 40px;" />
+                            </div>
+                            <span>Bluetooth</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Book.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Book.svg" style="height: 40px;" />
+                            </div>
+                            <span>Book</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Bottle_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Bottle_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Bottle_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Bottle.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Bottle.svg" style="height: 40px;" />
+                            </div>
+                            <span>Bottle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Briefcase.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Briefcase.svg" style="height: 40px;" />
+                            </div>
+                            <span>Briefcase</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Buy.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Buy.svg" style="height: 40px;" />
+                            </div>
+                            <span>Buy</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Calculator_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Calculator_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Calculator_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Calculator.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Calculator.svg" style="height: 40px;" />
+                            </div>
+                            <span>Calculator</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Calendar_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Calendar_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Calendar_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Calendar_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Calendar_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Calendar_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Calendar.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Calendar.svg" style="height: 40px;" />
+                            </div>
+                            <span>Calendar</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Call_Canceled.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Call_Canceled.svg" style="height: 40px;" />
+                            </div>
+                            <span>Call_Canceled</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Call_In.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Call_In.svg" style="height: 40px;" />
+                            </div>
+                            <span>Call_In</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Call_Out.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Call_Out.svg" style="height: 40px;" />
+                            </div>
+                            <span>Call_Out</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Camera.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Camera.svg" style="height: 40px;" />
+                            </div>
+                            <span>Camera</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cart_Add_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cart_Add_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cart_Add_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cart_Add.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cart_Add.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cart_Add</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cart_Added.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cart_Added.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cart_Added</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cart_Delete.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cart_Delete.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cart_Delete</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cart_Pay.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cart_Pay.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cart_Pay</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cash_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cash_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cash_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cash_Withdraw.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cash_Withdraw.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cash_Withdraw</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cash.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cash.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cash</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="CD.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/CD.svg" style="height: 40px;" />
+                            </div>
+                            <span>CD</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Certificate.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Certificate.svg" style="height: 40px;" />
+                            </div>
+                            <span>Certificate</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Charger.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Charger.svg" style="height: 40px;" />
+                            </div>
+                            <span>Charger</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Charts_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Charts_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Charts_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Charts.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Charts.svg" style="height: 40px;" />
+                            </div>
+                            <span>Charts</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Chat.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Chat.svg" style="height: 40px;" />
+                            </div>
+                            <span>Chat</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Checkout.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Checkout.svg" style="height: 40px;" />
+                            </div>
+                            <span>Checkout</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Click.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Click.svg" style="height: 40px;" />
+                            </div>
+                            <span>Click</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Closed.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Closed.svg" style="height: 40px;" />
+                            </div>
+                            <span>Closed</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cloud_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cloud_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cloud_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cloud.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cloud.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cloud</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Code_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Code_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Code_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Code.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Code.svg" style="height: 40px;" />
+                            </div>
+                            <span>Code</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Coffee.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Coffee.svg" style="height: 40px;" />
+                            </div>
+                            <span>Coffee</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cog_Wheel.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cog_Wheel.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cog_Wheel</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cog_Wheels.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cog_Wheels.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cog_Wheels</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Coins_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Coins_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Coins_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Coins.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Coins.svg" style="height: 40px;" />
+                            </div>
+                            <span>Coins</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Color_Picker.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Color_Picker.svg" style="height: 40px;" />
+                            </div>
+                            <span>Color_Picker</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Compose_email.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Compose_email.svg" style="height: 40px;" />
+                            </div>
+                            <span>Compose_email</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Conference.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Conference.svg" style="height: 40px;" />
+                            </div>
+                            <span>Conference</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Contact.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Contact.svg" style="height: 40px;" />
+                            </div>
+                            <span>Contact</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Contacts.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Contacts.svg" style="height: 40px;" />
+                            </div>
+                            <span>Contacts</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Coupon_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Coupon_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Coupon_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Coupon_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Coupon_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Coupon_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Coupon.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Coupon.svg" style="height: 40px;" />
+                            </div>
+                            <span>Coupon</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Credit_Card.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Credit_Card.svg" style="height: 40px;" />
+                            </div>
+                            <span>Credit_Card</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Credit_Cards.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Credit_Cards.svg" style="height: 40px;" />
+                            </div>
+                            <span>Credit_Cards</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Crypto_wallet.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Crypto_wallet.svg" style="height: 40px;" />
+                            </div>
+                            <span>Crypto_wallet</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Crypto.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Crypto.svg" style="height: 40px;" />
+                            </div>
+                            <span>Crypto</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Cup.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Cup.svg" style="height: 40px;" />
+                            </div>
+                            <span>Cup</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Currecny_down.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Currecny_down.svg" style="height: 40px;" />
+                            </div>
+                            <span>Currecny_down</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Currecny_up.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Currecny_up.svg" style="height: 40px;" />
+                            </div>
+                            <span>Currecny_up</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Currecny.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Currecny.svg" style="height: 40px;" />
+                            </div>
+                            <span>Currecny</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Database.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Database.svg" style="height: 40px;" />
+                            </div>
+                            <span>Database</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Deliver_by_Air.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Deliver_by_Air.svg" style="height: 40px;" />
+                            </div>
+                            <span>Deliver_by_Air</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Delivery_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Delivery_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Delivery_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Delivery_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Delivery_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Delivery_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Delivery_4.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Delivery_4.svg" style="height: 40px;" />
+                            </div>
+                            <span>Delivery_4</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Delivery.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Delivery.svg" style="height: 40px;" />
+                            </div>
+                            <span>Delivery</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Depreciation.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Depreciation.svg" style="height: 40px;" />
+                            </div>
+                            <span>Depreciation</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Desk.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Desk.svg" style="height: 40px;" />
+                            </div>
+                            <span>Desk</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Desktop_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Desktop_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Desktop_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Desktop_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Desktop_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Desktop_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Desktop.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Desktop.svg" style="height: 40px;" />
+                            </div>
+                            <span>Desktop</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Discount.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Discount.svg" style="height: 40px;" />
+                            </div>
+                            <span>Discount</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="DOC_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/DOC_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>DOC_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Dollar_bills.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Dollar_bills.svg" style="height: 40px;" />
+                            </div>
+                            <span>Dollar_bills</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Donation.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Donation.svg" style="height: 40px;" />
+                            </div>
+                            <span>Donation</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Download_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Download_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Download_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Download.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Download.svg" style="height: 40px;" />
+                            </div>
+                            <span>Download</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Drawer.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Drawer.svg" style="height: 40px;" />
+                            </div>
+                            <span>Drawer</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Dress.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Dress.svg" style="height: 40px;" />
+                            </div>
+                            <span>Dress</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Drone_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Drone_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Drone_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Drone.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Drone.svg" style="height: 40px;" />
+                            </div>
+                            <span>Drone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Dumbnell.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Dumbnell.svg" style="height: 40px;" />
+                            </div>
+                            <span>Dumbnell</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Earth_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Earth_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Earth_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Earth.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Earth.svg" style="height: 40px;" />
+                            </div>
+                            <span>Earth</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Edit_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Edit_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>Edit_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Email_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Email_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Email_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Email.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Email.svg" style="height: 40px;" />
+                            </div>
+                            <span>Email</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Energy_Bar.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Energy_Bar.svg" style="height: 40px;" />
+                            </div>
+                            <span>Energy_Bar</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Enterprise_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Enterprise_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Enterprise_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Enterprise.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Enterprise.svg" style="height: 40px;" />
+                            </div>
+                            <span>Enterprise</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Exchange.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Exchange.svg" style="height: 40px;" />
+                            </div>
+                            <span>Exchange</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="File_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/File_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>File_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="File_Dock.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/File_Dock.svg" style="height: 40px;" />
+                            </div>
+                            <span>File_Dock</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/File.svg" style="height: 40px;" />
+                            </div>
+                            <span>File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Filter.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Filter.svg" style="height: 40px;" />
+                            </div>
+                            <span>Filter</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Fire.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Fire.svg" style="height: 40px;" />
+                            </div>
+                            <span>Fire</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Fit_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Fit_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Fit_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Fit_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Fit_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Fit_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Fit_4.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Fit_4.svg" style="height: 40px;" />
+                            </div>
+                            <span>Fit_4</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Fit_5.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Fit_5.svg" style="height: 40px;" />
+                            </div>
+                            <span>Fit_5</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Fit.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Fit.svg" style="height: 40px;" />
+                            </div>
+                            <span>Fit</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Folder_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Folder_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Folder_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Folder.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Folder.svg" style="height: 40px;" />
+                            </div>
+                            <span>Folder</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Folders.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Folders.svg" style="height: 40px;" />
+                            </div>
+                            <span>Folders</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Game_Controller.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Game_Controller.svg" style="height: 40px;" />
+                            </div>
+                            <span>Game_Controller</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Gift_Card.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Gift_Card.svg" style="height: 40px;" />
+                            </div>
+                            <span>Gift_Card</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Gift.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Gift.svg" style="height: 40px;" />
+                            </div>
+                            <span>Gift</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Glove.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Glove.svg" style="height: 40px;" />
+                            </div>
+                            <span>Glove</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Gold.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Gold.svg" style="height: 40px;" />
+                            </div>
+                            <span>Gold</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Group_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Group_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Group_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Group.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Group.svg" style="height: 40px;" />
+                            </div>
+                            <span>Group</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Gym.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Gym.svg" style="height: 40px;" />
+                            </div>
+                            <span>Gym</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Headphones.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Headphones.svg" style="height: 40px;" />
+                            </div>
+                            <span>Headphones</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Heart.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Heart.svg" style="height: 40px;" />
+                            </div>
+                            <span>Heart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Help_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Help_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Help_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Help.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Help.svg" style="height: 40px;" />
+                            </div>
+                            <span>Help</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="ID_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/ID_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>ID_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="ID.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/ID.svg" style="height: 40px;" />
+                            </div>
+                            <span>ID</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Ideea.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Ideea.svg" style="height: 40px;" />
+                            </div>
+                            <span>Ideea</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Image_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Image_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>Image_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Inbox.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Inbox.svg" style="height: 40px;" />
+                            </div>
+                            <span>Inbox</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Influence.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Influence.svg" style="height: 40px;" />
+                            </div>
+                            <span>Influence</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Insert_coin.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Insert_coin.svg" style="height: 40px;" />
+                            </div>
+                            <span>Insert_coin</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Insurance.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Insurance.svg" style="height: 40px;" />
+                            </div>
+                            <span>Insurance</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Investment.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Investment.svg" style="height: 40px;" />
+                            </div>
+                            <span>Investment</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Journal.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Journal.svg" style="height: 40px;" />
+                            </div>
+                            <span>Journal</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Jumping_Rope.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Jumping_Rope.svg" style="height: 40px;" />
+                            </div>
+                            <span>Jumping_Rope</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Junk_Food.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Junk_Food.svg" style="height: 40px;" />
+                            </div>
+                            <span>Junk_Food</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Justice.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Justice.svg" style="height: 40px;" />
+                            </div>
+                            <span>Justice</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Kettlebell.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Kettlebell.svg" style="height: 40px;" />
+                            </div>
+                            <span>Kettlebell</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Key.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Key.svg" style="height: 40px;" />
+                            </div>
+                            <span>Key</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Keys.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Keys.svg" style="height: 40px;" />
+                            </div>
+                            <span>Keys</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Laptop_Store.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Laptop_Store.svg" style="height: 40px;" />
+                            </div>
+                            <span>Laptop_Store</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Laptop.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Laptop.svg" style="height: 40px;" />
+                            </div>
+                            <span>Laptop</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Like_1_.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Like_1_.svg" style="height: 40px;" />
+                            </div>
+                            <span>Like_1_</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Like_UI.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Like_UI.svg" style="height: 40px;" />
+                            </div>
+                            <span>Like_UI</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Like.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Like.svg" style="height: 40px;" />
+                            </div>
+                            <span>Like</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Link_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Link_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>Link_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Link.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Link.svg" style="height: 40px;" />
+                            </div>
+                            <span>Link</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Lock.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Lock.svg" style="height: 40px;" />
+                            </div>
+                            <span>Lock</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Log_Out.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Log_Out.svg" style="height: 40px;" />
+                            </div>
+                            <span>Log_Out</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Map_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Map_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Map_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Map.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Map.svg" style="height: 40px;" />
+                            </div>
+                            <span>Map</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Marketing.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Marketing.svg" style="height: 40px;" />
+                            </div>
+                            <span>Marketing</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Meat.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Meat.svg" style="height: 40px;" />
+                            </div>
+                            <span>Meat</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Medal 2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Medal 2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Medal 2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Medal.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Medal.svg" style="height: 40px;" />
+                            </div>
+                            <span>Medal</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Microphone.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Microphone.svg" style="height: 40px;" />
+                            </div>
+                            <span>Microphone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Milk.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Milk.svg" style="height: 40px;" />
+                            </div>
+                            <span>Milk</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mobile_phone_in_hand.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mobile_phone_in_hand.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mobile_phone_in_hand</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mobile_Phone.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mobile_Phone.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mobile_Phone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mobile_Phones.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mobile_Phones.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mobile_Phones</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mobile_Store.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mobile_Store.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mobile_Store</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mobile_UI.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mobile_UI.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mobile_UI</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Money_Bag.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Money_Bag.svg" style="height: 40px;" />
+                            </div>
+                            <span>Money_Bag</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Monney_bag_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Monney_bag_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Monney_bag_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mouse_cursor.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mouse_cursor.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mouse_cursor</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Mouse.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Mouse.svg" style="height: 40px;" />
+                            </div>
+                            <span>Mouse</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Navigation.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Navigation.svg" style="height: 40px;" />
+                            </div>
+                            <span>Navigation</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="News.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/News.svg" style="height: 40px;" />
+                            </div>
+                            <span>News</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Nfc.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Nfc.svg" style="height: 40px;" />
+                            </div>
+                            <span>Nfc</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Notification_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Notification_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Notification_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Notification.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Notification.svg" style="height: 40px;" />
+                            </div>
+                            <span>Notification</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Old_School_Phone.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Old_School_Phone.svg" style="height: 40px;" />
+                            </div>
+                            <span>Old_School_Phone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Online_Store_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Online_Store_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Online_Store_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Online_Store.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Online_Store.svg" style="height: 40px;" />
+                            </div>
+                            <span>Online_Store</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Open_24-7_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Open_24-7_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Open_24-7_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Open_24-7.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Open_24-7.svg" style="height: 40px;" />
+                            </div>
+                            <span>Open_24-7</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Open_gift.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Open_gift.svg" style="height: 40px;" />
+                            </div>
+                            <span>Open_gift</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Open_safe.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Open_safe.svg" style="height: 40px;" />
+                            </div>
+                            <span>Open_safe</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Open.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Open.svg" style="height: 40px;" />
+                            </div>
+                            <span>Open</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package_Opened.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package_Opened.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package_Opened</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package_received.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package_received.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package_received</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package_sent_1_.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package_sent_1_.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package_sent_1_</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package_sent.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package_sent.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package_sent</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Package.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Package.svg" style="height: 40px;" />
+                            </div>
+                            <span>Package</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Pants.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Pants.svg" style="height: 40px;" />
+                            </div>
+                            <span>Pants</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Paper_Clip.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Paper_Clip.svg" style="height: 40px;" />
+                            </div>
+                            <span>Paper_Clip</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Partnership.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Partnership.svg" style="height: 40px;" />
+                            </div>
+                            <span>Partnership</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Pay_with_card_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Pay_with_card_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Pay_with_card_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Pay_with_card.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Pay_with_card.svg" style="height: 40px;" />
+                            </div>
+                            <span>Pay_with_card</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Pay_with_cash.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Pay_with_cash.svg" style="height: 40px;" />
+                            </div>
+                            <span>Pay_with_cash</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="PDF_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/PDF_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>PDF_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Pen_tool.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Pen_tool.svg" style="height: 40px;" />
+                            </div>
+                            <span>Pen_tool</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Phone_1_.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Phone_1_.svg" style="height: 40px;" />
+                            </div>
+                            <span>Phone_1_</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Phone.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Phone.svg" style="height: 40px;" />
+                            </div>
+                            <span>Phone</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Piggybank.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Piggybank.svg" style="height: 40px;" />
+                            </div>
+                            <span>Piggybank</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Pinch.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Pinch.svg" style="height: 40px;" />
+                            </div>
+                            <span>Pinch</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Podium.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Podium.svg" style="height: 40px;" />
+                            </div>
+                            <span>Podium</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="POS_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/POS_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>POS_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="POS_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/POS_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>POS_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="POS.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/POS.svg" style="height: 40px;" />
+                            </div>
+                            <span>POS</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Presentation_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Presentation_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Presentation_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Presentation.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Presentation.svg" style="height: 40px;" />
+                            </div>
+                            <span>Presentation</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Printer.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Printer.svg" style="height: 40px;" />
+                            </div>
+                            <span>Printer</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Procesor.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Procesor.svg" style="height: 40px;" />
+                            </div>
+                            <span>Procesor</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Products_in_basket.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Products_in_basket.svg" style="height: 40px;" />
+                            </div>
+                            <span>Products_in_basket</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Profile.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Profile.svg" style="height: 40px;" />
+                            </div>
+                            <span>Profile</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Protein.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Protein.svg" style="height: 40px;" />
+                            </div>
+                            <span>Protein</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Punching_Bag.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Punching_Bag.svg" style="height: 40px;" />
+                            </div>
+                            <span>Punching_Bag</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="QR_Code.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/QR_Code.svg" style="height: 40px;" />
+                            </div>
+                            <span>QR_Code</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Receiving_money_1_.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Receiving_money_1_.svg" style="height: 40px;" />
+                            </div>
+                            <span>Receiving_money_1_</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Receiving_money_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Receiving_money_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Receiving_money_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Receiving_money_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Receiving_money_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Receiving_money_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Recipt_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Recipt_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Recipt_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Recipt_3.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Recipt_3.svg" style="height: 40px;" />
+                            </div>
+                            <span>Recipt_3</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Recipt.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Recipt.svg" style="height: 40px;" />
+                            </div>
+                            <span>Recipt</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Responsive.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Responsive.svg" style="height: 40px;" />
+                            </div>
+                            <span>Responsive</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Return_policy.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Return_policy.svg" style="height: 40px;" />
+                            </div>
+                            <span>Return_policy</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Rings.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Rings.svg" style="height: 40px;" />
+                            </div>
+                            <span>Rings</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Router.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Router.svg" style="height: 40px;" />
+                            </div>
+                            <span>Router</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Running.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Running.svg" style="height: 40px;" />
+                            </div>
+                            <span>Running</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Safe_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Safe_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Safe_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Safe.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Safe.svg" style="height: 40px;" />
+                            </div>
+                            <span>Safe</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Sale.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Sale.svg" style="height: 40px;" />
+                            </div>
+                            <span>Sale</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Save_to_cloud.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Save_to_cloud.svg" style="height: 40px;" />
+                            </div>
+                            <span>Save_to_cloud</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Save.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Save.svg" style="height: 40px;" />
+                            </div>
+                            <span>Save</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Scale.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Scale.svg" style="height: 40px;" />
+                            </div>
+                            <span>Scale</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Scales.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Scales.svg" style="height: 40px;" />
+                            </div>
+                            <span>Scales</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="SD_Card.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/SD_Card.svg" style="height: 40px;" />
+                            </div>
+                            <span>SD_Card</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="search_currency.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/search_currency.svg" style="height: 40px;" />
+                            </div>
+                            <span>search_currency</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Search_User.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Search_User.svg" style="height: 40px;" />
+                            </div>
+                            <span>Search_User</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Secure_Files.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Secure_Files.svg" style="height: 40px;" />
+                            </div>
+                            <span>Secure_Files</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Secure_Payments.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Secure_Payments.svg" style="height: 40px;" />
+                            </div>
+                            <span>Secure_Payments</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Sent_Email.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Sent_Email.svg" style="height: 40px;" />
+                            </div>
+                            <span>Sent_Email</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Servers_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Servers_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Servers_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Servers.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Servers.svg" style="height: 40px;" />
+                            </div>
+                            <span>Servers</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Settings_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Settings_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>Settings_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Settings.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Settings.svg" style="height: 40px;" />
+                            </div>
+                            <span>Settings</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shaker.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shaker.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shaker</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Share.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Share.svg" style="height: 40px;" />
+                            </div>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shield_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shield_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shield_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shield.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shield.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shield</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shoe_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shoe_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shoe_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shoe.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shoe.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shoe</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shopping_Bag.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shopping_Bag.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shopping_Bag</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shopping_Basket.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shopping_Basket.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shopping_Basket</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shopping_Cart.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shopping_Cart.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shopping_Cart</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Shower.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Shower.svg" style="height: 40px;" />
+                            </div>
+                            <span>Shower</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Sleep.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Sleep.svg" style="height: 40px;" />
+                            </div>
+                            <span>Sleep</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Smartwatch.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Smartwatch.svg" style="height: 40px;" />
+                            </div>
+                            <span>Smartwatch</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Speaker.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Speaker.svg" style="height: 40px;" />
+                            </div>
+                            <span>Speaker</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Spinning_bike.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Spinning_bike.svg" style="height: 40px;" />
+                            </div>
+                            <span>Spinning_bike</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Stamp.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Stamp.svg" style="height: 40px;" />
+                            </div>
+                            <span>Stamp</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Stocks.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Stocks.svg" style="height: 40px;" />
+                            </div>
+                            <span>Stocks</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Stopwatch.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Stopwatch.svg" style="height: 40px;" />
+                            </div>
+                            <span>Stopwatch</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Store.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Store.svg" style="height: 40px;" />
+                            </div>
+                            <span>Store</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Strength_2.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Strength_2.svg" style="height: 40px;" />
+                            </div>
+                            <span>Strength_2</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Strength.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Strength.svg" style="height: 40px;" />
+                            </div>
+                            <span>Strength</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Support_Female.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Support_Female.svg" style="height: 40px;" />
+                            </div>
+                            <span>Support_Female</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Support_Male.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Support_Male.svg" style="height: 40px;" />
+                            </div>
+                            <span>Support_Male</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Support.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Support.svg" style="height: 40px;" />
+                            </div>
+                            <span>Support</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Swimming.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Swimming.svg" style="height: 40px;" />
+                            </div>
+                            <span>Swimming</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Swipe.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Swipe.svg" style="height: 40px;" />
+                            </div>
+                            <span>Swipe</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Sync.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Sync.svg" style="height: 40px;" />
+                            </div>
+                            <span>Sync</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="T-shirt.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/T-shirt.svg" style="height: 40px;" />
+                            </div>
+                            <span>T-shirt</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Tablet_Interaction.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Tablet_Interaction.svg" style="height: 40px;" />
+                            </div>
+                            <span>Tablet_Interaction</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Tablet.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Tablet.svg" style="height: 40px;" />
+                            </div>
+                            <span>Tablet</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Tap.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Tap.svg" style="height: 40px;" />
+                            </div>
+                            <span>Tap</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Target.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Target.svg" style="height: 40px;" />
+                            </div>
+                            <span>Target</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Task.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Task.svg" style="height: 40px;" />
+                            </div>
+                            <span>Task</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Tea.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Tea.svg" style="height: 40px;" />
+                            </div>
+                            <span>Tea</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Text_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Text_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>Text_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="To_Do.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/To_Do.svg" style="height: 40px;" />
+                            </div>
+                            <span>To_Do</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Trash.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Trash.svg" style="height: 40px;" />
+                            </div>
+                            <span>Trash</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="treadmill.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/treadmill.svg" style="height: 40px;" />
+                            </div>
+                            <span>treadmill</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Type_pin.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Type_pin.svg" style="height: 40px;" />
+                            </div>
+                            <span>Type_pin</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Upload.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Upload.svg" style="height: 40px;" />
+                            </div>
+                            <span>Upload</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="USB_Stick.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/USB_Stick.svg" style="height: 40px;" />
+                            </div>
+                            <span>USB_Stick</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="USB.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/USB.svg" style="height: 40px;" />
+                            </div>
+                            <span>USB</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="User_female.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/User_female.svg" style="height: 40px;" />
+                            </div>
+                            <span>User_female</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="User_male.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/User_male.svg" style="height: 40px;" />
+                            </div>
+                            <span>User_male</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Vegan.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Vegan.svg" style="height: 40px;" />
+                            </div>
+                            <span>Vegan</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Videochat.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Videochat.svg" style="height: 40px;" />
+                            </div>
+                            <span>Videochat</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Vitamins.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Vitamins.svg" style="height: 40px;" />
+                            </div>
+                            <span>Vitamins</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="VR.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/VR.svg" style="height: 40px;" />
+                            </div>
+                            <span>VR</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Wallet.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Wallet.svg" style="height: 40px;" />
+                            </div>
+                            <span>Wallet</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Whistle.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Whistle.svg" style="height: 40px;" />
+                            </div>
+                            <span>Whistle</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Wi-fi.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Wi-fi.svg" style="height: 40px;" />
+                            </div>
+                            <span>Wi-fi</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="XLS_File.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/XLS_File.svg" style="height: 40px;" />
+                            </div>
+                            <span>XLS_File</span>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn-type-clipboard" data-clipboard-text="Yogamat.svg" title="" data-original-title="Copy to clipboard">
+                            <div>
+                                <img src="../../assets/img/svg/icons/Yogamat.svg" style="height: 40px;" />
+                            </div>
+                            <span>Yogamat</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#svg">SVG</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#usage">Usage</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#location">Location</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#examples">Examples</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

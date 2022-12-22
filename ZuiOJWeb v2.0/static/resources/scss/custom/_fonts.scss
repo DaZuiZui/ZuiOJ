@@ -1,0 +1,30 @@
+//
+// Fonts
+//
+
+
+// Import fonts from Google
+//
+// Using the $font variable you can import any font family from Google Fonts.
+// go to https://fonts.google.com copy and paste the URL of the selected font from the @import tab
+// (e.g: https://fonts.googleapis.com/css?family=Nunito) and peste it in the _variables.scss from the custom folder
+
+@import url(#{$font});
+
+// Create font from local font
+//
+// if you want to create a custom font family, first comment the @import from line 12.
+// copy and paste you font files in assets/fonts (you might need to create the folder)
+//
+// use this file to create the @font-face
+// open custom/_variables.scss uncomment and replace the $font-family-custom-sans-serif value with the CUSTOM_FONT face you created
+
+// Font face example
+
+// @font-face {
+//     font-family: "CUSTOM_FONT";
+//     src: url("CUSTOM_FONT.eot");
+//     src: url("CUSTOM_FONT.woff") format("woff"),
+//     url("CUSTOM_FONT.otf") format("opentype"),
+//     url("CUSTOM_FONT.svg#filename") format("svg");
+// }

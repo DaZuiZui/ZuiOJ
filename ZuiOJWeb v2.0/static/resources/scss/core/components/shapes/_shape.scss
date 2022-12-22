@@ -1,0 +1,56 @@
+// SVG shapes used as separators or illustrations
+
+.shape-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 2;
+    transform: translateZ(0);
+    overflow: hidden;
+
+    svg {
+        display: block;
+        fill: $body-bg;
+        pointer-events: none;
+        vertical-align: baseline;
+    }
+}
+
+.shape-position-top {
+    top: 0;
+    margin-top: -1px;
+}
+
+.shape-position-bottom {
+    bottom: 0;
+    margin-bottom: -1px;
+}
+
+.shape-orientation-inverse {
+    transform: rotate(180deg);
+}
+
+// Shapes
+
+.shape-line {
+    min-height: 19px;
+}
+
+// IE fixes
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .ie-shape-line {
+        height: 100px;
+    }
+
+    .ie-shape-wave-1 {
+        height: 504px;
+    }
+    .ie-shape-wave-3 {
+        height: 231px;
+    }
+    .ie-shape-clouds {
+        height: 400px;
+    }
+}

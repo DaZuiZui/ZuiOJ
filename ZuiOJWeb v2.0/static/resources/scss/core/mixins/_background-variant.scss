@@ -1,0 +1,58 @@
+@mixin bg-variant($parent, $color, $ignore-warning: false) {
+    #{$parent} {
+        background-color: $color !important;
+    }
+
+    a#{$parent},
+    button#{$parent} {
+        @include hover-focus() {
+            background-color: darken($color, 10%) !important;
+        }
+    }
+
+    // @include deprecate("The `bg-variant` mixin", "v4.4.0", "v5", $ignore-warning);
+}
+
+// Gradient background variations
+
+@mixin bg-gradient-variant($parent, $color) {
+    #{$parent} {
+        background: linear-gradient(50deg, $color 0, adjust-hue($color, 18%) 100%) !important;
+    }
+}
+
+// Translucent background variations
+
+@mixin bg-translucent-variant($parent, $color) {
+    #{$parent} {
+        background-color: darken(rgba($color, $translucent-color-opacity), 7%) !important;
+    }
+    a#{$parent},
+    button#{$parent} {
+        @include hover-focus {
+            background-color: darken(rgba($color, $translucent-color-opacity), 12%) !important;
+        }
+    }
+}
+
+@mixin bg-soft-variant($parent, $color) {
+    #{$parent} {
+        @include gradient-bg($color);
+    }
+}
+
+// SVG color classes
+
+@mixin fill-soft-variant($parent, $color) {
+    #{$parent} {
+        @include gradient-fill($color);
+    }
+}
+
+// Section background variations
+
+@mixin bg-section-variant($parent, $color) {
+    #{$parent} {
+        background-color: $color !important;
+    }
+}

@@ -1,0 +1,69 @@
+// Weight and italics
+
+.font-weight-300 { font-weight: 300 !important; }
+.font-weight-400 { font-weight: 400 !important; }
+.font-weight-500 { font-weight: 500 !important; }
+.font-weight-600 { font-weight: 600 !important; }
+.font-weight-700 { font-weight: 700 !important; }
+.font-weight-800 { font-weight: 800 !important; }
+.font-weight-900 { font-weight: 900 !important; }
+
+.font-weight-bolder { font-weight: $font-weight-bolder !important; }
+
+// Text decorations
+
+.text-underline {
+	text-decoration:  underline !important;
+
+	&--dashed {
+		border-bottom: 1px dashed !important;
+	}
+
+}
+
+.text-line-through { text-decoration: line-through !important; }
+
+// Contextual colors
+
+a.text-muted {
+	&:hover {
+		color: $text-muted-hover !important;
+	}
+}
+
+// Text size
+
+.text-xs { font-size: $font-size-xs !important; }
+.text-sm { font-size: $font-size-sm !important; }
+.text-lg { font-size: $font-size-lg !important; }
+.text-xl { font-size: $font-size-xl !important; }
+
+// Line heights
+
+.lh-100 { line-height: 1 !important; }
+.lh-110 { line-height: 1.1 !important; }
+.lh-120 { line-height: 1.2 !important; }
+.lh-130 { line-height: 1.3 !important; }
+.lh-140 { line-height: 1.4 !important; }
+.lh-150 { line-height: 1.5 !important; }
+.lh-160 { line-height: 1.6 !important; }
+.lh-170 { line-height: 1.7 !important; }
+.lh-180 { line-height: 1.8 !important; }
+.lh-190 { line-height: 1.9 !important; }
+.lh-200 { line-height: 2 !important; }
+
+
+// Letter spacings
+
+.ls-1 { letter-spacing: .0625rem !important; }
+.ls-15 { letter-spacing: .09375rem !important; }
+.ls-2 { letter-spacing: 0.125rem !important; }
+
+
+// Fluid title with elipsis ending
+
+.text-limit {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

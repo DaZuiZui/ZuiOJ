@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../assets/libs/swiper/dist/css/swiper.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Swiper</h1>
+                    <p class="lead mb-0">Most modern mobile touch slider with hardware accelerated transitions.</p>
+                    <div class="mt-4">
+                        <a href="http://idangero.us/swiper/api/" target="_blank">
+                            <i data-feather="external-link"></i> Official Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <h2 id="usage">Usage</h2>
+                <h3 id="css">CSS</h3>
+                <p>In order to use this plugin on your page you will need to include the following styles in the <strong>Page CSS</strong> area from the page’s head section:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"../../assets/libs/swiper/dist/css/swiper.min.css"</span><span class="nt">&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h3 id="js">JS</h3>
+                <p>In order to use this plugin on your page you will need to include the following script in the “Page JS” area from the page’s footer:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"../../assets/libs/swiper/dist/js/swiper.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h3 id="initialization">Initialization</h3>
+                <p>Now, we need to add basic Swiper layout to our app:</p>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="swiper-js-container">
+                            <div class="swiper-container" data-swiper-items="1" data-swiper-space-between="20" data-swiper-sm-items="2" data-swiper-sm-space-between="20" data-swiper-xl-items="3" data-swiper-xl-space-between="20">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-2-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-3-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-4-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-js-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-container"</span> <span class="na">data-swiper-items=</span><span class="s">"1"</span> <span class="na">data-swiper-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-sm-items=</span><span class="s">"2"</span> <span class="na">data-swiper-sm-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-xl-items=</span><span class="s">"3"</span> <span class="na">data-swiper-xl-space-between=</span><span class="s">"20"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-wrapper"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-3-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-4-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="options">Options</h3>
+                <p>Here is a list with the <code class="highlighter-rouge">data-swiper-*</code> attributes you can use in order to configure the swiper element without the need to modify any JavaScript file. Simply add the <code class="highlighter-rouge">data-swiper-PARAMETER_NAME</code> attribute on the <code class="highlighter-rouge">.swiper-container</code> div, where <code class="highlighter-rouge">PARAMETER_NAME</code> is one of the options listed in the table below (e.g <code class="highlighter-rouge">data-swiper-items="3"</code>).</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="highlighter-rouge">direction</code></td>
+                            <td><code class="highlighter-rouge">string</code></td>
+                            <td><code class="highlighter-rouge">horizontal</code></td>
+                            <td>Could be ‘horizontal’ or ‘vertical’ (for vertical slider).</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">items</code></td>
+                            <td><code class="highlighter-rouge">number</code> or <code class="highlighter-rouge">"auto"</code></td>
+                            <td><code class="highlighter-rouge">1</code></td>
+                            <td>Number of slides per view (slides visible at the same time on slider’s container).<br /><br />You can set different values for each existing breakpoint by adding: <code class="highlighter-rouge">sm</code>, <code class="highlighter-rouge">md</code>, <code class="highlighter-rouge">lg</code> and <code class="highlighter-rouge">xl</code> before the <code class="highlighter-rouge">items</code> parameter (e.g: <code class="highlighter-rouge">data-swiper-sm-items="2"</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">space-between</code></td>
+                            <td><code class="highlighter-rouge">number</code></td>
+                            <td><code class="highlighter-rouge">0</code></td>
+                            <td>Distance between slides in px.<br /><br />You can set different values for each existing breakpoint by adding: <code class="highlighter-rouge">sm</code>, <code class="highlighter-rouge">md</code>, <code class="highlighter-rouge">lg</code> and <code class="highlighter-rouge">xl</code> before the <code class="highlighter-rouge">items</code> parameter (e.g: <code class="highlighter-rouge">data-swiper-sm-space-between="20"</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">initial-slide</code></td>
+                            <td><code class="highlighter-rouge">number</code></td>
+                            <td><code class="highlighter-rouge">0</code></td>
+                            <td>Index number of initial slide.).</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">centered-slides</code></td>
+                            <td><code class="highlighter-rouge">boolean</code></td>
+                            <td><code class="highlighter-rouge">false</code></td>
+                            <td>If true, then active slide will be centered, not always on the left side.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">autoplay</code></td>
+                            <td><code class="highlighter-rouge">boolean</code></td>
+                            <td><code class="highlighter-rouge">false</code></td>
+                            <td>Object with autoplay parameters or boolean true to enable with default settings.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">autoheight</code></td>
+                            <td><code class="highlighter-rouge">boolean</code></td>
+                            <td><code class="highlighter-rouge">false</code></td>
+                            <td>Set to true and slider wrapper will adopt its height to the height of the currently active slide.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">effect</code></td>
+                            <td><code class="highlighter-rouge">string</code></td>
+                            <td><code class="highlighter-rouge">slide</code></td>
+                            <td>Tranisition effect. Could be “slide”, “fade”, “cube”, “coverflow” or “flip”.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">paginationtype</code></td>
+                            <td><code class="highlighter-rouge">string</code></td>
+                            <td><code class="highlighter-rouge">bullets</code></td>
+                            <td>String with type of pagination. Can be “bullets”, “fraction”, “progressbar” or “custom”.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 id="examples">Examples</h2>
+                <p>By default, Quick comes with a few pre-defined Swiper styles and can be easily configured through some <code class="highlighter-rouge">data-*</code> attributes that will allow you to customize the items per slide, effect type, spacing and more.</p>
+                <h3 id="pagination">Pagination</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#swiper-pagination" role="button" aria-expanded="false" aria-controls="swiper-pagination">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="swiper-js-container">
+                            <div class="swiper-container" data-swiper-items="1" data-swiper-sm-items="2" data-swiper-xl-items="3" data-swiper-space-between="20" data-swiper-sm-space-between="20" data-swiper-xl-space-between="20">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-2-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-3-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-4-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                </div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="swiper-pagination">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-js-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-container"</span> <span class="na">data-swiper-items=</span><span class="s">"1"</span> <span class="na">data-swiper-sm-items=</span><span class="s">"2"</span> <span class="na">data-swiper-xl-items=</span><span class="s">"3"</span> <span class="na">data-swiper-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-sm-space-between=</span><span class="s">"20"</span>  <span class="na">data-swiper-xl-space-between=</span><span class="s">"20"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-wrapper"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-3-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-4-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="c">&lt;!-- Add Pagination --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-pagination"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="progress-bar">Progress bar</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#swiper-progress" role="button" aria-expanded="false" aria-controls="swiper-progress">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="swiper-js-container">
+                            <div class="swiper-container" data-swiper-items="1" data-swiper-sm-items="2" data-swiper-xl-items="3" data-swiper-space-between="20" data-swiper-sm-space-between="20" data-swiper-xl-space-between="20" data-swiper-pagination-type="progressbar">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-2-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-3-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-4-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                </div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="swiper-progress">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-js-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-container"</span> <span class="na">data-swiper-items=</span><span class="s">"1"</span> <span class="na">data-swiper-sm-items=</span><span class="s">"2"</span> <span class="na">data-swiper-xl-items=</span><span class="s">"3"</span> <span class="na">data-swiper-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-sm-space-between=</span><span class="s">"20"</span>  <span class="na">data-swiper-xl-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-pagination-type=</span><span class="s">"progressbar"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-wrapper"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-3-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-4-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="c">&lt;!-- Add Pagination --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-pagination"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="c">&lt;!-- Add Arrows --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-button-next"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-button-prev"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="centered-slides">Centered slides</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#swiper-centered" role="button" aria-expanded="false" aria-controls="swiper-centered">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="swiper-js-container">
+                            <div class="swiper-container" data-swiper-items="1" data-swiper-sm-items="2" data-swiper-xl-items="3" data-swiper-space-between="20" data-swiper-sm-space-between="20" data-swiper-xl-space-between="20" data-swiper-centered-slides="true">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-2-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-3-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-4-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                </div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="swiper-centered">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-js-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-container"</span> <span class="na">data-swiper-items=</span><span class="s">"1"</span> <span class="na">data-swiper-sm-items=</span><span class="s">"2"</span> <span class="na">data-swiper-xl-items=</span><span class="s">"3"</span> <span class="na">data-swiper-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-sm-space-between=</span><span class="s">"20"</span>  <span class="na">data-swiper-xl-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-centered-slides=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-wrapper"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-3-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-4-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="c">&lt;!-- Add Pagination --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-pagination"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="fade">Fade</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#swiper-fade" role="button" aria-expanded="false" aria-controls="swiper-fade">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="swiper-js-container">
+                            <div class="swiper-container" data-swiper-effect="fade">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-2-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-3-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-4-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                </div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="swiper-fade">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-js-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-container"</span> <span class="na">data-swiper-effect=</span><span class="s">"fade"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-wrapper"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-3-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-4-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="c">&lt;!-- Add Pagination --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-pagination"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+                <h3 id="coverflow">Coverflow</h3>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#swiper-coverflow" role="button" aria-expanded="false" aria-controls="swiper-coverflow">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="swiper-js-container">
+                            <div class="swiper-container" data-swiper-items="1" data-swiper-sm-items="2" data-swiper-xl-items="3" data-swiper-space-between="20" data-swiper-sm-space-between="20" data-swiper-xl-space-between="20" data-swiper-initial-slide="2" data-swiper-effect="coverflow">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-2-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-3-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="Image placeholder" src="../../assets/img/theme/light/img-4-1000x1000.jpg" class="img-fluid rounded" />
+                                    </div>
+                                </div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="swiper-coverflow">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-js-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-container"</span> <span class="na">data-swiper-items=</span><span class="s">"1"</span> <span class="na">data-swiper-sm-items=</span><span class="s">"2"</span> <span class="na">data-swiper-xl-items=</span><span class="s">"3"</span> <span class="na">data-swiper-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-sm-space-between=</span><span class="s">"20"</span>  <span class="na">data-swiper-xl-space-between=</span><span class="s">"20"</span> <span class="na">data-swiper-initial-slide=</span><span class="s">"2"</span> <span class="na">data-swiper-effect=</span><span class="s">"coverflow"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-wrapper"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-1-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-2-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-3-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-slide"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/img-4-1000x1000.jpg"</span> <span class="na">class=</span><span class="s">"img-fluid rounded"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="c">&lt;!-- Add Pagination --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"swiper-pagination"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#usage">Usage</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#css">CSS</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#js">JS</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#initialization">Initialization</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#options">Options</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#examples">Examples</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#pagination">Pagination</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#progress-bar">Progress bar</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#centered-slides">Centered slides</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#fade">Fade</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#coverflow">Coverflow</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Page JS -->
+    <script src="../../assets/libs/swiper/dist/js/swiper.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+//
+// Pagination
+//
+
+
+.pagination {
+    margin-bottom: 0;
+}
+
+.page-item {
+    .page-link,
+    & > span {
+        margin: 0 3px;
+        border-radius: $border-radius-sm;
+        text-align: center;
+        font-size: $pagination-font-size;
+        @include box-shadow($pagination-box-shadow)
+    }
+}

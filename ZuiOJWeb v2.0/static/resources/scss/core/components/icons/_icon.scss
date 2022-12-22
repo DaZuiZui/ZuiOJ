@@ -1,0 +1,83 @@
+//
+// Icon
+//
+
+
+.icon {
+	i, svg {
+		font-size: $icon-size / 1.75;
+	}
+
+	&:not(.icon-shape) svg {
+		width: $icon-size;
+		height: $icon-size;
+	}
+}
+
+.icon + .icon-text {
+	padding-left: 1rem;
+	width: calc(100% - #{$icon-size} - 1);
+}
+
+
+// Size variations
+
+.icon-xl {
+	i, svg {
+		font-size: $icon-size-xl / 1.75;
+	}
+
+	&:not(.icon-shape) svg {
+		width: $icon-size-xl;
+		height: $icon-size-xl;
+	}
+}
+
+.icon-xl + .icon-text {
+	width: calc(100% - #{$icon-size-xl} - 1);
+}
+
+.icon-lg {
+	i, svg {
+		font-size: $icon-size-lg / 1.75;
+	}
+
+	&:not(.icon-shape) svg {
+		width: $icon-size-lg;
+		height: $icon-size-lg;
+	}
+}
+
+.icon-lg + .icon-text {
+	width: calc(100% - #{$icon-size-lg} - 1);
+}
+
+.icon-sm {
+	i, svg {
+		font-size: $icon-size-sm / 1.75;
+	}
+
+	&:not(.icon-shape) svg {
+		width: $icon-size-sm;
+		height: $icon-size-sm;
+	}
+}
+
+.icon-sm + .icon-text {
+	width: calc(100% - #{$icon-size-sm} - 1);
+}
+
+.icon-xs {
+	i, svg {
+		font-size: $icon-size-xs / 1.75;
+	}
+
+	&:not(.icon-shape) svg {
+		width: $icon-size-xs;
+		height: $icon-size-xs;
+	}
+}
+
+.icon-xs + .icon-text {
+	width: calc(100% - #{$icon-size-xs} - 1);
+}

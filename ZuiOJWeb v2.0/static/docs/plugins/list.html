@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>List</h1>
+                    <p class="lead mb-0">Tiny, invisible and simple, yet powerful and incredibly fast vanilla JavaScript that adds search, sort, filters and flexibility to plain HTML lists, tables, or anything.</p>
+                    <div class="mt-4">
+                        <a href="https://listjs.com/" target="_blank">
+                            <i data-feather="external-link"></i> Official Documentation
+                        </a>
+                    </div>
+                </div>
+                <!-- Docs content -->
+                <h2 id="usage">Usage</h2>
+                <h3 id="js">JS</h3>
+                <p>In order to use this plugin on your page you will need to include the following script in the “Page JS” area from the page’s footer:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"../../assets/libs/list.js/dist/list.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre>
+                    </figure>
+                </div>
+                <h2 id="initialization">Initialization</h2>
+                <h3 id="table">Table</h3>
+                <p>Add <code class="highlighter-rouge">data-toggle="list"</code> on any table in order to activate the sorting functionality.</p>
+                <p>Next, you will need to specify the columns that you want to add the sorting option to by adding the <code class="highlighter-rouge">data-list-values='["NAME_1", "NAME_2"]'</code>.</p>
+                <h3 id="thead">Thead</h3>
+                <p>Inside the <code class="highlighter-rouge">thead</code> element you will need to make sortable the columns you specified in the <code class="highlighter-rouge">data-list-values</code> by adding a <code class="highlighter-rouge">data-sort</code> attribute with the colums’s name (e.g <code class="highlighter-rouge">data-sort="NAME_1"</code>) next to the <code class="highlighter-rouge">.sort</code> class.</p>
+                <h3 id="tbody">Tbody</h3>
+                <p>In order to correlate the sortable actions you will need to add the class with the same name as <code class="highlighter-rouge">data-sort</code> on the element with the value you want to sort by (e.g <code class="highlighter-rouge">class="NAME_1"</code>)</p>
+                <h2 id="example">Example</h2>
+                <p>For now we added the sortable functionality only on table. Soon, we will add it on other components too.</p>
+                <h3 id="table-1">Table</h3>
+                <div class="alert alert-warning">
+                    <strong>Note!</strong> The table below is an advanced example in order to demonstrate the power of this plugin that can sort items even when columns have many different components such as images, progress bars etc.
+                </div>
+                <div class="docs-example">
+                    <a class="d-inline-block text-sm text-muted mb-3 text-underline--dashed" data-toggle="collapse" href="#table-sortable" role="button" aria-expanded="false" aria-controls="table-sortable">
+                        Show code
+                    </a>
+                    <!-- Result -->
+                    <div class="tab-example-result">
+                        <div class="table-responsive" data-toggle="list" data-list-values="[&quot;name&quot;, &quot;budget&quot;, &quot;status&quot;, &quot;completion&quot;]">
+                            <table class="table align-items-center table-flush">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="name">Project</th>
+                                        <th scope="col" class="sort" data-sort="budget">Budget</th>
+                                        <th scope="col" class="sort" data-sort="status">Status</th>
+                                        <th scope="col">Users</th>
+                                        <th scope="col" class="sort" data-sort="completion">Completion</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-1.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Purpose Website UI</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $2500 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-warning"></i>
+                                                <span class="status">pending</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">60%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-2.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Website Redesign</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $1800 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-success"></i>
+                                                <span class="status">completed</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">100%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-3.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Webpixels Website</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $3150 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-danger"></i>
+                                                <span class="status">delayed</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">72%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-4.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Purpose Application UI</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $4400 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-info"></i>
+                                                <span class="status">on schedule</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">90%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-5.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Purpose Dashboard UI</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $2200 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-success"></i>
+                                                <span class="status">completed</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">100%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-6.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Bootstrap Framework</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $2500 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-warning"></i>
+                                                <span class="status">pending</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">60%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-1.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Component Library</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $2500 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-warning"></i>
+                                                <span class="status">pending</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">60%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-2.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Website Builder</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $1800 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-success"></i>
+                                                <span class="status">completed</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">100%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-3.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Website Launch</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $3150 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-danger"></i>
+                                                <span class="status">delayed</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">72%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-4.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Payment Integration</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $4400 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-info"></i>
+                                                <span class="status">on schedule</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">90%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-5.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Newsletter Templates</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $2200 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-success"></i>
+                                                <span class="status">completed</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">100%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div>
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/brand-avatar-6.png" class="avatar  rounded-circle" />
+                                                </div>
+                                                <div class="media-body ml-4">
+                                                    <a href="overview.html" class="name mb-0 h6 text-sm">Laravel Back-end</a>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            $2500 USD
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-warning"></i>
+                                                <span class="status">pending</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group">
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-1.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-2.jpg" class="" />
+                                                </a>
+                                                <a href="#" class="avatar rounded-circle avatar-sm">
+                                                    <img alt="Image placeholder" src="../../assets/img/theme/light/person-3.jpg" class="" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">60%</span>
+                                                <div>
+                                                    <div class="progress" style="width: 100px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown" data-toggle="dropdown">
+                                                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i data-feather="more-vertical"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Refresh</a>
+                                                    <a href="#" class="dropdown-item">Manage Widgets</a>
+                                                    <a href="#" class="dropdown-item">Settings</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- Code -->
+                    <div class="position-relative collapse fade mt-3" id="table-sortable">
+                        <!-- For users -->
+                        <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"table-responsive"</span> <span class="na">data-toggle=</span><span class="s">"list"</span> <span class="na">data-list-values=</span><span class="s">'["name", "budget", "status", "completion"]'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table align-items-center table-flush"</span><span class="nt">&gt;&lt;thead</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"col"</span> <span class="na">class=</span><span class="s">"sort"</span> <span class="na">data-sort=</span><span class="s">"name"</span><span class="nt">&gt;</span>Project<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"col"</span> <span class="na">class=</span><span class="s">"sort"</span> <span class="na">data-sort=</span><span class="s">"budget"</span><span class="nt">&gt;</span>Budget<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"col"</span> <span class="na">class=</span><span class="s">"sort"</span> <span class="na">data-sort=</span><span class="s">"status"</span><span class="nt">&gt;</span>Status<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"col"</span><span class="nt">&gt;</span>Users<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"col"</span> <span class="na">class=</span><span class="s">"sort"</span> <span class="na">data-sort=</span><span class="s">"completion"</span><span class="nt">&gt;</span>Completion<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"col"</span><span class="nt">&gt;&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/thead&gt;&lt;tbody</span> <span class="na">class=</span><span class="s">"list"</span><span class="nt">&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-1.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Purpose Website UI<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $2500 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-warning"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>pending<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>60%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-warning"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"60"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 60%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-2.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Website Redesign<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $1800 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-success"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>completed<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>100%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-success"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"100"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 100%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-3.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Webpixels Website<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $3150 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-danger"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>delayed<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>72%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-danger"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"72"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 72%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-4.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Purpose Application UI<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $4400 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-info"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>on schedule<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>90%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-info"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"90"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 90%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-5.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Purpose Dashboard UI<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $2200 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-success"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>completed<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>100%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-success"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"100"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 100%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-6.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Bootstrap Framework<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $2500 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-warning"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>pending<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>60%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-warning"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"60"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 60%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-1.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Component Library<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $2500 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-warning"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>pending<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>60%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-warning"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"60"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 60%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-2.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Website Builder<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $1800 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-success"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>completed<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>100%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-success"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"100"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 100%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-3.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Website Launch<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $3150 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-danger"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>delayed<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>72%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-danger"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"72"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 72%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-4.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Payment Integration<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $4400 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-info"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>on schedule<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>90%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-info"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"90"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 90%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-5.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Newsletter Templates<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $2200 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-success"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>completed<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>100%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-success"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"100"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 100%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/brand-avatar-6.png"</span> <span class="na">class=</span><span class="s">"avatar  rounded-circle"</span><span class="nt">&gt;</span>
+
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-body ml-4"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"overview.html"</span> <span class="na">class=</span><span class="s">"name mb-0 h6 text-sm"</span><span class="nt">&gt;</span>Laravel Back-end<span class="nt">&lt;/a&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"budget"</span><span class="nt">&gt;</span>
+                    $2500 USD
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-dot mr-4"</span><span class="nt">&gt;</span>
+                      <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bg-warning"</span><span class="nt">&gt;&lt;/i&gt;</span>
+                      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"status"</span><span class="nt">&gt;</span>pending<span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"avatar-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-1.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-2.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"avatar rounded-circle avatar-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"Image placeholder"</span> <span class="na">src=</span><span class="s">"../../assets/img/theme/light/person-3.jpg"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex align-items-center"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"completion mr-2"</span><span class="nt">&gt;</span>60%<span class="nt">&lt;/span&gt;</span>
+                        <span class="nt">&lt;div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress"</span> <span class="na">style=</span><span class="s">"width: 100px;"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"progress-bar bg-warning"</span> <span class="na">role=</span><span class="s">"progressbar"</span> <span class="na">aria-valuenow=</span><span class="s">"60"</span> <span class="na">aria-valuemin=</span><span class="s">"0"</span> <span class="na">aria-valuemax=</span><span class="s">"100"</span> <span class="na">style=</span><span class="s">"width: 60%;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"action-item"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;i</span> <span class="na">data-feather=</span><span class="s">"more-vertical"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu dropdown-menu-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Manage Widgets<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropdown-item"</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            
+        <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#usage">Usage</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#js">JS</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#initialization">Initialization</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#table">Table</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#thead">Thead</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#tbody">Tbody</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#example">Example</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#table-1">Table</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Page JS -->
+    <script src="../../assets/libs/list.js/dist/list.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

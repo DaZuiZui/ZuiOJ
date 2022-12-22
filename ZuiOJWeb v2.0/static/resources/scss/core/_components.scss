@@ -1,0 +1,51 @@
+//
+// Global components
+// core components used in all the our UI Kits
+//
+
+@import "components/root/root";
+@import "components/root/reboot";
+@import "components/alerts/alert";
+@import "components/avatars/avatar";
+@import "components/badges/badge";
+@import "components/breadcrumbs/breadcrumb";
+@import "components/buttons/button";
+@import "components/buttons/button-icon";
+@import "components/cards/card";
+@import "components/cards/card-accordion";
+@import "components/closes/close";
+@import "components/custom-forms/custom-forms";
+@import "components/custom-forms/custom-checkbox";
+@import "components/custom-forms/custom-radio";
+@import "components/dropdowns/dropdown";
+@import "components/footers/footer";
+@import "components/forms/form";
+@import "components/headers/header";
+@import "components/icons/icon";
+@import "components/icons/icon-shape";
+@import "components/input-groups/input-group";
+@import "components/jumbotrons/jumbotron";
+@import "components/layout/docs";
+@import "components/list-groups/list-group";
+@import "components/masks/mask";
+@import "components/modals/modal";
+@import "components/navs/nav";
+@import "components/navbars/navbar";
+@import "components/paginations/pagination";
+@import "components/popovers/popover";
+@import "components/progresses/progress";
+@import "components/tables/table";
+@import "components/type/type";
+@import "components/type/icons";
+
+
+//
+// Quick Website UI Kit (FREE) components (only)
+// components used in this UI Kit only
+//
+
+
+@import "components/navbars/navbar";
+@import "components/navbars/navbar-dropdown";
+@import "components/sections/section";
+@import "components/shapes/shape";

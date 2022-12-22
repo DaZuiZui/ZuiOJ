@@ -1,0 +1,19 @@
+.feather {
+    width: $svg-icon-size;
+    height: $svg-icon-size;
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: $svg-icon-stroke-width;
+    stroke-linecap: $svg-icon-stroke-linecap;
+    stroke-linejoin: $svg-icon-stroke-linecap;
+}
+
+.svg-text {
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+        position: relative;
+        // bottom: .125rem;
+    }
+}

@@ -1,0 +1,17 @@
+//
+// Badge Mixins
+// This is a custom mixin for badge-soft-#{color} variant of Bootstrap's .badge class
+// 
+
+@mixin badge-soft-variant($bg, $color) {
+  	color: $color;
+  	background-color: $bg;
+
+  	&[href] {
+    	@include hover-focus {
+      	color: $color;
+      	text-decoration: none;
+      	background-color: darken($bg, 5%);
+    	}
+  	}
+}

@@ -1,0 +1,192 @@
+// Headings
+
+h1, h2, h3,
+.h1, .h2, .h3 {
+    font-weight: $large-headings-font-weight;
+}
+
+h4, h5, h6,
+.h4, .h5, .h6 {
+  font-weight: $small-headings-font-weight;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    a {
+        color: $headings-color;
+
+        &:hover {
+            color: theme-color("primary");
+        }
+    }
+}
+
+// Links
+
+a {
+    outline: none;
+    @include transition($transition-base);
+}
+
+// Surtitle
+
+.surtitle {
+    color: $surtitle-color;
+    font-size: $surtitle-font-size;
+    font-weight: $surtitle-font-weight;
+    text-transform: $surtitle-text-transform;
+}
+
+// Fluid paragraph
+
+.fluid-paragraph {
+	width: 680px;
+	margin: auto;
+	padding: 0 1.5rem;
+	position: relative;
+}
+
+.fluid-paragraph-sm {
+	width: 580px;
+}
+
+@include media-breakpoint-down(sm) {
+	.fluid-paragraph {
+		width: 100%;
+	}
+}
+
+// Text highlight
+
+@each $color, $value in $theme-colors {
+    .text-highlight-#{$color} {
+        background-image: linear-gradient(transparent 66%, rgba($value, .15) 34%);
+        background-repeat: repeat-x;
+    }
+}
+
+// Links
+
+.link {
+	@include transition($transition-base);
+}
+
+[class*="link-underline-"] {
+	padding-bottom: 8px;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        @include border-radius($rounded-pill);
+        @include transition($transition-cubic-bezier);
+    }
+
+    &:hover {
+        &:after {
+            width: calc(100% + 8px);
+            left: -4px;
+        }
+    }
+}
+
+@each $color, $value in $theme-colors {
+	.link-underline-#{$color} {
+		@include link-underline-variant($value);
+	}
+}
+
+// Blockquotes
+
+.blockquote {
+	.quote {
+		position: absolute;
+
+		&:before {
+			font-family: Arial;
+			content: "\201C";
+			color: theme-color("primary");
+			font-size: 4em;
+			line-height: 1;
+		}
+	}
+
+	.quote + .quote-text {
+		padding-left: 2.25rem;
+	}
+
+	footer {
+		background: transparent;
+	}
+}
+.blockquote-border-left {
+	border-left: .5rem solid theme-color("primary");
+}
+
+.blockquote-card {
+	padding: 1.2em 30px 1.2em 75px;
+	border-left: .5rem solid theme-color("primary");
+	position: relative;
+
+	&:before {
+		font-family: Arial;
+		content: "\201C";
+		color: theme-color("primary");
+		font-size: 4em;
+		position: absolute;
+		left: .875rem;
+		top: -.875rem;
+	}
+
+	&:after {
+		content: '';
+	}
+}
+
+// Lists
+
+.list-icons {
+	li {
+		i, svg {
+			margin-right: 1rem;
+			font-size: 8px;
+			transform: translateY(-50%);
+			top: 2px;
+			position: relative;
+		}
+	}
+}
+
+
+// Articles
+
+article {
+	h4:not(:first-child),
+	h5:not(:first-child) {
+		margin-top: 3rem;
+	}
+
+	h4, h5 {
+		margin-bottom: 1.5rem;
+	}
+
+	figure {
+		margin: 3rem 0;
+
+        + h5 {
+            margin-top: 0 !important;
+        }
+	}
+
+	h5 + figure {
+		margin-top: 0;
+	}
+
+    p {
+        line-height: $article-text-line-height;
+    }
+}

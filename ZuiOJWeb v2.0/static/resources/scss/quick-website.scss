@@ -1,0 +1,51 @@
+/*
+
+Theme: Quick – Website UI Kit (FREE)
+Version: 1.1.0
+Product Page: https://webpixels.io/themes/quick-website-ui-kit
+License: MIT
+Author: Webpixels
+Author URI: https://webpixels.io
+
+---
+
+Copyright 2020 Webpixels
+
+*/
+
+// Bootstrap functions
+@import "../../../node_modules/bootstrap/scss/functions";
+
+// Custom variables
+@import "custom/variables";
+
+// Quick functions
+@import "core/functions";
+
+@import "core/variables";
+
+// Custom fonts
+@import "custom/fonts";
+
+// Bootstrap core
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+// Quick mixins
+@import "core/mixins";
+
+// Bootstrap components
+@import "core/bootstrap";
+
+// Quick utilities
+@import "core/utilities";
+
+// Quick components
+@import "core/components";
+
+// Quick libs
+@import "core/libs";
+
+// Custom styles (User's file)
+@import "custom/styles";

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>Quick – Website UI Kit (FREE)</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../../assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../../assets/css/quick-website.css">
+    <!-- Docs CSS - used only for demo -->
+    <link rel="stylesheet" href="../../docs/assets/css/docs.css">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <header class="header" id="header-main">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+            <div class="container-fluid justify-content-between">
+                <!-- User's navbar -->
+                <div class="navbar-user d-lg-none">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="../../docs/index.html">
+                    <img alt="Image placeholder" src="../../assets/img/brand/dark.svg" id="navbar-logo">
+                    <sup class="text-muted text-xs text-uppercase">Docs</sup>
+                </a>
+                <!-- Live preview -->
+                <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                    </li>
+                </ul>
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <!-- Right menu -->
+                    <ul class="navbar-nav align-items-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/getting-started/quick-start.html">Getting started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/components/alerts.html">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/webpixels/quick-website-ui-kit-demo/issues" target="_blank">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="../../index.html" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                    <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                    <span class="btn-inner--text">Back to Quick</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner px-4">
+                <!-- Navigation -->
+                <div class="docs-sidebar pt-6 pt-lg-7">
+                    <h6 class="mt-4">Getting started</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/quick-start.html" class="nav-link">Quick start</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/getting-started/build-tools.html" class="nav-link">Build tools</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Styleguide</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/colors.html" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/typography.html" class="nav-link active">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/styleguide/icons.html" class="nav-link">Icons</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Components</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/avatar.html" class="nav-link">Avatar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/badge.html" class="nav-link">Badge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/breadcrumb.html" class="nav-link">Breadcrumb</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/buttons.html" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/card.html" class="nav-link">Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/collapse.html" class="nav-link">Collapse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/dropdowns.html" class="nav-link">Dropdowns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/forms.html" class="nav-link">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/input-group.html" class="nav-link">Input group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/modal.html" class="nav-link">Modal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navs.html" class="nav-link">Navs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/navbar.html" class="nav-link">Navbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/pagination.html" class="nav-link">Pagination</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/popovers.html" class="nav-link">Popovers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/progress.html" class="nav-link">Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/spinners.html" class="nav-link">Spinners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tables.html" class="nav-link">Tables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/toasts.html" class="nav-link">Toasts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                    <h6 class="mt-4">Plugins</h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/animate.html" class="nav-link">Animate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../docs/plugins/google-maps.html" class="nav-link">Google maps</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>Typography</h1>
+                    <p class="lead mb-0">Documentation and examples for typography, including global settings, headings, body text, lists, and more.</p>
+                </div>
+                <!-- Docs content -->
+                <h2 id="usage">Usage</h2>
+                <p>Keep in mind these general web typography guidelines when building your applications.</p>
+                <ul>
+                    <li>The default text color in all components is compliant with the recommended WCAG 2.0 minimum contrast ratio.</li>
+                    <li>If you choose to go with a custom text color, make sure the background behind it provides proper contrast.</li>
+                    <li>Try not to explicitly write pixel values for your font-size or line-height CSS rules. Instead, reference the classes and variables.</li>
+                </ul>
+                <h2 id="fonts">Fonts</h2>
+                <h3 id="native">Native</h3>
+                <p>Since using Bootstrap, this sets basic global display, typography, and link styles. When more control is needed, check out the textual utility classes.</p>
+                <ul>
+                    <li>Use a <a href="/docs//content/reboot/#native-font-stack">native font stack</a> that selects the best <code class="highlighter-rouge">font-family</code> for each OS and device.</li>
+                    <li>For a more inclusive and accessible type scale, we assume the browser default root <code class="highlighter-rouge">font-size</code> (typically 16px) so visitors can customize their browser defaults as needed.</li>
+                    <li>Use the <code class="highlighter-rouge">$font-family-base</code>, <code class="highlighter-rouge">$font-size-base</code>, and <code class="highlighter-rouge">$line-height-base</code> attributes as our typographic base applied to the <code class="highlighter-rouge">&lt;body&gt;</code>.</li>
+                    <li>Set the global link color via <code class="highlighter-rouge">$link-color</code> and apply link underlines only on <code class="highlighter-rouge">:hover</code>.</li>
+                    <li>Use <code class="highlighter-rouge">$body-bg</code> to set a <code class="highlighter-rouge">background-color</code> on the <code class="highlighter-rouge">&lt;body&gt;</code> (<code class="highlighter-rouge">#fff</code> by default).</li>
+                </ul>
+                <p>The default sans-serif provided by Bootstrap is loading the native font family provided by the device:</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nv">$font-family-sans-serif</span><span class="p">:</span> <span class="o">-</span><span class="n">apple-system</span><span class="o">,</span> <span class="n">BlinkMacSystemFont</span><span class="o">,</span> <span class="s2">"Segoe UI"</span><span class="o">,</span> <span class="n">Roboto</span><span class="o">,</span> <span class="s2">"Helvetica Neue"</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="s2">"Noto Sans"</span><span class="o">,</span> <span class="nb">sans-serif</span><span class="o">,</span> <span class="s2">"Apple Color Emoji"</span><span class="o">,</span> <span class="s2">"Segoe UI Emoji"</span><span class="o">,</span> <span class="s2">"Segoe UI Symbol"</span><span class="o">,</span> <span class="s2">"Noto Color Emoji"</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span>
+<span class="nv">$font-family-base</span><span class="p">:</span> <span class="nv">$font-family-sans-serif</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span></code></pre>
+                    </figure>
+                </div>
+                <h3 id="custom">Custom</h3>
+                <p>In Quick we added <strong>Nunito Sans</strong> font family.</p>
+                <p>We created an additional variable to store the custom font family so you can choose anytime to use the native option. Using this variable you can switch to any font family you want after importing it from Google or any other place.</p>
+                <div class="docs-example">
+                    <figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nv">$font-family-custom-sans-serif</span><span class="p">:</span> <span class="s2">"Nunito Sans"</span><span class="o">,</span> <span class="nb">sans-serif</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span>
+<span class="nv">$font-family-base</span><span class="p">:</span> <span class="nv">$font-family-custom-sans-serif</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span></code></pre>
+                    </figure>
+                </div>
+                <p>Want to go back to the native version? No worries. Simply replace the <code class="highlighter-rouge">$font-family-base</code> variable with <code class="highlighter-rouge">$font-family-sans-serif</code> in your custom variable file.</p>
+                <h2 id="customization">Customization</h2>
+                <p>You can esily change the font families used in Quick. Follow the next steps in order to import a new font family and replace the default one and remove the <code class="highlighter-rouge">!default</code> flag.</p>
+                <h3 id="google-fonts">Google Fonts</h3>
+                <ul>
+                    <li>Go to <code class="highlighter-rouge">scss/core/_variables</code>, copy the <code class="highlighter-rouge">$font</code> and <code class="highlighter-rouge">$font-family-custom-sans-serif</code> variables and paste them in your custom variable file</li>
+                    <li>Go to Google fonts and choose your webfont.</li>
+                    <li>In the Embed section, go to the Standard tab and copy the link</li>
+                    <li>Go in your HTML page and replace the <code class="highlighter-rouge">link</code> tag corresponding to the Google Fonts</li>
+                    <li>Go back to Google Fonts in the Specify in CSS section and copy the font’s name</li>
+                    <li>Replace the <code class="highlighter-rouge">$font-family-custom-sans-serif</code> variable’s existing value with the one copied</li>
+                    <li>Save and compile the new stylesheet</li>
+                </ul>
+                <p>Make sure you read the <a href="../getting-started/customization.html">Customization</a> guidelines and use the <a href="../getting-started/build-tools.html">Build Tools</a></p>
+                <h2 id="examples">Examples</h2>
+                <h3 id="headings">Headings</h3>
+                <p><code class="highlighter-rouge">.h1</code> through <code class="highlighter-rouge">.h6</code> classes are also available, for when you want to match the font styling of a heading but cannot use the associated HTML element.</p>
+                <div class="row type-example">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h1&gt;Quick Heading 1&lt;/h1&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="h1">Quick Heading 1</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h2&gt;Quick Heading 2&lt;/h2&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="h2">Quick Heading 2</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h3&gt;Quick Heading 3&lt;/h3&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="h3">Quick Heading 3</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h4&gt;Quick Heading 4&lt;/h4&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="h4">Quick Heading 4</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h5&gt;Quick Heading 5&lt;/h5&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="h5">Quick Heading 5</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h6&gt;Quick Heading 6&lt;/h6&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="h6">Quick Heading 6</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <h3 id="display-headings">Display headings</h3>
+                <div class="row type-example">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h1 class=&quot;display-1&quot;&gt;Quick Display&lt;/h1&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="display-1">Quick Display 1</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h1 class=&quot;display-2&quot;&gt;Quick Display&lt;/h1&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="display-2">Quick Display 2</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h1 class=&quot;display-3&quot;&gt;Quick Display&lt;/h1&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="display-3">Quick Display 3</h5>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;h1 class=&quot;display-4&quot;&gt;Quick Display&lt;/h1&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <h5 class="display-4">Quick Display 4</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <h3 id="lead">Lead</h3>
+                <div class="row type-example">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-type-clipboard text-left" data-clipboard-text="&lt;p class=&quot;lead&quot;&gt;&lt;/p&gt;" data-original-title="Copy to clipboard">
+                            <div class="px-4">
+                                <p class="lead">
+                                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+                                </p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+                <div class="toc-sidebar pl-4 mt-lg-8 border-left">
+                    <div class="scrollbar-inner">
+                        <h6 class="mb-3">Summary</h6>
+                        <ul class="section-nav">
+                            <li class="toc-entry toc-h2"><a href="#usage">Usage</a></li>
+                            <li class="toc-entry toc-h2"><a href="#fonts">Fonts</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#native">Native</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#custom">Custom</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#customization">Customization</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#google-fonts">Google Fonts</a></li>
+                                </ul>
+                            </li>
+                            <li class="toc-entry toc-h2"><a href="#examples">Examples</a>
+                                <ul>
+                                    <li class="toc-entry toc-h3"><a href="#headings">Headings</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#display-headings">Display headings</a></li>
+                                    <li class="toc-entry toc-h3"><a href="#lead">Lead</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- Core JS  -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Docs JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="../../assets/libs/clipboard/dist/clipboard.min.js"></script>
+    <!-- Quick JS -->
+    <script src="../../assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>

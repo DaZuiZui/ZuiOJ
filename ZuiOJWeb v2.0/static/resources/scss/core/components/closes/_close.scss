@@ -1,0 +1,17 @@
+//
+// Close
+//
+
+
+.close {
+    &>span:not(.sr-only) {
+        color: rgba($black, .5);
+    }
+
+    &:hover,
+    &:focus {
+        &>span:not(.sr-only) {
+            color: rgba($black, .8);
+        }
+    }
+}

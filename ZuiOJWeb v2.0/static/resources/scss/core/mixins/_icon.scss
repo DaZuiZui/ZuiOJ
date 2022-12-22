@@ -1,0 +1,15 @@
+@mixin icon-variant($bg, $color) {
+    color: $color;
+  	background-color: $bg;
+}
+
+@mixin icon-outline-variant($border-width, $color) {
+    color: saturate(darken($color, 14%), 5);
+    border: $border-width solid transparentize(lighten($color, 10%), .5);
+}
+
+@mixin icon-font($content, $font-size) {
+    content: $content;
+    font-family: $icon-font-family;
+    font-size: $font-size;
+} 

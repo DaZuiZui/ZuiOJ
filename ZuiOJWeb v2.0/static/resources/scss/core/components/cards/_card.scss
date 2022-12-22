@@ -1,0 +1,112 @@
+//
+// Card
+//
+
+
+.card {
+    position: relative;
+    margin-bottom: $grid-gutter-width;
+
+    @if $enable-shadows {
+        // border: 0;
+        @include box-shadow($card-shadow);
+    }
+
+    &.hover-scale-110:hover {
+        z-index: 2;
+        @include border-radius($card-border-radius !important);
+    }
+
+    &.rounded-top-right {
+        @include border-radius($card-border-radius $jumbotron-border-radius $jumbotron-border-radius $card-border-radius $card-border-radius !important);
+    }
+
+    &.rounded-top-left {
+        @include border-radius($jumbotron-border-radius $card-border-radius $card-border-radius $card-border-radius !important);
+    }
+
+    &.rounded-bottom-right {
+        @include border-radius($card-border-radius $card-border-radius $jumbotron-border-radius $card-border-radius !important);
+    }
+
+    &.rounded-bottom-left {
+        @include border-radius($card-border-radius $card-border-radius $card-border-radius $jumbotron-border-radius !important);
+    }
+
+    &.rounded-diagonal-left {
+        @include border-radius($jumbotron-border-radius $card-border-radius $jumbotron-border-radius $card-border-radius !important);
+    }
+
+    &.rounded-diagonal-right {
+        @include border-radius($card-border-radius $jumbotron-border-radius $card-border-radius $jumbotron-border-radius !important);
+    }
+}
+
+.card-fluid {
+    height: calc(100% - #{$grid-gutter-width});
+}
+
+.card-header {
+    @if $enable-card-cap-border {
+        border-bottom: $card-cap-border-width solid $card-cap-border-color;
+    } @else {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .action-item {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.card-btn {
+    @include border-top-radius(0 !important);
+    @include border-bottom-radius($card-border-radius !important);
+}
+
+.card-deck + .row {
+    margin-top: $grid-gutter-width;
+}
+
+.card-wrapper {
+    .card:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+// Images as card backgrounds
+
+.card-img-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-size: cover;
+    border-radius: $card-border-radius;
+    -webkit-backface-visibility: hidden;
+    @include transition($transition-base);
+
+    & ~ .card-body {
+        position: relative;
+    }
+}
+
+.card {
+    &:hover {
+        .card-img-bg {
+            transform: scale(1.1);
+        }
+    }
+}
+
+// IE fixes
+
+.card {
+    .card-image,
+    .animate-this,
+    > a {
+        min-height: 1px;
+    }
+}

@@ -1,0 +1,300 @@
+// Pre-defined background colors based on variables
+
+@each $color, $value in $theme-colors {
+	@include bg-variant(".bg-light-#{$color}", lighten($value, 10%));
+	@include bg-variant(".bg-dark-#{$color}", darken($value, 10%));
+	@include bg-soft-variant(".bg-soft-#{$color}", theme-color-level($color, $bg-soft-bg-level));
+	@include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+	@include bg-translucent-variant(".bg-translucent-#{$color}", $value);
+}
+
+@each $color, $value in $colors {
+	@include bg-variant(".bg-#{$color}", $value);
+	@include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+}
+
+@each $color, $value in $section-colors {
+    @include bg-section-variant(".bg-section-#{$color}", $value);
+}
+
+@each $color, $value in $brand-colors {
+	@include bg-variant(".bg-brand-#{$color}", $value);
+}
+
+@each $color, $value in $grays  {
+	@include bg-variant(".bg-gray-#{$color}", $value);
+}
+
+@include bg-variant(".bg-black", $black);
+
+// Fill, stroke and other svg color utilities
+
+@each $color, $value in $theme-colors {
+	// Solid colors
+	.fill-#{$color}  {
+        fill: $value !important;
+    }
+
+	.fill-light-#{$color}  {
+        fill: lighten($value, 10%) !important;
+    }
+
+	.fill-dark-#{$color}  {
+        fill: darken($value, 10%) !important;
+    }
+
+    .stroke-#{$color}  {
+        stroke: $value !important;
+    }
+
+	// Soft solid colors
+    @include fill-soft-variant(".fill-soft-#{$color}", theme-color-level($color, $bg-soft-bg-level));
+}
+
+@each $color, $value in $colors {
+    .fill-#{$color}  {
+        fill: $value !important;
+    }
+
+    .stroke-#{$color}  {
+        stroke: $value !important;
+    }
+}
+
+// Additional shades for the $primary color
+
+
+.fill-primary-100 {
+	fill: lighten($primary, 50%) !important;
+}
+
+.fill-primary-200 {
+	fill: lighten($primary, 40%) !important;
+}
+
+.fill-primary-300 {
+	fill: lighten($primary, 30%) !important;
+}
+
+.fill-primary-400 {
+	fill: lighten($primary, 20%) !important;
+}
+
+.fill-primary-500 {
+	fill: lighten($primary, 10%) !important;
+}
+
+.fill-primary-600 {
+	fill: lighten($primary, 5%) !important;
+}
+
+
+.stroke-primary-100 {
+	stroke: lighten($primary, 50%) !important;
+}
+
+.stroke-primary-200 {
+	stroke: lighten($primary, 40%) !important;
+}
+
+.stroke-primary-300 {
+	stroke: lighten($primary, 30%) !important;
+}
+
+.stroke-primary-400 {
+	stroke: lighten($primary, 20%) !important;
+}
+
+.stroke-primary-500 {
+	stroke: lighten($primary, 10%) !important;
+}
+
+.stroke-primary-600 {
+	stroke: lighten($primary, 5%) !important;
+}
+
+// SVG colors used for section backgrounds
+
+@each $color, $value in $section-colors {
+    .fill-section-#{$color}  {
+        fill: $value !important;
+    }
+
+    .stroke-section-#{$color}  {
+        stroke: $value !important;
+    }
+}
+
+// Section gradieent bg
+
+.bg-section-fade {
+	background: linear-gradient(177.86deg, section-color("secondary") 0%, rgba(255, 255, 255, 0) 100%)
+}
+
+// Image background - Covers
+
+.bg-cover {
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+.bg-absolute-cover {
+    background-repeat: no-repeat;
+    position: absolute;
+	overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+	svg {
+		height: 1000px;
+		pointer-events: none;
+	}
+}
+
+@include media-breakpoint-down(lg) {
+	.bg-lg-cover {
+        background-image: none !important;
+    }
+}
+
+@include media-breakpoint-down(md) {
+	.bg-md-cover {
+        background-image: none !important;
+    }
+}
+
+.bg-size--cover {
+	background: no-repeat center center/cover;
+}
+
+.bg-size--contain {
+    background-size: contain;
+}
+
+// Text background
+
+.bg-text {
+    color: rgba(255, 255, 255, .2);
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    white-space: nowrap;
+    transform: translate(0%, -50%);
+    text-transform: uppercase;
+    font-size: 40rem;
+    font-weight: 700;
+}
+
+.bg-inner--text {
+    height: 1em;
+    line-height: 1em;
+    transform: none;
+    opacity: 1;
+    transition: 2s 0s;
+    display: block;
+    animation: text_slide 40s linear infinite;
+    width: auto;
+    max-width: none;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+// Background image holder
+
+@include media-breakpoint-down(md) {
+    .bg-img-holder {
+        background-image: none !important;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .bg-img-holder {
+        position: absolute;
+        height: 100%;
+        min-height: 20rem;
+        background-repeat: no-repeat;
+        z-index: -1;
+
+        img {
+            display: none;
+        }
+    }
+}
+
+// Image backshapes
+
+.img-bg {
+    &:after {
+        position: absolute;
+        content: '';
+        background: none no-repeat 50%;
+        background-image: none;
+        background-size: auto auto;
+        background-size: contain;
+        width: 783px;
+        height: 725px;
+        left: 31px;
+        top: -168px;
+        z-index: 1;
+        background-image: str-replace(url("data:image/svg+xml;charset=utf-8,%3Csvg width='783' height='726' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M606.14 725.179c144.64-.87 225.447-587.194 144.64-694.046-73.915-97.74-579.852 50.733-716.756 222.443-12.763 16.009-22.32 32.22-28.019 48.451-66.83 190.337 442.822 424.098 600.136 423.152z' fill='#{$secondary}' fill-rule='evenodd'/%3E%3C/svg%3E"), "#", "%23");
+    }
+
+    img {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+// Images as backgrounds
+
+.img-as-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	object-fit: cover;
+}
+
+// Blend modes
+
+.blend-mode {
+	&--multiply {
+		mix-blend-mode: multiply;
+
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	     	&:after{
+	     		content:'';
+	     		background: transparentize(darken(blue, 8), .5);
+				position: absolute;
+				top:0;
+				bottom:0;
+				width:100%;
+			}
+		}
+	}
+
+	&--color-burn {
+		mix-blend-mode: color-burn;
+
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	     	&:after{
+	     		content:'';
+	     		background: transparentize(darken(blue, 8), .5);
+				position: absolute;
+				top:0;
+				bottom:0;
+				width:100%;
+			}
+		}
+	}
+}

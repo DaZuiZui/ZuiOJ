@@ -1,0 +1,37 @@
+//
+// Mask
+//
+
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include transition($transition-base);
+
+    & + .container {
+    	position: relative;
+    }
+}
+
+
+// Animated mask transparency
+
+.card {
+	.mask {
+		border-radius: $card-border-radius;
+	}
+
+	.hover-mask {
+		opacity: 0;
+  		transition-delay: 150ms;
+	}
+
+	&:hover {
+		.hover-mask {
+			opacity: .4;
+		}
+	}
+}
