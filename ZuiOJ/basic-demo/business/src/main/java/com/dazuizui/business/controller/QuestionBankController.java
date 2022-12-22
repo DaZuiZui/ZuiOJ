@@ -27,7 +27,7 @@ public class QuestionBankController {
     @ApiOperation("提交题目")
     @PostMapping("/postQuestion")
     public String postQuestion(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token, @RequestBody QuestionBankBo questionBankBo){
-        System.out.println("???");
+
          return questionBankService.postQuestion(questionBankBo);
      }
 

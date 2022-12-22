@@ -3,6 +3,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
 import com.dazuizui.basicapi.entry.QuestionBank;
+import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
@@ -67,15 +68,24 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
     /**
      * 分页获取题目
-     * @param pages
-     * @param number
+     * @param pages    当前页数
+     * @param number   一页查询多少个
      * @return
      */
     @Override
     public String pagingToGetQuestion(@Param("pages") int pages, @Param("number") int number) {
-        System.err.println(pages+"and"+number);
-        //查看总题库数量
-        Long countOfQuestion = questionBankMapper.queryCountOfQuestion();
+        /**
+         * 查看总数量
+         */
+        //查看redis是否存在
+        Long countOfQuestion = (Long) redisUtil.getStringInRedis(RedisKey.QuestionCountWithStatusIs0);
+        //redis为null去数据库查询
+        if (countOfQuestion == null){
+            System.err.println("??");
+            countOfQuestion = questionBankMapper.queryCountOfQuestion();
+            //写入redis
+            redisUtil.setStringInRedis(RedisKey.QuestionCountWithStatusIs0,60*60*24*15,countOfQuestion);
+        }
 
         //查看全部题库
         List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestion(pages, number);
