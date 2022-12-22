@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
 import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
+import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.mapper.QuestionBankMapper;
@@ -72,9 +73,15 @@ public class QuestionBankServiceImpl implements QuestionBankService {
      */
     @Override
     public String pagingToGetQuestion(@Param("pages") int pages, @Param("number") int number) {
+        System.err.println(pages+"and"+number);
+        //查看总题库数量
+        Long countOfQuestion = questionBankMapper.queryCountOfQuestion();
+
         //查看全部题库
         List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestion(pages, number);
-        return JSONArray.toJSONString(new ResponseVo<>("分页查询问题",questionBanks,"200"));
+        //封装返回
+        QuestionPagingVo questionPagingVo = new QuestionPagingVo(questionBanks,countOfQuestion);
+        return JSONArray.toJSONString(new ResponseVo<>("分页查询问题",questionPagingVo,"200"));
     }
 
     /**

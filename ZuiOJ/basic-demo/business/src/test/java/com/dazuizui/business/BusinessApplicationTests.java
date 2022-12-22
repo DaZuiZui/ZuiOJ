@@ -22,23 +22,8 @@ class BusinessApplicationTests {
     @Test
     void contextLoads() {
         //建立连接
-        try(SqlSession sqlSession = sqlSessionFactory.openSession()){
-            //获取mapper文件
-            ContestMapper contestMapper = sqlSession.getMapper(ContestMapper.class);
 
-            sqlSession.close();
-
-            //增 删 改 查 service
-            Contest contest = new Contest();
-            contest.setId(1);
-            contest.setContestType(1);
-            contest.setName("123");
-            contestMapper.insertConTest(contest);
-            System.out.println(contest);
-
-            //close session with mysql
-
-        };
+ ;
 
     }
 

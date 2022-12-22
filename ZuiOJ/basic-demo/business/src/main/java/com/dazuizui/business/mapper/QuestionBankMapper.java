@@ -11,6 +11,12 @@ import java.util.List;
 @Mapper
 public interface QuestionBankMapper {
     /**
+     * 查看题库数量
+     * @return
+     */
+    public Long queryCountOfQuestion();
+
+    /**
      * 提交题目
      * @param questionBankBo
      * @return
