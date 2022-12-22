@@ -47,7 +47,8 @@
             id,
             short_name,
             chinese_name,
-            grade
+            grade,
+            create_by_name
         from
             question_bank
         where

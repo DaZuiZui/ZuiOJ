@@ -26,6 +26,7 @@ public class UserController {
     @ApiOperation("用户登入")
     @PostMapping("/userlogin")
     public String userLogin(@RequestBody User user){
+        System.out.println(user);
         return userService.userLogin(user);
     }
 

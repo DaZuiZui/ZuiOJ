@@ -10,21 +10,27 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col" width="160px"></th>
+                        <th scope="col" width="90px"></th>
                         <th scope="col">编号</th>
                         <th scope="col">题目</th>
                         <th scope="col">难度</th>
                         <th scope="col">通过率</th>
+                        <th scope="col">出题人</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(obj,index) in questionList" :key="index">
                         <th scope="row"></th>
                         <td>
-                            <b>{{obj.shortName}}</b>
+                            <b>
+                                {{obj.shortName}} 
+                              </b>
                         </td>
                         <td>
-                            <b>{{obj.chineseName}}</b>
+                            <b>
+                              <a style="color:" href="#">
+                                  {{obj.chineseName}}</a>
+                              </b>
                         </td>
                         <td>
                             <div v-if="obj.grade == 1" style="color:green">
@@ -38,6 +44,9 @@
                             </div>   
                         </td>
                         <td>等待系统统计</td>
+                        <td>
+                          {{obj.createByName}}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
