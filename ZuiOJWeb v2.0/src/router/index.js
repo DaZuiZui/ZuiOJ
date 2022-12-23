@@ -7,6 +7,7 @@ import UserLogin from '@/components/view/main/cn/user/Login'
 import ViewQuestion from '@/components/view/main/cn/question/ViewQuestion'
 import ContestList from '@/components/view/main/cn/contest/ContestList'
 import ViewEvent from '@/components/view/main/cn/contest/ViewEvents'
+import ViewRank from '@/components/view/main/cn/contest/ViewRank'
 Vue.use(Router)
 
 export default new Router({
@@ -17,7 +18,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
-
+    },
+    //查看排名
+    {
+      path: '/cn/contest/viewRank',
+      name: 'ViewRank',
+      component: ViewRank
     },
     //中文查看赛制
     {

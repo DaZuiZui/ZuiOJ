@@ -18,7 +18,7 @@
                 GROUP BY
                     user_id) q1,
             (
-                select start_time from contest where id = 28 LIMIT 1) q2
+                select start_time from contest where id = #{contestId} LIMIT 1) q2
     </select>
 
     <!--

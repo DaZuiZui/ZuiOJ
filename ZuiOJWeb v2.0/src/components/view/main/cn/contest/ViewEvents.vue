@@ -226,7 +226,7 @@
        methods: {
             //前往榜单
             goRankList(){
-                this.$router.push('/contest/ranking?contestId='+getQueryVariable("id")+"&title="+this.contest.name);
+                this.$router.push('/cn/contest/viewRank?contestId='+getQueryVariable("id")+"&title="+this.contest.name);
             },
             // 天 时 分 秒 格式化函数
             async countDown() {
@@ -304,7 +304,6 @@
                     //重新更新幂等性
                     this.getNonPowerToken();
                 }
-          
             },
             
             toQuestion(id){
