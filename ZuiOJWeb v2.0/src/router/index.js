@@ -5,6 +5,7 @@ import AboutDazui from '@/components/view/main/cn/about/AboutDazui'
 import QuestionList from '@/components/view/main/cn/question/QuestionList'
 import UserLogin from '@/components/view/main/cn/user/Login'
 import ViewQuestion from '@/components/view/main/cn/question/ViewQuestion'
+import ContestList from '@/components/view/main/cn/contest/ContestList'
 Vue.use(Router)
 
 export default new Router({
@@ -16,6 +17,12 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDemo
 
+    },
+    //中文比赛列表
+    {
+      path: '/cn/contest/list',
+      name: 'contestList',
+      component: ContestList
     },
     //中文浏览题目
     {

@@ -50,7 +50,7 @@
                                 </div>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link"  >Contest</a>
+                                <a class="nav-link"  @click="goContestList()" >Contest</a>
                             </li>
                         </ul>
                         <!-- Button -->
@@ -86,6 +86,11 @@
         goCodingQuestionList(){
             this.$router.push('/cn/question/coding/list');
         },
+
+        //比赛列表
+        goContestList(){
+            this.$router.push('/cn/contest/list');
+        }
     }
   }
   </script>
