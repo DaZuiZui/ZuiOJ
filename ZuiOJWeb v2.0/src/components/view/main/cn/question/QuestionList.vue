@@ -28,7 +28,7 @@
                         </td>
                         <td>
                             <b>
-                              <a style="color:" href="#">
+                              <a style="color:" href="" @click="goViewQuestion(obj.id)">
                                   {{obj.chineseName}}</a>
                               </b>
                         </td>
@@ -99,10 +99,10 @@
         },
 
         /**
-         * 获取分页数据
+         * 去查看此问题
          */ 
-        getDate(){
-            
+        goViewQuestion(questionId){
+          this.$router.push('/cn/question/view?id='+questionId+"&questionType=1&contestId=-1");
         }, 
     }
   }

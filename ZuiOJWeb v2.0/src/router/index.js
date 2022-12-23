@@ -4,6 +4,7 @@ import AboutDemo from '@/components/view/main/cn/about/AboutDemo'
 import AboutDazui from '@/components/view/main/cn/about/AboutDazui'
 import QuestionList from '@/components/view/main/cn/question/QuestionList'
 import UserLogin from '@/components/view/main/cn/user/Login'
+import ViewQuestion from '@/components/view/main/cn/question/ViewQuestion'
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +16,12 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDemo
 
+    },
+    //中文浏览题目
+    {
+      path: '/cn/question/view',
+      name: 'ViewQuestion',
+      component: ViewQuestion
     },
     //中文用户登入
     {
