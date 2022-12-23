@@ -6,6 +6,7 @@ import QuestionList from '@/components/view/main/cn/question/QuestionList'
 import UserLogin from '@/components/view/main/cn/user/Login'
 import ViewQuestion from '@/components/view/main/cn/question/ViewQuestion'
 import ContestList from '@/components/view/main/cn/contest/ContestList'
+import ViewEvent from '@/components/view/main/cn/contest/ViewEvents'
 Vue.use(Router)
 
 export default new Router({
@@ -17,6 +18,12 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDemo
 
+    },
+    //中文查看赛制
+    {
+      path: '/cn/contest/viewEvents',
+      name: 'CNviewEnvents',
+      component: ViewEvent
     },
     //中文比赛列表
     {

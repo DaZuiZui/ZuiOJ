@@ -238,7 +238,7 @@
   
        methods: {
             goViewEvents(id){
-                this.$router.push('/contest/ViewEvent?id='+id);
+                this.$router.push('/cn/contest/viewEvents?id='+id);
             },
 
             /*
