@@ -12,10 +12,10 @@
                         <div class="hidden-columns">
                             <div></div><div></div> <div></div>
                         </div>
-                    
+                       
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Hello!</h4>
-                            <p>这是查看排行榜，<a href="#" class="alert-link">点击我查看规则</a>,如果你想要举报选手<a href="#" class="alert-link">举报</a></p>
+                            <p>这是查看排行榜 ，<a href="#" class="alert-link">点击我查看规则</a>,如果你想要举报选手<a href="#" class="alert-link">举报</a></p>
                             <p></p>
                             <hr>
                             <p class="mb-0">只有有提交的记录的才能判定有效选手</p>
