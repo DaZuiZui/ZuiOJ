@@ -53,13 +53,72 @@
                                 <a class="nav-link"  @click="goContestList()" >Contest</a>
                             </li>
                         </ul>
-                        <!-- Button -->
+
+                        
+                        <a href="http://127.0.0.1/hlogin/h/user/info">
+                            <div style="text-align : right">
+                                <div style="height: 10px;"></div>
+                                <el-dropdown style="">
+                                    <span class="el-dropdown-link">
+                                        <li>
+                                            <el-avatar
+                                                :src="user.headPortrait">
+                                            </el-avatar>
+                                        </li>
+                                    </span>
+        
+                                    <el-dropdown-menu slot="dropdown" class="position:fixed"  style="width: 300px;">
+                                        <div>
+                                            <div> 
+                                                <el-container>
+                                                    <el-container>
+                                                        <el-aside width="55px">      
+                                                                <div style="margin-top: 25px;margin-left:15px;">
+                                                                    <el-avatar
+                                                                        :src="user.headPortrait">  
+                                                                </el-avatar> 
+                                                            </div>
+                                                        </el-aside>
+                                                        <el-container v-if="tmp == null">
+                                                            <el-main>
+                                                                账号: {{user.username}}<br>
+                                                                昵称: {{user.name}}
+                                                            </el-main>
+                                                        </el-container>
+        
+                                                        <el-container v-else>
+                                                            <el-main>
+                                                                请登入为您提供社区功能<br>
+                                                                点击下方进行登入       
+                                                            </el-main>
+                                                        </el-container>
+                                                    </el-container>
+                                                </el-container>
+                                             
+                                            </div>
+        
+                                            <div style="margin: auto;"  v-if="tmp != null">                              
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" ><i class="el-icon-user"></i>点击我去登入</li>
+                                            </div>
+        
+                                            <div style="margin: auto;" v-else>                              
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-user"></i>我的个人信息</li>
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>我的个人博客</li>
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-back"></i>退出我的账户</li>
+                                            </div>
+                                        </div>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </div>
+                        </a>
+
+                        <!-- Button
                         <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" style="color:aliceblue" >
                             每日一题
-                        </a>
+                        </a> -->
                         <!-- Mobile button -->
                         <div class="d-lg-none text-center">
-                            <a href="https://webpixels.io/themes/quick-website-ui-kit" class="btn btn-block btn-sm btn-warning">See more details</a>
+                            <a class="btn btn-block btn-sm btn-warning">我的个人资料</a>
                         </div>
                     </div>
                 </div>
@@ -69,14 +128,32 @@
   </template>
   
   <script>
+import { synRequestGet } from '../../../../static/request';
+
   export default {
     name: 'Foot',
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        user: {
+            username: "",
+            name: "",
+            headPortrait: ""
+        },
       }
     },
+    mounted(){
+        this.authentication();
+    },
     methods: {
+        //鉴权
+        async authentication(){
+            let token = getCookie("token");
+            //alert(token);
+            let obj = await synRequestGet("/user/analysis?token="+token);
+            console.log(obj.data);
+            this.user = obj.data;
+        },
+
         //go About
         goAbout(){
             this.$router.push('/cn/about/dazui');

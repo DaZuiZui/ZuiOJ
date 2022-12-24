@@ -12,16 +12,13 @@
                 <div class="row mb-5 justify-content-center text-center">
                     <div class="col-lg-6">
                        
-                        <h2 class=" mt-4">注册你的账户</h2>
+                        <h2 class=" mt-4">哈尔滨广厦学院注册页面</h2>
                         <div class="mt-2">
-                            <p class="lead lh-180">Register Your Account</p>
+                            <p class="lead lh-180">Register Your Account in GuangSha</p>
                         </div>
-                       
-                      
                     </div>
-                       <div>
-                           
-                         
+                    
+                    <div>     
                                 <div class="form-group">
                                     <label for="username">账号</label> 
                                     <input type="text" class="form-control" id="username" name="username" v-model="user.username">
@@ -81,7 +78,7 @@
                                     正在注册中，请稍后......
                                 </button>
                                 <div  >
-                                    我已经拥有账户<a href="http://www.dazuizui.com:5002/hlogin/p/login">前去登入</a>
+                                    我已经拥有账户<a href="/h/cn/user/login">前去登入</a>
                                 </div>
                         
                         </div>

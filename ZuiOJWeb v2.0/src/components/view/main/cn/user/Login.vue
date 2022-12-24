@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="form-group form-check">
                                   
-                                   如果您 <a href="#">忘记了密码</a>，或者 <a href="#">去注册一个账户</a>
+                                   如果您 <a href="#">忘记了密码</a>，或者 <a href="/h/cn/user/gs/register">去注册一个账户</a>
                                 </div>
                                 <button  class="btn btn-primary" style="width:100%" @click="submit()"   :disabled="switchbutton">Submit</button>
                            
