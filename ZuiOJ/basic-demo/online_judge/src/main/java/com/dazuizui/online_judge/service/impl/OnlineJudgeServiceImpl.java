@@ -124,7 +124,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(JSONUtil.toJsonStr(cmd1), headers);
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://192.168.170.128:5050/run",request,String.class);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://192.168.171.128:5050/run",request,String.class);
 
         return JSONUtil.parseArray(responseEntity.getBody());
     }
