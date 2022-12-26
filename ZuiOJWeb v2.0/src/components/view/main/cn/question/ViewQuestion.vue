@@ -66,7 +66,7 @@
   <script>
 
   
-  import { synRequestGet } from '../../../../../../static/request';
+    import {synRequestPost,synRequestGet} from "../../../../../../static/request"
     import Foot from '../../../../frame/blog/Foot.vue';
     import Top  from '../../../../frame/blog/Top.vue'
 
