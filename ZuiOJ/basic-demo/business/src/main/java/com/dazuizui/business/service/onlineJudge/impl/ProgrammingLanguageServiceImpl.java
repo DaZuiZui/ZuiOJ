@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * 编程语言业务接口实现类
  */
 @Service
-public class ProgrammingLanguageServiceImpl implements ProgrammingLanguageService {
+public class  ProgrammingLanguageServiceImpl implements ProgrammingLanguageService {
     @Autowired
     private ProgrammingLanguageMapper programmingLanguageMapper;
     @Override
