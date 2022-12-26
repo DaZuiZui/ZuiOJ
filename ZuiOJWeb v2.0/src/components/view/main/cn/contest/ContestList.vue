@@ -5,7 +5,7 @@
         </div>
 
         <!-- Main content -->
-        <section class=" ">
+        <section  style="background-color:#f9f9f9">
             <div class="container">
                 比赛列表 
                 <div class="">

@@ -16,7 +16,7 @@
                     <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
                         <!-- Heading -->
                         <h1 class="display-4 text-center text-md-left mb-3">
-                            Hello Anyone Wellcome to here , I`m  <strong class="text-primary">Dazui(Bryan)</strong>
+                            Hello Anyone Wellcome to here , I`m  <strong class="text-primary">杨易达Dazui(Bryan)</strong>
                         </h1>
                         <!-- Text -->
                         <p class="lead text-center text-md-left text-muted">
@@ -24,7 +24,7 @@
                         </p>
                         <!-- Buttons -->
                         <div class="text-center text-md-left mt-5">
-                            <a href="https://webpixels.io/themes/quick-free-bootstrap-theme" class="btn btn-primary btn-icon" target="_blank">
+                            <a href="/h/cn/about/demo" class="btn btn-primary btn-icon" target="_blank">
                                 <span class="btn-inner--text" style="color:aliceblue">About Demo</span>
                             
                             </a>
@@ -96,14 +96,39 @@
             <div class="container">
                 <div class="py-6">
                     <div class="row row-grid justify-content-between align-items-center">
+                        <div class="col-lg-5">
+                            <h5 class="h3">我是杨易达</h5>
+                            <p class="lead my-4">
+                                我就读于Harbin一所本科院校，软件工程专业今年22岁，热爱编码，我坚信用代码终将会实现我的梦想。
+                                本站所有内容仅代表个人观点，和任何组织或个人无关。
+                                联系方式QQ：51288033<br>
+                                
+                           </p>
+                            <ul class="list-unstyled mb-0">
+                              
+                     
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card mb-0 ml-lg-5">
+                                <div class="card-body p-2">
+                                    <img alt="Image placeholder" src="../../../../../../static/ZuiOJ/image/MyInfo.png" class="img-fluid shadow rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="py-6">
+                    <div class="row row-grid justify-content-between align-items-center">
                         <div class="col-lg-5 order-lg-2">
                             <h5 class="h3">我的一些话</h5>
                             <p class="lead my-4">
-                                在成长的道路中我们会遇见很多困难，但是我坚信只有自己足够优秀才可以不去看其他人的脸色，才能去做自己想做的事情，才能活成自己想要的样子，才能开奥迪A6L。
-                                为了奥迪A6L而奋斗！
+                                在成长的道路中我们会遇见很多困难，但是我坚信只有自己足够优秀才可以不去看其他人的脸色，才能去做自己想做的事情，才能活成自己想要的样子。
+                          
                             </p>
                             <p>
-                                不去自己感动自己，不去喝鸡汤。只坚信奥迪A6L我的梦想
+                                不去自己感动自己，不去喝鸡汤。 
                             </p>
                             <p>
                                 我的梦想在代码里，我要去代码里追寻我的梦想，我坚信1024行代码终究会实现我的梦想。
@@ -168,129 +193,7 @@
                 </div>
             </div>
         </section>
-        <section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
-            <!-- SVG separator -->
-            <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
-                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="">
-                    <polygon points="2560 0 2560 100 0 100"></polygon>
-                </svg>
-            </div>
-            <!-- Container -->
-            <div class="container position-relative zindex-100">
-                <div class="col">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 text-center">
-                            <div class="mt-4 mb-6">
-                                <h2 class="h1 text-white">
-                                    我们可以做一些什么？
-                                </h2>
-                                <h4 class="text-white mt-3">what can we do?</h4>
-                                <!-- Play button -->
-                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="slice pt-0">
-            <div class="container position-relative zindex-100">
-                <div class="row">
-                    <div class="col-xl-4 col-sm-6 mt-n7">
-                        <div class="card">
-                            <div class="d-flex p-5">
-                                <div>
-                                    <span class="badge badge-warning badge-pill">New</span>
-                                </div>
-                                <div class="pl-4">
-                                    <h5 class="lh-130">在线OJ系统</h5>
-                                    <p class="text-muted mb-0">
-                                        可以实现在线代码评测。服务器配置不足暂时关闭。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6 mt-sm-n7">
-                        <div class="card">
-                            <div class="d-flex p-5">
-                                <div>
-                                    <span class="badge badge-success badge-pill">Update</span>
-                                </div>
-                                <div class="pl-4">
-                                    <h5 class="lh-130">博客系统</h5>
-                                    <p class="text-muted mb-0">
-                                        经过前2次的博客开发成长，我们找到了最佳的体验。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-12 col-sm-6 mt-xl-n7">
-                        <div class="card">
-                            <div class="d-flex p-5">
-                                <div>
-                                    <span class="badge badge-success badge-pill">Update</span>
-                                </div>
-                                <div class="pl-3">
-                                    <h5 class="lh-130">管理系统</h5>
-                                    <p class="text-muted mb-0">
-                                        经过之前的经验和他人指导，我们找到了最佳的体验。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-4 col-sm-6">
-                        <div class="card">
-                            <div class="d-flex p-5">
-                                <div>
-                                    <span class="badge badge-warning badge-pill">New</span>
-                                </div>
-                                <div class="pl-4">
-                                    <h5 class="lh-130">反作弊系统</h5>
-                                    <p class="text-muted mb-0">
-                                        我们遵守学术诚信，开发了算法考核以及期末考核等功能的反作弊系统。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-                        <div class="card">
-                            <div class="d-flex p-5">
-                                <div>
-                                    <span class="badge badge-success badge-pill">Update</span>
-                                </div>
-                                <div class="pl-4">
-                                    <h5 class="lh-130">社交系统</h5>
-                                    <p class="text-muted mb-0">
-                                        经过之前的失败，我们取得了跨越性的成长开发出新的社交系统。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-12 col-sm-6">
-                        <div class="card">
-                            <div class="d-flex p-5">
-                                <div>
-                                    <span class="badge badge-success badge-pill">Update</span>
-                                </div>
-                                <div class="pl-3">
-                                    <h5 class="lh-130">考试比赛系统</h5>
-                                    <p class="text-muted mb-0">
-                                        旧版本中只支持选择题和填空题，如今我们可以实现在线代码判决。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+ 
         <footer class="position-relative" id="footer-main">
             <Foot></Foot>
         </footer>

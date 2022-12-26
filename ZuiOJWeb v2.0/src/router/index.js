@@ -10,6 +10,7 @@ import ViewEvent from '@/components/view/main/cn/contest/ViewEvents'
 import ViewRank from '@/components/view/main/cn/contest/ViewRank'
 import CreateContest from '@/components/view/main/cn/contest/CreateContest'
 import GSRegister from '@/components/view/main/cn/user/GSRegister'
+import CreateQuestion from '@/components/view/main/cn/question/CreateQuestion'
 Vue.use(Router)
 
 export default new Router({
@@ -20,6 +21,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //中文创建问题
+    {
+      path: '/cn/question/create',
+      name: 'CreateQuestion',
+      component: CreateQuestion
     },
     //中文创建比赛
     {

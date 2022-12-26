@@ -58,6 +58,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             competitionQuestionBank.setContestId(questionBankBo.getContestId());
             competitionQuestionBankMapper.addQuestionInContest(competitionQuestionBank);
         }else{
+            questionBankBo.setStatus(2); //普通隐藏
             questionBankMapper.postQuestion(questionBankBo);
             questionBankMapper.postQuestionDetailed(questionBankBo);
         }

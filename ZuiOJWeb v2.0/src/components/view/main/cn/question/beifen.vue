@@ -5,7 +5,7 @@
         </div>
 
         <!-- Main content -->
-        <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
+        <section  style="background-color:#f9f9f9">
             <div class="container">
                  
             </div>

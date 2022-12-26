@@ -24,11 +24,10 @@
                         </p>
                         <!-- Buttons -->
                         <div class="text-center text-md-left mt-5">
-                            <a href="https://webpixels.io/themes/quick-free-bootstrap-theme" class="btn btn-primary btn-icon" target="_blank">
-                                <span class="btn-inner--text" style="color:aliceblue">Let`s go</span>
-                                <span class="btn-inner--icon"><i data-feather="chevron-right"></i></span>
+                            <a href="/h/cn/about/dazui" class="btn btn-primary btn-icon" target="_blank">
+                                <span class="btn-inner--text" style="color:aliceblue">关于作者</span>
                             </a>
-                            <a href="https://webpixels.io/illustrations" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank" style="color:black">Join us</a>
+ 
                         </div>
                     </div>
                 </div>

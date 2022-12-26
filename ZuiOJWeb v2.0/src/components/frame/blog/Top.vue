@@ -16,7 +16,7 @@
             </div>
         </div>
         <a   class="btn btn-block btn-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;color:aliceblue" target="_blank">
-            <strong>Bryan yang开发 开发中....</strong>   From www.dazuizui.com 点击我了解更多 → 
+            <strong>杨易达(Dazui)的博客</strong>   From www.dazuizui.com  
         </a>
 
         <div>
@@ -46,7 +46,7 @@
                                     <a href="about.html" class="dropdown-item">填空题库</a>
                                     <a href="#" class="dropdown-item" @click="goCodingQuestionList()">编程题库</a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="login.html" class="dropdown-item" v-if="user.role >= 2">出题人页面</a>
+                                    <a href="" class="dropdown-item" v-if="user.role >= 2">出题人页面</a>
                                 </div>
                             </li>
 
@@ -59,6 +59,10 @@
                                 <div class="dropdown-menu dropdown-menu-single">
                                     <a href="" class="dropdown-item" @click="goCreateContest()">出题人页面</a>
                                 </div>
+                            </li>
+
+                            <li class="nav-item " v-if="user.role < 2">
+                                <a class="nav-link" href="" @click="goContestList()" >友情链接</a>
                             </li>
                         </ul>
 
