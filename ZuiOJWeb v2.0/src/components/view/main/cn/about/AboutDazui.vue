@@ -28,7 +28,7 @@
                                 <span class="btn-inner--text" style="color:aliceblue">About Demo</span>
                             
                             </a>
-                            <a href="https://webpixels.io/illustrations" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank" style="color:black">About Team</a>
+                            <a href="/cn/about/guangsha/TLM" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank" style="color:black">About Team</a>
                         </div>
                     </div>
                 </div>
