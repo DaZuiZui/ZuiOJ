@@ -8,6 +8,7 @@ import ViewQuestion from '@/components/view/main/cn/question/ViewQuestion'
 import ContestList from '@/components/view/main/cn/contest/ContestList'
 import ViewEvent from '@/components/view/main/cn/contest/ViewEvents'
 import ViewRank from '@/components/view/main/cn/contest/ViewRank'
+import CreateContest from '@/components/view/main/cn/contest/CreateContest'
 import GSRegister from '@/components/view/main/cn/user/GSRegister'
 Vue.use(Router)
 
@@ -19,6 +20,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //中文创建比赛
+    {
+      path: '/cn/contest/create',
+      name: 'CreateContest',
+      component: CreateContest
     },
     //哈尔滨广厦学院注册接口
     {

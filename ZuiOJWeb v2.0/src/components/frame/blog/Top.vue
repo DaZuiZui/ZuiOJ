@@ -49,14 +49,15 @@
                                     <a href="login.html" class="dropdown-item" v-if="user.role >= 2">出题人页面</a>
                                 </div>
                             </li>
+
                             <li class="nav-item " v-if="user.role < 2">
                                 <a class="nav-link" href="" @click="goContestList()" >Contest</a>
                             </li>
 
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover" v-else>
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goCodingQuestionList()">Contest</a>
+                                <a class="nav-link"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goContestList()">Contest</a>
                                 <div class="dropdown-menu dropdown-menu-single">
-                                    <a href="login.html" class="dropdown-item">出题人页面</a>
+                                    <a href="" class="dropdown-item" @click="goCreateContest()">出题人页面</a>
                                 </div>
                             </li>
                         </ul>
@@ -177,6 +178,10 @@ import { synRequestGet } from '../../../../static/request';
         //比赛列表
         goContestList(){
             this.$router.push('/cn/contest/list');
+        },
+        //去创建比赛
+        goCreateContest(){
+            this.$router.push('/cn/contest/create');
         }
     }
   }
