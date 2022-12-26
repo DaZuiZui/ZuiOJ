@@ -46,11 +46,18 @@
                                     <a href="about.html" class="dropdown-item">填空题库</a>
                                     <a href="#" class="dropdown-item" @click="goCodingQuestionList()">编程题库</a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="login.html" class="dropdown-item">出题人页面</a>
+                                    <a href="login.html" class="dropdown-item" v-if="user.role >= 2">出题人页面</a>
                                 </div>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link"  @click="goContestList()" >Contest</a>
+                            <li class="nav-item " v-if="user.role < 2">
+                                <a class="nav-link" href="" @click="goContestList()" >Contest</a>
+                            </li>
+
+                            <li class="nav-item dropdown dropdown-animate" data-toggle="hover" v-else>
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goCodingQuestionList()">Contest</a>
+                                <div class="dropdown-menu dropdown-menu-single">
+                                    <a href="login.html" class="dropdown-item">出题人页面</a>
+                                </div>
                             </li>
                         </ul>
 
@@ -82,7 +89,7 @@
                                                         <el-container v-if="tmp == null">
                                                             <el-main>
                                                                 账号: {{user.username}}<br>
-                                                                昵称: {{user.name}}
+                                                                昵称: {{user.role}}
                                                             </el-main>
                                                         </el-container>
         
@@ -104,6 +111,8 @@
                                             <div style="margin: auto;" v-else>                              
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-user"></i>我的个人信息</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>我的个人博客</li>
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>管理操作页面</li>
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>站长人员操作</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-back"></i>退出我的账户</li>
                                             </div>
                                         </div>
@@ -137,7 +146,8 @@ import { synRequestGet } from '../../../../static/request';
         user: {
             username: "",
             name: "",
-            headPortrait: ""
+            headPortrait: "",
+            role: 0
         },
       }
     },
