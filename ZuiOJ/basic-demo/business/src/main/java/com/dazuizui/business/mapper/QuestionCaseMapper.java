@@ -1,6 +1,8 @@
 package com.dazuizui.business.mapper;
 
+import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.QuestionCase;
+import com.dazuizui.basicapi.entry.bo.AdminQueryQuestionCaseBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +25,16 @@ public interface QuestionCaseMapper {
      * @param id
      */
     public Long deleteCaseById(@Param("id")Long id);
+
+    /**
+     * 管理员分页查找案例
+     * @param adminQueryQuestionCaseBo
+     * @return
+     */
+    public List<QuestionCase> pagingToGetQuestionCase(AdminQueryQuestionCaseBo adminQueryQuestionCaseBo);
+
+    /**
+     * 通过id查询指定数量
+     */
+    public Long queryCountOfCase(@Param("questionId") Long questionId);
 }

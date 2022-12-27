@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ *  题目业务实现类
  */
 @Service
 public class QuestionBankServiceImpl implements QuestionBankService {

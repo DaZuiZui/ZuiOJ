@@ -183,18 +183,26 @@ import { synRequestGet } from '../../../../static/request';
         goContestList(){
             this.$router.push('/cn/contest/list');
         },
+        
         //去创建比赛
         goCreateContest(){
             this.$router.push('/cn/contest/create');
         },
+
         //前往管理员页面
         goAdminManagement(){
             this.$router.push("/cn/admin/index");
         },
+
         //创建题目
         goCreateQuestion(){
             this.$router.push('/cn/question/create');
-        }
+        },
+
+        //题库案例管理
+        goQuestionCaseManagement(){
+            this.$router.push('/cn/admin/question/case/list');
+        },
     }
   }
   </script>

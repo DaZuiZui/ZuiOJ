@@ -52,6 +52,7 @@
                           {{obj.createByName}}
                         </td>
                         <td>
+                            <el-link type="primary" @click="goQuestionCaseManagement(obj.id)">案例管理</el-link>
                             <el-link type="primary">修改</el-link>
                             <el-link type="warning">逻辑删除</el-link>
                             <el-link type="danger" @click="physicalDeletion(obj.id,obj.questionType)">物理删除</el-link>
@@ -145,7 +146,12 @@
             }else{
                 alert(obj.message);
             }
-        }
+        },
+        
+        //题库案例管理
+        goQuestionCaseManagement(id){
+            this.$router.push('/cn/admin/question/case/list?id='+id);
+        },
     }
   }
   </script>
