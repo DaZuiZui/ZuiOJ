@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserMapper {
@@ -25,4 +26,11 @@ public interface UserMapper {
      * @return
      */
     public Long register(User user);
+
+    /**
+     * 通过id查询用户
+     * @param id
+     * @return
+     */
+    public User queryUserById(@Param("id") Long id);
 }

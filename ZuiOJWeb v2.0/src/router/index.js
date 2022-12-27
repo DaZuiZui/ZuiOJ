@@ -12,6 +12,8 @@ import CreateContest from '@/components/view/main/cn/contest/CreateContest'
 import GSRegister from '@/components/view/main/cn/user/GSRegister'
 import CreateQuestion from '@/components/view/main/cn/question/CreateQuestion'
 import AboutTLM from '@/components/view/main/cn/about/AboutTLM'
+import AdminIndex from '@/components/view/main/cn/admin/AdminIndex'
+import AdminQuestionList from '@/components/view/main/cn//admin/AdminQuestionList'
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +24,18 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //中文查询题目list
+    {
+      path: '/cn/admin/question/list',
+      name: 'AdminList',
+      component: AdminQuestionList
+    },
+    //管理员页面中文
+    {
+      path: '/cn/admin/index',
+      name: 'AdminIndex',
+      component: AdminIndex
     },
     //关于TLM团队
     {

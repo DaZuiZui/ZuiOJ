@@ -7,6 +7,7 @@ import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.RedisUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,27 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private RedisUtil redisUtil;
+
+    /**
+     * 通过id查询用户
+     * @param id
+     * @return
+     */
+    @Override
+    public User queryUserById(@Param("id") Long id){
+        User user = (User) redisUtil.getStringInRedis("zuiblog:user:" + id);
+
+        if (user == null){
+            user = userMapper.queryUserById(id);
+            if (user != null){
+                redisUtil.setStringInRedis("zuiblog:user:"+id,60*60*24*15,user);
+            }else{
+                return null;
+            }
+        }
+
+        return user;
+    }
 
     /**
      * 用户登入

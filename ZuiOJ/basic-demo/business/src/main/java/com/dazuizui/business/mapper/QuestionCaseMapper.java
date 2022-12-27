@@ -17,4 +17,10 @@ public interface QuestionCaseMapper {
      * @return
      */
     public List<QuestionCase> queryTheQuestionCasesByQuestionId(@Param("questionId")long questionId);
+
+    /**
+     * 删除案例
+     * @param id
+     */
+    public Long deleteCaseById(@Param("id")Long id);
 }

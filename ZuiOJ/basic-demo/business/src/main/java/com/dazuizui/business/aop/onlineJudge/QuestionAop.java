@@ -23,4 +23,19 @@ public interface QuestionAop {
      * @return
      */
     public String postQuestion(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 用户分页查找数据
+     * @param joinpoint
+     * @return
+     */
+    public String pagingToGetQuestionOfAdmin(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 删除问题aop前置环绕鉴权是否权限满足
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String deleteQuestionById(JoinPoint joinpoint) throws Exception;
 }

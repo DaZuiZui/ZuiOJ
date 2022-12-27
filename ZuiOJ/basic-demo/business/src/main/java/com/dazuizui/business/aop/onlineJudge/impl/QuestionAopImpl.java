@@ -1,9 +1,12 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
+import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionAop;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
+import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -28,6 +31,8 @@ public class QuestionAopImpl implements QuestionAop {
     private CompetitionInfoMapper competitionInfoMapper;
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
+    @Autowired
+    private UserService userService;
 
     /**
      * 通过题目id获取题目的AOP
@@ -45,7 +50,7 @@ public class QuestionAopImpl implements QuestionAop {
             try {
                 map = JwtUtil.analysis(token);
                 ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
-                System.err.println("threadlocal is "+ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo"));
+                //System.err.println("threadlocal is "+ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo"));
             } catch (Exception e) {
                 throw new Exception("身份验证过期");
             }
@@ -97,6 +102,77 @@ public class QuestionAopImpl implements QuestionAop {
             } catch (Exception e) {
                 throw new Exception("身份验证过期");
             }
+        }
+
+        return null;
+    }
+
+    /**
+     * 管理员分页查询题目，鉴权是否有权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.QuestionBankController.pagingToGetQuestionOfAdmin(..))")
+    public String pagingToGetQuestionOfAdmin(JoinPoint joinpoint) throws Exception {
+        //鉴权
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        Map<String, Object> map = null;
+
+        if (token != null){
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+            }
+        }
+
+        Long id = Long.valueOf((String) map.get("id"));
+        User user = userService.queryUserById(id);
+        Integer role = user.getRole();
+        if (role < 2){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            return null;
+        }
+
+        return null;
+    }
+
+    /**
+     * 删除问题aop前置环绕鉴权是否权限满足
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.QuestionBankController.deleteQuestionById(..))")
+    public String deleteQuestionById(JoinPoint joinpoint) throws Exception{
+        //鉴权
+        Object[] args = joinpoint.getArgs();
+        DeleteQuestion arg = (DeleteQuestion) args[0];
+        Map<String, Object> map = null;
+        String token = arg.getToken();
+        System.err.println("toekn si "+token);
+        if (token != null){
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+            } catch (Exception e) {
+
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                return null;
+            }
+        }
+        System.err.println("??"+map);
+        Long id = Long.valueOf((String) map.get("id"));
+        User user = userService.queryUserById(id);
+        Integer role = user.getRole();
+        if (role < 2){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            return null;
         }
 
         return null;

@@ -7,7 +7,7 @@
   
         <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
             <div class="container">
-                <table class="table">
+                  <table class="table">
                     <thead>
                       <tr>
                         <th scope="col" width="90px"></th>
@@ -60,7 +60,7 @@
                     :total="count">
                   </el-pagination>
             </div>
-        </section>
+        </section> 
  
         <footer class="position-relative" id="footer-main">
             <Foot></Foot>

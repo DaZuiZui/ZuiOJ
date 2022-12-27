@@ -46,7 +46,7 @@
                                     <a href="about.html" class="dropdown-item">填空题库</a>
                                     <a href="#" class="dropdown-item" @click="goCodingQuestionList()">编程题库</a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="" class="dropdown-item" v-if="user.role >= 2">出题人页面</a>
+                                    <a href="" class="dropdown-item" v-if="user.role >= 2" @click="goCreateQuestion()">出题人页面</a>
                                 </div>
                             </li>
 
@@ -186,6 +186,11 @@ import { synRequestGet } from '../../../../static/request';
         //去创建比赛
         goCreateContest(){
             this.$router.push('/cn/contest/create');
+        },
+
+        //创建题目
+        goCreateQuestion(){
+            this.$router.push('/cn/question/create');
         }
     }
   }

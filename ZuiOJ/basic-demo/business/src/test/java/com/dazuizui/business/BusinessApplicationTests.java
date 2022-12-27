@@ -2,6 +2,7 @@ package com.dazuizui.business;
 
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.QuestionCase;
+import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.service.onlineJudge.LanguageCommandService;
@@ -18,12 +19,12 @@ import java.util.List;
 @SpringBootTest
 class BusinessApplicationTests {
     @Autowired
-    private SqlSessionFactory sqlSessionFactory;
+    private RedisTemplate redisTemplate;
     @Test
     void contextLoads() {
         //建立连接
+        System.out.println(redisTemplate.opsForValue().get(RedisKey.QuestionCountWithAnyStatus));
 
- ;
 
     }
 

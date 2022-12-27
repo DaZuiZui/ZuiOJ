@@ -13,5 +13,11 @@
             question_id = #{questionId}
     </select>
 
+    <delete id="deleteCaseById">
+        delete from
+            question_case
+        where
+            question_id = #{questionId}
+    </delete>
 
 </mapper>

@@ -4,9 +4,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionBankMapper">
     <!--
+        物理删除问题
+    -->
+    <delete id="deleteQuestionById">
+        delete from
+            question_bank
+        where
+            id = #{id}
+    </delete>
+
+    <!--
+        物理删除问题详细页面
+    -->
+    <delete id="deleteQuestionDetalied">
+        delete from
+            question_bank_detailed
+        where
+            id = #{id}
+    </delete>
+    <!--
         查看问题数量
     -->
     <select id="queryCountOfQuestion" resultType="long">
+        select
+            count(0)
+        from
+            question_bank
+        where
+            status = 0
+    </select>
+
+    <!--
+        管理员查看问题数量
+    -->
+    <select id="queryCountOfQuestionOfAdmin" resultType="long">
         select
             count(0)
         from
@@ -40,7 +71,7 @@
     </select>
 
     <!--
-        分页查询问题
+        用户分页查询问题
     -->
     <select id="pagingToGetQuestion" resultType="com.dazuizui.basicapi.entry.QuestionBank">
         select
@@ -54,6 +85,23 @@
         where
             status = 0 and
             del_flag = 0
+        limit
+            #{pages},
+            #{number}
+    </select>
+
+    <!--
+        管理员分页查询题库
+    -->
+    <select id="pagingToGetQuestionOfAdmin" resultType="com.dazuizui.basicapi.entry.QuestionBank">
+        select
+            id,
+            short_name,
+            chinese_name,
+            grade,
+            create_by_name
+        from
+            question_bank
         limit
             #{pages},
             #{number}

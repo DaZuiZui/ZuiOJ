@@ -1,5 +1,6 @@
 package com.dazuizui.business.service.onlineJudge;
 
+import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
@@ -8,8 +9,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Service
 public interface QuestionBankService {
+    /**
+     * 通过id物理删除问题
+     * @return
+     */
+    public String deleteQuestionById(Long id,Long questionType);
+
+    /**
+     * 管理员查看题库数量
+     * @return
+     */
+    public Long queryCountOfQuestionOfAdmin();
+
+    /**
+     * 用户分页查找数据
+     * @param pages   起始行数
+     * @param number  一次查询多少个
+     * @return
+     */
+    public String pagingToGetQuestionOfAdmin(@Param("pages") int pages, @Param("number") int number);
+
     /**
      * 提交题目
      * @param questionBankBo

@@ -3,6 +3,7 @@ package com.dazuizui.business.util;
 import org.omg.CORBA.TIMEOUT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,6 +13,38 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtil {
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    public long deleteKey(String key){
+        redisTemplate.delete(key);
+        return -1;
+    }
+
+    /**
+     * 自增
+     * @param key
+     * @return
+     */
+    public long increment(String key){
+        System.err.println("before "+redisTemplate.opsForValue().get(key));
+        Long increment = stringRedisTemplate.opsForValue().increment(key);
+        System.err.println(increment+"before "+redisTemplate.opsForValue().get(key));
+        return increment;
+    }
+
+    /**
+     * 设置string类型
+     * @param key
+     * @param timeout
+     * @param data
+     * @return
+     */
+    public long setLongOfStringInRedis(String key,long timeout,String data){
+        stringRedisTemplate.opsForValue().set(key, data);
+        stringRedisTemplate.expire(key,timeout,TimeUnit.SECONDS);
+        return -1;
+    }
 
     /**
      * 设置key String类型
@@ -25,6 +58,8 @@ public class RedisUtil {
         redisTemplate.expire(key,timeout,TimeUnit.SECONDS);
         return 1;
     }
+
+
 
     /**
      * 获取key值
