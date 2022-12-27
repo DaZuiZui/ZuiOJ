@@ -183,7 +183,7 @@ import { synRequestGet } from '../../../../static/request';
         goContestList(){
             this.$router.push('/cn/contest/list');
         },
-        
+
         //去创建比赛
         goCreateContest(){
             this.$router.push('/cn/contest/create');
@@ -199,10 +199,7 @@ import { synRequestGet } from '../../../../static/request';
             this.$router.push('/cn/question/create');
         },
 
-        //题库案例管理
-        goQuestionCaseManagement(){
-            this.$router.push('/cn/admin/question/case/list');
-        },
+ 
     }
   }
   </script>

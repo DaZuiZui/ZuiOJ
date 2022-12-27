@@ -15,6 +15,7 @@ import AboutTLM from '@/components/view/main/cn/about/AboutTLM'
 import AdminIndex from '@/components/view/main/cn/admin/AdminIndex'
 import AdminQuestionList from '@/components/view/main/cn/admin/AdminQuestionList'
 import AdminQuestioncase from '@/components/view/main/cn/admin/AdminQuestionCase'
+
 Vue.use(Router)
 
 export default new Router({
