@@ -226,7 +226,7 @@
                         <div class="card">
                             <div class="d-flex p-5">
                                 <div>
-                                    <span class="badge badge-success badge-pill">new</span>
+                                    <span class="badge badge-success badge-pill">Out</span>
                                 </div>
                                 <div class="pl-3">
                                     <h5 class="lh-130">抢课系统</h5>

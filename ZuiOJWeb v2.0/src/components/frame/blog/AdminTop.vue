@@ -34,13 +34,20 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
                             <li class="nav-item ">
-                                <a class="nav-link"  href="#" @click="goAbout()">About </a>
+                                <a class="nav-link"  href="#" @click="goAbout()">用户页面 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="index.html">社区</a>
+                                <a class="nav-link"  href="#" @click="goAbout()">用户管理 </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link"  href="#" @click="goAbout()">About管理 </a>
+                            </li>
+                    
+                            <li class="nav-item ">
+                                <a class="nav-link" href="index.html">社区管理</a>
                             </li>
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goCodingQuestionList()">Question List</a>
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goQuestionBankManagement()">题库管理</a>
                                 <div class="dropdown-menu dropdown-menu-single">
                                     <a href="index.html" class="dropdown-item">选择题库</a>
                                     <a href="about.html" class="dropdown-item">填空题库</a>
@@ -55,7 +62,7 @@
                             </li>
 
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover" v-else>
-                                <a class="nav-link"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goContestList()">Contest</a>
+                                <a class="nav-link"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goContestList()">比赛管理</a>
                                 <div class="dropdown-menu dropdown-menu-single">
                                     <a href="" class="dropdown-item" @click="goCreateContest()">出题人页面</a>
                                 </div>
@@ -167,6 +174,10 @@ import { synRequestGet } from '../../../../static/request';
             let obj = await synRequestGet("/user/analysis?token="+token);
             console.log(obj.data);
             this.user = obj.data;
+            if(this.user.role == 1){
+                alert("您的权限不足");
+                this.$router.push('/');
+            }
         },
 
         //go About
@@ -187,10 +198,17 @@ import { synRequestGet } from '../../../../static/request';
         goCreateContest(){
             this.$router.push('/cn/contest/create');
         },
+
+        //题库管理
+        goQuestionBankManagement(){
+            this.$router.push("/cn/admin/question/list");
+        },
+
         //前往管理员页面
         goAdminManagement(){
             this.$router.push("/cn/admin/index");
         },
+
         //创建题目
         goCreateQuestion(){
             this.$router.push('/cn/question/create');

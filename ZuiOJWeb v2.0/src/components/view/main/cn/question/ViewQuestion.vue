@@ -52,7 +52,8 @@
                       ></prism-editor>    
 
                      
-                    </div>  <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> Submit</button> 
+                    </div>  
+                    <button class="btn btn-lg btn-primary btn-block" :disabled="switchbutton" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> Submit</button> 
                   </div>
             </div>
         </section>
@@ -87,6 +88,7 @@
         },
         data () {
             return {
+                switchbutton: false, //提交锁定
                 code: 'console.log("Hello World")',
                 lineNumbers: true,
                 program:{
@@ -145,9 +147,18 @@
             },  
 
             async submit(){
+                this.switchbutton = true;
+                //没有选择语言的情况
+                if(this.program.languageId == -1){
+                    alert("请选择您的语言");
+                    this.switchbutton = false;
+                    return ;
+                }
+                
                 //处决代码
                 this.res =  await synRequestPost("/onlineJudge/judge?token="+getCookie("token"),this.program);
-                console.log(this.res);
+                //console.log(this.res);
+                this.switchbutton = false;
             }
        }
   }

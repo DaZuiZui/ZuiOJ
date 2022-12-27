@@ -307,7 +307,7 @@
             },
             
             toQuestion(id){
-               this.$router.push('/question/AnwserQuestion?id='+id+"&questionType=2&contestId="+getQueryVariable("id"));
+               this.$router.push('/cn/question/view?id='+id+"&questionType=2&contestId="+getQueryVariable("id"));
             }
        }
    }
