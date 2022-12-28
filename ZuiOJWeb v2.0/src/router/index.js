@@ -51,7 +51,7 @@ export default new Router({
       name: 'AdminIndex',
       component: AdminIndex
     },
-    //关于TLM团队
+    //关于TLM团队 
     {
       path: '/cn/about/guangsha/TLM',
       name: 'AboutTLM',
