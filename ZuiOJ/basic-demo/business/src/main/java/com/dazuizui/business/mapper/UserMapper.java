@@ -1,8 +1,13 @@
 package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
+import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -33,4 +38,32 @@ public interface UserMapper {
      * @return
      */
     public User queryUserById(@Param("id") Long id);
+
+    /**
+     * 管理员分页获取用户数据
+     * @param pagingToGetUserDateBo
+     * @return
+     */
+    public List<User> pagingToGetUserDate(PagingToGetUserDateBo pagingToGetUserDateBo);
+
+
+    /**
+     * 查询用户数量
+     * @return Long
+     */
+    public Long queryCountOfUser();
+
+    /**
+     * 批量逻辑删除用户数据
+     * @param delArr
+     * @return·
+     */
+    public Long tombstoneUsersInBatches(@Param("delArr") int[] delArr);
+
+    /**
+     * 批量获取数据
+     * @param delArr
+     * @return
+     */
+    public List<String> getDateInBatches(@Param("delArr") int[] delArr);
 }

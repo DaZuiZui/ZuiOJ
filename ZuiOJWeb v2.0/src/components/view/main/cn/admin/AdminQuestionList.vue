@@ -121,7 +121,7 @@
             
             //获取当前数据为null的情况
             if(obj.data.questionBanks.length == 0){
-                if(this.curpage <= 0){
+                if(this.curpage <= 1){
                     alert("无数据");
                     return ;
                 }

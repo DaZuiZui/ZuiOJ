@@ -39,7 +39,7 @@ public class QuestionBankController {
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
         //System.err.println(map.get("error"));
         if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,"0x5001"));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
         return questionBankService.deleteQuestionById(deleteQuestion.getId(), deleteQuestion.getQuestionType());

@@ -1,7 +1,11 @@
 package com.dazuizui.business.service.user.impl;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
+import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.basicapi.entry.vo.PagingToGetUserDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.user.UserService;
@@ -10,10 +14,9 @@ import com.dazuizui.business.util.RedisUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 用户登入接口实现类
@@ -25,6 +28,32 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private RedisUtil redisUtil;
+
+    /**
+     * 管理员分页获取用户数据
+     * @param pagingToGetUserDateBo
+     * @return
+     */
+    @Override
+    public String pagingToGetUserDate(PagingToGetUserDateBo pagingToGetUserDateBo) {
+        //获取用户个数
+        Long coungOfUser = (Long) redisUtil.getStringInRedis(RedisKey.ZuiBloguserCount);
+        //如果redis没有数据就去mysql查询
+        if (coungOfUser == null || coungOfUser == 0){
+            coungOfUser = userMapper.queryCountOfUser();
+            //写入redis
+            redisUtil.setLongOfStringInRedis(RedisKey.ZuiBloguserCount,RedisKey.OutTime, String.valueOf(coungOfUser));
+        }
+
+        //获取用户数据
+        List<User> users = userMapper.pagingToGetUserDate(pagingToGetUserDateBo);
+
+        PagingToGetUserDateVo pagingToGetUserDateVo = new PagingToGetUserDateVo();
+        pagingToGetUserDateVo.setUsers(users);
+        pagingToGetUserDateVo.setCoungOfUser(coungOfUser);
+
+        return  JSONArray.toJSONString(new ResponseVo<>("查询成功",pagingToGetUserDateVo,"0x200"));
+    }
 
     /**
      * 通过id查询用户
@@ -133,5 +162,41 @@ public class UserServiceImpl implements UserService {
         }
 
         return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,"200"));
+    }
+
+    /**
+     * 批量删除用户
+     * @return
+     */
+    @Override
+    @Transactional
+    public String deleteUsersInBulk(DeleteUsersInBulkBo deleteUsersInBulkBo){
+        int[] delArr = deleteUsersInBulkBo.getDelArr();
+
+        /**
+         * 前去redis删除
+         */
+        //获取他们的usernae索引在username
+        List<String> batDeletionInRedis = new ArrayList<>();
+        for (int i : delArr) {
+            batDeletionInRedis.add(RedisKey.ZuiBlogUserId+""+i);
+        }
+        redisUtil.batchDeletion(batDeletionInRedis);
+
+        batDeletionInRedis.clear();
+
+        //获取要删除的用户的UserName去数据库
+        List<String> usernameOfUserInMysql = userMapper.getDateInBatches(deleteUsersInBulkBo.getDelArr());
+        for (String username : usernameOfUserInMysql) {
+            batDeletionInRedis.add(RedisKey.ZuiBlogUserUsername+username);
+        }
+
+        //删除索引是username的用户在Redis
+        redisUtil.batchDeletion(batDeletionInRedis);
+
+        //去数据库逻辑删除此数据
+        userMapper.tombstoneUsersInBatches(deleteUsersInBulkBo.getDelArr());
+
+        return JSONArray.toJSONString(new ResponseVo<>("逻辑删除成功",null,"0x200"));
     }
 }

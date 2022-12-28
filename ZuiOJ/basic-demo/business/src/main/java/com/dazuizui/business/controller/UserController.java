@@ -2,11 +2,17 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
+import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.user.UserService;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 用户模板登入
@@ -52,5 +58,32 @@ public class UserController {
     @PostMapping("/register")
     public String register(@RequestBody User user){
         return userService.register(user);
+    }
+
+    /**
+     * 分页获取用户数据
+     * @return
+     */
+    @ApiOperation("分页获取数据")
+    @PostMapping("/admin/pagingToGetUserDate")
+    public String pagingToGetUserDate(@RequestBody PagingToGetUserDateBo pagingToGetUserDateBo){
+        System.err.println(pagingToGetUserDateBo);
+        return userService.pagingToGetUserDate(pagingToGetUserDateBo);
+    }
+
+    /**
+     * 批量删除用户
+     * @return
+     */
+    @ApiOperation("批量删除用户数据")
+    @PostMapping("/admin/deleteUsersInBulk")
+    public String deleteUsersInBulk(@RequestBody DeleteUsersInBulkBo deleteUsersInBulkBo){
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return userService.deleteUsersInBulk(deleteUsersInBulkBo);
     }
 }

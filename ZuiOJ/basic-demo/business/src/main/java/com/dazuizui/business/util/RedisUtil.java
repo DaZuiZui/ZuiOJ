@@ -16,10 +16,34 @@ public class RedisUtil {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    /**
+     * 批量删除
+     * @param key
+     * @return
+     */
+    public long batchDeletion(List<String> key){
+        //我
+        redisTemplate.delete(key);
+        return -1;
+    }
+
+    //批量获取
+    public List<Object> batchGetDateOfStringType(List<String> list){
+        List<Object> res = (List<Object>) redisTemplate.opsForValue().multiGet(list);
+        return res;
+    }
+
+    /**
+     * 删除key
+     * @param key
+     * @return
+     */
     public long deleteKey(String key){
         redisTemplate.delete(key);
         return -1;
     }
+
+
 
     /**
      * 自增

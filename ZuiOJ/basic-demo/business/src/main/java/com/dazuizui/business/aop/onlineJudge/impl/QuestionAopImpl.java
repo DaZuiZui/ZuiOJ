@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
+import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
@@ -127,6 +128,7 @@ public class QuestionAopImpl implements QuestionAop {
                 ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
             } catch (Exception e) {
                 ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.authenticationExpired);
             }
         }
 
@@ -135,6 +137,7 @@ public class QuestionAopImpl implements QuestionAop {
         Integer role = user.getRole();
         if (role < 2){
             ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.insufficientPermissions);
             return null;
         }
 
@@ -163,6 +166,7 @@ public class QuestionAopImpl implements QuestionAop {
             } catch (Exception e) {
 
                 ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.authenticationExpired);
                 return null;
             }
         }
@@ -172,6 +176,7 @@ public class QuestionAopImpl implements QuestionAop {
         Integer role = user.getRole();
         if (role < 2){
             ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
             return null;
         }
 

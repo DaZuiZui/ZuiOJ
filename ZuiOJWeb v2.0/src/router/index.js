@@ -15,7 +15,7 @@ import AboutTLM from '@/components/view/main/cn/about/AboutTLM'
 import AdminIndex from '@/components/view/main/cn/admin/AdminIndex'
 import AdminQuestionList from '@/components/view/main/cn/admin/AdminQuestionList'
 import AdminQuestioncase from '@/components/view/main/cn/admin/AdminQuestionCase'
-
+import AdminUserList from '@/components/view/main/cn/admin/AdminuserList'
 Vue.use(Router)
 
 export default new Router({
@@ -26,6 +26,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //用户管理
+    {
+      path: '/cn/amdin/user/list',
+      name: 'userList',
+      component: AdminUserList
     },
     //中文案例管理
     {

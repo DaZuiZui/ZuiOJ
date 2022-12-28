@@ -36,9 +36,15 @@
                             <li class="nav-item ">
                                 <a class="nav-link"  href="#" @click="goAbout()">用户页面 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link"  href="#" @click="goAbout()">用户管理 </a>
+
+                            <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goUserManagement()">用户管理</a>
+                                <div class="dropdown-menu dropdown-menu-single">
+                                    <a href="index.html" class="dropdown-item">哈尔滨广厦学院特定版本</a>
+                                    <a href="about.html" class="dropdown-item">哈尔滨广厦学院社团特定版本</a>
+                                </div>
                             </li>
+
                             <li class="nav-item ">
                                 <a class="nav-link"  href="#" @click="goAbout()">About管理 </a>
                             </li>
@@ -212,6 +218,11 @@ import { synRequestGet } from '../../../../static/request';
         //创建题目
         goCreateQuestion(){
             this.$router.push('/cn/question/create');
+        },
+
+        //前往用户管理页面
+        goUserManagement(){
+            this.$router.push('/cn/amdin/user/list');
         }
     }
   }
