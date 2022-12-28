@@ -29,7 +29,7 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
      */
     @Override
     public String viewRanking(Long contestId,Integer page,Integer numbers) {
-        System.err.println("?????");
+
         //有效选手个数
         RankingVo rankingVo = new RankingVo();
         GetTotal getTotalEntry = competitionInfoMapper.getTotal(contestId);
