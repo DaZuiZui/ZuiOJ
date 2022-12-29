@@ -1,8 +1,11 @@
 package com.dazuizui.business.service.user;
 
 import com.dazuizui.basicapi.entry.User;
+
+import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public interface UserService {
+
+    /**
+     * 通过id物理删除用户
+     * @param deleteUserByIdBo
+     * @return
+     */
+    public String deleteUserById(DeleteUserByIdBo deleteUserByIdBo);
 
     /**
      * 管理员分页获取用户数据
@@ -57,4 +67,11 @@ public interface UserService {
      * @return
      */
     public String deleteUsersInBulk(DeleteUsersInBulkBo deleteUsersInBulkBo);
+
+    /**
+     * 通过id逻辑删除用户
+     * @param tombstoneUserByIdBo
+     * @return
+     */
+    public String tombstoneUserById(TombstoneUserByIdBo tombstoneUserByIdBo);
 }

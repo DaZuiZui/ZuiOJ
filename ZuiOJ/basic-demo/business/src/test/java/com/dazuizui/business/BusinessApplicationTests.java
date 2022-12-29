@@ -1,5 +1,6 @@
 package com.dazuizui.business;
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.RedisKey;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.List;
 
@@ -21,6 +23,11 @@ import java.util.List;
 class BusinessApplicationTests {
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Test
     void contextLoads() {
         //建立连接
@@ -38,7 +45,12 @@ class BusinessApplicationTests {
 
     @Test
     void test1(){
-        System.err.println(redisTemplate.opsForValue().get("ZuiBlog:User:Info:Id:1"));
-        System.err.println(redisTemplate.opsForValue().get(RedisKey.ZuiBlogUserUsername+"y51288033"));
+        //stringRedisTemplate.opsForValue().increment("b",1);
+        System.err.println(stringRedisTemplate.opsForValue().get("ZuiBlog:User:count"));
+        System.err.println(stringRedisTemplate.opsForValue().get(RedisKey.ZuiBlogUserCount));
+        String key = RedisKey.ZuiBlogUserCount;
+        System.err.println(redisUtil.getStringInRedis(key));
+        //System.err.println(stringRedisTemplate.opsForValue().get(RedisKey.ZuiBloguserCount));
+
     }
 }

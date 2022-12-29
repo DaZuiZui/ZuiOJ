@@ -2,19 +2,19 @@ package com.dazuizui.basicapi.entry;
 
 public class RedisKey {
     //状态是0的题库数量
-    public static String QuestionCountWithStatusIs0 = "ZuiOJ:question:conut:statusis1";
+    public static final String QuestionCountWithStatusIs0 = "ZuiOJ:question:conut:statusis1";
     //查看任意状态的问题数量
-    public static String QuestionCountWithAnyStatus = "ZuiOJ:question:conut:anystatus";
+    public static final String QuestionCountWithAnyStatus = "ZuiOJ:question:conut:anystatus";
     //问题缓存
-    public static String ZuiOJQuestion = "ZuiOJ:Question:";
+    public static final String ZuiOJQuestion = "ZuiOJ:Question:";
     //获取指定题目的案例
-    public static String ZuiOJQuestionCase = "ZuiOJ:QuestionBack:Case:QuestionID:";
+    public static final String ZuiOJQuestionCase = "ZuiOJ:QuestionBack:Case:QuestionID:";
     //用户数量
-    public static String ZuiBloguserCount = "ZuiBlog:User:count";
+    public static final String ZuiBlogUserCount = "ZuiBlog:User:count";
     //过期时间
-    public static Long OutTime = Long.valueOf(60*60*24*15);
+    public static final  Long OutTime = Long.valueOf(60*60*24*15);
     //用户主键个人信息
-    public static String ZuiBlogUserId = "ZuiBlog:User:Info:Id:";
+    public static final String ZuiBlogUserId = "ZuiBlog:User:Info:Id:";
     //用户索引username
-    public static String ZuiBlogUserUsername = "ZuiBlog:User:Info:Username:";
+    public static final String ZuiBlogUserUsername = "ZuiBlog:User:Info:Username:";
 }

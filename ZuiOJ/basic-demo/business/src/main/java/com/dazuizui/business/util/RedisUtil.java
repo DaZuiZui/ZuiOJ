@@ -27,6 +27,7 @@ public class RedisUtil {
         return -1;
     }
 
+
     //批量获取
     public List<Object> batchGetDateOfStringType(List<String> list){
         List<Object> res = (List<Object>) redisTemplate.opsForValue().multiGet(list);
@@ -50,10 +51,11 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public long increment(String key){
-        System.err.println("before "+redisTemplate.opsForValue().get(key));
-        Long increment = stringRedisTemplate.opsForValue().increment(key);
-        System.err.println(increment+"before "+redisTemplate.opsForValue().get(key));
+    public long increment(String key,long timeout,long val){
+        //System.err.println("before "+redisTemplate.opsForValue().get(key));
+        Long increment = stringRedisTemplate.opsForValue().increment(key,val);
+        stringRedisTemplate.expire(key,timeout,TimeUnit.SECONDS);
+        //System.err.println(increment+"before "+redisTemplate.opsForValue().get(key));
         return increment;
     }
 
@@ -64,10 +66,24 @@ public class RedisUtil {
      * @param data
      * @return
      */
-    public long setLongOfStringInRedis(String key,long timeout,String data){
-        stringRedisTemplate.opsForValue().set(key, data);
+    public long setLongOfStringInRedis(String key,long timeout,Long data){
+        System.err.println("key is"+key+" out time"+timeout);
+        stringRedisTemplate.opsForValue().increment(key, data);
         stringRedisTemplate.expire(key,timeout,TimeUnit.SECONDS);
         return -1;
+    }
+
+    /**
+     * 获取Long in string类型
+     * @param key
+     * @return
+     */
+    public Long getLongOfStringInRedis(String key){
+        String obj = stringRedisTemplate.opsForValue().get(key);
+        if (obj == null){
+            return null;
+        }
+        return Long.valueOf(obj);
     }
 
     /**

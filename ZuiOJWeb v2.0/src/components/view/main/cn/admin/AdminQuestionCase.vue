@@ -134,8 +134,9 @@
             this.curpage = val;
 
             //设置分页数据
-            this.adminQueryQuestionCaseBo.pages = val-1;
             this.adminQueryQuestionCaseBo.numbers = 50;
+            this.adminQueryQuestionCaseBo.pages = (val-1) * this.adminQueryQuestionCaseBo.numbers;
+            
 
             //获取分页案例
             let obj = await synRequestPost("/questionCase/getDateByPaging",this.adminQueryQuestionCaseBo);

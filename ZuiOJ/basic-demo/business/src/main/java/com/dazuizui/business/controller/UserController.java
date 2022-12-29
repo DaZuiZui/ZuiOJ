@@ -2,8 +2,10 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -24,6 +26,24 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    /**
+     * 通过id物理删除用户
+     * @param deleteUserByIdBo
+     * @return
+     */
+    @ApiOperation("物理删除")
+    @PostMapping("/admin/deleteUserById")
+    public String deleteUserById(@RequestBody DeleteUserByIdBo deleteUserByIdBo){
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+
+        return userService.deleteUserById(deleteUserByIdBo);
+    }
 
     /**
      * 用户登入
@@ -57,6 +77,7 @@ public class UserController {
     @ApiOperation("注册用户")
     @PostMapping("/register")
     public String register(@RequestBody User user){
+
         return userService.register(user);
     }
 
@@ -67,7 +88,12 @@ public class UserController {
     @ApiOperation("分页获取数据")
     @PostMapping("/admin/pagingToGetUserDate")
     public String pagingToGetUserDate(@RequestBody PagingToGetUserDateBo pagingToGetUserDateBo){
-        System.err.println(pagingToGetUserDateBo);
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
         return userService.pagingToGetUserDate(pagingToGetUserDateBo);
     }
 
@@ -85,5 +111,21 @@ public class UserController {
         }
 
         return userService.deleteUsersInBulk(deleteUsersInBulkBo);
+    }
+
+    /**
+     * 逻辑删除用户通过id
+     */
+    @ApiOperation("逻辑删除用户通过id")
+    @PostMapping("/admin/tombstoneUserById")
+    public String tombstoneUserById(@RequestBody TombstoneUserByIdBo tombstoneUserByIdBo){
+        System.err.println(tombstoneUserByIdBo);
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return userService.tombstoneUserById(tombstoneUserByIdBo);
     }
 }

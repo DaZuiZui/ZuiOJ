@@ -12,5 +12,7 @@ public class StatusCode  {
     public static String insufficientPermissions = "0x445";
     //成功
     public static String OK = "0x200";
+    //失败
+    public static String Error = "0x500";
 
 }

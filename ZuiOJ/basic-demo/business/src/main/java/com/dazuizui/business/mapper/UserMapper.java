@@ -58,12 +58,19 @@ public interface UserMapper {
      * @param delArr
      * @return·
      */
-    public Long tombstoneUsersInBatches(@Param("delArr") int[] delArr);
+    public Long tombstoneUsersInBatches(@Param("delArr") long[] delArr);
 
     /**
      * 批量获取数据
      * @param delArr
      * @return
      */
-    public List<String> getDateInBatches(@Param("delArr") int[] delArr);
+    public List<String> getDateInBatches(@Param("delArr") long[] delArr);
+
+    /**
+     * 通过id物理删除用户
+     * @param id
+     * @return
+     */
+    public Long deleteUserById(@Param("id") Long id);
 }

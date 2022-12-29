@@ -8,7 +8,10 @@ import java.util.Arrays;
  */
 public class DeleteUsersInBulkBo implements Serializable {
     private String token;
-    private int[] delArr;
+    private long[] delArr;
+
+    public DeleteUsersInBulkBo() {
+    }
 
     @Override
     public String toString() {
@@ -26,18 +29,15 @@ public class DeleteUsersInBulkBo implements Serializable {
         this.token = token;
     }
 
-    public int[] getDelArr() {
+    public long[] getDelArr() {
         return delArr;
     }
 
-    public void setDelArr(int[] delArr) {
+    public void setDelArr(long[] delArr) {
         this.delArr = delArr;
     }
 
-    public DeleteUsersInBulkBo() {
-    }
-
-    public DeleteUsersInBulkBo(String token, int[] delArr) {
+    public DeleteUsersInBulkBo(String token, long[] delArr) {
         this.token = token;
         this.delArr = delArr;
     }

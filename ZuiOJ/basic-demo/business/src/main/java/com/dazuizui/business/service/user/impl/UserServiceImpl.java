@@ -2,9 +2,12 @@ package com.dazuizui.business.service.user.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.PagingToGetUserDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.UserMapper;
@@ -29,6 +32,51 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisUtil redisUtil;
 
+
+    /**
+     * 通过id物理删除用户
+     * @param deleteUserByIdBo
+     * @return
+     */
+    @Transactional
+    @Override
+    public String deleteUserById(DeleteUserByIdBo deleteUserByIdBo){
+        /**
+         * 获取这个用户信息
+         */
+        User user = (User) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserId + deleteUserByIdBo.getIdOfUser());
+        if (user == null){
+            //去数据库查询
+            user = userMapper.queryUserById(deleteUserByIdBo.getIdOfUser());
+        }
+
+        try {
+            /**
+             * 删除用户在mysql
+             */
+            userMapper.deleteUserById(deleteUserByIdBo.getIdOfUser());
+
+            /**
+             * 删除用户在redis中
+             */
+            List<String> keys = new ArrayList<>();
+            keys.add(RedisKey.ZuiBlogUserId+user.getId());
+            keys.add(RedisKey.ZuiBlogUserUsername+user.getUsername());
+            redisUtil.batchDeletion(keys);
+
+            /**
+             * redis用户数据减1
+             */
+            redisUtil.increment(RedisKey.ZuiBlogUserCount,RedisKey.OutTime,-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  JSONArray.toJSONString(new ResponseVo<>("物理删除失败",null,StatusCode.Error));
+        }
+
+
+        return  JSONArray.toJSONString(new ResponseVo<>("物理删除成功",null,StatusCode.OK));
+    }
+
     /**
      * 管理员分页获取用户数据
      * @param pagingToGetUserDateBo
@@ -37,12 +85,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public String pagingToGetUserDate(PagingToGetUserDateBo pagingToGetUserDateBo) {
         //获取用户个数
-        Long coungOfUser = (Long) redisUtil.getStringInRedis(RedisKey.ZuiBloguserCount);
+        Long coungOfUser =  redisUtil.getLongOfStringInRedis(RedisKey.ZuiBlogUserCount);
+
         //如果redis没有数据就去mysql查询
         if (coungOfUser == null || coungOfUser == 0){
             coungOfUser = userMapper.queryCountOfUser();
+            System.err.println("????"+coungOfUser);
             //写入redis
-            redisUtil.setLongOfStringInRedis(RedisKey.ZuiBloguserCount,RedisKey.OutTime, String.valueOf(coungOfUser));
+            redisUtil.setLongOfStringInRedis(RedisKey.ZuiBlogUserCount,RedisKey.OutTime, coungOfUser);
+
+            System.out.println(redisUtil.getLongOfStringInRedis(RedisKey.ZuiBlogUserCount));
         }
 
         //获取用户数据
@@ -116,7 +168,7 @@ public class UserServiceImpl implements UserService {
         try {
             map = JwtUtil.analysis(token);
         } catch (Exception e) {
-            return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,"0x0005"));
+            return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
         }
 
         User user = new User();
@@ -135,7 +187,7 @@ public class UserServiceImpl implements UserService {
         user.setStatus((Integer) map.get("status"));
         user.setHeadPortrait((String) map.get("headPortrait"));
         System.out.println(user);
-        return JSONArray.toJSONString(new ResponseVo<>("null",user,"0x0006"));
+        return JSONArray.toJSONString(new ResponseVo<>("null",user,StatusCode.OK));
     }
 
     /**
@@ -161,7 +213,7 @@ public class UserServiceImpl implements UserService {
             return JSONArray.toJSONString(new ResponseVo<>("error",null,"500"));
         }
 
-        return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,"200"));
+        return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,StatusCode.OK));
     }
 
     /**
@@ -171,14 +223,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public String deleteUsersInBulk(DeleteUsersInBulkBo deleteUsersInBulkBo){
-        int[] delArr = deleteUsersInBulkBo.getDelArr();
+        long[] delArr = deleteUsersInBulkBo.getDelArr();
 
         /**
          * 前去redis删除
          */
         //获取他们的usernae索引在username
         List<String> batDeletionInRedis = new ArrayList<>();
-        for (int i : delArr) {
+        for (long i : delArr) {
             batDeletionInRedis.add(RedisKey.ZuiBlogUserId+""+i);
         }
         redisUtil.batchDeletion(batDeletionInRedis);
@@ -197,6 +249,22 @@ public class UserServiceImpl implements UserService {
         //去数据库逻辑删除此数据
         userMapper.tombstoneUsersInBatches(deleteUsersInBulkBo.getDelArr());
 
-        return JSONArray.toJSONString(new ResponseVo<>("逻辑删除成功",null,"0x200"));
+        return JSONArray.toJSONString(new ResponseVo<>("逻辑删除成功",null,StatusCode.OK));
+    }
+
+    /**
+     * 通过id逻辑删除用户
+     * @param tombstoneUserByIdBo
+     * @return
+     */
+    @Override
+    public String tombstoneUserById(TombstoneUserByIdBo tombstoneUserByIdBo) {
+        DeleteUsersInBulkBo deleteUsersInBulkBo = new DeleteUsersInBulkBo();
+        deleteUsersInBulkBo.setDelArr(new long[]{tombstoneUserByIdBo.getIdOfUser()});
+
+        //逻辑删除
+        this.deleteUsersInBulk(deleteUsersInBulkBo);
+
+        return JSONArray.toJSONString(new ResponseVo<>("逻辑删除成功",null, StatusCode.OK));
     }
 }

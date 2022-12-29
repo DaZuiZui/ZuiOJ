@@ -4,6 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.UserMapper">
     <!--
+        物理删除用户通过id
+    -->
+    <delete id="deleteUserById">
+        delete from
+            user
+        where
+            id = #{id}
+    </delete>
+
+    <!--
         Tombstone users in batchers
         批量逻辑删除用户
     -->
@@ -82,7 +92,7 @@
             user
         where
             id = #{id}
-            limit 1
+        limit 1
     </select>
 
     <!--

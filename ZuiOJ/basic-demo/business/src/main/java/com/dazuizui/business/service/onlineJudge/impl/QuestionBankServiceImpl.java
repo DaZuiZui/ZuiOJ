@@ -47,13 +47,14 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     @Transactional
     public String deleteQuestionById(Long id,Long questionType) {
         try {
-            //redis缓存删除
-            redisUtil.deleteKey(RedisKey.ZuiOJQuestion+id);  //题目信息
-            redisUtil.deleteKey(RedisKey.ZuiOJQuestionCase); //删除问题案例
             //数据库物理删除
             questionBankMapper.deleteQuestionById(id);
             questionBankMapper.deleteQuestionDetalied(id);
             questionCaseMapper.deleteCaseById(id);
+
+            //redis缓存删除
+            redisUtil.deleteKey(RedisKey.ZuiOJQuestion+id);  //题目信息
+            redisUtil.deleteKey(RedisKey.ZuiOJQuestionCase); //删除问题案例
         } catch (Exception e) {
             //e.printStackTrace();
              JSONArray.toJSONString(new ResponseVo<>("操作失败",null,"0x500"));
@@ -82,14 +83,14 @@ public class QuestionBankServiceImpl implements QuestionBankService {
          * 查看总数量
          */
         //查看redis是否存在
-        Long countOfQuestion = (Long) redisUtil.getStringInRedis(RedisKey.QuestionCountWithAnyStatus);
+        Long countOfQuestion = redisUtil.getLongOfStringInRedis(RedisKey.QuestionCountWithAnyStatus);
         System.err.println(countOfQuestion+"asda");
         //redis为null去数据库查询
         if (countOfQuestion == null){
             countOfQuestion = questionBankMapper.queryCountOfQuestionOfAdmin();
-            System.err.println(countOfQuestion);
+            //System.err.println(countOfQuestion);
             //写入redis
-            redisUtil.setLongOfStringInRedis(RedisKey.QuestionCountWithAnyStatus,60*60*24*15,countOfQuestion+"");
+            redisUtil.setLongOfStringInRedis(RedisKey.QuestionCountWithAnyStatus,60*60*24*15,countOfQuestion);
         }
 
         //查看全部题库
@@ -124,9 +125,9 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             competitionQuestionBank.setQuestionId(questionBankBo.getId());
             competitionQuestionBank.setContestId(questionBankBo.getContestId());
             competitionQuestionBankMapper.addQuestionInContest(competitionQuestionBank);
-            redisUtil.increment(RedisKey.QuestionCountWithAnyStatus); //数量增强
+            redisUtil.increment(RedisKey.QuestionCountWithAnyStatus,RedisKey.OutTime,1); //数量增强
         }else{
-            redisUtil.increment(RedisKey.QuestionCountWithAnyStatus); //数量增加
+            redisUtil.increment(RedisKey.QuestionCountWithAnyStatus,RedisKey.OutTime,1); //数量增加
             questionBankBo.setStatus(2); //普通隐藏
             questionBankMapper.postQuestion(questionBankBo);
             questionBankMapper.postQuestionDetailed(questionBankBo);
@@ -154,7 +155,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             System.err.println("??");
             countOfQuestion = questionBankMapper.queryCountOfQuestion();
             //写入redis
-            redisUtil.setLongOfStringInRedis(RedisKey.QuestionCountWithStatusIs0,60*60*24*15,countOfQuestion+"");
+            redisUtil.increment(RedisKey.QuestionCountWithStatusIs0,60*60*24*15,countOfQuestion);
         }
 
         //查看全部题库

@@ -39,7 +39,7 @@
     methods: {
         //跳转指定页面
         getMerchantInformation(val){   
-            alert(val);
+          
         },
         
     }

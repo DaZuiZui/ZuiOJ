@@ -93,9 +93,9 @@
                                     </span>
         
                                     <el-dropdown-menu slot="dropdown" class="position:fixed"  style="width: 300px;">
-                                        <div>
-                                            <div> 
-                                                <el-container>
+                                        <div v-if="user.role != -1">
+                                            <div  > 
+                                                <el-container   >
                                                     <el-container>
                                                         <el-aside width="55px">      
                                                                 <div style="margin-top: 25px;margin-left:15px;">
@@ -104,17 +104,10 @@
                                                                 </el-avatar> 
                                                             </div>
                                                         </el-aside>
-                                                        <el-container v-if="tmp == null">
+                                                        <el-container>
                                                             <el-main>
                                                                 账号: {{user.username}}<br>
                                                                 昵称: {{user.role}}
-                                                            </el-main>
-                                                        </el-container>
-        
-                                                        <el-container v-else>
-                                                            <el-main>
-                                                                请登入为您提供社区功能<br>
-                                                                点击下方进行登入       
                                                             </el-main>
                                                         </el-container>
                                                     </el-container>
@@ -122,16 +115,41 @@
                                              
                                             </div>
         
-                                            <div style="margin: auto;"  v-if="tmp != null">                              
-                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" ><i class="el-icon-user"></i>点击我去登入</li>
-                                            </div>
-        
-                                            <div style="margin: auto;" v-else>                              
+                          
+                                            <div style="margin: auto;"  >                              
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-user"></i>我的个人信息</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>我的个人博客</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="goAdminManagement()"  ><i class="el-icon-user"></i>管理操作页面</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>站长人员操作</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-back"></i>退出我的账户</li>
+                                            </div>
+                                        </div>
+
+                                        <div v-else>
+                                            <div  > 
+                                                <el-container   >
+                                                    <el-container>
+                                                        <el-aside width="55px">      
+                                                                <div style="margin-top: 25px;margin-left:15px;">
+                                                                    <el-avatar
+                                                                        :src="user.headPortrait">  
+                                                                </el-avatar> 
+                                                            </div>
+                                                        </el-aside>
+                                                        <el-container >
+                                                            <el-main>
+                                                                您还未登入或者身份验证过期
+                                                            </el-main>
+                                                        </el-container>
+                                                    </el-container>
+                                                </el-container>
+                                             
+                                            </div>
+        
+                                       
+        
+                                            <div style="margin: auto;" @click="goUserLogin">                              
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-user"></i>点击我去登入</li>
                                             </div>
                                         </div>
                                     </el-dropdown-menu>
@@ -165,7 +183,7 @@ import { synRequestGet } from '../../../../static/request';
             username: "",
             name: "",
             headPortrait: "",
-            role: 0
+            role: -1
         },
       }
     },
@@ -178,6 +196,12 @@ import { synRequestGet } from '../../../../static/request';
             let token = getCookie("token");
             //alert(token);
             let obj = await synRequestGet("/user/analysis?token="+token);
+            //alert(obj.code);
+            if(obj.code == '0x444'){
+                alert("您的身份验证已经过期");
+                this.goUserLogin();
+                return;
+            }
             console.log(obj.data);
             this.user = obj.data;
             if(this.user.role == 1){
@@ -223,6 +247,11 @@ import { synRequestGet } from '../../../../static/request';
         //前往用户管理页面
         goUserManagement(){
             this.$router.push('/cn/amdin/user/list');
+        },
+
+        //前往登入页面
+        goUserLogin(){
+            this.$router.push('/cn/user/login');
         }
     }
   }

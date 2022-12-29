@@ -92,7 +92,7 @@
         //跳转指定页面
         async getMerchantInformation(val){   
              
-            let obj = await synRequestGet("/question/pagingToGetQuestion?pages="+(val-1)+"&number=50");
+            let obj = await synRequestGet("/question/pagingToGetQuestion?pages="+((val-1)*50)+"&number=50");
             this.count = obj.data.countOfQuestion;
             this.questionList = obj.data.questionBanks;
             console.log(obj.data.questionBanks);

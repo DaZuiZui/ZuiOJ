@@ -113,7 +113,7 @@
             //记录当前选择的页面
             this.curpage = val;
 
-            let obj = await synRequestGet("/question/admin/pagingToGetQuestion?token="+getCookie("token")+"&pages="+(val-1)+"&number=50");
+            let obj = await synRequestGet("/question/admin/pagingToGetQuestion?token="+getCookie("token")+"&pages="+((val-1)*50)+"&number=50");
             //权限鉴权
             if(obj.code == "0x5001"){
                 alert("权限不足");
