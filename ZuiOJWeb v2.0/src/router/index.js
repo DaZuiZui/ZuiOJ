@@ -16,6 +16,7 @@ import AdminIndex from '@/components/view/main/cn/admin/AdminIndex'
 import AdminQuestionList from '@/components/view/main/cn/admin/AdminQuestionList'
 import AdminQuestioncase from '@/components/view/main/cn/admin/AdminQuestionCase'
 import AdminUserList from '@/components/view/main/cn/admin/AdminuserList'
+import Register from '@/components/view/main/cn/user/Register'
 Vue.use(Router)
 
 export default new Router({
@@ -26,6 +27,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //中文用户注册
+    {
+      path: '/user/register',
+      name: 'userRegister',
+      component: Register
     },
     //用户管理
     {
