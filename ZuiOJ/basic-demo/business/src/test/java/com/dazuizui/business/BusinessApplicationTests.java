@@ -45,12 +45,8 @@ class BusinessApplicationTests {
 
     @Test
     void test1(){
-        //stringRedisTemplate.opsForValue().increment("b",1);
-        System.err.println(stringRedisTemplate.opsForValue().get("ZuiBlog:User:count"));
-        System.err.println(stringRedisTemplate.opsForValue().get(RedisKey.ZuiBlogUserCount));
-        String key = RedisKey.ZuiBlogUserCount;
-        System.err.println(redisUtil.getStringInRedis(key));
-        //System.err.println(stringRedisTemplate.opsForValue().get(RedisKey.ZuiBloguserCount));
+        stringRedisTemplate.opsForValue().increment("c",1);
+        System.err.println(stringRedisTemplate.opsForValue().get("c"));
 
     }
 }

@@ -108,7 +108,7 @@
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>我的个人博客</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="goAdminManagement()"  ><i class="el-icon-user"></i>管理操作页面</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>站长人员操作</li>
-                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  ><i class="el-icon-back"></i>退出我的账户</li>
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="quite()" ><i class="el-icon-back"></i>退出我的账户</li>
                                             </div>
                                         </div>
 
@@ -220,7 +220,11 @@ import { synRequestGet } from '../../../../static/request';
         goCreateQuestion(){
             this.$router.push('/cn/question/create');
         },
-
+        //退出
+        quite(){
+            setCookie("token","");
+            this.goUserLogin();
+        }
  
     }
   }

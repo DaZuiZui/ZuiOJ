@@ -178,12 +178,7 @@ public class UserServiceImpl implements UserService {
         user.setStudentId((String) map.get("studentId"));
         user.setName((String) map.get("name"));
         user.setSex((Integer) map.get("sex"));
-        user.setIdCard((String) map.get("idCard"));
-        user.setCollegeId((Integer) map.get("collegeId"));
-        user.setMajorId((Integer) map.get("majorId"));
-        user.setClassId((Integer) map.get("classId"));
         user.setRole((Integer) map.get("role"));
-        user.setGrade((Integer) map.get("grade"));
         user.setStatus((Integer) map.get("status"));
         user.setHeadPortrait((String) map.get("headPortrait"));
         System.out.println(user);
@@ -198,20 +193,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public String register(User user) {
         if (user == null){
-            return JSONArray.toJSONString(new ResponseVo<>("is null",null,"500"));
+            return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
         }
         //校验学号还有用户名是否唯一
         User userInDB = userMapper.checkUsernameAndStudentId(user);
         if (userInDB != null){
-            return JSONArray.toJSONString(new ResponseVo<>("用户名或者学号必须保证唯一",null,"500"));
+            return JSONArray.toJSONString(new ResponseVo<>("用户名必须唯一,请更换用户名。",null,StatusCode.Error));
         }
 
         //写入mysql
         user.setCreateTime(new Date());
         Long aLong = userMapper.register(user);
         if (aLong <= 0){
-            return JSONArray.toJSONString(new ResponseVo<>("error",null,"500"));
+            return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
         }
+
+        /**
+         * 写入用户数量
+         *     如果key过期了，那么就不做处理，如果没过期则
+         */
+        Long longOfStringInRedis = redisUtil.getLongOfStringInRedis(RedisKey.ZuiBlogUserCount);
+        if (longOfStringInRedis != null){
+            redisUtil.increment(RedisKey.ZuiBlogUserCount,RedisKey.OutTime,1);
+        }
+
 
         return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,StatusCode.OK));
     }

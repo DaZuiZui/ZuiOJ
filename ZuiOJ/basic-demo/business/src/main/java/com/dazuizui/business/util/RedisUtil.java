@@ -1,5 +1,6 @@
 package com.dazuizui.business.util;
 
+import com.dazuizui.basicapi.entry.RedisKey;
 import org.omg.CORBA.TIMEOUT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -80,9 +81,17 @@ public class RedisUtil {
      */
     public Long getLongOfStringInRedis(String key){
         String obj = stringRedisTemplate.opsForValue().get(key);
-        if (obj == null){
+        Long expire = redisTemplate.getExpire(key);
+        System.err.println(expire);
+        /**
+         * 如果没有获取到值，或者过期时间少于2秒则不做操作
+         */
+        if (obj == null || expire < 2){
             return null;
         }
+        //更新过期时间
+        stringRedisTemplate.expire(key, RedisKey.OutTime,TimeUnit.SECONDS);
+
         return Long.valueOf(obj);
     }
 

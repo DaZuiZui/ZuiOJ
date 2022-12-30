@@ -76,16 +76,10 @@
         select
             id,
             username,
-            student_id,
             name,
             sex,
             password,
-            id_card,
-            college_id,
-            major_id,
-            class_id,
             role,
-            grade,
             status,
             head_portrait
         from
@@ -104,8 +98,7 @@
         from
             user
         where
-            username = #{username} or
-            student_id = #{studentId}
+            username = #{username}
         limit 1
     </select>
 
@@ -117,16 +110,10 @@
         select
             id,
             username,
-            student_id,
             name,
             sex,
             password,
-            id_card,
-            college_id,
-            major_id,
-            class_id,
             role,
-            grade,
             status,
             head_portrait
         from
@@ -143,16 +130,10 @@
         value(
             null,
             #{username},
-            #{studentId},
             #{name},
             #{sex},
             #{password},
-            '',
-            #{collegeId},
-            #{majorId},
-            #{classId},
             1,
-            2021,
             #{year},
             #{mouth},
             '',

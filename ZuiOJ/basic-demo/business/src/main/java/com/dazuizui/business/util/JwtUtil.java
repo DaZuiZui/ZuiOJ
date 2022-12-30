@@ -38,12 +38,7 @@ public class JwtUtil {
         map.put("studentId",user.getStudentId());
         map.put("name",user.getName());
         map.put("sex",user.getSex());
-        map.put("idCard",user.getIdCard());
-        map.put("collegeId",user.getCollegeId());
-        map.put("majorId",user.getMajorId());
-        map.put("classId",user.getClassId());
         map.put("role",user.getRole());
-        map.put("grade",user.getGrade());
         map.put("status",user.getStatus());
         map.put("headPortrait",user.getHeadPortrait());
         builder.addClaims(map); //添加载荷

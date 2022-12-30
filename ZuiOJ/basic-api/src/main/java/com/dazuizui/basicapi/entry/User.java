@@ -13,10 +13,6 @@ public class User implements Serializable {
     private String studentId;
     private int sex;
     private String password;
-    private String idCard;
-    private int collegeId;
-    private int majorId;
-    private int classId;
     private Date createTime;
     private String createByName;
     private long createById;
@@ -27,7 +23,6 @@ public class User implements Serializable {
     private int status;
     private int type;
     private int role;
-    private int grade;
     private String headPortrait;
     private int mouth;
     private int year;
@@ -41,10 +36,6 @@ public class User implements Serializable {
                 ", studentId='" + studentId + '\'' +
                 ", sex=" + sex +
                 ", password='" + password + '\'' +
-                ", idCard='" + idCard + '\'' +
-                ", collegeId=" + collegeId +
-                ", majorId=" + majorId +
-                ", classId=" + classId +
                 ", createTime=" + createTime +
                 ", createByName='" + createByName + '\'' +
                 ", createById=" + createById +
@@ -55,7 +46,6 @@ public class User implements Serializable {
                 ", status=" + status +
                 ", type=" + type +
                 ", role=" + role +
-                ", grade=" + grade +
                 ", headPortrait='" + headPortrait + '\'' +
                 ", mouth=" + mouth +
                 ", year=" + year +
@@ -108,38 +98,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
-
-    public int getCollegeId() {
-        return collegeId;
-    }
-
-    public void setCollegeId(int collegeId) {
-        this.collegeId = collegeId;
-    }
-
-    public int getMajorId() {
-        return majorId;
-    }
-
-    public void setMajorId(int majorId) {
-        this.majorId = majorId;
-    }
-
-    public int getClassId() {
-        return classId;
-    }
-
-    public void setClassId(int classId) {
-        this.classId = classId;
     }
 
     public Date getCreateTime() {
@@ -222,14 +180,6 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
     public String getHeadPortrait() {
         return headPortrait;
     }
@@ -257,17 +207,13 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(long id, String username, String name, String studentId, int sex, String password, String idCard, int collegeId, int majorId, int classId, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, int grade, String headPortrait, int mouth, int year) {
+    public User(long id, String username, String name, String studentId, int sex, String password, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, String headPortrait, int mouth, int year) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.studentId = studentId;
         this.sex = sex;
         this.password = password;
-        this.idCard = idCard;
-        this.collegeId = collegeId;
-        this.majorId = majorId;
-        this.classId = classId;
         this.createTime = createTime;
         this.createByName = createByName;
         this.createById = createById;
@@ -278,7 +224,6 @@ public class User implements Serializable {
         this.status = status;
         this.type = type;
         this.role = role;
-        this.grade = grade;
         this.headPortrait = headPortrait;
         this.mouth = mouth;
         this.year = year;
