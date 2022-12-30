@@ -25,3 +25,8 @@ spring:
       max-request-size: 500MB #最大请求文件的大小
       max-file-size: 500MB #设置单个文件最大长度
       file-size-threshold: 20MB #当文件达到多少时进行磁盘写入
+
+# 选择api项目下的resouces路径下的user文件夹
+filePath: "/Users/yangyida/Documents/project/ZuiOJ/ZuiOJ/basic-api/src/main/resources/users/"
+# 服务器url路径
+projecturl: "http://127.0.0.1:8001"

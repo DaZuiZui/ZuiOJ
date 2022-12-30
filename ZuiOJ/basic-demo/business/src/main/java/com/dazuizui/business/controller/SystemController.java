@@ -2,13 +2,20 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.business.service.onlineJudge.SystemService;
+import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -18,7 +25,8 @@ public class SystemController {
 
     @Autowired
     private SystemService systemService;
-
+    @Value("${filePath}")
+    private String path;
 
     /**
      * 查看threadlocal
@@ -36,5 +44,14 @@ public class SystemController {
     @GetMapping("/getNonPowerTokenString")
     public String getNonPower(){
         return systemService.getNonPower();
+    }
+
+    /**
+     * 上传文件
+     */
+    @ApiOperation("上传图片")
+    @RequestMapping(value = "imgUpDown",method = {RequestMethod.POST})
+    public String imgUpDown(@RequestParam("file") MultipartFile file,@RequestParam("token")String token) throws IOException {
+        return systemService.imgUpDown(file,token);
     }
 }

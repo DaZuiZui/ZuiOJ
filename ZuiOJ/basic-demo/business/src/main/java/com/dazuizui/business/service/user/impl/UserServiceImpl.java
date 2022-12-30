@@ -18,6 +18,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
@@ -175,7 +176,7 @@ public class UserServiceImpl implements UserService {
         System.out.println(map.get("id"));
         user.setId(Long.valueOf((String)map.get("id")));
         user.setUsername((String) map.get("username"));
-        user.setStudentId((String) map.get("studentId"));
+        user.setEmail((String) map.get("email"));
         user.setName((String) map.get("name"));
         user.setSex((Integer) map.get("sex"));
         user.setRole((Integer) map.get("role"));
@@ -271,5 +272,39 @@ public class UserServiceImpl implements UserService {
         this.deleteUsersInBulk(deleteUsersInBulkBo);
 
         return JSONArray.toJSONString(new ResponseVo<>("逻辑删除成功",null, StatusCode.OK));
+    }
+
+
+    /**
+     * 通过token获取登入者的详细信息
+     * @param token
+     * @return String.class
+     */
+    @Override
+    public String getUserInfoByToken(@RequestParam("token")String token){
+        //解析token获取id
+        Map<String, Object> analysis = JwtUtil.analysis(token);
+
+
+        Long id = Long.valueOf(analysis.get("id")+"");
+
+        //查询redis是否有该用户数据
+        User userInDB = (User) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserId + id);
+        //如果redis没获取到就去数据库
+        if (userInDB == null){
+            userInDB = userMapper.queryUserById(id);
+            //如果数据库获取到了就存入redis
+            if (userInDB != null){
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
+            }
+
+            //没有获取到数据 in DB
+            else{
+                return JSONArray.toJSONString(new ResponseVo<>("没有获取到用户信息",null, StatusCode.Error));
+            }
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>("获取成功",userInDB, StatusCode.OK));
     }
 }

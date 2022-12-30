@@ -35,7 +35,7 @@ public class JwtUtil {
         String idString = String.valueOf(user.getId());
         map.put("id",idString);
         map.put("username",user.getUsername());
-        map.put("studentId",user.getStudentId());
+        map.put("email",user.getEmail());
         map.put("name",user.getName());
         map.put("sex",user.getSex());
         map.put("role",user.getRole());

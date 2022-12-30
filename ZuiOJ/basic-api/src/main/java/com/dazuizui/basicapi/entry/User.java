@@ -10,7 +10,7 @@ public class User implements Serializable {
     private long id;
     private String username;
     private String name;
-    private String studentId;
+    private String email;
     private int sex;
     private String password;
     private Date createTime;
@@ -33,7 +33,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
-                ", studentId='" + studentId + '\'' +
+                ", email='" + email + '\'' +
                 ", sex=" + sex +
                 ", password='" + password + '\'' +
                 ", createTime=" + createTime +
@@ -76,12 +76,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getSex() {
@@ -207,11 +207,11 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(long id, String username, String name, String studentId, int sex, String password, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, String headPortrait, int mouth, int year) {
+    public User(long id, String username, String name, String email, int sex, String password, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, String headPortrait, int mouth, int year) {
         this.id = id;
         this.username = username;
         this.name = name;
-        this.studentId = studentId;
+        this.email = email;
         this.sex = sex;
         this.password = password;
         this.createTime = createTime;

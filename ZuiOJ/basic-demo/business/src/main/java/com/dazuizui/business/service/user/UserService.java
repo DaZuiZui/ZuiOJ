@@ -74,4 +74,11 @@ public interface UserService {
      * @return
      */
     public String tombstoneUserById(TombstoneUserByIdBo tombstoneUserByIdBo);
+
+    /**
+     * 通过token获取登入者的详细信息
+     * @param token
+     * @return String.class
+     */
+    public String getUserInfoByToken(@RequestParam("token")String token);
 }

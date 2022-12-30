@@ -128,4 +128,15 @@ public class UserController {
 
         return userService.tombstoneUserById(tombstoneUserByIdBo);
     }
+
+    /**
+     * 通过token获取登入者的详细信息
+     * @param token
+     * @return String.class
+     */
+    @ApiOperation("通过token获取用户全部信息")
+    @GetMapping("/getuserinfoByToken")
+    public String getUserInfoByToken(@RequestParam("token")String token){
+        return userService.getUserInfoByToken(token);
+    }
 }

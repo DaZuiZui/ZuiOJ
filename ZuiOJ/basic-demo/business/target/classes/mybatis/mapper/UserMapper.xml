@@ -76,9 +76,12 @@
         select
             id,
             username,
+            email,
             name,
             sex,
             password,
+            year,
+            mouth,
             role,
             status,
             head_portrait
@@ -110,7 +113,10 @@
         select
             id,
             username,
+            email,
             name,
+            year,
+            mouth,
             sex,
             password,
             role,
@@ -130,6 +136,7 @@
         value(
             null,
             #{username},
+            #{email}
             #{name},
             #{sex},
             #{password},
