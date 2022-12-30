@@ -32,3 +32,21 @@
         }
         return(false);
     }
+
+    /**
+     * 错误代码检测
+     * @param {*} obj 
+     */
+    function check(obj){
+        if(obj.code == '0x444'){
+            alert(obj.message);
+            //跳转登入页面
+            this.$router.push('/cn/user/login');
+        }else if(obj.code == '0x445'){
+            alert(obj.message);
+            //跳转首页
+            this.$router.push('/');
+        }else if(obj.code == '0x500'){
+            alert("操作失败");
+        }
+    }
