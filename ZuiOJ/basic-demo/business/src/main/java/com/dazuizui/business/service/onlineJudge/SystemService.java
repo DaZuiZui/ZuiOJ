@@ -1,7 +1,9 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,13 @@ public interface SystemService {
      * @return
      */
     public String getNonPower();
+
+    /**
+     * 文件下载
+     */
+    @ApiOperation("文件下载")
+    @GetMapping(value ="/getimage",produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl,@RequestParam("token")String token) throws IOException;
 
     /**
      * 上传图片

@@ -8,13 +8,16 @@ import com.dazuizui.business.util.RedisUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
@@ -28,6 +31,29 @@ public class SystemServiceImpl implements SystemService {
     private RedisUtil redisUtil;
     @Value("${filePath}")
     private String path;
+    @Value("${projecturl}")
+    private String projecturl;
+
+    /**
+     * 文件下载
+     */
+    @ApiOperation("文件下载")
+    @GetMapping(value ="/getimage",produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl,@RequestParam("token")String token) throws IOException{
+        Map<String, Object> analysis = JwtUtil.analysis(token);
+        String username = (String) analysis.get("username");
+
+
+        File file = new File(path+""+username+"/"+imgUrl);
+
+        FileInputStream inputStream = new FileInputStream(file);
+
+        byte[] bytes = new byte[inputStream.available()];
+
+        inputStream.read(bytes, 0, inputStream.available());
+
+        return bytes;
+    }
 
     /**
      * 非幂等性处理
@@ -64,6 +90,8 @@ public class SystemServiceImpl implements SystemService {
 
         file.transferTo(new File(path+""+username+"/"+fileName));
 
-        return "http://localhost:5050/img/"+fileName;
+        return projecturl+"/system/getimage?imgUrl="+fileName;
     }
+
+
 }
