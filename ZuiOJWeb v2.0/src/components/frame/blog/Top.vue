@@ -146,7 +146,7 @@
 
                         <!-- Button
                         <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" style="color:aliceblue" >
-                            每日一题
+                            每日一题   n
                         </a> -->
                         <!-- Mobile button -->
                         <div class="d-lg-none text-center">
