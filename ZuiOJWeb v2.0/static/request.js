@@ -14,7 +14,7 @@ export async function  synRequestPost(controller,data) {
       .then(res =>{
             arr = res.data;
         }).catch(res =>{
-
+        alert("服务器繁忙");
         return null;
     })
        return arr;
@@ -33,6 +33,7 @@ export async function  synRequestPost(controller,data) {
       .then(res =>{
             arr = res.data;
         }).catch(res =>{
+        alert("服务器繁忙");
         return null;
     })
 

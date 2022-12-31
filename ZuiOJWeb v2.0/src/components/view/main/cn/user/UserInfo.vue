@@ -91,7 +91,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary" style="width:85%">确认修改</button>
+                        <button type="button" class="btn btn-primary" style="width:85%" @click="updateUserById">确认修改</button>
                     </div>
                     
    
@@ -110,7 +110,7 @@
   </template>
   
   <script>
-  import { synRequestGet } from '../../../../../../static/request';
+  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
 import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/Top.vue'
   export default {
@@ -121,6 +121,7 @@ import Foot from '../../../../frame/blog/Foot.vue';
         data () {
         return {
             user: {
+                id: 0,
                 username: "",
                 name: "",
                 email: "",
@@ -128,6 +129,23 @@ import Foot from '../../../../frame/blog/Foot.vue';
                 password: "",
                 name: "",
                 year: -1,
+            },
+
+            updateUserInfoByIdBo: {
+                //用户信息
+                user: {
+                    id: 0,
+                    username: "",
+                    name: "",
+                    email: "",
+                    headPortrait: "",
+                    password: "",
+                    name: "",
+                    year: -1,
+                },
+                
+                //token
+                token: "",
                 
             },
 
@@ -156,6 +174,21 @@ import Foot from '../../../../frame/blog/Foot.vue';
                 this.user.password = "***********";
 
             },
+
+            //修改用户信息
+            async updateUserById(){
+                this.updateUserInfoByIdBo.user = this.user;
+                this.updateUserInfoByIdBo.token = getCookie("token");
+                this.updateUserInfoByIdBo.user.password = null;
+                let obj = await synRequestPost("/user/updateUserInfoById",this.updateUserInfoByIdBo);
+
+                if(obj.code != '0x200'){
+                    this.check(obj);
+                    return;
+                }
+                
+                alert(obj.message);
+            }
             
         }
   }
