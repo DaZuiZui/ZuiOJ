@@ -107,7 +107,7 @@
                                                         <el-container>
                                                             <el-main>
                                                                 账号: {{user.username}}<br>
-                                                                昵称: {{user.role}}
+                                                                昵称: {{user.name}}
                                                             </el-main>
                                                         </el-container>
                                                     </el-container>

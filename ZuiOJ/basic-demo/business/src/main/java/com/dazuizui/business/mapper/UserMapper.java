@@ -1,5 +1,6 @@
 package com.dazuizui.business.mapper;
 
+import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
@@ -73,4 +74,11 @@ public interface UserMapper {
      * @return
      */
     public Long deleteUserById(@Param("id") Long id);
+
+    /**
+     * 更改用户信息
+     * @param user
+     * @return
+     */
+    public Long updateUserInfoById(User user);
 }

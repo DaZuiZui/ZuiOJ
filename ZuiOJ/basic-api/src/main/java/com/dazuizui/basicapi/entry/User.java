@@ -7,25 +7,25 @@ import java.util.Date;
  * 用户实体类
  */
 public class User implements Serializable {
-    private long id;
+    private Long id;
     private String username;
     private String name;
     private String email;
-    private int sex;
+    private Integer sex;
     private String password;
     private Date createTime;
     private String createByName;
-    private long createById;
+    private Long createById;
     private Date updateTime;
     private String updateByName;
-    private long updateById;
-    private int delFlag;
-    private int status;
-    private int type;
-    private int role;
+    private Long updateById;
+    private Integer delFlag;
+    private Integer status;
+    private Integer type;
+    private Integer role;
     private String headPortrait;
-    private int mouth;
-    private int year;
+    private Integer mouth;
+    private Integer year;
 
     @Override
     public String toString() {
@@ -52,11 +52,11 @@ public class User implements Serializable {
                 '}';
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -84,11 +84,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -116,11 +116,11 @@ public class User implements Serializable {
         this.createByName = createByName;
     }
 
-    public long getCreateById() {
+    public Long getCreateById() {
         return createById;
     }
 
-    public void setCreateById(long createById) {
+    public void setCreateById(Long createById) {
         this.createById = createById;
     }
 
@@ -140,43 +140,43 @@ public class User implements Serializable {
         this.updateByName = updateByName;
     }
 
-    public long getUpdateById() {
+    public Long getUpdateById() {
         return updateById;
     }
 
-    public void setUpdateById(long updateById) {
+    public void setUpdateById(Long updateById) {
         this.updateById = updateById;
     }
 
-    public int getDelFlag() {
+    public Integer getDelFlag() {
         return delFlag;
     }
 
-    public void setDelFlag(int delFlag) {
+    public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public int getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
@@ -188,26 +188,26 @@ public class User implements Serializable {
         this.headPortrait = headPortrait;
     }
 
-    public int getMouth() {
+    public Integer getMouth() {
         return mouth;
     }
 
-    public void setMouth(int mouth) {
+    public void setMouth(Integer mouth) {
         this.mouth = mouth;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
     public User() {
     }
 
-    public User(long id, String username, String name, String email, int sex, String password, Date createTime, String createByName, long createById, Date updateTime, String updateByName, long updateById, int delFlag, int status, int type, int role, String headPortrait, int mouth, int year) {
+    public User(Long id, String username, String name, String email, Integer sex, String password, Date createTime, String createByName, Long createById, Date updateTime, String updateByName, Long updateById, Integer delFlag, Integer status, Integer type, Integer role, String headPortrait, Integer mouth, Integer year) {
         this.id = id;
         this.username = username;
         this.name = name;

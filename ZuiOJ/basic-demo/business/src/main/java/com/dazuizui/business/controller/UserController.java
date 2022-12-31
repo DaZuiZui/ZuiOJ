@@ -1,6 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
@@ -138,5 +139,16 @@ public class UserController {
     @GetMapping("/getuserinfoByToken")
     public String getUserInfoByToken(@RequestParam("token")String token){
         return userService.getUserInfoByToken(token);
+    }
+
+    /**
+     * 通过id修改用户信息
+     * @param updateUserInfoByIdBo
+     * @return
+     */
+    @ApiOperation("修改用户信息根据id")
+    @PostMapping("/updateUserInfoById")
+    public String updateUserInfoById(@RequestBody UpdateUserInfoByIdBo updateUserInfoByIdBo){
+        return userService.updateUserInfoById( updateUserInfoByIdBo);
     }
 }

@@ -3,6 +3,7 @@ package com.dazuizui.business.service.user.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
@@ -115,7 +116,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User queryUserById(@Param("id") Long id){
-        User user = (User) redisUtil.getStringInRedis("zuiblog:user:" + id);
+        User user = (User) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserId+id);
 
         if (user == null){
             user = userMapper.queryUserById(id);
@@ -174,15 +175,10 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         System.out.println(map.get("id"));
-        user.setId(Long.valueOf((String)map.get("id")));
-        user.setUsername((String) map.get("username"));
-        user.setEmail((String) map.get("email"));
-        user.setName((String) map.get("name"));
-        user.setSex((Integer) map.get("sex"));
-        user.setRole((Integer) map.get("role"));
-        user.setStatus((Integer) map.get("status"));
-        user.setHeadPortrait((String) map.get("headPortrait"));
-        System.out.println(user);
+        Long id = Long.valueOf((String)map.get("id"));
+        user = this.queryUserById(id);
+        System.err.println(user);
+
         return JSONArray.toJSONString(new ResponseVo<>("null",user,StatusCode.OK));
     }
 
@@ -284,8 +280,6 @@ public class UserServiceImpl implements UserService {
     public String getUserInfoByToken(@RequestParam("token")String token){
         //解析token获取id
         Map<String, Object> analysis = JwtUtil.analysis(token);
-
-
         Long id = Long.valueOf(analysis.get("id")+"");
 
         //查询redis是否有该用户数据
@@ -306,5 +300,30 @@ public class UserServiceImpl implements UserService {
         }
 
         return JSONArray.toJSONString(new ResponseVo<>("获取成功",userInDB, StatusCode.OK));
+    }
+
+    /**
+     * 修改id修改用户接口
+     * @param updateUserInfoByIdBo
+     * @return
+     */
+    @Override
+    @Transactional
+    public String updateUserInfoById(UpdateUserInfoByIdBo updateUserInfoByIdBo) {
+        User user = updateUserInfoByIdBo.getUser();
+        System.err.println(0/10);
+        //进行修改数据库
+        Long aLong = userMapper.updateUserInfoById(user);
+
+        //修改失败
+        if(aLong <= 0){
+            return JSONArray.toJSONString(new ResponseVo<>("修改失败",null, StatusCode.Error));
+        }
+        //设置数据库
+        user = userMapper.queryUserById(user.getId());
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId+user.getId(),RedisKey.OutTime,user);
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserUsername+user.getUsername(), RedisKey.OutTime,user);
+
+        return JSONArray.toJSONString(new ResponseVo<>("修改成功",null, StatusCode.OK));
     }
 }

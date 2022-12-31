@@ -154,4 +154,59 @@
             0
         )
     </insert>
+
+    <update id="updateUserInfoById">
+        update
+            user
+        <set>
+            <if test="name != null and name.length() > 0">
+                name = #{name},
+            </if>
+            <if test="sex != null and sex != 0">
+                sex = #{sex},
+            </if>
+            <if test="username != null and username.length() != ''">
+                username = #{username},
+            </if>
+            <if test="email != null and email.length() != '' ">
+                email = #{email},
+            </if>
+            <if test="password != null and password.length() != ''">
+                password = #{password},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateByName != null and updateByName.length() != ''">
+                update_by_name = #{updateByName},
+            </if>
+            <if test="updateById != null and updateById != 0 ">
+                update_by_id = #{updateById},
+            </if>
+            <if test="delFlag != null and delFlag != 0">
+                del_flag = #{delFlag},
+            </if>
+            <if test="status != null and status != 0">
+                status = #{status},
+            </if>
+            <if test="type != null and type != 0">
+                type = #{type},
+            </if>
+            <if test="role != null and type != 0 ">
+                role = #{role},
+            </if>
+            <if test="headPortrait != null and headPortrait.length() != ''">
+                head_portrait = #{headPortrait},
+            </if>
+            <if test="mouth != null and mouth != 0">
+                mouth = #{mouth},
+            </if>
+            <if test="year != null and year != 0">
+                year = #{year},
+            </if>
+        </set>
+
+        where
+            id = #{id}
+    </update>
 </mapper>

@@ -1,5 +1,6 @@
 package com.dazuizui.business.service.user;
 
+import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
 
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
@@ -81,4 +82,11 @@ public interface UserService {
      * @return String.class
      */
     public String getUserInfoByToken(@RequestParam("token")String token);
+
+    /**
+     * 通过ID修改用户借口
+     * @param updateUserInfoByIdBo
+     * @return
+     */
+    public String updateUserInfoById(@RequestBody UpdateUserInfoByIdBo updateUserInfoByIdBo);
 }
