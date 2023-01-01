@@ -38,7 +38,28 @@
                                     用户名: {{user.username}}   <br>
                                     email: {{user.email}}      <br>
                                     昵称:   {{user.name}}       <br>
-                                    <a>更换头像</a> , <a>学生认证</a>                       
+                                    <div style="float:left">
+                                        <el-upload 
+                                        class="upload-demo"
+                                        name="file"
+                                        :action="action"
+                                        :on-preview="handlePreview"
+                                        :on-remove="handleRemove"
+                                        :before-remove="beforeRemove"
+                                        multiple
+                                        :limit="1"
+                                        accept=".jpg, .png, .jpeg"
+                                        :on-success="fileOK"
+                                        :on-error="fileError"
+                                        :on-exceed="handleExceed"
+                                        :file-list="fileList">
+                                        <a>点击我更改头像</a>     
+                                      </el-upload>
+                                    </div>
+
+                                    <div>
+                                        ,<a>点击我学生认证</a>    
+                                    </div>                      
                                  </div>
                               </div>
                             </div>
@@ -57,6 +78,12 @@
                             <el-input v-model="user.password" placeholder="请输入内容" style="width:84%" disabled></el-input>
                         </div>
                         <a>如果你想要修改密码请点击我，我们将对您进行一些身份验证</a><br>
+                        您的邮箱 Your email
+                        <div>
+                            <el-input v-model="user.email" placeholder="请输入内容" style="width:84%" disabled></el-input>
+                        </div>
+                        <a>如果你想要修改邮箱请点击我，我们将对你进行安全验证</a><br>
+                     
 
                         您的昵称 Your name
                         <div>
@@ -120,6 +147,8 @@ import Foot from '../../../../frame/blog/Foot.vue';
       },
         data () {
         return {
+            fileList: [],
+            listFile: [],
             user: {
                 id: 0,
                 username: "",
@@ -131,6 +160,7 @@ import Foot from '../../../../frame/blog/Foot.vue';
                 year: -1,
             },
 
+            //修改用户信息
             updateUserInfoByIdBo: {
                 //用户信息
                 user: {
@@ -138,7 +168,6 @@ import Foot from '../../../../frame/blog/Foot.vue';
                     username: "",
                     name: "",
                     email: "",
-                    headPortrait: "",
                     password: "",
                     name: "",
                     year: -1,
@@ -146,13 +175,27 @@ import Foot from '../../../../frame/blog/Foot.vue';
                 
                 //token
                 token: "",
+            },
+
+            //修改用户头像
+            updateheadPortraitOfUserInfoByIdBo: {
+                //用户信息
+                user: {
+                    id: 0,
+                    username: "",
+                    headPortrait: "",
+                },
                 
+                //token
+                token: "",
             },
 
             //年份集合
             yearsList: [1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015],
             //月份集合
             monthArray: [1,2,3,4,5,6,7,8,9,10,11,12],
+
+            action: "http://127.0.0.1:8001/system/imgUpDown?token="+getCookie("token"),
         }
         },
 
@@ -162,6 +205,26 @@ import Foot from '../../../../frame/blog/Foot.vue';
         },
 
         methods: {
+            
+            //上传成功修改头像
+            async fileOK(response, file, fileList){
+                //this.filename = "http://localhost:3000/download?file_name="+response;
+                let url = response.data;
+                //修改个人头像
+                this.updateheadPortraitOfUserInfoByIdBo.user.id = this.user.id;
+                this.updateheadPortraitOfUserInfoByIdBo.user.headPortrait = url;
+                this.updateheadPortraitOfUserInfoByIdBo.token = getCookie("token");
+                //发送请求
+                let obj = await synRequestPost("/user/updateUserInfoById",this.updateheadPortraitOfUserInfoByIdBo);
+                window.location.href="http://127.0.0.1:8080/h/cn/user/info";
+            },
+            
+            //前往个人信息页面
+            goUserInfo(){
+                this.$router.push('/cn/user/info');
+            },
+       
+         
             //获取用户信息
             async getUserinfo(){   
                 let obj = await synRequestGet("/user/getuserinfoByToken?token="+getCookie("token"));
@@ -188,8 +251,27 @@ import Foot from '../../../../frame/blog/Foot.vue';
                 }
                 
                 alert(obj.message);
-            }
-            
+            },
+
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview(file) {
+                console.log(file);
+            },
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            beforeRemove(file, fileList) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+            fileError(){
+                this.$message({
+                    message: "上传失败",
+                    type: "error",
+                    offset: 80,
+                });
+            },
         }
   }
   </script>

@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.onlineJudge.SystemService;
 import com.dazuizui.business.util.JwtUtil;
@@ -39,12 +40,9 @@ public class SystemServiceImpl implements SystemService {
      */
     @ApiOperation("文件下载")
     @GetMapping(value ="/getimage",produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl,@RequestParam("token")String token) throws IOException{
-        Map<String, Object> analysis = JwtUtil.analysis(token);
-        String username = (String) analysis.get("username");
+    public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl) throws IOException{
 
-
-        File file = new File(path+""+username+"/"+imgUrl);
+        File file = new File(path+"/"+imgUrl);
 
         FileInputStream inputStream = new FileInputStream(file);
 
@@ -89,8 +87,7 @@ public class SystemServiceImpl implements SystemService {
         }
 
         file.transferTo(new File(path+""+username+"/"+fileName));
-
-        return projecturl+"/system/getimage?imgUrl="+fileName;
+        return JSONArray.toJSONString(new ResponseVo<>("success",projecturl+"/system/getimage?imgUrl="+username+"/"+fileName,"0x200"));
     }
 
 

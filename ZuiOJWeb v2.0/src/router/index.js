@@ -31,7 +31,7 @@ export default new Router({
     },
     //中文用户信息
     {
-      path: '/user/info',
+      path: '/cn/user/info',
       name: 'UserInfo',
       component: UserInfo
     },

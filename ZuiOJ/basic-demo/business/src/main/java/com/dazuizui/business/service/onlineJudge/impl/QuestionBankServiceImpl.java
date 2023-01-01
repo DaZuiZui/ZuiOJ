@@ -57,7 +57,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             redisUtil.deleteKey(RedisKey.ZuiOJQuestionCase); //删除问题案例
         } catch (Exception e) {
             //e.printStackTrace();
-             JSONArray.toJSONString(new ResponseVo<>("操作失败",null,"0x500"));
+            return JSONArray.toJSONString(new ResponseVo<>("操作失败",null,"0x500"));
         }
 
         return JSONArray.toJSONString(new ResponseVo<>("操作成功",null,"0x200"));

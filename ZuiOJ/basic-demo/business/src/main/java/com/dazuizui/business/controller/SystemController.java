@@ -62,7 +62,7 @@ public class SystemController {
      */
     @ApiOperation("文件下载")
     @GetMapping(value ="/getimage",produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl,@RequestParam("token")String token) throws IOException {
-        return systemService.getPhoto(imgUrl, token);
+    public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl) throws IOException {
+        return systemService.getPhoto(imgUrl);
     }
 }
