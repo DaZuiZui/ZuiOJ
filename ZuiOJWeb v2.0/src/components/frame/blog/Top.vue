@@ -67,7 +67,7 @@
                         </ul>
 
                         
-                        <a href="http://127.0.0.1/hlogin/h/user/info">
+                        <a @click="goUserInfo">
                             <div style="text-align : right">
                                 <div style="height: 10px;"></div>
                                 <el-dropdown style="">
