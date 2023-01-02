@@ -5,7 +5,7 @@ import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.Universty;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.student.UniverstyMapper;
-import com.dazuizui.business.service.student.UniverstySerivce;
+import com.dazuizui.business.service.student.UniverstyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * 大学业务接口
  */
 @Service
-public class UniverstySerivceImpl implements UniverstySerivce {
+public class UniverstyServiceImpl implements UniverstyService {
     @Autowired
     private UniverstyMapper universtyMapper;
     /**

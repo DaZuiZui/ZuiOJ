@@ -1,6 +1,6 @@
 package com.dazuizui.business.controller;
 
-import com.dazuizui.business.service.student.UniverstySerivce;
+import com.dazuizui.business.service.student.UniverstyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/universty")
 public class UniverstyController {
     @Autowired
-    private UniverstySerivce universtySerivce;
+    private UniverstyService universtySerivce;
 
     /**
      * @author 杨易达(Bryan yang) Yida yang
