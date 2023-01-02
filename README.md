@@ -2,8 +2,7 @@
 
 ## Developer
 **
- 作者感染新冠了停止更新几天
- Due to busy work, stop updating for 10 days.
+  恢复更新
  **
 ## Environment preparation
 
