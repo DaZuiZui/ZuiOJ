@@ -14,5 +14,7 @@ public class StatusCode  {
     public static String OK = "0x200";
     //失败
     public static String Error = "0x500";
+    //数据为null
+    public static String IsNull = "0x501";
 
 }
