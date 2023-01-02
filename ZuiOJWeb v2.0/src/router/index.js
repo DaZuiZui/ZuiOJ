@@ -18,6 +18,8 @@ import AdminQuestioncase from '@/components/view/main/cn/admin/AdminQuestionCase
 import AdminUserList from '@/components/view/main/cn/admin/AdminuserList'
 import Register from '@/components/view/main/cn/user/Register'
 import UserInfo from '@/components/view/main/cn/user/UserInfo'
+import StudentCerification from '@/components/view/main/cn/user/StudentCertification'
+
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +30,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //中文学生认证
+    {
+      path: '/cn/user/student/certification',
+      name: 'studentcertification',
+      component: StudentCerification
     },
     //中文用户信息
     {
