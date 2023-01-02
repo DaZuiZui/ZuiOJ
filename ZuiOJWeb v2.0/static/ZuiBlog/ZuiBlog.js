@@ -48,5 +48,7 @@
             this.$router.push('/');
         }else if(obj.code == '0x500'){
             alert("操作失败");
+        }else if(obj.code == '0x501'){
+            alert("服务器接受数据异常");
         }
     }
