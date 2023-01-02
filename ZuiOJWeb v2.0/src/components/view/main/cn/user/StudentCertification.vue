@@ -10,9 +10,9 @@
                 <div class="row mb-5 justify-content-center text-center">
                     <div class="col-lg-6">
                        
-                        <h2 class=" mt-4">哈尔滨广厦学院学生认证服务</h2>
+                        <h2 class=" mt-4"> 学生认证服务</h2>
                         <div class="mt-2">
-                            <p class="lead lh-180">Harbin Guangsha College Studetn Certification Service</p>
+                            <p class="lead lh-180"> Studetn Certification Service</p>
                         </div>
                     </div>
                     
@@ -21,7 +21,7 @@
                 <div>
                     <div>
                         <label for="years">选择大学</label>  
-                        <select id="years" name="years" class="form-control" @change="chooseUniversty()" v-model="studentCertificationBo.universt">
+                        <select id="years" name="years" class="form-control" @change="chooseUniversty()" v-model="studentCertificationBo.universty">
                             <option value="-1" disabled> --Please select your university 请选择你的大学-- </option>
                             <option v-for="(obj,index) in universtyList" :key="index" :value="obj.id">{{obj.englishName}} {{obj.chineseName}}</option>
                         </select>
@@ -65,7 +65,7 @@
       return {
         //学生认证
         studentCertificationBo: {
-            universt: -1,   //大学id
+            universty: -1,   //大学id
             college: -1,    //学院id
             major: -1,      //专业id
         },
@@ -75,6 +75,11 @@
         collegeList: [],
         //专业集合
         majorList: [],
+
+        //现在选择的学校名字
+        currentUniverstyName: "",
+        //
+        currentUniverstyCollege: "",
       }
     },
 
@@ -115,7 +120,7 @@
             this.studentCertificationBo.college = -1;
             this.studentCertificationBo.major = -1;
             //获取对应学院
-            let obj = await synRequestGet("/college/getALlCollegeByUniverstyId?id="+this.studentCertificationBo.universt);
+            let obj = await synRequestGet("/college/getALlCollegeByUniverstyId?id="+this.studentCertificationBo.universty);
             this.collegeList = obj.data;
         }
     }
