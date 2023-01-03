@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 学生认证Bo
+ * 学生认证实体
  */
-public class StudentCertificationBo implements Serializable {
+public class StudentCertification implements Serializable {
     private Long id;            //主键
     private Long universty;     //学校id
     private Long college;       //学院id
@@ -23,12 +23,12 @@ public class StudentCertificationBo implements Serializable {
     private String updateBy;     //修改人
     private Long updateById;     //修改人id
     private Date updateTime;     //修改时间
-    private int delFalg;         //逻辑删除
+    private int delFlag;         //逻辑删除
     private int status;          //状态
 
     @Override
     public String toString() {
-        return "StudentCertificationBo{" +
+        return "StudentCertification{" +
                 "id=" + id +
                 ", universty=" + universty +
                 ", college=" + college +
@@ -45,7 +45,7 @@ public class StudentCertificationBo implements Serializable {
                 ", updateBy='" + updateBy + '\'' +
                 ", updateById=" + updateById +
                 ", updateTime=" + updateTime +
-                ", delFalg=" + delFalg +
+                ", delFlag=" + delFlag +
                 ", status=" + status +
                 '}';
     }
@@ -178,12 +178,12 @@ public class StudentCertificationBo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public int getDelFalg() {
-        return delFalg;
+    public int getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelFalg(int delFalg) {
-        this.delFalg = delFalg;
+    public void setDelFlag(int delFlag) {
+        this.delFlag = delFlag;
     }
 
     public int getStatus() {
@@ -194,10 +194,10 @@ public class StudentCertificationBo implements Serializable {
         this.status = status;
     }
 
-    public StudentCertificationBo() {
+    public StudentCertification() {
     }
 
-    public StudentCertificationBo(Long id, Long universty, Long college, Long major, Long lesson, String name, String ic, String studentId, Long userId, Long icType, String createBy, Long createById, Date createTime, String updateBy, Long updateById, Date updateTime, int delFalg, int status) {
+    public StudentCertification(Long id, Long universty, Long college, Long major, Long lesson, String name, String ic, String studentId, Long userId, Long icType, String createBy, Long createById, Date createTime, String updateBy, Long updateById, Date updateTime, int delFlag, int status) {
         this.id = id;
         this.universty = universty;
         this.college = college;
@@ -214,7 +214,7 @@ public class StudentCertificationBo implements Serializable {
         this.updateBy = updateBy;
         this.updateById = updateById;
         this.updateTime = updateTime;
-        this.delFalg = delFalg;
+        this.delFlag = delFlag;
         this.status = status;
     }
 }

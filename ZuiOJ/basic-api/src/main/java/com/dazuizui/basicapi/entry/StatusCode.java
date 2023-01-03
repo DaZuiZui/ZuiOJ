@@ -7,14 +7,16 @@ import java.io.Serializable;
  */
 public class StatusCode  {
     //身份验证过期
-    public static String authenticationExpired   = "0x444";
+    public static final String authenticationExpired   = "0x444";
     //权限不足
-    public static String insufficientPermissions = "0x445";
+    public static final String insufficientPermissions = "0x445";
     //成功
-    public static String OK = "0x200";
+    public static final String OK = "0x200";
     //失败
-    public static String Error = "0x500";
+    public static final String Error = "0x500";
     //数据为null
-    public static String IsNull = "0x501";
+    public static final String IsNull = "0x501";
+    //幂等性操作
+    public static final String Idempotency = "0x502";
 
 }
