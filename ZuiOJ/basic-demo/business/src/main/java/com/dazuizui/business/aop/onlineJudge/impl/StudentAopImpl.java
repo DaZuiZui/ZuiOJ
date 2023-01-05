@@ -100,11 +100,12 @@ public class StudentAopImpl implements StudentAop {
         Map<String, Object> map = null;
         String token = studentCertificationBo.getToken();
         //System.err.println("toekn si "+token);
-        System.err.println("????????");
+        //System.err.println("????????");
         if (token != null){
             try {
                 map = JwtUtil.analysis(token);
                 ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //System.err.println("????????");
             } catch (Exception e) {
                 System.out.println("??");
                 ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
@@ -126,15 +127,17 @@ public class StudentAopImpl implements StudentAop {
     @Override
     @Before("execution(* com.dazuizui.business.controller.StudentController.getStudentInfo(..))")
     public void getStudentInfo(JoinPoint joinpoint) throws Exception {
+
         Object[] args = joinpoint.getArgs();
         String token  = (String) args[0];
+        System.out.println(token);
         Map<String, Object> map = null;
         if (token != null){
             try {
                 map = JwtUtil.analysis(token);
                 ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
             } catch (Exception e) {
-
+                System.err.println("???");
                 ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
                 ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
             }

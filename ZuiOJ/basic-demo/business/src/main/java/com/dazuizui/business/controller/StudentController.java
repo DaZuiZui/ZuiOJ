@@ -72,6 +72,7 @@ public class StudentController {
     public String getStudentInfo(@RequestParam("token")String token){
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        System.out.println(map);
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }

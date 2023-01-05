@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div>
-                                        ,<a>点击我学生认证</a>    
+                                        ,<a @click="goStudentCertification()">点击我学生认证</a>    
                                     </div>                      
                                  </div>
                               </div>
@@ -205,7 +205,10 @@ import Foot from '../../../../frame/blog/Foot.vue';
         },
 
         methods: {
-            
+            //前往学生认证
+            goStudentCertification(){
+                this.$router.push('/cn/user/student/certification');
+            },  
             //上传成功修改头像
             async fileOK(response, file, fileList){
                 //this.filename = "http://localhost:3000/download?file_name="+response;

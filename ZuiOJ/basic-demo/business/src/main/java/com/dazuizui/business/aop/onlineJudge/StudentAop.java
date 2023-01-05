@@ -5,6 +5,7 @@ import org.aspectj.lang.JoinPoint;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public interface StudentAop {
+
     /**
      * 学生认证切面，主要做了防止幂等性操作和身份验证
      * @param joinpoint

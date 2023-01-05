@@ -91,6 +91,7 @@ public class StudentServiceImpl implements StudentService {
             redisUtil.setStringInRedis(RedisKey.ZuiOjStudentCertificationUserId+id,RedisKey.OutTime,student);
         }
 
+        System.err.println("ok");
         return JSONArray.toJSONString(new ResponseVo<>("查询成功",student, StatusCode.OK));
     }
 
