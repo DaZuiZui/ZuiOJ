@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.student.UniverstyMapper">
     <!--
+        通过大学id查询大学
+    -->
+    <select id="queryUniverstryByUniverstyId" resultType="com.dazuizui.basicapi.entry.Universty">
+        select
+            chinese_name,
+            english_name,
+            id
+        from
+            universty
+        where
+            id = #{id}
+        limit 1
+    </select>
+
+    <!--
         该数据量极少不考虑优化暂时，后续再说，加入todo
     -->
     <select id="queryAllUniversty" resultType="com.dazuizui.basicapi.entry.Universty">

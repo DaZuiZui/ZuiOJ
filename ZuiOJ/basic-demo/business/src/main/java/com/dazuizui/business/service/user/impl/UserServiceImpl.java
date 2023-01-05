@@ -71,10 +71,9 @@ public class UserServiceImpl implements UserService {
              */
             redisUtil.increment(RedisKey.ZuiBlogUserCount,RedisKey.OutTime,-1);
         } catch (Exception e) {
-            e.printStackTrace();
+           // e.printStackTrace();
             return  JSONArray.toJSONString(new ResponseVo<>("物理删除失败",null,StatusCode.Error));
         }
-
 
         return  JSONArray.toJSONString(new ResponseVo<>("物理删除成功",null,StatusCode.OK));
     }

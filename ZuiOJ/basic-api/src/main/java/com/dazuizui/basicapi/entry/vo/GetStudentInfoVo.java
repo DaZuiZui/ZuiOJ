@@ -5,13 +5,14 @@ import com.dazuizui.basicapi.entry.Lesson;
 import com.dazuizui.basicapi.entry.Major;
 import com.dazuizui.basicapi.entry.Universty;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户学生认证VO
  */
-public class GetStudentInfoVo {
-    private Long id;          //学生主键
+public class GetStudentInfoVo implements Serializable {
+    private Long id;          //学生认证主键
     private String name;      //学生name
     private String studentId; //学号
     private Universty universty; //学校

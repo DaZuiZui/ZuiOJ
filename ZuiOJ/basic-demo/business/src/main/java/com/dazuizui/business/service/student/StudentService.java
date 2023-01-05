@@ -28,4 +28,11 @@ public interface StudentService {
      * 通过认证主键获取学生信息
      */
     public GetStudentInfoVo queryStudentByUserId(Long UserId);
+
+    /**
+     * 修改学生信息
+     * @param studentCertificationBo
+     * @return
+     */
+    public String updateStudentCertification(StudentCertification studentCertificationBo);
 }

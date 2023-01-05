@@ -10,6 +10,7 @@ import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Map;
@@ -73,9 +74,10 @@ public class StudentServiceImpl implements StudentService {
      * 获取学生认证信息通过id
      */
     @Override
+    @Transactional
     public String getStudentInfo() {
         Map<String, Object> userinfo = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
-        Long id = new Long((Long) userinfo.get("id"));
+        Long id = new Long(Long.valueOf(String.valueOf(userinfo.get("id"))));
 
         //去redis查询该数据是否存在
         GetStudentInfoVo student = (GetStudentInfoVo) redisUtil.getStringInRedis(RedisKey.ZuiOjStudentCertificationUserId + id);
@@ -96,6 +98,7 @@ public class StudentServiceImpl implements StudentService {
      * 通过认证主键获取学生信息
      */
     @Override
+    @Transactional
     public GetStudentInfoVo queryStudentByUserId(Long userId) {
         GetStudentInfoVo res = new GetStudentInfoVo();
         //获取学生认证信息
@@ -105,6 +108,7 @@ public class StudentServiceImpl implements StudentService {
         res.setIcType(studentCertification.getIcType());
         res.setName(studentCertification.getName());
         res.setCreateTime(studentCertification.getCreateTime());
+        res.setId(studentCertification.getId());
         //解析学生学校
         Universty universty = universtyMapper.queryUniverstryByUniverstyId(studentCertification.getUniversty());
         res.setUniversty(universty);
@@ -118,5 +122,30 @@ public class StudentServiceImpl implements StudentService {
         Lesson lesson = lessonMapper.queryLessonByLessonId(studentCertification.getLesson());
         res.setLesson(lesson);
         return res;
+    }
+
+    /**
+     * 修改学生信息
+     * @param studentCertificationBo
+     * @return
+     */
+    @Override
+    @Transactional
+    public String updateStudentCertification(StudentCertification studentCertificationBo) {
+        Map<String, Object> userinfo = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
+        Long userId = new Long(Long.valueOf(String.valueOf(userinfo.get("id"))));
+        studentCertificationBo.setUserId(userId);
+        //修改mysql
+        Long aLong = studentMapper.updateStudentCertification(studentCertificationBo);
+        if (aLong == 0){
+            //System.err.println(studentCertificationBo);
+            //System.out.println("??");
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+        //修改redis
+        GetStudentInfoVo getStudentInfoVo = this.queryStudentByUserId(userId);
+        redisUtil.setStringInRedis(RedisKey.ZuiOjStudentCertificationUserId+userId,RedisKey.OutTime,getStudentInfoVo);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 }

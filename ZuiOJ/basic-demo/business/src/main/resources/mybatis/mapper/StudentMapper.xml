@@ -4,6 +4,51 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.student.StudentMapper">
     <!--
+        修改我的学生认证
+    -->
+    <update id="updateStudentCertification">
+        update
+            student_certification
+        <set>
+            <if test="universty != null and universty != 0">
+                universty = #{universty},
+            </if>
+            <if test="college != null and college > 0">
+                college = #{college},
+            </if>
+            <if test="major != null and major > 0  ">
+                major = #{major},
+            </if>
+            <if test="lesson != null and lesson > 0" >
+                lesson = #{lesson},
+            </if>
+            <if test="name != null and name.length() != 0">
+                name = #{name},
+            </if>
+            <if test="studentId != null and studentId.length != 0">
+                student_id = #{studentId},
+            </if>
+            <if test="ic != null and ic.length() != 0">
+                ic = #{ic},
+            </if>
+            <if test="icType != null and icType > 0 ">
+                ic_type = #{icType},
+            </if>
+            <if test="updateBy != null and updateBy.length() > 0">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateById != null and updateById > 0">
+                update_by_id = #{updateById},
+            </if>
+            <if test="updateTime != null ">
+                updateTime = #{updateTime},
+            </if>
+        </set>
+        where
+            id = #{id}
+    </update>
+
+    <!--
         查询
     -->
     <select id="queryStudentInfoByUserId" resultType="com.dazuizui.basicapi.entry.StudentCertification">
@@ -16,9 +61,12 @@
             student_id,
             ic,
             ic_type,
-            create_time
+            create_time,
+            id
         from
             student_certification
+        where
+              user_id = #{userId}
         limit 1
     </select>
 

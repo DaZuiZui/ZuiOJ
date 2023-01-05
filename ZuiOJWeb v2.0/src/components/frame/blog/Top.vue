@@ -222,14 +222,16 @@ import { synRequestGet } from '../../../../static/request';
         },
         //退出
         quite(){
-            setCookie("token","");
-            this.goUserLogin();
+            setCookie("token"," ");
+            alert("/删除成功");
+            this.$router.push('/cn/user/login');
         },
         //前往个人信息页面
         goUserInfo(){
             this.$router.push('/cn/user/info');
+            //window.location.href="/h/cn/user/info";
         },
- 
+
     }
   }
   </script>

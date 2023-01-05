@@ -1,6 +1,8 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StudentCertification;
 import com.dazuizui.basicapi.entry.bo.StudentCertificationBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -23,6 +25,27 @@ import java.util.Map;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+
+
+    /**
+     * 修改学生认证
+     * @param studentCertificationBo
+     * @return
+     */
+    @ApiOperation("修改学生认证")
+    @PostMapping("/updatestudentCertification")
+    public String updateStudentCertification(@RequestBody StudentCertificationBo studentCertificationBo){
+        //查看aop前置环绕是否出现问题
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        if(studentCertificationBo == null){
+            return JSONArray.toJSONString(new ResponseVo<>("服务器接收数据为null",null, StatusCode.IsNull));
+        }
+
+        return studentService.updateStudentCertification(studentCertificationBo.getStudentCertification());
+    }
 
     /**
      * 学生认证
@@ -55,4 +78,5 @@ public class StudentController {
 
         return studentService.getStudentInfo();
     }
+
 }
