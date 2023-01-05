@@ -5,9 +5,12 @@ import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.vo.GetStudentInfoVo;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.service.onlineJudge.LanguageCommandService;
+import com.dazuizui.business.service.student.StudentService;
+import com.dazuizui.business.service.student.impl.StudentServiceImpl;
 import com.dazuizui.business.util.RedisUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -43,10 +46,12 @@ class BusinessApplicationTests {
     }
 
 
+    @Autowired
+    private StudentService studentService;
     @Test
     void test1(){
-        stringRedisTemplate.opsForValue().increment("c",1);
-        System.err.println(stringRedisTemplate.opsForValue().get("c"));
 
+        GetStudentInfoVo getStudentInfoVo = studentService.queryStudentByUserId(1L);
+        System.out.println(getStudentInfoVo);
     }
 }

@@ -67,4 +67,28 @@ public class StudentAopImpl implements StudentAop {
 
         return null;
     }
+
+
+    /**
+     * 获取学生认证信息，
+     *      aop前置环绕做了鉴权处理
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    public void getStudentInfo(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        String token  = (String) args[0];
+        Map<String, Object> map = null;
+        if (token != null){
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+            } catch (Exception e) {
+
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }
+    }
 }

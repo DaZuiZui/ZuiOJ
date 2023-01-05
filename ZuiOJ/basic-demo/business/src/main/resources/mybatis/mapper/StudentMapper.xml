@@ -4,6 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.student.StudentMapper">
     <!--
+        查询
+    -->
+    <select id="queryStudentInfoByUserId" resultType="com.dazuizui.basicapi.entry.StudentCertification">
+        select
+            universty,
+            college,
+            major,
+            lesson,
+            name,
+            student_id,
+            ic,
+            ic_type,
+            create_time
+        from
+            student_certification
+        limit 1
+    </select>
+
+    <!--
         学生认证useGeneratedKeys="true" keyProperty="id"
     -->
     <insert id="studentCertification" useGeneratedKeys="true" keyProperty="id">

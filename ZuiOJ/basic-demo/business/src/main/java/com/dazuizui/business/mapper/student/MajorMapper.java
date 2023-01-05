@@ -1,5 +1,6 @@
 package com.dazuizui.business.mapper.student;
 
+import com.dazuizui.basicapi.entry.College;
 import com.dazuizui.basicapi.entry.Major;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,4 +18,10 @@ public interface MajorMapper {
      * @return
      */
     public List<Major> getAllMajorByCollegeId(@Param("id")Long id);
+
+    /**
+     * 获取专业信息
+     * @return
+     */
+    public Major queryMajorByMajorId(@Param("id") Long id);
 }

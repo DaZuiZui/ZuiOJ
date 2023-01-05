@@ -3,6 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.student.LessonMapper">
+    <select id="queryLessonByLessonId" resultType="com.dazuizui.basicapi.entry.Lesson">
+        select
+            chinese_name,
+            english_name,
+            id,
+            grade
+        from
+            lesson
+        where
+            id = #{id}
+            limit 1
+    </select>
+
     <!--
         该数据量极少不考虑优化暂时，后续再说，加入todo
         目前直接走数据库

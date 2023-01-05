@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper.student;
 
 import com.dazuizui.basicapi.entry.Universty;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,10 @@ public interface UniverstyMapper {
      * @return List<Universty>
      */
     public List<Universty> queryAllUniversty();
+
+    /**
+     * 获取大学信息
+     * @return
+     */
+    public Universty queryUniverstryByUniverstyId(@Param("id") Long id);
 }

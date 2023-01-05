@@ -32,7 +32,6 @@ public class StudentController {
     @ApiOperation("学生认证")
     @PostMapping("/studentCertification")
     public String studentCertification(@RequestBody StudentCertificationBo studentCertificationBo){
-        System.err.println("asd"+studentCertificationBo);
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
         if (map.get("error") != null){
@@ -40,5 +39,20 @@ public class StudentController {
         }
         //业务操作
         return studentService.studentCertification(studentCertificationBo.getStudentCertification());
+    }
+
+    /**
+     * 获取学生认证信息
+     */
+    @ApiOperation("获取学生认证信息")
+    @GetMapping("/getStudentInfo")
+    public String getStudentInfo(@RequestParam("token")String token){
+        //查看aop前置环绕是否出现问题
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return studentService.getStudentInfo();
     }
 }

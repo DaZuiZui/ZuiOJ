@@ -1,6 +1,7 @@
 package com.dazuizui.business.mapper.student;
 
 import com.dazuizui.basicapi.entry.College;
+import com.dazuizui.basicapi.entry.Universty;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,4 +15,10 @@ public interface CollegeMapper {
      * @return
      */
     public List<College> getALlCollegebyUniverstyId(@Param("id") Long id);
+
+    /**
+     * 获取学院信息
+     * @return
+     */
+    public College queryCollegeByCollegeId(@Param("id") Long id);
 }
