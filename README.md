@@ -2,7 +2,7 @@
 
 ## Developer
 **
-  恢复更新
+  OJ系统暂时完善，下一步更新博客系统，和题解系统
  **
 ## Environment preparation
 
