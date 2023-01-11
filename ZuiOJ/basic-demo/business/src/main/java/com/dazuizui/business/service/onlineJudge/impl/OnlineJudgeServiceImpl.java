@@ -91,7 +91,6 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
              * 查看stdout最后两位是否为\n 如果是\n则忽略
              *      此处我想不到更好的业务解决方案了，如果后续有人有更好的解决方案请联系我通过email
              *      y51288033@outlook.com
-             *      bryanyang@gmail.com
              *      y51288033@gmail.com
              *   出现的问题是 如果我们正确答案是Hello World
              *   但是我们某些语言比如使用println， 打印出来的结果是Hello World\n 我们也想让他通过
