@@ -65,7 +65,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         System.out.println(questionCases.size());
         if (questionCases.size() == 0){
             questionCases = questionCaseMapper.queryTheQuestionCasesByQuestionId(programBo.getTopicId());
-            //写入redis
+
             redisUtil.putListInRedis(RedisKey.ZuiOJQuestionCase +programBo.getTopicId(),60*60*24*15,questionCases);
             //System.out.println("in db");
         }
