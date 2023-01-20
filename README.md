@@ -2,7 +2,7 @@
 
 ## Developer
 **
-  OJ系统暂时完善，下一步更新博客系统，和题解系统
+ 最近几天不舒服，暂时停更几天
  **
 ## Environment preparation
 
