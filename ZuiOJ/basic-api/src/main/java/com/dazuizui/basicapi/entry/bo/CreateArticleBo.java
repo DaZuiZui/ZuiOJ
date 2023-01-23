@@ -33,6 +33,8 @@ public class CreateArticleBo implements Serializable {
     private String nonPowerToken;
     //创建时间 香港时区
     private Date createTime;
+    //创建人
+    private Long createBy;
 
     @Override
     public String toString() {
@@ -49,6 +51,7 @@ public class CreateArticleBo implements Serializable {
                 ", token='" + token + '\'' +
                 ", nonPowerToken='" + nonPowerToken + '\'' +
                 ", createTime=" + createTime +
+                ", createBy=" + createBy +
                 '}';
     }
 
@@ -148,10 +151,18 @@ public class CreateArticleBo implements Serializable {
         this.createTime = createTime;
     }
 
+    public Long getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(Long createBy) {
+        this.createBy = createBy;
+    }
+
     public CreateArticleBo() {
     }
 
-    public CreateArticleBo(Long id, Integer privacy, List<Integer> articleTypeArray, List<Integer> languageTypeArray, Integer technologyType, List<String> myFileList, String mdText, String title, String introduce, String token, String nonPowerToken, Date createTime) {
+    public CreateArticleBo(Long id, Integer privacy, List<Integer> articleTypeArray, List<Integer> languageTypeArray, Integer technologyType, List<String> myFileList, String mdText, String title, String introduce, String token, String nonPowerToken, Date createTime, Long createBy) {
         this.id = id;
         this.privacy = privacy;
         this.articleTypeArray = articleTypeArray;
@@ -164,5 +175,6 @@ public class CreateArticleBo implements Serializable {
         this.token = token;
         this.nonPowerToken = nonPowerToken;
         this.createTime = createTime;
+        this.createBy = createBy;
     }
 }

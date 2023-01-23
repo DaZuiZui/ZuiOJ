@@ -21,4 +21,8 @@ public class RedisKey {
     public static final String ZuiOjStudentCertificationUserId = "ZuiOJ:User:Student:userId:";
     //学生认证Key通过username
     public static final String ZuiOjStudentCertificationUsername = "ZuiOJ:User:Student:Username:";
+    //博文简介
+    public static final String ZuiBlogArticle = "ZuiBlog:Blog:Article:";
+    //博文Md文件
+    public static final String ZuiBlogArticleMd = "ZuiBlog:Blog:Article:Md:";
 }

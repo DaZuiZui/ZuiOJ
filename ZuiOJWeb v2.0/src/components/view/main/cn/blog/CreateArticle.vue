@@ -261,6 +261,7 @@ import Foot from '../../../../frame/blog/Foot.vue';
         async submit(){
             console.log(this.article);
             var object = await synRequestPost("/blog/createArticle",this.article);
+            check(object);
         }
     },
     //自启动

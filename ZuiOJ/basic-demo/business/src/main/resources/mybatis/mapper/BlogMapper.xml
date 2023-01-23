@@ -15,7 +15,7 @@
     <!--
         插入博文
     -->
-    <insert id="insertBlog">
+    <insert id="insertBlog"  useGeneratedKeys="true" keyProperty="id">
         insert into
             article
         value(
