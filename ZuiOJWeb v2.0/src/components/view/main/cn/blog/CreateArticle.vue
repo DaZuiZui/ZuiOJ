@@ -15,20 +15,21 @@
                     </div>
                            
                     <div>
-                            <div style="float:left;margin-top:10px">
+                            <div style="float:left;margin-top:6px">
                                 权限: &nbsp;
                             </div> 
                             <div style="float:left;">
-                                <select id="sex" name="sex" class="form-control" v-model="article.privacy">
-                                    <option value="-1"  disabled>--请选择--</option>
-                                    <option value="1">公开</option>
-                                    <option value="0">私有</option>
-                                </select>
+                                <el-select v-model="article.privacy" placeholder="请选择">
+                                    <el-option value="1" key="1" label="Public"></el-option>
+                                    <el-option value="0" key="0" label="Private"></el-option>
+                                </el-select>
                             </div>
 
-                            <div style="float:left;margin-top:10px;margin-left:20px">
+                            <div style="float:left;margin-top:5px;margin-left:20px">
                                 分类: &nbsp;
                             </div> 
+
+                          
                             <div style="float:left;">
                                 <el-select  
                                     v-model="article.articleTypeArray"
@@ -45,7 +46,7 @@
                                 </el-select>
                             </div>
 
-                            <div style="float:left;margin-top:10px;margin-left:20px">
+                            <div style="float:left;margin-top:5px;margin-left:20px">
                                 语言: &nbsp;
                             </div> 
                             <div style="float:left;">
@@ -53,7 +54,7 @@
                                     v-model="article.languageTypeArray"
                                     multiple
                                     collapse-tags
-                                    style="margin-left: 20px;width:150px"
+                                    style="margin-left: 20px;width:150px;"
                                     placeholder="请选择">
                                     <el-option
                                         v-for="item in languageType"
@@ -64,23 +65,64 @@
                                 </el-select>
                             </div>
                             
-                            <div style="float:left;margin-top:10px;margin-left:20px">
+                            <div style="float:left;margin-top:5px;margin-left:20px">
                                 技术: &nbsp;
                             </div> 
                             <div style="float:left;">
-                                <select id="sex" name="sex" class="form-control" v-model="article.technologyType">
-                                    <option value="-1"  disabled>--请选择--</option>
-                                    <option value="0">问答</option>
-                                    <option value="1">后端</option>
-                                    <option value="2">前端</option>
-                                    <option value="3">架构</option>
-                                    <option value="4">安全</option>
-                                    <option value="5">数据库</option>
-                                    <option value="6">学习日记</option>
-                                    <option value="7">踩坑记录</option>
-                                </select>
+                                <el-select v-model="article.technologyType" placeholder="请选择">
+                                    <el-option value="0" value-key="0" key="0" label="问答">问答</el-option>
+                                    <el-option value="1" value-key="1" key="1" label="后端">后端</el-option>
+                                    <el-option value="2" value-key="2" key="2" label="前端">前端</el-option>
+                                    <el-option value="3" value-key="3" key="3" label="架构">架构</el-option>
+                                    <el-option value="4" value-key="4" key="4" label="安全">安全</el-option>
+                                    <el-option value="5" value-key="5" key="5" label="数据库">数据库</el-option>
+                                    <el-option value="6" value-key="6" key="6" label="学习日记"></el-option>
+                                    <el-option value="7" value-key="7" key="7" label="踩坑记录">踩坑记录</el-option>
+                                    <el-option value="8" value-key="8" key="8" label="算法问题"></el-option>
+                                  </el-select>
+                            </div>
+
+                            <br><br>
+                            <div style="float:left;margin-top:5px;">
+                                我的文件夹分类: &nbsp;
+                            </div> 
+                            <div style="float:left;">
+                                <el-select
+                                    v-model="article.myFileList"
+                                    multiple
+                                    filterable
+                                    allow-create
+                                    default-first-option
+                                    placeholder="请选择文章标签">
+                                    <el-option
+                                    v-for="item in MyFilesList"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+
+                            <div style="float:right;margin-right:30px">
+                                <button type="button" class="btn btn-success">保存</button>
+                                <button type="button" class="btn btn-primary">提交</button>
+                            </div>
+                            
+                            <div style="clear:both">
+                                <br>
+                            </div>
+                          
+                             <!--编辑器区域-->
+                             <div  style=" width:100%;clear:both"> 
+                                <mavon-editor  
+                                    codeStyle=""   
+                                    placeholder="请输入您的文章"
+                                    v-model="article.mdText"
+                                    @change="change"
+                                />
                             </div>
                     </div>
+                    
                 </div>
          
             </div>
@@ -149,16 +191,22 @@
           value: '5',
           label: 'JS'
         },],
+        //我的文件夹分类
+        myFilesList: [],
 
         article: {
-            privacy: -1,     //权限
-            articleType: -1, //文章分类
-            language: -1,    //语言id
-            technologyType: 6, //技术分类
+            privacy: "1",     //权限
+            articleType: null, //文章分类
+            language: null,    //语言id
+            technologyType: "6", //技术分类
             //分类讨论
             articleTypeArray: [],
             //语言分类
             languageTypeArray: [],
+            //我的文件夹分类
+            MyFileList: [],
+            //Md文档
+            mdText: null,
         }
       }
     },
@@ -168,6 +216,9 @@
             alert(val);
         },
         
+        change(value, render) {
+                this.article.mdText = value;
+        },
     }
   }
   
