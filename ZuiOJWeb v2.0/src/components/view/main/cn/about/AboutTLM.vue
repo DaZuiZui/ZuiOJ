@@ -102,7 +102,7 @@
                             <p class="lead my-4">
                                  因为该团队第一批成员有3人，其中2个人曾经特别痴情，所以刘朝甲将团队命名为舔了么团队，但是因为团队名字不太美观，所以更改名字为TLM Team。
                             </p>
-                       
+                            <h5 class="h5">我们在等优秀的你和我们一起做伟大的事情</h5>
                         </div>
                         <div class="col-lg-6 order-lg-1">
                             <div class="card mb-0 mr-lg-5">

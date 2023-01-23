@@ -20,6 +20,7 @@ import Register from '@/components/view/main/cn/user/Register'
 import UserInfo from '@/components/view/main/cn/user/UserInfo'
 import StudentCerification from '@/components/view/main/cn/user/StudentCertification'
 import StudentInfo from '@/components/view/main/cn/user/StudentInfo'
+import CreateArticle from '@/components/view/main/cn/blog/CreateArticle'
 
 Vue.use(Router)
 
@@ -31,6 +32,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //创建文章
+    {
+      path: '/cn/blog/create',
+      name: 'CreateArticle',
+      component: CreateArticle
     },
     //中文学习信息页面
     {
