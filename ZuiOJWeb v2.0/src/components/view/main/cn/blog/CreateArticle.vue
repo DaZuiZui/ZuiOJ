@@ -15,6 +15,23 @@
                     </div>
                            
                     <div>
+                        <div style="float:left;margin-top:6px">
+                            权限: &nbsp;
+                        </div> 
+                        <div style="float:left;width:93%">
+                            <el-input v-model="article.title" placeholder="请输入标题"  maxlength="50"></el-input>
+                        </div>
+                        <br><br>
+                        <div style="float:left;margin-top:6px">
+                            简介: &nbsp;
+                        </div> 
+                   
+                        <div style="float:left;width:93%">
+                         <el-input v-model="article.introduce" placeholder="请输入介绍" maxlength="100"></el-input>
+                        </div>
+                        <br><br>
+                       
+                        
                             <div style="float:left;margin-top:6px">
                                 权限: &nbsp;
                             </div> 
@@ -109,6 +126,7 @@
                             </div>
                             
                             <div style="clear:both">
+                         
                                 <br>
                             </div>
                           
@@ -174,6 +192,7 @@
           value: '4',
           label: '信息学院专业社团'
         },],
+
         //语言分类
         languageType: [{
           value: 1,
@@ -191,6 +210,7 @@
           value: '5',
           label: 'JS'
         },],
+
         //我的文件夹分类
         myFilesList: [],
 
@@ -207,6 +227,10 @@
             MyFileList: [],
             //Md文档
             mdText: null,
+            //标题
+            title: "",
+            //介绍
+            introduce: "",
         }
       }
     },
@@ -217,7 +241,7 @@
         },
         
         change(value, render) {
-                this.article.mdText = value;
+            this.article.mdText = value;
         },
     }
   }
