@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.BlogMapper">
+    <!--
+        插入博文Md文档
+    -->
+    <insert id="insertBlogMdText" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            articleMdText
+        value(null,#{mdText})
+    </insert>
+
+    <!--
+        插入博文
+    -->
+    <insert id="insertBlog">
+        insert into
+            article
+        value(
+            null,
+            #{article.title},
+            #{article.introduce},
+            #{articleList},
+            #{languageList},
+            #{article.technologyType},
+            #{article.id},
+            #{article.createTime},
+            1,
+            null,
+            1,
+            0,
+            0
+        )
+    </insert>
+</mapper>

@@ -111,7 +111,9 @@
                                     allow-create
                                     default-first-option
                                     placeholder="请选择文章标签">
+                                
                                     <el-option
+                                    
                                     v-for="item in MyFilesList"
                                         :key="item.value"
                                         :label="item.label"
@@ -122,7 +124,7 @@
 
                             <div style="float:right;margin-right:30px">
                                 <button type="button" class="btn btn-success">保存</button>
-                                <button type="button" class="btn btn-primary">提交</button>
+                                <button type="button" class="btn btn-primary" @click="submit">提交</button>
                             </div>
                             
                             <div style="clear:both">
@@ -154,7 +156,8 @@
   
   
   <script>
-  import Foot from '../../../../frame/blog/Foot.vue';
+  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/Top.vue'
   export default {
     name: 'HelloWorld',
@@ -212,7 +215,7 @@
         },],
 
         //我的文件夹分类
-        myFilesList: [],
+        myFilesList: null,
 
         article: {
             privacy: "1",     //权限
@@ -224,13 +227,17 @@
             //语言分类
             languageTypeArray: [],
             //我的文件夹分类
-            MyFileList: [],
+            myFileList: [],
             //Md文档
             mdText: null,
             //标题
             title: "",
             //介绍
             introduce: "",
+            //token
+            token: "",
+            //幂等性token
+            nonPowerToken: "",
         }
       }
     },
@@ -243,7 +250,26 @@
         change(value, render) {
             this.article.mdText = value;
         },
-    }
+
+        //防止幂等性
+        async getNonPowerToken(){
+            var object = await synRequestGet("/system/getNonPowerTokenString");
+            this.article.nonPowerToken = object.data;
+        },
+
+        //提交
+        async submit(){
+            console.log(this.article);
+            var object = await synRequestPost("/blog/createArticle",this.article);
+        }
+    },
+    //自启动
+    mounted() {
+        //获取token
+        this.article.token = getCookie("token");
+        //获取幂等性token
+        this.article.nonPowerToken = this.getNonPowerToken();
+    },
   }
   
   </script>
