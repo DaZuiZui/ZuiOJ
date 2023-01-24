@@ -221,7 +221,7 @@ import { synRequestGet } from '../../../../static/request';
             this.$router.push('/cn/question/create');
         },
         //退出
-        quite(){
+         quite(){
             setCookie("token"," ");
             alert("/删除成功");
             this.$router.push('/cn/user/login');

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.blog.LanguageArticleTypeMapper">
+    <insert id="AddArticleInLanguageArticle">
+        insert into
+        language_article_type
+            values 
+        <foreach collection="articleBo.languageTypeArray" item="item" separator="," >
+            (
+                null,
+                #{item},
+                #{articleBo.id}
+            )
+
+        </foreach>
+    </insert>
+
+
+</mapper>
