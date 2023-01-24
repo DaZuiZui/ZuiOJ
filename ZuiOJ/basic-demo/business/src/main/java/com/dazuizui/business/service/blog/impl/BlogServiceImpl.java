@@ -8,10 +8,13 @@ import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.BlogMapper;
+import com.dazuizui.business.messageQueue.blog.config.BlogSource;
 import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,11 +24,14 @@ import java.util.Date;
  * 博文业务实现接口
  */
 @Service
+@EnableBinding(BlogSource.class)
 public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogMapper blogMapper;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private BlogSource source;
 
     /**
      * 创建博文
@@ -56,14 +62,15 @@ public class BlogServiceImpl implements BlogService {
         }
 
         /**
-         * todo写入redis
+         * 写入redis
          */
         redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+articleBo.getId(),RedisKey.OutTime,articleBo);
 
         /**
-         * todo消息队列，处理分类内容，和个人文件夹
+         * 消息队列，处理分类内容，和个人文件夹的分类管理
          */
+        source.addArticleOutput().send(MessageBuilder.withPayload(articleBo).build());
 
-        return null;
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 }

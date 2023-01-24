@@ -1,28 +1,20 @@
 package com.dazuizui.business;
 
-import com.baomidou.mybatisplus.extension.api.R;
-import com.dazuizui.basicapi.entry.Contest;
-import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.User;
-import com.dazuizui.basicapi.entry.vo.GetStudentInfoVo;
-import com.dazuizui.business.mapper.ContestMapper;
-import com.dazuizui.business.mapper.LanguageCommandMapper;
-import com.dazuizui.business.service.onlineJudge.LanguageCommandService;
+import com.dazuizui.business.messageQueue.blog.config.BlogSource;
 import com.dazuizui.business.service.student.StudentService;
-import com.dazuizui.business.service.student.impl.StudentServiceImpl;
 import com.dazuizui.business.util.RedisUtil;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-
-import java.util.List;
+import org.springframework.integration.support.MessageBuilder;
 
 @SpringBootTest
+@EnableBinding(BlogSource.class)
 class BusinessApplicationTests {
     @Autowired
     private RedisTemplate redisTemplate;
@@ -48,10 +40,13 @@ class BusinessApplicationTests {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private BlogSource source;
+
+
     @Test
     void test1(){
-
-        GetStudentInfoVo getStudentInfoVo = studentService.queryStudentByUserId(1L);
-        System.out.println(getStudentInfoVo);
+        System.err.println(source.addArticleOutput().send(MessageBuilder.withPayload("hello").build()));
     }
 }

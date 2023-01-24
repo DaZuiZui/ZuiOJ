@@ -3,8 +3,23 @@ server:
 spring:
   application:
     name: app-user
+  rabbitmq:
+    host: 192.168.171.128
+    port: 5672
+    username: dazui
+    password: admin
+    virtual-host: /             #虚拟主机地址
+  cloud:
+    stream:
+      bindings:
+        # 博文添加
+        blog_add_input:
+          destination: blog_exchange_add
+        blog_add_output:
+          destination: blog_exchange_add
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # set @@GLOBAL.sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
     url: jdbc:mysql://127.0.0.1:3306/zuioj
     username: root
     password: admin
