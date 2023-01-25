@@ -16,7 +16,6 @@
 
                     <!--介绍文本-->
                     <!--<div v-html="contest.htmlText"></div>-->
-
                     <mavon-editor v-model="contest.mdText"
                         :subfield="false"
                         :defaultOpen="'preview'"
