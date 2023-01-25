@@ -20,7 +20,7 @@ public class MessageConsumer {
      */
     @StreamListener(BlogSink.AddArticleINPUT)
     public void receive(CreateArticleBo articleBo) {
-        languageArticleTypeService.AddArticleInLanguageArticle(articleBo);
+        languageArticleTypeService.AddArticleType(articleBo);
         //System.out.println("消息 = " + articleBo);
     }
 }

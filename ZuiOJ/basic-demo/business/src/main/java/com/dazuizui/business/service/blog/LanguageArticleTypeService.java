@@ -12,5 +12,5 @@ public interface LanguageArticleTypeService {
      * 添加博文在语言分类
      * @return
      */
-    public String AddArticleInLanguageArticle(CreateArticleBo articleBo);
+    public String AddArticleType(CreateArticleBo articleBo);
 }
