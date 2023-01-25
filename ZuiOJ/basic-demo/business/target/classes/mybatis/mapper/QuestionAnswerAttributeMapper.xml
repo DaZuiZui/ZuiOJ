@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.QuestionAnswerAttributeMapper">
+    <!--
+        增加题解数量
+    -->
+    <insert id="addQuestionAnswerAttributeMapper">
+        insert into
+            question_answer_attribute
+            value
+            (
+                null,
+                #{questionId},
+                0
+            )
+    </insert>
+
+    <update id="increaseTheNumberOfSolutions">
+        update
+            question_answer_attribute
+        set
+            numbers = numbers +1
+        where
+            question_id = #{questionId}
+    </update>
+</mapper>
