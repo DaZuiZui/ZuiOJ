@@ -59,4 +59,41 @@ public class BlogAopImpl implements BlogAop {
             }
         }
     }
+
+    /**
+     * 创建题解
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.BlogController.createQuestionAnswer(..))")
+    public void createQuestionAnswer(JoinPoint joinpoint) throws Exception{
+        Object[] args = joinpoint.getArgs();
+        CreateArticleBo articleBo = (CreateArticleBo) args[0];
+
+        //1.防止非幂等性操作
+        String nonPowerToken = articleBo.getNonPowerToken();
+        boolean b = redisTemplate.delete(nonPowerToken);
+        if (!b){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","异常幂等性操作，请刷新网页重新操作");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.Idempotency);
+            return;
+        }
+
+        //2.鉴权
+        Map<String, Object> map = null;
+        String token = articleBo.getToken();
+        if (token != null){
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //System.err.println("????????");
+            } catch (Exception e) {
+                //System.out.println("??");
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+                return ;
+            }
+        }
+    }
 }

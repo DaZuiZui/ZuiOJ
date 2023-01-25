@@ -36,4 +36,19 @@ public class BlogController {
 
         return blogService.createArticle(articleBo);
     }
+
+    /**
+     * 创建题解
+     */
+    @ApiOperation("创建题解")
+    @PostMapping("/createQuestionAnswer")
+    public String createQuestionAnswer(@RequestBody CreateArticleBo articleBo,@RequestParam("questionId")Long questionId){
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return blogService.createQuestionAnswer(articleBo,questionId);
+    }
+
 }

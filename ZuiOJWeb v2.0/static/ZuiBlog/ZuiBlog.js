@@ -42,16 +42,22 @@
             alert(obj.message);
             //跳转登入页面
             window.location.href="/h/cn/user/login";
-            
+            return false;
         }else if(obj.code == '0x445'){
             alert(obj.message);
             //跳转首页
             window.location.href="/h";
+            return false;
         }else if(obj.code == '0x500'){
             alert("操作失败");
+            return false;
         }else if(obj.code == '0x501'){
             alert("服务器接受数据异常");
+            return false;
         }else if(obj.code == '0x502'){
             alert(obj.message);
+            return false;
         }
+
+        return true;
     }

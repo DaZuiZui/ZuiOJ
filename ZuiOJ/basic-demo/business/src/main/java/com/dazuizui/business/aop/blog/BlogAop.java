@@ -15,4 +15,11 @@ public interface BlogAop {
      * @return
      */
     public void createArticle(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 创建题解
+     * @param joinpoint
+     * @return
+     */
+    public void createQuestionAnswer(JoinPoint joinpoint) throws Exception;
 }

@@ -2,19 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dazuizui.business.mapper.blog.ArticleTypeMapper">
-    <insert id="addArticleType">
+<mapper namespace="com.dazuizui.business.mapper.QuestionAnswerMapper">
+    <insert id="addQuestionAnswer">
         insert into
-            article_type
-        values
-        <foreach collection="articleBo.articleTypeArray" item="item" separator="," >
+            question_answer
+        value
             (
                 null,
-                #{item},
+                #{question_id},
                 #{articleBo.id}
             )
-        </foreach>
     </insert>
-
-
 </mapper>

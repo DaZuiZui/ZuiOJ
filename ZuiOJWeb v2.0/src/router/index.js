@@ -21,6 +21,8 @@ import UserInfo from '@/components/view/main/cn/user/UserInfo'
 import StudentCerification from '@/components/view/main/cn/user/StudentCertification'
 import StudentInfo from '@/components/view/main/cn/user/StudentInfo'
 import CreateArticle from '@/components/view/main/cn/blog/CreateArticle'
+import QuestionAnser from '@/components/view/main/cn/question/QuestionAnser'
+import CreateQuestionAnser from '@/components/view/main/cn/question/CreateQuestionAnser'
 
 Vue.use(Router)
 
@@ -32,6 +34,18 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //创建题解
+    {
+      path: '/cn/question/CreateQuestionAnwer',
+      name: 'CreateAnser',
+      component: CreateQuestionAnser
+    },
+    //题解
+    {
+       path: '/cn/question/questionAnser',
+       name: 'QuestionAnser',
+       component: QuestionAnser,
     },
     //创建文章
     {

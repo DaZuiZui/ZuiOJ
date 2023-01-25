@@ -29,9 +29,8 @@
                         <el-button type="primary" @click="submit()" :disabled="switchbutton" >提交</el-button>
                         <el-button type="success">Debug</el-button>
                         <el-button type="info">讨论区</el-button>
-                        <el-button type="warning">题解</el-button>
-                     
-                      </el-row>
+                        <el-button type="warning" @click="goQuestionAnser(question.id)">题解</el-button>
+                    </el-row>
 
                       <div v-if="res != null">
                           <div v-if="res.status == 'Accepted'">
@@ -168,7 +167,12 @@
                 this.res =  await synRequestPost("/onlineJudge/judge?token="+getCookie("token"),this.program);
                 //console.log(this.res);
                 this.switchbutton = false;
-            }
+            },
+
+            //题解
+            goQuestionAnser(id){
+                this.$router.push('/cn/question/questionAnser?id='+id);
+            },
        }
   }
   </script>

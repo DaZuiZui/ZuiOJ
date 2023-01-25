@@ -30,7 +30,7 @@
             1,
             null,
             1,
-            0,
+            #{article.privacy},
             0
         )
     </insert>

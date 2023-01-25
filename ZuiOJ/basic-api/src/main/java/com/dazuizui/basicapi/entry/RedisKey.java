@@ -22,7 +22,9 @@ public class RedisKey {
     //学生认证Key通过username
     public static final String ZuiOjStudentCertificationUsername = "ZuiOJ:User:Student:Username:";
     //博文简介
-    public static final String ZuiBlogArticle = "ZuiBlog:Blog:Article:";
+    public static final String ZuiBlogArticle = "ZuiBlog:Blog:Attribute:";
     //博文Md文件
-    public static final String ZuiBlogArticleMd = "ZuiBlog:Blog:Article:Md:";
+    public static final String ZuiBlogArticleMd = "ZuiBlog:Blog:Attribute:Md:";
+    //题解数量
+    public static final String ZuiOJNumberOfQustionAnswer = "ZuiOj:Question:Answer:Numbers:All";
 }

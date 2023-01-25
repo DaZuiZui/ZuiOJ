@@ -37,8 +37,8 @@
                             </div> 
                             <div style="float:left;">
                                 <el-select v-model="article.privacy" placeholder="请选择">
-                                    <el-option value="1" key="1" label="Public"></el-option>
-                                    <el-option value="0" key="0" label="Private"></el-option>
+                                    <el-option value="0" key="0" label="Public"></el-option>
+                                    <el-option value="1" key="1" label="Private"></el-option>
                                 </el-select>
                             </div>
 
@@ -218,7 +218,7 @@ import Foot from '../../../../frame/blog/Foot.vue';
         myFilesList: null,
 
         article: {
-            privacy: "1",     //权限
+            privacy: "0",     //权限
             articleType: null, //文章分类
             language: null,    //语言id
             technologyType: "6", //技术分类
@@ -262,6 +262,8 @@ import Foot from '../../../../frame/blog/Foot.vue';
             console.log(this.article);
             var object = await synRequestPost("/blog/createArticle",this.article);
             check(object);
+
+
         }
     },
     //自启动
