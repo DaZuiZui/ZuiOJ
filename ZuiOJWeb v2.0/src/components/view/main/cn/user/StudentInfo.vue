@@ -135,8 +135,8 @@
         this.studentCertificationBo.token = getCookie("token");
         //获取学生信息
         this.getStudentInfo();
-        //防止幂等性操作
-        this.getNonPowerToken();
+        //防止非幂等性操作
+        this.getNonPowerToken(); 
    
     },
     
