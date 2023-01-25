@@ -5,7 +5,7 @@
         </div>
 
         <!-- Main content -->
-        <section class=" ">
+        <section style="background-color: #fbf9f9;">
             <br>
             <div class="container">
                 <div class="row row-cols-2" style="background-color: rgb(248 248 248);  ">
@@ -23,7 +23,16 @@
           
                     </div>
                     <div class="col">
-                        <br>
+                    <br>
+
+                    <el-row>
+                        <el-button type="primary" @click="submit()" :disabled="switchbutton" >提交</el-button>
+                        <el-button type="success">Debug</el-button>
+                        <el-button type="info">讨论区</el-button>
+                        <el-button type="warning">题解</el-button>
+                     
+                      </el-row>
+
                       <div v-if="res != null">
                           <div v-if="res.status == 'Accepted'">
                               运行结果： <b style="color:green;font-size:16px">{{res.status}}</b> 
@@ -53,7 +62,7 @@
 
                      
                     </div>  
-                    <button class="btn btn-lg btn-primary btn-block" :disabled="switchbutton" type="submit"  id="sub"   style="width:100%;height: 50px;" @click="submit()"> Submit</button> 
+ 
                   </div>
             </div>
         </section>
