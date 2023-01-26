@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AttributeMapper">
-
     <update id="IncreaseTheNumberOfTable">
         update
             attribute
@@ -12,4 +11,13 @@
         where
             id = #{id}
     </update>
+
+    <select id="queryNumberOfTable" resultType="long">
+        select
+            formcount
+        from
+            attribute
+        where
+            id = #{id}
+    </select>
 </mapper>

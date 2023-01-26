@@ -19,13 +19,11 @@ import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.Date;
 
@@ -129,24 +127,26 @@ public class BlogServiceImpl implements BlogService {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
-
             //增加题解数量
-            aLong = questionAnswerAttributeMapper.increaseTheNumberOfSolutions(questionId);
+            aLong = questionAnswerAttributeMapper.increaseTheNumberOfSolutions(questionId,articleBo.getPrivacy(),1, 1L);
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
-            aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.question_answer);
+
+            aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.question_answer,1L);
+            System.err.println(aLong);
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
         } catch (Exception e) {
+            e.printStackTrace();
             transactionUtils.rollback(transactionStatus);
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
-
-
+        //提交
+        transactionUtils.commit(transactionStatus);
         /**
          * 写入redis
          */
@@ -154,7 +154,7 @@ public class BlogServiceImpl implements BlogService {
         redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+articleBo.getId(),RedisKey.OutTime,articleBo);
         //增加当前题解数量
         redisUtil.increment(RedisKey.ZuiOJNumberOfQustionAnswer,RedisKey.OutTime,1);
-
+        redisUtil.increment(RedisKey.ZuiOJQuestionAnswerPrivicy+articleBo.getPrivacy(),RedisKey.OutTime,1);
 
         /**
          * 消息队列，处理分类内容，和个人文件夹的分类管理

@@ -3,6 +3,35 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogMapper">
+
+    <!--
+          分页查询题解数据
+    -->
+    <select id="getQuestionAnswerByPage" resultType="com.dazuizui.basicapi.entry.ArticleJSON">
+        SELECT
+            a.id,
+            a.title,
+            a.introduce,
+            a.article_type,
+            a.language,
+            a.technologyType,
+            a.mdTextId,
+            a.create_time
+        FROM
+            article a
+                inner JOIN
+            question_answer b
+            ON
+                b.question_id = #{questionId} and
+                a.id = b.article_id and
+                a.status = #{status}  AND
+                a.del_flag = #{delFlag}
+        order by
+            a.id
+                desc
+            limit #{start},#{number}
+    </select>
+
     <!--
         插入博文Md文档
     -->
@@ -15,7 +44,7 @@
     <!--
         插入博文
     -->
-    <insert id="insertBlog"  useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertBlog"  useGeneratedKeys="true" keyProperty="article.id">
         insert into
             article
         value(

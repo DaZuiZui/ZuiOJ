@@ -1,9 +1,12 @@
 package com.dazuizui.business;
 
-import com.dazuizui.basicapi.entry.Attribute;
-import com.dazuizui.basicapi.entry.RedisKey;
-import com.dazuizui.basicapi.entry.User;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
+import com.dazuizui.basicapi.entry.*;
+import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.business.mapper.AttributeMapper;
+import com.dazuizui.business.mapper.BlogMapper;
 import com.dazuizui.business.messageQueue.blog.config.BlogSource;
 import com.dazuizui.business.service.student.StudentService;
 import com.dazuizui.business.util.RedisUtil;
@@ -14,9 +17,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.integration.support.MessageBuilder;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 @SpringBootTest
 @EnableBinding(BlogSource.class)
@@ -51,7 +56,7 @@ class BusinessApplicationTests {
         TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
         try {
-            attributeMapper.IncreaseTheNumberOfTable(1L);
+            attributeMapper.IncreaseTheNumberOfTable(1L,1L);
             redisUtil.setStringInRedis("aaaaaa",1000,1231231);
             System.out.println(10/0);
         } catch (Exception e) {
@@ -65,9 +70,25 @@ class BusinessApplicationTests {
     }
 
 
+    /**
+     * 分页测试
+     */
+    @Autowired
+    private BlogMapper blogMapper;
+
     @Test
     void contextLoads() {
-        System.err.println();
-        System.err.println(redisUtil.getStringInRedis("aaaaaa"));
+        GetQuestionAnswerByPageBo getQuestionAnswerByPageBo = new GetQuestionAnswerByPageBo();
+        getQuestionAnswerByPageBo.setQuestionId(1L);
+        getQuestionAnswerByPageBo.setDelFlag(0);
+        getQuestionAnswerByPageBo.setStatus(0);
+        getQuestionAnswerByPageBo.setNumber(2L);
+        getQuestionAnswerByPageBo.setStart(0L);
+        List<ArticleJSON> questionAnswerByPage = blogMapper.getQuestionAnswerByPage(getQuestionAnswerByPageBo);
+
+        List<Long> list = (List<Long>) JSONObject.parseObject(questionAnswerByPage.get(0).getArticleType(), Object.class);
+        System.err.println("\n\n\n\n"+list);
+        // questionAnswerByPage.get(0).getArticleType();
+        System.out.println(questionAnswerByPage);
     }
 }

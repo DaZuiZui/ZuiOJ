@@ -16,7 +16,11 @@ public interface QuestionAnswerAttributeMapper {
     public Long addQuestionAnswerAttributeMapper(@Param("questionId")Long questionId);
 
     /**
-     *  增加题解数量
+     * 添加题解
+     * @param questionId 问题id
+     * @param type       类型
+     * @param num        数值
+     * @return
      */
-    public Long increaseTheNumberOfSolutions(@Param("questionId")Long questionId);
+    public Long increaseTheNumberOfSolutions(@Param("questionId")Long questionId,@Param("privacy")Integer privacy,@Param("type")Integer type,@Param("num")Long num);
 }

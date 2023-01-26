@@ -27,4 +27,9 @@ public class RedisKey {
     public static final String ZuiBlogArticleMd = "ZuiBlog:Blog:Attribute:Md:";
     //题解数量
     public static final String ZuiOJNumberOfQustionAnswer = "ZuiOj:Question:Answer:Numbers:All";
+    //状态题解数量
+    // 0 公开
+    // 1 私有
+    // 2 封禁
+    public static final String ZuiOJQuestionAnswerPrivicy = " ZuiOJ:Question:Answer:Numbers:";
 }

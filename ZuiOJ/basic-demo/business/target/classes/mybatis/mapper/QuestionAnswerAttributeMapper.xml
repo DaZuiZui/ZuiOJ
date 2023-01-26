@@ -13,6 +13,9 @@
             (
                 null,
                 #{questionId},
+                0,
+                0,
+                0,
                 0
             )
     </insert>
@@ -20,8 +23,17 @@
     <update id="increaseTheNumberOfSolutions">
         update
             question_answer_attribute
-        set
-            numbers = numbers +1
+        <set>
+            <if test="type == 1">
+                number = number + #{num},
+            </if>
+            <if test="privacy == 0">
+                public_article = public_article + #{num},
+            </if>
+            <if test="privacy == 1">
+                private_article = private_article + #{num},
+            </if>
+        </set>
         where
             question_id = #{questionId}
     </update>

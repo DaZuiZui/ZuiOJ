@@ -1,8 +1,13 @@
 package com.dazuizui.business.mapper;
 
+import com.dazuizui.basicapi.entry.Article;
+import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 博客数据库接口
@@ -23,4 +28,7 @@ public interface BlogMapper {
             @Param("article") CreateArticleBo articleBo,
             @Param("articleList")String articleList,
             @Param("languageList")String languageList);
+
+
+    public List<ArticleJSON> getQuestionAnswerByPage(GetQuestionAnswerByPageBo getQuestionAnswerByPageBo);
 }
