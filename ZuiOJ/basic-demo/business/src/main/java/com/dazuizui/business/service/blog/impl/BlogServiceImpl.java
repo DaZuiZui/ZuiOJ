@@ -2,11 +2,11 @@ package com.dazuizui.business.service.blog.impl;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.AttributeKey;
-import com.dazuizui.basicapi.entry.RedisKey;
-import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.alibaba.fastjson2.JSONObject;
+import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
+import com.dazuizui.basicapi.entry.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.AttributeMapper;
 import com.dazuizui.business.mapper.BlogMapper;
@@ -25,7 +25,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * 博文业务实现接口
@@ -47,7 +47,7 @@ public class BlogServiceImpl implements BlogService {
     private AttributeMapper attributeMapper;
     @Autowired
     private TransactionUtils transactionUtils;
-
+    
     /**
      * 创建博文
      * @param articleBo
@@ -162,5 +162,48 @@ public class BlogServiceImpl implements BlogService {
         source.addArticleOutput().send(MessageBuilder.withPayload(articleBo).build());
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
+     * 分页获取题解数据
+     * @param getQuestionAnswerByPageBo
+     * @return
+     */
+    @Override
+    public String getQuestionAnswerByPage(GetQuestionAnswerByPageBo getQuestionAnswerByPageBo){
+        //获取指定状态数据总数量
+        Long count = questionAnswerAttributeMapper.queryNumberOfQuestionByStatus(getQuestionAnswerByPageBo.getQuestionId(),getQuestionAnswerByPageBo.getStatus());
+        //分页获取数据
+        List<ArticleJSON> questionAnswerByPage = blogMapper.getQuestionAnswerByPage(getQuestionAnswerByPageBo);
+        System.out.println("\n\n\n"+questionAnswerByPage.get(0));
+        List<ArticleVo> res = new ArrayList<>();
+
+        //将JSON转换为List
+        for (ArticleJSON articleJSON : questionAnswerByPage) {
+            ArticleVo article  =new ArticleVo();
+            article.setId(articleJSON.getId());
+            article.setTitle(articleJSON.getTitle());
+            article.setIntroduce(articleJSON.getIntroduce());
+            List<Integer> articleType    = (List<Integer>) JSONObject.parseObject(articleJSON.getArticleType(),Object.class);
+            article.setArticleType(articleType);
+            //List<Integer> technologyType = (List<Integer>) JSONObject.parseObject(articleJSON.getTechnologyType(),Object.class);
+            article.setTechnologyType(article.getTechnologyType());
+            List<Integer> language = (List<Integer>) JSONObject.parseObject(articleJSON.getLanguage(),Object.class);
+            article.setLanguage(language);
+            article.setCreateTime(articleJSON.getCreateTime());
+            article.setCreateBy(articleJSON.getCreateBy());
+            article.setCreateByName(articleJSON.getCreateByName());
+            article.setMdTextId(articleJSON.getMdTextId());
+            res.add(article);
+        }
+
+
+
+        //封装返回数据
+        Map<String,Object> map = new HashMap<>();
+        map.put("count",count);
+        map.put("data",res);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,map, StatusCode.OK));
     }
 }

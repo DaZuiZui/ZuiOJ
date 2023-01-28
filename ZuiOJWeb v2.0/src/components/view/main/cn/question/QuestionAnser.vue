@@ -25,37 +25,65 @@
                         </nav>
                         
                         <br>
-
-                        <div style="width:100%">
+                        
+                        <div v-for="(obj,index) in questionAnwserList" :key="index">
+                            <div style="width:100%">
                             <div class="card">
                                 <div class="card-body">
                                     <div style="float:left">
-                                        <h4>贪心算法 
-                                            <span class="badge badge-secondary">Java</span>
-                                            <span class="badge badge-secondary">C++</span>
-                                            <span class="badge badge-secondary">C/C++</span>
+                                        <h4>{{obj.title}} 
+                                          <span v-for="o in obj.language" class="badge badge-secondary"  style="margin-left:5px">
+                                            <a v-if="o==1">Java</a> 
+                                            <a v-else-if="o==2">C</a>
+                                            <a v-else-if="o==3">C++</a>
+                                            <a v-else-if="o==4">Python</a>
+                                            <a v-else-if="o==5">Go</a>
+                                            <a v-else-if="o==6">JS</a>
+                                          </span>
                                         </h4>
                                     </div>
                                     <div style="both:clear">
                                         <br>
                                         <hr>
                                     </div>
-                                    <div style="float:left;margin-left:40px">
-                                        asd
+                                    
+                                    <div class="" style="height:80px;">
+                                      <div style="float:left">
+                                        {{obj.introduce}}  
+                                      </div>
+                                      
                                     </div>
 
                                     <div style="both:clear">
                                         <br>
                                         <hr>
+                                        <div style="float:left">
+                                          本题解已经纳入该题贡献者团队。
+                                        </div>
+                                     <br>
+                                     <div style="both:clear;float:left">
+                                       The solution to this question has been included in the team of contributors to this question.
+                                     </div>
                                     </div>
 
                                     <div style="float:right">
-                                        题解贡献者: Bryan
+                                        题解贡献者: {{obj.createByName}} 
                                     </div>
                                 </div>
                               </div>   
                             </div>
-                        <br>
+                            <br>
+                        </div>
+                
+
+                        <!--分页部分-->
+                        <el-pagination
+                          :page-size="50"
+                          :pager-count="11"
+                          @current-change="getMerchantInformation"
+                          layout="prev, pager, next"
+                          :total="count">
+                      </el-pagination>
                     </div>
                 </div>    
               &nbsp;
@@ -72,6 +100,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/Top.vue'
+  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -79,19 +108,42 @@
       },
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        //题解集合
+        questionAnwserList: [],  
+        //公开题解总数
+        count: 0,
+        //获取分页封装的请求体
+        getQuestionAnswerByPageBo: {
+            questionId: -1, //问题id
+            start:      -1, //开始查询的位置
+            number:     10, //分页个数
+            status:     0,  //状态
+            delFlag:    0,  //是否已经删除
+        },
       }
     },
+    //自启动
+    mounted() {
+       this.getQuestionAnswerByPageBo.questionId = getQueryVariable("id");
+       this.getMerchantInformation(1);
+    },
     methods: {
-        //跳转指定页面
-        getMerchantInformation(val){   
-            alert(val);
-        },
+
         //创建题解
         goCreateAnser(){
             alert("Asd");
             //window.location.href='/cn/question/createAnser?id='+getQueryVariable("id")
             this.$router.push('/cn/question/CreateQuestionAnwer?id='+getQueryVariable("id"));
+        },
+        //跳转指定分页分数
+        async getMerchantInformation(val){   
+            this.getQuestionAnswerByPageBo.start = (val-1)*10;
+
+            let obj = await synRequestPost("/blog/getQuestionAnswerByPage",this.getQuestionAnswerByPageBo);
+            console.log(obj);
+            this.count = obj.data.count;
+            this.questionAnwserList = obj.data.data;
+            console.log(this.questionAnwserList);
         },
     }
   }

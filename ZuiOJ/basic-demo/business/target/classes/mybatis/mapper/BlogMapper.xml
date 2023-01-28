@@ -15,8 +15,10 @@
             a.article_type,
             a.language,
             a.technologyType,
-            a.mdTextId,
-            a.create_time
+            a.md_text_id,
+            a.create_time,
+            a.create_by,
+            (SELECT name  from user where id =  a.create_by limit 1)   as 'createByName'
         FROM
             article a
                 inner JOIN

@@ -23,4 +23,9 @@ public interface QuestionAnswerAttributeMapper {
      * @return
      */
     public Long increaseTheNumberOfSolutions(@Param("questionId")Long questionId,@Param("privacy")Integer privacy,@Param("type")Integer type,@Param("num")Long num);
+
+    /**
+     * 查看题解数量
+     */
+    public Long queryNumberOfQuestionByStatus(@Param("questionId")Long questionId,@Param("status")Integer status);
 }

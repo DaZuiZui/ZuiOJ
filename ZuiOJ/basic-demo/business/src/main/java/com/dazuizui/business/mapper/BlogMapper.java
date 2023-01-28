@@ -30,5 +30,10 @@ public interface BlogMapper {
             @Param("languageList")String languageList);
 
 
+    /**
+     * 分页获取题解数据
+     * @param getQuestionAnswerByPageBo
+     * @return
+     */
     public List<ArticleJSON> getQuestionAnswerByPage(GetQuestionAnswerByPageBo getQuestionAnswerByPageBo);
 }

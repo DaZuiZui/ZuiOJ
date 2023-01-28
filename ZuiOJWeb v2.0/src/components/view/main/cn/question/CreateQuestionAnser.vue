@@ -27,7 +27,7 @@
                       </div> 
                  
                       <div style="float:left;width:93%">
-                       <el-input v-model="article.introduce" placeholder="请输入介绍" maxlength="100"></el-input>
+                       <el-input v-model="article.introduce" placeholder="请输入介绍" maxlength="200"></el-input>
                       </div>
                       <br><br>
                      

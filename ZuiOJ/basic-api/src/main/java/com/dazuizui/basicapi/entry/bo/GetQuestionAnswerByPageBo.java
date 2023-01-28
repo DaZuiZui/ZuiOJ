@@ -6,8 +6,8 @@ import java.io.Serializable;
  * 分页获取题解数据BO
  */
 public class GetQuestionAnswerByPageBo implements Serializable {
-    private Long questionId; //问题id
-    private Long start;      //开始位置
+    private Long questionId;    //问题id
+    private Long start;         //开始位置
     private Long number;        //查询多少哥
     private Integer status;     //状态
     private Integer delFlag;    //逻辑删除

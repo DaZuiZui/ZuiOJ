@@ -18,6 +18,27 @@ public class ArticleJSON implements Serializable{
     private Integer status;
     private Integer delFlag;
     private Long mdTextId;
+    private String createByName;
+
+    @Override
+    public String toString() {
+        return "ArticleJSON{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", articleType='" + articleType + '\'' +
+                ", language='" + language + '\'' +
+                ", technologyType='" + technologyType + '\'' +
+                ", createTime=" + createTime +
+                ", createBy=" + createBy +
+                ", updateTime=" + updateTime +
+                ", updateBy=" + updateBy +
+                ", status=" + status +
+                ", delFlag=" + delFlag +
+                ", mdTextId=" + mdTextId +
+                ", createByName='" + createByName + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -123,29 +144,18 @@ public class ArticleJSON implements Serializable{
         this.mdTextId = mdTextId;
     }
 
-    @Override
-    public String toString() {
-        return "ArticleJSON{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", introduce='" + introduce + '\'' +
-                ", articleType='" + articleType + '\'' +
-                ", language='" + language + '\'' +
-                ", technologyType='" + technologyType + '\'' +
-                ", createTime=" + createTime +
-                ", createBy=" + createBy +
-                ", updateTime=" + updateTime +
-                ", updateBy=" + updateBy +
-                ", status=" + status +
-                ", delFlag=" + delFlag +
-                ", mdTextId=" + mdTextId +
-                '}';
+    public String getCreateByName() {
+        return createByName;
+    }
+
+    public void setCreateByName(String createByName) {
+        this.createByName = createByName;
     }
 
     public ArticleJSON() {
     }
 
-    public ArticleJSON(Long id, String title, String introduce, String articleType, String language, String technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId) {
+    public ArticleJSON(Long id, String title, String introduce, String articleType, String language, String technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName) {
         this.id = id;
         this.title = title;
         this.introduce = introduce;
@@ -159,5 +169,6 @@ public class ArticleJSON implements Serializable{
         this.status = status;
         this.delFlag = delFlag;
         this.mdTextId = mdTextId;
+        this.createByName = createByName;
     }
 }

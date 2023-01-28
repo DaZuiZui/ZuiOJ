@@ -37,4 +37,27 @@
         where
             question_id = #{questionId}
     </update>
+
+    <!--
+        通过题号的题解状态查询数量
+    -->
+    <select id="queryNumberOfQuestionByStatus" resultType="long">
+        select
+            <if test="status == -1">
+                *
+            </if>
+            <if test="status == 0">
+                public_article
+            </if>
+            <if test="status == 1">
+                private_article
+            </if>
+            <if test="status == 2">
+                banned_article
+            </if>
+        from
+            question_answer_attribute
+        where
+            question_id = #{questionId}
+    </select>
 </mapper>
