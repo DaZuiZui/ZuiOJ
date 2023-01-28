@@ -151,7 +151,6 @@
                 }
                 this.question = object.data;
                 this.program.code="//请在此处输入代码 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-     
             },  
 
             async submit(){
