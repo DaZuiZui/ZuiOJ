@@ -1,16 +1,15 @@
 package com.dazuizui.business.service.user.impl;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.RedisKey;
-import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.PagingToGetUserDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.mapper.AttributeMapper;
+import com.dazuizui.business.mapper.UserArticleAttributeMapper;
 import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
@@ -33,6 +32,10 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private UserArticleAttributeMapper userArticleAttributeMapper;
+    @Autowired
+    private AttributeMapper attributeMapper;
 
 
     /**
@@ -204,6 +207,11 @@ public class UserServiceImpl implements UserService {
             return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
         }
 
+        //创建用户博文数量
+        userArticleAttributeMapper.AddUserArticleAttribute(user.getId());
+        //写入用户表的用户个数
+        attributeMapper.IncreaseTheNumberOfTable(AttributeKey.user,1L);
+
         /**
          * 写入用户数量
          *     如果key过期了，那么就不做处理，如果没过期则
@@ -212,7 +220,6 @@ public class UserServiceImpl implements UserService {
         if (longOfStringInRedis != null){
             redisUtil.increment(RedisKey.ZuiBlogUserCount,RedisKey.OutTime,1);
         }
-
 
         return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,StatusCode.OK));
     }
@@ -278,7 +285,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getUserInfoByToken(@RequestParam("token")String token){
         //解析token获取id
-        Map<String, Object> analysis = JwtUtil.analysis(token);
+        Map<String, Object> analysis = null;
+        try {
+            analysis = JwtUtil.analysis(token);
+        } catch (Exception e) {
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.authenticationExpired,null, StatusCode.authenticationExpired));
+        }
         Long id = Long.valueOf(analysis.get("id")+"");
 
         //查询redis是否有该用户数据
@@ -310,7 +322,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public String updateUserInfoById(UpdateUserInfoByIdBo updateUserInfoByIdBo) {
         User user = updateUserInfoByIdBo.getUser();
-        System.err.println(0/10);
+       // System.err.println(0/10);
         //进行修改数据库
         Long aLong = userMapper.updateUserInfoById(user);
 

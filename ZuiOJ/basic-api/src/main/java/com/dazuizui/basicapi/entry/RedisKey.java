@@ -31,5 +31,10 @@ public class RedisKey {
     // 0 公开
     // 1 私有
     // 2 封禁
-    public static final String ZuiOJQuestionAnswerPrivicy = " ZuiOJ:Question:Answer:Numbers:";
+    public static final String ZuiOJQuestionAnswerPrivicy = "ZuiOJ:Question:Answer:Numbers:Privicy:";
+    //当前题的题解总数量
+    public static final String ZuiOJQuestionAnswerOf = "ZuiOJ:Question:Answer:Numbers:Id:";
+    //当前题的题解指定状态总数量
+    //RedisKey.ZuiOJQuestionAnswerPrivicyOf+articleBo.getPrivacy()+":"+articleBo.getId()
+    public static final String ZuiOJQuestionAnswerPrivicyOf = "ZuiOJ:Question:Answer:Numbers:Id:";
 }

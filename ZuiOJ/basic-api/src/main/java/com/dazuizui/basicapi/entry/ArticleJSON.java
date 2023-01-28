@@ -19,6 +19,7 @@ public class ArticleJSON implements Serializable{
     private Integer delFlag;
     private Long mdTextId;
     private String createByName;
+    private Long likes;
 
     @Override
     public String toString() {
@@ -37,6 +38,7 @@ public class ArticleJSON implements Serializable{
                 ", delFlag=" + delFlag +
                 ", mdTextId=" + mdTextId +
                 ", createByName='" + createByName + '\'' +
+                ", likes=" + likes +
                 '}';
     }
 
@@ -152,10 +154,18 @@ public class ArticleJSON implements Serializable{
         this.createByName = createByName;
     }
 
+    public Long getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Long likes) {
+        this.likes = likes;
+    }
+
     public ArticleJSON() {
     }
 
-    public ArticleJSON(Long id, String title, String introduce, String articleType, String language, String technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName) {
+    public ArticleJSON(Long id, String title, String introduce, String articleType, String language, String technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName, Long likes) {
         this.id = id;
         this.title = title;
         this.introduce = introduce;
@@ -170,5 +180,6 @@ public class ArticleJSON implements Serializable{
         this.delFlag = delFlag;
         this.mdTextId = mdTextId;
         this.createByName = createByName;
+        this.likes = likes;
     }
 }

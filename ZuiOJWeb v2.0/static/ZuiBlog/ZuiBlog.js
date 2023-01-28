@@ -57,6 +57,9 @@
         }else if(obj.code == '0x502'){
             alert(obj.message);
             return false;
+        }else if(obj.code == '0x501'){
+            alert(obj.message);
+            return false;
         }
 
         return true;

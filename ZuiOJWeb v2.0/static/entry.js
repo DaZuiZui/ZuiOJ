@@ -1,6 +1,9 @@
 // 接口地址
 const MainUrl = "http://127.0.0.1";
 const MainPort = 8001;
+const Developer = "Dazui"
+const TechnicalSupport = "Dazui from ZuiBlog Team";
+
 const user = {
   username: "",
   id: 0,
@@ -16,5 +19,5 @@ const user = {
   grade: 0,
 }
 export default {
-  MainUrl,MainPort
+  MainUrl,MainPort,Developer,TechnicalSupport
 };

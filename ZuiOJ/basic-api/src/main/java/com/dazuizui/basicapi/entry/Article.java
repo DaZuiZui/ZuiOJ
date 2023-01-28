@@ -11,6 +11,17 @@ public class Article implements Serializable {
     private Long id;
     private String title;
     private String introduce;
+    private List<Integer> articleType;
+    private List<Integer> language;
+    private List<Integer> technologyType;
+    private Date createTime;
+    private Long createBy;
+    private Date updateTime;
+    private Long updateBy;
+    private Integer status;
+    private Integer delFlag;
+    private Long mdTextId;
+    private Long likes;
 
     @Override
     public String toString() {
@@ -28,19 +39,9 @@ public class Article implements Serializable {
                 ", status=" + status +
                 ", delFlag=" + delFlag +
                 ", mdTextId=" + mdTextId +
+                ", likes=" + likes +
                 '}';
     }
-
-    private List<Integer> articleType;
-    private List<Integer> language;
-    private List<Integer> technologyType;
-    private Date createTime;
-    private Long createBy;
-    private Date updateTime;
-    private Long updateBy;
-    private Integer status;
-    private Integer delFlag;
-    private Long mdTextId;
 
     public Long getId() {
         return id;
@@ -146,10 +147,18 @@ public class Article implements Serializable {
         this.mdTextId = mdTextId;
     }
 
+    public Long getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Long likes) {
+        this.likes = likes;
+    }
+
     public Article() {
     }
 
-    public Article(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, List<Integer> technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId) {
+    public Article(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, List<Integer> technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, Long likes) {
         this.id = id;
         this.title = title;
         this.introduce = introduce;
@@ -163,5 +172,6 @@ public class Article implements Serializable {
         this.status = status;
         this.delFlag = delFlag;
         this.mdTextId = mdTextId;
+        this.likes = likes;
     }
 }

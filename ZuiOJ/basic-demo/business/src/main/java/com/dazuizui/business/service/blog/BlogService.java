@@ -2,8 +2,10 @@ package com.dazuizui.business.service.blog;
 
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,9 +28,16 @@ public interface BlogService {
     public String createQuestionAnswer(@RequestBody CreateArticleBo articleBo,Long questionId);
 
     /**
-     * 分页获取题解数据
-     * @param getQuestionAnswerByPageBo
+     * 分页获取博文数据
+     * @param getBlogPostsByPageBo
      * @return
      */
-    public String getQuestionAnswerByPage(GetQuestionAnswerByPageBo getQuestionAnswerByPageBo);
+    public String getBlogPostsByPage(@RequestBody GetBlogPostsByPageBo getBlogPostsByPageBo);
+
+    /**
+     * 获取指定状态文章的数量
+     * @param status
+     * @return
+     */
+    public Long queryCountByStatus(@Param("status")Integer status);
 }

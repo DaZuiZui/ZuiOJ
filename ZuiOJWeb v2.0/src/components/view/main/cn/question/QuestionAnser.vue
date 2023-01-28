@@ -20,7 +20,7 @@
                               <li class="breadcrumb-item active" aria-current="page" @click="goCreateAnser()">
                                 <el-link :underline="false" >贡献此题题解</el-link>
                             </li>
-                              <li class="breadcrumb-item active" aria-current="page"><el-link :underline="false">此题贡献者团队</el-link></li>
+                              <li class="breadcrumb-item active" aria-current="page" @click="goSolutionContributor()"><el-link :underline="false">此题贡献者团队</el-link></li>
                             </ol>
                         </nav>
                         
@@ -78,7 +78,7 @@
 
                         <!--分页部分-->
                         <el-pagination
-                          :page-size="50"
+                          :page-size="10"
                           :pager-count="11"
                           @current-change="getMerchantInformation"
                           layout="prev, pager, next"
@@ -131,7 +131,6 @@
 
         //创建题解
         goCreateAnser(){
-            alert("Asd");
             //window.location.href='/cn/question/createAnser?id='+getQueryVariable("id")
             this.$router.push('/cn/question/CreateQuestionAnwer?id='+getQueryVariable("id"));
         },
@@ -139,12 +138,16 @@
         async getMerchantInformation(val){   
             this.getQuestionAnswerByPageBo.start = (val-1)*10;
 
-            let obj = await synRequestPost("/blog/getQuestionAnswerByPage",this.getQuestionAnswerByPageBo);
+            let obj = await synRequestPost("/questionAnswer/getQuestionAnswerByPage",this.getQuestionAnswerByPageBo);
             console.log(obj);
             this.count = obj.data.count;
             this.questionAnwserList = obj.data.data;
             console.log(this.questionAnwserList);
         },
+        //查看本题贡献者团队
+        goSolutionContributor(){
+           this.$router.push("/cn/question/SolutionContributor?id="+getQueryVariable("id"));
+        }
     }
   }
   </script>

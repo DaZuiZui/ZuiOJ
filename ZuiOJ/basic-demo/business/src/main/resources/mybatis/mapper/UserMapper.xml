@@ -130,13 +130,13 @@
     </select>
 
 
-    <insert id="register">
+    <insert id="register" useGeneratedKeys="true" keyProperty="id">
         insert into
             user
         value(
             null,
             #{username},
-            #{email}
+            #{email},
             #{name},
             #{sex},
             #{password},
@@ -155,6 +155,10 @@
         )
     </insert>
 
+
+    <!--
+        通过id更新用户信息
+    -->
     <update id="updateUserInfoById">
         update
             user

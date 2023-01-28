@@ -37,7 +37,7 @@
                                 <a class="nav-link"  href="#" @click="goAbout()">About </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="index.html">社区</a>
+                                <a class="nav-link"  @click="goBlogIndex()">社区</a>
                             </li>
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goCodingQuestionList()">Question List</a>
@@ -231,7 +231,10 @@ import { synRequestGet } from '../../../../static/request';
             this.$router.push('/cn/user/info');
             //window.location.href="/h/cn/user/info";
         },
-
+        //博客主页
+        goBlogIndex(){
+            this.$router.push('/cn/blog/index');
+        }
     }
   }
   </script>

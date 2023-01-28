@@ -81,7 +81,7 @@ public class RedisUtil {
      */
     public Long getLongOfStringInRedis(String key){
         String obj = stringRedisTemplate.opsForValue().get(key);
-        Long expire = redisTemplate.getExpire(key);
+        Long expire = stringRedisTemplate.getExpire(key);
         System.err.println(expire);
         /**
          * 如果没有获取到值，或者过期时间少于2秒则不做操作

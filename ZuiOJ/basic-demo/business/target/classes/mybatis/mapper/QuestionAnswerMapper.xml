@@ -10,7 +10,32 @@
             (
                 null,
                 #{question_id},
-                #{articleBo.id}
+                #{articleBo.id},
+                #{userId},
+                #{createTime}
             )
     </insert>
+
+    <!--
+        获取题解贡献者根据贡献者题解数量贡献排序
+    -->
+    <select id="getSolutionContributors" resultType="com.dazuizui.basicapi.entry.vo.GetSolutionContributorsVo">
+        SELECT
+            (
+                SELECT
+                    NAME
+                FROM
+                    USER
+                WHERE
+                    id = a.create_by
+            ) AS 'name',
+                a.create_by AS 'id',
+                COUNT( a.create_by ) AS 'countOfArticle'
+        FROM
+            question_answer a
+        WHERE
+            a.question_id = #{questionId}
+        GROUP BY
+            a.create_by
+    </select>
 </mapper>

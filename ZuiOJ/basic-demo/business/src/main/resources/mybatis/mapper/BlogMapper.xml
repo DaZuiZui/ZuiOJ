@@ -58,10 +58,11 @@
             #{article.technologyType},
             #{article.id},
             #{article.createTime},
-            1,
+            #{article.createBy},
             null,
             1,
             #{article.privacy},
+            0,
             0
         )
     </insert>
