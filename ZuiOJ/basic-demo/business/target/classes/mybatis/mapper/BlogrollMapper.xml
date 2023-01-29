@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.BlogrollMapper">
+    <!--
+        获取全部友情链接
+    -->
+    <select id="getAllBlogroll" resultType="com.dazuizui.basicapi.entry.Blogroll">
+        select
+            id,
+            chinese_name,
+            english_name,
+            english_introduce,
+            chinese_introduce,
+            introduceImage,
+            to_link,
+            create_time,
+            create_by,
+            update_time,
+            update_by
+        from
+            blogroll
+        where
+            status = #{status} and
+            delFlag = #{delFlag}
+    </select>
+</mapper>
