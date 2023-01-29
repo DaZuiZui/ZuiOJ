@@ -13,7 +13,7 @@
             introduce,
             article_type,
             language,
-            technologyType,
+            technology_type,
             md_text_id,
             create_by,
             create_time,
@@ -30,6 +30,7 @@
             limit
             #{start},#{number}
     </select>
+
     <!--
           分页查询题解数据
     -->

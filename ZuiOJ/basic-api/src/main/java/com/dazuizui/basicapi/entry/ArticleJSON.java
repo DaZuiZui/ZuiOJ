@@ -10,7 +10,7 @@ public class ArticleJSON implements Serializable{
     private String introduce;
     private String articleType;
     private String language;
-    private String technologyType;
+    private Integer technologyType;
     private Date createTime;
     private Long createBy;
     private Date updateTime;
@@ -29,7 +29,7 @@ public class ArticleJSON implements Serializable{
                 ", introduce='" + introduce + '\'' +
                 ", articleType='" + articleType + '\'' +
                 ", language='" + language + '\'' +
-                ", technologyType='" + technologyType + '\'' +
+                ", technologyType=" + technologyType +
                 ", createTime=" + createTime +
                 ", createBy=" + createBy +
                 ", updateTime=" + updateTime +
@@ -40,6 +40,9 @@ public class ArticleJSON implements Serializable{
                 ", createByName='" + createByName + '\'' +
                 ", likes=" + likes +
                 '}';
+    }
+
+    public ArticleJSON() {
     }
 
     public Long getId() {
@@ -82,11 +85,11 @@ public class ArticleJSON implements Serializable{
         this.language = language;
     }
 
-    public String getTechnologyType() {
+    public Integer getTechnologyType() {
         return technologyType;
     }
 
-    public void setTechnologyType(String technologyType) {
+    public void setTechnologyType(Integer technologyType) {
         this.technologyType = technologyType;
     }
 
@@ -162,10 +165,7 @@ public class ArticleJSON implements Serializable{
         this.likes = likes;
     }
 
-    public ArticleJSON() {
-    }
-
-    public ArticleJSON(Long id, String title, String introduce, String articleType, String language, String technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName, Long likes) {
+    public ArticleJSON(Long id, String title, String introduce, String articleType, String language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName, Long likes) {
         this.id = id;
         this.title = title;
         this.introduce = introduce;

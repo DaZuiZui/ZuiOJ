@@ -39,6 +39,9 @@
                             <li class="nav-item ">
                                 <a class="nav-link"  @click="goBlogIndex()">社区</a>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link"  @click="goCreating()">创作中心</a>
+                            </li>
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goCodingQuestionList()">Question List</a>
                                 <div class="dropdown-menu dropdown-menu-single">
@@ -61,8 +64,8 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item " v-if="user.role < 2">
-                                <a class="nav-link" href="" @click="goContestList()" >友情链接</a>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="" @click="goBlogRoll()" >友情链接</a>
                             </li>
                         </ul>
 
@@ -234,7 +237,15 @@ import { synRequestGet } from '../../../../static/request';
         //博客主页
         goBlogIndex(){
             this.$router.push('/cn/blog/index');
-        }
+        },
+        //创作中心
+        goCreating(){
+            this.$router.push('/cn/blog/create')
+        },
+        //前往友情链接
+        goBlogRoll(){
+            this.$router.push('/cn/blogroll/index')
+        },
     }
   }
   </script>

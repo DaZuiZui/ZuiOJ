@@ -25,6 +25,7 @@ import QuestionAnser from '@/components/view/main/cn/question/QuestionAnser'
 import CreateQuestionAnser from '@/components/view/main/cn/question/CreateQuestionAnser'
 import SolutionContributor from '@/components/view/main/cn/question/SolutionContributor'
 import BlogIndex from '@/components/view/main/cn/blog/BlogIndex'
+import BlogRoll from '@/components/view/main/cn/blogroll/BlogRoll'
 
 Vue.use(Router)
 
@@ -36,6 +37,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //友情链接
+    {
+      path: '/cn/blogroll/index',
+      name: 'blogroll',
+      component: BlogRoll
     },
     //博客中文首页
     { 

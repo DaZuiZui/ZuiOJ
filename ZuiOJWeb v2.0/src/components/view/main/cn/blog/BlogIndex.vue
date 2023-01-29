@@ -43,11 +43,58 @@
                                     <div style="both:clear">
                                         <br>
                                         <hr>
-                                        
+                                        <div style="float:left">
+                                           分类:
+                                            <a v-if="obj.technologyType == 0">
+                                                问答
+                                            </a>
+                                            <a v-if="obj.technologyType == 1">
+                                                后端
+                                            </a>
+                                            <a v-if="obj.technologyType == 2">
+                                                前端
+                                            </a>
+                                            <a v-if="obj.technologyType == 3">
+                                                架构
+                                            </a>
+                                            <a v-if="obj.technologyType == 4">
+                                                安全
+                                            </a>
+                                            <a v-if="obj.technologyType == 5">
+                                                数据库
+                                            </a>
+                                            <a v-if="obj.technologyType == 6">
+                                                学习日记
+                                            </a>
+                                            <a v-if="obj.technologyType == 7">
+                                                踩坑记录
+                                            </a>
+                                            <a v-if="obj.technologyType == 8">
+                                                算法问题
+                                            </a>
+                                            <a v-if="obj.technologyType == 9">
+                                                项目
+                                            </a>
+                                        </div>
+                                     <br>
+                                     <div style="both:clear;float:left">
+                                        文章分类: 
+                            
+                                            <span  v-for="o in obj.articleType">
+                                                <a v-if="o == 1">校园交流</a>
+                                                <a v-else-if="o == 2">求职交流</a>
+                                                <a v-else-if="o == 3">信息学院技术交流</a>
+                                                <a v-else-if="o == 4">信息学院专业社团</a>
+                                                &nbsp;
+                                            </span>
+                                           
+                    
+                                    
+                                     </div>
                                     </div>
 
                                     <div style="float:right">
-                                        题解贡献者: {{obj.createByName}} 
+                                        作者: {{obj.createByName}} 
                                     </div>
                                 </div>
                               </div>   
@@ -93,7 +140,7 @@
         //公开题解总数
         count: 0,
         //获取分页封装的请求体
-        getBlogPostsByPageBo: {
+        getQuestionAnswerByPageBo: {
             start:      -1, //开始查询的位置
             number:     10, //分页个数
             status:     0,  //状态
@@ -114,9 +161,9 @@
         },
         //跳转指定分页分数
         async getMerchantInformation(val){   
-            this.getBlogPostsByPageBo.start = (val-1)*10;
+            this.getQuestionAnswerByPageBo.start = (val-1)*10;
 
-            let obj = await synRequestPost("/blog/getBlogPostsByPage",this.getBlogPostsByPageBo);
+            let obj = await synRequestPost("/blog/getBlogPostsByPage",this.getQuestionAnswerByPageBo);
             console.log(obj);
             this.count = obj.data.count;
             this.questionAnwserList = obj.data.data;

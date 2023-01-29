@@ -57,7 +57,6 @@ public class BlogServiceImpl implements BlogService {
      * @return
      */
     @Override
-    @Transactional
     public String createArticle(CreateArticleBo articleBo) {
         TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
@@ -113,7 +112,7 @@ public class BlogServiceImpl implements BlogService {
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
 
-        //todo 根据分类添加数量 如根据语言分类等
+        //todo 根据分类添加数量 如根据语言分类的数量
 
         /**
          * 写入redis
@@ -252,7 +251,7 @@ public class BlogServiceImpl implements BlogService {
         //分页获取数据
         List<ArticleJSON> articleByPage = blogMapper.getArticleByPage(getBlogPostsByPageBo);
         List<ArticleVo> res = new ArrayList<>();
-
+        System.out.println(articleByPage);
         //将JSON转换为List
         for (ArticleJSON articleJSON : articleByPage) {
             ArticleVo article  =new ArticleVo();
@@ -262,7 +261,7 @@ public class BlogServiceImpl implements BlogService {
             List<Integer> articleType    = (List<Integer>) JSONObject.parseObject(articleJSON.getArticleType(),Object.class);
             article.setArticleType(articleType);
             //List<Integer> technologyType = (List<Integer>) JSONObject.parseObject(articleJSON.getTechnologyType(),Object.class);
-            article.setTechnologyType(article.getTechnologyType());
+            article.setTechnologyType(articleJSON.getTechnologyType());
             List<Integer> language = (List<Integer>) JSONObject.parseObject(articleJSON.getLanguage(),Object.class);
             article.setLanguage(language);
             article.setCreateTime(articleJSON.getCreateTime());
@@ -270,6 +269,7 @@ public class BlogServiceImpl implements BlogService {
             article.setCreateByName(articleJSON.getCreateByName());
             article.setMdTextId(articleJSON.getMdTextId());
             article.setLikes(articleJSON.getLikes());
+
             res.add(article);
         }
 
