@@ -85,6 +85,7 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
             article.setCreateBy(articleJSON.getCreateBy());
             article.setCreateByName(articleJSON.getCreateByName());
             article.setMdTextId(articleJSON.getMdTextId());
+            article.setLikes(articleJSON.getLikes());
             res.add(article);
         }
 

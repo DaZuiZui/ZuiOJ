@@ -59,9 +59,10 @@ public class BlogController {
      * @return
      */
     @ApiOperation("分页获取数据")
+    @PostMapping("/getBlogPostsByPage")
     public String getBlogPostsByPage(@RequestBody GetBlogPostsByPageBo getBlogPostsByPageBo){
-
-        return "";
+        //获取数据个数
+        return blogService.getBlogPostsByPage(getBlogPostsByPageBo);
     }
 
 

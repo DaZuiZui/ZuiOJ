@@ -250,8 +250,34 @@ public class BlogServiceImpl implements BlogService {
         //获取博文个数
         Long count = articleAttributeMapper.queryCountByStatus(getBlogPostsByPageBo.getStatus());
         //分页获取数据
+        List<ArticleJSON> articleByPage = blogMapper.getArticleByPage(getBlogPostsByPageBo);
+        List<ArticleVo> res = new ArrayList<>();
 
-        return "";
+        //将JSON转换为List
+        for (ArticleJSON articleJSON : articleByPage) {
+            ArticleVo article  =new ArticleVo();
+            article.setId(articleJSON.getId());
+            article.setTitle(articleJSON.getTitle());
+            article.setIntroduce(articleJSON.getIntroduce());
+            List<Integer> articleType    = (List<Integer>) JSONObject.parseObject(articleJSON.getArticleType(),Object.class);
+            article.setArticleType(articleType);
+            //List<Integer> technologyType = (List<Integer>) JSONObject.parseObject(articleJSON.getTechnologyType(),Object.class);
+            article.setTechnologyType(article.getTechnologyType());
+            List<Integer> language = (List<Integer>) JSONObject.parseObject(articleJSON.getLanguage(),Object.class);
+            article.setLanguage(language);
+            article.setCreateTime(articleJSON.getCreateTime());
+            article.setCreateBy(articleJSON.getCreateBy());
+            article.setCreateByName(articleJSON.getCreateByName());
+            article.setMdTextId(articleJSON.getMdTextId());
+            article.setLikes(articleJSON.getLikes());
+            res.add(article);
+        }
+
+        //封装返回数据
+        Map<String,Object> map = new HashMap<>();
+        map.put("count",count);
+        map.put("data",res);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,map, StatusCode.OK));
     }
 
     /**

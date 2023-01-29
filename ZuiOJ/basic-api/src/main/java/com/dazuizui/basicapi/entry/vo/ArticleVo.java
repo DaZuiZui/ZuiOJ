@@ -22,9 +22,7 @@ public class ArticleVo implements Serializable {
     private Integer delFlag;
     private Long mdTextId;
     private String createByName;
-
-    public ArticleVo() {
-    }
+    private Long likes;
 
     @Override
     public String toString() {
@@ -43,7 +41,29 @@ public class ArticleVo implements Serializable {
                 ", delFlag=" + delFlag +
                 ", mdTextId=" + mdTextId +
                 ", createByName='" + createByName + '\'' +
+                ", likes=" + likes +
                 '}';
+    }
+
+    public ArticleVo() {
+    }
+
+    public ArticleVo(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName, Long likes) {
+        this.id = id;
+        this.title = title;
+        this.introduce = introduce;
+        this.articleType = articleType;
+        this.language = language;
+        this.technologyType = technologyType;
+        this.createTime = createTime;
+        this.createBy = createBy;
+        this.updateTime = updateTime;
+        this.updateBy = updateBy;
+        this.status = status;
+        this.delFlag = delFlag;
+        this.mdTextId = mdTextId;
+        this.createByName = createByName;
+        this.likes = likes;
     }
 
     public Long getId() {
@@ -158,20 +178,11 @@ public class ArticleVo implements Serializable {
         this.createByName = createByName;
     }
 
-    public ArticleVo(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName) {
-        this.id = id;
-        this.title = title;
-        this.introduce = introduce;
-        this.articleType = articleType;
-        this.language = language;
-        this.technologyType = technologyType;
-        this.createTime = createTime;
-        this.createBy = createBy;
-        this.updateTime = updateTime;
-        this.updateBy = updateBy;
-        this.status = status;
-        this.delFlag = delFlag;
-        this.mdTextId = mdTextId;
-        this.createByName = createByName;
+    public Long getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Long likes) {
+        this.likes = likes;
     }
 }

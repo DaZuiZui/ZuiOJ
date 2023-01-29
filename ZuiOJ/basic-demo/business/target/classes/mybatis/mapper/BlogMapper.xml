@@ -3,7 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogMapper">
-
+    <!--
+        分页获取博文
+    -->
+    <select id="getArticleByPage" resultType="com.dazuizui.basicapi.entry.ArticleJSON">
+        SELECT
+            id,
+            title,
+            introduce,
+            article_type,
+            language,
+            technologyType,
+            md_text_id,
+            create_by,
+            create_time,
+            likes,
+            (SELECT name from user where id = create_by LIMIT 1) as 'create_by_name'
+        FROM
+            article a
+        where
+            a.status = #{status}  AND
+            a.del_flag = #{delFlag}
+        order by
+            id
+                desc
+            limit
+            #{start},#{number}
+    </select>
     <!--
           分页查询题解数据
     -->

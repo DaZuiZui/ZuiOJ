@@ -43,13 +43,7 @@
                                     <div style="both:clear">
                                         <br>
                                         <hr>
-                                        <div style="float:left">
-                                          本题解已经纳入该题贡献者团队。
-                                        </div>
-                                     <br>
-                                     <div style="both:clear;float:left">
-                                       The solution to this question has been included in the team of contributors to this question.
-                                     </div>
+                                        
                                     </div>
 
                                     <div style="float:right">
@@ -99,8 +93,7 @@
         //公开题解总数
         count: 0,
         //获取分页封装的请求体
-        getQuestionAnswerByPageBo: {
-            questionId: -1, //问题id
+        getBlogPostsByPageBo: {
             start:      -1, //开始查询的位置
             number:     10, //分页个数
             status:     0,  //状态
@@ -110,7 +103,6 @@
     },
     //自启动
     mounted() {
-       this.getQuestionAnswerByPageBo.questionId = getQueryVariable("id");
        this.getMerchantInformation(1);
     },
     methods: {
@@ -122,9 +114,9 @@
         },
         //跳转指定分页分数
         async getMerchantInformation(val){   
-            this.getQuestionAnswerByPageBo.start = (val-1)*10;
+            this.getBlogPostsByPageBo.start = (val-1)*10;
 
-            let obj = await synRequestPost("/questionAnswer/getQuestionAnswerByPage",this.getQuestionAnswerByPageBo);
+            let obj = await synRequestPost("/blog/getBlogPostsByPage",this.getBlogPostsByPageBo);
             console.log(obj);
             this.count = obj.data.count;
             this.questionAnwserList = obj.data.data;

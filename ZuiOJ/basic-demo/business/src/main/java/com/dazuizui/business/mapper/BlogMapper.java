@@ -3,6 +3,7 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.Article;
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -36,4 +37,11 @@ public interface BlogMapper {
      * @return
      */
     public List<ArticleJSON> getQuestionAnswerByPage(GetQuestionAnswerByPageBo getQuestionAnswerByPageBo);
+
+    /**
+     * 分页获取博文数据
+     * @param getBlogPostsByPageBo
+     * @return
+     */
+    public List<ArticleJSON> getArticleByPage(GetBlogPostsByPageBo getBlogPostsByPageBo);
 }

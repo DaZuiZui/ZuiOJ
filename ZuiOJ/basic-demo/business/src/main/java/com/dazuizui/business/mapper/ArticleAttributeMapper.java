@@ -15,7 +15,14 @@ public interface ArticleAttributeMapper {
      */
     public Long queryCountByStatus(@Param("status")Integer status);
 
-
+    /**
+     * 增加
+     * @param status
+     * @param num
+     * @param type
+     * @return
+     */
     public Long increaseTheNumberOfTable(@Param("status")Integer status,@Param("num") Long num,@Param("type")Integer type);
+
 
 }
