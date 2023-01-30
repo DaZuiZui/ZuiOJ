@@ -150,12 +150,12 @@
        this.getMerchantInformation(1);
     },
     methods: {
-
         //创建题解
         goCreateAnser(){
             //window.location.href='/cn/question/createAnser?id='+getQueryVariable("id")
             this.$router.push('/cn/question/CreateQuestionAnwer?id='+getQueryVariable("id"));
         },
+
         //跳转指定分页分数
         async getMerchantInformation(val){   
             this.getQuestionAnswerByPageBo.start = (val-1)*10;
