@@ -31,7 +31,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div style="float:left">
-                                        <h4>{{obj.title}} 
+                                        <h4>                        
+                                          <el-link type="primary" style="font-size:20px" @click="viewBlog(obj.id)">{{obj.title}}</el-link>
                                           <span v-for="o in obj.language" class="badge badge-secondary"  style="margin-left:5px">
                                             <a v-if="o==1">Java</a> 
                                             <a v-else-if="o==2">C</a>
@@ -147,7 +148,11 @@
         //查看本题贡献者团队
         goSolutionContributor(){
            this.$router.push("/cn/question/SolutionContributor?id="+getQueryVariable("id"));
-        }
+        },
+        //查看博文
+        viewBlog(id){
+          this.$router.push("/cn/blog/view?id="+id);
+        },
     }
   }
   </script>
