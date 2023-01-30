@@ -2,6 +2,7 @@ package com.dazuizui.business.service.blog;
 
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import io.swagger.annotations.ApiOperation;
@@ -40,4 +41,11 @@ public interface BlogService {
      * @return
      */
     public Long queryCountByStatus(@Param("status")Integer status);
+
+    /**
+     * 根据Id获取博文
+     * @param getArticleByIdBo
+     * @return
+     */
+    public String getArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo);
 }

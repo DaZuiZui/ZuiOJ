@@ -5,9 +5,11 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.basicapi.entry.vo.ArticleVo;
+import com.dazuizui.basicapi.entry.vo.DetailedArticleVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.messageQueue.blog.config.BlogSource;
@@ -71,6 +73,7 @@ public class BlogServiceImpl implements BlogService {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
+            articleBo.setMdTextId(articleBo.getId());
             articleBo.setCreateTime(new Date());
             articleBo.setCreateBy(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+""));
 
@@ -151,6 +154,7 @@ public class BlogServiceImpl implements BlogService {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
+            articleBo.setMdTextId(articleBo.getId());
             articleBo.setCreateTime(new Date());
             articleBo.setCreateBy(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+""));
 
@@ -288,5 +292,45 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Long queryCountByStatus(Integer status) {
         return null;
+    }
+
+    /**
+     * 根据id获取博文
+     * @param getArticleByIdBo
+     * @return
+     */
+    @Override
+    public String getArticleById(GetArticleByIdBo getArticleByIdBo) {
+        //从redis获取数据
+        CreateArticleBo detailedArticleBo = (CreateArticleBo) redisUtil.getStringInRedis(RedisKey.ZuiBlogArticle+getArticleByIdBo.getId());
+        if (detailedArticleBo == null){
+            detailedArticleBo = new CreateArticleBo();
+            //从数据库获取数据
+            DetailedArticleJSON articleById = blogMapper.getArticleById(getArticleByIdBo);
+            //判断这条数据是否不存在
+            if (articleById == null){
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.DateIsNull,null, StatusCode.DateIsNull));
+            }
+
+            //转为集合数据
+            detailedArticleBo.setId(articleById.getId());
+            detailedArticleBo.setTitle(articleById.getTitle());
+            List<Integer> articleType    = (List<Integer>) JSONObject.parseObject(articleById.getArticleType(),Object.class);
+            detailedArticleBo.setArticleTypeArray(articleType);
+            List<Integer> languageType = (List<Integer>) JSONObject.parseObject(articleById.getLanguage(),Object.class);
+            detailedArticleBo.setLanguageTypeArray(languageType);
+            detailedArticleBo.setTechnologyType(articleById.getTechnologyType());
+            detailedArticleBo.setMdTextId(articleById.getId());
+            detailedArticleBo.setCreateBy(articleById.getCreateBy());
+            detailedArticleBo.setCreateTime(articleById.getCreateTime());
+            detailedArticleBo.setLikes(articleById.getLikes());
+            detailedArticleBo.setMdText(articleById.getMdText());
+            //存入redis
+            redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+detailedArticleBo.getId(),RedisKey.OutTime,detailedArticleBo);
+        }
+
+        //todo判断是否有查看权限
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,detailedArticleBo, StatusCode.OK));
     }
 }

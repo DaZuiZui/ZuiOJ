@@ -2,6 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -65,5 +66,10 @@ public class BlogController {
         return blogService.getBlogPostsByPage(getBlogPostsByPageBo);
     }
 
+    @ApiOperation("获取文章详细数据")
+    @PostMapping("/getArticleById")
+    public String getArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo){
 
+        return blogService.getArticleById(getArticleByIdBo);
+    }
 }

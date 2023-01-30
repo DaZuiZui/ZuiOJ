@@ -18,5 +18,7 @@ public class StatusCode  {
     public static final String IsNull = "0x501";
     //幂等性操作
     public static final String Idempotency = "0x502";
+    //数据为null
+    public static final String DateIsNull = "0x503";
 
 }

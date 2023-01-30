@@ -4,6 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogMapper">
     <!--
+        获取博文详细数据
+    -->
+    <select id="getArticleById" resultType="com.dazuizui.basicapi.entry.DetailedArticleJSON">
+        SELECT
+            a.id,
+            title,
+            introduce,
+            article_type,
+            language,
+            technology_type,
+            md_text_id,
+            create_time,
+            create_by,
+            likes,
+            b.mdText as 'mdText'
+        from
+            article a
+        INNER JOIN
+            articleMdText b
+        ON
+            a.md_text_id = b.id
+        where
+            a.id = #{id}
+        LIMIT 1
+    </select>
+    <!--
         分页获取博文
     -->
     <select id="getArticleByPage" resultType="com.dazuizui.basicapi.entry.ArticleJSON">
@@ -41,7 +67,7 @@
             a.introduce,
             a.article_type,
             a.language,
-            a.technologyType,
+            a.technology_type,
             a.md_text_id,
             a.create_time,
             a.create_by,

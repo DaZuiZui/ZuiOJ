@@ -2,11 +2,16 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.Article;
 import com.dazuizui.basicapi.entry.ArticleJSON;
+import com.dazuizui.basicapi.entry.DetailedArticleJSON;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -44,4 +49,12 @@ public interface BlogMapper {
      * @return
      */
     public List<ArticleJSON> getArticleByPage(GetBlogPostsByPageBo getBlogPostsByPageBo);
+
+
+    /**
+     * 获取博文根据id
+     * @param getArticleByIdBo
+     * @return
+     */
+    public DetailedArticleJSON getArticleById(GetArticleByIdBo getArticleByIdBo);
 }

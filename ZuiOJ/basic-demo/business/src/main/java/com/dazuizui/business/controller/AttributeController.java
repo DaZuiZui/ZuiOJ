@@ -1,5 +1,6 @@
 package com.dazuizui.business.controller;
 
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.service.admin.AttributeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,4 +24,6 @@ public class AttributeController {
     public String getNumberOfTable(@RequestParam("table") Long table){
         return attributeService.getNumberOfTable(table);
     }
+
+
 }

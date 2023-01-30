@@ -1,14 +1,14 @@
-package com.dazuizui.basicapi.entry.bo;
+package com.dazuizui.basicapi.entry.vo;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 创建博文VO
+ * 获取博文详细数据VO
  */
-public class CreateArticleBo implements Serializable {
-    //主键
+public class DetailedArticleVo implements Serializable {
+    //文本主键
     private Long id;
     //权限
     private Integer privacy;
@@ -34,14 +34,10 @@ public class CreateArticleBo implements Serializable {
     private Date createTime;
     //创建人
     private Long createBy;
-    //md文档Id
-    private Long mdTextId;
-    //喜欢
-    private Long likes;
 
     @Override
     public String toString() {
-        return "CreateArticleBo{" +
+        return "DetailedArticleVo{" +
                 "id=" + id +
                 ", privacy=" + privacy +
                 ", articleTypeArray=" + articleTypeArray +
@@ -55,8 +51,6 @@ public class CreateArticleBo implements Serializable {
                 ", nonPowerToken='" + nonPowerToken + '\'' +
                 ", createTime=" + createTime +
                 ", createBy=" + createBy +
-                ", mdTextId=" + mdTextId +
-                ", likes=" + likes +
                 '}';
     }
 
@@ -164,26 +158,10 @@ public class CreateArticleBo implements Serializable {
         this.createBy = createBy;
     }
 
-    public Long getMdTextId() {
-        return mdTextId;
+    public DetailedArticleVo() {
     }
 
-    public void setMdTextId(Long mdTextId) {
-        this.mdTextId = mdTextId;
-    }
-
-    public Long getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Long likes) {
-        this.likes = likes;
-    }
-
-    public CreateArticleBo() {
-    }
-
-    public CreateArticleBo(Long id, Integer privacy, List<Integer> articleTypeArray, List<Integer> languageTypeArray, Integer technologyType, List<String> myFileList, String mdText, String title, String introduce, String token, String nonPowerToken, Date createTime, Long createBy, Long mdTextId, Long likes) {
+    public DetailedArticleVo(Long id, Integer privacy, List<Integer> articleTypeArray, List<Integer> languageTypeArray, Integer technologyType, List<String> myFileList, String mdText, String title, String introduce, String token, String nonPowerToken, Date createTime, Long createBy) {
         this.id = id;
         this.privacy = privacy;
         this.articleTypeArray = articleTypeArray;
@@ -197,7 +175,5 @@ public class CreateArticleBo implements Serializable {
         this.nonPowerToken = nonPowerToken;
         this.createTime = createTime;
         this.createBy = createBy;
-        this.mdTextId = mdTextId;
-        this.likes = likes;
     }
 }

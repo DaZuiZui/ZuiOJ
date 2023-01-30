@@ -18,4 +18,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String IsNull = "服务器接收数据为null，请刷新网页";
     //幂等性操作
     public static final String Idempotency = "幂等性操作，请刷新网页";
+    //数据为null
+    public static final String DateIsNull  = "数据为null";
 }
