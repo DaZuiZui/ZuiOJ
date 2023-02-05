@@ -83,6 +83,7 @@
     },
     //自启动
     mounted(){
+        this.checkIfTheTopicIsACompetitionTopic();
         this.Developer = global.Developer;
         this.TechnicalSuppor =   global.TechnicalSupport;
         this.getSolutionContributors();
@@ -98,14 +99,22 @@
             alert(val);
         },
 
+        //检测是否有权限访问
+        async checkIfTheTopicIsACompetitionTopic(){
+          let obj = await synRequestGet("/blog/checkIfTheTopicIsACompetitionTopic?id="+getQueryVariable("id"));
+          console.log(obj);
+          if(obj.data == true){
+            alert("您无权访问，若多次访问我们会对您的账号进行临时冻结");
+            this.$router.push("/");
+          }
+        },
+
         //获取题解贡献者的
         async getSolutionContributors(){
             let obj = await synRequestGet("/questionAnswer/getSolutionContributors?questionId="+getQueryVariable("id"));
             if(check(obj)){
                  this.solutionContributors = obj.data;
             }
-   
-            
         },
         
         //创建题解

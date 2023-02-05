@@ -1,6 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
@@ -74,5 +75,20 @@ public class BlogController {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
         return blogService.getArticleById(getArticleByIdBo);
+    }
+
+    /**
+     * 查看次问题是否为比赛类型题目
+     * @return
+     */
+    @ApiOperation("检查此题是否为比赛类型题目")
+    @GetMapping("/checkIfTheTopicIsACompetitionTopic")
+    public String checkIfTheTopicIsACompetitionTopic(@RequestParam("id")Long id){
+        //非空判断
+        if (id == null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null,StatusCodeMessage.IsNull));
+        }
+
+        return blogService.checkIfTheTopicIsACompetitionTopic(id);
     }
 }

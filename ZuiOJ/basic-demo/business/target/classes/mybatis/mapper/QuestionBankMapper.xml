@@ -58,6 +58,7 @@
             t1.grade,
             t1.question_type,
             t1.create_by_name,
+            t1.status,
             t2.md_cn
         FROM
             question_bank t1

@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.vo.ArticleVo;
+import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.messageQueue.blog.config.BlogSource;
@@ -350,5 +351,33 @@ public class BlogServiceImpl implements BlogService {
         }
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,detailedArticleBo, StatusCode.OK));
+    }
+
+    @Autowired
+    private QuestionBankMapper questionBankMapper;
+    /**
+     * 检查是否为比赛题目
+     * @param id
+     * @return
+     */
+    @Override
+    public String checkIfTheTopicIsACompetitionTopic(Long id) {
+        //去redis检查
+        QuestionBankVo questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+id);
+        if (questionBankVo == null){
+            questionBankVo = questionBankMapper.getQuestionById(id,1,0);
+            if (questionBankVo == null){
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,true, StatusCode.OK));
+            }else{
+                //System.out.println(questionBankVo);
+                redisUtil.setStringInRedis(RedisKey.ZuiOJQuestion+id,RedisKey.OutTime,questionBankVo);
+            }
+        }
+
+        if (questionBankVo.getStatus() ==1) {
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,true, StatusCode.OK));
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,false, StatusCode.OK));
     }
 }

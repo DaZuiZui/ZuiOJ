@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -48,4 +49,11 @@ public interface BlogService {
      * @return
      */
     public String getArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo);
+
+    /**
+     * 检查是否为比赛题目
+     * @param id
+     * @return
+     */
+    public String checkIfTheTopicIsACompetitionTopic(@RequestParam("id")Long id);
 }

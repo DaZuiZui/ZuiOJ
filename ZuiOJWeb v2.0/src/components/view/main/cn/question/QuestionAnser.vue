@@ -125,11 +125,12 @@
     },
     //自启动
     mounted() {
+       //检查题目是否为
+       this.checkIfTheTopicIsACompetitionTopic();
        this.getQuestionAnswerByPageBo.questionId = getQueryVariable("id");
        this.getMerchantInformation(1);
     },
     methods: {
-
         //创建题解
         goCreateAnser(){
             //window.location.href='/cn/question/createAnser?id='+getQueryVariable("id")
@@ -138,12 +139,9 @@
         //跳转指定分页分数
         async getMerchantInformation(val){   
             this.getQuestionAnswerByPageBo.start = (val-1)*10;
-
             let obj = await synRequestPost("/questionAnswer/getQuestionAnswerByPage",this.getQuestionAnswerByPageBo);
-            console.log(obj);
             this.count = obj.data.count;
             this.questionAnwserList = obj.data.data;
-            console.log(this.questionAnwserList);
         },
         //查看本题贡献者团队
         goSolutionContributor(){
@@ -153,6 +151,15 @@
         viewBlog(id){
           this.$router.push("/cn/blog/view?id="+id);
         },
+        //检测是否有权限访问
+        async checkIfTheTopicIsACompetitionTopic(){
+          let obj = await synRequestGet("/blog/checkIfTheTopicIsACompetitionTopic?id="+getQueryVariable("id"));
+          console.log(obj);
+          if(obj.data == true){
+            alert("您无权访问，若多次访问我们会对您的账号进行临时冻结");
+            this.$router.push("/");
+          }
+        }
     }
   }
   </script>

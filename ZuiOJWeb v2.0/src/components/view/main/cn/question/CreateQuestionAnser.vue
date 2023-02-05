@@ -258,10 +258,21 @@ export default {
           if(check(object) == true){
              alert("添加成功");
           }
+      },
+      //检测是否有权限访问
+      async checkIfTheTopicIsACompetitionTopic(){
+        let obj = await synRequestGet("/blog/checkIfTheTopicIsACompetitionTopic?id="+getQueryVariable("id"));
+        console.log(obj);
+        if(obj.data == true){
+           alert("您无权访问，若多次访问我们会对您的账号进行临时冻结");
+           this.$router.push("/");
+        }
       }
   },
   //自启动
   mounted() {
+      //查看是否有权限访问
+      this.checkIfTheTopicIsACompetitionTopic();
       //获取token
       this.article.token = getCookie("token");
       //获取幂等性token
