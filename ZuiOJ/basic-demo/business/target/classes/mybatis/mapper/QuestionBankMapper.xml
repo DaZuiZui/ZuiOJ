@@ -6,12 +6,14 @@
     <!--
         物理删除问题
     -->
-    <delete id="deleteQuestionById">
-        delete from
+    <update id="deleteQuestionById">
+        update
             question_bank
+        set
+            del_flag = 1
         where
             id = #{id}
-    </delete>
+    </update>
 
     <!--
         物理删除问题详细页面
@@ -102,6 +104,8 @@
             create_by_name
         from
             question_bank
+        where
+            del_flag = 0
         limit
             #{pages},
             #{number}

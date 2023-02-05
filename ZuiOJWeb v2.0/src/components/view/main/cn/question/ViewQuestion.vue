@@ -27,9 +27,9 @@
 
                     <el-row>
                         <el-button type="primary" @click="submit()" :disabled="switchbutton" >提交</el-button>
-                        <el-button type="success">Debug</el-button>
-                        <el-button type="info">讨论区</el-button>
-                        <el-button type="warning" @click="goQuestionAnser(question.id)">题解</el-button>
+                        <el-button type="success" v-if="program.contestId == -1">Debug</el-button>
+                        <el-button type="info" v-if="program.contestId == -1">讨论区</el-button>
+                        <el-button type="warning" @click="goQuestionAnser(question.id)" v-if="program.contestId == -1">题解</el-button>
                     </el-row>
 
                       <div v-if="res != null">
@@ -112,7 +112,7 @@
                     },
                     question: {
                         chineseName: "",
-                        contestId: 0,
+                        contestId: -1,
                         createById: 0,
                         createByName: "",
                         delFlag: 0,
@@ -132,7 +132,7 @@
             //获取题目
             this.getQuestionById();
             //更新题目信息
-            this.program.topicId = getQueryVariable("id");
+            this.program.topicId      = getQueryVariable("id");
             this.program.questionType = getQueryVariable("questionType");
             this.program.contestId    = getQueryVariable("contestId");
        },

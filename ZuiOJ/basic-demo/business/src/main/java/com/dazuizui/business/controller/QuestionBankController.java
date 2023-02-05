@@ -75,7 +75,6 @@ public class QuestionBankController {
     @PostMapping("/postQuestion")
     @Transactional
     public String postQuestion(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token, @RequestBody QuestionBankBo questionBankBo){
-
          return questionBankService.postQuestion(questionBankBo);
      }
 

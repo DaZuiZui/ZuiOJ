@@ -17,7 +17,7 @@ public interface QuestionBankService {
      * 通过id物理删除问题
      * @return
      */
-    public String deleteQuestionById(Long id,Long questionType);
+    public String deleteQuestionById(Long id,Integer questionType);
 
     /**
      * 管理员查看题库数量

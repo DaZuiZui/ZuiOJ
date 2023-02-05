@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class DeleteQuestion implements Serializable {
     private Long id;
-    private Long questionType;
+    private Integer questionType;
     private String token;
 
     @Override
@@ -27,11 +27,11 @@ public class DeleteQuestion implements Serializable {
         this.id = id;
     }
 
-    public Long getQuestionType() {
+    public Integer getQuestionType() {
         return questionType;
     }
 
-    public void setQuestionType(Long questionType) {
+    public void setQuestionType(Integer questionType) {
         this.questionType = questionType;
     }
 
@@ -46,7 +46,7 @@ public class DeleteQuestion implements Serializable {
     public DeleteQuestion() {
     }
 
-    public DeleteQuestion(Long id, Long questionType, String token) {
+    public DeleteQuestion(Long id, Integer questionType, String token) {
         this.id = id;
         this.questionType = questionType;
         this.token = token;

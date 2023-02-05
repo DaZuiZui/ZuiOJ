@@ -37,4 +37,6 @@ public class RedisKey {
     //当前题的题解指定状态总数量
     //RedisKey.ZuiOJQuestionAnswerPrivicyOf+articleBo.getPrivacy()+":"+articleBo.getId()
     public static final String ZuiOJQuestionAnswerPrivicyOf = "ZuiOJ:Question:Answer:Numbers:Id:";
+    //竞赛信息
+    public static final String ZuiOJContestInfo = "ZuiOJ:Contest:Info:Id:";
 }

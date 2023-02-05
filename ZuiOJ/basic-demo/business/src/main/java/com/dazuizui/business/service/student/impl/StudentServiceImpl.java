@@ -74,7 +74,6 @@ public class StudentServiceImpl implements StudentService {
      * 获取学生认证信息通过id
      */
     @Override
-    @Transactional
     public String getStudentInfo() {
         Map<String, Object> userinfo = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
         Long id = new Long(Long.valueOf(String.valueOf(userinfo.get("id"))));
@@ -99,12 +98,9 @@ public class StudentServiceImpl implements StudentService {
      * 通过认证主键获取学生信息
      */
     @Override
-    @Transactional
     public GetStudentInfoVo queryStudentByUserId(Long userId) {
         GetStudentInfoVo res = new GetStudentInfoVo();
         //获取学生认证信息
-        //todo 学生认证缓存处理
-
         StudentCertification studentCertification = studentMapper.queryStudentInfoByUserId(userId);
         if (studentCertification == null){
             return null;

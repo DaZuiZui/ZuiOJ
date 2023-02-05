@@ -4,6 +4,7 @@ import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
+import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     @Override
     @Transactional
     public String judgeTheProgram(ProgramBo programBo){
+        System.out.println(programBo);
         /**
          * 初始化代码运行还击那个
          */
@@ -59,7 +62,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         ProblemLimit problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(programBo.getTopicId());
         programBo.setProblemLimit(problemLimit);
         /**
-         * 获取案例he
+         * 获取案例he todo 改成mongodb
          */
         List<QuestionCase> questionCases = redisUtil.getListInRedis(RedisKey.ZuiOJQuestionCase +programBo.getTopicId());
         System.out.println(questionCases.size());
@@ -117,8 +120,14 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             acContestQuestion.setContestId(programBo.getContestId());
             acContestQuestion.setUserId(id);
             acContestQuestion.setQuestionId(programBo.getTopicId());
-            //在比赛中标记记录
-            acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
+
+            //查看当前啊比赛是否结束
+            if (checkIfTheCurrentGameIsOver(acContestQuestion.getContestId())){
+                //在比赛中标记记录
+                System.err.println("??");
+                acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
+            }
+
             //写入日记
         }
 
@@ -129,5 +138,30 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         return JSONArray.toJSONString(request);
     }
 
+    @Autowired
+    private ContestMapper contestMapper;
+    /**
+     * 检查比赛是否结束
+     * @return
+     */
+    public boolean checkIfTheCurrentGameIsOver(Long contestId){
+        //获取比赛数据
+        Contest contest = (Contest) redisUtil.getStringInRedis(RedisKey.ZuiOJContestInfo + contestId);
+        if (contest == null){
+            contest = contestMapper.getEventById(contestId);
+            if (contest == null){
+                return false;
+            }else{
+                redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo + contestId,RedisKey.OutTime,contest);
+            }
+        }
+
+        //查看是否结束
+        Date endTime = contest.getEndTime();
+        Date cur = new Date();
+
+        int b = endTime.compareTo(cur);
+        return b <= 0;
+    }
 
 }

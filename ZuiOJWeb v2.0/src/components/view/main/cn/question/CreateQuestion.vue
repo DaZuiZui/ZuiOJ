@@ -160,11 +160,11 @@
             },
 
             toQuestion(){
-               window.location.href="http://localhost:8080/question/AnwserQuestion";
+               window.location.href="/question/AnwserQuestion";
             },
 
             async submit(){
-                if(this.question.questionType == 2){
+                if(this.question.questionType != 2){
                     this.question.contestId = -1;
                 }
 
