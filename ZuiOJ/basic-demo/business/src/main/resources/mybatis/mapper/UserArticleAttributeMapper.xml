@@ -9,7 +9,7 @@
     <insert id="AddUserArticleAttribute">
         insert into
             user_article_attribute
-        value(null,#{userId},0,0,0);
+        value(null,#{userId},0,0,0,0);
     </insert>
 
     <!--

@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
-import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -69,7 +68,11 @@ public class BlogController {
     @ApiOperation("获取文章详细数据")
     @PostMapping("/getArticleById")
     public String getArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo){
-
+        //身份验证过期
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
         return blogService.getArticleById(getArticleByIdBo);
     }
 }

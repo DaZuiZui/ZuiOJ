@@ -14,9 +14,12 @@ import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.RedisUtil;
+import com.dazuizui.business.util.TransactionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,7 +39,8 @@ public class UserServiceImpl implements UserService {
     private UserArticleAttributeMapper userArticleAttributeMapper;
     @Autowired
     private AttributeMapper attributeMapper;
-
+    @Autowired
+    private TransactionUtils transactionUtils;
 
     /**
      * 通过id物理删除用户
@@ -176,10 +180,10 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = new User();
-        System.out.println(map.get("id"));
+        //System.out.println(map.get("id"));
         Long id = Long.valueOf((String)map.get("id"));
         user = this.queryUserById(id);
-        System.err.println(user);
+        //System.err.println(user);
 
         return JSONArray.toJSONString(new ResponseVo<>("null",user,StatusCode.OK));
     }
@@ -200,17 +204,28 @@ public class UserServiceImpl implements UserService {
             return JSONArray.toJSONString(new ResponseVo<>("用户名必须唯一,请更换用户名。",null,StatusCode.Error));
         }
 
-        //写入mysql
-        user.setCreateTime(new Date());
-        Long aLong = userMapper.register(user);
-        if (aLong <= 0){
+        TransactionStatus transactionStatus =  transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        try {
+            //写入mysql
+            user.setCreateTime(new Date());
+            Long aLong = userMapper.register(user);
+            if (aLong <= 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
+            }
+
+            //创建用户博文数量
+            userArticleAttributeMapper.AddUserArticleAttribute(user.getId());
+            //写入用户表的用户个数
+            attributeMapper.IncreaseTheNumberOfTable(AttributeKey.user,1L);
+        } catch (Exception e) {
+            transactionUtils.rollback(transactionStatus);
             return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
+            //e.printStackTrace();
         }
 
-        //创建用户博文数量
-        userArticleAttributeMapper.AddUserArticleAttribute(user.getId());
-        //写入用户表的用户个数
-        attributeMapper.IncreaseTheNumberOfTable(AttributeKey.user,1L);
+        transactionUtils.commit(transactionStatus);
 
         /**
          * 写入用户数量

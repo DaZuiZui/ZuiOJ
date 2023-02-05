@@ -18,6 +18,7 @@
             create_time,
             create_by,
             likes,
+            a.status as 'privacy',
             b.mdText as 'mdText'
         from
             article a

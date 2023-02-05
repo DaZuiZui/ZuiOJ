@@ -20,5 +20,7 @@ public class StatusCode  {
     public static final String Idempotency = "0x502";
     //数据为null
     public static final String DateIsNull = "0x503";
+    //无权查看文章
+    public static final String NotAuthorizedToView = "0x504";
 
 }

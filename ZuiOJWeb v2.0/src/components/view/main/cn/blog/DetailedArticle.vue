@@ -64,16 +64,18 @@
        this.getArticleById();
     },
     methods: {
+        /**
+         *  通过id获取博文
+         */
         async getArticleById(){
             this.getArticleByIdBo.token = getCookie("token");
             this.getArticleByIdBo.id = getQueryVariable("id");
             let obj = await synRequestPost("/blog/getArticleById",this.getArticleByIdBo);
-            if(obj){
+            if(check(obj)){
                 this.article = obj.data;
-                console.log(this.article);
             }
         },
-        
+
         //查看博文
         viewBlog(id){
           this.$router.push("/cn/blog/view?id="+id);

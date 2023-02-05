@@ -19,27 +19,7 @@ public class DetailedArticleJSON implements Serializable {
     private String mdText;
     private String createByName;
     private Long likes;
-
-    public DetailedArticleJSON(Long id, String title, String introduce, String articleType, String language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, String mdText, String createByName, Long likes) {
-        this.id = id;
-        this.title = title;
-        this.introduce = introduce;
-        this.articleType = articleType;
-        this.language = language;
-        this.technologyType = technologyType;
-        this.createTime = createTime;
-        this.createBy = createBy;
-        this.updateTime = updateTime;
-        this.updateBy = updateBy;
-        this.status = status;
-        this.delFlag = delFlag;
-        this.mdText = mdText;
-        this.createByName = createByName;
-        this.likes = likes;
-    }
-
-    public DetailedArticleJSON() {
-    }
+    private Integer privacy;
 
     @Override
     public String toString() {
@@ -59,6 +39,7 @@ public class DetailedArticleJSON implements Serializable {
                 ", mdText='" + mdText + '\'' +
                 ", createByName='" + createByName + '\'' +
                 ", likes=" + likes +
+                ", privacy=" + privacy +
                 '}';
     }
 
@@ -180,5 +161,35 @@ public class DetailedArticleJSON implements Serializable {
 
     public void setLikes(Long likes) {
         this.likes = likes;
+    }
+
+    public Integer getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(Integer privacy) {
+        this.privacy = privacy;
+    }
+
+    public DetailedArticleJSON() {
+    }
+
+    public DetailedArticleJSON(Long id, String title, String introduce, String articleType, String language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, String mdText, String createByName, Long likes, Integer privacy) {
+        this.id = id;
+        this.title = title;
+        this.introduce = introduce;
+        this.articleType = articleType;
+        this.language = language;
+        this.technologyType = technologyType;
+        this.createTime = createTime;
+        this.createBy = createBy;
+        this.updateTime = updateTime;
+        this.updateBy = updateBy;
+        this.status = status;
+        this.delFlag = delFlag;
+        this.mdText = mdText;
+        this.createByName = createByName;
+        this.likes = likes;
+        this.privacy = privacy;
     }
 }

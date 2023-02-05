@@ -1,19 +1,17 @@
 package com.dazuizui.business.service.blog.impl;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
-import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.basicapi.entry.vo.ArticleVo;
-import com.dazuizui.basicapi.entry.vo.DetailedArticleVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.messageQueue.blog.config.BlogSource;
 import com.dazuizui.business.service.blog.BlogService;
+import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
@@ -23,7 +21,6 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.*;
@@ -52,6 +49,8 @@ public class BlogServiceImpl implements BlogService {
     private ArticleAttributeMapper articleAttributeMapper;
     @Autowired
     private UserArticleAttributeMapper userArticleAttributeMapper;
+    @Autowired
+    private UserService userService;
 
     /**
      * 创建博文
@@ -325,11 +324,30 @@ public class BlogServiceImpl implements BlogService {
             detailedArticleBo.setCreateTime(articleById.getCreateTime());
             detailedArticleBo.setLikes(articleById.getLikes());
             detailedArticleBo.setMdText(articleById.getMdText());
+            detailedArticleBo.setPrivacy(articleById.getPrivacy());
             //存入redis
             redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+detailedArticleBo.getId(),RedisKey.OutTime,detailedArticleBo);
         }
 
-        //todo判断是否有查看权限
+        //判断是否有查看权限
+        if (detailedArticleBo.getPrivacy() != 0){
+            //查看是否没有登入，如果没有登入无权访问
+            System.err.println(ThreadLocalUtil.DataOfThreadLocal.get());
+            Boolean userauth = (Boolean) ThreadLocalUtil.DataOfThreadLocal.get().get("userauth");
+            if (userauth != null && userauth == false){
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.NotAuthorizedToView,detailedArticleBo, StatusCode.NotAuthorizedToView));
+            }
+
+            //查看是否不是本人查看自己发布的出现问题的博文
+            Long userId = Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+"");
+            if (userId != detailedArticleBo.getCreateBy()){
+                //检测是否为管理员
+                User user = userService.queryUserById(userId);
+                if (user.getRole() <= 2) {
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.NotAuthorizedToView,null, StatusCode.NotAuthorizedToView));
+                }
+            }
+        }
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,detailedArticleBo, StatusCode.OK));
     }

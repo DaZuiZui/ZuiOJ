@@ -2,6 +2,7 @@ package com.dazuizui.business.aop.blog.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.aop.blog.BlogAop;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -95,5 +96,42 @@ public class BlogAopImpl implements BlogAop {
                 return ;
             }
         }
+    }
+
+    /**
+     * aop切面负责解析token，如果token为null则不做任何处理
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.BlogController.getArticleById(..))")
+    public String getArticleById(JoinPoint joinpoint) throws Exception {
+        //获取token
+        Object[] args = joinpoint.getArgs();
+        GetArticleByIdBo articleBo = (GetArticleByIdBo) args[0];
+        String token = articleBo.getToken();
+        //如果未登入
+        if (token == null || token == ""){
+            ThreadLocalUtil.DataOfThreadLocal.get().put("userauth",false);
+            return "";
+        }
+
+        //鉴权
+        Map<String, Object> map = null;
+        if (token != null){
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //System.err.println("????????");
+            } catch (Exception e) {
+                //System.out.println("??");
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+                return null;
+            }
+        }
+
+        return null;
     }
 }

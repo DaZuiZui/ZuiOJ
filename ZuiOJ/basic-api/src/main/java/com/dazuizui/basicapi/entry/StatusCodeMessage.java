@@ -20,4 +20,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String Idempotency = "幂等性操作，请刷新网页";
     //数据为null
     public static final String DateIsNull  = "数据为null";
+    //无权查看文章
+    public static final String NotAuthorizedToView = "无权查看";
 }

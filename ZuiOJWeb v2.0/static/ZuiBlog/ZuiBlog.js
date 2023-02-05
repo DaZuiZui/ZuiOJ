@@ -60,6 +60,10 @@
         }else if(obj.code == '0x501'){
             alert(obj.message);
             return false;
+        }else if(obj.code == '0x504'){
+            alert(obj.message);
+            window.location.href="/h";
+            return false;
         }
 
         return true;

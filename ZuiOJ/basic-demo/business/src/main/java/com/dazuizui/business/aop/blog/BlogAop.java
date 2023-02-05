@@ -1,7 +1,9 @@
 package com.dazuizui.business.aop.blog;
 
+import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 博客Aop接口实现
@@ -22,4 +24,13 @@ public interface BlogAop {
      * @return
      */
     public void createQuestionAnswer(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * aop切面负责解析token，如果token为null则不做任何处理
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String getArticleById(JoinPoint joinpoint) throws Exception;
 }

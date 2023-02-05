@@ -226,7 +226,7 @@ import { synRequestGet } from '../../../../static/request';
         //退出
        quite(){
             setCookie("token"," ");
-            alert("/删除成功");
+            alert("退出成功");
             this.$router.push('/cn/user/login');
         },
         //前往个人信息页面

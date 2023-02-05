@@ -263,16 +263,29 @@ import Foot from '../../../../frame/blog/Foot.vue';
             console.log(this.article);
             var object = await synRequestPost("/blog/createArticle",this.article);
             check(object);
+        },
 
-
-        }
+        //解析token获取用户
+        async checkUser(){
+          if(getCookie("token") == null || getCookie("token") == " "){
+             alert("请先登入");
+             this.$router.push("/cn/user/login");
+          }
+          var object = await synRequestGet("/user/analysis?token="+getCookie("token"));
+          check(obj)
+        },
     },
     //自启动
     mounted() {
+        //身份验证
+        this.checkUser();
         //获取token
         this.article.token = getCookie("token");
         //获取幂等性token
         this.article.nonPowerToken = this.getNonPowerToken();
+       
+
+
     },
   }
   
