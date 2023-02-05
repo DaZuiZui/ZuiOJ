@@ -1,7 +1,10 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
+import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
@@ -61,21 +64,46 @@ public class QuestionBankController {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,"0x5001"));
         }
 
+
         return questionBankService.pagingToGetQuestionOfAdmin(pages,number);
     }
 
     /**
-     * 提交问题
+     * 提交问题 out
+     * @param Idemtoken
+     * @param token
+     * @param postQuestionBo
+     * @return
+     */
+    @ApiOperation("提交题目和限制")
+    @PostMapping("/postQuestion")
+    public String postQuestion(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token,@RequestBody PostQuestionBo postQuestionBo){
+        //查看aop前置环绕是否出现问题
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        //非空判断
+        System.out.println(postQuestionBo);
+        if(postQuestionBo == null || postQuestionBo.getQuestionBankBo() == null || postQuestionBo.getProblemLimit() == null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null, StatusCode.IsNull));
+        }
+
+        return questionBankService.postQuestionAndLimit(postQuestionBo);
+    }
+
+    /**
+     * 提交问题 out
      * @param Idemtoken
      * @param token
      * @param questionBankBo
      * @return
      */
-    @ApiOperation("提交题目")
-    @PostMapping("/postQuestion")
+    @ApiOperation("提交题目淘汰")
+    @PostMapping("/postQuestionold")
     @Transactional
-    public String postQuestion(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token, @RequestBody QuestionBankBo questionBankBo){
-         return questionBankService.postQuestion(questionBankBo);
+    public String postQuestionold(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token, @RequestBody QuestionBankBo questionBankBo){
+         return questionBankService.postQuestionOld(questionBankBo);
      }
 
 

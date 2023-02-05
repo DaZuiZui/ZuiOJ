@@ -46,7 +46,6 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     @Override
     @Transactional
     public String judgeTheProgram(ProgramBo programBo){
-        System.out.println(programBo);
         /**
          * 初始化代码运行还击那个
          */
@@ -57,7 +56,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         programBo.setRunCommandArgs(map.get(new Integer(1)));
 
         /**
-         * 初始化题目限制
+         * 初始化题目限制 todo redis获取
          */
         ProblemLimit problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(programBo.getTopicId());
         programBo.setProblemLimit(problemLimit);

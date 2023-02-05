@@ -17,5 +17,24 @@
         limit 1
     </select>
 
+    <insert id="addProblemLimit">
+        insert into
+            problem_limit
+        value (
+            null,
+            #{questionId},
+            #{stdoutMax},
+            #{stderrMax},
+            #{cpuLimit},
+            #{memoryLimit},
+            #{procLimit},
+            #{createById},
+            #{createTime},
+            #{updateTime},
+            #{updateById},
+            0,0
+        )
+    </insert>
+
 
 </mapper>

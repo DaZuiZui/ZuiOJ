@@ -5,10 +5,74 @@
         </div>
 
         <!-- Main content -->
-        <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
+        <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary" style="background-color:#f9f9f9">
             <div class="container">
                  创建比赛
                  <div class="content">
+                    <el-row :gutter="20" >
+                        <el-col :span="4">
+                            最大输出文件
+                            <div class="grid-content bg-purple" >
+                                <el-input placeholder="输出文件大小限制"  v-model="problemLimit.stdoutMax"  style="background-color:#f9f9f9;">
+                                    <template slot="append">KB</template>
+                                </el-input>
+                            </div>
+                        </el-col>
+
+                        <el-col :span="4"><div class="grid-content bg-purple-light">
+                            <div style="margin-left:20px">
+                                最大错误文件输出
+                            </div>
+                           
+                            <div class="grid-content bg-purple" style="margin-left:20px" >
+                                
+                                <el-input placeholder="错误文件输出大小限制"  v-model="problemLimit.stderrMax"  style="background-color:#f9f9f9;">
+                                    <template slot="append">KB</template>
+                                </el-input>
+                            </div>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-purple-light">
+                            <div style="margin-left:20px">
+                                最大内存限制
+                            </div>
+                           
+                            <div class="grid-content bg-purple" style="margin-left:20px" >
+                                
+                                <el-input placeholder="CPU最大时间限制"  v-model="problemLimit.cpuLimit"  style="background-color:#f9f9f9;">
+                                    <template slot="append">Second</template>
+                                </el-input>
+                            </div>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-purple-light">
+                            <div style="margin-left:20px">
+                                CPU最大时间限制
+                            </div>
+                           
+                            <div class="grid-content bg-purple" style="margin-left:20px" >
+                                
+                                <el-input placeholder="最大内存限制"  v-model="problemLimit.memoryLimit"  style="background-color:#f9f9f9;">
+                                    <template slot="append">MB</template>
+                                </el-input>
+                            </div>
+                        </div></el-col>
+
+                        <el-col :span="4"><div class="grid-content bg-purple-light">
+                            <div style="margin-left:20px">
+                                最大线程数量
+                            </div>
+                           
+                            <div class="grid-content bg-purple" style="margin-left:20px" >
+                                
+                                <el-input placeholder="最大线程数量"  v-model="problemLimit.procLimit"  style="background-color:#f9f9f9;">
+                                   
+                                </el-input>
+                            </div>
+                        </div></el-col>
+                    </el-row>
+
+                    
+                
+
                     <b>题目简称编号</b> 
                     <div>
                         <el-input v-model="question.shortName" placeholder="Pleace enter title"></el-input>
@@ -35,7 +99,6 @@
                         <select class="form-control form-control-lg" v-model="question.contestId" >
                             <option value="-1"  disabled>--请选择比赛--</option>
                             <option v-for="(contest,index) in contestList" :key="index" :value="contest.id">{{contest.name}}</option>
-                           
                         </select>
                     </div>
 
@@ -120,6 +183,18 @@
                     htmlEn: "",
                     contestId: -1     //
                 },
+                problemLimit: {
+                    stdoutMax: 10240, //标准输出文件大小限制     单位kb
+                    stderrMax: 10240, //标准错误输出文件大小限制  单位kb
+                    cpuLimit: 5,       //Cpu时间限制 second
+                    memoryLimit: 256,  //内存时间限制 mb
+                    procLimit: 20,     //最大线程数量
+                },
+
+                postQuestionBo: {
+                    questionBankBo: null,     //问题
+                    problemLimit: null, //问题限制
+                },
                 //竞赛list
                 contestList: null,
                 //按钮选择器
@@ -164,20 +239,79 @@
             },
 
             async submit(){
-                if(this.question.questionType != 2){
-                    this.question.contestId = -1;
+                this.buttonSwitch = !this.buttonSwitch;
+                //非空判断
+                if(this.problemLimit.stderrMax == 0){
+                    alert("最大错误文件输出大小不可为0");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.problemLimit.stdoutMax == 0){
+                    alert("最大文件输出大小不可为0");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.problemLimit.cpuLimit == 0){
+                    alert("最大cpu时间不可以为0");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.problemLimit.memoryLimit == 0){
+                    alert("最大内存限制不可以为0");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.problemLimit.procLimit == 0){
+                    alert("最大线程数量不可以长度为0");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.question.shortName == "" || this.question.shortName == null){
+                    alert("简称编号不可以长度为0页不可以为Null");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.question.englishName == "" || this.question.englishName == null){
+                    alert("英文名字不可以为Null或者长度为0");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.question.questionType == -1){
+                    alert("问题类型必须选择一个");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.question.grade == -1){
+                    alert("必须为此题选择难度");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.question.mdCn == "" ||this.question.mdCn == null ){
+                    alert("题目描述不可以为null");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
+                }else if(this.question.chineseName == "" ||this.question.chineseName == null ){
+                    alert("中文名字不可以为null");
+                    this.buttonSwitch = !this.buttonSwitch;
+                    return;
                 }
 
-                this.buttonSwitch = !this.buttonSwitch;
+                if(this.question.questionType != 2){
+                    this.question.contestId = -1;
+                }else if(this.question.questionType == 2){
+                    if(this.question.contestId == -1 ){
+                        alert("必须为此题分配一个比赛");
+                        this.buttonSwitch = !this.buttonSwitch;
+                        return;
+                    }
+                }
+             
                 this.question.startTime = this.timeInterval[0];
                 this.question.endTime   = this.timeInterval[1];
-
-                var object = null;
+                
                 try{
-                    object = await synRequestPost("/question/postQuestion?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.question);
+                    this.postQuestionBo.problemLimit = this.problemLimit;
+                    this.postQuestionBo.questionBankBo     = this.question;
+                    let res = await synRequestPost("/question/postQuestion?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.postQuestionBo);
+                    if(check(res)){
+                        let questionId = res.data;
+                        alert("创建成功,点击确定前往添加案例！");
+                        this.$router.push("/cn/admin/question/case/list?id="+questionId);
+                    }
                     //重新获取幂等性token
                     this.getNonPowerToken();
-                    alert("添加成功，请到管理页面添加案例后，然后选择公开题目");
+                
                     this.buttonSwitch = !this.buttonSwitch;
                 }catch(e){
                     alert("异常操作，未获取幂等性");

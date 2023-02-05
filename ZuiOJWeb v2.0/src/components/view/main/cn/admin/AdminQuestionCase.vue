@@ -144,7 +144,7 @@
             //获取当前数据为null的情况
             if(obj.data.questionCases.length == 0){
                 if(this.curpage <= 1){
-                    alert("无数据");
+                    //lert("无数据");
                     return ;
                 }
                 this.getMerchantInformation(this.curpage-1);

@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.QuestionBank;
+import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +14,11 @@ import java.util.List;
 
 @Service
 public interface QuestionBankService {
+    /**
+     *  提交问题和限制
+     */
+    public String postQuestionAndLimit(PostQuestionBo postQuestionBo);
+
     /**
      * 通过id物理删除问题
      * @return
@@ -34,11 +40,11 @@ public interface QuestionBankService {
     public String pagingToGetQuestionOfAdmin(@Param("pages") int pages, @Param("number") int number);
 
     /**
-     * 提交题目
+     * 提交题目 淘汰
      * @param questionBankBo
      * @return
      */
-    public String postQuestion(@RequestBody QuestionBankBo questionBankBo);
+    public String postQuestionOld(@RequestBody QuestionBankBo questionBankBo);
 
     /**
      * 分页获取题目

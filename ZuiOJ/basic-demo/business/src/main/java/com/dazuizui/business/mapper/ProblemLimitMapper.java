@@ -15,4 +15,10 @@ public interface ProblemLimitMapper {
      * @return
      */
     public ProblemLimit queryTheProblemLimitByQuestionId(@Param("questionId")long questionId);
+
+    /**
+     * 增加问题限制
+     * @return
+     */
+    public Long addProblemLimit(ProblemLimit problemLimit);
 }

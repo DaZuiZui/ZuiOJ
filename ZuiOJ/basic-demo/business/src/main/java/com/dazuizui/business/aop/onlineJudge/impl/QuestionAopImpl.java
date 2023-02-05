@@ -90,7 +90,9 @@ public class QuestionAopImpl implements QuestionAop {
         String Idemtoken = (String) args[0];
         boolean b = redisTemplate.delete(Idemtoken);
         if (!b){
-            throw new Exception("idempotency");
+            ThreadLocalUtil.mapThreadLocal.get().put("error","异常幂等性操作，请刷新网页重新操作");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.Idempotency);
+            return "";
         }
 
         //鉴权
@@ -101,7 +103,9 @@ public class QuestionAopImpl implements QuestionAop {
                 map = JwtUtil.analysis(token);
                 ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
             } catch (Exception e) {
-                throw new Exception("身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+                return "";
             }
         }
 

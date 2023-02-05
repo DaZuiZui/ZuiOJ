@@ -39,4 +39,6 @@ public class RedisKey {
     public static final String ZuiOJQuestionAnswerPrivicyOf = "ZuiOJ:Question:Answer:Numbers:Id:";
     //竞赛信息
     public static final String ZuiOJContestInfo = "ZuiOJ:Contest:Info:Id:";
+    //问题limit限制
+    public static final String ZuiOJQuestionLimit = "ZuiOJ:Question:Limit:Id:";
 }

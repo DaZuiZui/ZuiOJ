@@ -2,6 +2,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.*;
+import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
@@ -41,8 +42,110 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private QuestionAnswerAttributeMapper questionAnswerAttributeMapper;
     @Autowired
     private QuestionBankAttribute questionBankAttribute;
+    @Autowired
+    private ProblemLimitMapper problemLimitMapper;
+
     /**
-     * 物理删除问题
+     * 提交问题和问题限制
+     * @param postQuestionBo
+     * @return
+     */
+    @Override
+    public String postQuestionAndLimit(PostQuestionBo postQuestionBo) {
+        QuestionBankBo questionBankBo = postQuestionBo.getQuestionBankBo();
+        ProblemLimit problemLimit = postQuestionBo.getProblemLimit();
+        TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+        //初始化数据
+        Map<String, Object> map = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
+        String idInJWTString = (String) map.get("id");
+        Long idInJWt = Long.valueOf(idInJWTString);
+        questionBankBo.setCreateById(idInJWt);
+        questionBankBo.setCreateByName((String) map.get("name"));
+        questionBankBo.setCreateTime(new Date());
+        problemLimit.setCreateById(idInJWt);
+        problemLimit.setCreateTime(new Date());
+        try {
+            //普通添加题目
+            if (questionBankBo.getQuestionType() == 2){
+                questionBankBo.setStatus(1);        //status is 1，考试题目
+                //添加题目简介信息
+                Long aLong = questionBankMapper.postQuestion(questionBankBo);
+                if (aLong == 0){
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+                //添加题目详细信息
+                aLong = questionBankMapper.postQuestionDetailed(questionBankBo);
+                if (aLong == 0){
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+                CompetitionQuestionBank competitionQuestionBank = new CompetitionQuestionBank();
+                competitionQuestionBank.setQuestionId(questionBankBo.getId());
+                competitionQuestionBank.setContestId(questionBankBo.getContestId());
+                //为当前的比赛创建题目
+                aLong = competitionQuestionBankMapper.addQuestionInContest(competitionQuestionBank);
+                if (aLong == 0){
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+
+                redisUtil.increment(RedisKey.QuestionCountWithAnyStatus,RedisKey.OutTime,1); //数量增强
+            }
+            else{
+                //刚创建的题目是隐藏的，需要管理员去设置案例后手动公开
+                questionBankBo.setStatus(2);
+                Long aLong = questionBankMapper.postQuestion(questionBankBo);
+                if (aLong == 0){
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+                aLong = questionBankMapper.postQuestionDetailed(questionBankBo);
+                if (aLong == 0){
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+
+                redisUtil.increment(RedisKey.QuestionCountWithAnyStatus,RedisKey.OutTime,1); //数量增加
+            }
+            //创建该题的题解数量
+            Long aLong = questionAnswerAttributeMapper.addQuestionAnswerAttributeMapper(questionBankBo.getId());
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //增加题数量
+            int status = questionBankBo.getStatus();
+            aLong = questionBankAttribute.updateQuestionnumber(1,status, 1);
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+
+            //提交问题限制
+            problemLimit.setQuestionId(questionBankBo.getId());
+            aLong = problemLimitMapper.addProblemLimit(problemLimit);
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            transactionUtils.rollback(transactionStatus);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+
+        //问题限制写入redis
+        redisUtil.setStringInRedis(RedisKey.ZuiOJQuestionLimit, RedisKey.OutTime,problemLimit);
+        //提交事物
+        transactionUtils.commit(transactionStatus);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,problemLimit.getQuestionId(),StatusCode.OK));
+    }
+
+    /**
+     * 逻辑删除问题
      * @param id
      * @return
      */
@@ -107,7 +210,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
      * @return
      */
     @Override
-    public String postQuestion(QuestionBankBo questionBankBo) {
+    public String postQuestionOld(QuestionBankBo questionBankBo) {
         TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
         //初始化数据
         Map<String, Object> map = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
@@ -119,7 +222,6 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
         try {
             //普通添加题目
-            System.err.println(questionBankBo.getQuestionType());
             if (questionBankBo.getQuestionType() == 2){
                 questionBankBo.setStatus(1);        //status is 1，考试题目
                 //添加题目简介信息
