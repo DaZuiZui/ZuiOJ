@@ -141,10 +141,11 @@
         //校验是否进行学生验证
         async checkCertification(){
             let obj = await synRequestGet("/student/getStudentInfo?token="+getCookie("token"));
-            check(obj);
-            if(obj.data != null){
-                this.$router.push('/cn/user/student/info');
-                return;
+            if(check(obj)){
+                if(obj.data != null){
+                    this.$router.push('/cn/user/student/info');
+                    return;
+                }
             }
         },
 
@@ -158,6 +159,7 @@
             check(obj);
             alert(obj.message);
             //前往学生信息页面 todo
+            this.$router.push('/cn/user/student/info');
         },
 
         //防止幂等性操作
