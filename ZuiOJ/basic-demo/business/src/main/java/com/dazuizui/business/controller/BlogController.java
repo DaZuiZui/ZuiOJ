@@ -85,6 +85,7 @@ public class BlogController {
     @GetMapping("/checkIfTheTopicIsACompetitionTopic")
     public String checkIfTheTopicIsACompetitionTopic(@RequestParam("id")Long id){
         //非空判断
+
         if (id == null){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null,StatusCodeMessage.IsNull));
         }
