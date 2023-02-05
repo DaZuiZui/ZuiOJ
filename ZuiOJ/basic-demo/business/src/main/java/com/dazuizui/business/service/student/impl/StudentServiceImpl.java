@@ -85,7 +85,7 @@ public class StudentServiceImpl implements StudentService {
             //去数据库查询
             student = this.queryStudentByUserId(id);
             if (student == null){
-                return JSONArray.toJSONString(new ResponseVo<>("操作失败",null, StatusCode.Error));
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
             }
             //写入redis
             redisUtil.setStringInRedis(RedisKey.ZuiOjStudentCertificationUserId+id,RedisKey.OutTime,student);
@@ -103,7 +103,12 @@ public class StudentServiceImpl implements StudentService {
     public GetStudentInfoVo queryStudentByUserId(Long userId) {
         GetStudentInfoVo res = new GetStudentInfoVo();
         //获取学生认证信息
+        //todo 学生认证缓存处理
+
         StudentCertification studentCertification = studentMapper.queryStudentInfoByUserId(userId);
+        if (studentCertification == null){
+            return null;
+        }
         res.setStudentId(studentCertification.getStudentId());
         res.setIc(studentCertification.getIc());
         res.setIcType(studentCertification.getIcType());
