@@ -183,7 +183,6 @@
                 this.buttonSwitch = !this.buttonSwitch;
                 this.conTestInfo.startTime = this.timeInterval[0];
                 this.conTestInfo.endTime   = this.timeInterval[1];
-
                 this.conTestInfo.Idemtoken = this.nonPowerToken;
                 var object = null;
                 try{
