@@ -2,10 +2,12 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.QuestionCase;
+import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
 import com.dazuizui.basicapi.entry.bo.AdminQueryQuestionCaseBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,6 +15,15 @@ import java.util.List;
  */
 @Mapper
 public interface QuestionCaseMapper {
+    /**
+     * 添加问题案例
+     * @param questionCases
+     * @param questionId
+     * @param userId
+     * @param date
+     * @return
+     */
+    public Long addQuestionCase(@Param("questionCases") List<QuestionCase> questionCases,@Param("questionId") Long questionId,@Param("userId") Long userId,@Param("createTime") Date date);
     /**
      * 通过问题id查询题目案例
      * @param questionId

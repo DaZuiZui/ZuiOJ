@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.QuestionCaseAttributeMapper">
+    <!--
+        插入题目案例个数属性
+    -->
+    <insert id="insertQuestionCaseAttribute">
+        insert into
+            question_case_attribute
+        value(
+            null,
+            #{questionId},
+            0,
+            0,
+            0
+        )
+    </insert>
+
+    <update id="updateQuestionCaseAttribute">
+        update
+            question_case_attribute
+        <set>
+            <if test="type = 1">
+                number = number + #{num},
+                public_case = public_case + #{num},
+            </if>
+        </set>
+        where
+            question_id = #{questionId}
+    </update>
+
+
+</mapper>

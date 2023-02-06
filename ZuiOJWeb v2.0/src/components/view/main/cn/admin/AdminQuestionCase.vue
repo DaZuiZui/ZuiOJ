@@ -16,8 +16,36 @@
                         </div>
                     </div>
                 </div>
+                <el-button @click="drawer = true" label="ttb" type="primary" style="margin-left: 16px;">
+                    添加案例
+                </el-button>
+                  
+                  <el-drawer
+                    title="我是标题"
+                    direction="btt"
+                    :visible.sync="drawer"
+                    size="50%"
+                    :with-header="false">
+                    <span>
+                        <div>
+                            <div class="container">
+                               <br>
+                                <div class="alert alert-info" role="alert">
+                                    添加测试样例 <el-link type="danger">若你不了解添加案例规则请点击我了解。</el-link>
+                                </div>
+                                输入样例
+                                <el-input v-model="questionCase.inputs" placeholder="请输入"></el-input>
+                                输出样例
+                                <el-input v-model="questionCase.answer" placeholder="请输入内容"></el-input>
+                                <button type="button" class="btn btn-primary" style="width:100%" @click="addListElement()" :disabled="addListElementButton">添加缓存集合</button> <br><br>
+                                <button type="button" class="btn btn-primary" style="width:100%" @click="submit()">Submit</button>
+                            </div>
+                        </div>
+                    </span>
+                  </el-drawer>  
 
                 <br>
+
                 <table class="table">
                     <thead>
                       <tr>
@@ -100,10 +128,26 @@
       },
     data () {
         return {
+            addQuestionCaseBo: {
+                questionCases: [],
+                token: "",
+                nonPowerToken: "",
+                questionId: -1,
+            },
+
+            //题库案例集合
+            caseList: [],
             //题库集合
             questionCaseList: [],
             //题目总数
             count: 0,
+
+            //测试样例
+            questionCase: {
+                inputs: "",
+                answer: "",
+            },
+
 
             adminQueryQuestionCaseBo: {
                 //题号id
@@ -117,17 +161,64 @@
             },
 
             curpage: 1,//当前页面
+
+            drawer: false,
+
+            //添加元素按钮
+            addListElementButton: false,
        }
     },
     mounted(){
         //获取题号
         this.adminQueryQuestionCaseBo.questionId = getQueryVariable("id");
-        //获取token
-        // this.adminQueryQuestionCaseBo.token = getCookie("token");
         //获取幂等性token
+        this.getNonPowerToken();
+        //分野获取数据
         this.getMerchantInformation(1);
     },
     methods: {
+        async submit(){
+            console.log(this.caseList);
+            this.addQuestionCaseBo.questionCases = this.caseList;
+            console.log(this.addQuestionCaseBo);
+            this.addQuestionCaseBo.questionId    = getQueryVariable("id");
+            this.addQuestionCaseBo.token         = getCookie("token");
+            let obj = await synRequestPost("/questionCase/addQuestionCase",this.addQuestionCaseBo);
+            if(check(obj)){
+                alert(obj.message);
+                //清空数据
+                this.addQuestionCaseBo.nonPowerToken = "";
+                this.addQuestionCaseBo.questionCases = [];
+            }
+
+            //获取幂等性token
+            this.getNonPowerToken();
+        },
+
+        //防止幂等性
+        async getNonPowerToken(){
+            var object = await synRequestGet("/system/getNonPowerTokenString");
+            this.addQuestionCaseBo.nonPowerToken = object.data;
+        },
+
+        //添加元素
+        async addListElement(){
+            this.addListElementButton = true;
+            if(this.questionCase.answer == null ||this.questionCase.answer == ""){
+                alert("答案不可以为null")
+                this.addListElementButton = false;
+                return;
+            }
+            //console.log(this.questionCase);
+            let questionCaseTmp = {inputs:this.questionCase.inputs,answer:this.questionCase.answer};
+            //console.log(questionCaseTmp);
+            this.caseList.push(questionCaseTmp);
+            this.questionCase.answer = "";
+            this.questionCase.inputs = "";
+            //console.log(this.caseList);
+            this.addListElementButton = false;
+        },
+
         //跳转指定页面
         async getMerchantInformation(val){   
             //记录当前选择的页面
@@ -136,7 +227,6 @@
             //设置分页数据
             this.adminQueryQuestionCaseBo.numbers = 50;
             this.adminQueryQuestionCaseBo.pages = (val-1) * this.adminQueryQuestionCaseBo.numbers;
-            
 
             //获取分页案例
             let obj = await synRequestPost("/questionCase/getDateByPaging",this.adminQueryQuestionCaseBo);
@@ -153,7 +243,6 @@
             this.count = obj.data.countOfQuestionCase;
             this.questionCaseList = obj.data.questionCases;
             console.log(this.questionCaseList);
-        
         },
     }
   }

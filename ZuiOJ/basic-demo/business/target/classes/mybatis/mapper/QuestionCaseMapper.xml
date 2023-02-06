@@ -3,7 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionCaseMapper">
+    <!--添加案例-->
+    <insert id="addQuestionCase">
+        insert into
+            question_case
+        values
+        <foreach collection="questionCases" item="item" separator=",">
+            (
+                null,
+                #{questionId},
+                #{item.inputs},
+                #{item.answer},
+                #{userId},
+                0,
+                #{createTime},
+                null,
+                null,
+                null,
+                0,
+                0
+            )
+        </foreach>
+    </insert>
 
+    <!--
+        查询本题案例
+    -->
     <select id="queryCountOfCase" resultType="long">
         select
             count(0)

@@ -37,6 +37,8 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     @Autowired
     private QuestionCaseMapper questionCaseMapper;
     @Autowired
+    private QuestionCaseAttributeMapper questionCaseAttributeMapper;
+    @Autowired
     private TransactionUtils transactionUtils;
     @Autowired
     private QuestionAnswerAttributeMapper questionAnswerAttributeMapper;
@@ -125,6 +127,12 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             //提交问题限制
             problemLimit.setQuestionId(questionBankBo.getId());
             aLong = problemLimitMapper.addProblemLimit(problemLimit);
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //创建该题的个数限制
+            aLong =questionCaseAttributeMapper.insertQuestionCaseAttribute(questionBankBo.getId());
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));

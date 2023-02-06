@@ -152,7 +152,6 @@ public class RedisUtil {
      */
     public long  putListInRedis(String key,long timeout,List data){
         for (Object datum : data) {
-            System.out.println("add...");
             redisTemplate.opsForList().rightPush(key,datum);
         }
         redisTemplate.expire(key,timeout, TimeUnit.SECONDS);

@@ -1,9 +1,8 @@
 package com.dazuizui.business.controller;
 
+import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
 import com.dazuizui.basicapi.entry.bo.AdminQueryQuestionCaseBo;
-import com.dazuizui.basicapi.entry.vo.QuestionCasePagingDateVo;
 import com.dazuizui.business.service.onlineJudge.QuestionCaseSerivce;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +17,17 @@ public class QuestionCaseController {
 
     @Autowired
     private QuestionCaseSerivce questionCaseSerivce;
+
+    /**
+     * 添加问题案例
+     * @param addQuestionCase
+     * @return
+     */
+    @ApiOperation("添加问题案例")
+    @PostMapping("/addQuestionCase")
+    public String addQuestionCase(@RequestBody AddQuestionCaseBo addQuestionCase){
+        return questionCaseSerivce.addQuestionCase(addQuestionCase);
+    }
 
     /**
      * 管理员查询案例通过id
