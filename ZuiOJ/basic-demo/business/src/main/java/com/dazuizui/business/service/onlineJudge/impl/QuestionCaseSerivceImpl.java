@@ -9,10 +9,12 @@ import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
 import com.dazuizui.basicapi.entry.bo.AdminQueryQuestionCaseBo;
 import com.dazuizui.basicapi.entry.vo.QuestionCasePagingDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.mapper.QuestionCaseAttributeMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
 import com.dazuizui.business.service.onlineJudge.QuestionCaseSerivce;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ public class QuestionCaseSerivceImpl implements QuestionCaseSerivce {
     private QuestionCaseMapper questionCaseMapper;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private QuestionCaseAttributeMapper questionCaseAttributeMapper;
 
     /**
      * 添加案例
@@ -41,8 +45,9 @@ public class QuestionCaseSerivceImpl implements QuestionCaseSerivce {
         if (aLong == 0){
             return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
-        //增加属性
 
+        //增加属性
+        questionCaseAttributeMapper.updateQuestionCaseAttribute(addQuestionCaseBo.getQuestionId(), addQuestionCaseBo.getQuestionCases().size(),1);
 
         //改成mongodb
         redisUtil.putListInRedis(RedisKey.ZuiOJQuestionCase +addQuestionCaseBo.getQuestionId(),60*60*24*15,addQuestionCaseBo.getQuestionCases());
@@ -62,10 +67,21 @@ public class QuestionCaseSerivceImpl implements QuestionCaseSerivce {
         List<QuestionCase> questionCases = questionCaseMapper.pagingToGetQuestionCase(adminQueryQuestionCaseBo);
         System.err.println(questionCases);
         //查询数量
-        Long aLong = questionCaseMapper.queryCountOfCase(adminQueryQuestionCaseBo.getQuestionId());
+        Long publicCount = redisUtil.getLongOfStringInRedis(RedisKey.ZuiOJQuestionStatusCount);
+        if (publicCount == null) {
+            //查询数据库
+            publicCount = questionCaseAttributeMapper.queryCountOfAnyStatus(1,adminQueryQuestionCaseBo.getQuestionId());
+            //写入redis
+            if (publicCount != null){
+                redisUtil.setLongOfStringInRedis(RedisKey.ZuiOJQuestionStatusCount,RedisKey.OutTime,publicCount);
+            }else{
+                return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
+            }
+        }
+
         QuestionCasePagingDateVo questionCasePagingDateVo = new QuestionCasePagingDateVo();
         questionCasePagingDateVo.setQuestionCases(questionCases);
-        questionCasePagingDateVo.setCountOfQuestionCase(aLong);
+        questionCasePagingDateVo.setCountOfQuestionCase(publicCount);
 
         return  JSONArray.toJSONString(new ResponseVo<>("查询成功",questionCasePagingDateVo,"0x200"));
     }

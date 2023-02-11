@@ -22,4 +22,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String DateIsNull  = "数据为null";
     //无权查看文章
     public static final String NotAuthorizedToView = "无权查看";
+    //未知错误
+    public static final String UnknowError = "未知错误";
 }

@@ -41,4 +41,9 @@ public class RedisKey {
     public static final String ZuiOJContestInfo = "ZuiOJ:Contest:Info:Id:";
     //问题limit限制
     public static final String ZuiOJQuestionLimit = "ZuiOJ:Question:Limit:Id:";
+    //题目案例个数
+    //0 全部
+    //1 公开
+    //2 删除
+    public static final String ZuiOJQuestionStatusCount = "ZuiOJ:Question:Count:";
 }

@@ -3,6 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionCaseAttributeMapper">
+
+    <select id="queryCountOfAnyStatus" resultType="long">
+        select
+            <if test="status == 1">
+                public_case
+            </if>
+            <if test="status == 0">
+                number
+            </if>
+            <if test="status == 2">
+                delete_case
+            </if>
+        from
+            question_case_attribute
+        where
+            question_id = #{questionId}
+    </select>
+
     <!--
         插入题目案例个数属性
     -->
