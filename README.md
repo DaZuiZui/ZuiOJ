@@ -1,4 +1,5 @@
 # OJ system
+ 外出停止更新两天
 
 ## Developer
 
