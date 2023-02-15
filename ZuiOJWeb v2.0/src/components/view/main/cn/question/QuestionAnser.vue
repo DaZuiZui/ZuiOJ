@@ -10,12 +10,11 @@
             <div class="text-center" style="1000px" >
                 <div class="row mb-5 justify-content-center text-center" >
                     <div class="col-lg-9"  >
-
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item" aria-current="page">  <el-link :underline="false">Back</el-link></li>
+                              <li class="breadcrumb-item" aria-current="page" @click="goBack()">  <el-link :underline="false">Back</el-link></li>
                               <li class="breadcrumb-item"><a href="#">题解</a></li>
-                              <li class="breadcrumb-item active" aria-current="page"><el-link :underline="false">评论</el-link></li>
+                              <li class="breadcrumb-item active" aria-current="page" @click="goDiscuss()"><el-link :underline="false">评论</el-link></li>
                               <li class="breadcrumb-item active" aria-current="page"><el-link :underline="false">贡献此题案例</el-link></li>
                               <li class="breadcrumb-item active" aria-current="page" @click="goCreateAnser()">
                                 <el-link :underline="false" >贡献此题题解</el-link>
@@ -125,7 +124,7 @@
     },
     //自启动
     mounted() {
-       //检查题目是否为
+       //检查题目是否为普通题目
        this.checkIfTheTopicIsACompetitionTopic();
        this.getQuestionAnswerByPageBo.questionId = getQueryVariable("id");
        this.getMerchantInformation(1);
@@ -150,6 +149,15 @@
         //查看博文
         viewBlog(id){
           this.$router.push("/cn/blog/view?id="+id);
+        },
+        //前往讨论
+        goDiscuss(){
+          this.$router.push("/cn/question/discuss?id="+getQueryVariable("id"));
+        },  
+
+        //返回
+        goBack(){
+          this.$router.push("/cn/question/view?id="+getQueryVariable("id")+"&questionType=1&contestId=-1");
         },
         //检测是否有权限访问
         async checkIfTheTopicIsACompetitionTopic(){

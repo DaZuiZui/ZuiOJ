@@ -9,7 +9,7 @@
             stderr_max,
             cpu_limit,
             memory_limit,
-            procLimit
+            proc_limit
         from
             problem_limit
         where

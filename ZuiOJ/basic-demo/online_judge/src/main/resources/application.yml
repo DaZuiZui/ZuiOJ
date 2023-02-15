@@ -1,2 +1,11 @@
 server:
   port: 8005
+spring:
+  spring:
+    data:
+      mongodb:
+        host: 192.168.171.128
+        database: ZuiBlog
+        port: 27017
+        username: dazuizui
+        password: admin

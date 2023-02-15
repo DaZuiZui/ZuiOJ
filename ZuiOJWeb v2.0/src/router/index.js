@@ -27,6 +27,8 @@ import SolutionContributor from '@/components/view/main/cn/question/SolutionCont
 import BlogIndex from '@/components/view/main/cn/blog/BlogIndex'
 import BlogRoll from '@/components/view/main/cn/blogroll/BlogRoll'
 import DetailedArticle from '@/components/view/main/cn/blog/DetailedArticle'
+import QuestionDiscuss from '@/components/view/main/cn/question/QuestionDiscuss'
+
 
 Vue.use(Router)
 
@@ -38,6 +40,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //问题讨论
+    {
+      path: '/cn/question/discuss',
+      name: 'discuss',
+      component: QuestionDiscuss
     },
     //中文查看博文项目
     {

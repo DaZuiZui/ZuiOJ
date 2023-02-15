@@ -119,13 +119,14 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     public JSONArray request(JSONObject cmd){
         RestTemplate restTemplate = new RestTemplate();
         JSONObject cmd1 = new JSONObject().set("cmd", new JSONArray().put(cmd));
-        //System.err.println(cmd1);
+        System.err.println(cmd1);
         //System.err.println();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(JSONUtil.toJsonStr(cmd1), headers);
+        System.out.println(request);
         ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://192.168.171.128:5050/run",request,String.class);
-
+        System.out.println(responseEntity);
         return JSONUtil.parseArray(responseEntity.getBody());
     }
 }

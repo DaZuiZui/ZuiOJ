@@ -85,6 +85,7 @@
                           <div style="float:left;margin-top:5px;margin-left:20px">
                               技术: &nbsp;
                           </div> 
+
                           <div style="float:left;">
                               <el-select v-model="article.technologyType" placeholder="请选择">
                                   <el-option value="0" value-key="0" key="0" label="问答">问答</el-option>
