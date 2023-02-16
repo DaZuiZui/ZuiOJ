@@ -171,6 +171,4 @@ todo
 
 ## Architecture diagram
 
-## Thanks
 
- Thanks to Mr. Zhang Yijia, thanks to all the members of the TML TEAM team for the cooperative development, thanks to all the people who helped us develop, and thanks to Haer Rongbin Guangsha College
