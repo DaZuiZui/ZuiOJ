@@ -33,11 +33,11 @@
                         </div></el-col>
                         <el-col :span="4"><div class="grid-content bg-purple-light">
                             <div style="margin-left:20px">
-                                最大内存限制
+                                CPU最大时间限制
                             </div>
                            
                             <div class="grid-content bg-purple" style="margin-left:20px" >
-                                
+                    
                                 <el-input placeholder="CPU最大时间限制"  v-model="problemLimit.cpuLimit"  style="background-color:#f9f9f9;">
                                     <template slot="append">Second</template>
                                 </el-input>
@@ -45,7 +45,7 @@
                         </div></el-col>
                         <el-col :span="4"><div class="grid-content bg-purple-light">
                             <div style="margin-left:20px">
-                                CPU最大时间限制
+                                最大内存限制
                             </div>
                            
                             <div class="grid-content bg-purple" style="margin-left:20px" >
