@@ -2,7 +2,7 @@
 
 
 ## Developer
-牙疼休息几天
+停更7天
 
 ## Environment preparation
 
