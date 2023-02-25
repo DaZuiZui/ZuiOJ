@@ -2,8 +2,7 @@
 
 
 ## Developer
-停更7天
-
+开始更新
 ## Environment preparation
 
  To run this program, you must have **Ubuntu** system,
