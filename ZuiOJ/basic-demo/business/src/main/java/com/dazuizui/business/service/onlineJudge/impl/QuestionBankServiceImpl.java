@@ -102,6 +102,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                     transactionUtils.rollback(transactionStatus);
                     return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
                 }
+
                 aLong = questionBankMapper.postQuestionDetailed(questionBankBo);
                 if (aLong == 0){
                     transactionUtils.rollback(transactionStatus);

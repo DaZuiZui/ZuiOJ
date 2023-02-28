@@ -30,6 +30,10 @@ public class SystemController {
     @Value("${filePath}")
     private String path;
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
     /**
      * 查看threadlocal
      * @return

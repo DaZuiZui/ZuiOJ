@@ -16,7 +16,7 @@
                            
                     <div>
                         <div style="float:left;margin-top:6px">
-                            权限: &nbsp;
+                            标题: &nbsp;
                         </div> 
                         <div style="float:left;width:93%">
                             <el-input v-model="article.title" placeholder="请输入标题"  maxlength="50"></el-input>
@@ -262,7 +262,9 @@ import Foot from '../../../../frame/blog/Foot.vue';
         async submit(){
             console.log(this.article);
             var object = await synRequestPost("/blog/createArticle",this.article);
-            check(object);
+            if(check(object)){
+              alert("添加成功");
+            }
         },
 
         //解析token获取用户
