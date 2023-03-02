@@ -26,8 +26,8 @@
                 <div  style=" width:100%;clear:both;"> 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">如果您要进行评论请在此处,支持Markdown语法。</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="mdText"></textarea>
-                        <button type="button" class="btn btn-primary" style="width:100%">Submit</button>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="submitDiscussBo.discuss.content"></textarea>
+                        <button type="button" class="btn btn-primary" style="width:100%" @click="submitDiscuss">Submit</button>
                     </div>
                     <hr>
                     
@@ -45,6 +45,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/Top.vue'
+  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -54,9 +55,48 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         mdText: "Hello",
+ 
+
+        submitDiscussBo: {
+          discuss: {
+            content: "",     //评论内容
+            questionId: -1, //问题id
+            parentId:   "", //上级回复id
+          },
+          token: "",
+          nonPowerToken: "",
+        }
       }
     },
+ 
+    //自启动
+    mounted() {
+        //查看是否有权限访问
+        this.checkIfTheTopicIsACompetitionTopic();
+        //获取token
+        this.submitDiscussBo.token = getCookie("token");
+        //获取文章id
+        this.submitDiscussBo.discuss.questionId = getQueryVariable("id");
+        //获取幂等性token
+        this.getNonPowerToken();
+    },
+
     methods: {
+        //防止幂等性
+        async getNonPowerToken(){
+            var object = await synRequestGet("/system/getNonPowerTokenString");
+            this.submitDiscussBo.nonPowerToken = object.data;
+        },
+
+        //检测是否有权限访问
+        async checkIfTheTopicIsACompetitionTopic(){
+          let obj = await synRequestGet("/blog/checkIfTheTopicIsACompetitionTopic?id="+getQueryVariable("id"));
+          console.log(obj);
+          if(obj.data == true){
+            alert("您无权访问，若多次访问我们会对您的账号进行临时冻结");
+            this.$router.push("/");
+          }
+        },
         //题解
         goQuestionAnser(){
             this.$router.push('/cn/question/questionAnser?id='+getQueryVariable("id"));
@@ -64,7 +104,7 @@
 
         //改变
         change(value, render) {
-          this.mdText = value;
+          //this.submitDiscussBo.content = value;
         },
 
         //返回
@@ -82,6 +122,21 @@
         goSolutionContributor(){
            this.$router.push("/cn/question/SolutionContributor?id="+getQueryVariable("id"));
         },
+
+        //发布评论
+        async submitDiscuss(){
+          if(this.submitDiscussBo.discuss.content == ""){
+            alert("评论不可为空")
+            return;
+          }
+          let obj = await synRequestPost("/discuss/submit",this.submitDiscussBo);
+          if(check(obj)){
+            alert(obj.message);
+            this.submitDiscussBo.discuss.content ="";
+            //获取幂等性token
+            this.getNonPowerToken();
+          }
+        }
         
     }
   }

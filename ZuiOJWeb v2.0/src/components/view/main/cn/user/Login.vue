@@ -19,7 +19,7 @@
                        
                         <div>
                                 <div class="form-group">
-                                  <label for="exampleInputEmail1">Email address</label>
+                                  <label for="exampleInputEmail1">Username</label>
                                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="user.username">
                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>

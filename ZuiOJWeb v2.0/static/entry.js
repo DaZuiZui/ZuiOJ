@@ -1,5 +1,5 @@
 // 接口地址
-const MainUrl = "http://192.168.139.170";
+const MainUrl = "http://172.24.18.8";
 const MainPort = 8001;
 const Developer = "Dazui"
 const TechnicalSupport = "Dazui from ZuiBlog Team";

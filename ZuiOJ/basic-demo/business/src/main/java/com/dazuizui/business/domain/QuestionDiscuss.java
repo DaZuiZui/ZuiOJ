@@ -1,49 +1,56 @@
 package com.dazuizui.business.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * mongoDB讨论实体
  */
-//@Document(collection = "discuss")
-public class Discuss implements Serializable {
-    //@Id
-    private Long id;          //主键
+@Document(collection = "QuestionDiscuss")
+public class QuestionDiscuss implements Serializable {
+    @Id
+    private String id;          //主键
     private String content;         //评论内容
     private Date publishtime;       //发布时间
-    //@Indexed //单字段索引
+    @Indexed //单字段索引
     private Long userID;           //发布人
-    private String nickname;       //别名
-    private Date   createDateTime; //创建时间
+    private String createByName;       //别名
+    private Long createById;       //别名
+    private Date createDateTime; //创建时间
     private Long likenum;         //点赞数量
     private Long replynum;        //回复数量
     private Integer state;        //状态
-    private Long articleId;       //回复博文id
-    private Long parentId;        //上级评论id
+    private Long questionId;       //回复问题id
+    private String parentId;        //上级评论id
+
 
     @Override
     public String toString() {
-        return "Discuss{" +
-                "id=" + id +
+        return "QuestionDiscuss{" +
+                "id='" + id + '\'' +
                 ", content='" + content + '\'' +
                 ", publishtime=" + publishtime +
                 ", userID=" + userID +
-                ", nickname='" + nickname + '\'' +
+                ", createByName='" + createByName + '\'' +
+                ", createById=" + createById +
                 ", createDateTime=" + createDateTime +
                 ", likenum=" + likenum +
                 ", replynum=" + replynum +
                 ", state=" + state +
-                ", articleId=" + articleId +
-                ", parentId=" + parentId +
+                ", questionId=" + questionId +
+                ", parentId='" + parentId + '\'' +
                 '}';
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -71,12 +78,20 @@ public class Discuss implements Serializable {
         this.userID = userID;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getCreateByName() {
+        return createByName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setCreateByName(String createByName) {
+        this.createByName = createByName;
+    }
+
+    public Long getCreateById() {
+        return createById;
+    }
+
+    public void setCreateById(Long createById) {
+        this.createById = createById;
     }
 
     public Date getCreateDateTime() {
@@ -111,36 +126,37 @@ public class Discuss implements Serializable {
         this.state = state;
     }
 
-    public Long getArticleId() {
-        return articleId;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
-    public Discuss() {
+    public QuestionDiscuss() {
     }
 
-    public Discuss(Long id, String content, Date publishtime, Long userID, String nickname, Date createDateTime, Long likenum, Long replynum, Integer state, Long articleId, Long parentId) {
+    public QuestionDiscuss(String id, String content, Date publishtime, Long userID, String createByName, Long createById, Date createDateTime, Long likenum, Long replynum, Integer state, Long questionId, String parentId) {
         this.id = id;
         this.content = content;
         this.publishtime = publishtime;
         this.userID = userID;
-        this.nickname = nickname;
+        this.createByName = createByName;
+        this.createById = createById;
         this.createDateTime = createDateTime;
         this.likenum = likenum;
         this.replynum = replynum;
         this.state = state;
-        this.articleId = articleId;
+        this.questionId = questionId;
         this.parentId = parentId;
     }
 }
