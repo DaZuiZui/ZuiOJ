@@ -74,6 +74,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
 
 
         JSONObject request = new JSONObject();
+        System.err.println(questionCases);
         for (QuestionCase questionCase : questionCases) {
             programBo.setInput(questionCase.getInputs());
                 //发起请求
@@ -159,9 +160,11 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         //查看是否结束
         Date endTime = contest.getEndTime();
         Date cur = new Date();
-
-        int b = endTime.compareTo(cur);
-        return b < 0;
+        System.out.println(endTime);
+        System.out.println(cur);
+        System.out.println(endTime.after(cur));
+        //int b = endTime.compareTo(cur);
+        return endTime.after(cur);
     }
 
 }

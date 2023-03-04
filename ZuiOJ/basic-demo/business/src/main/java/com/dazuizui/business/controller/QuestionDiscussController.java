@@ -3,6 +3,7 @@ package com.dazuizui.business.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.QueryQuestionDiscussBo;
 import com.dazuizui.business.domain.bo.SubmitDiscussBo;
 import com.dazuizui.business.service.blog.QuestionDiscussService;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -20,6 +21,20 @@ import java.util.Map;
 public class QuestionDiscussController {
     @Autowired
     private QuestionDiscussService discussService;
+
+    /**
+     * 通过问题id查询评论
+     */
+    @ApiOperation("查询评论")
+    @GetMapping("/queryDiscuss")
+    public String queryQuestionDiscuss(@RequestBody QueryQuestionDiscussBo queryQuestionDiscussBo){
+        if (queryQuestionDiscussBo == null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null,StatusCodeMessage.IsNull));
+        }
+
+        return discussService.queryQuestionDiscuss(queryQuestionDiscussBo);
+    }
+
     /**
      * 提交评论
      * @return

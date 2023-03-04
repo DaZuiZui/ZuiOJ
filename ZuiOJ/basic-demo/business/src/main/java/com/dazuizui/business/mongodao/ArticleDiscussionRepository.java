@@ -16,4 +16,12 @@ public interface ArticleDiscussionRepository extends MongoRepository<QuestionDis
      * @return
      */
     Page<QuestionDiscuss> findByParentId(Long parentId, Pageable pageable);
+
+    /**
+     * 通过问题主键分页查询
+     * @param questionId
+     * @param pageable
+     * @return
+     */
+    Page<QuestionDiscuss> findByQuestionId(Long questionId,Pageable pageable);
 }

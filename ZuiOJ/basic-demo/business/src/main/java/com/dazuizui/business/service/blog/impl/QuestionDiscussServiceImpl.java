@@ -5,13 +5,24 @@ import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.QuestionDiscuss;
+import com.dazuizui.business.domain.bo.QueryQuestionDiscussBo;
+import com.dazuizui.business.domain.vo.QueryQuestionDiscussVo;
 import com.dazuizui.business.mongodao.ArticleDiscussionRepository;
 import com.dazuizui.business.service.blog.QuestionDiscussService;
 import com.dazuizui.business.util.ThreadLocalUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.PageRequest;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 评论控制器业务实现层
@@ -22,6 +33,19 @@ public class QuestionDiscussServiceImpl implements QuestionDiscussService {
     @Autowired
     private ArticleDiscussionRepository articleDiscussionRepository;
 
+
+    /**
+     * 通过问题id查询评论
+     */
+    @Override
+    public String queryQuestionDiscuss(QueryQuestionDiscussBo queryQuestionDiscussBo){
+        //分页查询
+        Page<QuestionDiscuss> byQuestionId = articleDiscussionRepository.findByQuestionId(queryQuestionDiscussBo.getQuestionId(), PageRequest.of(queryQuestionDiscussBo.getPage(), queryQuestionDiscussBo.getSize()));
+        long totalElements = byQuestionId.getTotalElements();
+        List<QuestionDiscuss> content = byQuestionId.getContent();
+        QueryQuestionDiscussVo queryQuestionDiscussVo =new QueryQuestionDiscussVo(totalElements,content);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryQuestionDiscussVo, StatusCode.OK));
+    }
     /**
      * 提交评论
      * @param discuss
