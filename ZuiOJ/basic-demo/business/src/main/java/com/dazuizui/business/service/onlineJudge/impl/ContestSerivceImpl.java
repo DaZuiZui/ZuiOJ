@@ -39,7 +39,11 @@ public class ContestSerivceImpl implements ContestSerivce {
     @Override
     @Transactional
     public String postContest(Contest conTest) {
-        System.out.println(conTest);
+        //设置创建人
+        String strId = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        Long id = Long.valueOf(strId);
+        conTest.setCreateById(id);
+
         long l = conTestMapper.insertConTest(conTest);
         if (l == 0){
             //todo error

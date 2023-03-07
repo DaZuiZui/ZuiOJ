@@ -17,6 +17,7 @@
                       <tr>
                         <th scope="col" width="90px">&nbsp;# </th>
                         <th scope="col">用户名</th>
+                        <th scope="col">用户名</th>
                         <th scope="col">性别</th>
                         <th scope="col">管理权限</th>
                         <th scope="col">头像</th>
@@ -40,6 +41,11 @@
                             </b>
                         </td>
                         <td>
+                          <b>
+                              {{obj.name}}
+                          </b>
+                      </td>
+                        <td>
                             <b>
                               <a style="color:" href="" @click="goViewQuestion(obj.id)">
                                 <div v-if="obj.sex == 1">
@@ -58,6 +64,9 @@
                            <div v-else-if="obj.role == 4">
                                 开发者
                            </div>
+                           <div v-else-if="obj.role == 1">
+                                用户  
+                          </div>
                            <div v-else>
                                 管理员等级{{obj.role}}
                            </div>

@@ -60,7 +60,7 @@
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover" v-else>
                                 <a class="nav-link"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goContestList()">Contest</a>
                                 <div class="dropdown-menu dropdown-menu-single">
-                                    <a href="" class="dropdown-item" @click="goCreateContest()">出题人页面</a>
+                                    <a href="" class="dropdown-item" @click="goCreateContest()">创建比赛</a>
                                 </div>
                             </li>
 

@@ -71,7 +71,7 @@
                     <div class="row align-items-center justify-content-md-between pb-4">
                         <div class="col-md-6">
                             <div class="copyright text-sm font-weight-bold text-center text-md-left">
-                                &copy; 2019-2022 <a href="https://webpixels.io" class="font-weight-bold" target="_blank">杨易达(Bryan yang)</a>. All rights reserved
+                                &copy; 2019-2022 <a href="https://webpixels.io" class="font-weight-bold" target="_blank">张义嘉老师团队</a>. All rights reserved
                             </div>
                         </div>
                         <div class="col-md-6">

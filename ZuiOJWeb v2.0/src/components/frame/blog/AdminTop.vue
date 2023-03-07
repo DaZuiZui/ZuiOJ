@@ -222,7 +222,7 @@ import { synRequestGet } from '../../../../static/request';
 
         //比赛列表
         goContestList(){
-            this.$router.push('/cn/contest/list');
+            this.$router.push('/cn/admin/contest');
         },
         //去创建比赛
         goCreateContest(){

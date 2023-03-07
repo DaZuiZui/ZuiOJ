@@ -13,7 +13,7 @@ public class Contest implements Serializable {
     private Date endTime;   //结束时间
     private String mdText;  //md文档
     private String htmlText;//html文档
-    private String createById; //创建者ID
+    private Long createById; //创建者ID
     private String createByName; //创建者name
     private Date createTime; //创建时间
     private String updateById; //修改者ID
@@ -24,7 +24,6 @@ public class Contest implements Serializable {
     private int contestType;
     private int parsingRule;
     private int postMatchProcessing;    //赛后处理方式
- 
 
     @Override
     public String toString() {
@@ -35,7 +34,7 @@ public class Contest implements Serializable {
                 ", endTime=" + endTime +
                 ", mdText='" + mdText + '\'' +
                 ", htmlText='" + htmlText + '\'' +
-                ", createById='" + createById + '\'' +
+                ", createById=" + createById +
                 ", createByName='" + createByName + '\'' +
                 ", createTime=" + createTime +
                 ", updateById='" + updateById + '\'' +
@@ -97,11 +96,11 @@ public class Contest implements Serializable {
         this.htmlText = htmlText;
     }
 
-    public String getCreateById() {
+    public Long getCreateById() {
         return createById;
     }
 
-    public void setCreateById(String createById) {
+    public void setCreateById(Long createById) {
         this.createById = createById;
     }
 
@@ -188,7 +187,7 @@ public class Contest implements Serializable {
     public Contest() {
     }
 
-    public Contest(long id, String name, Date startTime, Date endTime, String mdText, String htmlText, String createById, String createByName, Date createTime, String updateById, String updateByName, Date updateTime, int status, int delFlag, int contestType, int parsingRule, int postMatchProcessing) {
+    public Contest(long id, String name, Date startTime, Date endTime, String mdText, String htmlText, Long createById, String createByName, Date createTime, String updateById, String updateByName, Date updateTime, int status, int delFlag, int contestType, int parsingRule, int postMatchProcessing) {
         this.id = id;
         this.name = name;
         this.startTime = startTime;

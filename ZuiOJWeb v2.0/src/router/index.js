@@ -28,7 +28,7 @@ import BlogIndex from '@/components/view/main/cn/blog/BlogIndex'
 import BlogRoll from '@/components/view/main/cn/blogroll/BlogRoll'
 import DetailedArticle from '@/components/view/main/cn/blog/DetailedArticle'
 import QuestionDiscuss from '@/components/view/main/cn/question/QuestionDiscuss'
-
+import ContestAdmin from '@/components/view/main/cn/admin/AdminContest'
 
 Vue.use(Router)
 
@@ -40,6 +40,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //竞赛管理页面
+    {
+      path: '/cn/admin/contest',
+      name: 'adminContest',
+      component: ContestAdmin
     },
     //问题讨论
     {

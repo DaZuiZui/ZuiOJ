@@ -1,13 +1,18 @@
 package com.dazuizui.business.controller;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 竞赛接口
@@ -30,6 +35,12 @@ public class ConTestController {
     @ApiOperation("提交比赛")
     @PostMapping("/postContest")
     public String postContest(@RequestParam("Idemtoken")String Idemtoken,@RequestParam("token")String token,@RequestBody Contest conTest){
+        //身份验证过期
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
         return conTestSerivce.postContest(conTest);
     }
 
