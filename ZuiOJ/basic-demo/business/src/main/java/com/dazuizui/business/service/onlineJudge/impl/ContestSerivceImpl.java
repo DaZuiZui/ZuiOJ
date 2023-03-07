@@ -3,8 +3,12 @@ package com.dazuizui.business.service.onlineJudge.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
+import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ContestInfoVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
+import com.dazuizui.business.domain.vo.AdminQueryGameInformationByPageVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
@@ -12,6 +16,7 @@ import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -30,6 +35,23 @@ public class ContestSerivceImpl implements ContestSerivce {
     @Autowired
     private CompetitionInfoMapper competitionInfoMapper;
 
+    /**
+     * 管理员分页查询数据
+     * @param adminQueryGameInformationByPageBo
+     * @return
+     */
+    @Override
+    public String adminQueryGameInformationByPage( AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo){
+
+        //获取比赛数据
+        List<Contest> contests = conTestMapper.adminQueryGameInformationByPage(adminQueryGameInformationByPageBo);
+        //查询多少个比赛
+        Long count = conTestMapper.queryCoubtOfContest();
+        AdminQueryGameInformationByPageVo adminQueryGameInformationByPageVo = new AdminQueryGameInformationByPageVo();
+        adminQueryGameInformationByPageVo.setList(contests);
+        adminQueryGameInformationByPageVo.setCount(count);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,adminQueryGameInformationByPageVo, StatusCode.OK));
+    }
 
     /**
      * 创建比赛
@@ -43,7 +65,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         String strId = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
         Long id = Long.valueOf(strId);
         conTest.setCreateById(id);
-
+        conTest.setCreateTime(new Date());
         long l = conTestMapper.insertConTest(conTest);
         if (l == 0){
             //todo error

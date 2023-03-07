@@ -3,6 +3,39 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ContestMapper">
+    <!--
+        查询多少个比赛，等待优化
+    -->
+    <select id="queryCoubtOfContest" resultType="long">
+        select
+            count(0)
+        from
+            contest
+    </select>
+
+    <!--
+        管理员分页查询所有比赛信息
+    -->
+    <select id="adminQueryGameInformationByPage" resultType="com.dazuizui.basicapi.entry.Contest">
+        SELECT
+            c.id,
+            c.start_time,
+            c.name,
+            c.end_time,
+            c.contest_type,
+            c.post_match_processing,
+            c.create_by_id,
+            c.create_time,
+            c.status,
+            c.create_time,
+            c.del_flag,
+            (SELECT name from user where id = c.create_by_id LIMIT 1) AS 'create_by_name'
+        from
+            contest c
+            limit
+            #{page},#{size}
+    </select>
+
     <select id="getQuestionListInContest" resultType="com.dazuizui.basicapi.entry.QuestionBank">
 
     </select>

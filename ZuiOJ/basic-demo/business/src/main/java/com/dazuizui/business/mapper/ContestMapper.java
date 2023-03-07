@@ -3,6 +3,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.QuestionBank;
+import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,19 @@ import java.util.List;
 
 @Mapper
 public interface ContestMapper {
+    /**
+     * 查询一共多少个比赛，等待优化
+     * @return
+     */
+    public Long queryCoubtOfContest();
+
+    /**
+     * 管理员分页查询数据
+     * @param adminQueryGameInformationByPageBo
+     * @return
+     */
+    public List<Contest> adminQueryGameInformationByPage(AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo);
+
     /**
      * 插入比赛记录
      * @param conTest

@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -26,6 +27,17 @@ public class ConTestController {
 
     @Autowired
     private ContestSerivce conTestSerivce;
+
+    /**
+     * 管理员分页查询比赛数据
+     * @param adminQueryGameInformationByPageBo
+     * @return
+     */
+    @PostMapping("/adminQueryGameInformationByPage")
+    @ApiOperation("管理员分页获取数据")
+    public String adminQueryGameInformationByPage(@RequestBody AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo){
+        return conTestSerivce.adminQueryGameInformationByPage(adminQueryGameInformationByPageBo);
+    }
 
     /**
      * 提交比赛

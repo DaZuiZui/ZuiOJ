@@ -2,9 +2,12 @@ package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
+import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 
 /**
@@ -13,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Service
 public interface ContestSerivce {
+    /**
+     * 管理员分页查询数据
+     * @param adminQueryGameInformationByPageBo
+     * @return
+     */
+    public String adminQueryGameInformationByPage(AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo);
     /**
      * 提交赛制
      * @param conTest
