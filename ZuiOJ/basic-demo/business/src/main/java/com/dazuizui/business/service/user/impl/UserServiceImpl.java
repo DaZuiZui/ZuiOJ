@@ -43,6 +43,16 @@ public class UserServiceImpl implements UserService {
     private TransactionUtils transactionUtils;
 
     /**
+     * 查询网站管理人员
+     * todo 缓存层优化
+     * @return
+     */
+    public String queryListOfAdmin(){
+        List<String> list = userMapper.queryListOfAdmin();
+        System.out.println(list);
+        return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,list,StatusCode.OK));
+    }
+    /**
      * 通过id物理删除用户
      * @param deleteUserByIdBo
      * @return

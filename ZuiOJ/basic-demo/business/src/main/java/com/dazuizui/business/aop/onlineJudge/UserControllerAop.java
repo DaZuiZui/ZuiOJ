@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 用户控制器切面
@@ -14,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @Component
 public interface UserControllerAop {
+    /**
+     * 查询网站管理人员 主要查看是否为管理员权限
+     * @return
+     */
+    public String queryListOfAdmin(JoinPoint joinpoint) throws Exception;
+
     /**
      * 用户切面aop
      *      鉴权是权限是否足够，登入验证身份是否过期

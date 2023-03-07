@@ -15,9 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Service
 public interface UserService {
-
+    /**
+     * 查询网站管理人员
+     * @return
+     */
+    public String queryListOfAdmin();
     /**
      * 通过id物理删除用户
      * @param deleteUserByIdBo

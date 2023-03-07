@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -24,6 +25,44 @@ import java.util.Map;
 public class UserControllerAopImpl implements UserControllerAop {
     @Autowired
     private UserService userService;
+
+    /**
+     * 查询管理员人员，查询是否为管理员身份
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.UserController.queryListOfAdmin(..))")
+    public String queryListOfAdmin(JoinPoint joinpoint) throws Exception{
+        Object[] args = joinpoint.getArgs();
+        ;
+        Map<String, Object> map = null;
+        String token = (String) args[0];
+        //System.err.println("toekn si "+token);
+        if (token != null){
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+            } catch (Exception e) {
+
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+                return null;
+            }
+        }
+        // System.err.println("??"+map);
+        Long id = Long.valueOf((String) map.get("id"));
+        User user = userService.queryUserById(id);
+        Integer role = user.getRole();
+        if (role < 4){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.insufficientPermissions);
+            return null;
+        }
+
+        return null;
+    }
 
     /**
      * 批量逻辑删除aop

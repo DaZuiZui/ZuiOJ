@@ -1,6 +1,8 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
@@ -15,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +30,16 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    /**
+     * 查询网站管理人员
+     * @return
+     */
+    @ApiOperation("查询网站管理人员")
+    @GetMapping("/admin/queryListOfAdmin")
+    public String queryListOfAdmin(@RequestParam("token")String token){
+        return userService.queryListOfAdmin();
+    }
 
     /**
      * 通过id物理删除用户

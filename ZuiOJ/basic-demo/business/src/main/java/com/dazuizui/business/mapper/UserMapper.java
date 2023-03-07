@@ -13,6 +13,12 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     /**
+     * 查询网站管理人员
+     * @return
+     */
+    public List<String> queryListOfAdmin();
+
+    /**
      * 用户登入
      * @param user
      * @return

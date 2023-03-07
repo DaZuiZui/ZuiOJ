@@ -16,7 +16,7 @@
             </div>
         </div>
         <a   class="btn btn-block btn-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;color:aliceblue" target="_blank">
-            <strong>杨易达(Dazui)的博客</strong>   From www.dazuizui.com  
+            <strong>管理系统</strong>   From 张义嘉老师团队专业社团   测试中
         </a>
 
         <div>
