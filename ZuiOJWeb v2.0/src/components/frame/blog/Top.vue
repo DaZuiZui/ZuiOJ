@@ -175,6 +175,7 @@ import { synRequestGet } from '../../../../static/request';
             headPortrait: "",
             role: -1
         },
+   
       }
     },
     mounted(){
