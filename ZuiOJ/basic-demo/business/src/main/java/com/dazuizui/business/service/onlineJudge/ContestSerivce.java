@@ -17,6 +17,12 @@ import java.util.List;
 @Service
 public interface ContestSerivce {
     /**
+     * 修改比赛信息
+     * @param contest
+     * @return
+     */
+    public String updateContest(Contest contest);
+    /**
      * 管理员分页查询数据
      * @param adminQueryGameInformationByPageBo
      * @return

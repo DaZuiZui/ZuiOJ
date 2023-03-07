@@ -4,6 +4,37 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ContestMapper">
     <!--
+        修改竞赛详细信息
+    -->
+    <update id="updateContestDetailed">
+        update
+            contest_detailed
+        set
+            md_text = #{mdText}
+        where
+            contest_id = #{id}
+    </update>
+
+    <!--
+        请修改比赛信息
+    -->
+    <update id="updateContest">
+        update
+            contest
+        set
+            name = #{name},
+            start_time = #{startTime},
+            end_time = #{endTime},
+            post_match_processing = #{postMatchProcessing},
+            contest_type = #{contestType},
+            parsing_rule = #{parsingRule},
+            update_by_id = #{updateById},
+            update_time  = #{updateTime}
+        where
+            id = #{id}
+    </update>
+
+    <!--
         查询多少个比赛，等待优化
     -->
     <select id="queryCoubtOfContest" resultType="long">
@@ -29,6 +60,7 @@
             c.status,
             c.create_time,
             c.del_flag,
+            c.parsing_rule,
             (SELECT name from user where id = c.create_by_id LIMIT 1) AS 'create_by_name'
         from
             contest c

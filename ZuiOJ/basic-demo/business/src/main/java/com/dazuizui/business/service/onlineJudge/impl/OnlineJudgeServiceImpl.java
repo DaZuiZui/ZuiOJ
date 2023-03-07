@@ -160,9 +160,9 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         //查看是否结束
         Date endTime = contest.getEndTime();
         Date cur = new Date();
-        System.out.println(endTime);
-        System.out.println(cur);
-        System.out.println(endTime.after(cur));
+       // System.out.println(endTime);
+        //System.out.println(cur);
+        //System.out.println(endTime.after(cur));
         //int b = endTime.compareTo(cur);
         return endTime.after(cur);
     }

@@ -14,6 +14,18 @@ import java.util.List;
 @Mapper
 public interface ContestMapper {
     /**
+     * 修改比赛信息
+     */
+    public Long updateContest(Contest contest);
+
+    /**
+     * 修改比赛详细信息
+     * @param contest
+     * @return
+     */
+    public Long updateContestDetailed(Contest contest);
+
+    /**
      * 查询一共多少个比赛，等待优化
      * @return
      */

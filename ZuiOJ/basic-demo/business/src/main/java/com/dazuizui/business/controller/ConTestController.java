@@ -29,6 +29,16 @@ public class ConTestController {
     private ContestSerivce conTestSerivce;
 
     /**
+     * 修改比赛信息
+     */
+    @ApiOperation("修改比赛信息")
+    @PostMapping("/updateContest")
+    public String updateContest(@RequestParam("token")String token,@RequestBody Contest contest){
+        //System.out.println(contest);
+        return conTestSerivce.updateContest(contest);
+    }
+
+    /**
      * 管理员分页查询比赛数据
      * @param adminQueryGameInformationByPageBo
      * @return

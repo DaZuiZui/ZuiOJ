@@ -1,10 +1,7 @@
 package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.CompetitionInfo;
-import com.dazuizui.basicapi.entry.Contest;
-import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.vo.ContestInfoVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
@@ -12,11 +9,16 @@ import com.dazuizui.business.domain.vo.AdminQueryGameInformationByPageVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
+import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
+import com.dazuizui.business.util.TransactionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -34,6 +36,49 @@ public class ContestSerivceImpl implements ContestSerivce {
     private ContestMapper conTestMapper;
     @Autowired
     private CompetitionInfoMapper competitionInfoMapper;
+    @Autowired
+    private RedisUtil redisUtil;
+    @Autowired
+    private TransactionUtils transactionUtils;
+    /**
+     * 修改比赛信息
+     * @param contest
+     * @return
+     */
+    @Override
+    public String updateContest(Contest contest){
+        TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        Long aLong = 0l;
+
+        try {
+            //修改竞赛简介信息
+            aLong = conTestMapper.updateContest(contest);
+            //添加失败
+            if (aLong == 0){
+               transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //修改竞赛详细Md文档信息
+            aLong = conTestMapper.updateContestDetailed(contest);
+            //添加失败
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //提交事物
+            transactionUtils.commit(transactionStatus);
+        } catch (Exception e) {
+            transactionUtils.rollback(transactionStatus);
+            e.printStackTrace();
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        //修改redis
+        redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo,RedisKey.OutTime,contest);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
 
     /**
      * 管理员分页查询数据
@@ -128,7 +173,6 @@ public class ContestSerivceImpl implements ContestSerivce {
         ContestInfoVo contestInfoVo = new ContestInfoVo();  //返回数据
 
         Map<String, Object> map = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
-        System.err.println(map);
         String idInJWTString = (String) map.get("id");
         Long idInJWt = Long.valueOf(idInJWTString);
         CompetitionInfo competitionInfo = new CompetitionInfo();

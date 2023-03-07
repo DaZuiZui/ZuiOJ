@@ -47,6 +47,7 @@
                             </select>
                         </div>
 
+                        
                         <b>赛制选择</b> 
                         <select class="form-control form-control-lg" v-model="conTestInfo.parsingRule">
                             <option value="-1"  disabled>--请选择比赛赛制--</option>
@@ -62,20 +63,27 @@
                             <option value="1">赛后题目转为公开题目</option>
                             <option value="2">赛后题目转为私有题目</option>
                         </select>
+                         
+                        <b>比赛时间(请选择北京时间)</b>
 
-                        <b>比赛时间</b> 
                         <div class="block">
-                            <span class="demonstration">请选择北京时间：</span>
+                            <span class="demonstration">开始时间</span>
                             <el-date-picker
-                            v-model="timeInterval"
-                            type="datetimerange"
-                            :picker-options="pickerOptions"
-                            range-separator="至"
-                            start-placeholder="开始日期"
-                            end-placeholder="结束日期"
-                            align="right">
+                              v-model="conTestInfo.startTime"
+                              type="datetime"
+                              value-format="yyyy-MM-dd HH:mm:ss"
+                              placeholder="选择日期时间">
+                            </el-date-picker>
+                            <span class="demonstration">结束时间</span>
+                            <el-date-picker
+                                value-format="yyyy-MM-dd HH:mm:ss"
+                                v-model="conTestInfo.endTime"
+                                type="datetime"
+                                placeholder="选择日期时间">
                             </el-date-picker>
                         </div>
+      
+                
 
                         <b>比赛介绍</b>     
                         <!--编辑器区域-->
@@ -139,6 +147,7 @@
                 },
 
                conTestInfo:{
+                    id: -1,
                     postMatchProcessing: -1,
                     mdText: "",
                     htmlText: "",
@@ -153,17 +162,35 @@
                buttonSwitch: false,
 
                nonPowerToken: "",
+             
                //比赛时间区间
-               timeInterval: [new Date(), new Date()],
+               timeInterval: [new Date(),new Date()],
+           
             }
        },
   
        mounted(){
+            //this.timeInterval[0] = new Date(2016, 9, 10, 8, 40);
             //获取幂等性token
             this.getNonPowerToken();
+            //获取比赛信息
+            this.getContestInfo();
+
+            console.log(this.timeInterval);
        },
   
        methods: {
+            //获取比赛信息
+            async getContestInfo(){
+                let contest = await synRequestGet("/contest/getEventById?toekn="+getCookie("token")+"&id="+getQueryVariable("contestId"));
+                this.conTestInfo = contest.data.contest;
+        
+                
+                
+                //alert("??");
+                //console.log(this.conTestInfo);
+                return [null,null];
+            },
             //防止幂等性
             async getNonPowerToken(){
                 var object = await synRequestGet("/system/getNonPowerTokenString");
@@ -181,18 +208,10 @@
 
             async submit(){
                 this.buttonSwitch = !this.buttonSwitch;
-                this.conTestInfo.startTime = this.timeInterval[0];
-                this.conTestInfo.endTime   = this.timeInterval[1];
                 this.conTestInfo.Idemtoken = this.nonPowerToken;
-                var object = null;
-                try{
-                    object = await synRequestPost("/contest/postContest?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.conTestInfo);
-                    //重新获取幂等性token
-                    this.getNonPowerToken();
-                    alert("添加成功");
-                    this.buttonSwitch = !this.buttonSwitch;
-                }catch(e){
-                    alert("异常操作，未获取幂等性");
+                let obj = await synRequestPost("/contest/updateContest?token="+getCookie("token"),this.conTestInfo);
+                if(obj){
+                    alert("修改成功");
                     this.buttonSwitch = !this.buttonSwitch;
                 }
             }

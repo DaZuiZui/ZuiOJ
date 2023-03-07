@@ -44,7 +44,7 @@
                         <td>
                             <div>
                                 <el-link type="primary">取消比赛</el-link>
-                                <el-link type="success" @click="updateContest(obj.id)">修改比赛</el-link>
+                                <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
                                 <el-link type="danger">增加参赛人员</el-link>
                                 <el-link type="danger">查看日记</el-link>
                             </div>
@@ -102,9 +102,9 @@
             }
         },
         //修改比赛
-        updateContest(id){
+        updateContest(id,date){
       
-            this.$router.push('/cn/question/create?contestId='+id);
+            this.$router.push('/cn/admin/updatecontest?contestId='+id+"&startTime="+date);
         }
     }
   }
