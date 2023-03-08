@@ -46,13 +46,20 @@
                                 <el-link type="primary">取消比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
                                 <el-link type="danger">增加参赛人员</el-link>
-                                <el-link type="danger">查看日记</el-link>
+                                <el-link type="danger" @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                
+                  <!--分页部分-->
+                  <el-pagination
+                    :page-size="50"
+                    :pager-count="11"
+                    @current-change="getMerchantInformation"
+                    layout="prev, pager, next"
+                    :total="count">
+                  </el-pagination>
             </div>
         </section>
  
@@ -94,9 +101,8 @@
             this.adminQueryGameInformationByPageBo.page = val-1;
             //获取数据
             let obj = await synRequestPost("/contest/adminQueryGameInformationByPage",this.adminQueryGameInformationByPageBo);
-            console.log(obj);
-            if(obj){
-               
+            
+            if(check(obj)){
                 this.list = obj.data.list;
                 this.count = obj.data.count;
             }
@@ -105,6 +111,11 @@
         updateContest(id,date){
       
             this.$router.push('/cn/admin/updatecontest?contestId='+id+"&startTime="+date);
+        },
+
+        //查看提交日志
+        AdminViewContestSubmissionLog(id){
+          this.$router.push("/c/admin/AdminViewContestSubmissionLog?id="+id);
         }
     }
   }

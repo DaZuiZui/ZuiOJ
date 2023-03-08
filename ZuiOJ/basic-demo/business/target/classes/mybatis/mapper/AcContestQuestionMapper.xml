@@ -4,6 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
     <!--
+        清除本次比赛的所有提交记录
+    -->
+    <delete id="removeAllContestSubmissionLogbyContestId">
+        delete
+            *
+        from
+            ac_contest_question
+        where
+            contest_id = #{id}
+    </delete>
+
+    <!--
+        查看比赛提交日志
+    -->
+    <select id="queryContestSubmissionLog" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">
+        select
+            id,
+            question_id,
+            user_id,
+            number_of_attempts,
+            first_ac,
+            create_by_name,
+            create_time,
+            status
+        from
+            ac_contest_question
+        where
+            contest_id = #{contestId}
+        limit
+            #{page},#{size}
+    </select>
+
+    <!--
         创建提交记录
     -->
     <insert id="acTheQuestionInDB">

@@ -152,6 +152,11 @@
         goQuestionCaseManagement(id){
             this.$router.push('/cn/admin/question/case/list?id='+id);
         },
+
+        //查看提交日志
+        AdminViewContestSubmissionLog(id){
+          this.$router.push("/c/admin/AdminViewContestSubmissionLog?id="+id);
+        }
     }
   }
   </script>

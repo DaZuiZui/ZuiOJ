@@ -1,13 +1,21 @@
 package com.dazuizui.business.service.onlineJudge.impl;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.AcContestQuestion;
+import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
+import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 比赛题目提交业务层操作
@@ -16,6 +24,24 @@ import java.util.Date;
 public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     @Autowired
     private AcContestQuestionMapper acContestQuestionMapper;
+
+    /**
+     * 查看本题提交日志
+     * @return
+     */
+    public String queryContestSubmissionLog(QueryContestSubmissionLogBo queryContestSubmissionLogBo){
+        //查询分页数据
+        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryContestSubmissionLog(queryContestSubmissionLogBo);
+        //查询个数
+        //todo 赶工期，暂不优化，等主要功能开发完毕回来优化
+        Long count = acContestQuestionMapper.queryCount(queryContestSubmissionLogBo.getContestId());
+        //封装
+        QueryContestSubmissionLogVo queryContestSubmissionLogVo = new QueryContestSubmissionLogVo();
+        queryContestSubmissionLogVo.setId(count);
+        queryContestSubmissionLogVo.setAcContestQuestions(acContestQuestions);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryContestSubmissionLogVo, StatusCode.OK));
+    }
 
     /**
      * 提交答案
