@@ -2,6 +2,7 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.aop.onlineJudge.CompetitionQuestionBankAop;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
@@ -61,8 +62,8 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
         CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
         if (competitionInfoInDB == null) {
             //todo 用户无比赛权限
-            ThreadLocalUtil.mapThreadLocal.get().put("error","0x8769");
-            System.err.println("添加成功");
+            ThreadLocalUtil.mapThreadLocal.get().put("error", StatusCodeMessage.NotAuthorizedToContest);
+            ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.NotAuthorizedToContest);
 
             return null;
         }

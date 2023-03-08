@@ -30,6 +30,11 @@ public class CompetitionQuestionBankController {
     @ApiOperation("获取比赛题目")
     @GetMapping("/getQuestionListInContest")
     public String getQuestionListInContest(@RequestParam("token")String token, @RequestParam("contestId")Long contestId){
+        //报错排查
+        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+        }
+
         return competitionQuestionBankService.getQuestionListInContest(contestId);
     }
 

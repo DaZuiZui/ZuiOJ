@@ -30,7 +30,7 @@
                     <!--报名-->
                     <div v-if="checkForEntry == false && new Date() <= new Date(contest.endTime) && new Date() >= new Date(contest.startTime) ">
                         <div class="alert alert-danger" role="alert">
-                            TLMOJ：此比赛已经截至报名时间，但是你可以查看比赛的现场直播<a href="#" class="alert-link">查看现场直播</a>. 
+                            TLMOJ：此比赛已经截至报名时间，但是你可以查看比赛的现场直播<a href="#" class="alert-link" @click="goRankList()">查看现场直播</a>. 
                         </div>
                     </div>
                      <!--报名-->
@@ -265,6 +265,11 @@
                     this.seconds -= 1
                     this.countDown()
                 }, 1000)
+            },
+
+            //查看本次比赛的排榜
+            goPastEvents(id){
+                this.$router.push("/cn/contest/viewRank?contestId="+id);
             },
 
             //防止幂等性

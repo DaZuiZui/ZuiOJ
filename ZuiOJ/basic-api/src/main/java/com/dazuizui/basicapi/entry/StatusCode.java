@@ -22,5 +22,6 @@ public class StatusCode  {
     public static final String DateIsNull = "0x503";
     //无权查看文章
     public static final String NotAuthorizedToView = "0x504";
-
+    //无权查看比赛
+    public static final String NotAuthorizedToContest = "0x505";
 }

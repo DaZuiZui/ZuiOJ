@@ -24,4 +24,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String NotAuthorizedToView = "无权查看";
     //未知错误
     public static final String UnknowError = "未知错误";
+    //您没有参加比赛
+    public static final String NotAuthorizedToContest = "您没有参加比赛";
 }

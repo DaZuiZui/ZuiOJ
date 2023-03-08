@@ -38,11 +38,7 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
      */
     @Override
     public String getQuestionListInContest(Long contestId) {
-        //报错排查
-        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
-            String errocode = ThreadLocalUtil.mapThreadLocal.get().get("error");
-            //todo 查询错误代码返回信息
-        }
+
 
         //获取比赛人ID
         String idstring = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
