@@ -1,0 +1,185 @@
+<template>
+    <div class="hello">
+        <div>
+            <Top></Top>
+        </div>
+
+        <!-- Main content -->
+        <section  style="background-color:#f9f9f9">
+            <div class="container">
+                <br>
+                Hi管理员，如果竞赛过程中不出现问题坚决不可以对此数据进行操作，为了确保数据不被误删，此页面不提供批量清除，如果你想重置本次比赛请<a href="#">点击我</a>
+                <br>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" width="90px"></th>
+                        <th scope="col">问题主键id</th>
+                        <th scope="col">提交用户</th>
+                        <th scope="col">尝试次数</th>
+                        <th scope="col">首次尝试</th>
+                        <th scope="col">首次ac时间</th>
+                        <th scope="col">状态</th>
+                        <th scope="col">OJ系统评估</th>
+                        <th scope="col">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="obj in list" >
+                        <th scope="row"></th>
+                        <td>
+                            <b>
+                                {{questionMap.get(obj.questionId)}}
+                            </b>
+                        </td>
+                        <td>
+                            <b>
+                              <a style="color:" href="" @click="goViewQuestion(obj.id)">
+                                {{obj.createByName}}
+                              </a>
+                            </b>
+                        </td>
+                        <td>
+                            <div   style="color:green">
+                                {{obj.numberOfAttempts}}
+                            </div>    
+                             
+                        </td>
+                        <td> {{obj.createTime}}</td>
+                        <td>
+                            <b v-if="obj.firstAc == null">暂无通过</b>
+                            {{obj.firstAc}}</td>
+                        <td> 
+                            <b v-if="obj.status == 1">
+                                <div   style="color:green">
+                                    通过
+                                </div>  
+                            </b>
+                            <b v-else-if="obj.status == 0">
+                                <div   >
+                                    尝试中
+                                </div>  
+                            </b>
+                        </td>
+                        <td>
+                            <div v-if="obj.numberOfAttempts <= 10"  style="color:green">
+                                正常比赛选手
+                            </div>
+                            <div v-else-if="obj.numberOfAttempts <= 15"  style="color:chocolate">
+                                可能需要帮助
+                            </div>
+                            <div v-else-if="obj.numberOfAttempts <= 20"  style="color:blue">
+                                请留意此比赛选手可能不会使用此系统
+                            </div>
+                            <div v-else  style="color:red">
+                                请观察此选手，ta大概率不会使用此系统
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <el-link type="primary">清除此人题记录</el-link>
+                                <el-link type="danger">强行通过此题</el-link>
+                                <el-link type="danger">封禁</el-link>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                
+            </div>
+        </section>
+ 
+        <footer class="position-relative" id="footer-main">
+            <Foot></Foot>
+        </footer>
+    </div>
+  </template>
+  
+  <script>
+  import Foot from '../../../../frame/blog/Foot.vue';
+  import Top  from '../../../../frame/blog/AdminTop.vue'
+import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+  export default {
+    name: 'HelloWorld',
+    components: {
+           Foot,Top
+      },
+    data () {
+      return {
+        msg: 'Welcome to Your Vue.js App',
+        questionMap: new Map(),
+        queryContestSubmissionLogBo: {
+            token: "",
+            page: -1,
+            size: 50,
+            contestId: -1,
+        },
+        list: [],
+        count: 0,
+      }
+    },
+    mounted(){
+        //初始化数据
+        this.queryContestSubmissionLogBo.contestId = getQueryVariable("id");
+        this.queryContestSubmissionLogBo.token = getCookie("token");
+        //获取比赛题目
+        this.getQuestionListOfContest();
+   
+ 
+    },
+    methods: {
+        /**
+         * 提交日志
+         */
+        async getContestSubmissionLog(page){
+            this.queryContestSubmissionLogBo.page = page -1;
+            //获取日志
+            let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
+            this.list = obj.data.acContestQuestions;
+            this.count = obj.data.count;
+        },
+
+        /**
+         *  获取比赛题目
+         */
+        async getQuestionListOfContest(){
+            let obj = await synRequestGet("/CompetitionQuestionBank/admin/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
+            let tmplist = obj.data;
+             
+            for(let i = 0 ; i < tmplist.length ; i++){
+                this.questionMap.set(tmplist[i].id,tmplist[i].chineseName);
+            }
+
+            //获取提交日志
+            this.getContestSubmissionLog(1);
+        },
+
+        async clearContestSubmissionLog(){
+
+        }
+        
+    }
+  }
+  </script>
+  
+  <!-- Add "scoped" attribute to limit CSS to this component only -->
+  <style scoped>
+  h1, h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  </style>
+  
