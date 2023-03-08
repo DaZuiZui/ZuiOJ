@@ -210,7 +210,8 @@
                 this.buttonSwitch = !this.buttonSwitch;
                 this.conTestInfo.Idemtoken = this.nonPowerToken;
                 let obj = await synRequestPost("/contest/updateContest?token="+getCookie("token"),this.conTestInfo);
-                if(obj){
+                
+                if(check(obj)){
                     alert("修改成功");
                     this.buttonSwitch = !this.buttonSwitch;
                 }

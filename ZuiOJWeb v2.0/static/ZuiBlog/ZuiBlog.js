@@ -38,6 +38,7 @@
      * @param {*} obj 
      */
     function check(obj){
+ 
         if(obj.code == '0x444'){
             alert(obj.message);
             //跳转登入页面
