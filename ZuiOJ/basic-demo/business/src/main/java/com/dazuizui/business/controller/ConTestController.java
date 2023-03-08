@@ -34,7 +34,13 @@ public class ConTestController {
     @ApiOperation("修改比赛信息")
     @PostMapping("/updateContest")
     public String updateContest(@RequestParam("token")String token,@RequestBody Contest contest){
-        //System.out.println(contest);
+        //身份验证过期
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
         return conTestSerivce.updateContest(contest);
     }
 
