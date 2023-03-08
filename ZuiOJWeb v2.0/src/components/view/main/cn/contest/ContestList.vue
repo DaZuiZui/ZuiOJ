@@ -173,7 +173,7 @@
                                     <tr class="el-table__row" v-for="(contest,index) in pastList" :key="index">
                                         <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
                                             <div class="cell">
-                                                <el-link type="primary">{{contest.name}}</el-link>
+                                                <el-link type="primary" @click="goPastEvents(contest.id)">{{contest.name}}</el-link>
                                             </div>
                                         </td>
                                         <td rowspan="1" colspan="1" class="el-table_4_column_11   el-table__cell">
@@ -237,10 +237,15 @@
        },
   
        methods: {
+            //查看进行时比赛
             goViewEvents(id){
                 this.$router.push('/cn/contest/viewEvents?id='+id);
             },
 
+            //查看过去时比赛
+            goPastEvents(id){
+                this.$router.push("/cn/contest/viewRank?contestId="+id);
+            },
             /*
              * 获取全部赛制
              */
@@ -250,6 +255,7 @@
                 this.pastList   =  object.data.past;
             },
 
+            
             toQuestion(){
                this.$router.push('/question/AnwserQuestion');
             }
