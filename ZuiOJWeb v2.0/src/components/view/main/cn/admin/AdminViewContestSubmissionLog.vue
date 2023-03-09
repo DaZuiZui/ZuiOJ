@@ -8,7 +8,7 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
-                Hi管理员，如果竞赛过程中不出现问题坚决不可以对此数据进行操作，为了确保数据不被误删，此页面不提供批量清除，如果你想重置本次比赛请<a href="#">点击我</a>
+                Hi管理员，如果竞赛过程中不出现问题坚决不可以对此数据进行操作，为了确保数据不被误删，此页面不提供批量清除，如果你想重置本次比赛请<a href="#" @click="clearContestSubmissionLog()">点击我</a>
                 <br>
                 <table class="table">
                     <thead>
@@ -80,7 +80,7 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="primary">清除此人题记录</el-link>
+                                <el-link type="primary" @click="deleteLogById(obj.id)">清除此人题记录</el-link>
                                 <el-link type="danger">强行通过此题</el-link>
                                 <el-link type="danger">封禁</el-link>
                             </div>
@@ -88,7 +88,14 @@
                       </tr>
                     </tbody>
                   </table>
-                
+                 <!--分页部分-->
+                  <el-pagination
+                    :page-size="50"
+                    :pager-count="11"
+                    @current-change="getMerchantInformation"
+                    layout="prev, pager, next"
+                    :total="count">
+                  </el-pagination>
             </div>
         </section>
  
@@ -119,6 +126,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         },
         list: [],
         count: 0,
+        cur: 1
       }
     },
     mounted(){
@@ -126,7 +134,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         this.queryContestSubmissionLogBo.contestId = getQueryVariable("id");
         this.queryContestSubmissionLogBo.token = getCookie("token");
         //获取比赛题目
-        this.getQuestionListOfContest();
+        this.getQuestionListOfContest(1);
    
  
     },
@@ -135,10 +143,15 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
          * 提交日志
          */
         async getContestSubmissionLog(page){
+            this.cur = page;
             this.queryContestSubmissionLogBo.page = page -1;
             //获取日志
             let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
             this.list = obj.data.acContestQuestions;
+            if(this.list == null && page > 1){
+                this.getContestSubmissionLog(page-1);
+                return;
+            }
             this.count = obj.data.count;
         },
 
@@ -157,8 +170,27 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
             this.getContestSubmissionLog(1);
         },
 
-        async clearContestSubmissionLog(){
 
+        /**
+         *  删除当前比赛的所有提交记录
+         */
+        async clearContestSubmissionLog(){
+            let obj = await synRequestPost("/AcContestQuestion/removeAllContestSubmissionLogbyContestId?token="+getCookie("token")+"&id="+getQueryVariable("id"));
+            if(check(obj)){
+                alert("清除成功");
+                this.getQuestionListOfContest(1);
+            }
+        },
+
+        /**
+         * 通过id删除提交日志
+         */ 
+        async deleteLogById(id){
+            let obj = await synRequestPost("/AcContestQuestion/deleteLogById?token="+getCookie("token")+"&id="+id);
+            if(check(id)){
+                alert("删除成功");
+                this.getQuestionListOfContest(this.page);
+            }
         }
         
     }

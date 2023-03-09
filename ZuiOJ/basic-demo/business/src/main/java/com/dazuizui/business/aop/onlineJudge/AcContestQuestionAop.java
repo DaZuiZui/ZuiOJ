@@ -15,4 +15,22 @@ public interface AcContestQuestionAop {
      * @throws Exception
      */
     public String queryContestSubmissionLog(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 移除当前比赛的所有提交记录
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String removeAllContestSubmissionLogbyContestId(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 通过id删除记录aop切面，主要负责查看是否为管理员权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String deleteLogById(JoinPoint joinpoint) throws Exception;
 }

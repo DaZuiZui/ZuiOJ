@@ -13,6 +13,13 @@ import java.util.List;
 @Service
 public interface AcContestQuestionSerivce {
     /**
+     * 删除此用户的提交记录通过Id
+     * @param id
+     * @return
+     */
+    public String deleteLogById(@Param("id")Long id);
+
+    /**
      * 提交答案
      */
     public void submitAnswer(AcContestQuestion acContestQuestion,String status);
@@ -22,4 +29,11 @@ public interface AcContestQuestionSerivce {
      * @return
      */
     public String queryContestSubmissionLog(QueryContestSubmissionLogBo queryContestSubmissionLogBo);
+
+    /**
+     * 移除本次比赛所有提交记录
+     * @param id
+     * @return
+     */
+    public String removeAllContestSubmissionLogbyContestId(@Param("id")Long id);
 }

@@ -26,6 +26,20 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     private AcContestQuestionMapper acContestQuestionMapper;
 
     /**
+     * 删除此用户的提交记录通过Id
+     * @param id
+     * @return
+     */
+    @Override
+    public String deleteLogById(@Param("id")Long id){
+        Long aLong = acContestQuestionMapper.deleteLogById(id);
+        if (aLong == 0){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
      * 查看本题提交日志
      * @return
      */
@@ -41,6 +55,17 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
         queryContestSubmissionLogVo.setAcContestQuestions(acContestQuestions);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryContestSubmissionLogVo, StatusCode.OK));
+    }
+
+    /**
+     * 移除当前比赛提交数据
+     * @param id
+     * @return
+     */
+    @Override
+    public String removeAllContestSubmissionLogbyContestId(Long id) {
+        Long aLong = acContestQuestionMapper.removeAllContestSubmissionLogbyContestId(id);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 
     /**
@@ -63,7 +88,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
          * 第一次提交就ac的情况
          */
         if (acContestQuestionInDB == null){
-            System.out.println(status);
+            System.out.println("??"+status);
             if (status.equals("Accepted")){
                 acContestQuestion.setFirstAc(new Date());
                 acContestQuestion.setNumberOfAttempts(0);

@@ -26,4 +26,6 @@ public class CompetitionInfoController {
         System.out.println(page+"c"+contestId);
         return competitionInfoService.viewRanking(contestId,page-1,25);
     }
+
+
 }

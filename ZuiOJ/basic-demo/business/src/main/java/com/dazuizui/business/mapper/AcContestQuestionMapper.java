@@ -14,6 +14,13 @@ import java.util.List;
 @Mapper
 public interface AcContestQuestionMapper {
     /**
+     * 删除此用户的提交记录通过Id
+     * @param id
+     * @return
+     */
+    public Long deleteLogById(@Param("id")Long id);
+
+    /**
      * todo 因为赶工期，暂不做优化，等主要功能忙完在回来优化
      * @param id
      * @return

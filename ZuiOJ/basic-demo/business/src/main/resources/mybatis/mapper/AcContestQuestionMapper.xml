@@ -4,11 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
     <!--
+        通过id主键删除提交记录
+    -->
+    <delete id="deleteLogById">
+        delete
+        from
+            ac_contest_question
+        where
+            id = #{id}
+    </delete>
+
+    <!--
         清除本次比赛的所有提交记录
     -->
     <delete id="removeAllContestSubmissionLogbyContestId">
         delete
-            *
+
         from
             ac_contest_question
         where
