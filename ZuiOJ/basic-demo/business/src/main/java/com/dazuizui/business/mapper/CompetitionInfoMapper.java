@@ -3,6 +3,8 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.GetTotal;
 import com.dazuizui.basicapi.entry.Ranking;
+import com.dazuizui.business.domain.CompetitionInfoInContest;
+import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -16,12 +18,28 @@ import java.util.List;
  */
 @Mapper
 public interface CompetitionInfoMapper {
+
+    /**
+     * 查询参赛选手的数量
+     * todo 因为赶项目，等忙完主线开发在回来优化
+     * @param contestId
+     * @return
+     */
+    @Select("select count(id) from competition_info where contest_id = #{contestId}")
+    public Long queryConQueryTheNumberOfContestantstest(@Param("contestId")Long contestId);
+
+    /**
+     * 分页查询参赛选手信息在当前比赛
+     * @param paglingQueryContestantsInThisContestBo
+     * @return
+     */
+    public List<CompetitionInfoInContest> paglingQueryContestantsInThisContest(PaglingQueryContestantsInThisContestBo paglingQueryContestantsInThisContestBo);
     /**
      * 通过比赛id查询该比赛的所有选手
      * @param id
      * @return
      */
-    @Select("select CONCAT('ZuiOJ:Conetst:CompetitionInfo:Contest:',contest_id,':',user_id) as 'str' from competition_info where contest_id = #{id}")
+    @Select("select CONCAT('ZuiOJ:Conetst:CompetitionInfoInContest:Contest:',contest_id,':',user_id) as 'str' from competition_info where contest_id = #{id}")
     public List<String> selectAllUserInTheContestByContestId(@Param("id")Long id);
 
     /**

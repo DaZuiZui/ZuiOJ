@@ -31,6 +31,7 @@ import QuestionDiscuss from '@/components/view/main/cn/question/QuestionDiscuss'
 import ContestAdmin from '@/components/view/main/cn/admin/AdminContest'
 import UpdateContestByAdmin from '@/components/view/main/cn/admin/adminUpdateContest'
 import AdminViewContestSubmissionLog from '@/components/view/main/cn/admin/AdminViewContestSubmissionLog'
+import AdminCompetitionInfoList from '@/components/view/main/cn/admin/AdminCompetitionInfoList'
 Vue.use(Router)
 
 export default new Router({
@@ -42,9 +43,15 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDemo
     },
+    //管理员查看参赛选手
+    {
+      path: '/cn/admin/AdminCompetitionInfoList',
+      name: 'AdminCompetitionInfoList',
+      component: AdminCompetitionInfoList
+    },
     //管理员查看竞赛提交日志
     {
-      path: '/c/admin/AdminViewContestSubmissionLog',
+      path: '/cn/admin/AdminViewContestSubmissionLog',
       name: 'AdminViewContestSubmissionLog',
       component: AdminViewContestSubmissionLog
     },

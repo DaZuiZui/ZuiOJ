@@ -47,7 +47,7 @@
                                 <el-link type="primary">取消比赛</el-link>
                                 <el-link type="primary" @click="removeTheContestById(obj.id)">移除比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
-                                <el-link type="danger">增加参赛人员</el-link>
+                                <el-link type="danger" @click="goCompetitioninfo(obj.id)">参赛人员</el-link>
                                 <el-link type="danger" @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
                             </div>
                         </td>
@@ -106,8 +106,8 @@
             //获取数据
             let obj = await synRequestPost("/contest/adminQueryGameInformationByPage",this.adminQueryGameInformationByPageBo);
             //如果当前页面没有数据了，且不是第一页那么就查看上一页的
-            if(obj.data.list == null && page > 1){
-              this.getMerchantInformation(page);  
+            if(obj.data.list == null && this.page > 1){
+              this.getMerchantInformation(this.page -1);  
               return;
             }
 
@@ -124,7 +124,7 @@
 
         //查看提交日志
         AdminViewContestSubmissionLog(id){
-          this.$router.push("/c/admin/AdminViewContestSubmissionLog?id="+id);
+          this.$router.push("/cn/admin/AdminViewContestSubmissionLog?id="+id);
         },
 
         /**
@@ -136,6 +136,11 @@
             alert("删除成功");
             this.getMerchantInformation(this.page);
           }
+        },
+
+        //查看参赛选手信息
+        goCompetitioninfo(id){
+          this.$router.push("/cn/admin/AdminCompetitionInfoList?id="+id);
         }
     }
   }
