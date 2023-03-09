@@ -44,6 +44,7 @@ public class ContestSerivceImpl implements ContestSerivce {
 
     /**
      * 移除比赛页面
+     * @Param id 比赛id
      */
     @Override
     public String removeTheContestById(Long id){
@@ -62,8 +63,15 @@ public class ContestSerivceImpl implements ContestSerivce {
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
             //todo 删除参赛选手信息
+            List<String> competitionInfos = competitionInfoMapper.selectAllUserInTheContestByContestId(id);
+            /**
+             * 删除redis中的缓存数据
+             */
+            redisUtil.batchDeletion(competitionInfos);
+            //删除数据库
+            competitionInfoMapper.deleteCompetitionInfoByContestId(id);
 
-            //删除redis
+            //删除redis 比赛详细页面
             redisUtil.deleteKey(RedisKey.ZuiOJContestInfo+id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -222,7 +230,15 @@ public class ContestSerivceImpl implements ContestSerivce {
         contestInfoVo.setContest(contest);
 
         //查看是否已经报名
-        CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
+
+        CompetitionInfo competitionInfoInDB = (CompetitionInfo) redisUtil.getStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id);
+        if (competitionInfoInDB == null){
+            competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
+            if (competitionInfoInDB != null){
+                redisUtil.setStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id,RedisKey.OutTime,competitionInfoInDB);
+            }
+        }
+
         if (competitionInfoInDB != null){
             contestInfoVo.setCheckForEntry(true);
             //todo 检测是否被封禁
@@ -234,6 +250,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         }
         //todo 是否满足获取题库
 
+        //未报名
         return JSONArray.toJSONString(new ResponseVo<>("获取赛制通过id",contestInfoVo,"200"));
     }
 

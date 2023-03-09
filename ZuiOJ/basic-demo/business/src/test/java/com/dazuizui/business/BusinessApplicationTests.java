@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.business.mapper.AttributeMapper;
 import com.dazuizui.business.mapper.BlogMapper;
+import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.messageQueue.blog.config.BlogSource;
 import com.dazuizui.business.service.student.StudentService;
 import com.dazuizui.business.util.RedisUtil;
@@ -42,10 +43,11 @@ class BusinessApplicationTests {
     @Autowired
     private BlogSource source;
 
-
+    @Autowired
+    private CompetitionInfoMapper competitionInfoMapper;
     @Test
     void test1(){
-        //System.err.println(source.addArticleOutput().send(MessageBuilder.withPayload("hello").build()));
+        System.out.println(competitionInfoMapper.selectAllUserInTheContestByContestId(37l));
     }
 
     @Autowired

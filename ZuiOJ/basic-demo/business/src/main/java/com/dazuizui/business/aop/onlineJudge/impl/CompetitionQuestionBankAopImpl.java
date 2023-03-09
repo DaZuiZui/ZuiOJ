@@ -1,13 +1,11 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
-import com.dazuizui.basicapi.entry.CompetitionInfo;
-import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.StatusCodeMessage;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.business.aop.onlineJudge.CompetitionQuestionBankAop;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
+import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,7 +28,8 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
     private CompetitionInfoMapper competitionInfoMapper;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * 获取比赛题目aop，主要负责鉴权是否报名此比赛，是否拥有资格获取此题库
      * @param joinpoint
@@ -59,7 +58,15 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
         CompetitionInfo competitionInfo = new CompetitionInfo();
         competitionInfo.setUserId(Long.valueOf((String) map.get("id")));
         competitionInfo.setContestId(contestId);
-        CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
+        CompetitionInfo competitionInfoInDB = (CompetitionInfo) redisUtil.getStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + contestId + ":" + competitionInfo.getUserId());
+
+        if (competitionInfoInDB == null){
+            competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
+            if (competitionInfoInDB != null){
+                redisUtil.setStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + contestId + ":" +  competitionInfo.getUserId(),RedisKey.OutTime,competitionInfoInDB);
+            }
+        }
+
         if (competitionInfoInDB == null) {
             //todo 用户无比赛权限
             ThreadLocalUtil.mapThreadLocal.get().put("error", StatusCodeMessage.NotAuthorizedToContest);

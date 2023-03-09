@@ -4,6 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
 
+    <!--
+        删除该比赛的所有参赛选手
+    -->
+    <delete id="deleteCompetitionInfoByContestId">
+        delete
+        from
+            ac_contest_question
+        where
+            contest_id = #{id}
+    </delete>
+
     <select id="getTotal" resultType="com.dazuizui.basicapi.entry.GetTotal">
         SELECT
             count(q1.contest_id) as 'count',

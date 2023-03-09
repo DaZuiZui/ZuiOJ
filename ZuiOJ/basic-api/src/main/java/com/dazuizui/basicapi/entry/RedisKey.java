@@ -46,5 +46,6 @@ public class RedisKey {
     //1 公开
     //2 删除
     public static final String ZuiOJQuestionStatusCount = "ZuiOJ:Question:Count:";
-
+    //比赛选手报名信息 RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id
+    public static final String ZuiOJConetstCompetitionInfo = "ZuiOJ:Conetst:CompetitionInfo:Contest:";
 }
