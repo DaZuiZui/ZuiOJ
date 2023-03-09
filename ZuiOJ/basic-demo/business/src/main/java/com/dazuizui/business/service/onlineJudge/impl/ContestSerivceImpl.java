@@ -12,6 +12,7 @@ import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
@@ -40,6 +41,40 @@ public class ContestSerivceImpl implements ContestSerivce {
     private RedisUtil redisUtil;
     @Autowired
     private TransactionUtils transactionUtils;
+
+    /**
+     * 移除比赛页面
+     */
+    @Override
+    public String removeTheContestById(Long id){
+        TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+        try {
+            //删除比赛简介信息
+            Long aLong = conTestMapper.removeTheContestById(id);
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //删除比赛详细信息
+            aLong = conTestMapper.removeTheContestDetailedById(id);
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //todo 删除参赛选手信息
+
+            //删除redis
+            redisUtil.deleteKey(RedisKey.ZuiOJContestInfo+id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            transactionUtils.rollback(transactionStatus);
+        }
+
+        //提交事物
+        transactionUtils.commit(transactionStatus);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
     /**
      * 修改比赛信息
      * @param contest
@@ -66,6 +101,9 @@ public class ContestSerivceImpl implements ContestSerivce {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
+            //修改redis
+            redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo+contest.getId(),RedisKey.OutTime,contest);
+
             //提交事物
             transactionUtils.commit(transactionStatus);
         } catch (Exception e) {
@@ -74,8 +112,7 @@ public class ContestSerivceImpl implements ContestSerivce {
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
 
-        //修改redis
-        redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo,RedisKey.OutTime,contest);
+
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
@@ -119,6 +156,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         if (l == 0){
             //todo error
         }
+        //todo 添加到redis
 
         return JSONArray.toJSONString(new ResponseVo<>("创建比赛成功",null,"0x1001"));
     }
@@ -179,7 +217,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         competitionInfo.setUserId(idInJWt);
         competitionInfo.setContestId(id);
 
-        //获取比赛介绍
+        //获取比赛介绍 todo redis缓存层优化
         Contest contest = conTestMapper.getEventById(id);
         contestInfoVo.setContest(contest);
 

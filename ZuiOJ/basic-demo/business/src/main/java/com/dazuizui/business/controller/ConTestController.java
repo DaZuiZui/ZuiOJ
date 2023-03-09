@@ -28,6 +28,16 @@ public class ConTestController {
     @Autowired
     private ContestSerivce conTestSerivce;
 
+
+    /**
+     * 移除比赛页面
+     */
+    @ApiOperation("移除比赛页面")
+    @PostMapping("/admin/removeTheContestById")
+    public String removeTheContestById(@RequestParam("token") String token,@RequestParam("id")Long id){
+        return conTestSerivce.removeTheContestById(id);
+    }
+
     /**
      * 修改比赛信息
      */

@@ -187,9 +187,12 @@
                 var object = null;
                 try{
                     object = await synRequestPost("/contest/postContest?Idemtoken="+this.nonPowerToken+"&token="+getCookie("token"),this.conTestInfo);
+                    console.log(object);
                     //重新获取幂等性token
+                    if(check(object)){
+                        alert("添加成功");
+                    }
                     this.getNonPowerToken();
-                    alert("添加成功");
                     this.buttonSwitch = !this.buttonSwitch;
                 }catch(e){
                     alert("异常操作，未获取幂等性");

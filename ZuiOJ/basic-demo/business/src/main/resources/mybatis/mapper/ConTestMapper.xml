@@ -4,6 +4,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ContestMapper">
     <!--
+        移除比赛详细
+    -->
+    <delete id="removeTheContestDetailedById">
+        delete
+        from
+            contest_detailed
+        where
+            contest_id = #{id}
+    </delete>
+
+
+    <!--
+        移除比赛
+    -->
+    <delete id="removeTheContestById">
+        delete
+        from
+            contest
+        where
+            id = #{id}
+    </delete>
+
+    <!--
         修改竞赛详细信息
     -->
     <update id="updateContestDetailed">

@@ -3,6 +3,7 @@ package com.dazuizui.business.service.onlineJudge;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,10 @@ import java.util.List;
  */
 @Service
 public interface ContestSerivce {
+    /**
+     * 移除比赛简介页面
+     */
+    public String removeTheContestById(@Param("id")Long id);
     /**
      * 修改比赛信息
      * @param contest

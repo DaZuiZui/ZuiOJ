@@ -42,8 +42,10 @@
                         <td>{{obj.createByName}}  </td>
                         <td>{{obj.createTime}}  </td>
                         <td>
-                            <div>
+                            <div>   
+                                <el-link type="primary">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>
+                                <el-link type="primary" @click="removeTheContestById(obj.id)">移除比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
                                 <el-link type="danger">增加参赛人员</el-link>
                                 <el-link type="danger" @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
@@ -90,6 +92,7 @@
         },
         list: [],
         count: 0,
+        page: 1,
       }
     },
     mounted(){
@@ -97,11 +100,17 @@
     },
     methods: {
         //跳转指定页面
-        async getMerchantInformation(val){   
+        async getMerchantInformation(val){  
+            this.page = val; 
             this.adminQueryGameInformationByPageBo.page = val-1;
             //获取数据
             let obj = await synRequestPost("/contest/adminQueryGameInformationByPage",this.adminQueryGameInformationByPageBo);
-            
+            //如果当前页面没有数据了，且不是第一页那么就查看上一页的
+            if(obj.data.list == null && page > 1){
+              this.getMerchantInformation(page);  
+              return;
+            }
+
             if(check(obj)){
                 this.list = obj.data.list;
                 this.count = obj.data.count;
@@ -116,6 +125,17 @@
         //查看提交日志
         AdminViewContestSubmissionLog(id){
           this.$router.push("/c/admin/AdminViewContestSubmissionLog?id="+id);
+        },
+
+        /**
+         * 移除比赛
+         */
+        async removeTheContestById(id){
+          let obj = await synRequestPost("/contest/admin/removeTheContestById?token="+getCookie("token")+"&id="+id);
+          if(check(obj)){
+            alert("删除成功");
+            this.getMerchantInformation(this.page);
+          }
         }
     }
   }

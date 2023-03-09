@@ -14,6 +14,16 @@ import java.util.List;
 @Mapper
 public interface ContestMapper {
     /**
+     * 移除比赛简介页面
+     */
+    public Long removeTheContestById(@Param("id")Long id);
+
+    /**
+     * 移除比赛详细简介页面
+     */
+    public Long removeTheContestDetailedById(@Param("id")Long id);
+
+    /**
      * 修改比赛信息
      */
     public Long updateContest(Contest contest);

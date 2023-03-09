@@ -71,12 +71,12 @@
                             <el-date-picker
                               v-model="conTestInfo.startTime"
                               type="datetime"
-                              value-format="yyyy-MM-dd HH:mm:ss"
+                           
                               placeholder="选择日期时间">
                             </el-date-picker>
                             <span class="demonstration">结束时间</span>
                             <el-date-picker
-                                value-format="yyyy-MM-dd HH:mm:ss"
+                      
                                 v-model="conTestInfo.endTime"
                                 type="datetime"
                                 placeholder="选择日期时间">
@@ -184,8 +184,6 @@
             async getContestInfo(){
                 let contest = await synRequestGet("/contest/getEventById?toekn="+getCookie("token")+"&id="+getQueryVariable("contestId"));
                 this.conTestInfo = contest.data.contest;
-        
-                
                 
                 //alert("??");
                 //console.log(this.conTestInfo);
@@ -209,8 +207,10 @@
             async submit(){
                 this.buttonSwitch = !this.buttonSwitch;
                 this.conTestInfo.Idemtoken = this.nonPowerToken;
+                this.conTestInfo.endTime = new Date(this.conTestInfo.endTime);
+                this.conTestInfo.startTime = new Date( this.conTestInfo.startTime);
                 let obj = await synRequestPost("/contest/updateContest?token="+getCookie("token"),this.conTestInfo);
-                //console.log(obj);
+                console.log(obj);
                 if(check(obj)){
                     alert("修改成功");
                     this.buttonSwitch = !this.buttonSwitch;
