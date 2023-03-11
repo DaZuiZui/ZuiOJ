@@ -36,6 +36,9 @@
         )
     </insert>
 
+    <!--
+        修改案例个数
+    -->
     <update id="updateQuestionCaseAttribute">
         update
             question_case_attribute
@@ -48,6 +51,7 @@
         where
             question_id = #{questionId}
     </update>
+
 
 
 </mapper>

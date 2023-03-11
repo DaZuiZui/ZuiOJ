@@ -1,9 +1,12 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
 import com.dazuizui.basicapi.entry.bo.StudentCertificationBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionCaseAop;
+import com.dazuizui.business.domain.bo.UpdateQuestionCaseBo;
+import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.aspectj.lang.JoinPoint;
@@ -23,6 +26,10 @@ import java.util.Map;
 public class QuestionCaseAopImpl implements QuestionCaseAop {
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private UserService userService;
+
+
     /**
      * 添加问题案例
      * @param joinpoint
@@ -63,5 +70,80 @@ public class QuestionCaseAopImpl implements QuestionCaseAop {
         }
 
         return;
+    }
+
+    /**
+     * 修改案例Aop
+     *      主要负责鉴权是否为管理员
+     * @param joinpoint
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.QuestionCaseController.updateQuestionCase(..))")
+    public void UpdateQuestionCase(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        UpdateQuestionCaseBo updateQuestionCaseBo = (UpdateQuestionCaseBo) args[0];
+        String token = updateQuestionCaseBo.getToken();
+
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //获取登入者id
+                String strId = (String) map.get("id");
+                Long id = Long.valueOf(strId);
+                //查看是否为管理员
+                User user = userService.queryUserById(id);
+                System.err.println(user.getRole() < 2);
+                if (user.getRole() < 2){
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+                }
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }
+
+
+        return ;
+    }
+
+    /**
+     * 通过案例id删除案例Aop
+     *  主要负责鉴权是否拥有管理员权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.QuestionCaseController.deleteCaseByCaseId(..))")
+    public String deleteCaseByCaseId(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //获取登入者id
+                String strId = (String) map.get("id");
+                Long id = Long.valueOf(strId);
+                //查看是否为管理员
+                User user = userService.queryUserById(id);
+                System.err.println(user.getRole() < 2);
+                if (user.getRole() < 2){
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+                }
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }
+
+        return null;
     }
 }

@@ -9,23 +9,23 @@ import java.util.List;
  * 管理员查询提交记录VO
  */
 public class QueryContestSubmissionLogVo implements Serializable {
-    private Long id;
+    private Long count;
     private List<AcContestQuestion> acContestQuestions;
 
     @Override
     public String toString() {
         return "QueryContestSubmissionLogVo{" +
-                "id=" + id +
+                "count=" + count +
                 ", acContestQuestions=" + acContestQuestions +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Long getCount() {
+        return count;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     public List<AcContestQuestion> getAcContestQuestions() {
@@ -39,8 +39,8 @@ public class QueryContestSubmissionLogVo implements Serializable {
     public QueryContestSubmissionLogVo() {
     }
 
-    public QueryContestSubmissionLogVo(Long id, List<AcContestQuestion> acContestQuestions) {
-        this.id = id;
+    public QueryContestSubmissionLogVo(Long count, List<AcContestQuestion> acContestQuestions) {
+        this.count = count;
         this.acContestQuestions = acContestQuestions;
     }
 }

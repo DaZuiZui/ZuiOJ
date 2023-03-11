@@ -10,6 +10,8 @@
                 
                 <br>
                 <button type="button" class="btn btn-primary" @click="deleteUsersInBulk">批量删除</button>
+
+                <button type="button" class="btn btn-primary"  >仅查看管理员</button>
                 <br>
 
                 <table class="table">
@@ -38,7 +40,7 @@
                         <td>
                             <b>
                                 {{obj.username}}
-                            </b>
+                            </b>  
                         </td>
                         <td>
                           <b>

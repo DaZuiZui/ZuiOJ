@@ -3,6 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionCaseMapper">
+    <!--
+        删除案例
+    -->
+    <delete id="deleteCaseByCaseId">
+        delete
+        from
+            question_case
+        where
+            id = #{id} ;
+    </delete>
+
+    <!--
+        修改案例
+    -->
+    <update id="updateQuestionCase">
+        update
+            question_case
+        set
+            inputs = #{inputs},
+            answer = #{answer},
+            update_by_id = #{updateById},
+            update_time = #{updateTime}
+        where
+            id = #{id}
+    </update>
+
     <!--添加案例-->
     <insert id="addQuestionCase">
         insert into
@@ -43,6 +69,7 @@
     -->
     <select id="pagingToGetQuestionCase" resultType="com.dazuizui.basicapi.entry.QuestionCase">
         select
+            id,
             inputs,
             answer,
             create_by_name,

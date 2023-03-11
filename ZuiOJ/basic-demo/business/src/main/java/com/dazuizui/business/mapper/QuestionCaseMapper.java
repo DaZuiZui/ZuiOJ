@@ -4,6 +4,7 @@ import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.QuestionCase;
 import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
 import com.dazuizui.basicapi.entry.bo.AdminQueryQuestionCaseBo;
+import com.dazuizui.business.domain.bo.UpdateQuestionCaseBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,6 +16,20 @@ import java.util.List;
  */
 @Mapper
 public interface QuestionCaseMapper {
+    /**
+     * 通过id删除案例
+     * @param id
+     * @return
+     */
+    public Long deleteCaseByCaseId(@Param("id")Long id);
+
+    /**
+     * 修改案例
+     * @param updateQuestionCaseBo
+     * @return
+     */
+    public Long updateQuestionCase(UpdateQuestionCaseBo updateQuestionCaseBo);
+
     /**
      * 添加问题案例
      * @param questionCases

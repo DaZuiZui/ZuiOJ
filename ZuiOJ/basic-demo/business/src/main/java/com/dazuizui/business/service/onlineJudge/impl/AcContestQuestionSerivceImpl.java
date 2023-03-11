@@ -51,7 +51,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
         Long count = acContestQuestionMapper.queryCount(queryContestSubmissionLogBo.getContestId());
         //封装
         QueryContestSubmissionLogVo queryContestSubmissionLogVo = new QueryContestSubmissionLogVo();
-        queryContestSubmissionLogVo.setId(count);
+        queryContestSubmissionLogVo.setCount(count);
         queryContestSubmissionLogVo.setAcContestQuestions(acContestQuestions);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryContestSubmissionLogVo, StatusCode.OK));

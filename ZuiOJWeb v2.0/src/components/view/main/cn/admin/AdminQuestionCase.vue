@@ -19,7 +19,34 @@
                 <el-button @click="drawer = true" label="ttb" type="primary" style="margin-left: 16px;">
                     添加案例
                 </el-button>
-                  
+                
+                <!--
+                    修改案例抽屉
+                -->
+                <el-drawer
+                    title="我是标题"
+                    :visible.sync="updateCaseDrawer"
+                    direction="btt"
+                    size="50%"
+                    :with-header="false">
+                    <div>
+                        <div class="container">
+                           <br>
+                            <div class="alert alert-info" role="alert">
+                                修改测试样例 <el-link type="danger">若你不了解添加案例规则请点击我了解。</el-link>
+                            </div>
+                            输入样例
+                            <el-input v-model="updateQuestionCase.inputs" placeholder="请输入"></el-input>
+                            输出样例
+                            <el-input v-model="updateQuestionCase.answer" placeholder="请输入内容"></el-input>
+                            <button type="button" class="btn btn-primary" style="width:100%" @click="updateCase()" :disabled="UpdateCaseButton">Update Case</button>
+                        </div>
+                    </div>
+                </el-drawer>
+
+                <!--
+                    添加案例
+                -->
                   <el-drawer
                     title="我是标题"
                     direction="btt"
@@ -45,6 +72,8 @@
                   </el-drawer>  
 
                 <br>
+
+           
 
                 <table class="table">
                     <thead>
@@ -91,9 +120,9 @@
 
                         <td>
                             <div>
-                                <el-link type="success">修改</el-link>
+                                <el-link type="success"   @click="getCase(obj.inputs,obj.answer,obj.id)" >修改</el-link>
                                 <el-link type="danger">逻辑删除</el-link>
-                                <el-link type="danger">物理删除</el-link>
+                                <el-link type="danger"  :disabled="deleteCaseByCaseIdbutton"  @click="deleteCaseByCaseId(obj.id)">物理删除</el-link>
                             </div>
                         </td>
                       </tr>
@@ -128,6 +157,9 @@
       },
     data () {
         return {
+            //修改案例抽屉
+            updateCaseDrawer: false,
+
             addQuestionCaseBo: {
                 questionCases: [],
                 token: "",
@@ -144,6 +176,14 @@
 
             //测试样例
             questionCase: {
+                inputs: "",
+                answer: "",
+            },
+
+            //修改测试案例
+            updateQuestionCase: {
+                token: "",
+                id: -1,
                 inputs: "",
                 answer: "",
             },
@@ -166,6 +206,12 @@
 
             //添加元素按钮
             addListElementButton: false,
+            //修改案例按钮
+            UpdateCaseButton: false,
+            //删除案例按钮显示
+            deleteCaseByCaseIdbutton: false,
+
+      
        }
     },
     mounted(){
@@ -173,10 +219,49 @@
         this.adminQueryQuestionCaseBo.questionId = getQueryVariable("id");
         //获取幂等性token
         this.getNonPowerToken();
-        //分野获取数据
+        //分页获取数据
         this.getMerchantInformation(1);
     },
     methods: {
+        /**
+         *  删除案例成功
+         */
+        async deleteCaseByCaseId(id){
+            this.deleteCaseByCaseIdbutton =true;
+            let obj = await synRequestPost("/questionCase/deleteCaseByCaseId?token="+getCookie("token")+"&id="+id+"&questionId="+getQueryVariable("id"));
+            if(check(obj)){
+                alert("删除案例成功");
+                this.getMerchantInformation(this.curpage);
+            }
+            this.deleteCaseByCaseIdbutton = false;
+        },
+
+
+        /**
+         *  修改案例
+         */
+        async updateCase(){
+            this.UpdateCaseButton = true;
+            this.updateQuestionCase.token = getCookie("token");
+            //提交
+            let obj = synRequestPost("/questionCase/UpdateQuestionCase",this.updateQuestionCase);
+            if(check(obj)){
+                alert("修改成功");
+                this.getMerchantInformation(this.curpage);
+            }
+
+            this.UpdateCaseButton = false;
+        },
+
+        //获取案例
+        async getCase(inputs,answer,id){
+            this.updateQuestionCase.id = id;
+            this.updateQuestionCase.inputs = inputs;
+            this.updateQuestionCase.answer = answer;
+            this.updateCaseDrawer = true;
+        },
+        
+        //提交案例
         async submit(){
             console.log(this.caseList);
             this.addQuestionCaseBo.questionCases = this.caseList;
@@ -193,6 +278,8 @@
 
             //获取幂等性token
             this.getNonPowerToken();
+            //更新数据
+            this.getMerchantInformation(1);
         },
 
         //防止幂等性

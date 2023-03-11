@@ -92,7 +92,7 @@
                   <el-pagination
                     :page-size="50"
                     :pager-count="11"
-                    @current-change="getMerchantInformation"
+                    @current-change="getContestSubmissionLog"
                     layout="prev, pager, next"
                     :total="count">
                   </el-pagination>
@@ -152,7 +152,9 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
                 this.getContestSubmissionLog(page-1);
                 return;
             }
+     
             this.count = obj.data.count;
+ 
         },
 
         /**
