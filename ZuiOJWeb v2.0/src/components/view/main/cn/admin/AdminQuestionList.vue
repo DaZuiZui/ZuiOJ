@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             <el-link type="primary" @click="goQuestionCaseManagement(obj.id)">案例管理</el-link>
-                            <el-link type="primary">修改</el-link>
+                            <el-link type="primary" @click="goUpdateQuestion(obj.id)">修改</el-link>
                             <el-link type="warning">逻辑删除</el-link>
                             <el-link type="danger" @click="physicalDeletion(obj.id,obj.questionType)">物理删除</el-link>
                         </td>
@@ -153,7 +153,12 @@
             this.$router.push('/cn/admin/question/case/list?id='+id);
         },
 
- 
+        /*
+         * 前往更改题目页面
+         */
+        async goUpdateQuestion(id){
+            this.$router.push('/cn/admin/AdminUpdateQuestion?id='+id);
+        }
     }
   }
   </script>

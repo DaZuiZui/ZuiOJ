@@ -10,4 +10,7 @@ import org.springframework.stereotype.Service;
 public interface ProblemLimitService {
     //增加问题限制
     public String addProblemLimit(ProblemLimit problemLimit);
+
+    //获取问题limit
+    public ProblemLimit getProblemLimitById(Long questionId);
 }

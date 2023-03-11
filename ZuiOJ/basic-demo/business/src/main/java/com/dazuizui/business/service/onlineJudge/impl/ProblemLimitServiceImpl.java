@@ -35,8 +35,27 @@ public class ProblemLimitServiceImpl implements ProblemLimitService {
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
         //写入redis
-        redisUtil.setStringInRedis(RedisKey.ZuiOJQuestionLimit, RedisKey.OutTime, problemLimit);
+        redisUtil.setStringInRedis(RedisKey.ZuiOJQuestionLimit+problemLimit.getQuestionId(), RedisKey.OutTime, problemLimit);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
+     * 通过问题Id获取问题限制
+     */
+    @Override
+    public ProblemLimit getProblemLimitById(Long questionId){
+        ProblemLimit problemLimit = (ProblemLimit) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestionLimit+questionId);
+        if (problemLimit == null){
+            problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(questionId);
+            if (problemLimit == null){
+               return null;
+            }
+
+            //写入redis
+            redisUtil.setStringInRedis(RedisKey.ZuiOJQuestionLimit+questionId, RedisKey.OutTime, problemLimit);
+        }
+
+        return problemLimit;
     }
 }

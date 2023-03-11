@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,6 +15,13 @@ import java.util.List;
 
 @Service
 public interface QuestionBankService {
+    /**
+     * 管理员获取题目通过id
+     * @param id
+     * @return
+     */
+    public String adminGetQuestionById(Long id);
+
     /**
      *  提交问题和限制
      */

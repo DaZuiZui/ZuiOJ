@@ -29,6 +29,24 @@ public class QuestionBankController {
     private QuestionBankService questionBankService;
 
     /**
+     * 根据id获取题目
+     * @param token
+     * @param id
+     * @return
+     */
+    @ApiOperation("根据id获取题目")
+    @PostMapping("/adminGetQuestionById")
+    public String adminGetQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id){
+        //身份验证过期或者权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return questionBankService.adminGetQuestionById(id);
+    }
+
+    /**
      * 删除问题
      *    同时也会删除案例
      * @param deleteQuestion

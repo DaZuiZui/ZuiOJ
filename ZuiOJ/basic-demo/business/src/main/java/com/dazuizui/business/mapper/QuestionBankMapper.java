@@ -3,8 +3,12 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
+import com.dazuizui.business.domain.UpdateQuestion;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -13,6 +17,12 @@ import java.util.List;
  */
 @Mapper
 public interface QuestionBankMapper {
+    /**
+     * 根据id获取题目
+     * @param id
+     * @return
+     */
+    public QuestionBankVo adminGetQuestionById(Long id);
 
     /**
      * 通过id物理删除问题

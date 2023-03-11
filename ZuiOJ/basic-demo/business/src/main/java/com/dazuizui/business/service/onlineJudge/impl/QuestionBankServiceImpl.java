@@ -7,7 +7,10 @@ import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.UpdateQuestion;
+import com.dazuizui.business.domain.vo.AdminGetQuestionByIdVo;
 import com.dazuizui.business.mapper.*;
+import com.dazuizui.business.service.onlineJudge.ProblemLimitService;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -46,6 +49,35 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private QuestionBankAttribute questionBankAttribute;
     @Autowired
     private ProblemLimitMapper problemLimitMapper;
+    @Autowired
+    private ProblemLimitService problemLimitService;
+
+    /**
+     * 管理员获取题目通过id
+     * @param id 问题id
+     * @return
+     */
+    @Override
+    public String adminGetQuestionById(Long id){
+        //获取题目
+        QuestionBankVo  questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+id);
+        if (questionBankVo == null){
+            questionBankVo = questionBankMapper.adminGetQuestionById(id);
+            if (questionBankVo == null){
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            redisUtil.setStringInRedis(RedisKey.ZuiOJQuestion+id,RedisKey.OutTime,questionBankVo);
+        }
+        //获取question limit
+        ProblemLimit problemLimitById = problemLimitService.getProblemLimitById(id);
+
+        //封装
+        AdminGetQuestionByIdVo adminGetQuestionByIdVo = new AdminGetQuestionByIdVo();
+        adminGetQuestionByIdVo.setQuestionBankVo(questionBankVo);
+        adminGetQuestionByIdVo.setProblemLimitById(problemLimitById);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,adminGetQuestionByIdVo, StatusCode.OK));
+    }
 
     /**
      * 提交问题和问题限制
@@ -132,6 +164,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
+
             //创建该题的个数限制
             aLong =questionCaseAttributeMapper.insertQuestionCaseAttribute(questionBankBo.getId());
             if (aLong == 0){

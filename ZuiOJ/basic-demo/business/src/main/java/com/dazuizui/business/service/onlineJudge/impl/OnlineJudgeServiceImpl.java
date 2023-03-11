@@ -10,6 +10,7 @@ import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.service.onlineJudge.OnlineJudgeService;
+import com.dazuizui.business.service.onlineJudge.ProblemLimitService;
 import com.dazuizui.business.util.HttpUtil;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -34,7 +35,8 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     private RedisUtil redisUtil;
     @Autowired
     private AcContestQuestionSerivce acContestQuestionSerivce;
-
+    @Autowired
+    private ProblemLimitService problemLimitService;
 
     /**
      * 判决代码
@@ -47,7 +49,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     @Transactional
     public String judgeTheProgram(ProgramBo programBo){
         /**
-         * 初始化代码运行还击那个
+         * 初始化代码运行
          */
         HashMap<Integer, List<String>> map = InitializerData.langSystem.get(programBo.getLanguageId());
         programBo.setEnv(Arrays.asList("PATH=/usr/bin:/bin"));
@@ -56,10 +58,11 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         programBo.setRunCommandArgs(map.get(new Integer(1)));
 
         /**
-         * 初始化题目限制 todo redis获取
+         * 初始化题目限制
          */
-        ProblemLimit problemLimit = problemLimitMapper.queryTheProblemLimitByQuestionId(programBo.getTopicId());
+        ProblemLimit problemLimit = problemLimitService.getProblemLimitById(programBo.getTopicId());
         programBo.setProblemLimit(problemLimit);
+
         /**
          * 获取案例he todo 改成mongodb
          */
@@ -77,7 +80,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         */
 
         JSONObject request = new JSONObject();
-        System.err.println(questionCases);
+
         for (QuestionCase questionCase : questionCases) {
             programBo.setInput(questionCase.getInputs());
                 //发起请求
@@ -107,7 +110,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
                 stdout = stdout.substring(0,stdout.length()-2);
             }
 
-            System.out.println(questionCase.getAnswer()+" and "+stdout);
+           // System.out.println(questionCase.getAnswer()+" and "+stdout);
             if (!stdout.trim().equals(questionCase.getAnswer())) {
                 request.set("status","Answer error");
                 break;
@@ -134,7 +137,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             //写入日记
         }
 
-        System.err.println(request.get("status"));
+       // System.err.println(request.get("status"));
         /**
          * 日志记录用户的状态
          */

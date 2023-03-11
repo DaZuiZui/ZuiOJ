@@ -5,11 +5,20 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Aspect
 @Component
 public interface QuestionAop {
+    /**
+     * 根据id获取题目
+     *     主要负责鉴权身份是否为管理员
+     * @return
+     */
+    @ApiOperation("根据id获取题目")
+    @PostMapping("/adminGetQuestionById")
+    public String adminGetQuestionById(JoinPoint joinpoint) throws Exception;
     /**
      * 根据id获取题目
      * @return

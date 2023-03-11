@@ -4,6 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionBankMapper">
     <!--
+        管理员通过id获取题目
+    -->
+    <select id="adminGetQuestionById" resultType="com.dazuizui.basicapi.entry.vo.QuestionBankVo">
+        SELECT
+            q1.id,
+            q1.short_name,
+            q1.chinese_name,
+            q1.english_name,
+            q1.grade,
+            q1.question_type,
+            q1.create_by_name,
+            q1.status,
+            q2.md_cn
+        FROM
+            question_bank q1
+                INNER JOIN
+            question_bank_detailed q2
+        ON
+            q1.id = #{id} AND
+            q2.question_id = #{id}
+        limit 1
+    </select>
+
+    <!--
         物理删除问题
     -->
     <update id="deleteQuestionById">
@@ -66,11 +90,11 @@
             question_bank_detailed t2
             on
                 t1.id =  t2.question_id
-
         where
             t1.id = #{id} and
             t1.status = #{status} and
             t1.del_flag = #{delFlag}
+        limit 1
     </select>
 
     <!--
