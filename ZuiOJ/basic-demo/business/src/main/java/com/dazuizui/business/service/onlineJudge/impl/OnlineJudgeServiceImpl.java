@@ -110,7 +110,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
                 stdout = stdout.substring(0,stdout.length()-2);
             }
 
-           // System.out.println(questionCase.getAnswer()+" and "+stdout);
+            System.out.println(questionCase.getAnswer()+" and "+stdout);
             if (!stdout.trim().equals(questionCase.getAnswer())) {
                 request.set("status","Answer error");
                 break;

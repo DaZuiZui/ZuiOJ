@@ -17,4 +17,9 @@ public interface QuestionBankAttribute {
      * @return
      */
     public Long updateQuestionnumber(@Param("num")Integer num,@Param("status")Integer status, @Param("type")Integer type);
+
+    /**
+     * 更改题目数量 new
+     */
+    public Long updateQuestionAttribute(@Param("status")Integer status,@Param("oldstatus")Integer oldstatus,@Param("num")Long num);
 }

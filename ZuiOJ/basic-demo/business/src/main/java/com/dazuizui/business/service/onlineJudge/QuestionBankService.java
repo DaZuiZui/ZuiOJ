@@ -3,6 +3,7 @@ package com.dazuizui.business.service.onlineJudge;
 import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
+import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,12 @@ import java.util.List;
 
 @Service
 public interface QuestionBankService {
+    /**
+     * 修改题目和题目limit
+     * @param questionAndLimitByQuestionIdBo
+     * @return
+     */
+    public String updateQuestionAndLimitByQuestionId(UpdateQuestionAndLimitByQuestionIdBo questionAndLimitByQuestionIdBo);
     /**
      * 管理员获取题目通过id
      * @param id

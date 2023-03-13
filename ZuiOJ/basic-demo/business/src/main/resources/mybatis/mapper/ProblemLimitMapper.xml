@@ -3,8 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ProblemLimitMapper">
+    <!--
+        修改问题limit
+    -->
+    <update id="updateTheprolemLimitById" >
+        update
+            problem_limit
+        set
+            stdout_max = #{stdoutMax} ,
+            stderr_max = #{stderrMax} ,
+            cpu_limit  = #{cpuLimit}  ,
+            memory_limit = #{memoryLimit},
+            proc_limit  = #{procLimit}
+        where
+            id = #{id}
+    </update>
+
+    <!--
+        通过id查询问题限制
+    -->
     <select id="queryTheProblemLimitByQuestionId" resultType="com.dazuizui.basicapi.entry.ProblemLimit">
         select
+            id,
             stdout_max,
             stderr_max,
             cpu_limit,

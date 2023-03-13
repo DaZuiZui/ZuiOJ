@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -27,6 +28,21 @@ public class QuestionBankController {
 
     @Autowired
     private QuestionBankService questionBankService;
+
+    /**
+     * 修改题目限制和题目
+     */
+    @ApiOperation("修改题目限制和题目")
+    @PostMapping("/updateQuestionAndLimitByQuestionId")
+    public String updateQuestionAndLimitByQuestionId(@RequestBody UpdateQuestionAndLimitByQuestionIdBo questionAndLimitByQuestionIdBo){
+        //身份验证过期或者权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return questionBankService.updateQuestionAndLimitByQuestionId(questionAndLimitByQuestionIdBo);
+    }
 
     /**
      * 根据id获取题目

@@ -217,7 +217,6 @@ public class ContestSerivceImpl implements ContestSerivce {
     public String getEventById(Long id) {
         //信息初始化
         ContestInfoVo contestInfoVo = new ContestInfoVo();  //返回数据
-
         Map<String, Object> map = ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo");
         String idInJWTString = (String) map.get("id");
         Long idInJWt = Long.valueOf(idInJWTString);
@@ -230,15 +229,20 @@ public class ContestSerivceImpl implements ContestSerivce {
         contestInfoVo.setContest(contest);
 
         //查看是否已经报名
+        System.err.println(competitionInfo.getUserId()+"idInJWt="+idInJWt+"abd "+id);
+        //CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
 
-        CompetitionInfo competitionInfoInDB = (CompetitionInfo) redisUtil.getStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id);
+        CompetitionInfo competitionInfoInDB
+                = (CompetitionInfo) redisUtil.getStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + competitionInfo.getUserId());
         if (competitionInfoInDB == null){
-            competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
+             competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
             if (competitionInfoInDB != null){
-                redisUtil.setStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id,RedisKey.OutTime,competitionInfoInDB);
+                redisUtil.setStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + competitionInfo.getUserId(),RedisKey.OutTime,competitionInfoInDB);
             }
         }
 
+        //数据库
+        System.out.println(competitionInfoInDB);
         if (competitionInfoInDB != null){
             contestInfoVo.setCheckForEntry(true);
             //todo 检测是否被封禁

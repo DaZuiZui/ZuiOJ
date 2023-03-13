@@ -18,6 +18,18 @@ import java.util.List;
 @Mapper
 public interface QuestionBankMapper {
     /**
+     * 通过id修改详细信息
+     * @param questionBankVo
+     * @return
+     */
+    public Long updateQuestionDetailedById(QuestionBankVo questionBankVo);
+    /**
+     * 通过id修改简介信息
+     * @param questionBankVo
+     * @return
+     */
+    public Long updateQuestionById(QuestionBankVo questionBankVo);
+    /**
      * 根据id获取题目
      * @param id
      * @return

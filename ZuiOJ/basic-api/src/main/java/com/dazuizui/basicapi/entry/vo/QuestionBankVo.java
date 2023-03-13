@@ -1,5 +1,8 @@
 package com.dazuizui.basicapi.entry.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,9 +13,11 @@ public class QuestionBankVo implements Serializable {
     private String chineseName;
     private long grade;
     private String createByName;
+
     private Date createTime;
     private long updateById;
     private String updateByName;
+
     private Date updateTime;
     private int status;
     private int delFlag;

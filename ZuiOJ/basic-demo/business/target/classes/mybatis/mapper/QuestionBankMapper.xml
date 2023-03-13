@@ -4,6 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionBankMapper">
     <!--
+        更改问题详细信息
+    -->
+    <update id="updateQuestionDetailedById">
+        update
+            question_bank_detailed
+        set
+            md_cn = #{mdCn}
+        where
+            question_id = #{id}
+    </update>
+
+    <!--
+        修改问题信息
+    -->
+    <update id="updateQuestionById">
+        update
+            question_bank q1
+        set
+            short_name = #{shortName} ,
+            english_name = #{englishName} ,
+            chinese_name = #{chineseName} ,
+            grade = #{grade},
+            status = #{status},
+            update_by_id = #{updateById},
+            update_time = #{updateTime}
+        where
+            id = #{id}
+    </update>
+
+    <!--
         管理员通过id获取题目
     -->
     <select id="adminGetQuestionById" resultType="com.dazuizui.basicapi.entry.vo.QuestionBankVo">

@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Component
 public interface QuestionAop {
     /**
+     * 修改题目和题目limit
+     *     主要负责鉴权身份是否为管理员
+     * @return
+     */
+    public String updateQuestionAndLimitByQuestionId(JoinPoint joinpoint) throws Exception;
+    /**
      * 根据id获取题目
      *     主要负责鉴权身份是否为管理员
      * @return

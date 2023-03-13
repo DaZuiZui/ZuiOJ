@@ -6,6 +6,7 @@ import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionAop;
+import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
@@ -38,6 +39,42 @@ public class QuestionAopImpl implements QuestionAop {
     private UserService userService;
 
     /**
+     * 修改题目和题目limit
+     *     主要负责鉴权身份是否为管理员
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.QuestionBankController.updateQuestionAndLimitByQuestionId(..))")
+    public String updateQuestionAndLimitByQuestionId(JoinPoint joinpoint) throws Exception {
+
+        Object[] args = joinpoint.getArgs();
+        UpdateQuestionAndLimitByQuestionIdBo updateQuestionAndLimitByQuestionIdBo = (UpdateQuestionAndLimitByQuestionIdBo) args[0];
+        String token = updateQuestionAndLimitByQuestionIdBo.getToken();
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //获取登入者id
+                String strId = (String) map.get("id");
+                Long id = Long.valueOf(strId);
+                //查看是否为管理员
+                User user = userService.queryUserById(id);
+
+                if (user.getRole() < 2){
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+                }
+
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }
+        return null;
+    }
+
+    /**
      * 根据id获取题目
      *     主要负责鉴权身份是否为管理员
      * @return
@@ -58,7 +95,7 @@ public class QuestionAopImpl implements QuestionAop {
                 Long id = Long.valueOf(strId);
                 //查看是否为管理员
                 User user = userService.queryUserById(id);
-                System.err.println(user.getRole() < 2);
+
                 if (user.getRole() < 2){
                     ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
                     ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);

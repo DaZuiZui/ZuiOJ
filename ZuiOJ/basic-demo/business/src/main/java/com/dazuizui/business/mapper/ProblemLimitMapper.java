@@ -21,4 +21,11 @@ public interface ProblemLimitMapper {
      * @return
      */
     public Long addProblemLimit(ProblemLimit problemLimit);
+
+    /**
+     * 通过id修改题目
+     * @param problemLimit
+     * @return
+     */
+    public Long updateTheprolemLimitById(ProblemLimit problemLimit);
 }

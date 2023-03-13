@@ -1,33 +1,40 @@
 package com.dazuizui.basicapi.mapper;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        int m = scanner.nextInt();
-        System.out.println(passThePillow(n, m));
-    }
-
-
-    public static int passThePillow(int n, int time) {
-            boolean b = true;
-            int res = 1;
-
-            for (int i = 1; i <= time; i++) {
-                if (res  == n){
-                    b = false;
-                }else if (res == 1){
-                    b = true;
-                }
-                if (b){
-                    res++;
-                }else{
-                    res--;
-                }
-            }
-            return res;
+        String[] arr = new String[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.next();
         }
-
+        int l = scanner.nextInt();
+        int r = scanner.nextInt();
+        System.out.println(vowelStrings(arr,l,r));
     }
+
+    public static int vowelStrings(String[] words, int left, int right) {
+        //缓存
+        Set<Character> set = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
+        //结果
+        int result = 0;
+        //循环
+        for (int i = left; i <= right; i++) {
+            //当前单词
+            String word = words[i];
+            //如果是
+            if (set.contains(word.charAt(0)) && set.contains(word.charAt(word.length() - 1))) {
+                //记录
+                result++;
+            }
+        }
+        //返回结果
+        return result;
+    }
+
+}

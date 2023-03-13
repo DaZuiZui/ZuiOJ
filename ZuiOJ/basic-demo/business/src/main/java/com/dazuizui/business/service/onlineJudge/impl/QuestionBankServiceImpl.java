@@ -8,6 +8,7 @@ import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.UpdateQuestion;
+import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.domain.vo.AdminGetQuestionByIdVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.service.onlineJudge.ProblemLimitService;
@@ -51,6 +52,73 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private ProblemLimitMapper problemLimitMapper;
     @Autowired
     private ProblemLimitService problemLimitService;
+
+
+    /**
+     * 修改题目info和limit
+     * @param questionAndLimitByQuestionIdBo
+     * @return
+     */
+    @Override
+    public String updateQuestionAndLimitByQuestionId(UpdateQuestionAndLimitByQuestionIdBo questionAndLimitByQuestionIdBo) {
+        TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+        //初始化
+        System.out.println(ThreadLocalUtil.mapThreadLocalOfJWT.get());
+        String strId = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        Long id = Long.valueOf(strId);
+        questionAndLimitByQuestionIdBo.getProblemLimit().setUpdateTime(new Date());
+        questionAndLimitByQuestionIdBo.getProblemLimit().setUpdateById(id);
+        questionAndLimitByQuestionIdBo.getQuestionBankVo().setUpdateTime(new Date());
+        questionAndLimitByQuestionIdBo.getQuestionBankVo().setUpdateById(id);
+        try {
+            //修改题目限制
+            Long aLong = problemLimitMapper.updateTheprolemLimitById(questionAndLimitByQuestionIdBo.getProblemLimit());
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //修改在缓存中的题目限制
+            redisUtil.setStringInRedis(RedisKey.ZuiOJQuestionLimit+questionAndLimitByQuestionIdBo.getQuestionBankVo().getId(),RedisKey.OutTime,questionAndLimitByQuestionIdBo.getProblemLimit());
+
+            //修改题目信息
+            aLong = questionBankMapper.updateQuestionById(questionAndLimitByQuestionIdBo.getQuestionBankVo());
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //更改详细信息
+            aLong =questionBankMapper.updateQuestionDetailedById(questionAndLimitByQuestionIdBo.getQuestionBankVo());
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //修改详细信息在Redis中
+            redisUtil.setStringInRedis(RedisKey.ZuiOJQuestion+questionAndLimitByQuestionIdBo.getQuestionBankVo().getId(),RedisKey.OutTime,questionAndLimitByQuestionIdBo.getQuestionBankVo());
+
+            //查看是否需要比赛类型
+            if (questionAndLimitByQuestionIdBo.getQuestionBankVo().getStatus() != questionAndLimitByQuestionIdBo.getOldstatus()){
+                //修改类型个数
+                System.err.println(questionAndLimitByQuestionIdBo.getOldstatus() + " "+
+                        questionAndLimitByQuestionIdBo.getQuestionBankVo().getStatus() );
+                aLong = questionBankAttribute.updateQuestionAttribute(
+                        questionAndLimitByQuestionIdBo.getQuestionBankVo().getStatus(),
+                        questionAndLimitByQuestionIdBo.getOldstatus(),
+                        1l
+                );
+                if (aLong == 0){
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            transactionUtils.rollback(transactionStatus);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        transactionUtils.commit(transactionStatus);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
 
     /**
      * 管理员获取题目通过id
