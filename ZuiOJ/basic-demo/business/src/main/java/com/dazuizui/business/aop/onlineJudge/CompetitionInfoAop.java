@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.onlineJudge;
 
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
+import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
@@ -26,4 +27,11 @@ public interface CompetitionInfoAop {
      * @return
      */
     public String paglingQueryContestantsInThisContest(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 删除所有比赛选手通过比赛Id
+     *      主要负责管理员的身份验证
+     * @Param deleteAllCompetitionInfoByContestIdBo
+     */
+    public String deleteAllCompetitionInfoByContestId(JoinPoint joinpoint) throws Exception;
 }

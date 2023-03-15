@@ -2,6 +2,7 @@ package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
+import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
@@ -42,4 +43,10 @@ public interface CompetitionInfoService {
      * @return
      */
     public String viewRanking(@RequestParam("contestId")Long contestId,Integer page,Integer numbers);
+
+    /**
+     * 删除所有比赛选手通过比赛Id
+     * @Param deleteAllCompetitionInfoByContestIdBo
+     */
+    public String deleteAllCompetitionInfoByContestId(DeleteAllCompetitionInfoByContestIdBo deleteAllCompetitionInfoByContestIdBo);
 }

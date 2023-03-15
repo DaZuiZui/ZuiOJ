@@ -4,6 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
     <!--
+        查询比赛选手RedisKey
+    -->
+    <select id="queryCompettionInfoRedisKeyByContestId" resultType="string">
+        SELECT
+            concat('ZuiOJ:Conetst:CompetitionInfo:Contest:',c.contest_id,':',c.user_id)
+        from
+            competition_info c
+        where
+            contest_id = #{contestId}
+        </select>
+    <!--
+        删除该比赛的所有比赛选手
+    -->
+    <delete id="deleteAllCompetitionInfoByContestId">
+        delete
+        from
+            competition_info
+        where
+            contest_id = #{contestId}
+    </delete>
+
+    <!--
         管理员添加比赛选手
     -->
     <insert id="adminAddCompetitionInfo">

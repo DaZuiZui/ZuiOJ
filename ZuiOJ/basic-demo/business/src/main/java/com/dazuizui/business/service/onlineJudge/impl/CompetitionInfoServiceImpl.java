@@ -6,14 +6,19 @@ import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CompetitionInfoInContest;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
+import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.vo.PaglingQueryContestantsInThisContestVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.util.RedisUtil;
+import com.dazuizui.business.util.TransactionUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 
 import java.util.List;
 
@@ -28,6 +33,41 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
     private UserMapper userMapper;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private TransactionUtils transactionUtils;
+
+    /**
+     * 删除所有比赛选手通过比赛Id
+     * @Param deleteAllCompetitionInfoByContestIdBo
+     */
+    @Override
+    public String deleteAllCompetitionInfoByContestId(DeleteAllCompetitionInfoByContestIdBo deleteAllCompetitionInfoByContestIdBo){
+        //查询数据的报名人数信息
+        List<String> list = competitionInfoMapper.queryCompettionInfoRedisKeyByContestId(deleteAllCompetitionInfoByContestIdBo.getContestId());
+        //事物开启
+        TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        try {
+            //删除Rediskey
+            redisUtil.batchDeletion(list);
+
+            //删除数据库内容
+            Long aLong = competitionInfoMapper.deleteAllCompetitionInfoByContestId(deleteAllCompetitionInfoByContestIdBo.getContestId());
+            if (aLong == 0){
+                //回滚
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+        } catch (Exception e) {
+            //回滚
+            transactionUtils.rollback(transactionStatus);
+            e.printStackTrace();
+        }
+        //事物提交
+        transactionUtils.commit(transactionStatus);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
 
     /**
      * 管理员添加比赛选手信息

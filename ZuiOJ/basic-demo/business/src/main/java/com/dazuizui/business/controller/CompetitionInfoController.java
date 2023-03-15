@@ -2,6 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
@@ -25,9 +26,24 @@ public class CompetitionInfoController {
     @Autowired
     private CompetitionInfoService competitionInfoService;
 
+    /**
+     * 删除所有比赛选手通过比赛Id
+     * @Param deleteAllCompetitionInfoByContestIdBo
+     */
+    @ApiOperation("删除所有比赛选手通过比赛Id")
+    @PostMapping("/deleteAllCompetitionInfoByContestId")
+    public String deleteAllCompetitionInfoByContestId(@RequestBody DeleteAllCompetitionInfoByContestIdBo deleteAllCompetitionInfoByContestIdBo){
+        System.err.println("88888");
+        //身份验证过期 or 权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        return competitionInfoService.deleteAllCompetitionInfoByContestId(deleteAllCompetitionInfoByContestIdBo);
+    }
 
     /**
-     * 管理员插入比赛选手信息    撒撒啊
+     * 管理员插入比赛选手信息
      * @return
      */
     @ApiOperation("管理员插入比赛选手信息")

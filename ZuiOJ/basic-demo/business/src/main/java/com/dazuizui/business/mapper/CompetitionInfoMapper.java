@@ -21,6 +21,17 @@ import java.util.List;
 @Mapper
 public interface CompetitionInfoMapper {
     /**
+     * 生成Rediskey
+     * @param contestId
+     * @return
+     */
+    public List<String> queryCompettionInfoRedisKeyByContestId(@Param("contestId")Long contestId);
+    /**
+     * 删除所有比赛选手通过比赛Id
+     */
+    public Long deleteAllCompetitionInfoByContestId(@Param("contestId") Long contestId);
+
+    /**
      * 查看用户是否参赛
      * @return
      */

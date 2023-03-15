@@ -9,10 +9,16 @@
             <div class="container">
                 <br>
 
-                <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+                  <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
                     添加新的参赛人员
                   </el-button>
                   
+                  <el-button @click="deleteAllCompetitionInfoByContestIdFun()" type="primary" style="margin-left: 16px;">
+                    清除所有比赛选手
+                  </el-button>
+                  
+
+
                   <el-drawer
                     title="我是标题"
                     :visible.sync="drawer"
@@ -121,6 +127,11 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
             token: "",
             nonPowerToken: "",
         },
+        //清除所有比赛选手
+        deleteAllCompetitionInfoByContestId: {
+          token: "",
+          contestId: -1,
+        },
         list: [], //数据集合
         count: 0, //个数
         //当前页号
@@ -130,6 +141,8 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
 
         //提交比赛按钮显示
         adminAddCompetitionInfoBoButton: true,
+        //删除全部比赛选手按钮现实
+        deleteAllCompetitionInfoByContestIdFunButton: true,
       }
     },
     mounted(){
@@ -137,6 +150,7 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         this.adminAddCompetitionInfoBo.contestId = getQueryVariable("id");
         this.paglingQueryContestantsInThisContestBo.token = getCookie("token");
         this.paglingQueryContestantsInThisContestBo.contestId = getQueryVariable("id");
+        this.deleteAllCompetitionInfoByContestId.token =  getCookie("token");
         //防止幂等性
         this.getNonPowerToken();
     
@@ -145,6 +159,20 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         
     },
     methods: {
+      //删除所有比赛选手通过ContestId
+      async deleteAllCompetitionInfoByContestIdFun(){
+        this.deleteAllCompetitionInfoByContestIdFunButton = false;
+        this.deleteAllCompetitionInfoByContestId.token     =  getCookie("token");
+        this.deleteAllCompetitionInfoByContestId.contestId = getQueryVariable("id");
+        let obj = await synRequestPost("/CompetitionInfo/deleteAllCompetitionInfoByContestId",this.deleteAllCompetitionInfoByContestId);
+        if(check(obj)){
+          alert("删除成功");
+        }
+        //获取数据
+        this.getMerchantInformation(1);
+        //标记按钮
+        this.deleteAllCompetitionInfoByContestIdFunButton = true;
+      },
         //增加新的比赛人员
         async submit(){
           if(this.adminAddCompetitionInfoBo.username.length == 0){
