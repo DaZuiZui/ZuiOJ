@@ -21,9 +21,9 @@
                         <br>
                       <h5>添加参赛选手信息</h5>  <br>
                       请输入参赛人username
-                      <el-input v-model="postCompetitioninfo.username" placeholder="请输入参赛人username"></el-input>
+                      <el-input v-model="adminAddCompetitionInfoBo.username" placeholder="请输入参赛人username"></el-input>
                       <br>
-                      <el-button type="primary" style="width:100%" >添加</el-button>
+                      <el-button type="primary" style="width:100%" @click="submit" :dispatch="adminAddCompetitionInfoBoButton" >添加</el-button>
                     </div>
 
                   </el-drawer>
@@ -99,7 +99,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
-import { synRequestPost } from '../../../../../../static/request';
+import { synRequestPost,synRequestGet } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -115,9 +115,11 @@ import { synRequestPost } from '../../../../../../static/request';
             token: ""
         },
         //比赛选手信息
-        postCompetitioninfo:{
+        adminAddCompetitionInfoBo:{
             contestId: -1,
-            username: '',
+            username: "",
+            token: "",
+            nonPowerToken: "",
         },
         list: [], //数据集合
         count: 0, //个数
@@ -125,18 +127,54 @@ import { synRequestPost } from '../../../../../../static/request';
         cur: 1,
         //添加比赛人员滑动抽屉开关
         drawer: false,
+
+        //提交比赛按钮显示
+        adminAddCompetitionInfoBoButton: true,
       }
     },
     mounted(){
         //初始化数据
-        this.postCompetitioninfo.contestId = getQueryVariable("id");
+        this.adminAddCompetitionInfoBo.contestId = getQueryVariable("id");
         this.paglingQueryContestantsInThisContestBo.token = getCookie("token");
         this.paglingQueryContestantsInThisContestBo.contestId = getQueryVariable("id");
+        //防止幂等性
+        this.getNonPowerToken();
+    
         //获取数据
         this.getMerchantInformation(1);
         
     },
     methods: {
+        //增加新的比赛人员
+        async submit(){
+          if(this.adminAddCompetitionInfoBo.username.length == 0){
+            alert("用户名不可以为null");
+            return ;
+          } 
+          //按钮禁止点击
+          this.adminAddCompetitionInfoBoButton = true;
+         
+          //获取登入信息
+          this.adminAddCompetitionInfoBo.token = getCookie("token");
+          //发起请求
+          let obj = await synRequestPost("/CompetitionInfo/adminAddCompetitionInfo",this.adminAddCompetitionInfoBo);
+          //防止幂等性
+          this.getNonPowerToken();
+          if(check(obj)){
+            //防止幂等性
+            alert(obj.message);
+          }
+     
+        },
+
+        //防止幂等性
+        async getNonPowerToken(){
+          var object = await synRequestGet("/system/getNonPowerTokenString");
+          this.adminAddCompetitionInfoBo.nonPowerToken = object.data;
+          //按钮开启点击
+          this.adminAddCompetitionInfoBoButton = false;
+        },
+
         //跳转指定页面  
         async getMerchantInformation(val){ 
             this.cur = val ;
@@ -153,7 +191,7 @@ import { synRequestPost } from '../../../../../../static/request';
                 this.list = obj.data.competitionInfos;
                 this.count = obj.data.count;
             }
- 
+  
         },
         
     }

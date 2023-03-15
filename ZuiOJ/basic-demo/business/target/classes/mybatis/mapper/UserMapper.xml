@@ -3,6 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.UserMapper">
+    <select id="queryUserByUsername" resultType="com.dazuizui.basicapi.entry.User">
+        select
+            id,
+            username
+        from
+            user
+        where
+            username = #{username}
+        limit
+            1
+    </select>
+    <!--
+        查询管理员集合
+    -->
     <select id="queryListOfAdmin" resultType="string">
         select
             name

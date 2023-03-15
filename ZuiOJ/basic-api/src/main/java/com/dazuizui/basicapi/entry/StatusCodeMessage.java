@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class StatusCodeMessage implements Serializable {
     //身份验证过期
-    public static final String authenticationExpired   = "身份严重过期";
+    public static final String authenticationExpired   = "身份验证过期";
     //权限不足
     public static final String insufficientPermissions = "您的操作权限不足";
     //成功
@@ -26,4 +26,8 @@ public class StatusCodeMessage implements Serializable {
     public static final String UnknowError = "未知错误";
     //您没有参加比赛
     public static final String NotAuthorizedToContest = "您没有参加比赛";
+    //用户不存在
+    public static final String UserIsNull = "用户不存在";
+    //已经报名比赛
+    public static final String AlreadySignedUpGorTheCompetition = "已经报名比赛";
 }

@@ -3,7 +3,9 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.GetTotal;
 import com.dazuizui.basicapi.entry.Ranking;
+import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.domain.CompetitionInfoInContest;
+import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +20,19 @@ import java.util.List;
  */
 @Mapper
 public interface CompetitionInfoMapper {
+    /**
+     * 查看用户是否参赛
+     * @return
+     */
+    public CompetitionInfo checkForEntryByContestIdAnd(@Param("contestId")Long contestId, @Param("userId")Long id);
+
+    /**
+     * 管理员添加比赛选手信息
+     * @param contestId
+     * @param id
+     * @return
+     */
+    public Long adminAddCompetitionInfo(@Param("contestId")Long contestId, @Param("userId")Long id);
 
     /**
      * 查询参赛选手的数量

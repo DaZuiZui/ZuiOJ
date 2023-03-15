@@ -1,11 +1,17 @@
 package com.dazuizui.business.controller;
 
+import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
+import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 参赛选手数据
@@ -18,6 +24,23 @@ public class CompetitionInfoController {
 
     @Autowired
     private CompetitionInfoService competitionInfoService;
+
+
+    /**
+     * 管理员插入比赛选手信息
+     * @return
+     */
+    @ApiOperation("管理员插入比赛选手信息")
+    @PostMapping("/adminAddCompetitionInfo")
+    public String adminAddCompetitionInfo(@RequestBody AdminAddCompetitionInfoBo adminAddCompetitionInfoBo){
+        //身份验证过期 or 权限不足 or 幂等性操作
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return competitionInfoService.adminAddCompetitionInfo(adminAddCompetitionInfoBo);
+    }
     /**
      * 查看排名
      * @param contestId
@@ -26,7 +49,7 @@ public class CompetitionInfoController {
     @ApiOperation("查看排名")
     @GetMapping("/viewranking")
     public String viewRanking(@RequestParam("contestId")Long contestId,@RequestParam("page")Integer page){
-        System.out.println(page+"c"+contestId);
+
         return competitionInfoService.viewRanking(contestId,page-1,25);
     }
 

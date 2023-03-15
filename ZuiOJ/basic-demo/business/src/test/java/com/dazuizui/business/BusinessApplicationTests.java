@@ -56,6 +56,13 @@ class BusinessApplicationTests {
     private TransactionUtils transactionUtils;
 
     @Test
+    void test4(){
+        System.out.println(redisTemplate.opsForValue().get("314461eb-9048-4650-9efc-d267753603b8"));
+        System.out.println(redisTemplate.delete("314461eb-9048-4650-9efc-d267753603b8"));
+        System.out.println(redisTemplate.opsForValue().get("314461eb-9048-4650-9efc-d267753603b8"));
+    }
+
+    @Test
     void test3(){
         TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 

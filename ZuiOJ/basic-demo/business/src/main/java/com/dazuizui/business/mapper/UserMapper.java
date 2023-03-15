@@ -13,6 +13,12 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     /**
+     * 通过username查询用户
+     * @param username
+     * @return
+     */
+    public User queryUserByUsername(@Param("username")String username);
+    /**
      * 查询网站管理人员
      * @return
      */

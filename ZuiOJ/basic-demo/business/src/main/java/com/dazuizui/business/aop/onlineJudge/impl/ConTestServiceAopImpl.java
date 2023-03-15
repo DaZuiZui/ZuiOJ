@@ -79,7 +79,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
             throw new Exception("idempotency");
         }
 
-        //鉴权
+        //鉴权 todo 优化
         String token = (String) args[1];
         if (token != null){
             Map<String, Object> map = null;
@@ -104,7 +104,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
     @Override
     @Before("execution(* com.dazuizui.business.controller.ConTestController.getEventById(..))")
     public String getEventById(JoinPoint joinpoint) throws Exception {
-        //鉴权
+        //鉴权 todo 优化
         Object[] args = joinpoint.getArgs();
         String token = (String) args[0];
         if (token != null){

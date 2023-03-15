@@ -4,6 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
     <!--
+        管理员添加比赛选手
+    -->
+    <insert id="adminAddCompetitionInfo">
+        insert into
+            competition_info
+            VALUE(
+                null,
+                #{contestId},
+                #{userId},
+                1,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                0
+            )
+    </insert>
+
+    <!--
         分页查询比赛选手在这个比赛
     -->
     <select id="paglingQueryContestantsInThisContest" resultType="com.dazuizui.business.domain.CompetitionInfoInContest">
@@ -68,6 +89,22 @@
             count desc,second asc
         limit
             #{page},#{number}
+    </select>
+
+    <!--
+        查看选手是否参赛
+    -->
+    <select id="checkForEntryByContestIdAnd" resultType="com.dazuizui.basicapi.entry.CompetitionInfo">
+        select
+            id,
+            contest_id,
+            user_id
+        from
+            competition_info
+        where
+            contest_id = #{contestId} and
+            user_id    = #{userId}
+            limit 1
     </select>
 
     <!--
