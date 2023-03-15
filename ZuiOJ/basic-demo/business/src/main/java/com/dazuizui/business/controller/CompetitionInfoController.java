@@ -27,7 +27,7 @@ public class CompetitionInfoController {
 
 
     /**
-     * 管理员插入比赛选手信息
+     * 管理员插入比赛选手信息    撒撒啊
      * @return
      */
     @ApiOperation("管理员插入比赛选手信息")
