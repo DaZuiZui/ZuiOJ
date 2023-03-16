@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.aop.onlineJudge.CompetitionInfoAop;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
+import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
@@ -28,6 +29,45 @@ public class CompetitionInfoAopImpl implements CompetitionInfoAop {
     private UserService userService;
     @Autowired
     private RedisTemplate redisTemplate;
+
+    /**
+     * 通过id删除比赛选手aop
+     *      主要负责管理员身份的鉴权
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.CompetitionInfoController.deleteTheCompetitionById(..))")
+    public String deleteTheCompetitionById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        DeleteTheCompetitionByIdBo deleteTheCompetitionByIdBo = (DeleteTheCompetitionByIdBo) args[0];
+        String token = deleteTheCompetitionByIdBo.getToken();
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //获取登入者id
+                String strId = (String) map.get("id");
+                Long id = Long.valueOf(strId);
+                //查看是否为管理员
+                User user = userService.queryUserById(id);
+                System.err.println(user.getRole() < 2);
+                if (user.getRole() < 2){
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+                }
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }else{
+            ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+        }
+
+        return null;
+    }
 
     /**
      * 管理员插入比赛选手信息

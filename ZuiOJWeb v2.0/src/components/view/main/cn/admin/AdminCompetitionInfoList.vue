@@ -8,12 +8,12 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
-
-                  <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+                  
+                  <el-button @click="drawer = true" type="primary" style="margin-left: 16px;" >
                     添加新的参赛人员
                   </el-button>
                   
-                  <el-button @click="deleteAllCompetitionInfoByContestIdFun()" type="primary" style="margin-left: 16px;">
+                  <el-button @click="deleteAllCompetitionInfoByContestIdFun()" type="primary" style="margin-left: 16px;"  :dispatch="deleteAllCompetitionInfoByContestIdFunButton">
                     清除所有比赛选手
                   </el-button>
                   
@@ -78,7 +78,7 @@
                         <td>
                             <div>
                                 <el-link type="success">取消参赛资格</el-link>
-                                <el-link type="danger">物理删除</el-link>
+                                <el-link type="danger"  :disabled="deleteTheCompetitionByIdButton" @click="deleteTheCompetitionById(obj.id)">物理删除</el-link>
                             </div>
                         </td>
                       </tr>
@@ -132,6 +132,13 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
           token: "",
           contestId: -1,
         },
+        //通过id删除比赛选手
+        deleteTheCompetitionByIdBo:{
+          token: "",
+          contestId: -1,
+          id: -1.
+        },
+
         list: [], //数据集合
         count: 0, //个数
         //当前页号
@@ -139,10 +146,12 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         //添加比赛人员滑动抽屉开关
         drawer: false,
 
-        //提交比赛按钮显示
+        //提交比赛选手按钮显示
         adminAddCompetitionInfoBoButton: true,
         //删除全部比赛选手按钮现实
         deleteAllCompetitionInfoByContestIdFunButton: true,
+        //通过id删除比赛选手按钮显示
+        deleteTheCompetitionByIdButton: false,
       }
     },
     mounted(){
@@ -151,6 +160,8 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         this.paglingQueryContestantsInThisContestBo.token = getCookie("token");
         this.paglingQueryContestantsInThisContestBo.contestId = getQueryVariable("id");
         this.deleteAllCompetitionInfoByContestId.token =  getCookie("token");
+        this.deleteTheCompetitionByIdBo.token = getCookie("token");
+        this.deleteTheCompetitionByIdBo.contestId = getQueryVariable("id");
         //防止幂等性
         this.getNonPowerToken();
     
@@ -159,6 +170,22 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         
     },
     methods: {
+      //通过id删除比赛选手
+      async deleteTheCompetitionById(id){
+          //超链接不可点击
+          this.deleteTheCompetitionByIdButton = true;
+          //获取主键id
+          this.deleteTheCompetitionByIdBo.id = id;
+          let obj = await synRequestPost("/CompetitionInfo/deleteTheCompetitionById",this.deleteTheCompetitionByIdBo)
+          if(check(obj)){
+            alert(obj.message); 
+          }
+          //获取数据
+          this.getMerchantInformation(1);
+          //超链接设置可以点击
+          this.deleteTheCompetitionByIdButton = false;
+      },
+
       //删除所有比赛选手通过ContestId
       async deleteAllCompetitionInfoByContestIdFun(){
         this.deleteAllCompetitionInfoByContestIdFunButton = false;
@@ -192,7 +219,10 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
             //防止幂等性
             alert(obj.message);
           }
-     
+
+         
+          //刷新数据
+          this.getMerchantInformation(1);
         },
 
         //防止幂等性

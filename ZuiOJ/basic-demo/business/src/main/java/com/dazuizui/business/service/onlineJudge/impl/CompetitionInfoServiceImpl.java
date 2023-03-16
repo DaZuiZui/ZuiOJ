@@ -7,12 +7,14 @@ import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CompetitionInfoInContest;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
+import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.vo.PaglingQueryContestantsInThisContestVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.util.RedisUtil;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,26 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
         }
         //事物提交
         transactionUtils.commit(transactionStatus);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
+     * 通过id删除比赛选手
+     * @param deleteTheCompetitionByIdBo
+     * @return
+     */
+    @Override
+    public String deleteTheCompetitionById(DeleteTheCompetitionByIdBo deleteTheCompetitionByIdBo) {
+        String jwtId  = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        Long userId = Long.valueOf(jwtId);
+        //删除Redis
+        redisUtil.deleteKey(RedisKey.ZuiOJConetstCompetitionInfo+deleteTheCompetitionByIdBo.getContestId()+":"+userId);
+        //删除数据库的值
+        Long aLong = competitionInfoMapper.deleteTheCompetitionById(deleteTheCompetitionByIdBo);
+        if (aLong == 0){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.OK));
+        }
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }

@@ -6,6 +6,7 @@ import com.dazuizui.basicapi.entry.Ranking;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.domain.CompetitionInfoInContest;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
+import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,11 +22,19 @@ import java.util.List;
 @Mapper
 public interface CompetitionInfoMapper {
     /**
+     * 删除比赛选手通过主键id
+     * @param deleteTheCompetitionByIdBo
+     * @return
+     */
+    public Long deleteTheCompetitionById(DeleteTheCompetitionByIdBo deleteTheCompetitionByIdBo);
+
+    /**
      * 生成Rediskey
      * @param contestId
      * @return
      */
     public List<String> queryCompettionInfoRedisKeyByContestId(@Param("contestId")Long contestId);
+
     /**
      * 删除所有比赛选手通过比赛Id
      */

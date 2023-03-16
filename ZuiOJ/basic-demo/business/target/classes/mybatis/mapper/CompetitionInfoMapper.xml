@@ -4,6 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
     <!--
+        删除比赛选手通过iD
+    -->
+    <delete id="deleteTheCompetitionById">
+        delete
+        from
+            competition_info
+        where
+            id = #{id}
+    </delete>
+
+    <!--
         查询比赛选手RedisKey
     -->
     <select id="queryCompettionInfoRedisKeyByContestId" resultType="string">

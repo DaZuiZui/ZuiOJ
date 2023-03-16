@@ -3,11 +3,13 @@ package com.dazuizui.business.service.onlineJudge;
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
+import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,4 +51,12 @@ public interface CompetitionInfoService {
      * @Param deleteAllCompetitionInfoByContestIdBo
      */
     public String deleteAllCompetitionInfoByContestId(DeleteAllCompetitionInfoByContestIdBo deleteAllCompetitionInfoByContestIdBo);
+
+
+    /**
+     * 通过id删除比赛选手
+     * @param deleteTheCompetitionByIdBo
+     * @return
+     */
+    public String deleteTheCompetitionById(DeleteTheCompetitionByIdBo deleteTheCompetitionByIdBo);
 }

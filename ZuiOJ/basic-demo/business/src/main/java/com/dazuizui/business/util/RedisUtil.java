@@ -41,7 +41,7 @@ public class RedisUtil {
      * @return
      */
     public long deleteKey(String key){
-        redisTemplate.delete(key);
+        boolean b = redisTemplate.delete(key);
         return -1;
     }
 
