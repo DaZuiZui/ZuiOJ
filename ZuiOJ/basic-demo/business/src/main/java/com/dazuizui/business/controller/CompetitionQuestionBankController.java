@@ -22,7 +22,7 @@ public class CompetitionQuestionBankController {
     private CompetitionQuestionBankService competitionQuestionBankService;
 
     /**
-     * 通过比赛Id获取比赛题目
+     * 通过比赛Id获取比赛题目  啊
      */
     @ApiOperation("通过比赛Id获取比赛题目")
     @PostMapping("/getQuestionListByContestId")
