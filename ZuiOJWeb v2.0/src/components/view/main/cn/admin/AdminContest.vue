@@ -43,7 +43,7 @@
                         <td>{{obj.createTime}}  </td>
                         <td>
                             <div>   
-                                <el-link type="primary">查看题目</el-link>
+                                <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>
                                 <el-link type="primary" @click="removeTheContestById(obj.id)">移除比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
@@ -99,6 +99,13 @@
         this.getMerchantInformation(1);
     },
     methods: {
+        /**
+         * 查看比赛题目  
+         */
+        toCompetitionQuestionBank(id){
+            this.$router.push("/cn/admin/AdminConpetitionQuestionbankList?contestId="+id);
+        },
+
         //跳转指定页面
         async getMerchantInformation(val){  
             this.page = val; 

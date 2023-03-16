@@ -2,6 +2,9 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
+import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ContestQuestionVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
@@ -19,6 +22,15 @@ import java.util.List;
 public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBankService {
     @Autowired
     private CompetitionQuestionBankMapper competitionQuestionBankMapper;
+
+    /**
+     * 通过比赛Id获取比赛题目
+     */
+    @Override
+    public String getQuestionListByContestId(Long contestId) {
+        List<ContestQuestionVo> questionListByContestId = competitionQuestionBankMapper.getQuestionListByContestId(contestId);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,questionListByContestId, StatusCode.OK));
+    }
 
     /**
      * 添加题在比赛题库中

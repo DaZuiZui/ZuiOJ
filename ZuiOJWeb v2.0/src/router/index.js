@@ -33,6 +33,7 @@ import UpdateContestByAdmin from '@/components/view/main/cn/admin/adminUpdateCon
 import AdminViewContestSubmissionLog from '@/components/view/main/cn/admin/AdminViewContestSubmissionLog'
 import AdminCompetitionInfoList from '@/components/view/main/cn/admin/AdminCompetitionInfoList'
 import AdminUpdateQuestion from '@/components/view/main/cn/admin/AdminUpdateQuestion'
+import AdminConpetitionQuestionbankList from '@/components/view/main/cn/admin/AdminConpetitionQuestionbankList'
 Vue.use(Router)
 
 export default new Router({
@@ -43,6 +44,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDemo
+    },
+    //管理员查询比赛题目集合
+    {
+      path: '/cn/admin/AdminConpetitionQuestionbankList',
+      name: 'AdminConpetitionQuestionbankList',
+      component: AdminConpetitionQuestionbankList
     },
     //管理员修改题目
     {

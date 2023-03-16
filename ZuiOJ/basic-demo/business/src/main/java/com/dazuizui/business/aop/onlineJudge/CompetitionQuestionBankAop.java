@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Component
 @Aspect
 public interface CompetitionQuestionBankAop {
+    /**
+     * 通过contest id for get question list interface
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String getQuestionListByContestId(JoinPoint joinpoint) throws Exception;
 
     /**
      * 获取比赛题目aop，主要负责鉴权是否报名此比赛，是否拥有资格获取此题库

@@ -22,6 +22,15 @@ public class CompetitionQuestionBankController {
     private CompetitionQuestionBankService competitionQuestionBankService;
 
     /**
+     * 通过比赛Id获取比赛题目
+     */
+    @ApiOperation("通过比赛Id获取比赛题目")
+    @PostMapping("/getQuestionListByContestId")
+    public String getQuestionListByContestId(@RequestParam("token")String token,@RequestParam("contestId") Long contestId){
+        return competitionQuestionBankService.getQuestionListByContestId(contestId);
+    }
+
+    /**
      * 获取比赛题目id
      * @param token
      * @param contestId

@@ -4,6 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionQuestionBankMapper">
     <!--
+        通过比赛id获取比赛题目
+    -->
+    <select id="getQuestionListByContestId" resultType="com.dazuizui.basicapi.entry.vo.ContestQuestionVo">
+        SELECT
+            qb.id,
+            qb.chinese_name,
+            qb.english_name,
+            (SELECT name FROM user where id =  qb.create_by_id limit 1) as 'create_by_name',
+            qb.short_name,
+            qb.question_type,
+            qb.grade
+        FROM
+            question_bank qb
+        WHERE
+            id IN (
+            SELECT question_id from competition_question_bank where contest_id = #{contestId}
+            )
+    </select>
+
+    <!--
         添加比赛题目
     -->
     <insert id="addQuestionInContest">
@@ -17,7 +37,7 @@
     </insert>
 
     <!--
-        获取比赛题目
+        获取比赛题目包含ac记录
     -->
     <select id="getQuestionListInContest" resultType="com.dazuizui.basicapi.entry.vo.ContestQuestionVo">
         select

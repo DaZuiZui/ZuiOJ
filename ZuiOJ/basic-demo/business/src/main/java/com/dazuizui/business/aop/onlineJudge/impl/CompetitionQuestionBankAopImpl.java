@@ -30,6 +30,33 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
     private UserService userService;
     @Autowired
     private RedisUtil redisUtil;
+
+    /**
+     * 通过contest id for get question list interface
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String getQuestionListByContestId(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //获取登入者id
+                String strId = (String) map.get("id");
+                Long id = Long.valueOf(strId);
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }
+        return null;
+    }
+
     /**
      * 获取比赛题目aop，主要负责鉴权是否报名此比赛，是否拥有资格获取此题库
      * @param joinpoint

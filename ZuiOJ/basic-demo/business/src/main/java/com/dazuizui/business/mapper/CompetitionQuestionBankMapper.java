@@ -15,7 +15,11 @@ public interface CompetitionQuestionBankMapper {
     public Long addQuestionInContest(CompetitionQuestionBank competitionQuestionBank);
 
     /**
-     * 获取比赛题目
+     * 通过比赛Id获取比赛题目
+     */
+    public List<ContestQuestionVo> getQuestionListByContestId(@Param("contestId")Long contestId);
+    /**
+     * 获取比赛题目还有用户AC次数
      * @param contestId
      * @return
      */
