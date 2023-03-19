@@ -11,8 +11,19 @@
 
                 <el-row>
                     <el-button type="primary" @click="toCreateQuestion()">创建题目</el-button>
-                    <el-button type="success">关联比赛题目</el-button>
+                    <el-button type="success" @click="addcompetitionQuestionQuestionDrawer = true">关联比赛题目</el-button>
                 </el-row>
+
+                <el-drawer
+                  title="关联比赛题目"
+                  :visible.sync="addcompetitionQuestionQuestionDrawer"
+                  direction="btt"
+                  :with-header="false">
+                  <div style="text-align:center;">
+                    <el-input v-model="competitionQuestionBank.questionId" placeholder="请输入题目主键Id"></el-input>
+                    <el-button type="primary" @click="addCompetitionQuestion()">主要按钮</el-button>
+                  </div>
+                </el-drawer>
 
                 <table class="table">
                     <thead>
@@ -59,10 +70,10 @@
                  
                         <td>
                             <div>
-                                <el-link type="primary">案例管理</el-link>
-                                <el-link type="success">修改</el-link>
+                                <el-link type="primary" @click="goQuestionCaseManagement(obj.id)">案例管理</el-link>
+                                <el-link type="success" @click="goUpdateQuestion(obj.id)">修改</el-link>
                                 <el-link type="danger">取消比赛题目</el-link>
-                                <el-link type="danger">关闭榜单</el-link>
+                               
                             </div>
                         </td>
                       </tr>
@@ -89,10 +100,21 @@ import { synRequestPost } from '../../../../../../static/request';
       },
     data () {
       return {
+        //比赛题目
         list: [],
+        //比赛题目关联
+        competitionQuestionBank:{
+          questionId: -1,
+          contestId:  -1,
+        },
+
+        //关联比赛题目抽屉
+        addcompetitionQuestionQuestionDrawer: false,
       }
     },
     mounted(){
+        //初始化info
+        this.competitionQuestionBank.contestId = getQueryVariable("contestId");
         //获取幂等性token
         this.getMerchantInfgetQuestionListormation();
     },
@@ -105,9 +127,33 @@ import { synRequestPost } from '../../../../../../static/request';
                 console.log(this.list);
             }
         },
+
+        /**
+         * 添加关联题目 
+         */
+        async addCompetitionQuestion(){
+            let obj = await synRequestPost("/CompetitionQuestionBank/addCompetitionQuestion?token="+getCookie("token"),this.competitionQuestionBank);
+            if(check(obj)){
+               alert("添加成功");
+               this.getMerchantInfgetQuestionListormation();
+            }
+        },
+
         //创建题目
         toCreateQuestion(){
             this.$router.push("/cn/question/create");
+        },
+
+        //题库案例管理
+        goQuestionCaseManagement(id){
+            this.$router.push('/cn/admin/question/case/list?id='+id);
+        },
+
+        /*
+         * 前往更改题目页面
+         */
+        async goUpdateQuestion(id){
+            this.$router.push('/cn/admin/AdminUpdateQuestion?id='+id);
         }
     }
   }

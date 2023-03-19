@@ -140,11 +140,11 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
     },
     methods: {
         /**
-         * 提交日志
+         * 提交日志 有bug
          */
         async getContestSubmissionLog(page){
             this.cur = page;
-            this.queryContestSubmissionLogBo.page = page -1;
+            this.queryContestSubmissionLogBo.page = (page -1)*50;
             //获取日志
             let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
             this.list = obj.data.acContestQuestions;
