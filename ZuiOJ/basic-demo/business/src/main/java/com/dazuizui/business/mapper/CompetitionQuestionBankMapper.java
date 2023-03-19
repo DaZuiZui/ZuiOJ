@@ -12,6 +12,11 @@ import java.util.List;
  */
 @Mapper
 public interface CompetitionQuestionBankMapper {
+    /**
+     * 添加题目与比赛关联
+     * @param competitionQuestionBank
+     * @return
+     */
     public Long addQuestionInContest(CompetitionQuestionBank competitionQuestionBank);
 
     /**

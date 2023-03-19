@@ -66,6 +66,7 @@
             ac_contest_question t4
             on
                         t4.user_id  = #{userId} and
-                        t4.question_id = t3.id
+                        t4.question_id = t3.id and
+                        t4.contest_id = #{contestId}
     </select>
 </mapper>

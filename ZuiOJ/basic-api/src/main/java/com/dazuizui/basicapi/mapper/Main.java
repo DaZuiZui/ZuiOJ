@@ -2,31 +2,30 @@ package com.dazuizui.basicapi.mapper;
 
 //请在此处输入代码
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-        }
-
-        int m = scanner.nextInt();
-        System.out.println(check(arr, m));
+        System.out.println(isValid(scanner.next()));
     }
 
-    public static int check(int[] arr, int m){
-        int[] dp = new int[m+1];
-        dp[0] = 1;
-        for (int i = 0; i < arr.length ; i++) {
-            for (int j = arr[i]; j <= m ; j++) {
-                dp[j] += dp[j - arr[i]];
+
+        public static boolean isValid(String s) {
+            Stack<Character> stack = new Stack<>();
+            int n = s.length();
+            for (int i = 0; i < n; i++) {
+                char c = s.charAt(i);
+                if (c == '{') stack.push('}');
+                else if (c == '(') stack.push(')');
+                else if (c == '[') stack.push(']');
+                else if (stack.isEmpty() || stack.pop() != c){
+                    return false;
+                }
             }
-        }
 
-        return dp[m] == 0 ? -1 : dp[m];
-    }
+            return stack.isEmpty();
+        }
 }
 
 

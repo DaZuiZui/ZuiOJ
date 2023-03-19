@@ -24,6 +24,21 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
     private CompetitionQuestionBankMapper competitionQuestionBankMapper;
 
     /**
+     * 添加比赛关联题目
+     * @return
+     */
+    @Override
+    public String addCompetitionQuestion(CompetitionQuestionBank competitionQuestionBank){
+        //校验题目是否存在
+
+        Long aLong = competitionQuestionBankMapper.addQuestionInContest(competitionQuestionBank);
+        if (aLong == 0){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
      * 通过比赛Id获取比赛题目
      */
     @Override

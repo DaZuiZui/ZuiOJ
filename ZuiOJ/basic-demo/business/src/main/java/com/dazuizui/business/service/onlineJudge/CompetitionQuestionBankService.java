@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -15,6 +16,11 @@ import java.util.List;
  */
 @Service
 public interface CompetitionQuestionBankService {
+    /**
+     * 添加比赛关联题目
+     * @return
+     */
+    public String addCompetitionQuestion(CompetitionQuestionBank competitionQuestionBank);
     /**
      * 通过比赛Id获取比赛题目
      */

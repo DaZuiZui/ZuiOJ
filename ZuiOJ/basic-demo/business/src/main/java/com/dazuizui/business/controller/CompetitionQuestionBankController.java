@@ -1,6 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.onlineJudge.CompetitionQuestionBankService;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -22,11 +23,30 @@ public class CompetitionQuestionBankController {
     private CompetitionQuestionBankService competitionQuestionBankService;
 
     /**
-     * 通过比赛Id获取比赛题目  啊
+     * 添加比赛关联题目
+     * @return
+     */
+    @ApiOperation("添加比赛关联题目")
+    @PostMapping("/addCompetitionQuestion")
+    public String addCompetitionQuestion(@RequestParam("token")String token, @RequestBody CompetitionQuestionBank competitionQuestionBank) {
+        //身份验证过期 or 权限不足
+        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+        }
+
+        return competitionQuestionBankService.addCompetitionQuestion(competitionQuestionBank);
+    }
+    /**
+     * 通过比赛Id获取比赛题目
      */
     @ApiOperation("通过比赛Id获取比赛题目")
     @PostMapping("/getQuestionListByContestId")
     public String getQuestionListByContestId(@RequestParam("token")String token,@RequestParam("contestId") Long contestId){
+        //身份验证过期 or 权限不足
+        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+        }
+
         return competitionQuestionBankService.getQuestionListByContestId(contestId);
     }
 
