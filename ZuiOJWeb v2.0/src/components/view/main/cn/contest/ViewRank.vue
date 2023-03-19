@@ -69,7 +69,7 @@
                                     <tr class="el-table__row" v-for="(rank,index) in rankList" :key="index">
                                         <td rowspan="1" colspan="1" class="el-table_4_column_10   el-table__cell">
                                             <div class="cell">
-                                                {{index+1}}
+                                                {{(curpage-1)*25+index+1}}
                                             </div>
                                         </td>
                                         <td rowspan="1" colspan="1" class="el-table_4_column_11   el-table__cell">
@@ -135,6 +135,8 @@
                 rankList: [],
                 //比赛标题
                 title: "",
+
+                curpage: 0,
            }
        },
   
@@ -159,6 +161,7 @@
 
             //获取榜单
             async getRanking(page){
+                this.curpage = page;
                 var object = await synRequestGet("/CompetitionInfo/viewranking?contestId="+getQueryVariable("contestId")+"&page="+page);
                 console.log(object.data);
                 this.end = object.data.total;
