@@ -119,7 +119,7 @@ import { synRequestPost } from '../../../../../../static/request';
         this.getMerchantInfgetQuestionListormation();
     },
     methods: {
-        //跳转指定页面
+        //获取比赛题目
         async getMerchantInfgetQuestionListormation(){   
             let obj = await synRequestPost("/CompetitionQuestionBank/getQuestionListByContestId?token="+getCookie("token")+"&contestId="+getQueryVariable("contestId"));
             if(check(obj)){
