@@ -23,7 +23,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
                 <div class="container">
                     <!-- Brand -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand"  href="/h">
                         <img alt="Image placeholder" style="height:3.4rem" src="../../../../static/ZuiOJ/image/LogoText.jpg" id="navbar-logo">
                     </a>
                     <!-- Toggler -->
