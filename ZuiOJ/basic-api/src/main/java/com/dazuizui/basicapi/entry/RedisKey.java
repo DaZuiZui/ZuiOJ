@@ -13,6 +13,8 @@ public class RedisKey {
     public static final String ZuiBlogUserCount = "ZuiBlog:User:count";
     //过期时间
     public static final  Long OutTime = Long.valueOf(60*60*24*15);
+    //用户token过期时间
+    public static final  Long UserTokenOutTime = Long.valueOf(60*60*24*15);
     //用户主键个人信息
     public static final String ZuiBlogUserId = "ZuiBlog:User:Info:Id:";
     //用户索引username
@@ -48,4 +50,6 @@ public class RedisKey {
     public static final String ZuiOJQuestionStatusCount = "ZuiOJ:Question:Count:";
     //比赛选手报名信息 RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id
     public static final String ZuiOJConetstCompetitionInfo = "ZuiOJ:Conetst:CompetitionInfo:Contest:";
+    //用户token
+    public static final String ZuiBlogUserToken = "ZuiBlog:User:Token";
 }

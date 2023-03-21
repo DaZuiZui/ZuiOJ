@@ -168,6 +168,10 @@ public class UserServiceImpl implements UserService {
         }
         //生成JWT
         String jwt = JwtUtil.createJWT(userInDB);
+
+        //将token存入redis用来做过期验证和修改密码token的可使用性
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserToken,RedisKey.UserTokenOutTime,jwt);
+
         //封装返回
         Map<String,Object> map = new HashMap<>();
         map.put("jwt",jwt);
@@ -185,6 +189,11 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> map = null;
         try {
             map = JwtUtil.analysis(token);
+            //当前登入验证过期
+            long expire = redisUtil.expire(token);
+            if (expire <= 0){
+                return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
+            }
         } catch (Exception e) {
             return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
         }

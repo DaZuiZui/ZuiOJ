@@ -18,12 +18,25 @@ public class RedisUtil {
     private StringRedisTemplate stringRedisTemplate;
 
     /**
+     * 从redis中获取key对应的过期时间;
+     * 如果该值有过期时间，就返回相应的过期时间;
+     * 如果该值没有设置过期时间，就返回-1;
+     * 如果没有该值，就返回-2;
+     * @param key
+     * @return
+     */
+    public long expire(String key) {
+        return redisTemplate.opsForValue().getOperations().getExpire(key);
+    }
+
+
+    /**
      * 批量删除
      * @param key
      * @return
      */
     public long batchDeletion(List<String> key){
-        //我
+
         redisTemplate.delete(key);
         return -1;
     }

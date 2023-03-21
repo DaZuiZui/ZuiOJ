@@ -1,11 +1,13 @@
 package com.dazuizui.business.util;
 
 import com.dazuizui.basicapi.entry.ApplicationKey;
+import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +17,8 @@ import java.util.Map;
  * 哈尔滨广厦学院JWT系统
  */
 public class JwtUtil {
-
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * 生成密文
      * @return
@@ -48,6 +51,8 @@ public class JwtUtil {
 
         //生成密文
         String jstString = builder.compact();
+
+
         return jstString;
     }
 
