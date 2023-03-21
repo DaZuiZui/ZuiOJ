@@ -43,7 +43,7 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      component: AboutDemo
+      component: AboutDazui
     },
     //管理员查询比赛题目集合
     {
