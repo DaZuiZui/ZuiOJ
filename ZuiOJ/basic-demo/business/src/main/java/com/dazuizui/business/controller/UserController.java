@@ -79,6 +79,7 @@ public class UserController {
     @ApiOperation("解析用户token")
     @GetMapping("/analysis")
     public String analysis(@RequestParam("token")String token){
+        System.out.println("？？？");
         return userService.analysis(token);
     }
 

@@ -108,7 +108,6 @@ public class UserServiceImpl implements UserService {
         //如果redis没有数据就去mysql查询
         if (coungOfUser == null || coungOfUser == 0){
             coungOfUser = userMapper.queryCountOfUser();
-            System.err.println("????"+coungOfUser);
             //写入redis
             redisUtil.setLongOfStringInRedis(RedisKey.ZuiBlogUserCount,RedisKey.OutTime, coungOfUser);
 
@@ -170,7 +169,7 @@ public class UserServiceImpl implements UserService {
         String jwt = JwtUtil.createJWT(userInDB);
 
         //将token存入redis用来做过期验证和修改密码token的可使用性
-        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserToken,RedisKey.UserTokenOutTime,jwt);
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserToken+jwt,RedisKey.UserTokenOutTime,jwt);
 
         //封装返回
         Map<String,Object> map = new HashMap<>();
@@ -189,8 +188,10 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> map = null;
         try {
             map = JwtUtil.analysis(token);
+           // System.out.println("？？？");
             //当前登入验证过期
-            long expire = redisUtil.expire(token);
+            long expire = redisUtil.expire(RedisKey.ZuiBlogUserToken+token);
+          //  System.out.println(expire);
             if (expire <= 0){
                 return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
             }
