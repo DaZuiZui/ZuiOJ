@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionQuestionBankMapper">
+
     <!--
         通过比赛id获取比赛题目
     -->

@@ -2,10 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
-import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
-import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
-import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
-import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -26,6 +23,8 @@ public class CompetitionInfoController {
 
     @Autowired
     private CompetitionInfoService competitionInfoService;
+
+
 
     /**
      * 通过id删除比赛选手

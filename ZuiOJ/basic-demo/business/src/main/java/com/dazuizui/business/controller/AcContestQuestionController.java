@@ -2,6 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -20,6 +21,17 @@ import java.util.Map;
 public class AcContestQuestionController {
     @Autowired
     private AcContestQuestionSerivce acContestQuestionSerivce;
+
+    /**
+     * 查询日志通过元素列表
+     * @return
+     */
+    @ApiOperation("查询日志通过元素列表")
+    @PostMapping("/queryLogByElement")
+    public String queryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
+        return acContestQuestionSerivce.queryLogByElement(elementOfQueryLogBo);
+    }
+
     /**
      * 查看本题提交日志
      * @return

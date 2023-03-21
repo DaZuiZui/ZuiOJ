@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.CompetitionQuestionBank;
 import com.dazuizui.basicapi.entry.vo.ContestQuestionVo;
+import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,6 +13,7 @@ import java.util.List;
  */
 @Mapper
 public interface CompetitionQuestionBankMapper {
+
     /**
      * 添加题目与比赛关联
      * @param competitionQuestionBank

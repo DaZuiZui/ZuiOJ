@@ -1,6 +1,7 @@
 package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.AcContestQuestion;
+import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +14,13 @@ import java.util.List;
  */
 @Mapper
 public interface AcContestQuestionMapper {
+    /**
+     * 通过元素查询
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    public List<AcContestQuestion> queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo);
+
     /**
      * 删除此用户的提交记录通过Id
      * @param id

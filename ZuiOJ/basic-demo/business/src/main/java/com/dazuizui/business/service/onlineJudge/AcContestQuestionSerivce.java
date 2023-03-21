@@ -1,9 +1,11 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.AcContestQuestion;
+import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -12,6 +14,12 @@ import java.util.List;
  */
 @Service
 public interface AcContestQuestionSerivce {
+    /**
+     * 查询日志通过元素列表
+     * @return
+     */
+    public String queryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo);
+
     /**
      * 删除此用户的提交记录通过Id
      * @param id

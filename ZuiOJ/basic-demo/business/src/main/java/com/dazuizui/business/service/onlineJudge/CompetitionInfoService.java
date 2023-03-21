@@ -1,10 +1,7 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
-import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
-import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
-import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
-import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
+import com.dazuizui.business.domain.bo.*;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
@@ -15,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public interface CompetitionInfoService {
+
+
     /**
      * 检查选手是否有参赛数据
      * @param ContestId

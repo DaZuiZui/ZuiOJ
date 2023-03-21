@@ -4,6 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
     <!--
+       通过元素内容筛选查询日志
+     -->
+    <select id="queryLogByElement" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">
+        select
+            *
+        from
+            ac_contest_question
+        <where>
+            contest_id = #{contestId}
+
+            <if test="name != null">
+               and  create_by_name = #{name}
+            </if>
+        </where>
+
+    </select>
+
+    <!--
         通过id主键删除提交记录
     -->
     <delete id="deleteLogById">

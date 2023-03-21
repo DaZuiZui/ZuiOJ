@@ -5,10 +5,7 @@ import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CompetitionInfoInContest;
-import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
-import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;
-import com.dazuizui.business.domain.bo.DeleteTheCompetitionByIdBo;
-import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.business.domain.vo.PaglingQueryContestantsInThisContestVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.UserMapper;
@@ -102,7 +99,7 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
         if (user == null){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.UserIsNull,"用户不存在", StatusCode.OK));
         }
-        System.err.println("???");
+
         //获取比赛选手信息
         CompetitionInfo competitionInfo = this.checkForEntryByContestIdAnd(adminAddCompetitionInfoBo.getContestId(),user.getId());
         if (competitionInfo != null){
@@ -119,6 +116,8 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,"添加成功", StatusCode.OK));
     }
+
+
 
     /**
      * 查询比赛选手是否参赛

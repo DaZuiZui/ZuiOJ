@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
@@ -24,6 +25,17 @@ import java.util.List;
 public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     @Autowired
     private AcContestQuestionMapper acContestQuestionMapper;
+
+    /**
+     * 通过元素筛选查询元素
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    @Override
+    public String queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo) {
+        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryLogByElement(elementOfQueryLogBo);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,acContestQuestions, StatusCode.OK));
+    }
 
     /**
      * 删除此用户的提交记录通过Id

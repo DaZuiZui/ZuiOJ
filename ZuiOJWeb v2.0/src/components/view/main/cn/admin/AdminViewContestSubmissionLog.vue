@@ -8,6 +8,25 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+                <el-button @click="elementOfQueryLogDrawer = true" type="primary" style="margin-left: 16px;width:100%">
+                    通过参数查询日志
+                </el-button>
+
+                <el-drawer
+                    title="我是标题"
+                    :visible.sync="elementOfQueryLogDrawer"
+                    :with-header="false">
+                    <div>
+                        <br><br>
+                        请选择题目：
+                        <el-input v-model="elementOfQueryLog.name" placeholder="请输入学生姓名"></el-input>
+                        <br>
+
+                        <el-button type="primary" @click="getLogByElement()">筛选查询日志</el-button>
+                    </div>
+                </el-drawer>
+              
+
                 Hi管理员，如果竞赛过程中不出现问题坚决不可以对此数据进行操作，为了确保数据不被误删，此页面不提供批量清除，如果你想重置本次比赛请<a href="#" @click="clearContestSubmissionLog()">点击我</a>
                 <br>
                 <table class="table">
@@ -43,7 +62,7 @@
                             </b>
                         </td>
                         <td>
-                            <div   style="color:green">
+                            <div style="color:green">
                                 {{obj.numberOfAttempts}}
                             </div>    
                              
@@ -124,21 +143,46 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
             size: 50,
             contestId: -1,
         },
+        
+        //查询日志元素
+        elementOfQueryLog: {
+            questionId: null,
+            name: "",
+            startnum: null,
+            endnum:   null,
+            status: 0,
+            token: "",
+            contestId: -1,
+        },
+        //比赛问题集合
+        questionList: [],
+        //显示数据集合
         list: [],
+        //总数
         count: 0,
-        cur: 1
+        //现在查看的页面
+        cur: 1,
+        //通过元素查询日志抽屉显示
+        elementOfQueryLogDrawer: true,
       }
     },
     mounted(){
         //初始化数据
         this.queryContestSubmissionLogBo.contestId = getQueryVariable("id");
         this.queryContestSubmissionLogBo.token = getCookie("token");
+        this.elementOfQueryLog.contestId =  getQueryVariable("id");
         //获取比赛题目
         this.getQuestionListOfContest(1);
    
  
     },
     methods: {
+        async getLogByElement(){
+            let obj = await synRequestPost("/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
+            if(check(obj)){
+                this.list = obj.data;
+            }
+        },
         /**
          * 提交日志 有bug
          */
@@ -163,7 +207,10 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         async getQuestionListOfContest(){
             let obj = await synRequestGet("/CompetitionQuestionBank/admin/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
             let tmplist = obj.data;
-             
+            console.log(tmplist);
+            this.questionList = tmplist;
+
+            //
             for(let i = 0 ; i < tmplist.length ; i++){
                 this.questionMap.set(tmplist[i].id,tmplist[i].chineseName);
             }
