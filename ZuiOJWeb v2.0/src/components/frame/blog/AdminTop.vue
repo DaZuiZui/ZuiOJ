@@ -196,7 +196,8 @@ import { synRequestGet } from '../../../../static/request';
             let token = getCookie("token");
             //alert(token);
             let obj = await synRequestGet("/user/analysis?token="+token);
-            //alert(obj.code);
+            //log(obj);
+            console.log(obj);
             if(obj.code == '0x444'){
                 alert("您的身份验证已经过期");
                 this.goUserLogin();

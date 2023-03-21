@@ -187,7 +187,9 @@ import { synRequestGet } from '../../../../static/request';
             let token = getCookie("token");
             //alert(token);
             let obj = await synRequestGet("/user/analysis?token="+token);
-            console.log(obj.data == null);
+            if(check(obj)){
+                
+            }
             this.user = obj.data;
            // alert(this.user.role)
         },
