@@ -25,7 +25,6 @@
                 </nav>
 
                 <br>
-
                 若你想为此项目作出你的一份贡献，请确保在提出拉取请求之前阅读<a href="#">贡献指南</a>。 <br>
                 If you want to make your own contribution to this project, please make sure to read the <a href="#">Contribution Guidelines</a> before making a pull request<br>
                 <br>
