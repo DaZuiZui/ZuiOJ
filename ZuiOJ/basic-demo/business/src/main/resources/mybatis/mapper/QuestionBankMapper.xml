@@ -156,7 +156,8 @@
             short_name,
             chinese_name,
             grade,
-            create_by_name
+            create_by_name,
+            status
         from
             question_bank
         where

@@ -296,16 +296,9 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     public String pagingToGetQuestionOfAdmin(@Param("pages") int pages, @Param("number") int number){
         /**
          * 查看总数量
+         * todo中间表优化
          */
-        //查看redis是否存在
-        Long countOfQuestion = redisUtil.getLongOfStringInRedis(RedisKey.QuestionCountWithAnyStatus);
-        //redis为null去数据库查询
-        if (countOfQuestion == null){
-            countOfQuestion = questionBankMapper.queryCountOfQuestionOfAdmin();
-            //System.err.println(countOfQuestion);
-            //写入redis
-            redisUtil.setLongOfStringInRedis(RedisKey.QuestionCountWithAnyStatus,60*60*24*15,countOfQuestion);
-        }
+        Long countOfQuestion  = questionBankMapper.queryCountOfQuestionOfAdmin();
 
         //查看全部题库
         List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestionOfAdmin(pages, number);
