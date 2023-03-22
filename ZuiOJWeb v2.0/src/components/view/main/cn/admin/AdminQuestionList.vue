@@ -15,7 +15,7 @@
                         <th scope="col">编号</th>
                         <th scope="col">题目</th>
                         <th scope="col">难度</th>
-                        <th scope="col">通过率</th>
+                        <th scope="col">状态</th>
                         <th scope="col">出题人</th>
                         <th scope="col">
                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -47,7 +47,17 @@
                                 Hard
                             </div>   
                         </td>
-                        <td>等待系统统计</td>
+                        <td>
+                          <div v-if="obj.status == 0"> 
+                                公开
+                          </div>
+                          <div v-else-if="obj.status == 1"> 
+                                比赛题目
+                          </div>
+                          <div v-else-if="obj.status == 2"> 
+                              隐藏
+                          </div>
+                        </td>
                         <td>
                           {{obj.createByName}}
                         </td>
