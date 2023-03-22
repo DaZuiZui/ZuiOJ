@@ -3,6 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionBankAttribute">
+    <!--
+        管理员查看题目数量没有删除题目
+    -->
+    <select id="adminQueryQuestionListDidNotDeleteQuestion" resultType="Long" >
+        select
+            number
+        from
+            question_bank_attribute
+    </select>
+
+    <!--
+        修改题解数量
+    -->
     <update id="updateQuestionAttribute">
         update
              question_bank_attribute

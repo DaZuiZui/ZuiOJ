@@ -55,8 +55,8 @@
                             </b>
                         </td>
                         <td>
-                            <b>
-                              <a style="color:" href="" @click="goViewQuestion(obj.id)">
+                            <b  @click="getLogListByUserName(obj.createByName)">
+                              <a style="color:" >
                                 {{obj.createByName}}
                               </a>
                             </b>
@@ -163,7 +163,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         //现在查看的页面
         cur: 1,
         //通过元素查询日志抽屉显示
-        elementOfQueryLogDrawer: true,
+        elementOfQueryLogDrawer: false,
       }
     },
     mounted(){
@@ -177,14 +177,35 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
  
     },
     methods: {
+        /**
+         *  获取日志通过name
+         */ 
+        async getLogListByUserName(name){
+            this.elementOfQueryLog.questionId = null;
+            this.elementOfQueryLog.name = name;
+            this.elementOfQueryLog.startnum = null;
+            this.elementOfQueryLog.endnum = null;
+            this.elementOfQueryLog.status = 0;
+          
+            this.getLogByElement();
+        },
+
+        /**
+         *  通过元素筛选查询日志
+         */
         async getLogByElement(){
+            this.elementOfQueryLog.token = getCookie("token");
             let obj = await synRequestPost("/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
+            console.log("123");
+            console.log(obj.data);
             if(check(obj)){
                 this.list = obj.data;
             }
         },
+        
+
         /**
-         * 提交日志 有bug
+         * 提交日志
          */
         async getContestSubmissionLog(page){
             this.cur = page;
@@ -207,7 +228,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         async getQuestionListOfContest(){
             let obj = await synRequestGet("/CompetitionQuestionBank/admin/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
             let tmplist = obj.data;
-            console.log(tmplist);
+    
             this.questionList = tmplist;
 
             //
