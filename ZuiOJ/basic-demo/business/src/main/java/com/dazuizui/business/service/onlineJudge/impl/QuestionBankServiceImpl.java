@@ -54,6 +54,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private ProblemLimitService problemLimitService;
 
 
+
     /**
      * 修改题目info和limit
      * @param questionAndLimitByQuestionIdBo
@@ -296,9 +297,8 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     public String pagingToGetQuestionOfAdmin(@Param("pages") int pages, @Param("number") int number){
         /**
          * 查看总数量
-         * todo中间表优化
          */
-        Long countOfQuestion  = questionBankMapper.queryCountOfQuestionOfAdmin();
+        Long countOfQuestion  = questionBankAttribute.adminQueryQuestionListDidNotDeleteQuestion();
 
         //查看全部题库
         List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestionOfAdmin(pages, number);

@@ -3,12 +3,18 @@ package com.dazuizui.business.mapper;
 import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 题目据个数
  */
 @Mapper
 public interface QuestionBankAttribute {
+    /**
+     * 管理员查看没有被删除的题目数量
+     * @return
+     */
+    public Long adminQueryQuestionListDidNotDeleteQuestion();
     /**
      * 更改题目数量
      * @param num           更改的数量
