@@ -86,7 +86,7 @@ public class UserController {
     /**
      * 注册账号
      * @param user
-     * @return  阿斯顿
+     * @return
      */
     @ApiOperation("注册用户")
     @PostMapping("/register")
