@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.CodeDetailedInContestMapper">
+    <!--
+        插入比赛提交代码
+    -->
+    <insert id="insertCodeDetails" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            code_detailed_in_contest
+            value (
+                null,
+                #{code}
+            )
+    </insert>
+</mapper>
