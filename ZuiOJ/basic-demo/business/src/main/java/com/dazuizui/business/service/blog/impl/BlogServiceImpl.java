@@ -10,7 +10,7 @@ import com.dazuizui.basicapi.entry.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.*;
-import com.dazuizui.business.messageQueue.blog.config.BlogSource;
+import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.RedisUtil;
@@ -30,14 +30,14 @@ import java.util.*;
  * 博文业务实现接口
  */
 @Service
-@EnableBinding(BlogSource.class)
+@EnableBinding(MessageSource.class)
 public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogMapper blogMapper;
     @Autowired
     private RedisUtil redisUtil;
     @Autowired
-    private BlogSource source;
+    private MessageSource source;
     @Autowired
     private QuestionAnswerMapper questionAnswerMapper;
     @Autowired

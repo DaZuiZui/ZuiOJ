@@ -1,4 +1,4 @@
-package com.dazuizui.business.messageQueue.blog;
+package com.dazuizui.business.messageQueue.onlineJudge;
 
 import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.business.messageQueue.cofnig.MessageSink;
@@ -10,18 +10,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableBinding(MessageSink.class)
-public class MessageConsumer {
-    @Autowired
-    private LanguageArticleTypeService languageArticleTypeService;
+public class OJMessageConsumer {
 
     /**
      * 接收消息
-     * @param articleBo
+     * @param str
      */
-    @StreamListener(MessageSink.AddArticleINPUT)
-    public void receive(CreateArticleBo articleBo) {
-        //languageArticleTypeService.AddArticleType(articleBo);
+    @StreamListener(MessageSink.ContestCodeAddINPUT)
+    public void receive(String str) {
 
-        System.out.println("消息 = " + articleBo);
+        System.out.println("消息 = " + str);
     }
 }

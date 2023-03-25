@@ -1,14 +1,12 @@
 package com.dazuizui.business;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.business.mapper.AttributeMapper;
 import com.dazuizui.business.mapper.BlogMapper;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
-import com.dazuizui.business.messageQueue.blog.config.BlogSource;
+import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 import com.dazuizui.business.service.student.StudentService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.TransactionUtils;
@@ -21,11 +19,10 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 @SpringBootTest
-@EnableBinding(BlogSource.class)
+@EnableBinding(MessageSource.class)
 class BusinessApplicationTests {
     @Autowired
     private RedisTemplate redisTemplate;
@@ -41,7 +38,7 @@ class BusinessApplicationTests {
     private StudentService studentService;
 
     @Autowired
-    private BlogSource source;
+    private MessageSource source;
 
     @Autowired
     private CompetitionInfoMapper competitionInfoMapper;

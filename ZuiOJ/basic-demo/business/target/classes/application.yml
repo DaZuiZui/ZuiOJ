@@ -19,6 +19,11 @@ spring:
   cloud:
     stream:
       bindings:
+        #
+        contest_code_add_input:
+          destination: contest_code_exchange_add
+        contest_code_add_output:
+          destination: contest_code_exchange_add
         # 博文添加
         blog_add_input:
           destination: blog_exchange_add
