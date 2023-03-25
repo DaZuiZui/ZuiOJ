@@ -9,7 +9,7 @@
             <div class="container">
                 <br>
                 <el-button @click="elementOfQueryLogDrawer = true" type="primary" style="margin-left: 16px;width:100%">
-                    通过参数查询日志
+                    通过筛选参数查询日志
                 </el-button>
 
                 <el-drawer
@@ -23,6 +23,7 @@
                         <br>
 
                         <el-button type="primary" @click="getLogByElement()">筛选查询日志</el-button>
+                        <el-button type="primary" @click="getContestSubmissionLog(1)">恢复默认</el-button>
                     </div>
                 </el-drawer>
               

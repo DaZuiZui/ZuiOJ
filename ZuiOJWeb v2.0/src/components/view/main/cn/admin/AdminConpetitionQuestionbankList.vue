@@ -11,7 +11,7 @@
 
                 <el-row>
                     <el-button type="primary" @click="toCreateQuestion()">创建题目</el-button>
-                    <el-button type="success" @click="addcompetitionQuestionQuestionDrawer = true">关联比赛题目</el-button>
+                    <el-button type="success" @click="addcompetitionQuestionQuestionDrawer = true" >关联比赛题目</el-button>
                 </el-row>
 
                 <el-drawer
@@ -20,8 +20,9 @@
                   direction="btt"
                   :with-header="false">
                   <div style="text-align:center;">
+                    请输入关联题目的信息。
                     <el-input v-model="competitionQuestionBank.questionId" placeholder="请输入题目主键Id"></el-input>
-                    <el-button type="primary" @click="addCompetitionQuestion()">主要按钮</el-button>
+                    <el-button type="primary" @click="addCompetitionQuestion()" style="width:100%">关联比赛题目</el-button>
                   </div>
                 </el-drawer>
 
@@ -104,7 +105,7 @@ import { synRequestPost } from '../../../../../../static/request';
         list: [],
         //比赛题目关联
         competitionQuestionBank:{
-          questionId: -1,
+          questionId: null,
           contestId:  -1,
         },
 
@@ -132,6 +133,15 @@ import { synRequestPost } from '../../../../../../static/request';
          * 添加关联题目 
          */
         async addCompetitionQuestion(){
+           if(this.competitionQuestionBank.questionId == null ){
+              alert("关联的题目主键不可以为null"); 
+              return;
+           }
+           if(this.competitionQuestionBank.contestId == null ){
+              alert("非正常操作"); 
+              return;
+           }
+
             let obj = await synRequestPost("/CompetitionQuestionBank/addCompetitionQuestion?token="+getCookie("token"),this.competitionQuestionBank);
             if(check(obj)){
                alert("添加成功");
