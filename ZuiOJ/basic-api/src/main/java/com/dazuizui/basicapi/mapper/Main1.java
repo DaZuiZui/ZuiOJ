@@ -10,22 +10,24 @@ public class Main1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        dfs(n);
-        System.out.println(count);
+        int[] dp = new int[n];
+        for (int i = 0; i < n; i++) {
+            dp[i] = scanner.nextInt();
+        }
+        System.out.println(findSubarrays(dp));
     }
 
-    public static void dfs(int sum) {
-        if (sum == 0){
-            count++;
-            return ;
-        }
-        if (sum < 0){
-            return ;
+    public static boolean findSubarrays(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        int n = nums.length;
+
+        for (int i = 0; i < n-1; i++) {
+            if (!set.add(nums[i] + nums[i+1])) {
+                return true;
+            }
         }
 
-        for (int i = 1; i <= sum; i++) {
-            dfs(sum - i);
-        }
+        return false;
     }
 
 }

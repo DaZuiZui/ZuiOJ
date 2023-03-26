@@ -269,13 +269,14 @@
             this.addQuestionCaseBo.questionId    = getQueryVariable("id");
             this.addQuestionCaseBo.token         = getCookie("token");
             let obj = await synRequestPost("/questionCase/addQuestionCase",this.addQuestionCaseBo);
+            //有bug，缓存案例不清空
             if(check(obj)){
                 alert(obj.message);
                 //清空数据
                 this.addQuestionCaseBo.nonPowerToken = "";
                 this.addQuestionCaseBo.questionCases = [];
             }
-
+            this.addQuestionCaseBo.questionCases = [];
             //获取幂等性token
             this.getNonPowerToken();
             //更新数据
