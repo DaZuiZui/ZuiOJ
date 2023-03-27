@@ -1,11 +1,19 @@
 package com.dazuizui.business.mongodao;
 
+import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
+import org.bson.Document;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.integration.support.MessageBuilder;
 
 @SpringBootTest
@@ -13,9 +21,16 @@ import org.springframework.integration.support.MessageBuilder;
 public class ArticleDiscussionRepositoryTest {
     @Autowired
     private ArticleDiscussionRepository articleDiscussionRepository;
+    @Autowired
+    private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
+    @Autowired
+    private MongoTemplate mongoTemplate;
     @Test
     void test1(){
-        System.out.println(articleDiscussionRepository.findAll());
+        Page<CodeInContest> byContestIdAndQuestionIdAndUserId = submmitionCodeInContestRepository
+                .findByContestIdAndQuestionIdAndUserId(49l, 49l, 1l, PageRequest.of(0, 2));
+        System.out.println(byContestIdAndQuestionIdAndUserId.getContent());
+        System.out.println(byContestIdAndQuestionIdAndUserId.getTotalElements());
     }
 
     @Autowired

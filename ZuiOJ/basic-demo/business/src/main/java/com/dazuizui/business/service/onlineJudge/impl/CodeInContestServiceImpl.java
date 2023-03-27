@@ -32,6 +32,7 @@ public class CodeInContestServiceImpl implements CodeInContestService {
     private UserService userService;
     @Autowired
     private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
+
     /**
      * 添加比赛提交代码
      * @return

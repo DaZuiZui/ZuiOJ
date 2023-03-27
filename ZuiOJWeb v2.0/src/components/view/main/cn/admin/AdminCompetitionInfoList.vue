@@ -77,6 +77,8 @@
                         </td>
                         <td>
                             <div>
+                                <el-link type="primary">查看提交代码</el-link>
+                                <el-link type="primary">查看该选手日志</el-link>
                                 <el-link type="success">取消参赛资格</el-link>
                                 <el-link type="danger"  :disabled="deleteTheCompetitionByIdButton" @click="deleteTheCompetitionById(obj.id)">物理删除</el-link>
                             </div>
