@@ -1,6 +1,6 @@
 package com.dazuizui.business.mapper;
 
-import com.dazuizui.business.domain.AcCodeInContest;
+import com.dazuizui.business.domain.CodeInContest;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,5 +12,5 @@ public interface CodeInContestMapper {
      * 添加ac简介代码信息
      * @return
      */
-    public Long insertProfileCodeInfo(AcCodeInContest acCodeInContest);
+    public Long insertProfileCodeInfo(CodeInContest acCodeInContest);
 }

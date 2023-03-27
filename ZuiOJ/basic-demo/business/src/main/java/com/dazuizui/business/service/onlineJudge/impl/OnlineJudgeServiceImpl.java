@@ -4,10 +4,12 @@ import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
+import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.mapper.ProblemLimitMapper;
 import com.dazuizui.business.mapper.QuestionCaseMapper;
+import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.service.onlineJudge.OnlineJudgeService;
 import com.dazuizui.business.service.onlineJudge.ProblemLimitService;
@@ -15,6 +17,7 @@ import com.dazuizui.business.util.HttpUtil;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,17 +40,24 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     private AcContestQuestionSerivce acContestQuestionSerivce;
     @Autowired
     private ProblemLimitService problemLimitService;
-
+    //消息队列
+    @Autowired
+    private MessageSource source;
     /**
      * 判决代码
      * 不要动 危险
-     *                              -- Bryan yang
+     *                              -- 杨易达 Bryan yang
      * @param programBo
      * @return
      */
     @Override
     @Transactional
     public String judgeTheProgram(ProgramBo programBo){
+        //封装代码记录
+        CodeInContest codeInContest = new CodeInContest();
+        //获取操作人id
+        String JWTStringID = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        Long id = Long.valueOf(JWTStringID);
         /**
          * 初始化代码运行
          */
@@ -79,11 +89,12 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         }
         */
 
+        //封装请求
         JSONObject request = new JSONObject();
 
         for (QuestionCase questionCase : questionCases) {
             programBo.setInput(questionCase.getInputs());
-                //发起请求
+            //发起请求
             request = HttpUtil.request(programBo);
 
             if (!request.get("status").equals("Accepted")) {
@@ -110,7 +121,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
                 stdout = stdout.substring(0,stdout.length()-2);
             }
 
-            System.out.println(questionCase.getAnswer()+" and "+stdout);
+           //h h System.out.println(questionCase.getAnswer()+" and "+stdout);
             if (!stdout.trim().equals(questionCase.getAnswer())) {
                 request.set("status","Answer error");
                 break;
@@ -120,8 +131,6 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         //如果通过并且是比赛类型的题目
         if (programBo.getQuestionType() != 1 ) {
             //查看是否为比赛题目
-            String JWTStringID = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
-            Long id = Long.valueOf(JWTStringID);
             AcContestQuestion acContestQuestion = new AcContestQuestion();
             acContestQuestion.setContestId(programBo.getContestId());
             acContestQuestion.setUserId(id);
@@ -129,18 +138,42 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
 
             //查看当前啊比赛是否结束
             if (checkIfTheCurrentGameIsOver(acContestQuestion.getContestId())){
-                //在比赛中标记记录
-                System.err.println("??");
+                //在比赛中标记记
                 acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
+                //封装竞赛id
+                codeInContest.setContestId(programBo.getContestId());
             }
 
             //写入日记
         }
 
-       // System.err.println(request.get("status"));
-        /**
-         * 日志记录用户的状态
-         */
+        //获取状态
+        String status = (String) request.get("status");
+        //封装判决状态
+        if (status.equals("File Error")){
+            codeInContest.setStatus(1);
+        }else if (status.equals("Nonzero Exit Status")){
+            codeInContest.setStatus(2);
+        }else if (status.equals("Answer error")){
+            codeInContest.setStatus(3);
+        }else if (status.equals("Accepted")){
+            codeInContest.setStatus(0);
+        }else if (status.equals("Time Limit Exceeded")){
+            codeInContest.setStatus(5);
+        }else{
+            codeInContest.setStatus(6);
+        }
+        //封装判决代码
+        codeInContest.setCode(programBo.getCode());
+        //封装题目id
+        codeInContest.setQuestionId(programBo.getContestId());
+        //封装通过者和创建人和创建时间
+        codeInContest.setCreateBy(id);
+        codeInContest.setUserId(id);
+        codeInContest.setCreateTime(new Date());
+        //放入消息队列
+        source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload(codeInContest).build());
+
         return JSONArray.toJSONString(request);
     }
 

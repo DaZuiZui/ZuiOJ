@@ -1,6 +1,6 @@
 package com.dazuizui.business.service.onlineJudge;
 
-import com.dazuizui.business.domain.AcCodeInContest;
+import com.dazuizui.business.domain.CodeInContest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,5 +12,5 @@ public interface CodeInContestService {
      * 添加比赛提交代码
      * @return
      */
-    public String insertSubmittionContestCodeInfo(AcCodeInContest acCodeInContest);
+    public String insertSubmittionContestCodeInfo(CodeInContest acCodeInContest);
 }

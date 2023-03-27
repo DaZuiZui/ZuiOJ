@@ -1,15 +1,24 @@
 package com.dazuizui.business.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.redis.core.index.Indexed;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 比赛时通过代码记录
  */
-public class AcCodeInContest implements Serializable {
-    private Long id;
+@Document("SubmmitionCodeInContest")
+public class CodeInContest implements Serializable {
+    @Id
+    private String id;  //主键
+    @Indexed
     private Long questionId;
+    @Indexed
     private Long contestId;
+    @Indexed
     private Long userId;
     private Long codeId;
     private Long createBy;
@@ -19,11 +28,12 @@ public class AcCodeInContest implements Serializable {
     private Integer status;
     private Integer delFlag;
     private String code;
+    private String createByName;
 
     @Override
     public String toString() {
-        return "AcCodeInContest{" +
-                "id=" + id +
+        return "CodeInContest{" +
+                "id='" + id + '\'' +
                 ", questionId=" + questionId +
                 ", contestId=" + contestId +
                 ", userId=" + userId +
@@ -35,14 +45,15 @@ public class AcCodeInContest implements Serializable {
                 ", status=" + status +
                 ", delFlag=" + delFlag +
                 ", code='" + code + '\'' +
+                ", createByName='" + createByName + '\'' +
                 '}';
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -134,10 +145,18 @@ public class AcCodeInContest implements Serializable {
         this.code = code;
     }
 
-    public AcCodeInContest() {
+    public String getCreateByName() {
+        return createByName;
     }
 
-    public AcCodeInContest(Long id, Long questionId, Long contestId, Long userId, Long codeId, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String code) {
+    public void setCreateByName(String createByName) {
+        this.createByName = createByName;
+    }
+
+    public CodeInContest() {
+    }
+
+    public CodeInContest(String id, Long questionId, Long contestId, Long userId, Long codeId, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String code, String createByName) {
         this.id = id;
         this.questionId = questionId;
         this.contestId = contestId;
@@ -150,5 +169,6 @@ public class AcCodeInContest implements Serializable {
         this.status = status;
         this.delFlag = delFlag;
         this.code = code;
+        this.createByName = createByName;
     }
 }

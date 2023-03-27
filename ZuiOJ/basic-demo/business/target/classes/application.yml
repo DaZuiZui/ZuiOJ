@@ -19,7 +19,7 @@ spring:
   cloud:
     stream:
       bindings:
-        #
+        #比赛时提交代码
         contest_code_add_input:
           destination: contest_code_exchange_add
         contest_code_add_output:

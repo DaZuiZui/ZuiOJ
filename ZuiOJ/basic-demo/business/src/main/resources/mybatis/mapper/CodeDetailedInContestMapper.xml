@@ -6,7 +6,7 @@
     <!--
         插入比赛提交代码
     -->
-    <insert id="insertCodeDetails" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertCodeDetails" useGeneratedKeys="true" keyProperty="codeId">
         insert into
             code_detailed_in_contest
             value (
