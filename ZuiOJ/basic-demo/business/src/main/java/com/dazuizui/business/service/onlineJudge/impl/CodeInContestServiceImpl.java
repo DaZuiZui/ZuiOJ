@@ -49,6 +49,8 @@ public class CodeInContestServiceImpl implements CodeInContestService {
         try {
             //提交代码详细信息
             codeDetailedInContestMapper.insertCodeDetails(acCodeInContest);
+            //提交简介代码信息
+            codeInContestMapper.insertProfileCodeInfo(acCodeInContest);
             //存入mongoDB
             submmitionCodeInContestRepository.save(acCodeInContest);
         } catch (Exception e) {

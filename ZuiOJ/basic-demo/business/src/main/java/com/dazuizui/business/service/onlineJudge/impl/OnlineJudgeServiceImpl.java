@@ -58,6 +58,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         //获取操作人id
         String JWTStringID = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
         Long id = Long.valueOf(JWTStringID);
+
         /**
          * 初始化代码运行
          */
@@ -166,7 +167,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         //封装判决代码
         codeInContest.setCode(programBo.getCode());
         //封装题目id
-        codeInContest.setQuestionId(programBo.getContestId());
+        codeInContest.setQuestionId(programBo.getTopicId());
         //封装通过者和创建人和创建时间
         codeInContest.setCreateBy(id);
         codeInContest.setUserId(id);

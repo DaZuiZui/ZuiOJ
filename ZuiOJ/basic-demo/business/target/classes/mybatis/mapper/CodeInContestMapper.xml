@@ -12,7 +12,7 @@
         value (
             null,
             #{questionId},
-            #{contetId},
+            #{contestId},
             #{userId},
             #{codeId},
             #{createBy},

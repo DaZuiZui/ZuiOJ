@@ -39,7 +39,8 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
 
         FilterQueryMatchSaveCodeVo filterQueryMatchSaveCodeVo = new FilterQueryMatchSaveCodeVo();
         filterQueryMatchSaveCodeVo.setCodeInContestList(byContestIdAndQuestionIdAndUserId.getContent());
-        filterQueryMatchSaveCodeVo.setCount(filterQueryMatchSaveCodeVo.getCount());
+        filterQueryMatchSaveCodeVo.setCount(byContestIdAndQuestionIdAndUserId.getTotalElements());
+
 
         return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,filterQueryMatchSaveCodeVo, StatusCode.OK));
     }

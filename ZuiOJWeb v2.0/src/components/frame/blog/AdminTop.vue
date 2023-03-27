@@ -197,13 +197,13 @@ import { synRequestGet } from '../../../../static/request';
             //alert(token);
             let obj = await synRequestGet("/user/analysis?token="+token);
             //log(obj);
-            console.log(obj);
+            
             if(obj.code == '0x444'){
                 alert("您的身份验证已经过期");
                 this.goUserLogin();
                 return;
             }
-            console.log(obj.data);
+             
             this.user = obj.data;
             if(this.user.role == 1){
                 alert("您的权限不足");

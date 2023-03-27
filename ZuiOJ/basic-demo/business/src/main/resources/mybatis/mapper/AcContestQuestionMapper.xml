@@ -56,7 +56,8 @@
             first_ac,
             create_by_name,
             create_time,
-            status
+            status,
+            user_id
         from
             ac_contest_question
         where

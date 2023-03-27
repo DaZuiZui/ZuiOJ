@@ -58,7 +58,7 @@
                         <td>
                             <b  @click="getLogListByUserName(obj.createByName)">
                               <a style="color:" >
-                                {{obj.createByName}}
+                                {{obj.createByName}}     
                               </a>
                             </b>
                         </td>
@@ -100,7 +100,8 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="primary" @click="deleteLogById(obj.id)">清除此人题记录</el-link>
+                                <el-link type="primary" @click="findByContestIdAndQuestionIdAndUserId(obj.questionId,obj.userId)" >查看通过代码</el-link>
+                                <el-link type="danger" @click="deleteLogById(obj.id)">清除此人题记录</el-link>
                                 <el-link type="danger">强行通过此题</el-link>
                                 <el-link type="danger">封禁</el-link>
                             </div>
@@ -177,7 +178,15 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
    
  
     },
+    
     methods: {
+        /**
+         *  通过比赛id和问题id和用户id
+         */
+         findByContestIdAndQuestionIdAndUserId(questionId,userId){
+            this.$router.push("/cn/admin/AdminViewCodeOfContestants?contestId="+getQueryVariable("id")+"&questionId="+questionId+"&userId="+userId);
+         },
+
         /**
          *  获取日志通过name
          */ 
@@ -197,8 +206,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         async getLogByElement(){
             this.elementOfQueryLog.token = getCookie("token");
             let obj = await synRequestPost("/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
-            console.log("123");
-            console.log(obj.data);
+        
             if(check(obj)){
                 this.list = obj.data;
             }
@@ -214,6 +222,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
             //获取日志
             let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
             this.list = obj.data.acContestQuestions;
+            console.log(this.list);
             if(this.list == null && page > 1){
                 this.getContestSubmissionLog(page-1);
                 return;
@@ -231,8 +240,8 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
             let tmplist = obj.data;
     
             this.questionList = tmplist;
+            console.log(tmplist);
 
-            //
             for(let i = 0 ; i < tmplist.length ; i++){
                 this.questionMap.set(tmplist[i].id,tmplist[i].chineseName);
             }
