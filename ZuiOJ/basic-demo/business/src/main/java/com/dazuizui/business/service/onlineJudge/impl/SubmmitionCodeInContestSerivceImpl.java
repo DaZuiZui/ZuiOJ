@@ -160,7 +160,7 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
                         return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
                     }
                 }
-                //如果状态为ac 并且尝试次数大于0，那么就更新通过状态
+                //如果状态为ac 并且尝试次数大于0（ >= 0），那么就更新通过状态
                 else if (codeInContest.getStatus() == 0 && acContestQuestion.getNumberOfAttempts() >= 0){
                     acContestQuestion.setNumberOfAttempts(acContestQuestion.getNumberOfAttempts()+1);
                     aLong = acContestQuestionMapper.updateAcContestQuestionById(acContestQuestion);

@@ -8,6 +8,7 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+                注意：此页面的删除是采用逻辑删除，删除操作是可逆转的。建议使用监考模式参考观察系统！
                 <table class="table">
                     <thead>
                       <tr>
@@ -75,7 +76,7 @@
                         <td>
                             <div>
                                 <el-link type="primary" @click="goAdminCodeDetailedContest(obj.codeId)">查看代码</el-link>
-                                <el-link type="primary">删除记录</el-link>                   
+                                <el-link type="primary" @click="deleteLogById(obj.id)">删除本次提交记录</el-link>                   
                             </div>
                         </td>
                       </tr>
@@ -117,7 +118,8 @@ import { synRequestPost } from '../../../../../../static/request';
             userId: undefined,
             token: undefined,
             page: 0,
-            size: 50
+            size: 50,
+            status: 0
         },
         //提交记录list集合
         list: [],
@@ -125,6 +127,7 @@ import { synRequestPost } from '../../../../../../static/request';
         questionInfo: "",
         //题目总数
         count: 0,
+        curpage: -1,
       }
     },
     mounted(){
@@ -133,12 +136,25 @@ import { synRequestPost } from '../../../../../../static/request';
         this.filterQueryMatchSaveCodeBo.questionId = getQueryVariable("questionId");
         this.filterQueryMatchSaveCodeBo.userId = getQueryVariable("userId");
         this.filterQueryMatchSaveCodeBo.token = getCookie("token");
+        this.filterQueryMatchSaveCodeBo.status = 0;
         //获取题目
         this.adminGetQuestionById();
         //分页获取数据
         this.pagingToGetData(1);
     },
     methods: {
+        /**
+         * 通过id删除提交日志
+         */ 
+         async deleteLogById(id){
+       
+            let obj = await synRequestPost("/SubmmitionCodeInContestController/deleteById?token="+getCookie("token")+"&id="+id);
+            if(check(id)){
+                alert("删除成功");
+                this.pagingToGetData(this.curpage);
+            }
+        },
+
         /**
          *  管理员根据id获取题目
          */
@@ -153,12 +169,23 @@ import { synRequestPost } from '../../../../../../static/request';
 
         //跳转指定页面
         async pagingToGetData(val){   
+            this.curpage = val;
             this.filterQueryMatchSaveCodeBo.page = val-1;
             //发起请求
             let obj = await synRequestPost("/SubmmitionCodeInContestController/filterQueryMatchSaveCode",this.filterQueryMatchSaveCodeBo);
             //检测
             if(check(obj)){
                 this.list = obj.data.codeInContestList;
+               
+                if(obj.data.codeInContestList.length == 0){
+                  //数据库真的没数据了
+                  if(this.curpage <= 1){
+                      alert("无数据");
+                      return ;
+                  }
+                this.getMerchantInformation(this.curpage-1);
+            }
+
                 this.count = obj.data.count;
                 console.log(obj);
             }

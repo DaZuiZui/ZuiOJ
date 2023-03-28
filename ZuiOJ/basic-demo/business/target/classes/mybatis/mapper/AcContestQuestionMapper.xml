@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
     <!--
+        更新题目状态
+    -->
+    <update id="updateAcContestQuestionById">
+        update
+            ac_contest_question
+        set
+            number_of_attempts = #{numberOfAttempts},
+            first_ac = #{firstAc},
+            update_by_id = #{updateById},
+            update_time  = #{updateTime},
+            status = #{status}
+        where
+            id = #{id}
+    </update>
+    <!--
        通过元素内容筛选查询日志
      -->
     <select id="queryLogByElement" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">
@@ -123,5 +138,24 @@
             user_id     = #{userId}
         limit 1
     </select>
+
+
+    <!--
+        通过id查询指定提交信息
+    -->
+    <select id="findOneById" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">
+        select
+            *
+        from
+            ac_contest_question
+        where
+            id = #{id}
+        limit
+            1
+    </select>
+
+    <update id="">
+
+    </update>
 </mapper>
 

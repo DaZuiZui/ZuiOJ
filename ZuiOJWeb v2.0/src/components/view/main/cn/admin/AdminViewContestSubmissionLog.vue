@@ -101,7 +101,7 @@
                         <td>
                             <div>
                                 <el-link type="primary" @click="findByContestIdAndQuestionIdAndUserId(obj.questionId,obj.userId)" >查看通过代码</el-link>
-                                <el-link type="danger" @click="deleteLogById(obj.id)">清除此人题记录</el-link>
+                                <el-link type="danger" @click="deleteLogById(obj.id)">清除此题记录</el-link>
                                 <el-link type="danger">强行通过此题</el-link>
                                 <el-link type="danger">封禁</el-link>
                             </div>
