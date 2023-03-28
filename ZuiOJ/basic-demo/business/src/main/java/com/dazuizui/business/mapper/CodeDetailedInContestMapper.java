@@ -21,4 +21,10 @@ public interface CodeDetailedInContestMapper {
     public CodeInContest findOneById(@Param("id")Long id);
 
 
+    /**
+     * 删除code by id
+     * @param id
+     * @return
+     */
+    public Long deleteCodeById(@Param("id")Long id);
 }

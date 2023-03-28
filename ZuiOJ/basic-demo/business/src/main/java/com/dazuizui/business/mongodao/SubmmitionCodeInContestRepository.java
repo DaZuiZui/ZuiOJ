@@ -17,5 +17,23 @@ public interface SubmmitionCodeInContestRepository extends MongoRepository<CodeI
      * @param pageable
      * @return
      */
-    Page<CodeInContest> findByContestIdAndQuestionIdAndUserId(Long contestId,Long questionId,Long userId, Pageable pageable);
+    Page<CodeInContest> findByContestIdAndQuestionIdAndUserIdAndDelFlag(Long contestId,Long questionId,Long userId,Integer delFlag, Pageable pageable);
+
+    /**
+     * 通过id删除删除
+     * @param s
+     */
+    @Override
+    void deleteById(String s);
+
+    /**
+     * 通过比赛id删除
+     * @param contestId
+     */
+    void deleteByContestId(Long contestId);
+
+    /**
+     * 查看该用户本题是否有2个及以上的ac记录
+     */
+    Page<CodeInContest> findByContestIdAndQuestionIdAndUserIdAndDelFlagAndStatus(Long contestId,Long questionId,Long userId,Integer delFlag,Integer status, Pageable pageable);
 }

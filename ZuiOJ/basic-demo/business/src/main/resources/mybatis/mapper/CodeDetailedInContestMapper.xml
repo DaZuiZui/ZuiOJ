@@ -26,4 +26,15 @@
         where
             id = #{id}
     </select>
+
+    <!--
+        删除代码By id
+    -->
+    <delete id="deleteCodeById">
+        delete
+        from
+            code_detailed_in_contest
+        where
+            id = #{id}
+    </delete>
 </mapper>

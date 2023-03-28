@@ -15,6 +15,13 @@ import java.util.List;
 @Mapper
 public interface AcContestQuestionMapper {
     /**
+     * 修改提交记录通过id
+     * @param acContestQuestion
+     * @return
+     */
+    public Long updateAcContestQuestionById(AcContestQuestion acContestQuestion);
+
+    /**
      * 通过元素查询
      * @param elementOfQueryLogBo
      * @return
@@ -71,5 +78,10 @@ public interface AcContestQuestionMapper {
      */
     public AcContestQuestion checkSubmissions(AcContestQuestion acContestQuestion);
 
-
+    /**
+     * 通过id查询指定提交信息
+     * @param id
+     * @return
+     */
+    public AcContestQuestion findOneById(@Param("id")Long id);
 }

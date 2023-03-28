@@ -10,6 +10,7 @@ import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
+import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import java.util.List;
 public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     @Autowired
     private AcContestQuestionMapper acContestQuestionMapper;
+    @Autowired
+    private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
 
     /**
      * 通过元素筛选查询元素
@@ -76,7 +79,11 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
      */
     @Override
     public String removeAllContestSubmissionLogbyContestId(Long id) {
+        //删除提交日志
         Long aLong = acContestQuestionMapper.removeAllContestSubmissionLogbyContestId(id);
+        //删除代码存储
+        submmitionCodeInContestSerivce.deleteByContestId(id);
+
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 

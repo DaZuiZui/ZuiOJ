@@ -12,18 +12,7 @@ public class FilterQueryMatchSaveCodeBo implements Serializable {
     private String token;
     private Integer page;
     private Integer size;
-
-    @Override
-    public String toString() {
-        return "FilterQueryMatchSaveCodeBo{" +
-                "contestId=" + contestId +
-                ", questionId=" + questionId +
-                ", userId=" + userId +
-                ", token='" + token + '\'' +
-                ", page=" + page +
-                ", size=" + size +
-                '}';
-    }
+    private Integer status;
 
     public Long getContestId() {
         return contestId;
@@ -73,15 +62,37 @@ public class FilterQueryMatchSaveCodeBo implements Serializable {
         this.size = size;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "FilterQueryMatchSaveCodeBo{" +
+                "contestId=" + contestId +
+                ", questionId=" + questionId +
+                ", userId=" + userId +
+                ", token='" + token + '\'' +
+                ", page=" + page +
+                ", size=" + size +
+                ", status=" + status +
+                '}';
+    }
+
     public FilterQueryMatchSaveCodeBo() {
     }
 
-    public FilterQueryMatchSaveCodeBo(Long contestId, Long questionId, Long userId, String token, Integer page, Integer size) {
+    public FilterQueryMatchSaveCodeBo(Long contestId, Long questionId, Long userId, String token, Integer page, Integer size, Integer status) {
         this.contestId = contestId;
         this.questionId = questionId;
         this.userId = userId;
         this.token = token;
         this.page = page;
         this.size = size;
+        this.status = status;
     }
 }

@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 比赛时候的用户提交的代码Aop接口
@@ -19,4 +20,12 @@ public interface SubmmitionCodeInContestAop {
      * @return
      */
     public String filterQueryMatchSaveCode(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 通过id查询代码详细信息
+     *      筛选查询数据，主要做了身份验证，查看是否符合权限查看
+     * @param joinpoint
+     * @return
+     */
+    public String findOneById(JoinPoint joinpoint) throws Exception;
 }

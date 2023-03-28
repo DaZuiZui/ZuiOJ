@@ -160,7 +160,8 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
                 }else{
                     codeInContest.setStatus(6);
                 }
-
+                //绑定删除状态
+                codeInContest.setDelFlag(0);
                 //绑定通过几率id
                 codeInContest.setAcContestQuestionId(acContestQuestionId);
                 //封装判决代码

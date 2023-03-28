@@ -28,7 +28,7 @@ public class ArticleDiscussionRepositoryTest {
     @Test
     void test1(){
         Page<CodeInContest> byContestIdAndQuestionIdAndUserId = submmitionCodeInContestRepository
-                .findByContestIdAndQuestionIdAndUserId(49l, 49l, 1l, PageRequest.of(0, 2));
+                .findByContestIdAndQuestionIdAndUserIdAndDelFlag(49l, 49l, 1l,0, PageRequest.of(0, 2));
         System.out.println(byContestIdAndQuestionIdAndUserId.getContent());
         System.out.println(byContestIdAndQuestionIdAndUserId.getTotalElements());
     }
