@@ -48,7 +48,6 @@
                             <div v-else-if="questionInfo.grade == 3" style="color:red">
                                 Hard
                             </div>   
-                             
                         </td>
                         <td>
                             <div v-if="obj.status == 0" style="color:green">
@@ -75,8 +74,8 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="primary">查看代码</el-link>
-                                
+                                <el-link type="primary" @click="goAdminCodeDetailedContest(obj.codeId)">查看代码</el-link>
+                                <el-link type="primary">删除记录</el-link>                   
                             </div>
                         </td>
                       </tr>
@@ -164,6 +163,13 @@ import { synRequestPost } from '../../../../../../static/request';
                 console.log(obj);
             }
         },
+
+        /***
+         *  查看详细代码
+         */ 
+        goAdminCodeDetailedContest(codeId){
+          this.$router.push("/cn/admin/AdminCodeDetailedInContest?id="+codeId);
+        }
         
     }
   }

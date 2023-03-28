@@ -35,6 +35,7 @@ import AdminCompetitionInfoList from '@/components/view/main/cn/admin/AdminCompe
 import AdminUpdateQuestion from '@/components/view/main/cn/admin/AdminUpdateQuestion'
 import AdminConpetitionQuestionbankList from '@/components/view/main/cn/admin/AdminConpetitionQuestionbankList'
 import AdminViewCodeOfContestants from '@/components/view/main/cn/admin/AdminViewCodeOfContestants'
+import AdminCodeDetailedInContest from '@/components/view/main/cn/admin/AdminCodeDetailedInContest'
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +47,13 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDazui
     },
+    //查看比赛时提交的代码详细版
+    {
+      path: '/cn/admin/AdminCodeDetailedInContest',
+      name: 'AdminCodeDetailedInContest',
+      component: AdminCodeDetailedInContest
+    },
+
     //筛选查询比赛选手提交的代码
     {
       path: '/cn/admin/AdminViewCodeOfContestants',
