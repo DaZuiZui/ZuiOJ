@@ -7,6 +7,8 @@ import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import com.dazuizui.business.domain.vo.FilterQueryMatchSaveCodeVo;
+import com.dazuizui.business.mapper.CodeDetailedInContestMapper;
+import com.dazuizui.business.mapper.CodeInContestMapper;
 import com.dazuizui.business.mongodao.SubmmitionCodeInContestRepository;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ import org.springframework.stereotype.Service;
 public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInContestSerivce {
     @Autowired
     private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
+    @Autowired
+    private CodeInContestMapper codeInContestMapper;
+    @Autowired
+    private CodeDetailedInContestMapper codeDetailedInContestMapper;
 
     /**
      * 通过比赛id还有题目id还有用户id指定提交代码数据业务接口
@@ -43,5 +49,16 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
 
 
         return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,filterQueryMatchSaveCodeVo, StatusCode.OK));
+    }
+
+    /**
+     * 通过id查询详细代码
+     * @param id
+     * @return
+     */
+    @Override
+    public String findOneById(Long id) {
+        CodeInContest codeInContest = codeDetailedInContestMapper.findOneById(id);
+        return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,codeInContest, StatusCode.OK));
     }
 }

@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.business.domain.CodeInContest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 保存ac代码简介文件
@@ -13,4 +14,10 @@ public interface CodeInContestMapper {
      * @return
      */
     public Long insertProfileCodeInfo(CodeInContest acCodeInContest);
+
+
+    /**
+     * 通过id查询代码详细信息
+     */
+    public CodeInContest findOneById(@Param("id")Long id);
 }

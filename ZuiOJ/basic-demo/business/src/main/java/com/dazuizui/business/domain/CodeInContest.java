@@ -29,6 +29,7 @@ public class CodeInContest implements Serializable {
     private Integer delFlag;
     private String code;
     private String createByName;
+    private Long acContestQuestionId;
 
     @Override
     public String toString() {
@@ -46,6 +47,7 @@ public class CodeInContest implements Serializable {
                 ", delFlag=" + delFlag +
                 ", code='" + code + '\'' +
                 ", createByName='" + createByName + '\'' +
+                ", acContestQuestionId=" + acContestQuestionId +
                 '}';
     }
 
@@ -153,10 +155,18 @@ public class CodeInContest implements Serializable {
         this.createByName = createByName;
     }
 
+    public Long getAcContestQuestionId() {
+        return acContestQuestionId;
+    }
+
+    public void setAcContestQuestionId(Long acContestQuestionId) {
+        this.acContestQuestionId = acContestQuestionId;
+    }
+
     public CodeInContest() {
     }
 
-    public CodeInContest(String id, Long questionId, Long contestId, Long userId, Long codeId, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String code, String createByName) {
+    public CodeInContest(String id, Long questionId, Long contestId, Long userId, Long codeId, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String code, String createByName, Long acContestQuestionId) {
         this.id = id;
         this.questionId = questionId;
         this.contestId = contestId;
@@ -170,5 +180,6 @@ public class CodeInContest implements Serializable {
         this.delFlag = delFlag;
         this.code = code;
         this.createByName = createByName;
+        this.acContestQuestionId = acContestQuestionId;
     }
 }

@@ -30,7 +30,7 @@ public interface AcContestQuestionSerivce {
     /**
      * 提交答案
      */
-    public void submitAnswer(AcContestQuestion acContestQuestion,String status);
+    public Long submitAnswer(AcContestQuestion acContestQuestion,String status);
 
     /**
      * 查看本题提交日志

@@ -69,7 +69,7 @@
     <!--
         创建提交记录
     -->
-    <insert id="acTheQuestionInDB">
+    <insert id="acTheQuestionInDB"  useGeneratedKeys="true" keyProperty="acContestQuestion.id">
         insert into
             ac_contest_question
         value(
@@ -93,7 +93,7 @@
     <!--
         增加通过数量
     -->
-    <update id="recordSubmissions">
+    <update id="recordSubmissions" useGeneratedKeys="true" keyProperty="acContestQuestion.id">
         UPDATE
             ac_contest_question t1
         set

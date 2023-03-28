@@ -86,7 +86,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
      * @param status    代码判决状态
      */
     @Override
-    public void submitAnswer(AcContestQuestion acContestQuestion,String status) {
+    public Long submitAnswer(AcContestQuestion acContestQuestion,String status) {
         //在比赛信息标记通过
         AcContestQuestion acContestQuestionInDB = acContestQuestionMapper.checkSubmissions(acContestQuestion);
         acContestQuestion.setCreateByName((String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("name"));
@@ -100,7 +100,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
          * 第一次提交就ac的情况
          */
         if (acContestQuestionInDB == null){
-            System.out.println("??"+status);
+
             if (status.equals("Accepted")){
                 acContestQuestion.setFirstAc(new Date());
                 acContestQuestion.setNumberOfAttempts(0);
@@ -109,7 +109,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
                 acContestQuestion.setNumberOfAttempts(1);
                 acContestQuestionMapper.acTheQuestionInDB(acContestQuestion,0);
             }
-
+            return acContestQuestion.getId();
         }else{
             /**
              * acContestQuestionInDB.getStatus() == 1  代表已经AC
@@ -136,6 +136,9 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
                 acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts());
                 acContestQuestionMapper.recordSubmissions(acContestQuestion,1);
             }
+            return acContestQuestionInDB.getId();
         }
+
+
     }
 }

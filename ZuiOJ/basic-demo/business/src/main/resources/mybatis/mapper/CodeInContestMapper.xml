@@ -20,7 +20,8 @@
             #{updateBy},
             #{updateTime},
             0,
-            0
+            0,
+            #{acContestQuestionId}
         )
     </insert>
 </mapper>

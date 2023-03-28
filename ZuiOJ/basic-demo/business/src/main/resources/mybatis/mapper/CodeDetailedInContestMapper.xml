@@ -14,4 +14,16 @@
                 #{code}
             )
     </insert>
+
+    <!--
+        findOneById
+    -->
+    <select id="findOneById" resultType="com.dazuizui.business.domain.CodeInContest">
+        select
+            *
+        from
+            code_detailed_in_contest
+        where
+            id = #{id}
+    </select>
 </mapper>

@@ -140,40 +140,42 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             //查看当前啊比赛是否结束
             if (checkIfTheCurrentGameIsOver(acContestQuestion.getContestId())){
                 //在比赛中标记记
-                acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
+                Long acContestQuestionId = acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
                 //封装竞赛id
                 codeInContest.setContestId(programBo.getContestId());
+
+                //获取状态
+                String status = (String) request.get("status");
+                //封装判决状态
+                if (status.equals("File Error")){
+                    codeInContest.setStatus(1);
+                }else if (status.equals("Nonzero Exit Status")){
+                    codeInContest.setStatus(2);
+                }else if (status.equals("Answer error")){
+                    codeInContest.setStatus(3);
+                }else if (status.equals("Accepted")){
+                    codeInContest.setStatus(0);
+                }else if (status.equals("Time Limit Exceeded")){
+                    codeInContest.setStatus(5);
+                }else{
+                    codeInContest.setStatus(6);
+                }
+
+                //绑定通过几率id
+                codeInContest.setAcContestQuestionId(acContestQuestionId);
+                //封装判决代码
+                codeInContest.setCode(programBo.getCode());
+                //封装题目id
+                codeInContest.setQuestionId(programBo.getTopicId());
+                //封装通过者和创建人和创建时间
+                codeInContest.setCreateBy(id);
+                codeInContest.setUserId(id);
+                codeInContest.setCreateTime(new Date());
+                //放入消息队列
+                source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload(codeInContest).build());
             }
-
-            //写入日记
         }
 
-        //获取状态
-        String status = (String) request.get("status");
-        //封装判决状态
-        if (status.equals("File Error")){
-            codeInContest.setStatus(1);
-        }else if (status.equals("Nonzero Exit Status")){
-            codeInContest.setStatus(2);
-        }else if (status.equals("Answer error")){
-            codeInContest.setStatus(3);
-        }else if (status.equals("Accepted")){
-            codeInContest.setStatus(0);
-        }else if (status.equals("Time Limit Exceeded")){
-            codeInContest.setStatus(5);
-        }else{
-            codeInContest.setStatus(6);
-        }
-        //封装判决代码
-        codeInContest.setCode(programBo.getCode());
-        //封装题目id
-        codeInContest.setQuestionId(programBo.getTopicId());
-        //封装通过者和创建人和创建时间
-        codeInContest.setCreateBy(id);
-        codeInContest.setUserId(id);
-        codeInContest.setCreateTime(new Date());
-        //放入消息队列
-        source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload(codeInContest).build());
 
         return JSONArray.toJSONString(request);
     }
@@ -182,6 +184,8 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
     private ContestMapper contestMapper;
     /**
      * 检查比赛是否结束
+     *
+     *   没结束返回true，结束返回false
      * @return
      */
     public boolean checkIfTheCurrentGameIsOver(Long contestId){

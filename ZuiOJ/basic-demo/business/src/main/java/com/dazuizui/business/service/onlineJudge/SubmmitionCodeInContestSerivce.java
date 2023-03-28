@@ -1,6 +1,8 @@
 package com.dazuizui.business.service.onlineJudge;
 
+import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,4 +13,9 @@ public interface SubmmitionCodeInContestSerivce {
      * @return
      */
     public String filterQueryMatchSaveCode( FilterQueryMatchSaveCodeBo findByContestIdAndQuestionIdAndUserIdBo);
+
+    /**
+     * 通过id查询代码详细信息
+     */
+    public String findOneById(@Param("id")Long id);
 }
