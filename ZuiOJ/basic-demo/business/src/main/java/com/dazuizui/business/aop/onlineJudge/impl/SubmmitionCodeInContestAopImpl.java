@@ -73,7 +73,46 @@ public class SubmmitionCodeInContestAopImpl implements SubmmitionCodeInContestAo
      * @return
      */
     @Override
+    @Before("execution(* com.dazuizui.business.controller.SubmmitionCodeInContestController.findOneById(..))")
     public String findOneById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        if (token != null){
+            Map<String, Object> map = null;
+            try {
+                map = JwtUtil.analysis(token);
+                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+                //获取登入者id
+                String strId = (String) map.get("id");
+                Long id = Long.valueOf(strId);
+                //查看是否为管理员
+                User user = userService.queryUserById(id);
+
+                if (user.getRole() < 2){
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+                }
+            } catch (Exception e) {
+                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+            }
+        }else{
+            ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+        }
+
+        return null;
+    }
+
+
+    /**
+     * 通过提交记录id删除记录
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.SubmmitionCodeInContestController.deleteById(..))")
+    public String deleteById(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         String token = (String) args[0];
         if (token != null){

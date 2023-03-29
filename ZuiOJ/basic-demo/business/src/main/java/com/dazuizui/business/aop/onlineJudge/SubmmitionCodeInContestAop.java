@@ -28,4 +28,11 @@ public interface SubmmitionCodeInContestAop {
      * @return
      */
     public String findOneById(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 通过提交记录id删除记录
+     * @param joinpoint
+     * @return
+     */
+    public String deleteById(JoinPoint joinpoint) throws Exception;
 }
