@@ -7,7 +7,9 @@ import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
+import com.dazuizui.business.domain.bo.QueryCountByContestIdAndQuestionIdBo;
 import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
+import com.dazuizui.business.domain.vo.QueryLogByElementVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
@@ -30,14 +32,36 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
 
     /**
-     * 通过元素筛选查询元素
+     * 通过QuestionId和ContestId查询提交数据
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    @Override
+    public String queryCountByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo){
+        Long count = acContestQuestionMapper.queryCountByContestIdAndQuestionId(elementOfQueryLogBo.getContestId(),elementOfQueryLogBo.getQuestionId());
+        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryLogByElement(elementOfQueryLogBo);
+        QueryLogByElementVo queryLogByElementVo = new QueryLogByElementVo();
+        queryLogByElementVo.setAcContestQuestions(acContestQuestions);
+        queryLogByElementVo.setCount(count);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryLogByElementVo, StatusCode.OK));
+    }
+
+    /**
+     * 通过比赛和名字元素筛选查询元素
      * @param elementOfQueryLogBo
      * @return
      */
     @Override
     public String queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo) {
+
         List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryLogByElement(elementOfQueryLogBo);
-        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,acContestQuestions, StatusCode.OK));
+        Long count = Long.valueOf(acContestQuestions.size());
+        QueryLogByElementVo queryLogByElementVo = new QueryLogByElementVo();
+        queryLogByElementVo.setAcContestQuestions(acContestQuestions);
+        queryLogByElementVo.setCount(count);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryLogByElementVo, StatusCode.OK));
     }
 
     /**
@@ -145,7 +169,5 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
             }
             return acContestQuestionInDB.getId();
         }
-
-
     }
 }

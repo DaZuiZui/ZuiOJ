@@ -3,6 +3,7 @@ package com.dazuizui.business.service.onlineJudge;
 import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
+import com.dazuizui.business.domain.bo.QueryCountByContestIdAndQuestionIdBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,4 +45,11 @@ public interface AcContestQuestionSerivce {
      * @return
      */
     public String removeAllContestSubmissionLogbyContestId(@Param("id")Long id);
+
+    /**
+     * 通过QuestionId和ContestId查询提交数据
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    public String queryCountByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo);
 }

@@ -190,6 +190,7 @@ import { synRequestPost } from '../../../../../../static/request';
             if(check(obj)){
                 //刷新数据
                 this.getQuestionDate(); 
+                alert("修改成功");
             }
             this.buttonSwitch = false;
         }

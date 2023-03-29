@@ -4,6 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
     <!--
+        查询指定比赛的题目提交次数
+    -->
+    <select id="queryCountByContestIdAndQuestionId" resultType="long">
+        select
+            count(*)
+        from
+            ac_contest_question
+        where
+            contest_id = #{contestId} and
+            question_id = #{questionId}
+    </select>
+
+
+    <!--
         更新题目状态
     -->
     <update id="updateAcContestQuestionById">
@@ -32,7 +46,14 @@
             <if test="name != null">
                and  create_by_name = #{name}
             </if>
+            <if test="questionId != null">
+                and question_id = #{questionId}
+            </if>
+            and del_flag = #{delFlag}
         </where>
+
+        limit
+            #{startnum},#{endnum}
 
     </select>
 

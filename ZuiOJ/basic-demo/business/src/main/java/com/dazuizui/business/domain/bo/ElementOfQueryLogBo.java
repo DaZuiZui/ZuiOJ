@@ -13,6 +13,7 @@ public class ElementOfQueryLogBo implements Serializable {
     private Integer status; //状态
     private String token;   //token
     private Long contestId; //比赛id
+    private Integer delFlag ; //逻辑删除
 
     @Override
     public String toString() {
@@ -24,6 +25,7 @@ public class ElementOfQueryLogBo implements Serializable {
                 ", status=" + status +
                 ", token='" + token + '\'' +
                 ", contestId=" + contestId +
+                ", delFlag=" + delFlag +
                 '}';
     }
 
@@ -83,10 +85,18 @@ public class ElementOfQueryLogBo implements Serializable {
         this.contestId = contestId;
     }
 
+    public Integer getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
+    }
+
     public ElementOfQueryLogBo() {
     }
 
-    public ElementOfQueryLogBo(String name, Long questionId, Long startnum, Long endnum, Integer status, String token, Long contestId) {
+    public ElementOfQueryLogBo(String name, Long questionId, Long startnum, Long endnum, Integer status, String token, Long contestId, Integer delFlag) {
         this.name = name;
         this.questionId = questionId;
         this.startnum = startnum;
@@ -94,5 +104,6 @@ public class ElementOfQueryLogBo implements Serializable {
         this.status = status;
         this.token = token;
         this.contestId = contestId;
+        this.delFlag = delFlag;
     }
 }

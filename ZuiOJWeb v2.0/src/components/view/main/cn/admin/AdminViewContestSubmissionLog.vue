@@ -22,7 +22,7 @@
                         <el-input v-model="elementOfQueryLog.name" placeholder="请输入学生姓名"></el-input>
                         <br>
 
-                        <el-button type="primary" @click="getLogByElement()">筛选查询日志</el-button>
+                        <el-button type="primary" @click="getLogByElement(1)">筛选查询日志</el-button>
                         <el-button type="primary" @click="getContestSubmissionLog(1)">恢复默认</el-button>
                     </div>
                 </el-drawer>
@@ -34,7 +34,7 @@
                     <thead>
                       <tr>
                         <th scope="col" width="90px"></th>
-                        <th scope="col">问题主键id</th>
+                        <th scope="col">问题主键</th>
                         <th scope="col">提交用户</th>
                         <th scope="col">尝试次数</th>
                         <th scope="col">首次尝试</th>
@@ -150,11 +150,12 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         elementOfQueryLog: {
             questionId: null,
             name: "",
-            startnum: null,
-            endnum:   null,
+            startnum: 0,
+            endnum:   50,
             status: 0,
             token: "",
             contestId: -1,
+            delFlag: 0,
         },
         //比赛问题集合
         questionList: [],
@@ -193,22 +194,27 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         async getLogListByUserName(name){
             this.elementOfQueryLog.questionId = null;
             this.elementOfQueryLog.name = name;
-            this.elementOfQueryLog.startnum = null;
-            this.elementOfQueryLog.endnum = null;
+            //this.elementOfQueryLog.startnum = 0;
+            this.elementOfQueryLog.endnum = 50;
             this.elementOfQueryLog.status = 0;
-          
-            this.getLogByElement();
+            
+            this.getLogByElement(1);
         },
 
         /**
          *  通过元素筛选查询日志
          */
-        async getLogByElement(){
+        async getLogByElement(page){
+            //初始化起始页面
+            //this.elementOfQueryLog.startnum = 0;
+            this.elementOfQueryLog.startnum = (page -1)*50;
             this.elementOfQueryLog.token = getCookie("token");
             let obj = await synRequestPost("/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
-        
+          
             if(check(obj)){
-                this.list = obj.data;
+                this.list = obj.data.acContestQuestions;
+                //更新总数
+                this.count = obj.data.count;
             }
         },
         

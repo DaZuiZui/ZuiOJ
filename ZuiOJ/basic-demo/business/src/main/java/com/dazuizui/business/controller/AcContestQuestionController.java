@@ -68,4 +68,16 @@ public class AcContestQuestionController {
     public String deleteLogById(@Param("token")String token,@Param("id")Long id){
         return acContestQuestionSerivce.deleteLogById(id);
     }
+
+
+    /**
+     * 通过QuestionId和ContestId查询提交数据
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    @ApiOperation("通过QuestionId和ContestId查询提交数据")
+    @PostMapping("/queryCountByContestIdAndQuestionId")
+    public String queryCountByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo){
+        return acContestQuestionSerivce.queryCountByContestIdAndQuestionId(elementOfQueryLogBo);
+    }
 }

@@ -15,6 +15,13 @@ import java.util.List;
 @Mapper
 public interface AcContestQuestionMapper {
     /**
+     * 获取当前比赛指定比赛的通过记录
+     * @param contestId   比赛id
+     * @param questionId  问题id
+     */
+    public Long queryCountByContestIdAndQuestionId(@Param("contestId")Long contestId,@Param("questionId") Long questionId);
+
+    /**
      * 修改提交记录通过id
      * @param acContestQuestion
      * @return
