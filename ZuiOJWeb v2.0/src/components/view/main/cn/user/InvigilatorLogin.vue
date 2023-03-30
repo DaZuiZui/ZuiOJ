@@ -48,7 +48,7 @@
   
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
-  import Top  from '../../../../frame/blog/LoginTop.vue'
+  import Top  from '../../../../frame/invigilator/InvigilatorLoginTop.vue'
   import {synRequestPost,synRequestGet} from "../../../../../../static/request"
   export default {
     name: 'HelloWorld',
