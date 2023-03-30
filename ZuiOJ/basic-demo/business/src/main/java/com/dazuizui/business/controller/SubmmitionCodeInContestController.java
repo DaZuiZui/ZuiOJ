@@ -75,6 +75,12 @@ public class SubmmitionCodeInContestController {
     @ApiOperation("通过提交记录id删除记录")
     @PostMapping("/deleteById")
     public String deleteById(@RequestParam("token")String token,@RequestParam("id")String id){
+        //身份验证过期和权限鉴别
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
         return submmitionCodeInContestSerivce.deleteById(id);
     }
 }

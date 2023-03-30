@@ -13,6 +13,7 @@ import com.dazuizui.business.mapper.CodeDetailedInContestMapper;
 import com.dazuizui.business.mapper.CodeInContestMapper;
 import com.dazuizui.business.mongodao.SubmmitionCodeInContestRepository;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -94,13 +95,14 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
      */
     @Override
     public String deleteById(String id) {
+        //解析操作人id
         //通过id查询到指定数据
         Optional<CodeInContest> byId = submmitionCodeInContestRepository.findById(id);
         CodeInContest codeInContest = byId.get();
-        System.out.println(codeInContest);
+        codeInContest.setCreateBy((Long.valueOf( ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+"")));
         //获取当前提交信息
         AcContestQuestion acContestQuestion = acContestQuestionMapper.findOneById(codeInContest.getAcContestQuestionId());
-        System.out.println(acContestQuestion);
+        acContestQuestion.setCreateById((Long.valueOf( ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+"")));
         //设置修改人和修改时间
         acContestQuestion.setUpdateTime(new Date());
         //减少通关次数
@@ -130,7 +132,7 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
         TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
         try {
-            //删除代码数据
+            //删除代码数据 todo改成逻辑删除
             Long aLong = codeDetailedInContestMapper.deleteCodeById(codeInContest.getCodeId());
             if (aLong == 0){
                 transactionUtils.rollback(begin);
@@ -169,7 +171,6 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
                         return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
                     }
                 }
-
             }
 
             //删除mongoDB提交数据

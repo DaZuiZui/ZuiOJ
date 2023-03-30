@@ -8,6 +8,7 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+
                 <table class="table">
                     <thead>
                       <tr>
@@ -16,7 +17,7 @@
                         <th scope="col">开始时间</th>
                         <th scope="col">结束时间</th>
                         <th scope="col">创建人</th>
-                        <th scope="col">创建时间</th>
+         
                         <th scope="col">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,13 +41,14 @@
                             {{obj.endTime}}   
                         </td>
                         <td>{{obj.createByName}}  </td>
-                        <td>{{obj.createTime}}  </td>
+             
                         <td>
                             <div>   
+                                <el-link type="primary">监考人员</el-link>
                                 <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>
-                                <el-link type="primary" @click="removeTheContestById(obj.id)">移除比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
+                                <el-link type="danger" @click="removeTheContestById(obj.id)">移除比赛</el-link>
                                 <el-link type="danger" @click="goCompetitioninfo(obj.id)">参赛人员</el-link>
                                 <el-link type="danger" @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
                             </div>

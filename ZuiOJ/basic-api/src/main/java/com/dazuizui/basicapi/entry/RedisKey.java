@@ -51,5 +51,7 @@ public class RedisKey {
     //比赛选手报名信息 RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + id
     public static final String ZuiOJConetstCompetitionInfo = "ZuiOJ:Conetst:CompetitionInfo:Contest:";
     //用户token
-    public static final String ZuiBlogUserToken = "ZuiBlog:User:Token";
+    public static final String ZuiBlogUserToken = "ZuiBlog:User:Token:";
+    //监考人员
+    public static final String ZuiBlogInvigilatorUserId = "ZuiBlog:Invigilator:userid";
 }

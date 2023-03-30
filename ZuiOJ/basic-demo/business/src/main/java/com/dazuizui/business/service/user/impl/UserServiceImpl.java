@@ -169,7 +169,8 @@ public class UserServiceImpl implements UserService {
         String jwt = JwtUtil.createJWT(userInDB);
 
         //将token存入redis用来做过期验证和修改密码token的可使用性
-        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserToken+jwt,RedisKey.UserTokenOutTime,jwt);
+        System.err.println(userInDB);
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogUserToken+userInDB.getId(),RedisKey.UserTokenOutTime,jwt);
 
         //封装返回
         Map<String,Object> map = new HashMap<>();
@@ -180,6 +181,9 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 解析token
+     *      如果token已经过期在redis中，那么说明身份验证过期
+     *      如果在redis存放的token和我们目前接受的token不一致，那么就说明要不修改了密码要不在其他客户端有第二个人登入，
+     *      这样就保证了同一时刻只有一个人在登入此账号
      * @param token
      * @return
      */
@@ -188,19 +192,27 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> map = null;
         try {
             map = JwtUtil.analysis(token);
-           // System.out.println("？？？");
+
+            Long id = Long.valueOf(map.get("id")+"");
+
             //当前登入验证过期
-            long expire = redisUtil.expire(RedisKey.ZuiBlogUserToken+token);
-          //  System.out.println(expire);
+            long expire = redisUtil.expire(RedisKey.ZuiBlogUserToken+id);
             if (expire <= 0){
                 return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
             }
+            //当token不一致
+            String tokenOfString = (String) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserToken + id);
+
+            if (!tokenOfString.equals(token)){
+                return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
+            }
+
         } catch (Exception e) {
             return JSONArray.toJSONString(new ResponseVo<>("身份验证已过期",null,StatusCode.authenticationExpired));
         }
 
         User user = new User();
-        //System.out.println(map.get("id"));
+
         Long id = Long.valueOf((String)map.get("id"));
         user = this.queryUserById(id);
         //System.err.println(user);
