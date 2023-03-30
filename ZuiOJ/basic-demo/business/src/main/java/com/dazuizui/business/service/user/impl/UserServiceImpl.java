@@ -96,23 +96,15 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 管理员分页获取用户数据
+     * 管理员分页获取用户数据 需要修改！！！！todo 紧急
      * @param pagingToGetUserDateBo
      * @return
      */
     @Override
     public String pagingToGetUserDate(PagingToGetUserDateBo pagingToGetUserDateBo) {
         //获取用户个数
-        Long coungOfUser =  redisUtil.getLongOfStringInRedis(RedisKey.ZuiBlogUserCount);
+        Long coungOfUser = userMapper.queryCountOfUser();
 
-        //如果redis没有数据就去mysql查询
-        if (coungOfUser == null || coungOfUser == 0){
-            coungOfUser = userMapper.queryCountOfUser();
-            //写入redis
-            redisUtil.setLongOfStringInRedis(RedisKey.ZuiBlogUserCount,RedisKey.OutTime, coungOfUser);
-
-            System.out.println(redisUtil.getLongOfStringInRedis(RedisKey.ZuiBlogUserCount));
-        }
 
         //获取用户数据
         List<User> users = userMapper.pagingToGetUserDate(pagingToGetUserDateBo);
@@ -169,7 +161,7 @@ public class UserServiceImpl implements UserService {
         String jwt = JwtUtil.createJWT(userInDB);
 
         //将token存入redis用来做过期验证和修改密码token的可使用性
-        System.err.println(userInDB);
+
         redisUtil.setStringInRedis(RedisKey.ZuiBlogUserToken+userInDB.getId(),RedisKey.UserTokenOutTime,jwt);
 
         //封装返回
