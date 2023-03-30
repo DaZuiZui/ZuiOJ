@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.InvigilatorMapper">
+    <!--
+        通过id查询数据
+    -->
+    <select id="findByUserId" resultType="com.dazuizui.business.domain.Invigilator">
+        select
+            *
+        from
+            invigilator
+        where
+            user_id = #{UserId};
+    </select>
+</mapper>

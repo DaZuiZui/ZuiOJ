@@ -37,6 +37,7 @@ import AdminConpetitionQuestionbankList from '@/components/view/main/cn/admin/Ad
 import AdminViewCodeOfContestants from '@/components/view/main/cn/admin/AdminViewCodeOfContestants'
 import AdminCodeDetailedInContest from '@/components/view/main/cn/admin/AdminCodeDetailedInContest'
 import AdminProctorManagement from '@/components/view/main/cn/admin/AdminProctorManagement'
+import InvigilatorLogin from '@/components/view/main/cn/user/InvigilatorLogin'
 Vue.use(Router)
 
 export default new Router({
@@ -47,6 +48,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //监考人员登入
+    {
+      path: '/cn/invigilator/login',
+      name: 'InvigilatorLogin',
+      component: InvigilatorLogin
     },
     //监考人员管理
     {
