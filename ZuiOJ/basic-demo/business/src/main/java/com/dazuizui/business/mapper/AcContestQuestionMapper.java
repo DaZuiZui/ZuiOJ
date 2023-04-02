@@ -15,6 +15,19 @@ import java.util.List;
 @Mapper
 public interface AcContestQuestionMapper {
     /**
+     * 通过比赛id和问题id查询指定日志
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    public List<AcContestQuestion> queryLogByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo);
+    /**
+     * 通过比赛id和问题id查询指定日志数量
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    public Long queryCountByElement(ElementOfQueryLogBo elementOfQueryLogBo);
+
+    /**
      * 获取当前比赛指定比赛的通过记录
      * @param contestId   比赛id
      * @param questionId  问题id

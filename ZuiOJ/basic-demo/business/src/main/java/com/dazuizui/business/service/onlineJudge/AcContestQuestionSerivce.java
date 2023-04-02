@@ -52,4 +52,11 @@ public interface AcContestQuestionSerivce {
      * @return
      */
     public String queryCountByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo);
+
+    /**
+     * 通过比赛id和问题id查询指定日志
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    public String queryLogByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo);
 }

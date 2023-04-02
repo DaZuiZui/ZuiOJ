@@ -23,10 +23,21 @@ public class AcContestQuestionController {
     private AcContestQuestionSerivce acContestQuestionSerivce;
 
     /**
-     * 查询日志通过元素列表
+     * 通过比赛id还有问题id查询提交日志
+     * @param elementOfQueryLogBo
      * @return
      */
-    @ApiOperation("查询日志通过元素列表")
+    @PostMapping("/queryLogByContestIdAndQuestionId")
+    @ApiOperation("通过比赛id还有问题id查询提交日志")
+    public String queryLogByContestIdAndQuestionId(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
+        return acContestQuestionSerivce.queryLogByContestIdAndQuestionId(elementOfQueryLogBo);
+    }
+
+    /**
+     * 通过比赛和名字元素筛选查询元素
+     * @return
+     */
+    @ApiOperation("通过比赛和名字元素筛选查询元素")
     @PostMapping("/queryLogByElement")
     public String queryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
         return acContestQuestionSerivce.queryLogByElement(elementOfQueryLogBo);

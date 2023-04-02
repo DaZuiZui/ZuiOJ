@@ -34,7 +34,7 @@
                     <thead>
                       <tr>
                         <th scope="col" width="90px"></th>
-                        <th scope="col">问题主键</th>
+                        <th scope="col">问题</th>
                         <th scope="col">提交用户</th>
                         <th scope="col">尝试次数</th>
                         <th scope="col">首次尝试</th>
@@ -51,9 +51,11 @@
                       <tr v-for="obj in list" >
                         <th scope="row"></th>
                         <td>
-                            <b>
-                                {{questionMap.get(obj.questionId)}}
-                            </b>
+                            <a> 
+                                <b @click="queryLogByContestIdAndQuestionId(obj.questionId,0,0)">
+                                    {{questionMap.get(obj.questionId)}}
+                                </b>
+                            </a>
                         </td>
                         <td>
                             <b  @click="getLogListByUserName(obj.createByName)">
@@ -92,10 +94,10 @@
                                 可能需要帮助
                             </div>
                             <div v-else-if="obj.numberOfAttempts <= 20"  style="color:blue">
-                                请留意此比赛选手可能不会使用此系统
+                                选手可能不会使用此系统
                             </div>
                             <div v-else  style="color:red">
-                                请观察此选手，ta大概率不会使用此系统
+                                ta大概率不会使用此系统
                             </div>
                         </td>
                         <td>
@@ -130,6 +132,7 @@
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
 import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+import Q from 'q';
   export default {
     name: 'HelloWorld',
     components: {
@@ -149,7 +152,7 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         //查询日志元素
         elementOfQueryLog: {
             questionId: null,
-            name: "",
+            name: null,
             startnum: 0,
             endnum:   50,
             status: 0,
@@ -176,11 +179,24 @@ import { synRequestGet, synRequestPost } from '../../../../../../static/request'
         this.elementOfQueryLog.contestId =  getQueryVariable("id");
         //获取比赛题目
         this.getQuestionListOfContest(1);
-   
- 
+    
     },
     
     methods: {
+        /*
+         * 通过contestId 和 questionId进行分页查询。
+         */
+        async queryLogByContestIdAndQuestionId(questionId,status,delFlag){
+            this.elementOfQueryLog.questionId = questionId;
+            this.elementOfQueryLog.status = status; 
+            this.elementOfQueryLog.delFlag = delFlag;
+            this.elementOfQueryLog.token = getCookie("token");
+            this.elementOfQueryLog.endnum = 50;
+            this.elementOfQueryLog.status = 0;
+            this.cur = 1;
+            this.getLogByElement(1);
+        },
+
         /**
          *  通过比赛id和问题id和用户id
          */

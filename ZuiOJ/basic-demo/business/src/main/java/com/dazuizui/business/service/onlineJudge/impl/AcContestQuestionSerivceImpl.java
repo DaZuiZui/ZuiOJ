@@ -9,6 +9,7 @@ import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import com.dazuizui.business.domain.bo.QueryCountByContestIdAndQuestionIdBo;
 import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
+import com.dazuizui.business.domain.vo.QueryLogByContestIdAndQuestionIdVo;
 import com.dazuizui.business.domain.vo.QueryLogByElementVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
@@ -17,6 +18,7 @@ import com.dazuizui.business.util.ThreadLocalUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.List;
@@ -27,9 +29,25 @@ import java.util.List;
 @Service
 public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     @Autowired
-    private AcContestQuestionMapper acContestQuestionMapper;
+        private AcContestQuestionMapper acContestQuestionMapper;
     @Autowired
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
+
+    /**
+     * 通过比赛id和问题id分页查询指定日志
+     * @param elementOfQueryLogBo
+     * @return
+     */
+    @Override
+    public String queryLogByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo){
+        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryLogByContestIdAndQuestionId(elementOfQueryLogBo);
+        //Long count = acContestQuestionMapper.queryCountByContestIdAndQuestionId(elementOfQueryLogBo);
+        QueryLogByContestIdAndQuestionIdVo queryLogByContestIdAndQuestionIdVo = new QueryLogByContestIdAndQuestionIdVo();
+        //queryLogByContestIdAndQuestionIdVo.setCount(count);
+        queryLogByContestIdAndQuestionIdVo.setAcContestQuestions(acContestQuestions);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryLogByContestIdAndQuestionIdVo, StatusCode.OK));
+    }
 
     /**
      * 通过QuestionId和ContestId查询提交数据
@@ -54,9 +72,8 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
      */
     @Override
     public String queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo) {
-
         List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryLogByElement(elementOfQueryLogBo);
-        Long count = Long.valueOf(acContestQuestions.size());
+        Long count =  acContestQuestionMapper.queryCountByElement(elementOfQueryLogBo);
         QueryLogByElementVo queryLogByElementVo = new QueryLogByElementVo();
         queryLogByElementVo.setAcContestQuestions(acContestQuestions);
         queryLogByElementVo.setCount(count);
