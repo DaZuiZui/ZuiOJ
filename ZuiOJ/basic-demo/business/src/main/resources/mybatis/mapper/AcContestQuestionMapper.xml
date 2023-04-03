@@ -77,6 +77,10 @@
             <if test="questionId != null">
                 and question_id = #{questionId}
             </if>
+            <if test="status != -1">
+                and status =  #{status}
+            </if>
+
             and del_flag = #{delFlag}
         </where>
 
@@ -101,6 +105,9 @@
             </if>
             <if test="questionId != null">
                 and question_id = #{questionId}
+            </if>
+            <if test="status != -1">
+                and status =  #{status}
             </if>
             and del_flag = #{delFlag}
         </where>

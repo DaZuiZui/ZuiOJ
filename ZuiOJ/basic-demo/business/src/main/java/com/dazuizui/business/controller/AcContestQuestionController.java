@@ -40,6 +40,7 @@ public class AcContestQuestionController {
     @ApiOperation("通过比赛和名字元素筛选查询元素")
     @PostMapping("/queryLogByElement")
     public String queryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
+        System.err.println(elementOfQueryLogBo);
         return acContestQuestionSerivce.queryLogByElement(elementOfQueryLogBo);
     }
 
