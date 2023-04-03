@@ -39,7 +39,12 @@
                         <th scope="col">尝试次数</th>
                         <th scope="col">首次尝试</th>
                         <th scope="col">首次ac时间</th>
-                        <th scope="col">状态</th>
+                        <th scope="col">
+                                状态
+                                <a @click="toggleStatus()">
+                                    <svg t="1680530967416" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2753" width="20" height="20"><path d="M170.666667 392.533333L349.866667 213.333333l29.866666 29.866667-149.333333 149.333333h669.866667v42.666667H128l42.666667-42.666667z m682.666666 213.333334l-179.2 179.2-29.866666-29.866667 149.333333-149.333333H132.266667v-42.666667H896l-42.666667 42.666667z" fill="#1296db" p-id="2754"></path></svg>    
+                                </a>
+                        </th>
                         <th scope="col">OJ系统评估</th>
                         <th scope="col">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,7 +57,7 @@
                         <th scope="row"></th>
                         <td>
                             <a> 
-                                <b @click="queryLogByContestIdAndQuestionId(obj.questionId,0,0)">
+                                <b @click="queryLogByContestIdAndQuestionId(obj.questionId,-1,0)">
                                     {{questionMap.get(obj.questionId)}}
                                 </b>
                             </a>
@@ -170,6 +175,8 @@ import Q from 'q';
         cur: 1,
         //通过元素查询日志抽屉显示
         elementOfQueryLogDrawer: false,
+        //当前状态
+        curStatus: 0,
       }
     },
     mounted(){
@@ -183,6 +190,22 @@ import Q from 'q';
     },
     
     methods: {
+        /**
+         *  切换状态
+         */ 
+        toggleStatus(){
+           
+            //切换状态
+            if(this.curStatus == 3)
+                this.curStatus = -1;
+     
+            this.elementOfQueryLog.status = this.curStatus % 2;
+            this.curStatus++;
+            this.elementOfQueryLog.endnum = 50;
+   
+            this.getLogByElement(1);
+        },
+
         /*
          * 通过contestId 和 questionId进行分页查询。
          */
@@ -192,7 +215,6 @@ import Q from 'q';
             this.elementOfQueryLog.delFlag = delFlag;
             this.elementOfQueryLog.token = getCookie("token");
             this.elementOfQueryLog.endnum = 50;
-            this.elementOfQueryLog.status = 0;
             this.cur = 1;
             this.getLogByElement(1);
         },
@@ -212,7 +234,8 @@ import Q from 'q';
             this.elementOfQueryLog.name = name;
             //this.elementOfQueryLog.startnum = 0;
             this.elementOfQueryLog.endnum = 50;
-            this.elementOfQueryLog.status = 0;
+            this.elementOfQueryLog.status = -1;
+ 
             
             this.getLogByElement(1);
         },
@@ -225,6 +248,7 @@ import Q from 'q';
             //this.elementOfQueryLog.startnum = 0;
             this.elementOfQueryLog.startnum = (page -1)*50;
             this.elementOfQueryLog.token = getCookie("token");
+            console.log(this.elementOfQueryLog);
             let obj = await synRequestPost("/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
           
             if(check(obj)){
