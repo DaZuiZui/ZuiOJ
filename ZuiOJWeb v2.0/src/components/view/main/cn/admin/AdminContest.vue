@@ -44,7 +44,7 @@
              
                         <td>
                             <div>   
-                                <el-link type="primary">监考人员</el-link>
+                                <el-link type="primary" @click="toProctorManagement(obj.id)">监考人员</el-link>
                                 <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
@@ -102,13 +102,22 @@
     },
     methods: {
         /**
+         *  查看监考人员页面
+         */
+         toProctorManagement(id){
+            this.$router.push("/cn/admin/AdminProctorManagement?contestId="+id);
+         }, 
+
+        /**
          * 查看比赛题目  
          */
         toCompetitionQuestionBank(id){
             this.$router.push("/cn/admin/AdminConpetitionQuestionbankList?contestId="+id);
         },
 
-        //跳转指定页面
+        /*
+         * 跳转指定页面
+         */
         async getMerchantInformation(val){  
             this.page = val; 
             this.adminQueryGameInformationByPageBo.page = val-1;

@@ -8,6 +8,23 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+                <el-button type="primary" disabled>生成监考账号</el-button>  <el-button type="primary" @click="AddProctorDrawer = true">添加监考账号</el-button>   <el-button type="success">前往监考页面</el-button>
+                <el-drawer
+                    title="添加监考人员"
+                    :visible.sync="AddProctorDrawer"
+                    :with-header="false">
+                    <div>
+                      <div style="text-align: center;">
+                          添加监考人员
+                      </div>
+                      
+                      <el-input v-model="username" placeholder="请输入username"></el-input>
+                      <br>
+                      <el-button type="primary" style="width:100%">添加</el-button>
+                    </div>
+                </el-drawer>
+
+              
                 <table class="table">
                     <thead>
                       <tr>
@@ -75,7 +92,10 @@
       },
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your Vue.js App',
+        //添加监考人员抽屉
+        AddProctorDrawer: false,
+        username: null,
       }
     },
     mounted(){
