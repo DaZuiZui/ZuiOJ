@@ -54,4 +54,5 @@ public class RedisKey {
     public static final String ZuiBlogUserToken = "ZuiBlog:User:Token:";
     //监考人员
     public static final String ZuiBlogInvigilatorUserId = "ZuiBlog:Invigilator:userid";
+
 }

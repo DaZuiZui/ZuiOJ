@@ -4,10 +4,12 @@ import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.vo.ContestInfoVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.aop.proctor.ProctorAop;
 import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
 import com.dazuizui.business.domain.vo.AdminQueryGameInformationByPageVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.ContestMapper;
+import com.dazuizui.business.mapper.ProctorAttributeMapper;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -41,6 +43,8 @@ public class ContestSerivceImpl implements ContestSerivce {
     private RedisUtil redisUtil;
     @Autowired
     private TransactionUtils transactionUtils;
+    @Autowired
+    private ProctorAttributeMapper proctorAttributeMapper;
 
     /**
      * 移除比赛页面
@@ -62,7 +66,9 @@ public class ContestSerivceImpl implements ContestSerivce {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
-            //todo 删除参赛选手信息
+            //todo 删除监考数据
+
+            //删除参赛选手信息
             List<String> competitionInfos = competitionInfoMapper.selectAllUserInTheContestByContestId(id);
             /**
              * 删除redis中的缓存数据
@@ -156,15 +162,22 @@ public class ContestSerivceImpl implements ContestSerivce {
         Long id = Long.valueOf(strId);
         conTest.setCreateById(id);
         conTest.setCreateTime(new Date());
+        //添加比赛简略信息
         long l = conTestMapper.insertConTest(conTest);
         if (l == 0){
             //todo error
         }
+        //添加contest详细页面
         l = conTestMapper.insertConTestDetailed(conTest);
         if (l == 0){
             //todo error
         }
-        //todo 添加到redis
+        System.err.println(conTest.getId());
+        //添加监考信息
+        l = proctorAttributeMapper.createAttributeOfProctors(conTest.getId());
+        if (l == 0){
+            //todo error
+        }
 
         return JSONArray.toJSONString(new ResponseVo<>("创建比赛成功",null,"0x1001"));
     }

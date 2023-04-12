@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TransactionUtils transactionUtils;
 
+
     /**
      * 查询网站管理人员
      * todo 缓存层优化
@@ -129,6 +130,28 @@ public class UserServiceImpl implements UserService {
             user = userMapper.queryUserById(id);
             if (user != null){
                 redisUtil.setStringInRedis("zuiblog:user:"+id,60*60*24*15,user);
+            }else{
+                return null;
+            }
+        }
+
+        return user;
+    }
+
+
+    /**
+     * 通过username查询用户
+     * @param username
+     * @return
+     */
+    @Override
+    public User queryUserByUsername(String username){
+        User user = (User) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserUsername+username);
+
+        if (user == null){
+            user = userMapper.queryUserByUsername(username);
+            if (user != null){
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserUsername+username,60*60*24*15,user);
             }else{
                 return null;
             }

@@ -30,4 +30,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String UserIsNull = "用户不存在";
     //已经报名比赛
     public static final String AlreadySignedUpGorTheCompetition = "已经报名比赛";
+    //该用户名不存在
+    public static final String ThisUsernameDoesNotExist = "该用户名不存在";
 }

@@ -20,6 +20,12 @@ import java.util.List;
 @Service
 public interface UserService {
     /**
+     * 通过username查询User
+     * @param username
+     * @return
+     */
+    public User queryUserByUsername(String username);
+    /**
      * 查询网站管理人员
      * @return
      */

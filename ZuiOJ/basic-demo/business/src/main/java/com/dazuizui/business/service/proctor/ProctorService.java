@@ -1,12 +1,13 @@
 package com.dazuizui.business.service.proctor;
 
 import com.dazuizui.business.domain.Proctor;
+import com.dazuizui.business.domain.bo.AddProctorBo;
 
 public interface ProctorService {
     /**
      * 添加监考信息
-     * @param proctor
+     * @param addProctorBo
      * @return
      */
-    public Long addProctor(Proctor proctor);
+    public String addProctor(AddProctorBo addProctorBo);
 }

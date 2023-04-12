@@ -12,8 +12,13 @@
         value(
             null,
             #{userId},
-            #{contestId}
+            #{contestId},
+            #{createBy},
+            #{createTime},
+            null,
+            null,
+            0,
+            0
         )
     </insert>
-
 </mapper>

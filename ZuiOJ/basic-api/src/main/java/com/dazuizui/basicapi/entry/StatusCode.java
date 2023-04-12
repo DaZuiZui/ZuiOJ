@@ -24,4 +24,6 @@ public class StatusCode  {
     public static final String NotAuthorizedToView = "0x504";
     //无权查看比赛
     public static final String NotAuthorizedToContest = "0x505";
+    //该用户名不存在
+    public static final String ThisUsernameDoesNotExist = "0x506";
 }

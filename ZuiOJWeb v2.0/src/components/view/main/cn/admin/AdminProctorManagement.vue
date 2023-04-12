@@ -18,9 +18,9 @@
                           添加监考人员
                       </div>
                       
-                      <el-input v-model="username" placeholder="请输入username"></el-input>
+                      <el-input v-model="addProctorBo.username" placeholder="请输入username"></el-input>
                       <br>
-                      <el-button type="primary" style="width:100%">添加</el-button>
+                      <el-button type="primary" style="width:100%" @click="addProctor()">添加</el-button>
                     </div>
                 </el-drawer>
 
@@ -85,6 +85,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
+import { synRequestPost } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -96,18 +97,32 @@
         //添加监考人员抽屉
         AddProctorDrawer: false,
         username: null,
+        addProctorBo: {
+          token: "",
+          username: "",
+          contestId: null
+        }
       }
     },
     mounted(){
+        this.addProctorBo.contestId = getQueryVariable("contestId");
+        this.addProctorBo.token = getCookie("token");
         //获取幂等性token
         this.getMerchantInformation(0);
     },
     methods: {
         //跳转指定页面
-        getMerchantInformation(val){   
+        async getMerchantInformation(val){   
     
         },
         
+        //添加HR
+        async addProctor(){
+          let obj = await synRequestPost("/proctor/addProctor",this.addProctorBo);
+          if(check(obj)){
+            alert(obj.message);
+          }
+        }
     }
   }
   </script>

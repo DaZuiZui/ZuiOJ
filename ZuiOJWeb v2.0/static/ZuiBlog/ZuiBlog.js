@@ -65,6 +65,9 @@
             alert(obj.message);
             window.location.href="/h";
             return false;
+        }else if(obj.code == '0x505'){
+            alert(obj.message);
+            return false;
         }
 
         return true;
