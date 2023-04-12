@@ -1,6 +1,7 @@
 package com.dazuizui.business.mongodao;
 
 import com.dazuizui.business.domain.CodeInContest;
+import com.dazuizui.business.mapper.SystemMapper;
 import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 
 import com.mongodb.BasicDBObject;
@@ -25,6 +26,14 @@ public class ArticleDiscussionRepositoryTest {
     private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
+    @Autowired
+    private SystemMapper systemMapper;
+
+    @Test
+    void test0(){
+        systemMapper.supportGroupSorting();
+    }
+
     @Test
     void test1(){
         Page<CodeInContest> byContestIdAndQuestionIdAndUserId = submmitionCodeInContestRepository

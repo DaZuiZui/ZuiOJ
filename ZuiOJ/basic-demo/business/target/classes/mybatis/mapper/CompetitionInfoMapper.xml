@@ -27,6 +27,7 @@
         where
             contest_id = #{contestId}
         </select>
+
     <!--
         删除该比赛的所有比赛选手
     -->

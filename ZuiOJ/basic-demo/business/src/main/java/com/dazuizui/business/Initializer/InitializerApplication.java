@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.LanguageCommand;
 import com.dazuizui.basicapi.entry.ProgrammingLanguage;
 import com.dazuizui.business.mapper.LanguageCommandMapper;
 import com.dazuizui.business.mapper.ProgrammingLanguageMapper;
+import com.dazuizui.business.mapper.SystemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,16 @@ public class InitializerApplication {
     private ProgrammingLanguageMapper programmingLanguageMapper;
     @Autowired
     private LanguageCommandMapper languageCommandMapper;
+    @Autowired
+    private SystemMapper systemMapper;
+    /**
+     * 让系统支持gourp by排序
+     */
+    @PostConstruct
+    public void supportGroupSorting(){
+        systemMapper.supportGroupSorting();
+        System.out.println("已经支持Mysql8.0支持group by排序");
+    }
 
     /**
      * 语言数据初始化
@@ -34,7 +45,7 @@ public class InitializerApplication {
         for (ProgrammingLanguage programmingLanguage : allLanguage) {
             //语言id
             long id = programmingLanguage.getId();
-            System.err.println(id);
+
             //查看命令组
             List<LanguageCommand> languageCommands = languageCommandMapper.selectByLanguageId(id);
             System.err.println(languageCommands);
