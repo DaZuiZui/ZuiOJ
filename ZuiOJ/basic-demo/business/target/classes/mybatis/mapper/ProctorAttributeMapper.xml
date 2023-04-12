@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.ProctorAttributeMapper">
+      <!--
+          监考人数自增
+      -->
+      <update id="increaseTheNumberOfProctors">
+            update
+                proctor_attribute
+            set
+              quantity = quantity + #{number}
+            where
+              contest_id = #{contestId}
+      </update>
+
+      <insert id="createAttributeOfProctors">
+           insert into  proctor_attribute value (null,#{contestId},0)
+      </insert>
+</mapper>
