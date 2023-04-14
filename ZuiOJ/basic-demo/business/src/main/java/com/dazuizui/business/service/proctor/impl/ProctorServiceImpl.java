@@ -57,6 +57,12 @@ public class ProctorServiceImpl implements ProctorService {
         proctor.setCreateBy(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+""));
         proctor.setCreateTime(new Date());
 
+        //查看该用户是否已经是当前竞赛的监考人员
+        Proctor byContestIdAndUserId = this.findByContestIdAndUserId(proctor.getContestId(), proctor.getUserId());
+        if (byContestIdAndUserId != null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsProctor,null, StatusCode.IsProctor));
+        }
+
         //添加到mysql
         Long aLong = proctorMapper.addProctor(proctor);
         if (aLong == 0){
@@ -69,8 +75,23 @@ public class ProctorServiceImpl implements ProctorService {
         }
 
         //添加Redis
-        redisUtil.setStringInRedis(RedisKey.ZuiBlogInvigilatorUserId,RedisKey.OutTime,proctor);
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogInvigilatorUserId+proctor.getUserId(),RedisKey.OutTime,proctor);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    @Override
+    public Proctor findByContestIdAndUserId(Long contestId, Long userId) {
+        Proctor proctor = (Proctor) redisUtil.getStringInRedis(RedisKey.ZuiBlogInvigilatorUserId + userId);
+        if (proctor == null){
+            proctor = proctorMapper.findByContestIdAndUserId(contestId,userId);
+
+            if(proctor == null){
+                return null;
+            }
+            //添加Redis
+            redisUtil.setStringInRedis(RedisKey.ZuiBlogInvigilatorUserId+proctor.getUserId(),RedisKey.OutTime,proctor);
+        }
+        return proctor;
     }
 }

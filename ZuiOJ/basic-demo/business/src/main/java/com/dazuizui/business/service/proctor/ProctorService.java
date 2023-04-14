@@ -10,4 +10,6 @@ public interface ProctorService {
      * @return
      */
     public String addProctor(AddProctorBo addProctorBo);
+
+    public Proctor findByContestIdAndUserId(Long contestId,Long userId);
 }

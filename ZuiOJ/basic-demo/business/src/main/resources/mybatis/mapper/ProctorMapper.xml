@@ -21,4 +21,14 @@
             0
         )
     </insert>
+
+    <select id="findByContestIdAndUserId" resultType="com.dazuizui.business.domain.Proctor">
+        select
+               *
+        from
+             proctor
+        where
+              contest_id = #{contestId} and
+              user_id = #{userId}
+    </select>
 </mapper>
