@@ -68,6 +68,12 @@
         }else if(obj.code == '0x505'){
             alert(obj.message);
             return false;
+        }else if(obj.code == '0x506'){
+            alert(obj.message);
+            return false;
+        }else if(obj.code == '0x507'){
+            alert(obj.message);
+            return false;
         }
 
         return true;
