@@ -98,7 +98,7 @@
                 from
                     ac_contest_question
                 where
-                    contest_id = #{contestId}
+                    contest_id = #{contestId}  and status =1
                 GROUP BY
                     user_id) q1,
             (

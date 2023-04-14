@@ -88,7 +88,9 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
      */
     @Override
     public String deleteLogById(@Param("id")Long id){
+        //删除数据
         Long aLong = acContestQuestionMapper.deleteLogById(id);
+        //删除现有提交数量
         if (aLong == 0){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
