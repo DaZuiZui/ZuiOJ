@@ -85,7 +85,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
-import { synRequestPost } from '../../../../../../static/request';
+import { synRequestPost,synRequestGet } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -100,7 +100,8 @@ import { synRequestPost } from '../../../../../../static/request';
         addProctorBo: {
           token: "",
           username: "",
-          contestId: null
+          contestId: null,
+          nonPowerToken: "",
         }
       }
     },
@@ -108,9 +109,17 @@ import { synRequestPost } from '../../../../../../static/request';
         this.addProctorBo.contestId = getQueryVariable("contestId");
         this.addProctorBo.token = getCookie("token");
         //获取幂等性token
+        this.getNonPowerToken();
+
         this.getMerchantInformation(0);
     },
     methods: {
+        //防止幂等性
+        async getNonPowerToken(){
+           var object = await synRequestGet("/system/getNonPowerTokenString");
+           this.addProctorBo.nonPowerToken = object.data;
+        },
+
         //跳转指定页面
         async getMerchantInformation(val){   
     

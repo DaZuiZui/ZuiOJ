@@ -227,13 +227,16 @@
                 var object = await synRequestGet("/system/getNonPowerTokenString");
                 this.nonPowerToken = object.data;
             },
+
+            
             //Markdown解析
             change(value, render) {
                 this.question.mdCn  = value;
                 // render 为 markdown 解析后的结果
                 this.question.htmlCn = render;
             },
-
+            
+            //前往问题
             toQuestion(){
                window.location.href="/question/AnwserQuestion";
             },
