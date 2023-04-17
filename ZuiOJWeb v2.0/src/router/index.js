@@ -38,6 +38,8 @@ import AdminViewCodeOfContestants from '@/components/view/main/cn/admin/AdminVie
 import AdminCodeDetailedInContest from '@/components/view/main/cn/admin/AdminCodeDetailedInContest'
 import AdminProctorManagement from '@/components/view/main/cn/admin/AdminProctorManagement'
 import InvigilatorLogin from '@/components/view/main/cn/user/InvigilatorLogin'
+import ProctorIndex from '@/components/view/main/cn/proctor/ProctorIndex'
+import ProctorViewContestSubmissionLog from '@/components/view/main/cn/proctor/ProctorViewContestSubmissionLog'
 Vue.use(Router)
 
 export default new Router({
@@ -48,6 +50,18 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //监考人员主页
+    {
+      path: "/cn/invigilator/index",
+      name: 'proctorIndex',
+      component: ProctorIndex
+    },
+    //面试官查看比赛提交代码日志
+    {
+      path: '/cn/invigilator/ProctorViewContestSubmissionLog',
+      name: 'ProctorViewContestSubmissionLog',
+      component: ProctorViewContestSubmissionLog
     },
     //监考人员登入
     {
