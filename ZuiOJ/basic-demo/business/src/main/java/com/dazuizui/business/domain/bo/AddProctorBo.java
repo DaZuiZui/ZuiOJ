@@ -9,6 +9,7 @@ public class AddProctorBo implements Serializable {
     private String token;
     private String username;
     private Long contestId;
+    private String nonPowerToken;
 
     @Override
     public String toString() {
@@ -16,6 +17,7 @@ public class AddProctorBo implements Serializable {
                 "token='" + token + '\'' +
                 ", username='" + username + '\'' +
                 ", contestId=" + contestId +
+                ", nonPowerToken='" + nonPowerToken + '\'' +
                 '}';
     }
 
@@ -43,12 +45,21 @@ public class AddProctorBo implements Serializable {
         this.contestId = contestId;
     }
 
+    public String getNonPowerToken() {
+        return nonPowerToken;
+    }
+
+    public void setNonPowerToken(String nonPowerToken) {
+        this.nonPowerToken = nonPowerToken;
+    }
+
     public AddProctorBo() {
     }
 
-    public AddProctorBo(String token, String username, Long contestId) {
+    public AddProctorBo(String token, String username, Long contestId, String nonPowerToken) {
         this.token = token;
         this.username = username;
         this.contestId = contestId;
+        this.nonPowerToken = nonPowerToken;
     }
 }

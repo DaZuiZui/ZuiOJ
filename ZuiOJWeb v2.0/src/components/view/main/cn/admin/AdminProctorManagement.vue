@@ -122,15 +122,18 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
 
         //跳转指定页面
         async getMerchantInformation(val){   
-    
+            
         },
         
         //添加HR
         async addProctor(){
-          let obj = await synRequestPost("/proctor/addProctor",this.addProctorBo);
+          let obj = await synRequestPost("/proctor/admin/addProctor",this.addProctorBo);
           if(check(obj)){
             alert(obj.message);
           }
+          //获取幂等性token
+          this.getNonPowerToken();
+
         }
     }
   }

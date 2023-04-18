@@ -3,6 +3,47 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ProctorMapper">
+    <select id="proctorGetFutureEventsNumber" resultType="long">
+        select
+            count(*)
+        from
+            proctor t1
+        INNER JOIN
+            contest t2
+        ON
+            user_id = 1 and
+            t1.contest_id = t2.id and
+            now() &lt;= t2.end_time and
+            t2.del_flag = 0 and
+            t2.status = 0
+    </select>
+
+    <!--
+         分页获取未来进行时现在进行时的赛制
+    -->
+    <select id="proctorGetFutureEvents">
+        select
+            t2.id,
+            t2.name,
+            t2.start_time,
+            t2.parsing_rule,
+            t2.contest_type,
+            t2.end_time,
+            t2.post_match_processing,
+            t2.status
+        from
+            proctor t1
+        INNER JOIN
+            contest t2
+        ON
+            user_id = #{userId} and
+            t1.contest_id = t2.id and
+            now() &lt;= t2.end_time and
+            t2.del_flag = 0 and
+            t2.status = 0
+        LIMIT #{start},#{size}
+
+    </select>
     <!--
         添加监考人员
     -->
@@ -30,5 +71,19 @@
         where
               contest_id = #{contestId} and
               user_id = #{userId}
+    </select>
+
+    <!--
+        通过userid 查询一个监考人员
+    -->
+    <select id="findByIdLimit1" resultType="com.dazuizui.business.domain.Proctor">
+        select
+            *
+        from
+            proctor
+        where
+            user_id = #{userId}
+        limit
+            1
     </select>
 </mapper>

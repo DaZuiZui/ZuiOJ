@@ -140,7 +140,7 @@
     </select>
 
     <!--
-        获取未来赛制
+        获取未来进行时和现在进行时的赛制
     -->
     <select id="getFutureEvents" resultType="com.dazuizui.basicapi.entry.Contest">
         SELECT

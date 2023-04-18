@@ -14,4 +14,11 @@ public interface ProctorAop {
      * @return
      */
     public void addProctor(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 监考人员获取未来进行时候和现在进行时的差事
+     * @param joinpoint
+     * @throws Exception
+     */
+    public void proctorGetFutureEventsInfo(JoinPoint joinpoint) throws Exception;
 }
