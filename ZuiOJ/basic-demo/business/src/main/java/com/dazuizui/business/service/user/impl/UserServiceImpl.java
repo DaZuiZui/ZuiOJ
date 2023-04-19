@@ -400,5 +400,40 @@ public class UserServiceImpl implements UserService {
         return JSONArray.toJSONString(new ResponseVo<>("修改成功",null, StatusCode.OK));
     }
 
+    /**
+     * 获取用户信息通过token
+     * @param token token of user
+     * @return User.class
+     */
+    @Override
+    public User getUserInfoByTokenForUserEntry(String token) {
+        //解析token获取id
+        Map<String, Object> analysis = null;
+        try {
+            analysis = JwtUtil.analysis(token);
+        } catch (Exception e) {
+            return null;
+        }
+        Long id = Long.valueOf(analysis.get("id")+"");
+
+        //查询redis是否有该用户数据
+        User userInDB = (User) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserId + id);
+        //如果redis没获取到就去数据库
+        if (userInDB == null){
+            userInDB = userMapper.queryUserById(id);
+            //如果数据库获取到了就存入redis
+            if (userInDB != null){
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
+            }
+            //没有获取到数据 in DB
+            else{
+                return null;
+            }
+        }
+
+        return userInDB;
+    }
+
 
 }

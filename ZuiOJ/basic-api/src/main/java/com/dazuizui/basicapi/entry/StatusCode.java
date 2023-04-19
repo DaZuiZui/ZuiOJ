@@ -28,4 +28,6 @@ public class StatusCode  {
     public static final String ThisUsernameDoesNotExist = "0x506";
     //该用户已经是监考人员
     public static final String IsProctor = "0x507";
+    //不为监考人员
+    public static final String NotProctor = "0x508";
 }

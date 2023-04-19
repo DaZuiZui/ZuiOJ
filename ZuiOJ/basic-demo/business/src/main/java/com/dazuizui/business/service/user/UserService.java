@@ -101,4 +101,9 @@ public interface UserService {
      * @return
      */
     public String updateUserInfoById(@RequestBody UpdateUserInfoByIdBo updateUserInfoByIdBo);
+
+    /**
+     * 获取用户信息通过token
+     */
+    public User getUserInfoByTokenForUserEntry(String token);
 }

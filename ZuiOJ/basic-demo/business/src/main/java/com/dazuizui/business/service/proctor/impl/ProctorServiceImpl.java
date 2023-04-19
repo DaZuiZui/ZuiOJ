@@ -6,6 +6,7 @@ import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
+import com.dazuizui.business.domain.vo.ProctorAnalysisVo;
 import com.dazuizui.business.domain.vo.ProctorGetFutureEventsInfoVo;
 import com.dazuizui.business.mapper.ProctorAttributeMapper;
 import com.dazuizui.business.mapper.ProctorMapper;
@@ -123,5 +124,32 @@ public class ProctorServiceImpl implements ProctorService {
     @Override
     public Proctor findByIdLimit1(@Param("userId")Long userId) {
         return proctorMapper.findByIdLimit1(userId);
+    }
+
+    /**
+     * 解析监考身份
+     * @param token
+     * @return
+     */
+    @Override
+    public String proctorAnalysis(String token) {
+        User userInfoByTokenForUserEntry = userService.getUserInfoByTokenForUserEntry(token);
+        //该账号不存在
+        if (userInfoByTokenForUserEntry == null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.UserIsNull,null, StatusCode.ThisUsernameDoesNotExist));
+        }
+        //判断是否为监考信息
+        Proctor proctor = this.findByIdLimit1(userInfoByTokenForUserEntry.getId());
+        //不为监考人员
+        if (proctor == null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.NotProctor,null, StatusCode.NotProctor));
+        }
+
+        //封装返回信息
+        ProctorAnalysisVo proctorAnalysisVo = new ProctorAnalysisVo();
+        proctorAnalysisVo.setProctor(true);
+        proctorAnalysisVo.setUser(userInfoByTokenForUserEntry);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,proctorAnalysisVo, StatusCode.OK));
     }
 }

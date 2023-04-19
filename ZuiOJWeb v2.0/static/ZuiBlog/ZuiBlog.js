@@ -74,6 +74,11 @@
         }else if(obj.code == '0x507'){
             alert(obj.message);
             return false;
+        }else if(obj.code == '0x508'){
+            alert(obj.message);
+            //跳转首页
+            window.location.href="/h";
+            return false;
         }
 
         return true;

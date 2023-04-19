@@ -3,7 +3,9 @@ package com.dazuizui.business.service.proctor;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
+import com.dazuizui.business.domain.vo.ProctorAnalysisVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface ProctorService {
     /**
@@ -32,4 +34,11 @@ public interface ProctorService {
      * 通过userid 查询一个监考人员
      */
     public Proctor findByIdLimit1(@Param("userId")Long userId);
+
+    /**
+     * 解析监考身份
+     * @param token
+     * @return
+     */
+    public String proctorAnalysis(String token);
 }

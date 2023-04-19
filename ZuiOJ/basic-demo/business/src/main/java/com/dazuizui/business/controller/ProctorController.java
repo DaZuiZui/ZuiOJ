@@ -54,4 +54,15 @@ public class ProctorController {
 
         return proctorService.proctorGetFutureEventsInfo(proctorGetFutureEventsInfoBo);
     }
+
+    /**
+     * 监考身份的鉴别
+     * @param token
+     * @return
+     */
+    @GetMapping("/analysis")
+    @ApiOperation("监考身份鉴别")
+    public String analysis(@RequestParam("token")String token){
+        return proctorService.proctorAnalysis(token);
+    }
 }

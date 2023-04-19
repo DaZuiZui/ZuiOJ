@@ -105,7 +105,7 @@
   
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
-  import Top  from '../../../../frame/invigilator/InvigilatorLoginTop.vue'
+  import Top  from '../../../../frame/invigilator/InvigilatorTop.vue'
 import { synRequestGet } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',

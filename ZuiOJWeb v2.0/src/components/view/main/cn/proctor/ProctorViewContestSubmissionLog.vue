@@ -135,9 +135,10 @@
   
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
-  import Top  from '../../../../frame/invigilator/InvigilatorLoginTop.vue'
-import { synRequestGet, synRequestPost } from '../../../../../../static/request';
-import Q from 'q';
+  import Top  from '../../../../frame/invigilator/InvigilatorTop.vue'
+  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+  import Q from 'q';
+  
   export default {
     name: 'HelloWorld',
     components: {

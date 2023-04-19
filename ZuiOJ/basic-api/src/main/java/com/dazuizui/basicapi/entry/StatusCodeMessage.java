@@ -34,4 +34,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String ThisUsernameDoesNotExist = "该用户名不存在";
     //该用户是监考人员
     public static final String IsProctor = "该用户已经是监考人员";
+    //不为监考人员
+    public static final String NotProctor = "不为监考人员";
 }
