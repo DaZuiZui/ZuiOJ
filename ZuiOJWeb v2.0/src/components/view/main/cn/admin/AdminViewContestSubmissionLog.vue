@@ -293,7 +293,7 @@ import Q from 'q';
             }
 
             //获取提交日志
-            this.getContestSubmissionLog(1);
+            await this.getContestSubmissionLog(1);
         },
 
 
