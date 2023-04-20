@@ -154,9 +154,9 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
                 Long id = Long.valueOf(strId);
                 //查看是否为管理员
                 User user = userService.queryUserById(id);
-                System.err.println(user.getRole() < 2);
+
                 if (user.getRole() < 2){
-                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足"+id);
                     ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
                 }
             } catch (Exception e) {

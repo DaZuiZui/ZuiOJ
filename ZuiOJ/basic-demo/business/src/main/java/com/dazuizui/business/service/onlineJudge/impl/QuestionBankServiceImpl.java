@@ -7,7 +7,6 @@ import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
-import com.dazuizui.business.domain.UpdateQuestion;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.domain.vo.AdminGetQuestionByIdVo;
 import com.dazuizui.business.mapper.*;
@@ -21,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -443,6 +441,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             //查询redis是否存在
             questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+id);
             if (questionBankVo == null){
+                //wen ti chu zai zhe li
                 questionBankVo = questionBankMapper.getQuestionById(id,1,0);
                // System.err.println("yes");
                 //没有查找到题目

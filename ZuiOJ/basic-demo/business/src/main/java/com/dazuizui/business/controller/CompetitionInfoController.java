@@ -36,6 +36,8 @@ public class CompetitionInfoController {
     public String deleteTheCompetitionById(@RequestBody DeleteTheCompetitionByIdBo deleteTheCompetitionByIdBo){
         //身份验证过期 or 权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
@@ -52,6 +54,8 @@ public class CompetitionInfoController {
     public String deleteAllCompetitionInfoByContestId(@RequestBody DeleteAllCompetitionInfoByContestIdBo deleteAllCompetitionInfoByContestIdBo){
         //身份验证过期 or 权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
@@ -69,6 +73,8 @@ public class CompetitionInfoController {
     public String adminAddCompetitionInfo(@RequestBody AdminAddCompetitionInfoBo adminAddCompetitionInfoBo){
         //身份验证过期 or 权限不足 or 幂等性操作
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }

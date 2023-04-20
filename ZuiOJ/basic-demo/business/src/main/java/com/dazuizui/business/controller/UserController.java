@@ -51,9 +51,11 @@ public class UserController {
     public String deleteUserById(@RequestBody DeleteUserByIdBo deleteUserByIdBo){
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
 
         return userService.deleteUserById(deleteUserByIdBo);
@@ -66,7 +68,7 @@ public class UserController {
     @ApiOperation("用户登入")
     @PostMapping("/userlogin")
     public String userLogin(@RequestBody User user){
-        System.out.println(user);
+
         return userService.userLogin(user);
     }
 
@@ -104,9 +106,11 @@ public class UserController {
     public String pagingToGetUserDate(@RequestBody PagingToGetUserDateBo pagingToGetUserDateBo){
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
         return userService.pagingToGetUserDate(pagingToGetUserDateBo);
     }
@@ -120,9 +124,11 @@ public class UserController {
     public String deleteUsersInBulk(@RequestBody DeleteUsersInBulkBo deleteUsersInBulkBo){
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
         return userService.deleteUsersInBulk(deleteUsersInBulkBo);
     }
@@ -133,12 +139,14 @@ public class UserController {
     @ApiOperation("逻辑删除用户通过id")
     @PostMapping("/admin/tombstoneUserById")
     public String tombstoneUserById(@RequestBody TombstoneUserByIdBo tombstoneUserByIdBo){
-        System.err.println(tombstoneUserByIdBo);
+
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
         return userService.tombstoneUserById(tombstoneUserByIdBo);
     }

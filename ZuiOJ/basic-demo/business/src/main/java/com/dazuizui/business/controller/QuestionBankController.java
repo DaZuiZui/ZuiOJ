@@ -37,8 +37,10 @@ public class QuestionBankController {
     public String updateQuestionAndLimitByQuestionId(@RequestBody UpdateQuestionAndLimitByQuestionIdBo questionAndLimitByQuestionIdBo){
         //身份验证过期或者权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
         return questionBankService.updateQuestionAndLimitByQuestionId(questionAndLimitByQuestionIdBo);
@@ -55,8 +57,10 @@ public class QuestionBankController {
     public String adminGetQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id){
         //身份验证过期或者权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
         return questionBankService.adminGetQuestionById(id);
@@ -74,9 +78,10 @@ public class QuestionBankController {
         //System.err.println("asdsa"+deleteQuestion);
         //查看aop前置鉴权是否有问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        //System.err.println(map.get("error"));
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
         return questionBankService.deleteQuestionById(deleteQuestion.getId(), deleteQuestion.getQuestionType());
@@ -93,9 +98,10 @@ public class QuestionBankController {
     public String pagingToGetQuestionOfAdmin(@RequestParam("token")String token,@RequestParam("pages") int pages, @RequestParam("number") int number){
         //查看aop前置鉴权是否有问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        //System.err.println(map.get("error"));
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,"0x5001"));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
 
@@ -114,8 +120,10 @@ public class QuestionBankController {
     public String postQuestion(@RequestParam("Idemtoken")String Idemtoken, @RequestParam("token")String token,@RequestBody PostQuestionBo postQuestionBo){
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
         //非空判断
         System.out.println(postQuestionBo);

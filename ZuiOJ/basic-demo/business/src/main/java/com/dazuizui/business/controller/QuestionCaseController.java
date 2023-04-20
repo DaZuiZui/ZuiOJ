@@ -44,11 +44,11 @@ public class QuestionCaseController {
     @ApiOperation("修改案例")
     @PostMapping("/UpdateQuestionCase")
     public String updateQuestionCase(@RequestBody UpdateQuestionCaseBo updateQuestionCaseBo){
-        System.out.println(updateQuestionCaseBo);
-        //身份验证过期或者权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
         return questionCaseSerivce.updateQuestionCase(updateQuestionCaseBo);

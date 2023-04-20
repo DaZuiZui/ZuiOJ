@@ -36,7 +36,7 @@ public class AcContestQuestionAopImpl implements AcContestQuestionAop {
         Object[] args = joinpoint.getArgs();
         QueryContestSubmissionLogBo queryContestSubmissionLogBo = (QueryContestSubmissionLogBo) args[0];
         String token = queryContestSubmissionLogBo.getToken();
-        if (token != null){
+
             Map<String, Object> map = null;
             try {
                 map = JwtUtil.analysis(token);
@@ -46,18 +46,16 @@ public class AcContestQuestionAopImpl implements AcContestQuestionAop {
                 Long id = Long.valueOf(strId);
                 //查看是否为管理员
                 User user = userService.queryUserById(id);
-                System.err.println(user.getRole() < 2);
+
+
                 if (user.getRole() < 2){
-                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+                    ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足"+id);
                     ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
                 }
             } catch (Exception e) {
                 ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
                 ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
             }
-        }
-
-
 
         return null;
     }

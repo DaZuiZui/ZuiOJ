@@ -53,7 +53,10 @@ public class AcContestQuestionController {
     public String queryContestSubmissionLog(@RequestBody QueryContestSubmissionLogBo queryContestSubmissionLogBo){
         //身份验证过期和权限鉴别
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
+            System.out.println("查案提交日志权限不足"+map);
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
         return acContestQuestionSerivce.queryContestSubmissionLog(queryContestSubmissionLogBo);

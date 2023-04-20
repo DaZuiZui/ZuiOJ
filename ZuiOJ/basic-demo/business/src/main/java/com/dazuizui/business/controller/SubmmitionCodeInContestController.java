@@ -31,9 +31,11 @@ public class SubmmitionCodeInContestController {
     public String findOneById(@RequestParam("token")String token,@RequestParam("id")Long id){
         //身份验证过期和权限鉴别
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
         return submmitionCodeInContestSerivce.findOneById(id);
     }
@@ -46,11 +48,14 @@ public class SubmmitionCodeInContestController {
     @ApiOperation("筛选查询比赛提交保存的代码")
     @PostMapping("/filterQueryMatchSaveCode")
     public String filterQueryMatchSaveCode(@RequestBody FilterQueryMatchSaveCodeBo findByContestIdAndQuestionIdAndUserIdBo){
+
         //身份验证过期和权限鉴别
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
         return submmitionCodeInContestSerivce.filterQueryMatchSaveCode(findByContestIdAndQuestionIdAndUserIdBo);
     }
@@ -77,9 +82,11 @@ public class SubmmitionCodeInContestController {
     public String deleteById(@RequestParam("token")String token,@RequestParam("id")String id){
         //身份验证过期和权限鉴别
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
 
         return submmitionCodeInContestSerivce.deleteById(id);
     }

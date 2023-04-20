@@ -135,10 +135,9 @@
   
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
-  import Top  from '../../../../frame/invigilator/InvigilatorTop.vue'
-  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
-  import Q from 'q';
-  
+  import Top  from '../../../../frame/invigilator/InvigilatorLoginTop.vue'
+    import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+    import Q from 'q';
   export default {
     name: 'HelloWorld',
     components: {
@@ -180,13 +179,13 @@
         curStatus: 0,
       }
     },
-    mounted(){
+    async mounted(){
         //初始化数据
         this.queryContestSubmissionLogBo.contestId = getQueryVariable("id");
         this.queryContestSubmissionLogBo.token = getCookie("token");
         this.elementOfQueryLog.contestId =  getQueryVariable("id");
         //获取比赛题目
-        this.getQuestionListOfContest(1);
+        await this.getQuestionListOfContest(1);
     
     },
     
@@ -264,10 +263,12 @@
          * 提交日志
          */
         async getContestSubmissionLog(page){
+            alert("?")
             this.cur = page;
             this.queryContestSubmissionLogBo.page = (page -1)*50;
             //获取日志
             let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
+            console.log(obj);
             this.list = obj.data.acContestQuestions;
             console.log(this.list);
             if(this.list == null && page > 1){
@@ -293,8 +294,9 @@
                 this.questionMap.set(tmplist[i].id,tmplist[i].chineseName);
             }
 
+            alert("222")
             //获取提交日志
-            this.getContestSubmissionLog(1);
+            await this.getContestSubmissionLog(1);
         },
 
 

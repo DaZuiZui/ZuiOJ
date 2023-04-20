@@ -28,7 +28,7 @@ public class CollegeController {
     @GetMapping("/getALlCollegeByUniverstyId")
     @ApiOperation("获取全部学院")
     public String getALlCollegebyUniverstyId(@RequestParam("id") Long id){
-        System.err.println(id+"as");
+
         return collegeService.getALlCollegebyUniverstyId(id);
     }
 }

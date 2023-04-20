@@ -37,9 +37,11 @@ public class StudentController {
     public String updateStudentCertification(@RequestBody StudentCertificationBo studentCertificationBo){
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
         if(studentCertificationBo == null){
             return JSONArray.toJSONString(new ResponseVo<>("服务器接收数据为null",null, StatusCode.IsNull));
         }
@@ -57,9 +59,11 @@ public class StudentController {
     public String studentCertification(@RequestBody StudentCertificationBo studentCertificationBo){
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
+
         //业务操作
         return studentService.studentCertification(studentCertificationBo.getStudentCertification());
     }
@@ -72,9 +76,9 @@ public class StudentController {
     public String getStudentInfo(@RequestParam("token")String token){
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        System.out.println(map);
-        if (map.get("error") != null){
-            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
         return studentService.getStudentInfo();

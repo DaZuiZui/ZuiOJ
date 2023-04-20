@@ -30,7 +30,10 @@ public class CompetitionQuestionBankController {
     @PostMapping("/addCompetitionQuestion")
     public String addCompetitionQuestion(@RequestParam("token")String token, @RequestBody CompetitionQuestionBank competitionQuestionBank) {
         //身份验证过期 or 权限不足
-        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
             return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
@@ -43,7 +46,10 @@ public class CompetitionQuestionBankController {
     @PostMapping("/getQuestionListByContestId")
     public String getQuestionListByContestId(@RequestParam("token")String token,@RequestParam("contestId") Long contestId){
         //身份验证过期 or 权限不足
-        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
             return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
@@ -59,8 +65,10 @@ public class CompetitionQuestionBankController {
     @ApiOperation("获取比赛题目")
     @GetMapping("/getQuestionListInContest")
     public String getQuestionListInContest(@RequestParam("token")String token, @RequestParam("contestId")Long contestId){
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
-        if (ThreadLocalUtil.mapThreadLocal.get().get("error") != null) {
+        if ( map.get("error") != null) {
             return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
         }
 
@@ -78,8 +86,9 @@ public class CompetitionQuestionBankController {
     public String adminGetQuestionListInContest(@RequestParam("token")String token, @RequestParam("contestId")Long contestId){
         //身份验证过期
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-
+        ThreadLocalUtil.mapThreadLocal.remove();
         if (map.get("error") != null){
+            System.out.println("权限不足"+map);
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 

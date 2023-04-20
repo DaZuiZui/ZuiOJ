@@ -1,9 +1,12 @@
 package com.dazuizui.business.mongodao;
 
+import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.mapper.SystemMapper;
 import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 
+import com.dazuizui.business.util.RedisUtil;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
@@ -45,11 +48,14 @@ public class ArticleDiscussionRepositoryTest {
     @Autowired
     private MessageSource source;
 
+    @Autowired
+    private RedisUtil redisUtil;
     @Test
     void test2(){
         //        source.addArticleOutput().send(MessageBuilder.withPayload(articleBo).build());
         //  source.addArticleOutput().send(MessageBuilder.withPayload(new CreateArticleBo()).build());
-        boolean send = source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload("Hello").build());
-        System.out.println("????"+send);
+       // boolean send = source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload("Hello").build());
+        QuestionBankVo questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+10111);
+        System.out.println(questionBankVo );
     }
 }

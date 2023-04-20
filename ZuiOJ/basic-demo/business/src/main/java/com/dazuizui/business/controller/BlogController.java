@@ -33,6 +33,8 @@ public class BlogController {
     @PostMapping("/createArticle")
     public String createArticle(@RequestBody CreateArticleBo articleBo){
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
@@ -47,6 +49,8 @@ public class BlogController {
     @PostMapping("/createQuestionAnswer")
     public String createQuestionAnswer(@RequestBody CreateArticleBo articleBo,@RequestParam("questionId")Long questionId){
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
@@ -71,6 +75,8 @@ public class BlogController {
     public String getArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo){
         //身份验证过期
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
