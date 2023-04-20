@@ -209,17 +209,19 @@
                checkForEntry: false,
                //比赛题目list集合
                questionList: [],
-
+               //contestId
+               contestId: 0,
                //倒计时
                clock: null,
            }    
        },
   
-       mounted(){
+       async mounted(){
+            this.contestId = getQueryVariable("id");
            //防止幂等性
-           this.getNonPowerToken();
+           await this.getNonPowerToken();
            //获取赛事
-           this.getEventById();
+           await this.getEventById();
        },
   
        methods: {
@@ -252,7 +254,7 @@
                     //关闭计时器
                     window.clearInterval(this.clock);
                     //请求比赛题库
-                    var object = await synRequestGet("/CompetitionQuestionBank/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
+                    var object = await synRequestGet("/CompetitionQuestionBank/getQuestionListInContest?token="+getCookie("token")+"&contestId="+this.contestId);
         
                     this.questionList = object.data;
                     return;
