@@ -100,7 +100,7 @@
   </template>
   
   <script>
-import { synRequestGet } from '../../../../static/request';
+import { synRequestGet , synRequestPost } from '../../../../static/request';
 
   export default {
     name: 'Foot',
@@ -113,10 +113,11 @@ import { synRequestGet } from '../../../../static/request';
             role: -1,
             isProctor: false,
         },
-   
+ 
       }
     },
     async mounted(){
+        console.log(1);
         await this.authentication();
     },
     methods: {
@@ -125,12 +126,15 @@ import { synRequestGet } from '../../../../static/request';
             let token = getCookie("token");
             //alert(token);
             let obj = await synRequestGet("/proctor/analysis?token="+token);
- 
+            console.log(obj);
             if(check(obj)){
                 this.user = obj.data.user;
                 this.user.isProctor = obj.data.isProctor;
+           
             }
         },
+
+ 
 
         //前往登入页面
         goUserLogin(){

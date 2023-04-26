@@ -110,7 +110,8 @@ public class ProctorServiceImpl implements ProctorService {
      */
     @Override
     public String proctorGetFutureEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo) {
-        List<Contest> contests = proctorMapper.proctorGetFutureEvents(proctorGetFutureEventsInfoBo);
+        Long userId = Long.valueOf(  (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id"));
+        List<Contest> contests = proctorMapper.proctorGetFutureEvents(proctorGetFutureEventsInfoBo,userId);
         Long count = proctorMapper.proctorGetFutureEventsNumber(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id") + ""));
         ProctorGetFutureEventsInfoVo proctorGetFutureEventsInfoVo  = new ProctorGetFutureEventsInfoVo();
         proctorGetFutureEventsInfoVo.setContests(contests);

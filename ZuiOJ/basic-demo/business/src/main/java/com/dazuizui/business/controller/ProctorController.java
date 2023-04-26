@@ -47,17 +47,17 @@ public class ProctorController {
      */
     @ApiOperation("监考人员分页获取未来进行时现在进行时的数据")
     @PostMapping("/proctorGetFutureEventsInfo")
-    public String proctorGetFutureEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo){
+    public String proctorGetFutureEventsInfo(@RequestBody ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo){
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
         ThreadLocalUtil.mapThreadLocal.remove();
-        System.out.println("12321");
+
         //报错排查
         if ( map.get("error") != null) {
 
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
-        System.out.println("?");
+
         return proctorService.proctorGetFutureEventsInfo(proctorGetFutureEventsInfoBo);
     }
 

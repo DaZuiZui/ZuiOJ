@@ -11,7 +11,7 @@
         INNER JOIN
             contest t2
         ON
-            user_id = 1 and
+            user_id = #{userId} and
             t1.contest_id = t2.id and
             now() &lt;= t2.end_time and
             t2.del_flag = 0 and
@@ -21,7 +21,7 @@
     <!--
          分页获取未来进行时现在进行时的赛制
     -->
-    <select id="proctorGetFutureEvents">
+    <select id="proctorGetFutureEvents" resultType="com.dazuizui.basicapi.entry.Contest">
         select
             t2.id,
             t2.name,
@@ -41,7 +41,7 @@
             now() &lt;= t2.end_time and
             t2.del_flag = 0 and
             t2.status = 0
-        LIMIT #{start},#{size}
+        LIMIT #{proctorGetFutureEventsInfoBo.start},#{proctorGetFutureEventsInfoBo.size}
 
     </select>
     <!--

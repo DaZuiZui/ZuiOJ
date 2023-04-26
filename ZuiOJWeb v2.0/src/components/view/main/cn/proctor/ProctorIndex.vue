@@ -27,19 +27,20 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr  >
+                    <tr v-for="obj in futrueContestList" >
                       <th scope="row"></th>
                       <td>
                           <b>
-                              完善后端管理系统
+                              {{obj.name}}
                           </b>
                       </td>
-                      <td>未来进行时</td>
+                      <td>{{obj.startTime}} - {{obj.endTime}} </td>
                       <td>
-                        <b>
-                            全体最高级管理员/开发人员
+                        <b v-if="obj.status == 0">
+                              正常
                         </b>
-                    </td>
+                     
+                      </td>
                   
                       <td>
                           <div>
@@ -106,7 +107,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/invigilator/InvigilatorTop.vue'
-  import { synRequestGet } from '../../../../../../static/request';
+  import { synRequestGet,synRequestPost } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -115,14 +116,38 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
-        list: [],
+        //未来赛制和现在进行时赛制。
+        futrueContestList: [],
+        //监考人员分页获取未来进行时现在进行时的数据Bo
+        proctorGetFutureEventsInfoBo: {
+            token: "",
+            start: 0,
+            size: 5
+        },
+        //总数量量
+        count: 0,
       }
     },
     mounted(){
-       
+      console.log(2);
+      this.proctorGetFutureEventsInfoBo.token = getCookie("token");
+      //获取未来进行时和现在进行时的赛制
+      this.proctorGetFutureEventsInfo(1);
     },
     methods: {
- 
+         //获取现在进行时和未来进行时的赛制
+         async proctorGetFutureEventsInfo(start){
+      
+            this.proctorGetFutureEventsInfoBo.start = (start-1)*this.proctorGetFutureEventsInfoBo.size;
+            let obj = await synRequestPost("/proctor/proctorGetFutureEventsInfo",this.proctorGetFutureEventsInfoBo);
+       
+            
+            if(check(obj)){
+                this.futrueContestList = obj.data.contests;
+                this.count = obj.data.count;
+            }
+            console.log(this.futrueContestList);
+        },
     }
   }
   </script>

@@ -5,6 +5,7 @@ import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public interface ProctorMapper {
      * @param proctorGetFutureEventsInfoBo
      * @return
      */
-    public List<Contest>  proctorGetFutureEvents(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo);
+    public List<Contest>  proctorGetFutureEvents(@RequestParam("proctorGetFutureEventsInfoBo") ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo,@RequestParam("userId")Long userId);
 
 
     /**
