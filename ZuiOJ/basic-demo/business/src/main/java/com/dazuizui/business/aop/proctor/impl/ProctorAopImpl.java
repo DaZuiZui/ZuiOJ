@@ -82,7 +82,11 @@ public class ProctorAopImpl implements ProctorAop {
         Object[] args = joinpoint.getArgs();
         ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo = (ProctorGetFutureEventsInfoBo) args[0];
         String token = proctorGetFutureEventsInfoBo.getToken();
-
+        if (token == null || token == ""){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return;
+        }
         //身份校验
         Map<String, Object> map = null;
         map = JwtUtil.analysis(token);

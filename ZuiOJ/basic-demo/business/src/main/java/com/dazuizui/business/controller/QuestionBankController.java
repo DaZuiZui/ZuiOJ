@@ -40,7 +40,7 @@ public class QuestionBankController {
         ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
         return questionBankService.updateQuestionAndLimitByQuestionId(questionAndLimitByQuestionIdBo);
@@ -60,7 +60,7 @@ public class QuestionBankController {
         ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
         return questionBankService.adminGetQuestionById(id);
@@ -81,7 +81,7 @@ public class QuestionBankController {
         ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
         return questionBankService.deleteQuestionById(deleteQuestion.getId(), deleteQuestion.getQuestionType());
@@ -101,7 +101,7 @@ public class QuestionBankController {
         ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
 
@@ -123,7 +123,7 @@ public class QuestionBankController {
         ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
         //非空判断
         System.out.println(postQuestionBo);
@@ -170,8 +170,7 @@ public class QuestionBankController {
     @ApiOperation("根据id获取题目")
     @GetMapping("/getQuestionById")
     public String getQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType,@RequestParam("contestId")Long contestId){
-         //System.err.println(ThreadLocalUtil.mapThreadLocalOfJWT.get());
-        System.out.println(contestId);
+
         return questionBankService.getQuestionById(id, questionType);
     }
 }

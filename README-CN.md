@@ -9,7 +9,6 @@
 ​	运行此程序必须要有**Ubuntu**系统，
 
 ​				Linux 内核版本 >= 3.10
-12312312
 ​				jdk1.8版本，
 
 ​				mysql8.0，
@@ -30,20 +29,6 @@ https://github.com/criyle/go-judge/releases
 
 ~~~bash
 docker run -it --rm --privileged --shm-size=256m -p 5050:5050 criyle/executorserver
-~~~
-
-**运行二进制预编译文件on Ubuntu**
-
-首先设置权限
-
-~~~bash
-chmod +x 文件名
-~~~
-
-之后启动sandbox
-
-~~~BASH
-./文件名  
 ~~~
 
 #### c/c++语言环境测试
@@ -249,32 +234,11 @@ chmod +x 文件名
 ]
 ~~~
 
+## 前端
 
+~~~cmd
+npm install
+npm run dev
+~~~
 
-#### 牛逼哄哄goLang   语言测试
-
-#### python3语言测试
-
-​	python沙盘运行环境由18级张智博适配
-
-#### python2语言测试
-
-​		python沙盘运行环境由18级张智博适配
-
-## 后端启动 
-
-todo
-
-## 前端启动
-
-
-
-## 开发日志
-
-
-
-## 架构图
-
-## 致谢
-
-​	感谢张益嘉老师，感谢舔了么团队（TML TEAM）团队所有成员的合作开发，感谢所有帮助我们开发的人员，感谢哈尔荣彬广厦学院
+## 后端启动2个springboot main方法

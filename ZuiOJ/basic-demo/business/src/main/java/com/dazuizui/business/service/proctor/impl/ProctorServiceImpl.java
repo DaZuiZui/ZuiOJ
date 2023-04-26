@@ -139,6 +139,7 @@ public class ProctorServiceImpl implements ProctorService {
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.UserIsNull,null, StatusCode.ThisUsernameDoesNotExist));
         }
         //判断是否为监考信息
+
         Proctor proctor = this.findByIdLimit1(userInfoByTokenForUserEntry.getId());
         //不为监考人员
         if (proctor == null){
@@ -150,6 +151,7 @@ public class ProctorServiceImpl implements ProctorService {
         proctorAnalysisVo.setProctor(true);
         proctorAnalysisVo.setUser(userInfoByTokenForUserEntry);
 
+        System.out.println(proctorAnalysisVo);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,proctorAnalysisVo, StatusCode.OK));
     }
 }

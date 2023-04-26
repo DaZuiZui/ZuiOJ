@@ -34,7 +34,7 @@ public class ProctorController {
         ThreadLocalUtil.mapThreadLocal.remove();
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
         return proctorService.addProctor(addProctorBo);
@@ -51,11 +51,13 @@ public class ProctorController {
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
         ThreadLocalUtil.mapThreadLocal.remove();
+        System.out.println("12321");
         //报错排查
         if ( map.get("error") != null) {
-            return JSONArray.toJSONString(new ResponseVo<>(ThreadLocalUtil.mapThreadLocal.get().get("error"),null,ThreadLocalUtil.mapThreadLocal.get().get("code")));
-        }
 
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        System.out.println("?");
         return proctorService.proctorGetFutureEventsInfo(proctorGetFutureEventsInfoBo);
     }
 
