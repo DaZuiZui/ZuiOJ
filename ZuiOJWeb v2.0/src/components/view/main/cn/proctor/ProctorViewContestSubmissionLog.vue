@@ -133,7 +133,7 @@
   
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
-  import Top  from '../../../../frame/invigilator/InvigilatorLoginTop.vue'
+  import Top  from '../../../../frame/invigilator/InvigilatorTop.vue'
     import { synRequestGet, synRequestPost } from '../../../../../../static/request';
     import Q from 'q';
   export default {
@@ -247,7 +247,7 @@
             this.elementOfQueryLog.startnum = (page -1)*50;
             this.elementOfQueryLog.token = getCookie("token");
             console.log(this.elementOfQueryLog);
-            let obj = await synRequestPost("/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
+            let obj = await synRequestPost("/AcContestQuestion/proctor/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
           
             if(check(obj)){
                 this.list = obj.data.acContestQuestions;
@@ -258,23 +258,24 @@
         
 
         /**
-         * 提交日志
+         * 获取提交日志
          */
         async getContestSubmissionLog(page){
            
             this.cur = page;
             this.queryContestSubmissionLogBo.page = (page -1)*50;
             //获取日志
-            let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
-      
-            this.list = obj.data.acContestQuestions;
-            console.log(this.list);
-            if(this.list == null && page > 1){
-                this.getContestSubmissionLog(page-1);
-                return;
+            let obj = await synRequestPost("/AcContestQuestion/proctor/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
+            if(check(obj)){
+                this.list = obj.data.acContestQuestions;
+                console.log(this.list);
+                if(this.list == null && page > 1){
+                    this.getContestSubmissionLog(page-1);
+                    return;
+                }
+        
+                this.count = obj.data.count;
             }
-     
-            this.count = obj.data.count;
  
         },
 
@@ -296,8 +297,6 @@
             //获取提交日志
             await this.getContestSubmissionLog(1);
         },
-
- 
     }
   }
   </script>

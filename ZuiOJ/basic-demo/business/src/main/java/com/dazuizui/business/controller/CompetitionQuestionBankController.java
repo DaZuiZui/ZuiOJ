@@ -76,7 +76,7 @@ public class CompetitionQuestionBankController {
     }
 
     /**
-     * 获取比赛题目id
+     * 管理员获取比赛题目id
      * @param token
      * @param contestId
      * @return
@@ -84,6 +84,26 @@ public class CompetitionQuestionBankController {
     @ApiOperation("获取比赛题目")
     @GetMapping("/admin/getQuestionListInContest")
     public String adminGetQuestionListInContest(@RequestParam("token")String token, @RequestParam("contestId")Long contestId){
+        //身份验证过期
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if (map.get("error") != null){
+            System.out.println("权限不足"+map);
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return competitionQuestionBankService.getQuestionListInContest(contestId);
+    }
+
+    /**
+     * 监考人员获取比赛题目id
+     * @param token
+     * @param contestId
+     * @return
+     */
+    @ApiOperation("监考人员获取比赛题目")
+    @GetMapping("/proctor/getQuestionListInContest")
+    public String proctorGetQuestionListInContest(@RequestParam("token")String token, @RequestParam("contestId")Long contestId){
         //身份验证过期
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
         ThreadLocalUtil.mapThreadLocal.remove();

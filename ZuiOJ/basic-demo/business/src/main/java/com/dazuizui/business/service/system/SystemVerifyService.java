@@ -13,4 +13,11 @@ public interface SystemVerifyService {
      * @return boolean
      */
     public boolean veryfiProctor(String token);
+
+    /**
+     * 验证此用户是否为在指定比赛的考官
+     * @param token
+     * @return
+     */
+    public boolean veryfiProctorInContest(String token,Long contestId);
 }

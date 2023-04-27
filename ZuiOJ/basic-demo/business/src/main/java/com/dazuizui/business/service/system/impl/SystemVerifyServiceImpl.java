@@ -41,4 +41,27 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
         }
         return true;
     }
+
+    /**
+     * 验证此用户是否为在指定比赛的考官
+     * @param token
+     * @return
+     */
+    @Override
+    public boolean veryfiProctorInContest(String token,Long contestId) {
+        //身份鉴权
+        boolean b = this.veryfiProctor(token);
+        if (b == false){
+            return false;
+        }
+        Long userId = Long.valueOf((String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id"));
+        //查看是否为当前比赛考员
+        Proctor byContestIdAndUserId = proctorService.findByContestIdAndUserId(contestId, userId);
+        if (byContestIdAndUserId == null){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+        return true;
+    }
 }

@@ -40,7 +40,7 @@ public class AcContestQuestionController {
     @ApiOperation("通过比赛和名字元素筛选查询元素")
     @PostMapping("/queryLogByElement")
     public String queryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
-        System.err.println(elementOfQueryLogBo);
+
         return acContestQuestionSerivce.queryLogByElement(elementOfQueryLogBo);
     }
 
@@ -94,5 +94,34 @@ public class AcContestQuestionController {
     @PostMapping("/queryCountByContestIdAndQuestionId")
     public String queryCountByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo){
         return acContestQuestionSerivce.queryCountByContestIdAndQuestionId(elementOfQueryLogBo);
+    }
+
+    /**
+     * 监考人员查看本题提交日志
+     * @return
+     */
+    @ApiOperation("监考人员查看提交日志")
+    @PostMapping("/proctor/queryContestSubmissionLog")
+    public String proctorQueryContestSubmissionLog(@RequestBody QueryContestSubmissionLogBo queryContestSubmissionLogBo){
+        //身份验证过期和权限鉴别
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        if (map.get("error") != null){
+            System.out.println("查案提交日志权限不足"+map);
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        return acContestQuestionSerivce.queryContestSubmissionLog(queryContestSubmissionLogBo);
+    }
+
+
+    /**
+     * 通过比赛和名字元素筛选查询元素
+     * @return
+     */
+    @ApiOperation("通过比赛和名字元素筛选查询元素")
+    @PostMapping("/proctor/queryLogByElement")
+    public String proctorQueryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
+        return acContestQuestionSerivce.queryLogByElement(elementOfQueryLogBo);
     }
 }

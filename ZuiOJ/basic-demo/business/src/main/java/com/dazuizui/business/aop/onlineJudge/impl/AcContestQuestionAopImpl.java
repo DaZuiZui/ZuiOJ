@@ -3,7 +3,9 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.aop.onlineJudge.AcContestQuestionAop;
+import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -23,7 +25,8 @@ import java.util.Map;
 public class AcContestQuestionAopImpl implements AcContestQuestionAop {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private SystemVerifyService systemVerifyService;
     /**
      * 查询竞赛提交记录日记aop接口，主要负责管理员身份的鉴权
      * @param joinpoint
@@ -129,6 +132,44 @@ public class AcContestQuestionAopImpl implements AcContestQuestionAop {
             }
         }
 
+        return null;
+    }
+
+    /**
+     * 监考人员查看提交日志
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.AcContestQuestionController.proctorQueryContestSubmissionLog(..))")
+    public String proctorQueryContestSubmissionLog(JoinPoint joinpoint) throws Exception {
+        //鉴权
+        Object[] args = joinpoint.getArgs();
+        QueryContestSubmissionLogBo queryContestSubmissionLogBo = (QueryContestSubmissionLogBo) args[0];
+        String token = queryContestSubmissionLogBo.getToken();
+        Long contestId = queryContestSubmissionLogBo.getContestId();
+        //鉴权
+        systemVerifyService.veryfiProctorInContest(token,contestId);
+        return null;
+    }
+
+    /**
+     * 监考人员通过元素筛筛选查询
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.AcContestQuestionController.proctorQueryLogByElement(..))")
+    public String proctorQueryLogByElement(JoinPoint joinpoint) throws Exception {
+        //鉴权
+        Object[] args = joinpoint.getArgs();
+        ElementOfQueryLogBo elementOfQueryLogBo = (ElementOfQueryLogBo) args[0];
+        String token = elementOfQueryLogBo.getToken();
+        Long contestId = elementOfQueryLogBo.getContestId();
+        //鉴权
+        systemVerifyService.veryfiProctorInContest(token,contestId);
         return null;
     }
 }

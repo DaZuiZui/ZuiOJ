@@ -36,10 +36,19 @@ public interface CompetitionQuestionBankAop {
 
 
     /**
-     * 获取比赛题目aop，主要负责鉴权是否报名此比赛，是否拥有管理员权限
+     * 管理员获取比赛题目aop，主要负责鉴权是否报名此比赛，是否拥有管理员权限
      * @param joinpoint
      * @return
      * @throws Exception
      */
     public String adminGetQuestionListInContest(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 监考人员比赛题目aop，主要负责鉴权是否监考人员
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String proctorGetQuestionListInContest(JoinPoint joinpoint) throws Exception;
 }

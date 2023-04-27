@@ -3,6 +3,7 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.business.aop.onlineJudge.CompetitionQuestionBankAop;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.RedisUtil;
@@ -30,6 +31,8 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
     private UserService userService;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private SystemVerifyService systemVerifyService;
 
     /**
      * 添加比赛关联题目前置Aop
@@ -167,6 +170,24 @@ public class CompetitionQuestionBankAopImpl implements CompetitionQuestionBankAo
 
 
 
+        return null;
+    }
+
+    /**
+     * 监考人员比赛题目aop，主要负责鉴权是否监考人员
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.CompetitionQuestionBankController.proctorGetQuestionListInContest(..))")
+    public String proctorGetQuestionListInContest(JoinPoint joinpoint) throws Exception {
+        //鉴权
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        Long contestId = (Long) args[1];
+        //鉴权
+        systemVerifyService.veryfiProctorInContest(token,contestId);
         return null;
     }
 }
