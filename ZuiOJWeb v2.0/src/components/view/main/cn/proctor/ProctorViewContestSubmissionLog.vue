@@ -107,9 +107,7 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="primary" @click="findByContestIdAndQuestionIdAndUserId(obj.questionId,obj.userId)" >查看通过代码</el-link>
-                                <el-link type="danger" @click="deleteLogById(obj.id)">清除此题记录</el-link>
-                                <el-link type="danger">强行通过此题</el-link>
+                                <el-link type="danger">标记</el-link>
                                 <el-link type="danger">封禁</el-link>
                             </div>
                         </td>
@@ -263,12 +261,12 @@
          * 提交日志
          */
         async getContestSubmissionLog(page){
-            alert("?")
+           
             this.cur = page;
             this.queryContestSubmissionLogBo.page = (page -1)*50;
             //获取日志
             let obj = await synRequestPost("/AcContestQuestion/queryContestSubmissionLog",this.queryContestSubmissionLogBo);
-            console.log(obj);
+      
             this.list = obj.data.acContestQuestions;
             console.log(this.list);
             if(this.list == null && page > 1){
@@ -294,34 +292,12 @@
                 this.questionMap.set(tmplist[i].id,tmplist[i].chineseName);
             }
 
-            alert("222")
+           
             //获取提交日志
             await this.getContestSubmissionLog(1);
         },
 
-
-        /**
-         *  删除当前比赛的所有提交记录
-         */
-        async clearContestSubmissionLog(){
-            let obj = await synRequestPost("/AcContestQuestion/removeAllContestSubmissionLogbyContestId?token="+getCookie("token")+"&id="+getQueryVariable("id"));
-            if(check(obj)){
-                alert("清除成功");
-                this.getQuestionListOfContest(1);
-            }
-        },
-
-        /**
-         * 通过id删除提交日志
-         */ 
-        async deleteLogById(id){
-            let obj = await synRequestPost("/AcContestQuestion/deleteLogById?token="+getCookie("token")+"&id="+id);
-            if(check(id)){
-                alert("删除成功");
-                this.getQuestionListOfContest(this.page);
-            }
-        }
-        
+ 
     }
   }
   </script>

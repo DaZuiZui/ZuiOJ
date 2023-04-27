@@ -7,6 +7,7 @@ import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.service.proctor.ProctorService;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -27,6 +28,8 @@ public class ProctorAopImpl implements ProctorAop {
     private RedisTemplate redisTemplate;
     @Autowired
     private ProctorService proctorService;
+    @Autowired
+    private SystemVerifyService systemVerifyService;
 
     /**
      * 添加一个面试官Aop 前置切面，主要负责了鉴别是否为管理员
@@ -48,7 +51,6 @@ public class ProctorAopImpl implements ProctorAop {
             ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.Idempotency);
             return ;
         }
-        System.out.println("??");
         //身份矫正
         Map<String, Object> map = null;
         try {
@@ -82,23 +84,7 @@ public class ProctorAopImpl implements ProctorAop {
         Object[] args = joinpoint.getArgs();
         ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo = (ProctorGetFutureEventsInfoBo) args[0];
         String token = proctorGetFutureEventsInfoBo.getToken();
-        if (token == null || token == ""){
-            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
-            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
-            return;
-        }
-        //身份校验
-        Map<String, Object> map = null;
-        map = JwtUtil.analysis(token);
-        ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
-        //获取登入者id
-        String strId = (String) map.get("id");
-        Long id = Long.valueOf(strId);
-        //查看是否为有监考历史
-        Proctor proctor = proctorService.findByIdLimit1(id);
-        if (proctor == null){
-            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
-            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
-        }
+        //鉴权管理员身份
+        systemVerifyService.veryfiProctor(token);
     }
 }
