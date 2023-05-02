@@ -250,7 +250,7 @@
             this.elementOfQueryLog.startnum = (page -1)*50;
             this.elementOfQueryLog.token = getCookie("token");
             console.log(this.elementOfQueryLog);
-            let obj = await synRequestPost("/AcContestQuestion/proctor/AcContestQuestion/queryLogByElement",this.elementOfQueryLog);
+            let obj = await synRequestPost("/AcContestQuestion/proctor/queryLogByElement",this.elementOfQueryLog);
           
             if(check(obj)){
                 this.list = obj.data.acContestQuestions;

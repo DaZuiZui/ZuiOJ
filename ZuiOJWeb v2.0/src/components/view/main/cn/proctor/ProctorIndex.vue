@@ -45,7 +45,7 @@
                       <td>
                           <div>
                               <el-link type="primary" >监考</el-link>
-                              <el-link type="success">参赛人员</el-link>
+                              <el-link type="success" @click="toProctorManagement(obj.id)">参赛人员</el-link>
                               <el-link type="danger" @click="viewTheContestByInvigilatorRole(obj.id)">操作日志</el-link>
                           </div>
                       </td>
@@ -56,7 +56,7 @@
                 <el-pagination
                   :page-size="5"
                   :pager-count="11"
-                  @current-change="getMerchantInformation"
+                  @current-change="proctorGetFutureEventsInfo"
                   layout="prev, pager, next"
                   :total="futureCount">
                 </el-pagination>
@@ -78,25 +78,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr  >
+                    <tr v-for="obj in lastContestList" >
                       <th scope="row"></th>
                       <td>
                           <b>
-                              完善后端管理系统
+                              {{obj.name}}
                           </b>
                       </td>
-                      <td>未来进行时</td>
+                      <td>{{obj.startTime}} - {{obj.endTime}} </td>
                       <td>
-                        <b>
-                            全体最高级管理员/开发人员
+                        <b v-if="obj.status == 0">
+                              正常
                         </b>
-                    </td>
+                     
+                      </td>
                   
                       <td>
                           <div>
-                              <el-link type="primary">监考</el-link>
-                              <el-link type="success">参赛人员</el-link>
-                              <el-link type="danger">操作日志</el-link>
+                              <el-link type="primary" >监考</el-link>
+                              <el-link type="success" @click="toProctorManagement(obj.id)">参赛人员</el-link>
+                              <el-link type="danger" @click="viewTheContestByInvigilatorRole(obj.id)">操作日志</el-link>
                           </div>
                       </td>
                     </tr>
@@ -107,7 +108,7 @@
                 <el-pagination
                   :page-size="5"
                   :pager-count="11"
-                  @current-change="getMerchantInformation"
+                  @current-change="proctorGetLastEventsInfo"
                   layout="prev, pager, next"
                   :total="lastCount">
                 </el-pagination>
@@ -157,8 +158,16 @@
       this.proctorGetLastEventsInfo(1);
     },
     methods: {
+      /**
+       *  查看监考人员页面
+       */
+       toProctorManagement(id){
+          this.$router.push("/cn/invigilator/ProctorCompetitionInfoList?id="+id);
+       }, 
+ 
+
         /*
-         * 监考比赛
+         * 监考比赛日志
          */
          viewTheContestByInvigilatorRole(id){
             this.$router.push("/cn/invigilator/ProctorViewContestSubmissionLog?id="+id);
@@ -180,7 +189,7 @@
             this.proctorGetFutureEventsInfoBo.start = (start-1)*this.proctorGetFutureEventsInfoBo.size;
             let obj = await synRequestPost("/proctor/proctorGetLastEventsInfo",this.proctorGetFutureEventsInfoBo);
             if(check(obj)){
-                this.futrueContestList = obj.data.contests;
+                this.lastContestList = obj.data.contests;
                 this.lastCount =  obj.data.count;
             }
             console.log(this.futrueContestList);

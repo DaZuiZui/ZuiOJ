@@ -119,7 +119,7 @@ public class AcContestQuestionController {
      * 通过比赛和名字元素筛选查询元素
      * @return
      */
-    @ApiOperation("通过比赛和名字元素筛选查询元素")
+    @ApiOperation("监考人员通过比赛和名字元素筛选查询元素")
     @PostMapping("/proctor/queryLogByElement")
     public String proctorQueryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
         return acContestQuestionSerivce.queryLogByElement(elementOfQueryLogBo);
