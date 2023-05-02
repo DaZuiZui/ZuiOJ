@@ -31,6 +31,13 @@ public interface ProctorService {
     public String proctorGetFutureEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo);
 
     /**
+     * 分页获取过去时的数据
+     * @param proctorGetFutureEventsInfoBo
+     * @return
+     */
+    public String proctorGetLastEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo);
+
+    /**
      * 通过userid 查询一个监考人员
      */
     public Proctor findByIdLimit1(@Param("userId")Long userId);

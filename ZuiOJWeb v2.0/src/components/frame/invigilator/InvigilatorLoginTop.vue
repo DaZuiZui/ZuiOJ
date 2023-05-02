@@ -173,31 +173,8 @@ import { synRequestGet } from '../../../../static/request';
         goAbout(){
             this.$router.push('/cn/about/dazui');
         },
-        
-        //前往编程题QuestionList
-        goCodingQuestionList(){
-            this.$router.push('/cn/question/coding/list');
-        },
-
-        //比赛列表
-        goContestList(){
-            this.$router.push('/cn/contest/list');
-        },
-
-        //去创建比赛
-        goCreateContest(){
-            this.$router.push('/cn/contest/create');
-        },
-
-        //前往管理员页面
-        goAdminManagement(){
-            this.$router.push("/cn/admin/index");
-        },
-
-        //创建题目
-        goCreateQuestion(){
-            this.$router.push('/cn/question/create');
-        },
+ 
+ 
         //退出
        quite(){
             setCookie("token"," ");
@@ -209,14 +186,7 @@ import { synRequestGet } from '../../../../static/request';
             this.$router.push('/cn/user/info');
             //window.location.href="/h/cn/user/info";
         },
-        //博客主页
-        goBlogIndex(){
-            this.$router.push('/cn/blog/index');
-        },
-        //创作中心
-        goCreating(){
-            this.$router.push('/cn/blog/create')
-        },
+ 
         //前往友情链接
         goBlogRoll(){
             this.$router.push('/cn/blogroll/index')

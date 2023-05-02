@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.aop.proctor.ProctorAop;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.service.proctor.ProctorService;
 import com.dazuizui.business.service.system.SystemVerifyService;
@@ -31,8 +32,10 @@ public class ProctorAopImpl implements ProctorAop {
     @Autowired
     private SystemVerifyService systemVerifyService;
 
+
+
     /**
-     * 添加一个面试官Aop 前置切面，主要负责了鉴别是否为管理员
+     * 添加一个面试官Aop 前置切面，主要负责了鉴别是否为监考人员
      * @param joinpoint
      * @return
      */
@@ -86,5 +89,37 @@ public class ProctorAopImpl implements ProctorAop {
         String token = proctorGetFutureEventsInfoBo.getToken();
         //鉴权管理员身份
         systemVerifyService.veryfiProctor(token);
+    }
+
+    /**
+     * 监考人员获取已经获取时的AOP处理
+     * @param joinpoint
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.proctorGetLastEventsInfo(..))")
+    public void proctorGetLastEventsInfo(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo = (ProctorGetFutureEventsInfoBo) args[0];
+        String token = proctorGetFutureEventsInfoBo.getToken();
+        //鉴权管理员身份
+        systemVerifyService.veryfiProctor(token);
+    }
+
+    /**
+     * 监考人员获取
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.paglingQueryContestantsInThisContest(..))")
+    public void paglingQueryContestantsInThisContest(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        PaglingQueryContestantsInThisContestBo paglingQueryContestantsInThisContestBo = (PaglingQueryContestantsInThisContestBo) args[0];
+        Long contestId = paglingQueryContestantsInThisContestBo.getContestId();
+        String token = paglingQueryContestantsInThisContestBo.getToken();
+        systemVerifyService.veryfiProctorInContest(token,contestId);
+        return ;
     }
 }

@@ -44,14 +44,23 @@
                   
                       <td>
                           <div>
-                              <el-link type="primary">监考</el-link>
+                              <el-link type="primary" >监考</el-link>
                               <el-link type="success">参赛人员</el-link>
-                              <el-link type="danger">操作日志</el-link>
+                              <el-link type="danger" @click="viewTheContestByInvigilatorRole(obj.id)">操作日志</el-link>
                           </div>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+                  <!--未来和现在进行时分页部分-->
+                <el-pagination
+                  :page-size="5"
+                  :pager-count="11"
+                  @current-change="getMerchantInformation"
+                  layout="prev, pager, next"
+                  :total="futureCount">
+                </el-pagination>
+
 
 
                 <h3>我曾经监考过的差事</h3>
@@ -94,6 +103,14 @@
                   </tbody>
                 </table>
              
+                <!--过去进行时部分-->
+                <el-pagination
+                  :page-size="5"
+                  :pager-count="11"
+                  @current-change="getMerchantInformation"
+                  layout="prev, pager, next"
+                  :total="lastCount">
+                </el-pagination>
             </div>
  
         </section>
@@ -118,14 +135,18 @@
         msg: 'Welcome to Your Vue.js App',
         //未来赛制和现在进行时赛制。
         futrueContestList: [],
+        //过去
+        lastContestList: [],
         //监考人员分页获取未来进行时现在进行时的数据Bo
         proctorGetFutureEventsInfoBo: {
             token: "",
             start: 0,
             size: 5
         },
-        //总数量量
-        count: 0,
+        //未来和现在进行时总数量量
+        futureCount: 0,
+        //过去总数量量
+        lastCount: 0,
       }
     },
     mounted(){
@@ -133,18 +154,34 @@
       this.proctorGetFutureEventsInfoBo.token = getCookie("token");
       //获取未来进行时和现在进行时的赛制
       this.proctorGetFutureEventsInfo(1);
+      this.proctorGetLastEventsInfo(1);
     },
     methods: {
+        /*
+         * 监考比赛
+         */
+         viewTheContestByInvigilatorRole(id){
+            this.$router.push("/cn/invigilator/ProctorViewContestSubmissionLog?id="+id);
+         },
+
          //获取现在进行时和未来进行时的赛制
          async proctorGetFutureEventsInfo(start){
-      
             this.proctorGetFutureEventsInfoBo.start = (start-1)*this.proctorGetFutureEventsInfoBo.size;
             let obj = await synRequestPost("/proctor/proctorGetFutureEventsInfo",this.proctorGetFutureEventsInfoBo);
-       
-            
             if(check(obj)){
                 this.futrueContestList = obj.data.contests;
-                this.count = obj.data.count;
+                this.futureCount = obj.data.count;
+            }
+            console.log(this.futrueContestList);
+        },
+
+          //获取过去进行时的赛制
+          async proctorGetLastEventsInfo(start){
+            this.proctorGetFutureEventsInfoBo.start = (start-1)*this.proctorGetFutureEventsInfoBo.size;
+            let obj = await synRequestPost("/proctor/proctorGetLastEventsInfo",this.proctorGetFutureEventsInfoBo);
+            if(check(obj)){
+                this.futrueContestList = obj.data.contests;
+                this.lastCount =  obj.data.count;
             }
             console.log(this.futrueContestList);
         },

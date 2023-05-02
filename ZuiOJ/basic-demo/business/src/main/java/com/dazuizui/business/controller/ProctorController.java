@@ -3,7 +3,9 @@ package com.dazuizui.business.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
+import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.service.proctor.ProctorService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -20,6 +22,8 @@ import java.util.Map;
 public class ProctorController {
     @Autowired
     private ProctorService proctorService;
+    @Autowired
+    private CompetitionInfoService competitionInfoService;
 
     /**
      * 添加一个面试官
@@ -62,6 +66,27 @@ public class ProctorController {
     }
 
     /**
+     * 监考人员分页获取未来过去时的数据
+     * @param proctorGetFutureEventsInfoBo
+     * @return
+     */
+    @ApiOperation("监考人员分页获取未来过去时的数据")
+    @PostMapping("/proctorGetLastEventsInfo")
+    public String proctorGetLastEventsInfo(@RequestBody ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo){
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        //报错排查
+        if ( map.get("error") != null) {
+
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return proctorService.proctorGetLastEventsInfo(proctorGetFutureEventsInfoBo);
+    }
+
+    /**
      * 监考身份的鉴别
      * @param token
      * @return
@@ -70,5 +95,16 @@ public class ProctorController {
     @ApiOperation("监考身份鉴别")
     public String analysis(@RequestParam("token")String token){
         return proctorService.proctorAnalysis(token);
+    }
+
+    /**
+     * 分页获取比赛选手信息
+     * @param paglingQueryContestantsInThisContestBo
+     * @return
+     */
+    @ApiOperation("分页获取比赛选手信息")
+    @PostMapping("/paglingQueryContestantsInThisContest")
+    public String paglingQueryContestantsInThisContest(@RequestBody PaglingQueryContestantsInThisContestBo paglingQueryContestantsInThisContestBo){
+        return competitionInfoService.paglingQueryContestantsInThisContest(paglingQueryContestantsInThisContestBo);
     }
 }

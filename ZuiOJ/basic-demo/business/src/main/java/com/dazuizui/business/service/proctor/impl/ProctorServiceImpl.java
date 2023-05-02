@@ -110,9 +110,21 @@ public class ProctorServiceImpl implements ProctorService {
      */
     @Override
     public String proctorGetFutureEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo) {
-        Long userId = Long.valueOf(  (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id"));
+        Long userId = Long.valueOf( (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id"));
         List<Contest> contests = proctorMapper.proctorGetFutureEvents(proctorGetFutureEventsInfoBo,userId);
         Long count = proctorMapper.proctorGetFutureEventsNumber(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id") + ""));
+        ProctorGetFutureEventsInfoVo proctorGetFutureEventsInfoVo  = new ProctorGetFutureEventsInfoVo();
+        proctorGetFutureEventsInfoVo.setContests(contests);
+        proctorGetFutureEventsInfoVo.setCount(count);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,proctorGetFutureEventsInfoVo, StatusCode.OK));
+    }
+
+
+    @Override
+    public String proctorGetLastEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo) {
+        Long userId = Long.valueOf(  (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id"));
+        List<Contest> contests = proctorMapper.proctorGetLastEvents(proctorGetFutureEventsInfoBo,userId);
+        Long count = proctorMapper.proctorGetLastEventsNumber(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id") + ""));
         ProctorGetFutureEventsInfoVo proctorGetFutureEventsInfoVo  = new ProctorGetFutureEventsInfoVo();
         proctorGetFutureEventsInfoVo.setContests(contests);
         proctorGetFutureEventsInfoVo.setCount(count);

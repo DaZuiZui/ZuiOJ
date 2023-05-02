@@ -21,4 +21,20 @@ public interface ProctorAop {
      * @throws Exception
      */
     public void proctorGetFutureEventsInfo(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 监考人员获取未来进行时候和现在进行时的差事
+     * @param joinpoint
+     * @throws Exception
+     */
+    public void proctorGetLastEventsInfo(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 监考人员分页获取参赛人员
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public void paglingQueryContestantsInThisContest(JoinPoint joinpoint) throws Exception;
 }
