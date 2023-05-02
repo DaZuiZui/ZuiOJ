@@ -172,60 +172,8 @@
         
     },
     methods: {
-      //通过id删除比赛选手
-      async deleteTheCompetitionById(id){
-          //超链接不可点击
-          this.deleteTheCompetitionByIdButton = true;
-          //获取主键id
-          this.deleteTheCompetitionByIdBo.id = id;
-          let obj = await synRequestPost("/CompetitionInfo/deleteTheCompetitionById",this.deleteTheCompetitionByIdBo)
-          if(check(obj)){
-            alert(obj.message); 
-          }
-          //获取数据
-          this.getMerchantInformation(1);
-          //超链接设置可以点击
-          this.deleteTheCompetitionByIdButton = false;
-      },
-
-      //删除所有比赛选手通过ContestId
-      async deleteAllCompetitionInfoByContestIdFun(){
-        this.deleteAllCompetitionInfoByContestIdFunButton = false;
-        this.deleteAllCompetitionInfoByContestId.token     =  getCookie("token");
-        this.deleteAllCompetitionInfoByContestId.contestId = getQueryVariable("id");
-        let obj = await synRequestPost("/CompetitionInfo/deleteAllCompetitionInfoByContestId",this.deleteAllCompetitionInfoByContestId);
-        if(check(obj)){
-          alert("删除成功");
-        }
-        //获取数据
-        this.getMerchantInformation(1);
-        //标记按钮
-        this.deleteAllCompetitionInfoByContestIdFunButton = true;
-      },
-        //增加新的比赛人员
-        async submit(){
-          if(this.adminAddCompetitionInfoBo.username.length == 0){
-            alert("用户名不可以为null");
-            return ;
-          } 
-          //按钮禁止点击
-          this.adminAddCompetitionInfoBoButton = true;
-         
-          //获取登入信息
-          this.adminAddCompetitionInfoBo.token = getCookie("token");
-          //发起请求
-          let obj = await synRequestPost("/CompetitionInfo/adminAddCompetitionInfo",this.adminAddCompetitionInfoBo);
-          //防止幂等性
-          this.getNonPowerToken();
-          if(check(obj)){
-            //防止幂等性
-            alert(obj.message);
-          }
-
-         
-          //刷新数据
-          this.getMerchantInformation(1);
-        },
+ 
+       
 
         //防止幂等性
         async getNonPowerToken(){
