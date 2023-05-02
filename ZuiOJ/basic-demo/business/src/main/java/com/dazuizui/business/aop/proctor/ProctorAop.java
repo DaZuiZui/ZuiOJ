@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.proctor;
 
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,4 +38,19 @@ public interface ProctorAop {
      * @throws Exception
      */
     public void paglingQueryContestantsInThisContest(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 筛选查询比赛提交保存的代码 主要做了监考身份的鉴权
+     * @param joinpoint
+     * @return
+     */
+    public String proctorFilterQueryMatchSaveCode(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 通过id获取问题
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String getQuestionById(JoinPoint joinpoint) throws Exception;
 }

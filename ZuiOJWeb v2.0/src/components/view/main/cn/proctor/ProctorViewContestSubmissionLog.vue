@@ -107,6 +107,7 @@
                         </td>
                         <td>
                             <div>
+                                <el-link type="primary" @click="findByContestIdAndQuestionIdAndUserId(obj.questionId,obj.userId)" >查看通过代码</el-link>
                                 <el-link type="danger">标记</el-link>
                                 <el-link type="danger">封禁</el-link>
                             </div>
@@ -189,13 +190,17 @@
     
     methods: {
                 
- 
+        /**
+         *  通过比赛id和问题id和用户id获取通关题目查看此用户在本题目的提交信息汇总
+         */
+         findByContestIdAndQuestionIdAndUserId(questionId,userId){
+            this.$router.push("/cn/invigilator/ProctorViewCodeOfContestants?contestId="+getQueryVariable("id")+"&questionId="+questionId+"&userId="+userId);
+         },
 
         /**
          *  切换状态
          */ 
         toggleStatus(){
-           
             //切换状态
             if(this.curStatus == 3)
                 this.curStatus = -1;
@@ -224,7 +229,7 @@
          *  通过比赛id和问题id和用户id
          */
          findByContestIdAndQuestionIdAndUserId(questionId,userId){
-            this.$router.push("/cn/admin/AdminViewCodeOfContestants?contestId="+getQueryVariable("id")+"&questionId="+questionId+"&userId="+userId);
+            this.$router.push("/cn/invigilator/ProctorViewCodeOfContestants?contestId="+getQueryVariable("id")+"&questionId="+questionId+"&userId="+userId);
          },
 
         /**

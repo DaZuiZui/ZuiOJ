@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.aop.proctor.ProctorAop;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.service.proctor.ProctorService;
@@ -121,5 +122,37 @@ public class ProctorAopImpl implements ProctorAop {
         String token = paglingQueryContestantsInThisContestBo.getToken();
         systemVerifyService.veryfiProctorInContest(token,contestId);
         return ;
+    }
+
+    /**
+     * 筛选查询比赛提交保存的代码 主要做了监考身份的鉴权
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.proctorFilterQueryMatchSaveCode(..))")
+    public String proctorFilterQueryMatchSaveCode(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        FilterQueryMatchSaveCodeBo filterQueryMatchSaveCodeBos = (FilterQueryMatchSaveCodeBo) args[0];
+        String token = filterQueryMatchSaveCodeBos.getToken();
+        Long contestId = filterQueryMatchSaveCodeBos.getContestId();
+        systemVerifyService.veryfiProctorInContest(token,contestId);
+        return null;
+    }
+
+    /**
+     * 通过问题获取id
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.getQuestionById(..))")
+    public String getQuestionById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        Long contestId = (Long) args[2];
+        systemVerifyService.veryfiProctorInContest(token,contestId);
+        return null;
     }
 }

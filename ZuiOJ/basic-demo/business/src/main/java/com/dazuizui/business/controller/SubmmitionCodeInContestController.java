@@ -87,7 +87,7 @@ public class SubmmitionCodeInContestController {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
-
         return submmitionCodeInContestSerivce.deleteById(id);
     }
+
 }

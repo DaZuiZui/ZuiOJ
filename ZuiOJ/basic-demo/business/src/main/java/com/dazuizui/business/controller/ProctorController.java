@@ -3,9 +3,12 @@ package com.dazuizui.business.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
+import com.dazuizui.business.service.onlineJudge.QuestionBankService;
+import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
 import com.dazuizui.business.service.proctor.ProctorService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -24,6 +27,10 @@ public class ProctorController {
     private ProctorService proctorService;
     @Autowired
     private CompetitionInfoService competitionInfoService;
+    @Autowired
+    private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
+    @Autowired
+    private QuestionBankService questionBankService;
 
     /**
      * 添加一个面试官
@@ -106,5 +113,46 @@ public class ProctorController {
     @PostMapping("/paglingQueryContestantsInThisContest")
     public String paglingQueryContestantsInThisContest(@RequestBody PaglingQueryContestantsInThisContestBo paglingQueryContestantsInThisContestBo){
         return competitionInfoService.paglingQueryContestantsInThisContest(paglingQueryContestantsInThisContestBo);
+    }
+
+
+    /**
+     * 筛选查询比赛提交保存的代码
+     * @param findByContestIdAndQuestionIdAndUserIdBo
+     * @return
+     */
+    @ApiOperation("筛选查询比赛提交保存的代码")
+    @PostMapping("/SubmmitionCodeInContestController/filterQueryMatchSaveCode")
+    public String proctorFilterQueryMatchSaveCode(@RequestBody FilterQueryMatchSaveCodeBo findByContestIdAndQuestionIdAndUserIdBo){
+        //身份验证过期和权限鉴别
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return submmitionCodeInContestSerivce.filterQueryMatchSaveCode(findByContestIdAndQuestionIdAndUserIdBo);
+    }
+
+
+    /**
+     * 根据id获取题目
+     * @param token
+     * @param id  问题id
+     * @param contestId 比赛id
+     * @return
+     */
+    @ApiOperation("根据id获取题目")
+    @PostMapping("/GetQuestionById")
+    public String getQuestionById(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("contestId") Long contestId){
+        //身份验证过期或者权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return questionBankService.adminGetQuestionById(id);
     }
 }
