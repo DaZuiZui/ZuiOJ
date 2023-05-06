@@ -53,4 +53,10 @@ public interface ProctorAop {
      * @throws Exception
      */
     public String getQuestionById(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 监考人员通过id查询代码详细信息
+     *  检查监考人员是否为该比赛的监考人员
+     */
+    public String findOneCodeDetailedById(JoinPoint joinpoint) throws Exception;
 }

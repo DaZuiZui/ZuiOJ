@@ -42,6 +42,7 @@ import ProctorIndex from '@/components/view/main/cn/proctor/ProctorIndex'
 import ProctorViewContestSubmissionLog from '@/components/view/main/cn/proctor/ProctorViewContestSubmissionLog'
 import ProctorCompetitionInfoList from '@/components/view/main/cn/proctor/ProctorCompetitionInfoList'
 import ProctorViewCodeOfContestants from '@/components/view/main/cn/proctor/ProctorViewCodeOfContestants'
+import ProctorCodeDetailedInContest from '@/components/view/main/cn/proctor/ProctorCodeDetailedInContest'
 Vue.use(Router)
 
 export default new Router({
@@ -52,6 +53,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //监考人员查看通关代码
+    {
+      path: '/cn/invigilator/ProctorCodeDetailedInContest',
+      name: 'ProctorCodeDetailedInContest',
+      component: ProctorCodeDetailedInContest
     },
     //监考人员查看用户当前竞赛提交汇总
     {

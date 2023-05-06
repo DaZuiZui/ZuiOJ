@@ -291,7 +291,7 @@
          *  获取比赛题目
          */
         async getQuestionListOfContest(){
-            let obj = await synRequestGet("/CompetitionQuestionBank/admin/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
+            let obj = await synRequestGet("/CompetitionQuestionBank/proctor/getQuestionListInContest?token="+getCookie("token")+"&contestId="+getQueryVariable("id"));
             let tmplist = obj.data;
     
             this.questionList = tmplist;

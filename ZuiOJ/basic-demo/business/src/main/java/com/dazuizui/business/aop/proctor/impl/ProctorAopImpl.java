@@ -147,12 +147,29 @@ public class ProctorAopImpl implements ProctorAop {
      * @throws Exception
      */
     @Override
-    @Before("execution(* com.dazuizui.business.controller.ProctorController.getQuestionById(..))")
+
     public String getQuestionById(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         String token = (String) args[0];
         Long contestId = (Long) args[2];
         systemVerifyService.veryfiProctorInContest(token,contestId);
+        return null;
+    }
+
+
+    /**
+     * 监考人员通过id查询代码详细信息
+     *     主要负责检查监考人员是否为该比赛的监考人员
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.findOneCodeDetailedById(..))")
+    public String findOneCodeDetailedById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        //获取参数
+        String token = (String) args[0];
+        Long contestId = (Long) args[2];
+        systemVerifyService.veryfiProctorInContest(token,contestId);
+
         return null;
     }
 }

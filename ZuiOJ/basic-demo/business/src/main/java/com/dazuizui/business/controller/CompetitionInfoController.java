@@ -24,8 +24,6 @@ public class CompetitionInfoController {
     @Autowired
     private CompetitionInfoService competitionInfoService;
 
-
-
     /**
      * 通过id删除比赛选手
      * @param deleteTheCompetitionByIdBo

@@ -155,4 +155,20 @@ public class ProctorController {
 
         return questionBankService.adminGetQuestionById(id);
     }
+
+    /**
+     * 监考人员通过id查询代码详细信息
+     */
+    @ApiOperation("通过id查询代码详细信息")
+    @PostMapping("/submmitionCodeInContestController/findOneById")
+    public String findOneCodeDetailedById(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("contestId")Long contestId){
+        //身份验证过期和权限鉴别
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return submmitionCodeInContestSerivce.findOneById(id);
+    }
 }

@@ -40,7 +40,7 @@
                                 <a class="nav-link"  @click="goAbout()">普通用户界面</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link">使用教1程</a>
+                                <a class="nav-link">使用教程</a>
                             </li>
                         </ul>
                         

@@ -68,6 +68,7 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
 
     /**
      * 通过id查询详细代码
+     *      todo redis优化
      * @param id
      * @return
      */
