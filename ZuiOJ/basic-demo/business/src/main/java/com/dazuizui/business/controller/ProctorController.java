@@ -180,4 +180,16 @@ public class ProctorController {
     public String adminGetProctorsByPagin(@RequestBody AdminGetProctorsByPaginBo adminGetProctorsByPaginBo){
         return proctorService.adminGetProctorsByPagin(adminGetProctorsByPaginBo);
     }
+
+
+    /**
+     * 管理员删除监考人员通过监考人员Id
+     * @param adminDeleteProctorByIdBo
+     * @return
+     */
+    @ApiOperation("管理员删除监考人员通过监考人员Id")
+    @PostMapping("/adminDeleteProctorByIdOfProctor")
+    public String adminDeleteProctorByIdOfProctor(@RequestBody AdminDeleteProctorByIdBo adminDeleteProctorByIdBo){
+        return proctorService.adminDeleteProctorByIdOfProctor(adminDeleteProctorByIdBo);
+    }
 }
