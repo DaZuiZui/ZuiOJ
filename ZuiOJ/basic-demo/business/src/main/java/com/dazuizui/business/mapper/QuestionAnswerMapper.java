@@ -1,10 +1,9 @@
 package com.dazuizui.business.mapper;
 
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.vo.GetSolutionContributorsVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.Date;
 import java.util.List;

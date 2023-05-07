@@ -1,6 +1,6 @@
 package com.dazuizui.business.messageQueue.blog;
 
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.business.messageQueue.cofnig.MessageSink;
 import com.dazuizui.business.service.blog.LanguageArticleTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

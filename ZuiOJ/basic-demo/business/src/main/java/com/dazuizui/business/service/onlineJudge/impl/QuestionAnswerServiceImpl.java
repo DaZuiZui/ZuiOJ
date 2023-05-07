@@ -7,7 +7,7 @@ import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
-import com.dazuizui.basicapi.entry.vo.ArticleVo;
+import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.GetSolutionContributorsVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.BlogMapper;

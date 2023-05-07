@@ -1,17 +1,11 @@
 package com.dazuizui.business.service.blog;
 
-import com.dazuizui.basicapi.entry.ArticleJSON;
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
-import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
-import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 /**
  * 博文业务类接口

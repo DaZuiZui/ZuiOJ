@@ -1,6 +1,6 @@
 package com.dazuizui.business.service.blog;
 
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import org.springframework.stereotype.Service;
 
 /**

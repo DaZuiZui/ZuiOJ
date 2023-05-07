@@ -1,4 +1,4 @@
-package com.dazuizui.basicapi.entry.bo;
+package com.dazuizui.business.domain.bo;
 
 import java.io.Serializable;
 import java.util.Date;

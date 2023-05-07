@@ -1,7 +1,7 @@
 package com.dazuizui.business.aop.blog.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.aop.blog.BlogAop;
 import com.dazuizui.business.util.JwtUtil;

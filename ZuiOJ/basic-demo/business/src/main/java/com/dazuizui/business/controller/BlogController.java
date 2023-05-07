@@ -2,7 +2,8 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -96,5 +97,17 @@ public class BlogController {
         }
 
         return blogService.checkIfTheTopicIsACompetitionTopic(id);
+    }
+
+    /**
+     * 管理员分页获取博文
+     * @param adminGetArticleByPaginBo
+     * @return
+     */
+    @PostMapping("/admin/adminGetArticleByPagin")
+    @ApiOperation("管理员分页获取博文")
+    public String adminGetArticleByPagin(@RequestBody AdminGetArticleByPaginBo adminGetArticleByPaginBo){
+
+        return "";
     }
 }

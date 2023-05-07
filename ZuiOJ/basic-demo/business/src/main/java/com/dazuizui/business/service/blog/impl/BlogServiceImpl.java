@@ -3,10 +3,10 @@ package com.dazuizui.business.service.blog.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.*;
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
-import com.dazuizui.basicapi.entry.vo.ArticleVo;
+import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.*;
@@ -101,6 +101,15 @@ public class BlogServiceImpl implements BlogService {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
+
+            //写入博文数量
+            aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.article,1L);
+            if (aLong == 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+
+
         } catch (NumberFormatException e) {
             e.printStackTrace();
             transactionUtils.rollback(transactionStatus);
@@ -108,23 +117,15 @@ public class BlogServiceImpl implements BlogService {
         }
         transactionUtils.commit(transactionStatus);
 
-        //写入博文数量
-        aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.article,1L);
-        if (aLong == 0){
-            transactionUtils.rollback(transactionStatus);
-            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
-        }
-
-        //todo 根据分类添加数量 如根据语言分类的数量
-
         /**
          * 写入redis
          */
         redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+articleBo.getId(),RedisKey.OutTime,articleBo);
+
         //添加总题解数量
-        redisUtil.increment(RedisKey.ZuiOJNumberOfQustionAnswer,RedisKey.OutTime,1);
+        //redisUtil.increment(RedisKey.ZuiOJNumberOfQustionAnswer,RedisKey.OutTime,1);
         //添加总题解指定状态的数量
-        redisUtil.increment(RedisKey.ZuiOJQuestionAnswerPrivicy+articleBo.getPrivacy(),RedisKey.OutTime,1);
+        //redisUtil.increment(RedisKey.ZuiOJQuestionAnswerPrivicy+articleBo.getPrivacy(),RedisKey.OutTime,1);
 
         /**
          * 消息队列，处理分类内容，和个人文件夹的分类管理
@@ -380,4 +381,7 @@ public class BlogServiceImpl implements BlogService {
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,false, StatusCode.OK));
     }
+
+
+
 }

@@ -1,6 +1,5 @@
 package com.dazuizui.business.messageQueue.onlineJudge;
 
-import com.dazuizui.basicapi.entry.bo.CreateArticleBo;
 import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.messageQueue.cofnig.MessageSink;
 import com.dazuizui.business.service.onlineJudge.CodeInContestService;

@@ -1,4 +1,4 @@
-package com.dazuizui.basicapi.entry;
+package com.dazuizui.business.domain.vo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * 博文实体
  */
-public class Article implements Serializable {
+public class ArticleVo implements Serializable {
     private Long id;
     private String title;
     private String introduce;
     private List<Integer> articleType;
     private List<Integer> language;
-    private List<Integer> technologyType;
+    private Integer technologyType;
     private Date createTime;
     private Long createBy;
     private Date updateTime;
@@ -21,11 +21,12 @@ public class Article implements Serializable {
     private Integer status;
     private Integer delFlag;
     private Long mdTextId;
+    private String createByName;
     private Long likes;
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "ArticleVo{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", introduce='" + introduce + '\'' +
@@ -39,8 +40,30 @@ public class Article implements Serializable {
                 ", status=" + status +
                 ", delFlag=" + delFlag +
                 ", mdTextId=" + mdTextId +
+                ", createByName='" + createByName + '\'' +
                 ", likes=" + likes +
                 '}';
+    }
+
+    public ArticleVo() {
+    }
+
+    public ArticleVo(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, String createByName, Long likes) {
+        this.id = id;
+        this.title = title;
+        this.introduce = introduce;
+        this.articleType = articleType;
+        this.language = language;
+        this.technologyType = technologyType;
+        this.createTime = createTime;
+        this.createBy = createBy;
+        this.updateTime = updateTime;
+        this.updateBy = updateBy;
+        this.status = status;
+        this.delFlag = delFlag;
+        this.mdTextId = mdTextId;
+        this.createByName = createByName;
+        this.likes = likes;
     }
 
     public Long getId() {
@@ -83,11 +106,11 @@ public class Article implements Serializable {
         this.language = language;
     }
 
-    public List<Integer> getTechnologyType() {
+    public Integer getTechnologyType() {
         return technologyType;
     }
 
-    public void setTechnologyType(List<Integer> technologyType) {
+    public void setTechnologyType(Integer technologyType) {
         this.technologyType = technologyType;
     }
 
@@ -147,31 +170,19 @@ public class Article implements Serializable {
         this.mdTextId = mdTextId;
     }
 
+    public String getCreateByName() {
+        return createByName;
+    }
+
+    public void setCreateByName(String createByName) {
+        this.createByName = createByName;
+    }
+
     public Long getLikes() {
         return likes;
     }
 
     public void setLikes(Long likes) {
-        this.likes = likes;
-    }
-
-    public Article() {
-    }
-
-    public Article(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, List<Integer> technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, Long likes) {
-        this.id = id;
-        this.title = title;
-        this.introduce = introduce;
-        this.articleType = articleType;
-        this.language = language;
-        this.technologyType = technologyType;
-        this.createTime = createTime;
-        this.createBy = createBy;
-        this.updateTime = updateTime;
-        this.updateBy = updateBy;
-        this.status = status;
-        this.delFlag = delFlag;
-        this.mdTextId = mdTextId;
         this.likes = likes;
     }
 }
