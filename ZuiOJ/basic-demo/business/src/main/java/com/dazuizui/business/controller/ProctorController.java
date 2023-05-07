@@ -177,7 +177,7 @@ public class ProctorController {
      */
     @ApiOperation("管理员分页获取监考人员数据")
     @PostMapping("/adminGetProctorsByPagin")
-    public String adminGetProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo){
+    public String adminGetProctorsByPagin(@RequestBody AdminGetProctorsByPaginBo adminGetProctorsByPaginBo){
         return proctorService.adminGetProctorsByPagin(adminGetProctorsByPaginBo);
     }
 }

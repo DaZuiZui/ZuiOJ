@@ -11,7 +11,7 @@ public class AdminGetProctorsByPaginBo implements Serializable {
     private Long start;     //开始位置
     private Long contestId; //竞赛id
     private Integer status; //状态
-    private Integer delFLag;//逻辑删除
+    private Integer delFlag;//逻辑删除
 
     @Override
     public String toString() {
@@ -21,7 +21,7 @@ public class AdminGetProctorsByPaginBo implements Serializable {
                 ", start=" + start +
                 ", contestId=" + contestId +
                 ", status=" + status +
-                ", delFLag=" + delFLag +
+                ", delFlag=" + delFlag +
                 '}';
     }
 
@@ -65,23 +65,23 @@ public class AdminGetProctorsByPaginBo implements Serializable {
         this.status = status;
     }
 
-    public Integer getDelFLag() {
-        return delFLag;
+    public Integer getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelFLag(Integer delFLag) {
-        this.delFLag = delFLag;
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
     }
 
     public AdminGetProctorsByPaginBo() {
     }
 
-    public AdminGetProctorsByPaginBo(String token, Long size, Long start, Long contestId, Integer status, Integer delFLag) {
+    public AdminGetProctorsByPaginBo(String token, Long size, Long start, Long contestId, Integer status, Integer delFlag) {
         this.token = token;
         this.size = size;
         this.start = start;
         this.contestId = contestId;
         this.status = status;
-        this.delFLag = delFLag;
+        this.delFlag = delFlag;
     }
 }

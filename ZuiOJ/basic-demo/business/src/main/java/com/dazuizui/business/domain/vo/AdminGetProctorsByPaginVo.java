@@ -1,6 +1,7 @@
 package com.dazuizui.business.domain.vo;
 
 import com.dazuizui.business.domain.Proctor;
+import com.dazuizui.business.domain.ProctorInfo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public class AdminGetProctorsByPaginVo implements Serializable {
     private Long count;
-    private List<Proctor> proctors;
+    private List<ProctorInfo> proctors;
 
     @Override
     public String toString() {
@@ -28,18 +29,18 @@ public class AdminGetProctorsByPaginVo implements Serializable {
         this.count = count;
     }
 
-    public List<Proctor> getProctors() {
+    public List<ProctorInfo> getProctors() {
         return proctors;
     }
 
-    public void setProctors(List<Proctor> proctors) {
+    public void setProctors(List<ProctorInfo> proctors) {
         this.proctors = proctors;
     }
 
     public AdminGetProctorsByPaginVo() {
     }
 
-    public AdminGetProctorsByPaginVo(Long count, List<Proctor> proctors) {
+    public AdminGetProctorsByPaginVo(Long count, List<ProctorInfo> proctors) {
         this.count = count;
         this.proctors = proctors;
     }

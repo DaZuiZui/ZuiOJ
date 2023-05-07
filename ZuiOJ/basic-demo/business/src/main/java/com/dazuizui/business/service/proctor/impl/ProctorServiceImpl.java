@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.Proctor;
+import com.dazuizui.business.domain.ProctorInfo;
 import com.dazuizui.business.domain.bo.AddProctorBo;
 import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
@@ -179,7 +180,7 @@ public class ProctorServiceImpl implements ProctorService {
         //获取当前比赛监考人员人数
         Long theNumberOfProctorForThisCOmpetition = proctorMapper.getTheNumberOfProctorForThisCOmpetition(adminGetProctorsByPaginBo.getContestId());
         //分页获取监考人员
-        List<Proctor> proctors = proctorMapper.getProctorsByPagin(adminGetProctorsByPaginBo);
+        List<ProctorInfo> proctors = proctorMapper.getProctorsByPagin(adminGetProctorsByPaginBo);
         //封装返回数据
         AdminGetProctorsByPaginVo adminGetProctorsByPaginVo = new AdminGetProctorsByPaginVo();
         adminGetProctorsByPaginVo.setProctors(proctors);

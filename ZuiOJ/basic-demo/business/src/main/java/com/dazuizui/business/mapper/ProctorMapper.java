@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.business.domain.Proctor;
+import com.dazuizui.business.domain.ProctorInfo;
 import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.domain.bo.ProctorGetLastEventsInfoBo;
@@ -76,5 +77,5 @@ public interface ProctorMapper {
      * @param adminGetProctorsByPaginBo
      * @return
      */
-    public List<Proctor> getProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo);
+    public List<ProctorInfo> getProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo);
 }

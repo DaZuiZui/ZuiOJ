@@ -29,50 +29,70 @@
                     <thead>
                       <tr>
                         <th scope="col" width="90px"></th>
-                        <th scope="col">编号</th>
-                        <th scope="col">题目</th>
-                        <th scope="col">难度</th>
-                        <th scope="col">通过率</th>
+                        <th scope="col">username</th>
+                        <th scope="col">用户名</th>
+                        <th scope="col">创建人</th>
+                        <th scope="col">创建时间</th>
+                        <th scope="col">用户状态</th>
                         <th scope="col">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             操作</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr  >
+                      <tr v-for="obj in proctorList" >
                         <th scope="row"></th>
                         <td>
                             <b>
-                                asd
+                                 {{obj.username}}
                             </b>
                         </td>
                         <td>
                             <b>
                               <a style="color:" href="" @click="goViewQuestion(obj.id)">
-                                asd
+                                 {{obj.name}}
                               </a>
                             </b>
                         </td>
                         <td>
-                            <div   style="color:green">
-                                Easy
-                            </div>    
-                             
+                          {{obj.createBy}}
                         </td>
-                        <td>等待系统统计</td>
+                        <td>
+                          {{obj.createTime}}
+                        </td>
+                        <td>
+                          <div v-if="obj.userDelFlag">
+                              <span style="color: red;">账户被删除</span>
+                          </div>
+                          <div v-else>
+                              <span v-if="obj.userStatus == 1">
+                                  正常
+                              </span>
+                              <span v-else-if="obj.userStatus == 0">
+                                  正常
+                              </span>
+                              <span v-else-if="obj.userStatus == 3">
+                                  被封禁
+                              </span>
+                          </div>
+                        </td>
                         <td>
                             <div>
-                                <el-link type="primary">取消公布</el-link>
-                                <el-link type="success">修改</el-link>
-                                <el-link type="danger">逻辑删除</el-link>
-                                <el-link type="danger">物理删除</el-link>
+                                <el-link type="danger">物理删除(该操作不可逆转)</el-link>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 
+                  <el-pagination
+                    :page-size="50"
+                    :pager-count="11"
+                    @current-change="getMerchantInformation"
+                    layout="prev, pager, next"
+                    :total="numberOfProctors">
+                </el-pagination>
             </div>
         </section>
  
@@ -102,16 +122,31 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
           username: "",
           contestId: null,
           nonPowerToken: "",
-        }
+        },
+        //分页获取监考人员
+        adminGetProctorsByPaginBo: {
+          token: "",
+          size: 50,
+          start: 0,
+          contestId: -1,
+          status: 0,
+          delFlag: 0,
+        },
+        //监考人员集合
+        proctorList: [],
+        numberOfProctors: 0,
       }
     },
     mounted(){
+        //获取参数
         this.addProctorBo.contestId = getQueryVariable("contestId");
         this.addProctorBo.token = getCookie("token");
+        this.adminGetProctorsByPaginBo.token = getCookie("token");
+        this.adminGetProctorsByPaginBo.contestId = getQueryVariable("contestId");
         //获取幂等性token
         this.getNonPowerToken();
-
-        this.getMerchantInformation(0);
+        //分页获取监考人员
+        this.getMerchantInformation(1);
     },
     methods: {
         //防止幂等性
@@ -120,9 +155,16 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
            this.addProctorBo.nonPowerToken = object.data;
         },
 
-        //跳转指定页面
+        //跳转指定页面分页获取监考人员
         async getMerchantInformation(val){   
-            
+            //设置起始位置
+            this.adminGetProctorsByPaginBo.start = (val-1)*this.adminGetProctorsByPaginBo.size;
+            let obj = await synRequestPost("/proctor/adminGetProctorsByPagin",this.adminGetProctorsByPaginBo);
+            if(obj){
+               this.proctorList = obj.data.proctors;
+               console.log(obj);
+               this.numberOfProctors = obj.data.count;
+            }
         },
         
         //添加HR
@@ -130,6 +172,8 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
           let obj = await synRequestPost("/proctor/admin/addProctor",this.addProctorBo);
           if(check(obj)){
             alert(obj.message);
+            //更新人数
+            this.getMerchantInformation(1);
           }
           //获取幂等性token
           this.getNonPowerToken();

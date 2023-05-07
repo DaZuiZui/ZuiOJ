@@ -6,14 +6,33 @@
     <!--
         分页获取监考人员
     -->
-    <select id="getProctorsByPagin">
+    <select id="getProctorsByPagin" resultType="com.dazuizui.business.domain.ProctorInfo">
         select
-            *
+            t1.id as 'proctor_id',
+                t2.id as 'user_id',
+                t2.username as 'username',
+                t2.name as 'name',
+                t2.sex as 'sex',
+                (
+                    select
+                        name
+                    from
+                         user
+                    where
+                          t1.create_by = id
+                )  as 'create_by',
+                t1.create_time as 'create_time',
+                t2.`status` as 'user_status',
+                t2.del_flag as 'user_del_flag'
         from
-            proctor
-        where
-            status = #{status} and
-            del_flag =  #{delFlag}
+            proctor t1
+                inner JOIN
+            user t2
+            on
+                t1.contest_id = #{contestId} and
+                t1.status = #{status} and
+                t1.del_flag =  #{delFlag} and
+                t1.user_id = t2.id
         limit
               #{start},
               #{size}
