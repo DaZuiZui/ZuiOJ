@@ -442,7 +442,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+id);
             if (questionBankVo == null){
                 //wen ti chu zai zhe li
-                questionBankVo = questionBankMapper.getQuestionByIdDuringContest(id,1,0);
+                questionBankVo = questionBankMapper.getQuestionByIdDuringContest(id,0);
                // System.err.println("yes");
                 //没有查找到题目
                 if (questionBankVo == null){

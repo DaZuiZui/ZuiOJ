@@ -104,5 +104,5 @@ public interface QuestionBankMapper {
      * @param id
      * @return
      */
-    public QuestionBankVo getQuestionByIdDuringContest(@Param("id") Long id,@Param("status")int status,@Param("delFlag")int delFlag);
+    public QuestionBankVo getQuestionByIdDuringContest(@Param("id") Long id,@Param("delFlag")int delFlag);
 }
