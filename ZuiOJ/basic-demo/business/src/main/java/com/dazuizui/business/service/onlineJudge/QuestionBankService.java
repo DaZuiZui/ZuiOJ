@@ -78,4 +78,14 @@ public interface QuestionBankService {
      * @return
      */
     public String getQuestionById(@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType);
+
+    /**
+     * 在比赛的时候获取题目内容
+     * @param token
+     * @param id
+     * @param questionType
+     * @param contestId
+     * @return
+     */
+    public String getQuestionByIdDuringContest(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType,@RequestParam("contestId")Long contestId);
 }

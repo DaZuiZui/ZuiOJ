@@ -178,4 +178,13 @@
         limit
             1
     </select>
+
+
+    <delete id="deleteById" >
+        delete
+        from
+            proctor
+        where
+            id = #{id}
+    </delete>
 </mapper>

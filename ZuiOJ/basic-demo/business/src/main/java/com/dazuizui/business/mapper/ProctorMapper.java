@@ -78,4 +78,11 @@ public interface ProctorMapper {
      * @return
      */
     public List<ProctorInfo> getProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo);
+
+    /**
+     * 通过id删除
+     * @param id
+     * @return Long.class
+     */
+    public Long deleteById(@Param("id")Long id);
 }

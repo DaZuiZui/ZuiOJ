@@ -2,10 +2,14 @@ package com.dazuizui.business.service.proctor;
 
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.AdminDeleteProctorByIdBo;
 import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.domain.vo.ProctorAnalysisVo;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -57,4 +61,11 @@ public interface ProctorService {
      * @return
      */
     public String adminGetProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo);
+
+    /**
+     * 管理员删除监考人员通过监考人员Id
+     * @param adminDeleteProctorByIdBo
+     * @return
+     */
+    public String adminDeleteProctorByIdOfProctor(AdminDeleteProctorByIdBo adminDeleteProctorByIdBo);
 }

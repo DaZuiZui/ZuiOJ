@@ -99,4 +99,10 @@ public interface QuestionBankMapper {
      */
     public QuestionBankVo getQuestionById(@Param("id") Long id,@Param("status")int status,@Param("delFlag")int delFlag);
 
+    /**
+     * 比赛的时候通过id获取题目
+     * @param id
+     * @return
+     */
+    public QuestionBankVo getQuestionByIdDuringContest(@Param("id") Long id,@Param("status")int status,@Param("delFlag")int delFlag);
 }

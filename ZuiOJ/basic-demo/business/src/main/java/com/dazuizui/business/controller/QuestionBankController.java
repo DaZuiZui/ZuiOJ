@@ -173,4 +173,16 @@ public class QuestionBankController {
 
         return questionBankService.getQuestionById(id, questionType);
     }
+
+    /**
+     * 在比赛的时候根据id获取题目
+     * @param token
+     * @param id
+     * @return
+     */
+    @ApiOperation("根据id获取题目")
+    @GetMapping("/getQuestionByIdDuringContest")
+    public String getQuestionByIdDuringContest(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType,@RequestParam("contestId")Long contestId){
+        return "";
+    }
 }

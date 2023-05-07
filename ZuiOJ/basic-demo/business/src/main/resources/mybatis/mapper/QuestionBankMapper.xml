@@ -101,6 +101,32 @@
     </select>
 
     <!--
+        比赛时候通过id查询问题
+    -->
+    <select id="getQuestionByIdDuringContest" resultType="com.dazuizui.basicapi.entry.vo.QuestionBankVo">
+        SELECT
+            t1.id,
+            t1.short_name,
+            t1.chinese_name,
+            t1.english_name,
+            t1.grade,
+            t1.question_type,
+            t1.create_by_name,
+            t1.status,
+            t2.md_cn
+        FROM
+            question_bank t1
+                LEFT JOIN
+            question_bank_detailed t2
+            on
+                t1.id =  t2.question_id
+        where
+            t1.id = #{id} and
+            t1.del_flag = #{delFlag}
+        limit 1
+    </select>
+
+    <!--
         通过id查询问题
     -->
     <select id="getQuestionById" resultType="com.dazuizui.basicapi.entry.vo.QuestionBankVo">

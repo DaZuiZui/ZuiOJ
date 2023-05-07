@@ -6,6 +6,7 @@ import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.ProctorInfo;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.AdminDeleteProctorByIdBo;
 import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.domain.vo.AdminGetProctorsByPaginVo;
@@ -21,6 +22,8 @@ import com.dazuizui.business.util.TransactionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 
 import java.util.Date;
 import java.util.List;
@@ -40,6 +43,7 @@ public class ProctorServiceImpl implements ProctorService {
     private UserService userService;
     @Autowired
     private ProctorAttributeMapper proctorAttributeMapper;
+
     /**
      * 添加一个面试官
      * @param addProctorBo
@@ -101,7 +105,7 @@ public class ProctorServiceImpl implements ProctorService {
                 return null;
             }
             //添加Redis
-            redisUtil.setStringInRedis(RedisKey.ZuiBlogInvigilatorUserId+proctor.getUserId(),RedisKey.OutTime,proctor);
+            redisUtil.setStringInRedis(RedisKey.ZuiBlogInvigilatorUserId+":"+proctor.getContestId()+":"+proctor.getUserId(),RedisKey.OutTime,proctor);
         }
         return proctor;
     }
@@ -123,6 +127,11 @@ public class ProctorServiceImpl implements ProctorService {
     }
 
 
+    /**
+     * 获取过去时赛制
+     * @param proctorGetFutureEventsInfoBo
+     * @return
+     */
     @Override
     public String proctorGetLastEventsInfo(ProctorGetFutureEventsInfoBo proctorGetFutureEventsInfoBo) {
         Long userId = Long.valueOf(  (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id"));
@@ -167,7 +176,7 @@ public class ProctorServiceImpl implements ProctorService {
         proctorAnalysisVo.setProctor(true);
         proctorAnalysisVo.setUser(userInfoByTokenForUserEntry);
 
-        System.out.println(proctorAnalysisVo);
+
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,proctorAnalysisVo, StatusCode.OK));
     }
 
@@ -186,5 +195,35 @@ public class ProctorServiceImpl implements ProctorService {
         adminGetProctorsByPaginVo.setProctors(proctors);
         adminGetProctorsByPaginVo.setCount(theNumberOfProctorForThisCOmpetition);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,adminGetProctorsByPaginVo, StatusCode.OK));
+    }
+
+    /**
+     * 管理员删除监考人员通过监考人员Id
+     * @param adminDeleteProctorByIdBo
+     * @return
+     */
+    @Override
+    public String adminDeleteProctorByIdOfProctor(AdminDeleteProctorByIdBo adminDeleteProctorByIdBo) {
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        try {
+            //删除数量
+            proctorAttributeMapper.increaseTheNumberOfProctors(adminDeleteProctorByIdBo.getContestId(),-1l);
+            //删除监考人员信息
+            Long deleteQuantity = proctorMapper.deleteById(adminDeleteProctorByIdBo.getProctorId());
+            if (deleteQuantity == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //添加Redis
+            redisUtil.deleteKey(RedisKey.ZuiBlogInvigilatorUserId+":"+adminDeleteProctorByIdBo.getContestId()+":"+adminDeleteProctorByIdBo.getUserId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+        //删除监考人员数据
+        transactionUtils.commit(begin);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 }

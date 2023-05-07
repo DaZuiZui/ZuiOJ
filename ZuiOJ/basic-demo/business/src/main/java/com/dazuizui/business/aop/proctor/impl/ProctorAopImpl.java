@@ -169,6 +169,21 @@ public class ProctorAopImpl implements ProctorAop {
         return null;
     }
 
+    /**
+     * 管理员删除监考人员通过监考人员Id
+     * @param
+     * @return
+     */
+    @Override
+    public String adminDeleteProctorByIdOfProctor(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        AdminDeleteProctorByIdBo adminDeleteProctorByIdBos = (AdminDeleteProctorByIdBo) args[0];
+        String token = adminDeleteProctorByIdBos.getToken();
+        //鉴权
+        systemVerifyService.veryfiAdmin(token,2);
+        return null;
+    }
+
 
     /**
      * 监考人员通过id查询代码详细信息

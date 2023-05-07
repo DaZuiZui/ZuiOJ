@@ -442,7 +442,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+id);
             if (questionBankVo == null){
                 //wen ti chu zai zhe li
-                questionBankVo = questionBankMapper.getQuestionById(id,1,0);
+                questionBankVo = questionBankMapper.getQuestionByIdDuringContest(id,1,0);
                // System.err.println("yes");
                 //没有查找到题目
                 if (questionBankVo == null){
@@ -471,5 +471,18 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
         //封装返回
         return JSONArray.toJSONString(new ResponseVo<>("查找到题目",questionBankVo,"200"));
+    }
+
+    /**
+     * 在比赛的时候获取题目内容
+     * @param token
+     * @param id
+     * @param questionType
+     * @param contestId
+     * @return
+     */
+    @Override
+    public String getQuestionByIdDuringContest(String token, Long id, Integer questionType, Long contestId) {
+        return null;
     }
 }

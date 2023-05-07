@@ -79,7 +79,7 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="danger">物理删除(该操作不可逆转)</el-link>
+                                <el-link type="danger" @click="deleteProctor(obj.userId,obj.proctorId)">物理删除(该操作不可逆转)</el-link>
                             </div>
                         </td>
                       </tr>
@@ -132,6 +132,14 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
           status: 0,
           delFlag: 0,
         },
+        //管理员删除监考人员Bo
+        deleteProctoBo: {
+          token: "",
+          contestId: -1,
+          proctorId: -1,
+          userId: -1,
+        },
+
         //监考人员集合
         proctorList: [],
         numberOfProctors: 0,
@@ -143,12 +151,26 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         this.addProctorBo.token = getCookie("token");
         this.adminGetProctorsByPaginBo.token = getCookie("token");
         this.adminGetProctorsByPaginBo.contestId = getQueryVariable("contestId");
+        this.deleteProctoBo.contestId = getQueryVariable("contestId");
         //获取幂等性token
         this.getNonPowerToken();
         //分页获取监考人员
         this.getMerchantInformation(1);
     },
     methods: {
+        //物理删除监考人员数据
+        async deleteProctor(userId,proctorId){
+            //获取参数
+            this.deleteProctoBo.userId    = userId;
+            this.deleteProctoBo.proctorId = proctorId
+            //发起删除请求
+            let obj = await synRequestPost("/proctor/adminDeleteProctorByIdOfProctor",this.deleteProctoBo);
+            if(obj){
+              alert("操作成功");
+              this.getMerchantInformation(1);
+            }
+        },
+
         //防止幂等性
         async getNonPowerToken(){
            var object = await synRequestGet("/system/getNonPowerTokenString");
@@ -162,7 +184,6 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
             let obj = await synRequestPost("/proctor/adminGetProctorsByPagin",this.adminGetProctorsByPaginBo);
             if(obj){
                this.proctorList = obj.data.proctors;
-               console.log(obj);
                this.numberOfProctors = obj.data.count;
             }
         },
@@ -177,7 +198,6 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
           }
           //获取幂等性token
           this.getNonPowerToken();
-
         }
     }
   }

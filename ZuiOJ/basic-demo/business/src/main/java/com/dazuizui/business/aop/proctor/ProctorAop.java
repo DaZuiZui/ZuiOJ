@@ -63,6 +63,13 @@ public interface ProctorAop {
     public String adminGetProctorsByPagin(JoinPoint joinpoint) throws Exception;
 
     /**
+     * 管理员删除监考人员通过监考人员Id
+     * @param
+     * @return
+     */
+    public String adminDeleteProctorByIdOfProctor(JoinPoint joinpoint) throws Exception;
+
+    /**
      * 监考人员通过id查询代码详细信息
      *  检查监考人员是否为该比赛的监考人员
      */
