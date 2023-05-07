@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.business.domain.Proctor;
+import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.domain.bo.ProctorGetLastEventsInfoBo;
 import org.apache.ibatis.annotations.Mapper;
@@ -62,4 +63,18 @@ public interface ProctorMapper {
      * 通过userid 查询一个监考人员
      */
     public Proctor findByIdLimit1(@Param("userId")Long userId);
+
+    /**
+     * 获取当前竞赛的监考人员个数
+     * @param contestId
+     * @return
+     */
+    public Long getTheNumberOfProctorForThisCOmpetition(@Param("contestId")Long contestId);
+
+    /**
+     * 分页获取监考人员
+     * @param adminGetProctorsByPaginBo
+     * @return
+     */
+    public List<Proctor> getProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo);
 }

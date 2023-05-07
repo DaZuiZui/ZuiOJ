@@ -20,4 +20,13 @@ public interface SystemVerifyService {
      * @return
      */
     public boolean veryfiProctorInContest(String token,Long contestId);
+
+    /**
+     * 验证是否为管理员
+     * 如果是管理员就返回true，否则就返回false
+     * @param token
+     * @param leave 权限等级
+     * @return
+     */
+    public boolean veryfiAdmin(String token,Integer leave);
 }

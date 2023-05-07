@@ -2,10 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
-import com.dazuizui.business.domain.bo.AddProctorBo;
-import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
-import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
-import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
@@ -170,5 +167,17 @@ public class ProctorController {
         }
 
         return submmitionCodeInContestSerivce.findOneById(id);
+    }
+
+
+    /**
+     * 管理员分页获取监考人员数据
+     * @param adminGetProctorsByPaginBo
+     * @return
+     */
+    @ApiOperation("管理员分页获取监考人员数据")
+    @PostMapping("/adminGetProctorsByPagin")
+    public String adminGetProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo){
+        return proctorService.adminGetProctorsByPagin(adminGetProctorsByPaginBo);
     }
 }

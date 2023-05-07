@@ -1,9 +1,11 @@
 package com.dazuizui.business.service.system.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.service.proctor.ProctorService;
 import com.dazuizui.business.service.system.SystemVerifyService;
+import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,14 @@ import java.util.Map;
 public class SystemVerifyServiceImpl implements SystemVerifyService {
     @Autowired
     private ProctorService proctorService;
+    @Autowired
+    private UserService userService;
 
+    /**
+     * 验证是否为监考人员
+     * @param token
+     * @return
+     */
     @Override
     public boolean veryfiProctor(String token) {
         if (token == null || token == ""){
@@ -62,6 +71,39 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
             ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
             return false;
         }
+        return true;
+    }
+
+    /**
+     * 验证是否为管理员
+     * 如果是管理员就返回true，否则就返回false
+     * @param token 用户token
+     * @param leave 权限等级
+     * @return
+     */
+    @Override
+    public boolean veryfiAdmin(String token,Integer leave) {
+        //非空判断
+        if (token == null || token == ""){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+        //身份校验
+        Map<String, Object> map = null;
+        map = JwtUtil.analysis(token);
+        ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+        //获取登入者id
+        String strId = (String) map.get("id");
+        Long id = Long.valueOf(strId);
+        //查看是否为管理员
+        User user = userService.queryUserById(id);
+        if (user.getRole() < leave){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+
         return true;
     }
 }

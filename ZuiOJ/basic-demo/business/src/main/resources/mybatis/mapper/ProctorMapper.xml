@@ -3,6 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.ProctorMapper">
+    <!--
+        分页获取监考人员
+    -->
+    <select id="getProctorsByPagin">
+        select
+            *
+        from
+            proctor
+        where
+            status = #{status} and
+            del_flag =  #{delFlag}
+        limit
+              #{start},
+              #{size}
+    </select>
+
+    <!--
+        查看监考人员人数 in 当前比赛
+    -->
+    <select id="getTheNumberOfProctorForThisCOmpetition" resultType="long">
+        select
+            quantity
+        from
+            proctor_attribute
+        where
+            contest_id = #{contestId}
+    </select>
+
+    <!--
+        查看过去时的竞赛
+    -->
     <select id="proctorGetLastEventsNumber" resultType="long">
         select
             count(*)

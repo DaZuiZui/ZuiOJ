@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.proctor;
 
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
@@ -53,6 +54,13 @@ public interface ProctorAop {
      * @throws Exception
      */
     public String getQuestionById(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 管理员分页获取监考人员数据
+     * @param
+     * @return
+     */
+    public String adminGetProctorsByPagin(JoinPoint joinpoint) throws Exception;
 
     /**
      * 监考人员通过id查询代码详细信息

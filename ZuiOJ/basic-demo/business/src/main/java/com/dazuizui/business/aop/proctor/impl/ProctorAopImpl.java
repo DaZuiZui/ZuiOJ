@@ -4,10 +4,7 @@ import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.aop.proctor.ProctorAop;
 import com.dazuizui.business.domain.Proctor;
-import com.dazuizui.business.domain.bo.AddProctorBo;
-import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
-import com.dazuizui.business.domain.bo.PaglingQueryContestantsInThisContestBo;
-import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.business.service.proctor.ProctorService;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
@@ -147,12 +144,28 @@ public class ProctorAopImpl implements ProctorAop {
      * @throws Exception
      */
     @Override
-
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.getQuestionById(..))")
     public String getQuestionById(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         String token = (String) args[0];
         Long contestId = (Long) args[2];
         systemVerifyService.veryfiProctorInContest(token,contestId);
+        return null;
+    }
+
+    /**
+     * 管理员分页获取监考人员数据
+     * @param
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.ProctorController.adminGetProctorsByPagin(..))")
+    public String adminGetProctorsByPagin(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        AdminGetProctorsByPaginBo adminGetProctorsByPaginBos = (AdminGetProctorsByPaginBo) args[0];
+        String token = adminGetProctorsByPaginBos.getToken();
+        //鉴权
+        systemVerifyService.veryfiAdmin(token,2);
         return null;
     }
 

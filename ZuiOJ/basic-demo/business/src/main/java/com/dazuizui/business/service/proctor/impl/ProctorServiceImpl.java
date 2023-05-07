@@ -5,7 +5,9 @@ import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
+import com.dazuizui.business.domain.vo.AdminGetProctorsByPaginVo;
 import com.dazuizui.business.domain.vo.ProctorAnalysisVo;
 import com.dazuizui.business.domain.vo.ProctorGetFutureEventsInfoVo;
 import com.dazuizui.business.mapper.ProctorAttributeMapper;
@@ -166,5 +168,22 @@ public class ProctorServiceImpl implements ProctorService {
 
         System.out.println(proctorAnalysisVo);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,proctorAnalysisVo, StatusCode.OK));
+    }
+
+    /**
+     * 分页获取监考人员
+     * @return
+     */
+    @Override
+    public String adminGetProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo){
+        //获取当前比赛监考人员人数
+        Long theNumberOfProctorForThisCOmpetition = proctorMapper.getTheNumberOfProctorForThisCOmpetition(adminGetProctorsByPaginBo.getContestId());
+        //分页获取监考人员
+        List<Proctor> proctors = proctorMapper.getProctorsByPagin(adminGetProctorsByPaginBo);
+        //封装返回数据
+        AdminGetProctorsByPaginVo adminGetProctorsByPaginVo = new AdminGetProctorsByPaginVo();
+        adminGetProctorsByPaginVo.setProctors(proctors);
+        adminGetProctorsByPaginVo.setCount(theNumberOfProctorForThisCOmpetition);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,adminGetProctorsByPaginVo, StatusCode.OK));
     }
 }

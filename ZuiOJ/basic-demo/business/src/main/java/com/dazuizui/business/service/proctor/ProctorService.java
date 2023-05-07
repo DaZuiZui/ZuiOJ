@@ -2,10 +2,13 @@ package com.dazuizui.business.service.proctor;
 
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.domain.bo.AddProctorBo;
+import com.dazuizui.business.domain.bo.AdminGetProctorsByPaginBo;
 import com.dazuizui.business.domain.bo.ProctorGetFutureEventsInfoBo;
 import com.dazuizui.business.domain.vo.ProctorAnalysisVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 public interface ProctorService {
     /**
@@ -48,4 +51,10 @@ public interface ProctorService {
      * @return
      */
     public String proctorAnalysis(String token);
+
+    /**
+     * 分页获取监考人员
+     * @return
+     */
+    public String adminGetProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo);
 }
