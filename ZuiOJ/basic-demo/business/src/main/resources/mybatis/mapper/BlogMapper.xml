@@ -128,18 +128,41 @@
     -->
     <select id="adminGetArticleByPagin" resultType="com.dazuizui.business.domain.Article">
         select
+            id,
             title,
             introduce,
             technology_type,
             create_time,
-            create_by,
-            likes
+            (
+                select
+                    name
+                from
+                    user
+                where
+                    create_by = id
+            )  as 'create_by',
+            likes,
+            status
         from
             article
         where
             status = #{status} and
             del_flag = #{delFlag}
+        ORDER BY
+            create_time desc
         limit
             #{start},#{size}
     </select>
+
+    <!--
+        管理员逻辑删除数据通过ID
+    -->
+    <update id="adminDeleteAritcleById">
+        update
+            article
+        set
+            del_flag = 1
+        where
+            id = #{id}
+    </update>
 </mapper>

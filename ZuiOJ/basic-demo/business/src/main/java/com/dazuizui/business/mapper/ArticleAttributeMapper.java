@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 文章详细数量属性Mapper
@@ -23,6 +24,7 @@ public interface ArticleAttributeMapper {
      * @return
      */
     public Long increaseTheNumberOfTable(@Param("status")Integer status,@Param("num") Long num,@Param("type")Integer type);
+
 
 
 }

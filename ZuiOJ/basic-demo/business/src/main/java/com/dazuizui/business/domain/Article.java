@@ -13,9 +13,9 @@ public class Article implements Serializable {
     private String introduce;
     private List<Integer> articleType;
     private List<Integer> language;
-    private List<Integer> technologyType;
+    private Integer technologyType;
     private Date createTime;
-    private Long createBy;
+    private String createBy;
     private Date updateTime;
     private Long updateBy;
     private Integer status;
@@ -33,7 +33,7 @@ public class Article implements Serializable {
                 ", language=" + language +
                 ", technologyType=" + technologyType +
                 ", createTime=" + createTime +
-                ", createBy=" + createBy +
+                ", createBy='" + createBy + '\'' +
                 ", updateTime=" + updateTime +
                 ", updateBy=" + updateBy +
                 ", status=" + status +
@@ -83,11 +83,11 @@ public class Article implements Serializable {
         this.language = language;
     }
 
-    public List<Integer> getTechnologyType() {
+    public Integer getTechnologyType() {
         return technologyType;
     }
 
-    public void setTechnologyType(List<Integer> technologyType) {
+    public void setTechnologyType(Integer technologyType) {
         this.technologyType = technologyType;
     }
 
@@ -99,11 +99,11 @@ public class Article implements Serializable {
         this.createTime = createTime;
     }
 
-    public Long getCreateBy() {
+    public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Long createBy) {
+    public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
 
@@ -158,7 +158,7 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, List<Integer> technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, Long likes) {
+    public Article(Long id, String title, String introduce, List<Integer> articleType, List<Integer> language, Integer technologyType, Date createTime, String createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, Long mdTextId, Long likes) {
         this.id = id;
         this.title = title;
         this.introduce = introduce;

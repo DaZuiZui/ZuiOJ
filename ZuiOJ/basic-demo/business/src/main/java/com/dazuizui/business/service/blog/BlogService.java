@@ -1,5 +1,6 @@
 package com.dazuizui.business.service.blog;
 
+import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
 import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
@@ -60,4 +61,13 @@ public interface BlogService {
      * @return
      */
     public String adminGetArticleByPagin(AdminGetArticleByPaginBo adminGetArticleByPaginBo);
+
+    /**
+     * 管理员逻辑删除博文通过Id
+     * @return
+     */
+    public String adminDeleteAritcleById(@RequestBody AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo);
+
+
+
 }

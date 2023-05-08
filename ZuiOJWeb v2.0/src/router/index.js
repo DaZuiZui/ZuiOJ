@@ -43,6 +43,7 @@ import ProctorViewContestSubmissionLog from '@/components/view/main/cn/proctor/P
 import ProctorCompetitionInfoList from '@/components/view/main/cn/proctor/ProctorCompetitionInfoList'
 import ProctorViewCodeOfContestants from '@/components/view/main/cn/proctor/ProctorViewCodeOfContestants'
 import ProctorCodeDetailedInContest from '@/components/view/main/cn/proctor/ProctorCodeDetailedInContest'
+import ManageBlog                   from '@/components/view/main/cn/admin/ManageBlog'
 Vue.use(Router)
 
 export default new Router({
@@ -53,6 +54,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //管理博文页面
+    {
+      path: '/cn/admin/manageBlog',
+      name: 'ManageBlog',
+      component: ManageBlog
     },
     //监考人员查看通关代码
     {

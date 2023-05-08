@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
+import com.dazuizui.business.domain.QuestionAnswer;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.GetSolutionContributorsVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -89,13 +90,23 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
             res.add(article);
         }
 
-
-
         //封装返回数据
         Map<String,Object> map = new HashMap<>();
         map.put("count",count);
         map.put("data",res);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,map, StatusCode.OK));
+    }
+
+
+
+    /**
+     * 通过文章id判断该题是否为题解类型
+     * @param articleId 博文id
+     * @return
+     */
+    public QuestionAnswer findByArticleId(Long articleId){
+        QuestionAnswer byArticleId = questionAnswerMapper.findByArticleId(articleId);
+        return byArticleId;
     }
 }

@@ -5,6 +5,8 @@ import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.business.domain.Article;
 import com.dazuizui.business.domain.BlogAttribute;
+import com.dazuizui.business.domain.QuestionAnswer;
+import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
 import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
@@ -16,6 +18,7 @@ import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 import com.dazuizui.business.service.blog.BlogService;
+import com.dazuizui.business.service.onlineJudge.QuestionAnswerService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -58,6 +61,8 @@ public class BlogServiceImpl implements BlogService {
     private UserService userService;
     @Autowired
     private BlogAttributeMapper blogAttributeMapper;
+    @Autowired
+    private QuestionAnswerService questionAnswerService;
 
     /**
      * 创建博文
@@ -94,7 +99,7 @@ public class BlogServiceImpl implements BlogService {
             }
 
             //添加博客板块所有博文详细数量
-            aLong = articleAttributeMapper.increaseTheNumberOfTable(articleBo.getPrivacy(),1L,1);
+            aLong =  blogAttributeMapper.articleQuantitManagement(articleBo.getPrivacy(),1l);
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
@@ -107,15 +112,6 @@ public class BlogServiceImpl implements BlogService {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
-
-            //写入博文数量
-            aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.article,1L);
-            if (aLong == 0){
-                transactionUtils.rollback(transactionStatus);
-                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
-            }
-
-
         } catch (NumberFormatException e) {
             e.printStackTrace();
             transactionUtils.rollback(transactionStatus);
@@ -176,11 +172,11 @@ public class BlogServiceImpl implements BlogService {
             }
 
             //写入博文数量
-            aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.article, 1L);
-            if (aLong == 0){
-                transactionUtils.rollback(transactionStatus);
-                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
-            }
+            //aLong = attributeMapper.increaseTheNumberOfTable(AttributeKey.article, 1L);
+            // if (aLong == 0){
+            //    transactionUtils.rollback(transactionStatus);
+            //    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            //}
 
             //建立题解与博文的关联
             aLong = questionAnswerMapper.addQuestionAnswer(articleBo,questionId,Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+""),articleBo.getCreateTime());
@@ -197,14 +193,14 @@ public class BlogServiceImpl implements BlogService {
             }
 
             //全站题解数量
-            aLong = attributeMapper.IncreaseTheNumberOfTable(AttributeKey.question_answer,1L);
-            if (aLong == 0){
-                transactionUtils.rollback(transactionStatus);
-                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
-            }
+            //aLong = attributeMapper.increaseTheNumberOfTable(AttributeKey.question_answer,1L);
+            //if (aLong == 0){
+            //    transactionUtils.rollback(transactionStatus);
+              //  return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            //}
 
             //添加博客板块所有博文详细数量
-            aLong = articleAttributeMapper.increaseTheNumberOfTable(articleBo.getPrivacy(),1L,1);
+            aLong =  blogAttributeMapper.articleQuantitManagement(articleBo.getPrivacy(),1l);
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
@@ -233,14 +229,6 @@ public class BlogServiceImpl implements BlogService {
          */
         //设置Redis缓存
         redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+articleBo.getId(),RedisKey.OutTime,articleBo);
-        //添加总题解数量
-        redisUtil.increment(RedisKey.ZuiOJNumberOfQustionAnswer,RedisKey.OutTime,1);
-        //添加总题解指定状态的数量
-        redisUtil.increment(RedisKey.ZuiOJQuestionAnswerPrivicy+articleBo.getPrivacy(),RedisKey.OutTime,1);
-        //添加当前题解的数量
-        redisUtil.increment(RedisKey.ZuiOJQuestionAnswerOf+articleBo.getId(),RedisKey.OutTime,1);
-        //添加当前题的题解状态数量
-        redisUtil.increment(RedisKey.ZuiOJQuestionAnswerPrivicyOf+articleBo.getPrivacy()+":"+articleBo.getId(),RedisKey.OutTime,1);
 
         /**
          * 消息队列，处理分类内容，和个人文件夹的分类管理
@@ -258,7 +246,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public String getBlogPostsByPage(@RequestBody GetBlogPostsByPageBo getBlogPostsByPageBo){
         //获取博文个数
-        Long count = articleAttributeMapper.queryCountByStatus(getBlogPostsByPageBo.getStatus());
+        Long count = blogAttributeMapper.queryNumberOfPublicArticles();
         //分页获取数据
         List<ArticleJSON> articleByPage = blogMapper.getArticleByPage(getBlogPostsByPageBo);
         List<ArticleVo> res = new ArrayList<>();
@@ -411,4 +399,50 @@ public class BlogServiceImpl implements BlogService {
         }
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,article, StatusCode.OK));
     }
+
+    /**
+     * 管理员逻辑删除博文通过Id
+     * @return
+     */
+    @Override
+    public String adminDeleteAritcleById(AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo) {
+        //逻辑删除状态
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+        try {
+            //标记删除
+            Long numberOfOperations = blogMapper.adminDeleteAritcleById(adminDeleteAritcleByIdBo);
+            if (numberOfOperations == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            //博文数据表指定数量减少
+            numberOfOperations = blogAttributeMapper.articleQuantitManagement(adminDeleteAritcleByIdBo.getStatus(),-1l);
+            if (numberOfOperations == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+
+            //查看该博文是否为题解，如果是题解类型就指定题解数量减少
+            QuestionAnswer byArticleId = questionAnswerService.findByArticleId(adminDeleteAritcleByIdBo.getId());
+            if (byArticleId != null){
+                //删除题解数量
+                numberOfOperations = questionAnswerAttributeMapper.increaseTheNumberOfSolutions(byArticleId.getQuestionId(),0,0,-1l);
+                if (numberOfOperations == 0){
+                    transactionUtils.rollback(begin);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+            }
+
+            //删除redis缓存
+            redisUtil.deleteKey(RedisKey.ZuiBlogArticle+adminDeleteAritcleByIdBo.getId());
+        } catch (Exception e) {
+            transactionUtils.rollback(begin);
+            e.printStackTrace();
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+        transactionUtils.commit(begin);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
 }

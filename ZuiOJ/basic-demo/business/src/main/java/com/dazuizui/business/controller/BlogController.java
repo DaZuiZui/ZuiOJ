@@ -2,6 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
 import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
@@ -116,5 +117,18 @@ public class BlogController {
         }
 
         return blogService.adminGetArticleByPagin(adminGetArticleByPaginBo);
+    }
+
+
+    /**
+     * 管理员逻辑删除博文通过Id
+     * @return
+     */
+    @PostMapping("/admin/adminDeleteAritcleById")
+    @ApiOperation("管理员逻辑删除博文通过Id")
+    public String adminDeleteAritcleById(@RequestBody AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo){
+
+
+        return blogService.adminDeleteAritcleById(adminDeleteAritcleByIdBo);
     }
 }

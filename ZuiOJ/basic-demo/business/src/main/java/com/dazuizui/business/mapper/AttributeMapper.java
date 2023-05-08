@@ -8,7 +8,7 @@ public interface AttributeMapper {
     /**
      * 添加表属性数据个数
      */
-    public Long IncreaseTheNumberOfTable(@Param("id") Long id,@Param("num")Long num);
+    public Long increaseTheNumberOfTable(@Param("id") Long id,@Param("num")Long num);
 
     /**
      * 查看指定表的数量

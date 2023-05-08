@@ -1,5 +1,6 @@
 package com.dazuizui.business.mapper;
 
+import com.dazuizui.business.domain.QuestionAnswer;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.vo.GetSolutionContributorsVo;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,10 @@ public interface QuestionAnswerMapper {
      */
     public List<GetSolutionContributorsVo> getSolutionContributors(@Param("questionId")Long questionId);
 
+    /**
+     * 通过articleId进行查询
+     * @param articleId
+     * @return
+     */
+    public QuestionAnswer findByArticleId(@Param("articleId")Long articleId);
 }

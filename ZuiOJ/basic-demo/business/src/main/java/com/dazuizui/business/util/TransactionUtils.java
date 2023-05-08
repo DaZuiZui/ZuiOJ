@@ -1,6 +1,7 @@
 package com.dazuizui.business.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.TransactionDefinition;
@@ -11,6 +12,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
  * 事物工具类
  */
 @Component
+@Scope("prototype")
 public class TransactionUtils {
     @Autowired
     private DataSourceTransactionManager transactionManager;

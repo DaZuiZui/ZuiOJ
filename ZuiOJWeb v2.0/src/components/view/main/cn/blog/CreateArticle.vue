@@ -96,7 +96,8 @@
                                     <el-option value="6" value-key="6" key="6" label="学习日记"></el-option>
                                     <el-option value="7" value-key="7" key="7" label="踩坑记录">踩坑记录</el-option>
                                     <el-option value="8" value-key="8" key="8" label="算法问题"></el-option>
-                                    <el-option value="8" value-key="8" key="9" label="项目">项目</el-option>
+                                    <el-option value="9" value-key="9" key="9" label="项目">项目</el-option>
+                                    <el-option value="10" value-key="10" key="10" label="日常">日常</el-option>
                                   </el-select>
                             </div>
 

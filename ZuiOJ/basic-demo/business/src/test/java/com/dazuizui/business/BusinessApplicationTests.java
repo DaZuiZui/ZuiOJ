@@ -64,7 +64,7 @@ class BusinessApplicationTests {
         TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
         try {
-            attributeMapper.IncreaseTheNumberOfTable(1L,1L);
+            attributeMapper.increaseTheNumberOfTable(1L,1L);
             redisUtil.setStringInRedis("aaaaaa",1000,1231231);
             System.out.println(10/0);
         } catch (Exception e) {

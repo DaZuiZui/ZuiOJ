@@ -265,7 +265,7 @@ public class UserServiceImpl implements UserService {
             //创建用户博文数量
             userArticleAttributeMapper.AddUserArticleAttribute(user.getId());
             //写入用户表的用户个数
-            attributeMapper.IncreaseTheNumberOfTable(AttributeKey.user,1L);
+            attributeMapper.increaseTheNumberOfTable(AttributeKey.user,1L);
         } catch (Exception e) {
             transactionUtils.rollback(transactionStatus);
             return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));

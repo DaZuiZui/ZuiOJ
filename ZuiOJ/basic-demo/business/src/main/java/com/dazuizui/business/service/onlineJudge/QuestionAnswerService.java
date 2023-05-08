@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
+import com.dazuizui.business.domain.QuestionAnswer;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,4 +21,11 @@ public interface QuestionAnswerService {
      * @return
      */
     public String getQuestionAnswerByPage(GetQuestionAnswerByPageBo getQuestionAnswerByPageBo);
+
+    /**
+     * 通过文章id判断该题是否为题解类型
+     * @param articleId 博文id
+     * @return
+     */
+    public QuestionAnswer findByArticleId(Long articleId);
 }
