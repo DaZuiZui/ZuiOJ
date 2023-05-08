@@ -3,9 +3,13 @@ package com.dazuizui.business.service.blog.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.*;
+import com.dazuizui.business.domain.Article;
+import com.dazuizui.business.domain.BlogAttribute;
+import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
+import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -52,6 +56,8 @@ public class BlogServiceImpl implements BlogService {
     private UserArticleAttributeMapper userArticleAttributeMapper;
     @Autowired
     private UserService userService;
+    @Autowired
+    private BlogAttributeMapper blogAttributeMapper;
 
     /**
      * 创建博文
@@ -382,6 +388,27 @@ public class BlogServiceImpl implements BlogService {
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,false, StatusCode.OK));
     }
 
-
-
+    /**
+     * 管理员分页获取博文
+     * @param adminGetArticleByPaginBo
+     * @return
+     */
+    @Override
+    public String adminGetArticleByPagin(AdminGetArticleByPaginBo adminGetArticleByPaginBo) {
+        //获取博文数量
+        BlogAttribute blogAttribute = blogAttributeMapper.queryAttribute();
+        //分页查询
+        List<Article> articles = blogMapper.adminGetArticleByPagin(adminGetArticleByPaginBo);
+        //封装返回数据
+        AdminGetArticleByPaginVo article = new AdminGetArticleByPaginVo();
+        article.setArticleList(articles);
+        if (adminGetArticleByPaginBo.getStatus() == 0){
+            article.setCount(blogAttribute.getPublicArticle());
+        }else if (adminGetArticleByPaginBo.getStatus() == 1){
+            article.setCount(blogAttribute.getPrivateArticle());
+        }else if (adminGetArticleByPaginBo.getStatus() == 2){
+            article.setCount(blogAttribute.getBannedArticle());
+        }
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,article, StatusCode.OK));
+    }
 }

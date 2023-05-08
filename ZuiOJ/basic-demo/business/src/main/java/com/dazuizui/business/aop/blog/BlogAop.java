@@ -1,8 +1,10 @@
 package com.dazuizui.business.aop.blog;
 
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
+import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -33,4 +35,11 @@ public interface BlogAop {
      * @throws Exception
      */
     public String getArticleById(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 管理员分页获取博文
+     * @param joinpoint
+     * @return
+     */
+    public String adminGetArticleByPagin(JoinPoint joinpoint) throws Exception;
 }

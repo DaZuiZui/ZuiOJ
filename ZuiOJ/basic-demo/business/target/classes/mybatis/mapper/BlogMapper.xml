@@ -121,4 +121,25 @@
             0
         )
     </insert>
+
+
+    <!--
+        管理员分页查询博文
+    -->
+    <select id="adminGetArticleByPagin" resultType="com.dazuizui.business.domain.Article">
+        select
+            title,
+            introduce,
+            technology_type,
+            create_time,
+            create_by,
+            likes
+        from
+            article
+        where
+            status = #{status} and
+            del_flag = #{delFlag}
+        limit
+            #{start},#{size}
+    </select>
 </mapper>

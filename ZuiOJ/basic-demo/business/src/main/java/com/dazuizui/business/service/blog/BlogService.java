@@ -1,9 +1,12 @@
 package com.dazuizui.business.service.blog;
 
+import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -50,4 +53,11 @@ public interface BlogService {
      * @return
      */
     public String checkIfTheTopicIsACompetitionTopic(@RequestParam("id")Long id);
+
+    /**
+     * 管理员分页获取博文
+     * @param adminGetArticleByPaginBo
+     * @return
+     */
+    public String adminGetArticleByPagin(AdminGetArticleByPaginBo adminGetArticleByPaginBo);
 }

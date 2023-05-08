@@ -107,7 +107,14 @@ public class BlogController {
     @PostMapping("/admin/adminGetArticleByPagin")
     @ApiOperation("管理员分页获取博文")
     public String adminGetArticleByPagin(@RequestBody AdminGetArticleByPaginBo adminGetArticleByPaginBo){
+        //身份验证过期或者权限不足的校验
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
 
-        return "";
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return blogService.adminGetArticleByPagin(adminGetArticleByPaginBo);
     }
 }

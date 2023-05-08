@@ -1,9 +1,11 @@
 package com.dazuizui.business.aop.blog.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.aop.blog.BlogAop;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.aspectj.lang.JoinPoint;
@@ -23,7 +25,8 @@ import java.util.Map;
 public class BlogAopImpl implements BlogAop {
     @Autowired
     private RedisTemplate redisTemplate;
-
+    @Autowired
+    private SystemVerifyService systemVerifyService;
     /**
      * 创建博文AOP，主要做了防止非幂等操作和token鉴权
      * @param joinpoint
@@ -132,6 +135,20 @@ public class BlogAopImpl implements BlogAop {
             }
         }
 
+        return null;
+    }
+
+    /**
+     * 管理员分页获取博文
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    public String adminGetArticleByPagin(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        AdminGetArticleByPaginBo article = (AdminGetArticleByPaginBo) args[0];
+        String token = article.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
         return null;
     }
 }
