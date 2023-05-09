@@ -3,9 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionAnswerMapper">
+    <!--
+        通过文章id查询
+    -->
+    <select id="findByArticleId" resultType="com.dazuizui.business.domain.QuestionAnswer">
+        select
+            *
+        from
+             question_answer
+        where
+            article_id = #{articleId}
+        limit 1
+    </select>
 
-
-
+    <!--
+        添加题解关联
+    -->
     <insert id="addQuestionAnswer">
         insert into
             question_answer
@@ -41,4 +54,5 @@
         GROUP BY
             a.create_by
     </select>
+
 </mapper>

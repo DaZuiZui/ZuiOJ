@@ -50,7 +50,7 @@
                             </li>
                     
                             <li class="nav-item ">
-                                <a class="nav-link" href="index.html">社区管理</a>
+                                <a class="nav-link" href="#" @click="goMenegeBlog()">社区管理</a>
                             </li>
                             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="goQuestionBankManagement()">题库管理</a>
@@ -263,6 +263,10 @@ import { synRequestGet } from '../../../../static/request';
         goUserInfo(){
             this.$router.push('/cn/user/info');
         },
+        //前往社区管理页面
+        goMenegeBlog(){
+            this.$router.push('/cn/admin/manageBlog');
+        }
     }
   }
   </script>

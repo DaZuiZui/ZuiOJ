@@ -21,6 +21,9 @@
             )
     </insert>
 
+    <!--
+        操作数量
+    -->
     <update id="increaseTheNumberOfSolutions">
         update
             question_answer_attribute
@@ -61,4 +64,7 @@
         where
             question_id = #{questionId}
     </select>
+
+
+
 </mapper>
