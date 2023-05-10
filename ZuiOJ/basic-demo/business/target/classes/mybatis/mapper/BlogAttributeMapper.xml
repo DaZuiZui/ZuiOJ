@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.BlogAttributeMapper">
+    <select id="queryAttribute" resultType="com.dazuizui.business.domain.BlogAttribute">
+        select * from article_attribute where id = 1 limit 1;
+    </select>
+
+    <!--
+        数量管理
+    -->
+    <update id="articleQuantitManagement">
+        update
+            article_attribute
+        <set>
+            <if test="status == 0">
+                public_article =  public_article + #{number}
+            </if>
+            <if test="status == 1">
+                private_article =  private_article + #{number}
+            </if>
+            <if test="status == 2">
+                banned_article =  banned_article + #{number}
+            </if>
+        </set>
+
+    </update>
+
+    <!--
+        查询公开数量的博文
+    -->
+    <select id="queryNumberOfPublicArticles" resultType="long">
+        select
+            public_article
+        from
+            article_attribute
+        limit
+            1
+    </select>
+</mapper>
