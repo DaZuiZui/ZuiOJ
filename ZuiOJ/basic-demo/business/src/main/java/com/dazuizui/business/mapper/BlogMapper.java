@@ -71,4 +71,9 @@ public interface BlogMapper {
      * @return
      */
     public Long adminDeleteAritcleById(AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo);
+
+    /**
+     * 更改博文状态
+     */
+    public Long updateStatusById(@Param("id")Long id,@Param("status")Integer status);
 }

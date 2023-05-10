@@ -29,4 +29,19 @@ public interface SystemVerifyService {
      * @return
      */
     public boolean veryfiAdmin(String token,Integer leave);
+
+    /**
+     * 解决接口幂等性的问题
+     * @param nonPowerToken
+     * @return
+     */
+    public boolean verfiNonPowerToken(String nonPowerToken);
+
+    /**
+     * 鉴权用户权限和接口幂等性问题
+     * @param nonPowerToken
+     * @param token
+     * @return
+     */
+    public boolean verfiNonPowerTokenAndAdminToken(String nonPowerToken,String token,Integer leave);
 }

@@ -165,4 +165,16 @@
         where
             id = #{id}
     </update>
+
+    <!--
+        修改博文状态
+    -->
+    <update id="updateStatusById">
+        update
+            article
+        set
+            status =  #{status}
+        where
+            id = #{id}
+    </update>
 </mapper>

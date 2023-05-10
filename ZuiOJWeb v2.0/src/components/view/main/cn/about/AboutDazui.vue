@@ -11,7 +11,7 @@
                     <div class="col-12 col-md-5 col-lg-6 order-md-2 text-center">
                         <!-- Image -->
                         <figure class="w-100"   >
-                            <img alt="Image placeholder"   src="../../../../../../static/assets/img/svg/illustrations/illustration-3.svg" class="img-fluid mw-md-120"  >
+                            <img alt="Image placeholder"   src="https://img2.baidu.com/it/u=632396105,207994729&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="img-fluid mw-md-120"  >
                         </figure>
                     </div>
                     <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
@@ -90,6 +90,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
@@ -170,6 +171,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        
                     </div>
                 </div>
                 <div class="py-6">
@@ -187,10 +190,38 @@
                         <div class="col-lg-6">
                             <div class="card mb-0 ml-lg-5">
                                 <div class="card-body p-2">
-                                    <img alt="Image placeholder" src="../../../../../../static/ZuiOJ/image/MyInfo.png" class="img-fluid shadow rounded">
+                                    <img alt="Image placeholder" src="https://img0.baidu.com/it/u=409259694,721936539&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1683824400&t=c8682d137af610f2b57ea72eb4148d35" class="img-fluid shadow rounded">
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="py-6">
+                    <div class="row row-grid justify-content-between align-items-center">
+                        <div class="col-lg-5 order-lg-2">
+                            <h5 class="h3">第一家大公司</h5>
+                            <p class="lead my-4">
+                                在4月中的一个特别的日子里，我收到了NeuSoft的Offer，这也是我人生中的第一家1万人+规模的大公司，该公司也是亚洲医疗公司龙头，这也是我的新的开始，期待6月份在公司的日志。
+                          
+                            </p>
+             
+                            <ul class="list-unstyled mb-0">
+                             
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <div class="card mb-0 mr-lg-5">
+                                <div class="card-body p-2">
+                                    <img
+                                    style="width:500px"
+
+                                    alt="Image placeholder" src="https://img2.baidu.com/it/u=1247905637,509847092&fm=253&fmt=auto&app=138&f=PNG?w=1277&h=500" class="img-fluid shadow rounded">
+                                </div>
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>

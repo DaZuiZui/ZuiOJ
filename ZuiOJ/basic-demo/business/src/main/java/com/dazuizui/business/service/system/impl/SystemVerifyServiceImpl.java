@@ -9,6 +9,7 @@ import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -22,7 +23,8 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     private ProctorService proctorService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private RedisTemplate redisTemplate;
     /**
      * 验证是否为监考人员
      * @param token
@@ -101,6 +103,43 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
         if (user.getRole() < leave){
             ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
             ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 解决接口幂等性的问题
+     * @param nonPowerToken
+     * @return
+     */
+    @Override
+    public boolean verfiNonPowerToken(String nonPowerToken){
+        boolean b = redisTemplate.delete(nonPowerToken);
+        if (!b){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","异常幂等性操作，请刷新网页重新操作");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.Idempotency);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 鉴权用户权限和接口幂等性问题
+     * @param nonPowerToken
+     * @param token
+     * @return
+     */
+    @Override
+    public boolean verfiNonPowerTokenAndAdminToken(String nonPowerToken,String token,Integer leave){
+        boolean b = this.verfiNonPowerToken(nonPowerToken);
+        if (b == false){
+            return false;
+        }
+
+        b = this.veryfiAdmin(token,leave);
+        if ( b == false){
             return false;
         }
 
