@@ -249,15 +249,15 @@
         //next status
         async nextStatus(){
             this.adminGetArticleByPaginBo.status += 1;
- 
+         
             //查看是否查看删除文章
             //如果等于4就切换为删除状态
             if(this.adminGetArticleByPaginBo.status == 4){
                 this.adminGetArticleByPaginBo.delFlag = 1;
             }
             //如果等于5，status就切换为0状态
-            else if(this.adminGetArticleByPaginBo.status == 5){
-                this.adminGetArticleByPaginBo.status == 0;
+            else if(this.adminGetArticleByPaginBo.status >= 5){
+                this.adminGetArticleByPaginBo.status = 0;
                 this.adminGetArticleByPaginBo.delFlag = 0;
             }
             //获取数据
