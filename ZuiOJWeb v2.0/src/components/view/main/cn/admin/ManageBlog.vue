@@ -17,13 +17,18 @@
                         <th scope="col">分类</th>
                         <th scope="col">创建人</th>
                         <th scope="col">创建时间</th>
-                        <th scope="col">状态</th>
+                        <th scope="col">状态
+                            <a @click="nextStatus()">
+                                <svg t="1680530967416" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2753" width="20" height="20"><path d="M170.666667 392.533333L349.866667 213.333333l29.866666 29.866667-149.333333 149.333333h669.866667v42.666667H128l42.666667-42.666667z m682.666666 213.333334l-179.2 179.2-29.866666-29.866667 149.333333-149.333333H132.266667v-42.666667H896l-42.666667 42.666667z" fill="#1296db" p-id="2754"></path></svg>    
+                            </a>
+                        </th>
                         <th scope="col">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             操作</th>
                       </tr>
                     </thead>
+ 
                     <tbody>
                       <tr v-for="obj in articleList" >
                         <th scope="row"></th>
@@ -84,31 +89,50 @@
                             {{obj.createTime}}
                         </td>
                         <td>
-                            <div v-if="obj.status == 1">
-                                私有
-                            </div>
-                            <div v-else-if="obj.status == 2">
-                                封禁
-                            </div>
-                            <div v-else-if="obj.status == 3">
-                                置顶
-                            </div>
-                            <div v-else-if="obj.status == 0">
-                                Public
+                            <div v-if="adminGetArticleByPaginBo.delFlag == 1">已经被删除</div>  
+                            <div v-else>
+                                <div v-if="obj.status == 1">
+                                    私有
+                                </div>
+                                <div v-else-if="adminGetArticleByPaginBo.delFlag == 1">
+                                    Public
+                                </div>
+                                <div v-else-if="obj.status == 2">
+                                    封禁
+                                </div>
+                                <div v-else-if="obj.status == 3">
+                                    置顶
+                                </div>
+                                <div v-else-if="obj.status == 0">
+                                    Public
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <div>
-                                <el-link type="primary" @click="topTheArticle(obj.id)">置顶</el-link>
-                                <el-link type="primary">修改</el-link>
-                                <el-link type="danger">封禁</el-link>
-                                <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
+                            <div v-if="adminGetArticleByPaginBo.delFlag == 1">
+                                <el-link type="primary">复原</el-link>
+                                <el-link type="danger">物理删除</el-link>
+                            </div>  
+                            <div v-else>
+                                <div v-if="obj.status == 3">
+                                    <el-link type="primary">取消置顶</el-link>
+                                    <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
+                                </div>
+                                <div v-else>
+                                    <el-link type="primary" @click="topTheArticle(obj.id)">置顶</el-link>
+                                    <el-link type="primary">修改</el-link>
+                                    <el-link type="danger">封禁</el-link>
+                                    <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
+                                </div>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                
+                  
+                  <div v-if="articleList.length == 0" >
+                      暂无数据
+                  </div>
                   <!--分页部分-->
                   <el-pagination
                     :page-size="50"
@@ -212,7 +236,7 @@
 
         //置顶文章
         async topTheArticle(articleId){
-            alert(articleId);
+ 
             this.addTopArticleBo.articleId = articleId;
             let obj =  await synRequestPost("/topArticle/addTopArticle",this.addTopArticleBo);
             if(check(obj)){
@@ -220,7 +244,25 @@
                 this.getNonPowerToken();
                 this.getMerchantInformation(this.currentPage);
             }
-        }
+        },
+
+        //next status
+        async nextStatus(){
+            this.adminGetArticleByPaginBo.status += 1;
+ 
+            //查看是否查看删除文章
+            //如果等于4就切换为删除状态
+            if(this.adminGetArticleByPaginBo.status == 4){
+                this.adminGetArticleByPaginBo.delFlag = 1;
+            }
+            //如果等于5，status就切换为0状态
+            else if(this.adminGetArticleByPaginBo.status == 5){
+                this.adminGetArticleByPaginBo.status == 0;
+                this.adminGetArticleByPaginBo.delFlag = 0;
+            }
+            //获取数据
+            this.getMerchantInformation(1);
+        },
     }
   }
   </script>

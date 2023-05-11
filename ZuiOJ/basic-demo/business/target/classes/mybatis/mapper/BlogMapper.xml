@@ -145,9 +145,15 @@
             status
         from
             article
-        where
-            status = #{status} and
-            del_flag = #{delFlag}
+        <where>
+            <if test="delFlag == 1">
+                del_flag = 1
+            </if>
+            <if test="delFlag == 0">
+                status = #{status} and
+                del_flag = #{delFlag}
+            </if>
+        </where>
         ORDER BY
             create_time desc
         limit

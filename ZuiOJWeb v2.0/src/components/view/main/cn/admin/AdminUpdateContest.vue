@@ -43,7 +43,6 @@
                                 <option value="5">匿名考试，仅管理员得知数据</option>
                                 <option value="4">全都统计</option>
                                 <option value="3">信息学院专业社团特别版考试系统 - 仅在广厦专业社团使用</option>
-                                
                             </select>
                         </div>
 

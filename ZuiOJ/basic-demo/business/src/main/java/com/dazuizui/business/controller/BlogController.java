@@ -127,8 +127,6 @@ public class BlogController {
     @PostMapping("/admin/adminDeleteAritcleById")
     @ApiOperation("管理员逻辑删除博文通过Id")
     public String adminDeleteAritcleById(@RequestBody AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo){
-
-
         return blogService.adminDeleteAritcleById(adminDeleteAritcleByIdBo);
     }
 }

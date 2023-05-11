@@ -41,4 +41,14 @@ public class TopArticleController {
         System.err.println(addTopArticleBo);
         return topArticleService.addTopArticle(addTopArticleBo);
     }
+
+    /**
+     * 获取公开文章
+     * @return
+     */
+    @ApiOperation("获取公开文章")
+    @GetMapping("/queryAllTopArticle")
+    public String queryAllTopArticle(){
+        return topArticleService.queryAllTopArticle();
+    }
 }

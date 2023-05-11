@@ -1,15 +1,19 @@
 package com.dazuizui.business.service.blog;
 
+import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
 import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
+import com.dazuizui.business.domain.vo.ArticleVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * 博文业务类接口
@@ -68,6 +72,14 @@ public interface BlogService {
      */
     public String adminDeleteAritcleById(@RequestBody AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo);
 
-
-
+    /**
+     * 博文内的json数据转list形式，如数据库存储的String类型的[1,2,3]将它转换为list
+     * @param articleByPage
+     */
+    public  List<ArticleVo> ArticleJSONtoList(List<ArticleJSON> articleByPage);
+    /**
+     * 查询所有置顶文章
+     * @return
+     */
+    public List<ArticleJSON> queryAllTopArticle();
 }

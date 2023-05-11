@@ -250,7 +250,7 @@ public class BlogServiceImpl implements BlogService {
         //分页获取数据
         List<ArticleJSON> articleByPage = blogMapper.getArticleByPage(getBlogPostsByPageBo);
         List<ArticleVo> res = new ArrayList<>();
-        System.out.println(articleByPage);
+
         //将JSON转换为List
         for (ArticleJSON articleJSON : articleByPage) {
             ArticleVo article  =new ArticleVo();
@@ -443,6 +443,40 @@ public class BlogServiceImpl implements BlogService {
         transactionUtils.commit(begin);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+
+    @Override
+    public List<ArticleVo> ArticleJSONtoList(List<ArticleJSON> articleByPage) {
+        List<ArticleVo> res = new ArrayList<>();
+
+        //将JSON转换为List
+        for (ArticleJSON articleJSON : articleByPage) {
+            ArticleVo article  =new ArticleVo();
+            article.setId(articleJSON.getId());
+            article.setTitle(articleJSON.getTitle());
+            article.setIntroduce(articleJSON.getIntroduce());
+            List<Integer> articleType    = (List<Integer>) JSONObject.parseObject(articleJSON.getArticleType(),Object.class);
+            article.setArticleType(articleType);
+            //List<Integer> technologyType = (List<Integer>) JSONObject.parseObject(articleJSON.getTechnologyType(),Object.class);
+            article.setTechnologyType(articleJSON.getTechnologyType());
+            List<Integer> language = (List<Integer>) JSONObject.parseObject(articleJSON.getLanguage(),Object.class);
+            article.setLanguage(language);
+            article.setCreateTime(articleJSON.getCreateTime());
+            article.setCreateBy(articleJSON.getCreateBy());
+            article.setCreateByName(articleJSON.getCreateByName());
+            article.setMdTextId(articleJSON.getMdTextId());
+            article.setLikes(articleJSON.getLikes());
+
+            res.add(article);
+        }
+
+        return res;
+    }
+
+    @Override
+    public List<ArticleJSON> queryAllTopArticle() {
+        return null;
     }
 
 }

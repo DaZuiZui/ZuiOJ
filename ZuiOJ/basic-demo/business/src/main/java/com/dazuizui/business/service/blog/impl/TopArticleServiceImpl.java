@@ -1,13 +1,16 @@
 package com.dazuizui.business.service.blog.impl;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.TopArticle;
 import com.dazuizui.business.domain.bo.AddTopArticleBo;
+import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.business.mapper.BlogMapper;
 import com.dazuizui.business.mapper.TopArticleMapper;
+import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.service.blog.TopArticleService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
@@ -18,6 +21,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 置顶文章业务实现类
@@ -32,6 +36,8 @@ public class TopArticleServiceImpl implements TopArticleService {
     private BlogMapper blogMapper;
     @Autowired
     private TransactionUtils transactionUtils;
+    @Autowired
+    private BlogService blogService;
     /**
      * 增加置顶文章
      * @param addTopArticleBo
@@ -68,5 +74,17 @@ public class TopArticleServiceImpl implements TopArticleService {
         //提交
         transactionUtils.commit(begin);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
+     * 查询置顶文章
+     * @return
+     */
+    @Override
+    public String queryAllTopArticle() {
+        List<ArticleJSON> articleByPage = topArticleMapper.queryAllTopArticle();
+        List<ArticleVo> articleVos = blogService.ArticleJSONtoList(articleByPage);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,articleVos, StatusCode.OK));
     }
 }
