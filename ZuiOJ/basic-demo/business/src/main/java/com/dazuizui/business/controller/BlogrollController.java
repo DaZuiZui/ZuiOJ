@@ -10,6 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 友情链接控制器
+ */
 @CrossOrigin
 @RequestMapping("/blogroll")
 @RestController

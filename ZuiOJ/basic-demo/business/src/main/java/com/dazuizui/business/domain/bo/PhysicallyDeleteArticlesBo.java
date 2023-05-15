@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 管理员批量删除博文
+ * 管理员批量删除博文Bo
  */
 public class PhysicallyDeleteArticlesBo implements Serializable {
     private String token;

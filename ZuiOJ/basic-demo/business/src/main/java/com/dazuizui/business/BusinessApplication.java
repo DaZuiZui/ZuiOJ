@@ -12,5 +12,6 @@ public class BusinessApplication {
         System.out.println("Welcome to ZuiOJ ,I`m Bryan yang ");
         SpringApplication.run(BusinessApplication.class, args);
         System.out.println("ZuiOJ  starting");
+        System.out.println("by https://github.com/DaZuiZui");
     }
 }
