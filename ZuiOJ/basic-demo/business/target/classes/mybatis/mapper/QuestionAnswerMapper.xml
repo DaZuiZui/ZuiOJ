@@ -55,4 +55,18 @@
             a.create_by
     </select>
 
+    <!--
+        批量删除题解
+    -->
+    <delete id="deleteQuestionAnswer">
+        delete from
+            question_answer
+        where
+            article_id
+        in
+            <foreach collection="list" item="tmp" open="(" close=")" separator=",">
+                #{tmp}
+            </foreach>
+    </delete>
+
 </mapper>

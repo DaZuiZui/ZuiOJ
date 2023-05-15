@@ -7,11 +7,15 @@
         <!-- Main content -->
         <section  style="background-color:#f9f9f9">
             <div class="container">
-                <br>
+                <br>  
+                <el-button type="primary" icon="el-icon-search" @click="physicallyDeleteArticles()">批量物理删除</el-button>
+                <br>       <br>
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col" width="90px"></th>
+                        <th scope="col" width="90px">
+                          
+                        </th>
                         <th scope="col">title</th>
                         <th scope="col">介绍</th>
                         <th scope="col">分类</th>
@@ -31,7 +35,10 @@
  
                     <tbody>
                       <tr v-for="obj in articleList" >
-                        <th scope="row"></th>
+                        <th scope="row"> 
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="physicallyDeleteArticlesBo.elements" :value="obj.id" >
+                        </th>
+                        
                         <td>
                             <b>
                                 <a style="color:" href=""  >
@@ -187,19 +194,38 @@
             token: "",
             articleId: 0,
             nonPowerToken: "",
-        }
+        },
+        //物理删除
+        physicallyDeleteArticlesBo: {
+            token: "",
+            elements: [],
+            nonPowerToken: "",
+        },
       }
     },
 
     mounted(){
         this.adminGetArticleByPaginBo.token = getCookie("token");
         this.addTopArticleBo.token = getCookie("token");
+        this.physicallyDeleteArticlesBo.nonPowerToken = this.getNonPowerToken();
+        this.physicallyDeleteArticlesBo.token = getCookie("token");
         //获取幂等性token
         this.getNonPowerToken();
         this.getMerchantInformation(1);
     },
 
     methods: {
+        /*
+         * 批量逻辑删除
+         */
+        async physicallyDeleteArticles(){
+            let obj = await synRequestPost("/blog/admin/physicallyDeleteArticles",this.physicallyDeleteArticlesBo);
+            if(check(obj)){
+                alert("删除成功");
+                this.getMerchantInformation(currentPage);
+            }
+        },
+
         //防止幂等性
         async getNonPowerToken(){
             var object = await synRequestGet("/system/getNonPowerTokenString");
