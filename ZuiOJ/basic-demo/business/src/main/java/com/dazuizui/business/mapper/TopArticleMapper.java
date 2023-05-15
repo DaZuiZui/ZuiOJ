@@ -3,6 +3,7 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.business.domain.TopArticle;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,4 +24,10 @@ public interface TopArticleMapper {
      * @return
      */
     public List<ArticleJSON> queryAllTopArticle();
+
+    /**
+     * 取消置顶
+     * @Param id id
+     */
+    public Long unpin(@Param("id")Long id);
 }

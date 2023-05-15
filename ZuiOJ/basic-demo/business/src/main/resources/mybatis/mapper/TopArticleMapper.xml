@@ -45,4 +45,14 @@
                 desc
 
     </select>
+
+    <!--
+        取消置顶
+    -->
+    <delete id="unpin">
+        delete from
+            top_article
+        where
+            article_id = #{id}
+    </delete>
 </mapper>

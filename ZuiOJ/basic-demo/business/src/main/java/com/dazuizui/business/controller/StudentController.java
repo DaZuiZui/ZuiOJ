@@ -26,7 +26,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-
     /**
      * 修改学生认证
      * @param studentCertificationBo

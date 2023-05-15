@@ -77,6 +77,18 @@ public class TopArticleServiceImpl implements TopArticleService {
     }
 
     /**
+     * 取消置顶
+     * @Param id id
+     */
+    @Override
+    public Long unpin(Long id) {
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        topArticleMapper.unpin(id);
+        return null;
+    }
+
+    /**
      * 查询置顶文章
      * @return
      */
