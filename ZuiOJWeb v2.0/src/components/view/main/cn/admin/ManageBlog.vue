@@ -8,7 +8,7 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>  
-                <el-button type="primary" icon="el-icon-search" @click="physicallyDeleteArticles()">批量物理删除</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="physicallyDeleteArticles()" v-if="this.physicallyDeleteArticleButton">批量物理删除</el-button>
                 <br>       <br>
                 <table class="table">
                     <thead>
@@ -36,7 +36,7 @@
                     <tbody>
                       <tr v-for="obj in articleList" >
                         <th scope="row"> 
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="physicallyDeleteArticlesBo.elements" :value="obj.id" >
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="physicallyDeleteArticlesBo.elements" :value="obj.id" v-if="this.physicallyDeleteArticleButton" >
                         </th>
                         
                         <td>
@@ -201,15 +201,19 @@
             elements: [],
             nonPowerToken: "",
         },
+        //逻辑删除按钮显示
+        physicallyDeleteArticleButton: false,
       }
     },
 
     mounted(){
         this.adminGetArticleByPaginBo.token = getCookie("token");
         this.addTopArticleBo.token = getCookie("token");
-        this.physicallyDeleteArticlesBo.nonPowerToken = this.getNonPowerToken();
-        this.physicallyDeleteArticlesBo.token = getCookie("token");
-        //获取幂等性token
+        //this.physicallyDeleteArticlesBo.nonPowerToken = this.getNonPowerToken();
+        
+    
+  
+        //获取添加置顶博文幂等性token
         this.getNonPowerToken();
         this.getMerchantInformation(1);
     },
@@ -219,11 +223,22 @@
          * 批量逻辑删除
          */
         async physicallyDeleteArticles(){
+            //获取参数
+            this.physicallyDeleteArticlesBo.nonPowerToken = await this.getNonPowerTokenString();
+            this.physicallyDeleteArticlesBo.token = getCookie("token");
+            //操作
             let obj = await synRequestPost("/blog/admin/physicallyDeleteArticles",this.physicallyDeleteArticlesBo);
             if(check(obj)){
                 alert("删除成功");
-                this.getMerchantInformation(currentPage);
+                this.getMerchantInformation(this.currentPage );
             }
+        },
+
+        //防止幂等性
+        async getNonPowerTokenString(){
+            let obj = await synRequestGet("/system/getNonPowerTokenString");
+        
+            return obj.data;
         },
 
         //防止幂等性
@@ -252,6 +267,8 @@
 
         //删除博文
         async deleteArticleByIdAndStatus(id,status){
+            this.physicallyDeleteArticlesBo.nonPowerToken = await this.getNonPowerTokenString();
+
             this.adminDeleteAritcleByIdBo.id = id;
             this.adminDeleteAritcleByIdBo.status = status;
             let obj = await synRequestPost("/blog/admin/adminDeleteAritcleById",this.adminDeleteAritcleByIdBo);
@@ -274,17 +291,23 @@
 
         //next status
         async nextStatus(){
+            //逻辑删除按钮显示
+            this.physicallyDeleteArticleButton = false;
+            //状态更新
             this.adminGetArticleByPaginBo.status += 1;
          
             //查看是否查看删除文章
             //如果等于4就切换为删除状态
             if(this.adminGetArticleByPaginBo.status == 4){
                 this.adminGetArticleByPaginBo.delFlag = 1;
+                //显示逻辑删除内容
+                this.physicallyDeleteArticleButton = true;
             }
             //如果等于5，status就切换为0状态
             else if(this.adminGetArticleByPaginBo.status >= 5){
                 this.adminGetArticleByPaginBo.status = 0;
                 this.adminGetArticleByPaginBo.delFlag = 0;
+                 
             }
             //获取数据
             this.getMerchantInformation(1);
