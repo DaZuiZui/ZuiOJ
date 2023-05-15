@@ -76,4 +76,28 @@ public interface BlogMapper {
      * 更改博文状态
      */
     public Long updateStatusById(@Param("id")Long id,@Param("status")Integer status);
+
+    /**
+     * 物理删除id
+     * @param list
+     * @return
+     */
+    public Long physicallyDeleteArticles(@Param("list") List<Long> list);
+
+    /**
+     * 物理删除博文详细
+     */
+    public Long physicallyDeleteArticleMdText(@Param("list") List<Long> list);
+
+    /**
+     * 查询要删除的文章的MdText id集合
+     */
+    public List<Long> queryMdTextIdOfDeleteAritcle(@Param("list") List<Long> list);
+
+    /**
+     * 删除分类文章
+     * @param list
+     * @return
+     */
+    public Long physicallyDeleteArticleInType(@Param("list")List<Long> list);
 }

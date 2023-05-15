@@ -217,6 +217,9 @@
         )
     </insert>
 
+    <!--
+        提交问题详细
+    -->
     <insert id="postQuestionDetailed">
         insert into
             question_bank_detailed
@@ -229,4 +232,6 @@
             #{htmlCn}
         )
     </insert>
+
+
 </mapper>

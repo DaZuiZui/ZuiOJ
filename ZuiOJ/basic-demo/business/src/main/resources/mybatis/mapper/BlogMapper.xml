@@ -183,4 +183,62 @@
         where
             id = #{id}
     </update>
+
+    <!--
+        物理删除博文id
+    -->
+    <delete id="physicallyDeleteArticles">
+        delete from
+            article
+        where
+            id
+        in
+          <foreach collection="list" item="tmp" open="(" close=")" separator=",">
+                #{tmp}
+          </foreach>
+    </delete>
+
+    <!--
+        批量删除博文text
+    -->
+    <delete id="physicallyDeleteArticleMdText">
+        delete from
+            article
+        where
+            id
+        in
+            <foreach collection="list" item="tmp" separator="," open="(" close=")">
+                #{tmp}
+            </foreach>
+    </delete>
+
+    <!--
+        查询要被删除的mdtext`s id
+    -->
+    <select id="queryMdTextIdOfDeleteAritcle" resultType="long">
+        select
+            md_text_id
+        from
+            article
+        where
+              id
+        in
+        <foreach collection="list" item="tmp" open="(" close=")" separator=",">
+            #{tmp}
+        </foreach>
+    </select>
+
+    <!--
+        删除分类
+    -->
+    <delete id="physicallyDeleteArticleInType" >
+        delete from
+            article_type
+        where
+            article_id
+        in
+            <foreach collection="list" item="tmp" open="(" close=")" separator=",">
+                #{tmp}
+            </foreach>
+    </delete>
 </mapper>

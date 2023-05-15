@@ -11,6 +11,7 @@ import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
+import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
@@ -422,6 +423,15 @@ public class BlogServiceImpl implements BlogService {
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
 
+            /**
+             * 被删除封禁的文章+1
+             */
+            numberOfOperations = blogAttributeMapper.articleQuantitManagement(2,1l);
+            if (numberOfOperations == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+
             //查看该博文是否为题解，如果是题解类型就指定题解数量减少
             QuestionAnswer byArticleId = questionAnswerService.findByArticleId(adminDeleteAritcleByIdBo.getId());
             if (byArticleId != null){
@@ -477,6 +487,36 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<ArticleJSON> queryAllTopArticle() {
         return null;
+    }
+
+    /**
+     * 管理员物理删除博文
+     * @param physicallyDeleteArticlesBo
+     * @return
+     */
+    @Override
+    public String physicallyDeleteArticles(PhysicallyDeleteArticlesBo physicallyDeleteArticlesBo) {
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        try {
+            //获取要删除的Mdtext文档
+            List<Long> mdTextIList = blogMapper.queryMdTextIdOfDeleteAritcle(physicallyDeleteArticlesBo.getElements());
+            //批量删除文章
+            Long numberOfDeleteAritcleOptions = blogMapper.physicallyDeleteArticles(physicallyDeleteArticlesBo.getElements());
+            //批量删除Mdtext文档
+            Long numberOfDeleteArticleOptions = blogMapper.physicallyDeleteArticleMdText(mdTextIList);
+            //删除分类
+            Long numberOfDeleteArticleOptionsInType = blogMapper.physicallyDeleteArticleInType(physicallyDeleteArticlesBo.getElements());
+            //删除题解体
+            Long numberOfDeleteQuestionAnswerOptions = questionAnswerMapper.deleteQuestionAnswer(physicallyDeleteArticlesBo.getElements());
+        } catch (Exception e) {
+            transactionUtils.rollback(begin);
+            e.printStackTrace();
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        transactionUtils.commit(begin);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 
 }

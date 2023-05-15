@@ -29,4 +29,6 @@ public interface QuestionCaseAttributeMapper {
      * @return
      */
     public Long updateQuestionCaseAttribute(@Param("questionId")Long questionId,@Param("num")Integer num,@Param("type")Integer type);
+
+
 }

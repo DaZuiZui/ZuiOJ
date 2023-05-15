@@ -17,6 +17,6 @@ public class SystemAopImpl implements SystemAop {
         ThreadLocalUtil.mapThreadLocalOfJWT.remove();
         ThreadLocalUtil.mapThreadLocal.remove();
         ThreadLocalUtil.DataOfThreadLocal.remove();
-        System.out.println("777");
+
     }
 }

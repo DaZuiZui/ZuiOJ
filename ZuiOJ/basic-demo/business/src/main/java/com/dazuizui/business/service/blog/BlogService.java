@@ -6,6 +6,7 @@ import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
+import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
@@ -82,4 +83,12 @@ public interface BlogService {
      * @return
      */
     public List<ArticleJSON> queryAllTopArticle();
+
+    /**
+     *  @Param physicallyDeleteArticlesBo
+     *  管理员批量删除物理删除博文
+     */
+    public String physicallyDeleteArticles(@RequestBody PhysicallyDeleteArticlesBo physicallyDeleteArticlesBo);
+
+
 }

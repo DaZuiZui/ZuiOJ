@@ -8,6 +8,7 @@ import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -127,6 +128,31 @@ public class BlogController {
     @PostMapping("/admin/adminDeleteAritcleById")
     @ApiOperation("管理员逻辑删除博文通过Id")
     public String adminDeleteAritcleById(@RequestBody AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo){
+        //身份验证过期或者权限不足的校验
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
         return blogService.adminDeleteAritcleById(adminDeleteAritcleByIdBo);
+    }
+
+    /**
+     *  @Param physicallyDeleteArticlesBo
+     *  管理员批量删除物理删除博文
+     */
+    @PostMapping("/admin/physicallyDeleteArticles")
+    @ApiOperation("管理员批量删除物理删除博文")
+    public String physicallyDeleteArticles(@RequestBody PhysicallyDeleteArticlesBo physicallyDeleteArticlesBo){
+        //身份验证过期或者权限不足的校验
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return blogService.physicallyDeleteArticles(physicallyDeleteArticlesBo);
     }
 }
