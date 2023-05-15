@@ -34,6 +34,7 @@ class BusinessApplicationTests {
     private AttributeMapper attributeMapper;
 
 
+
     @Autowired
     private StudentService studentService;
 
@@ -44,9 +45,8 @@ class BusinessApplicationTests {
     private CompetitionInfoMapper competitionInfoMapper;
     @Test
     void test1(){
-       // System.out.println(competitionInfoMapper.selectAllUserInTheContestByContestId(44l));
-        System.out.println(redisUtil.getStringInRedis("ZuiOJ:Conetst:CompetitionInfoInContest:Contest:44:1"));
-        System.out.println(redisUtil.getStringInRedis("ZuiOJ:Conetst:CompetitionInfoInContest:Contest:44:2"));
+        String key = (String) redisTemplate.randomKey();
+        System.out.println(key);
     }
 
     @Autowired

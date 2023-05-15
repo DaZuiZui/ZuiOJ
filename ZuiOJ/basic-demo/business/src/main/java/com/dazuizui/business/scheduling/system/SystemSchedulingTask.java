@@ -13,7 +13,7 @@ public class SystemSchedulingTask {
     /**
      * 宣传定时任务
      */
-    @Scheduled(fixedRate = 50000)
+    @Scheduled(fixedRate = 500000)
     private void configureTasks(){
         System.err.println("By Dazui from https://github.com/DaZuiZui");
         System.err.println("创作于 大嘴 来自 https://github.com/DaZuiZui");
