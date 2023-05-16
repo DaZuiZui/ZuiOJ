@@ -72,8 +72,8 @@
                         <td>
                             <el-link type="primary" @click="goQuestionCaseManagement(obj.id)">案例管理</el-link>
                             <el-link type="primary" @click="goUpdateQuestion(obj.id)">修改</el-link>
-                            <el-link type="warning">逻辑删除</el-link>
-                            <el-link type="danger" @click="physicalDeletion(obj.id,obj.questionType)">物理删除</el-link>
+                            <el-link type="warning" v-if="obj.delFlag == 0" @click="tombstone(obj.id,obj.questionType)">逻辑删除</el-link>
+                            <el-link type="danger" >物理删除</el-link>
                         </td>
                       </tr>
                     </tbody>
@@ -209,8 +209,8 @@
  
         },
         
-        //物理删除
-        async physicalDeletion(id,questionType){
+        //逻辑删除
+        async tombstone(id,questionType){
             this.questionInfo.id = id;
             this.questionInfo.questionType = questionType;
             this.questionInfo.token = getCookie("token");
@@ -218,10 +218,11 @@
             if(obj.code == "0x200"){
                 alert(obj.message);
                 //刷新数据
-                this.getMerchantInformation(this.curpage);
+                
             }else{
                 alert(obj.message);
             }
+            this.getMerchantInformation(this.curpage);
         },
         
         //题库案例管理

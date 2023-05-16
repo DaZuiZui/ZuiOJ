@@ -66,12 +66,12 @@ public class QuestionBankController {
     }
 
     /**
-     * 删除问题
+     * 逻辑删除问题
      *    同时也会删除案例
      * @param deleteQuestion
      * @return
      */
-    @ApiOperation("删除问题-同时也会删除所以案例")
+    @ApiOperation("逻辑删除问题-同时也会删除所以案例")
     @PostMapping("/admin/del")
     public String deleteQuestionById(@RequestBody DeleteQuestion deleteQuestion){
         //System.err.println("asdsa"+deleteQuestion);

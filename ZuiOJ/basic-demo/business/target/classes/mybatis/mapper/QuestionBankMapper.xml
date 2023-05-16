@@ -58,7 +58,7 @@
     </select>
 
     <!--
-        物理删除问题
+        逻辑删除问题
     -->
     <update id="deleteQuestionById">
         update

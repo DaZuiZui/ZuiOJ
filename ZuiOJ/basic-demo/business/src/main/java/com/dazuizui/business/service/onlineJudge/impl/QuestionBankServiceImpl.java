@@ -263,21 +263,41 @@ public class QuestionBankServiceImpl implements QuestionBankService {
      */
     @Override
     public String deleteQuestionById(Long id,Integer questionType) {
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
         try {
-            //数据库逻辑删除
-            questionBankMapper.deleteQuestionById(id);
-            //减少题目数量
-            questionBankAttributeMapper.updateQuestionnumber(1,questionType,0);
+            //通过id获取题目
+            QuestionBankVo  questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+id);
+            if (questionBankVo == null){
+                questionBankVo = questionBankMapper.adminGetQuestionById(id);
+                if (questionBankVo == null){
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+                redisUtil.setStringInRedis(RedisKey.ZuiOJQuestion+id,RedisKey.OutTime,questionBankVo);
+            }
 
+            //数据库逻辑删除
+            Long numberOfOptions = questionBankMapper.deleteQuestionById(id);
+            if (numberOfOptions == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCodeMessage.Error));
+            }
+            //减少题目数量
+            numberOfOptions = questionBankAttributeMapper.updateQuestionAttribute(4,questionBankVo.getStatus(),1l);
+            if (numberOfOptions == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCodeMessage.Error));
+            }
             //redis缓存删除
             redisUtil.deleteKey(RedisKey.ZuiOJQuestion+id);  //题目信息
             redisUtil.deleteKey(RedisKey.ZuiOJQuestionCase); //删除问题案例
         } catch (Exception e) {
+            transactionUtils.rollback(begin);
             e.printStackTrace();
             return JSONArray.toJSONString(new ResponseVo<>("操作失败",null,"0x500"));
         }
 
-        return JSONArray.toJSONString(new ResponseVo<>("操作成功",null,"0x200"));
+        transactionUtils.commit(begin);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null,StatusCodeMessage.OK));
     }
 
     /**

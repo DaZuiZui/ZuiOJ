@@ -20,8 +20,6 @@
         update
              question_bank_attribute
         <set>
-
-
             <if test="oldstatus == 0">
                 public_question = public_question - #{num},
             </if>
@@ -31,6 +29,13 @@
             <if test="oldstatus == 2">
                 private_question = private_question - #{num},
             </if>
+            <!--
+                被删除
+            -->
+            <if test="oldstatus == 4">
+                del_question = del_question - #{num}
+            </if>
+
             <!--
                 new data
             -->
@@ -42,6 +47,12 @@
             </if>
             <if test="status == 2">
                 private_question = private_question + #{num}
+            </if>
+            <!--
+                    被删除
+                -->
+            <if test="status == 4">
+                del_question = del_question + #{num}
             </if>
         </set>
     </update>
