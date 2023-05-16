@@ -5,6 +5,7 @@ import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
 import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.aop.blog.BlogAop;
+import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -144,9 +145,26 @@ public class BlogAopImpl implements BlogAop {
      * @return
      */
     @Override
+    @Before("execution(* com.dazuizui.business.controller.BlogController.adminGetArticleByPagin(..))")
     public String adminGetArticleByPagin(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         AdminGetArticleByPaginBo article = (AdminGetArticleByPaginBo) args[0];
+        String token = article.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
+        return null;
+    }
+
+    /**
+     * 管理员批量物理删除博文
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.BlogController.physicallyDeleteArticles(..))")
+    public String physicallyDeleteArticles(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        PhysicallyDeleteArticlesBo article = (PhysicallyDeleteArticlesBo) args[0];
         String token = article.getToken();
         systemVerifyService.veryfiAdmin(token,2);
         return null;

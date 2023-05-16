@@ -8,7 +8,7 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>  
-                <el-button type="primary" icon="el-icon-search" @click="physicallyDeleteArticles()" v-if="this.physicallyDeleteArticleButton">批量物理删除</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="physicallyDeleteArticles()" v-if="physicallyDeleteArticleButton">批量物理删除</el-button>
                 <br>       <br>
                 <table class="table">
                     <thead>
@@ -36,7 +36,7 @@
                     <tbody>
                       <tr v-for="obj in articleList" >
                         <th scope="row"> 
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="physicallyDeleteArticlesBo.elements" :value="obj.id" v-if="this.physicallyDeleteArticleButton" >
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="physicallyDeleteArticlesBo.elements" :value="obj.id" v-if="physicallyDeleteArticleButton" >
                         </th>
                         
                         <td>
@@ -253,6 +253,7 @@
             this.currentPage = val;
             //获取
             let obj = await synRequestPost("/blog/admin/adminGetArticleByPagin",this.adminGetArticleByPaginBo);
+            console.log(obj);
             if(check(obj)){
                 //如果当前获取为null并且不是第一页就自动查询上一页
                 if(obj.data == null && this.currentPage > 1){

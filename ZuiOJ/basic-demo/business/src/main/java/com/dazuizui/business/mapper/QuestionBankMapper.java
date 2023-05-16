@@ -4,6 +4,7 @@ import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.business.domain.UpdateQuestion;
+import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -108,4 +109,5 @@ public interface QuestionBankMapper {
 
 
 
+    public List<QuestionBank> pagingToGetQuestionBankListByStatusAndDelFlag(PagingToGetQuestionBankListByStatusAndDelFlagVo pagingToGetQuestionBankListByStatusAndDelFlagVo);
 }

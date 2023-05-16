@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.blog;
 
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
+import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
@@ -42,4 +43,14 @@ public interface BlogAop {
      * @return
      */
     public String adminGetArticleByPagin(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 管理员批量删除博文aop
+     *      主要负责管理权限的鉴权
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    public String physicallyDeleteArticles(JoinPoint joinpoint) throws Exception;
 }
