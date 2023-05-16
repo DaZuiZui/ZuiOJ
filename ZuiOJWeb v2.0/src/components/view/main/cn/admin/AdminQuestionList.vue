@@ -42,10 +42,8 @@
                               </b>
                         </td>
                         <td>
-                            <div v-if="obj.delFlag == 1">
-                                逻辑删除
-                            </div>
-                            <div v-else-if="obj.grade == 1" style="color:green">
+                         
+                            <div v-if="obj.grade == 1" style="color:green">
                                 Easy
                             </div>    
                             <div v-else-if="obj.grade == 2" style="color:darksalmon">
@@ -56,7 +54,10 @@
                             </div>   
                         </td>
                         <td>
-                          <div v-if="obj.status == 0"> 
+                          <div v-if="obj.delFlag == 1">
+                            逻辑删除
+                        </div>
+                          <div v-else-if="obj.status == 0"> 
                                 公开
                           </div>
                           <div v-else-if="obj.status == 1"> 
