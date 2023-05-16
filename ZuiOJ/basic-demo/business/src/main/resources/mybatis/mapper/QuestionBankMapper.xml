@@ -233,5 +233,32 @@
         )
     </insert>
 
+    <!--
+       分页获取题库 通过status 和delFLag
+    -->
+    <select id="pagingToGetQuestionBankListByStatusAndDelFlag"  resultType="com.dazuizui.basicapi.entry.QuestionBank">
+        select
+            id,
+            short_name,
+            chinese_name,
+            grade,
+            create_by_name,
+            status,
+               del_flag
+        from
+            question_bank
+        <where>
+            <if test="delFlag == 1">
+                del_flag = #{delFlag}
+            </if>
+            <if test="delFlag == 0">
+                status = #{status} and
+                del_flag = #{delFlag}
+            </if>
+        </where>
 
+        limit
+            #{start},
+            #{number}
+    </select>
 </mapper>

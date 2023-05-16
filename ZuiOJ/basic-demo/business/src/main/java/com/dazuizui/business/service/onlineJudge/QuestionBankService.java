@@ -1,21 +1,25 @@
 package com.dazuizui.business.service.onlineJudge;
 
-import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
+import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Service
 public interface QuestionBankService {
+    /**
+     * 分页获取题库通过status and delflag
+     * @param pagingToGetQuestionBankListByStatusAndDelFlagVo
+     * @return
+     */
+    public String pagingToGetQuestionBankListByStatusAndDelFlag(PagingToGetQuestionBankListByStatusAndDelFlagBo pagingToGetQuestionBankListByStatusAndDelFlagVo);
+
     /**
      * 修改题目和题目limit
      * @param questionAndLimitByQuestionIdBo

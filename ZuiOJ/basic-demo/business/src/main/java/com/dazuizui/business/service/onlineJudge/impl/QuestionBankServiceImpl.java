@@ -7,8 +7,11 @@ import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.QuestionBankAttribute;
+import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.domain.vo.AdminGetQuestionByIdVo;
+import com.dazuizui.business.domain.vo.PagingToGetQuestionBankListByStatusAndDelFlagVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.service.onlineJudge.ProblemLimitService;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
@@ -45,7 +48,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     @Autowired
     private QuestionAnswerAttributeMapper questionAnswerAttributeMapper;
     @Autowired
-    private QuestionBankAttribute questionBankAttribute;
+    private QuestionBankAttributeMapper questionBankAttributeMapper;
     @Autowired
     private ProblemLimitMapper problemLimitMapper;
     @Autowired
@@ -99,7 +102,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 //修改类型个数
                 System.err.println(questionAndLimitByQuestionIdBo.getOldstatus() + " "+
                         questionAndLimitByQuestionIdBo.getQuestionBankVo().getStatus() );
-                aLong = questionBankAttribute.updateQuestionAttribute(
+                aLong = questionBankAttributeMapper.updateQuestionAttribute(
                         questionAndLimitByQuestionIdBo.getQuestionBankVo().getStatus(),
                         questionAndLimitByQuestionIdBo.getOldstatus(),
                         1l
@@ -218,7 +221,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             }
             //增加题数量
             int status = questionBankBo.getStatus();
-            aLong = questionBankAttribute.updateQuestionnumber(1,status, 1);
+            aLong = questionBankAttributeMapper.updateQuestionnumber(1,status, 1);
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
@@ -264,7 +267,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             //数据库逻辑删除
             questionBankMapper.deleteQuestionById(id);
             //减少题目数量
-            questionBankAttribute.updateQuestionnumber(1,questionType,0);
+            questionBankAttributeMapper.updateQuestionnumber(1,questionType,0);
 
             //redis缓存删除
             redisUtil.deleteKey(RedisKey.ZuiOJQuestion+id);  //题目信息
@@ -296,7 +299,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         /**
          * 查看总数量
          */
-        Long countOfQuestion  = questionBankAttribute.adminQueryQuestionListDidNotDeleteQuestion();
+        Long countOfQuestion  = questionBankAttributeMapper.adminQueryQuestionListDidNotDeleteQuestion();
 
         //查看全部题库
         List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestionOfAdmin(pages, number);
@@ -373,7 +376,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             }
             //增加题数量
             int status = questionBankBo.getStatus();
-            aLong = questionBankAttribute.updateQuestionnumber(1,status, 1);
+            aLong = questionBankAttributeMapper.updateQuestionnumber(1,status, 1);
             if (aLong == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
@@ -484,5 +487,31 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     @Override
     public String getQuestionByIdDuringContest(String token, Long id, Integer questionType, Long contestId) {
         return null;
+    }
+
+    /**
+     * 分页获取题库通过status and delflag
+     * @param pagingToGetQuestionBankListByStatusAndDelFlagBo
+     * @return
+     */
+    @Override
+    public String pagingToGetQuestionBankListByStatusAndDelFlag(PagingToGetQuestionBankListByStatusAndDelFlagBo pagingToGetQuestionBankListByStatusAndDelFlagBo){
+        //获取数量
+         QuestionBankAttribute countOfArticles = this.questionBankAttributeMapper.queryNumberOfArticles();
+        //获取数据
+        List<QuestionBank> questionBanks = questionBankMapper.pagingToGetQuestionBankListByStatusAndDelFlag(pagingToGetQuestionBankListByStatusAndDelFlagBo);
+        //封装
+        PagingToGetQuestionBankListByStatusAndDelFlagVo pagingToGetQuestionBankListByStatusAndDelFlagVo = new PagingToGetQuestionBankListByStatusAndDelFlagVo();
+        pagingToGetQuestionBankListByStatusAndDelFlagVo.setQuestionBanks(questionBanks);
+
+        //通过指定状态返回指定数量
+        pagingToGetQuestionBankListByStatusAndDelFlagVo.setCount(
+                pagingToGetQuestionBankListByStatusAndDelFlagBo.getDelFlag() == 1 ? countOfArticles.getDelQuestion() :
+                        pagingToGetQuestionBankListByStatusAndDelFlagBo.getStatus() == 0 ?
+                        countOfArticles.getPublicQuestion() : pagingToGetQuestionBankListByStatusAndDelFlagBo.getStatus() == 1 ?
+                        countOfArticles.getExamQuestion() :     countOfArticles.getPrivateQuestion()
+        );
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,pagingToGetQuestionBankListByStatusAndDelFlagVo,StatusCode.OK));
     }
 }

@@ -1,12 +1,10 @@
 package com.dazuizui.business.service.blog;
 
 import com.dazuizui.basicapi.entry.ArticleJSON;
-import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
-import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
-import com.dazuizui.business.domain.bo.CreateArticleBo;
+import com.dazuizui.basicapi.entry.QuestionBank;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
-import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;

@@ -3,13 +3,9 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.basicapi.entry.QuestionBank;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
-import com.dazuizui.business.domain.UpdateQuestion;
-import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagVo;
-import io.swagger.annotations.ApiOperation;
+import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -108,6 +104,10 @@ public interface QuestionBankMapper {
     public QuestionBankVo getQuestionByIdDuringContest(@Param("id") Long id,@Param("delFlag")int delFlag);
 
 
-
-    public List<QuestionBank> pagingToGetQuestionBankListByStatusAndDelFlag(PagingToGetQuestionBankListByStatusAndDelFlagVo pagingToGetQuestionBankListByStatusAndDelFlagVo);
+    /**
+     * 分页获取题库通过status and delflag
+     * @param pagingToGetQuestionBankListByStatusAndDelFlagVo
+     * @return
+     */
+    public List<QuestionBank> pagingToGetQuestionBankListByStatusAndDelFlag(PagingToGetQuestionBankListByStatusAndDelFlagBo pagingToGetQuestionBankListByStatusAndDelFlagVo);
 }

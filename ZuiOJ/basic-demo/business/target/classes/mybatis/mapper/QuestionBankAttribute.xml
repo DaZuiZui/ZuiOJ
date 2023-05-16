@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dazuizui.business.mapper.QuestionBankAttribute">
+<mapper namespace="com.dazuizui.business.mapper.QuestionBankAttributeMapper">
     <!--
         管理员查看题目数量没有删除题目
     -->
@@ -79,4 +79,14 @@
             </if>
         </set>
     </update>
+
+    <!--
+        查询数量
+    -->
+    <select id="queryNumberOfArticles" resultType="com.dazuizui.business.domain.QuestionBankAttribute">
+        select
+            *
+        from
+            question_bank_attribute
+    </select>
 </mapper>

@@ -1,15 +1,14 @@
 package com.dazuizui.business.mapper;
 
-import io.swagger.models.auth.In;
+import com.dazuizui.business.domain.QuestionBankAttribute;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * 题目据个数
  */
 @Mapper
-public interface QuestionBankAttribute {
+public interface QuestionBankAttributeMapper {
     /**
      * 管理员查看没有被删除的题目数量
      * @return
@@ -28,4 +27,10 @@ public interface QuestionBankAttribute {
      * 更改题目数量 new
      */
     public Long updateQuestionAttribute(@Param("status")Integer status,@Param("oldstatus")Integer oldstatus,@Param("num")Long num);
+
+    /**
+     * 查询数量
+     * @return
+     */
+    public QuestionBankAttribute queryNumberOfArticles();
 }

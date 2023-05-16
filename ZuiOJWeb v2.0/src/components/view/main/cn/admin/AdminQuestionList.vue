@@ -15,7 +15,12 @@
                         <th scope="col">编号</th>
                         <th scope="col">题目</th>
                         <th scope="col">难度</th>
-                        <th scope="col">状态</th>
+                        <th scope="col">状态
+                          <a @click="nextStatus()">
+                            <svg t="1680530967416" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2753" width="20" height="20"><path d="M170.666667 392.533333L349.866667 213.333333l29.866666 29.866667-149.333333 149.333333h669.866667v42.666667H128l42.666667-42.666667z m682.666666 213.333334l-179.2 179.2-29.866666-29.866667 149.333333-149.333333H132.266667v-42.666667H896l-42.666667 42.666667z" fill="#1296db" p-id="2754"></path></svg>    
+                          </a>
+
+                        </th>
                         <th scope="col">出题人</th>
                         <th scope="col">
                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -37,7 +42,10 @@
                               </b>
                         </td>
                         <td>
-                            <div v-if="obj.grade == 1" style="color:green">
+                            <div v-if="obj.delFlag == 1">
+                                逻辑删除
+                            </div>
+                            <div v-else-if="obj.grade == 1" style="color:green">
                                 Easy
                             </div>    
                             <div v-else-if="obj.grade == 2" style="color:darksalmon">
@@ -109,8 +117,20 @@
             questionType: -1,
             token: "",
         },
-
+        //当前页数
         curpage: 1,
+        //当前状态 因为考试题目和公开题目会同时显示，公开题目代表的状态是0.考试题目代表是1
+        //隐私是2 逻辑删除是3，为了保证后两者所以从2开始
+        curstatus: 2,
+
+        //分页置顶文章状态获取数据
+        pagingToGetQuestionBankListByStatusAndDelFlagBo: {
+          token: "",
+          status: 0,
+          number: 50,
+          start: 0,
+          delFlag: 0
+        }
       }
     },
     mounted(){
@@ -118,6 +138,52 @@
         this.getMerchantInformation(1);
     },
     methods: {
+        //切换下一个状态
+        async nextStatus(){
+          //查看公开题库
+          if(this.curstatus == 0){
+            //包含考试题库 普通题库
+            this.curstatus += 1;
+            this.getMerchantInformation(1);
+          }
+          //查看私有的题库
+          else if(this.curstatus == 2){
+            this.pagingToGetQuestionBankListByStatusAndDelFlagBo.status = 2;
+            this.pagingToGetQuestion(1);
+          }
+          //查看被删除的题库
+          else if(this.curstatus == 3){
+            this.pagingToGetQuestionBankListByStatusAndDelFlagBo.status = 0;
+            this.pagingToGetQuestionBankListByStatusAndDelFlagBo.delFlag = 1;
+            this.pagingToGetQuestion(1);
+            this.curstatus = -1;
+          }
+
+          this.pagingToGetQuestionBankListByStatusAndDelFlagBo.delFlag = 0;
+          this.curstatus += 1;
+        },
+        /*
+         * 分页获取数据
+         */
+        async pagingToGetQuestion(val){
+            this.pagingToGetQuestionBankListByStatusAndDelFlagBo.token = getCookie("token");
+            this.curpage = val;
+            let obj = await synRequestPost("/question/admin/pagingToGetQuestionBankListByStatusAndDelFlag",this.pagingToGetQuestionBankListByStatusAndDelFlagBo);
+            if(check(obj)){
+              //获取当前数据为null的情况
+              if(obj.data.questionBanks.length == 0){
+                  if(this.curpage <= 1){
+                      alert("无数据");
+                      return ;
+                  }
+                  this.pagingToGetQuestion(this.curpage-1);
+              }
+
+              this.count = obj.data.count;
+              this.questionList = obj.data.questionBanks;
+            }
+        },
+
         //跳转指定页面
         async getMerchantInformation(val){   
             //记录当前选择的页面
@@ -140,7 +206,7 @@
 
             this.count = obj.data.countOfQuestion;
             this.questionList = obj.data.questionBanks;
-            console.log(obj.data.questionBanks);
+ 
         },
         
         //物理删除

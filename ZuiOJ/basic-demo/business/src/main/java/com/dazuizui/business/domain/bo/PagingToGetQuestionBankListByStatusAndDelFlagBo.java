@@ -1,13 +1,11 @@
 package com.dazuizui.business.domain.bo;
 
-import org.apache.ibatis.annotations.Param;
-
 import java.io.Serializable;
 
 /**
  * 分页获取题库通过Status 和 DelFLag
  */
-public class PagingToGetQuestionBankListByStatusAndDelFlagVo implements Serializable {
+public class PagingToGetQuestionBankListByStatusAndDelFlagBo implements Serializable {
     private String token;
     private Long status;
     private Integer number;
@@ -56,7 +54,7 @@ public class PagingToGetQuestionBankListByStatusAndDelFlagVo implements Serializ
 
     @Override
     public String toString() {
-        return "PagingToGetQuestionBankListByStatusAndDelFlagVo{" +
+        return "PagingToGetQuestionBankListByStatusAndDelFlagBo{" +
                 "token='" + token + '\'' +
                 ", status=" + status +
                 ", number=" + number +
@@ -65,10 +63,10 @@ public class PagingToGetQuestionBankListByStatusAndDelFlagVo implements Serializ
                 '}';
     }
 
-    public PagingToGetQuestionBankListByStatusAndDelFlagVo() {
+    public PagingToGetQuestionBankListByStatusAndDelFlagBo() {
     }
 
-    public PagingToGetQuestionBankListByStatusAndDelFlagVo(String token, Long status, Integer number, Integer start, Integer delFlag) {
+    public PagingToGetQuestionBankListByStatusAndDelFlagBo(String token, Long status, Integer number, Integer start, Integer delFlag) {
         this.token = token;
         this.status = status;
         this.number = number;

@@ -7,15 +7,13 @@ import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
-import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +22,7 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/question")
+@Api(value = "题库控制器",tags = {"题库控制器"})
 public class QuestionBankController {
 
     @Autowired
@@ -184,5 +183,26 @@ public class QuestionBankController {
     @GetMapping("/getQuestionByIdDuringContest")
     public String getQuestionByIdDuringContest(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType,@RequestParam("contestId")Long contestId){
         return "";
+    }
+
+
+    /**
+     * 分页获取题库通过status and delflag
+     * @param pagingToGetQuestionBankListByStatusAndDelFlagBo
+     * @return
+     */
+    @ApiOperation("分页获取题库通过status and delflag")
+    @PostMapping("/admin/pagingToGetQuestionBankListByStatusAndDelFlag")
+    public String pagingToGetQuestionBankListByStatusAndDelFlag(@RequestBody PagingToGetQuestionBankListByStatusAndDelFlagBo pagingToGetQuestionBankListByStatusAndDelFlagBo){
+        System.err.println("222");
+        //查看aop前置环绕是否出现问题
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return questionBankService.pagingToGetQuestionBankListByStatusAndDelFlag(pagingToGetQuestionBankListByStatusAndDelFlagBo);
     }
 }
