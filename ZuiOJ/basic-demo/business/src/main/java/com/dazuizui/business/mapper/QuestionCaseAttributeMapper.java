@@ -3,6 +3,8 @@ package com.dazuizui.business.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 问题案例属性
  */
@@ -30,5 +32,10 @@ public interface QuestionCaseAttributeMapper {
      */
     public Long updateQuestionCaseAttribute(@Param("questionId")Long questionId,@Param("num")Integer num,@Param("type")Integer type);
 
-
+    /**
+     *  delte question case attribute by question id list
+     * @param list
+     * @return
+     */
+    public Long deleteByQuestionidList(@Param("list") List list);
 }

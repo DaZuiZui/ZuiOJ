@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Service
 public interface QuestionBankService {
     /**
@@ -92,4 +94,11 @@ public interface QuestionBankService {
      * @return
      */
     public String getQuestionByIdDuringContest(@RequestParam("token")String token,@RequestParam("id")Long id,@RequestParam("questionType") Integer questionType,@RequestParam("contestId")Long contestId);
+
+    /**
+     * 批量删除题库
+     * @return
+     */
+    public String batchDeleteQuestions(@Param("list")List list);
 }
+

@@ -63,4 +63,11 @@ public interface QuestionCaseMapper {
      * 通过id查询指定数量
      */
     public Long queryCountOfCase(@Param("questionId") Long questionId);
+
+    /**
+     * 通过question id list 删除
+     * @param list
+     * @return
+     */
+    public Long deleteByQuestionidList(@Param("list")List list);
 }

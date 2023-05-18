@@ -3,6 +3,8 @@ package com.dazuizui.business.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 题解数量Mapper
  */
@@ -28,4 +30,11 @@ public interface QuestionAnswerAttributeMapper {
      * 查看题解数量
      */
     public Long queryNumberOfQuestionByStatus(@Param("questionId")Long questionId,@Param("status")Integer status);
+
+    /**
+     * 批量删除题解属性通过question id list
+     * @param list
+     * @return
+     */
+    public Long deleteQuestionAnswerAttributeByQuestionIdList(@Param("list") List list);
 }

@@ -4,6 +4,8 @@ import com.dazuizui.basicapi.entry.ProblemLimit;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  *
  */
@@ -28,4 +30,13 @@ public interface ProblemLimitMapper {
      * @return
      */
     public Long updateTheprolemLimitById(ProblemLimit problemLimit);
+
+    /**
+     * 删除题解通过question id list
+     * @param list
+     * @return
+     */
+    public Long deleteByQuestionIdList(@Param("list")List<Long> list);
+
+
 }

@@ -37,4 +37,11 @@ public interface QuestionAnswerMapper {
      * @return
      */
     public Long deleteQuestionAnswer(@Param("list") List<Long> list);
+
+    /**
+     * 批量删除题解通过question id list
+     * @param list
+     * @return
+     */
+    public Long deleteQuestionAnswerByQuestionIdList(@Param("list") List list);
 }

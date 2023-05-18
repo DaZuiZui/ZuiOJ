@@ -110,4 +110,16 @@ public interface QuestionBankMapper {
      * @return
      */
     public List<QuestionBank> pagingToGetQuestionBankListByStatusAndDelFlag(PagingToGetQuestionBankListByStatusAndDelFlagBo pagingToGetQuestionBankListByStatusAndDelFlagVo);
+
+    /**
+     * 获取题目Mdtext Id list
+     */
+    public List<Long> getQuestionMdTesxtId(@Param("list")List list);
+
+    /**
+     * 批量删除文章
+     * @param list
+     * @return
+     */
+    public Long batchDeleteQuestions(@Param("list") List list);
 }

@@ -56,5 +56,18 @@
         )
     </insert>
 
+    <!--
+        删除题目限制id
+    -->
+    <delete id="deleteByQuestionIdList">
+        delete from
+            problem_limit
+        where
+            question_id
+        in
+        <foreach collection="list" separator="," open="(" close=")" item="tmp">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

@@ -3,6 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.QuestionCaseMapper">
+
+    <delete id="deleteByQuestionidList">
+        delete from
+            question_case
+        where
+            question_id
+        in
+            <foreach collection="list" item="tmp" separator="," open="(" close=")">
+                #{tmp}
+            </foreach>
+    </delete>
+
     <!--
         删除案例
     -->

@@ -69,4 +69,19 @@
             </foreach>
     </delete>
 
+    <!--
+        deleteQuestionAnswerByQuestionIdList
+    -->
+    <delete id="deleteQuestionAnswerByQuestionIdList">
+        delete from
+            question_answer
+        where
+            question_id
+        in
+            <foreach collection="list" separator="," open="(" close=")" item="tmp">
+                #{id}
+            </foreach>
+    </delete>
+
+
 </mapper>

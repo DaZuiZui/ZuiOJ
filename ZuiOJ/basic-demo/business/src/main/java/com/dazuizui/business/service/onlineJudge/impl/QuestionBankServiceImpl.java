@@ -53,8 +53,10 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private ProblemLimitMapper problemLimitMapper;
     @Autowired
     private ProblemLimitService problemLimitService;
-
-
+    @Autowired
+    private QuestionBankDetailedMapper questionBankDetailedMapper;
+    @Autowired
+    private QuestionAnswerMapper questionAnswerMapper;
 
     /**
      * 修改题目info和limit
@@ -507,6 +509,56 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     @Override
     public String getQuestionByIdDuringContest(String token, Long id, Integer questionType, Long contestId) {
         return null;
+    }
+
+    /**
+     * 批量删除题目
+     * @param list
+     * @return
+     */
+    @Override
+    public String batchDeleteQuestions(List list) {
+        //获取文章Mdtext Id
+        List<Long> questionMdTesxtId = questionBankMapper.getQuestionMdTesxtId(list);
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        try {
+            //批量删除mdtext
+            Long numberOfOptions = questionBankDetailedMapper.batchDeleteMdtextOfQuestions(questionMdTesxtId);
+            if (numberOfOptions == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
+            }
+            //批量删除问题
+            numberOfOptions = questionBankMapper.batchDeleteQuestions(list);
+            if (numberOfOptions == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
+            }
+            //删除题目内存限制
+            numberOfOptions = problemLimitMapper.deleteByQuestionIdList(list);
+            if (numberOfOptions == 0){
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
+            }
+            //删除案例
+            questionCaseMapper.deleteByQuestionidList(list);
+            //删除案例个数
+            questionCaseAttributeMapper.deleteByQuestionidList(list);
+            //删除题解
+            questionAnswerMapper.deleteQuestionAnswerByQuestionIdList(list);
+            //删除题解属性
+            questionAnswerAttributeMapper.deleteQuestionAnswerAttributeByQuestionIdList(list);
+            //todo 删除该题目所有通关记录
+
+            //todo 清除redis
+        } catch (Exception e) {
+            e.printStackTrace();
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
+        }
+        transactionUtils.commit(begin);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null,StatusCode.OK));
     }
 
     /**
