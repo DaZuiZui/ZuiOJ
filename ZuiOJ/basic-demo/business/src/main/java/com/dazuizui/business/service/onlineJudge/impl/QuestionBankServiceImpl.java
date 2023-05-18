@@ -546,6 +546,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 transactionUtils.rollback(begin);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
             }
+            /*
             //删除案例
             questionCaseMapper.deleteByQuestionidList(list);
             //删除案例个数
@@ -562,7 +563,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             codeDetailedInContestMapper.deleteByQuestionIdList(list);
             //删除比赛时提交记录
             acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
-
+            */
         } catch (Exception e) {
             e.printStackTrace();
             transactionUtils.rollback(begin);
