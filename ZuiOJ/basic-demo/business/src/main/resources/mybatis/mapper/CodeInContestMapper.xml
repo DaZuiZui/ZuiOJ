@@ -24,4 +24,35 @@
             #{acContestQuestionId}
         )
     </insert>
+
+    <!--
+        删除在比赛的时候提交的代码信息
+    -->
+    <select id="queryTheCodeOfSummitByQuestionIdList" resultType="long">
+        select
+            code_id
+        from
+            code_in_contest
+        where
+            question_id
+        in
+        <foreach collection="list" item="tmp" close=")" open="(" separator=",">
+            #{tmp}
+        </foreach>
+    </select>
+
+    <!--
+        删除比赛时候code简介页面
+    -->
+    <delete id="deleteTheCodeProfileInfoOfSummitByQuestionIdList">
+        delete from
+            code_in_contest
+        where
+            question_id
+        in
+        <foreach collection="list" item="tmp" close=")" open="(" separator=",">
+            #{tmp}
+        </foreach>
+    </delete>
+
 </mapper>

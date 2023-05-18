@@ -104,4 +104,11 @@ public interface AcContestQuestionMapper {
      * @return
      */
     public AcContestQuestion findOneById(@Param("id")Long id);
+
+    /**
+     * 删除此题通关记录通过quesiton Id list
+     */
+    public Long deleteAcContestQuestionByQuestionIdList(@Param("list")List list);
+
+
 }

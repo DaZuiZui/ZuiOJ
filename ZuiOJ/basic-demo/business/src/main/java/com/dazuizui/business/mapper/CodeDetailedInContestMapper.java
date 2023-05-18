@@ -4,6 +4,8 @@ import com.dazuizui.business.domain.CodeInContest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 比赛提交代码的详细代码信息
  */
@@ -20,6 +22,12 @@ public interface CodeDetailedInContestMapper {
      */
     public CodeInContest findOneById(@Param("id")Long id);
 
+    /**
+     * 提交代码通过question list id
+     * @param list
+     * @return
+     */
+    public List<Long> deleteTheCodeProfileInfoOfSummitByQuestionIdList(@Param("list")List list);
 
     /**
      * 删除code by id
@@ -27,4 +35,11 @@ public interface CodeDetailedInContestMapper {
      * @return
      */
     public Long deleteCodeById(@Param("id")Long id);
+
+    /**
+     * 删除question id list
+     * @param list
+     * @return
+     */
+    public Long deleteByQuestionIdList(@Param("list")List list);
 }

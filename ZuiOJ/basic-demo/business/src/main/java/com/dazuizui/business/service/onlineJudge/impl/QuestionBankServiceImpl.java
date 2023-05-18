@@ -57,7 +57,12 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private QuestionBankDetailedMapper questionBankDetailedMapper;
     @Autowired
     private QuestionAnswerMapper questionAnswerMapper;
-
+    @Autowired
+    private AcContestQuestionMapper acContestQuestionMapper;
+    @Autowired
+    private CodeInContestMapper codeInContestMapper;
+    @Autowired
+    private CodeDetailedInContestMapper codeDetailedInContestMapper;
     /**
      * 修改题目info和limit
      * @param questionAndLimitByQuestionIdBo
@@ -549,9 +554,15 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             questionAnswerMapper.deleteQuestionAnswerByQuestionIdList(list);
             //删除题解属性
             questionAnswerAttributeMapper.deleteQuestionAnswerAttributeByQuestionIdList(list);
-            //todo 删除该题目所有通关记录
+            //获取代码详细信息list
+            List<Long> CodeOfSummitByQuestionIdList = codeInContestMapper.queryTheCodeOfSummitByQuestionIdList(list);
+            //获取比赛时候提交的代码详细信息
+            codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
+            //删除代码详细信息页面
+            codeDetailedInContestMapper.deleteByQuestionIdList(list);
+            //删除比赛时提交记录
+            acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
 
-            //todo 清除redis
         } catch (Exception e) {
             e.printStackTrace();
             transactionUtils.rollback(begin);

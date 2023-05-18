@@ -37,4 +37,18 @@
         where
             id = #{id}
     </delete>
+
+    <!--
+        删除code简介页面
+    -->
+    <delete id="deleteByQuestionIdList">
+        delete from
+            code_detailed_in_contest
+        where
+            question_id
+        in
+            <foreach collection="list" item="tmp" close=")" open="(" separator=",">
+                #{tmp}
+            </foreach>
+    </delete>
 </mapper>

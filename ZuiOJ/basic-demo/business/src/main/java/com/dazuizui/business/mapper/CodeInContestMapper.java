@@ -4,6 +4,8 @@ import com.dazuizui.business.domain.CodeInContest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 保存ac代码简介文件
  */
@@ -20,4 +22,21 @@ public interface CodeInContestMapper {
      * 通过id查询代码详细信息
      */
     public CodeInContest findOneById(@Param("id")Long id);
+
+    /**
+     * 提交代码通过question kist id
+     * @param list
+     * @return
+     */
+    public List<Long> queryTheCodeOfSummitByQuestionIdList(@Param("list")List list);
+
+    /**
+     * 提交代码通过question list id
+     * @param list
+     * @return
+     */
+    public List<Long> deleteTheCodeProfileInfoOfSummitByQuestionIdList(@Param("list")List list);
+
+
+
 }
