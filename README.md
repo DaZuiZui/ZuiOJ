@@ -1,5 +1,5 @@
 # OJ system
-休息几天，有点肝不动了，收到这么多star，感谢大家的喜欢，这几天更新缓慢一点
+休息几天 
 ## Developer
  
 ## Environment preparation
