@@ -220,8 +220,41 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        
+                    <div class="py-6">
+                        <div class="row row-grid justify-content-between align-items-center">
+                            <div class="col-lg-5">
+                                <h5 class="h3">Dazui的一些建议</h5>
+                                <p class="lead my-4">
+                                    &nbsp; &nbsp; &nbsp; &nbsp;在学编程这个行业，我们一定要学会自学，在大学未毕业期间一定要找编程行业的实习尽早确定自己的目标（如前端、后端）。
+                               </p>
+                               <p class="lead my-4">
+                                    &nbsp; &nbsp; &nbsp; &nbsp;在大学期间一定要攒下来一点钱，在大学期间一定要谈有营养的恋爱！何为营养？真正的有营养的恋爱是不会影响正常学习任务的，两个人互相学习互相成长，相依为伴。不要去上没用的水课去浪费自己的生命。
+                                </p>
+
+                                <p class="lead my-4">
+                                    &nbsp; &nbsp; &nbsp; &nbsp; 今早的接触开源社区Github，成为你最大的亮点。去贡献去制作去开发。
+                                </p>
+                                <p class="lead my-4">
+                                    &nbsp; &nbsp; &nbsp; &nbsp; 英语是程序员的必修课，不要给自己找理由。英语的重要性要大于编程，不要把你的圈子仅限于中国，看看世界，去追寻一些答案。
+                                </p>
+                                <p class="lead my-4">
+                                    &nbsp; &nbsp; &nbsp; &nbsp; 虚心请教，耐心带领新人。
+                                </p>
+                                <ul class="list-unstyled mb-0">
+                                  
+                         
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card mb-0 ml-lg-5">
+                                    <div class="card-body p-2">
+                                        <img alt="Image placeholder" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202102%2F25%2F20210225201342_007b7.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1687957206&t=ae95832427dfd82b0670eeb900526c23" class="img-fluid shadow rounded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
