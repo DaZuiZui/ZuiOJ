@@ -240,7 +240,7 @@
                                     &nbsp; &nbsp; &nbsp; &nbsp; 英语是程序员的必修课，不要给自己找理由。英语的重要性要大于编程，不要把你的圈子仅限于中国，看看世界，去追寻一些答案。
                                 </p>
                                 <p class="lead my-4">
-                                    &nbsp; &nbsp; &nbsp; &nbsp; 虚心请教，耐心带领新人。
+                                    &nbsp; &nbsp; &nbsp; &nbsp; 虚心请教，耐心带领新人。  
                                 </p>
                                 <ul class="list-unstyled mb-0">
                                   
