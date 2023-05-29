@@ -12,7 +12,6 @@
      * 事物工具类
      */
     @Component
-    @Scope("prototype")
     public class TransactionUtils {
         @Autowired
         private DataSourceTransactionManager transactionManager;
