@@ -1,7 +1,7 @@
 package com.dazuizui.basicapi.entry;
 
 /**
- * 哈尔滨广厦学院key
+ * ZuiBLog key
  */
 public class ApplicationKey {
     /**

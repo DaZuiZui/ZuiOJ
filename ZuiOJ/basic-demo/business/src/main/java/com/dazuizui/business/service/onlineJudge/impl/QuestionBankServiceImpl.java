@@ -547,22 +547,22 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
             }
             /*
-            //删除案例
-            questionCaseMapper.deleteByQuestionidList(list);
-            //删除案例个数
-            questionCaseAttributeMapper.deleteByQuestionidList(list);
-            //删除题解
-            questionAnswerMapper.deleteQuestionAnswerByQuestionIdList(list);
-            //删除题解属性
-            questionAnswerAttributeMapper.deleteQuestionAnswerAttributeByQuestionIdList(list);
-            //获取代码详细信息list
-            List<Long> CodeOfSummitByQuestionIdList = codeInContestMapper.queryTheCodeOfSummitByQuestionIdList(list);
-            //获取比赛时候提交的代码详细信息
-            codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
-            //删除代码详细信息页面
-            codeDetailedInContestMapper.deleteByQuestionIdList(list);
-            //删除比赛时提交记录
-            acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
+                //删除案例
+                questionCaseMapper.deleteByQuestionidList(list);
+                //删除案例个数
+                questionCaseAttributeMapper.deleteByQuestionidList(list);
+                //删除题解
+                questionAnswerMapper.deleteQuestionAnswerByQuestionIdList(list);
+                //删除题解属性
+                questionAnswerAttributeMapper.deleteQuestionAnswerAttributeByQuestionIdList(list);
+                //获取代码详细信息list
+                List<Long> CodeOfSummitByQuestionIdList = codeInContestMapper.queryTheCodeOfSummitByQuestionIdList(list);
+                //获取比赛时候提交的代码详细信息
+                codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
+                //删除代码详细信息页面
+                codeDetailedInContestMapper.deleteByQuestionIdList(list);
+                //删除比赛时提交记录
+                acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
             */
         } catch (Exception e) {
             e.printStackTrace();

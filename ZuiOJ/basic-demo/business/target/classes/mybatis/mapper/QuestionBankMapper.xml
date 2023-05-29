@@ -261,4 +261,34 @@
             #{start},
             #{number}
     </select>
+
+    <!--
+        获取文章md text list
+    -->
+    <select id="getQuestionMdTesxtId" resultType="long">
+        select
+            *
+        from
+            question_bank
+        where
+            id
+        in
+        <foreach collection="lits" item="tmp" close=")" open="(" separator=",">
+            #{tmp}
+        </foreach>
+    </select>
+
+    <!--
+        批量删除题解
+    -->
+    <delete id="batchDeleteQuestions">
+        delete from
+            question_bank
+        where
+            id
+        in
+            <foreach collection="lits" item="tmp" close=")" open="(" separator=",">
+                #{tmp}
+            </foreach>
+    </delete>
 </mapper>

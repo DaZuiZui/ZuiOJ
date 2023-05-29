@@ -236,8 +236,20 @@
             1
     </select>
 
-    <update id="">
+    <!--
+        批量删除在竞赛提交记录
+    -->
+    <delete id="deleteAcContestQuestionByQuestionIdList">
+        delete from
+            ac_contest_question
+        where
+            id
+        in
+            <foreach collection="list" item="tmp" close=")" open="(" separator=",">
+                #{tmp}
+            </foreach>
+    </delete>
 
-    </update>
+
 </mapper>
 

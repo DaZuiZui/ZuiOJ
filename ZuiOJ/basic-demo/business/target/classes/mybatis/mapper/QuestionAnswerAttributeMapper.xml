@@ -65,6 +65,17 @@
             question_id = #{questionId}
     </select>
 
-
-
+    <!--
+        删除题目属性
+    -->
+    <delete id="deleteQuestionAnswerAttributeByQuestionIdList">
+        delete from
+            question_answer_attribute
+        where
+            question_id
+        in
+        <foreach collection="list" separator="," open="(" close=")" item="tmp">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
