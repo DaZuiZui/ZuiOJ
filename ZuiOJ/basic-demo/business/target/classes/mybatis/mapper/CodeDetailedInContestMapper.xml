@@ -45,7 +45,7 @@
         delete from
             code_detailed_in_contest
         where
-            question_id
+            id
         in
             <foreach collection="list" item="tmp" close=")" open="(" separator=",">
                 #{tmp}

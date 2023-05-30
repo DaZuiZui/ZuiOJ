@@ -4,6 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CodeInContestMapper">
     <!--
+        查询mytext 通过 questionId
+    -->
+    <select id="queryMdTextIdByQuestionId" resultType="long">
+        select
+            code_id
+        from
+            code_in_contest
+        where
+            question_id
+        in
+        <foreach collection="list" item="tmp" close=")" open="(" separator=",">
+            #{tmp}
+        </foreach>
+    </select>
+
+    <!--
         插入比赛提交代码
     -->
     <insert id="insertProfileCodeInfo">
