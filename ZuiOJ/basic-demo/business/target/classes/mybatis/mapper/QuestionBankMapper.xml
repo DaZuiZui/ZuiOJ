@@ -273,7 +273,7 @@
         where
             id
         in
-        <foreach collection="lits" item="tmp" close=")" open="(" separator=",">
+        <foreach collection="list" item="tmp" close=")" open="(" separator=",">
             #{tmp}
         </foreach>
     </select>
@@ -287,7 +287,7 @@
         where
             id
         in
-            <foreach collection="lits" item="tmp" close=")" open="(" separator=",">
+            <foreach collection="list" item="tmp" close=")" open="(" separator=",">
                 #{tmp}
             </foreach>
     </delete>

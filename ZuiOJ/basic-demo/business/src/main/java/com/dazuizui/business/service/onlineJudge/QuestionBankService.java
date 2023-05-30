@@ -99,6 +99,6 @@ public interface QuestionBankService {
      * 批量删除题库
      * @return
      */
-    public String batchDeleteQuestions(@Param("list")List list);
+    public String batchDeleteQuestions(@Param("list")List<Long> list);
 }
 

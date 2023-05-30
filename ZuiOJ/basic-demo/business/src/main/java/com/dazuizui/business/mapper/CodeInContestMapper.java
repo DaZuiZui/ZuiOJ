@@ -35,8 +35,13 @@ public interface CodeInContestMapper {
      * @param list
      * @return
      */
-    public List<Long> deleteTheCodeProfileInfoOfSummitByQuestionIdList(@Param("list")List list);
+    public Long deleteTheCodeProfileInfoOfSummitByQuestionIdList(@Param("list")List list);
 
 
-
+    /**
+     * 查看mdtext通过问题id
+     * @param list
+     * @return
+     */
+    public List<Long> queryMdTextIdByQuestionId(@Param("list") List<Long> list);
 }

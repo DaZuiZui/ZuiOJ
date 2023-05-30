@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
 /**
  * Mongodao 文章dao
  */
@@ -24,4 +26,18 @@ public interface ArticleDiscussionRepository extends MongoRepository<QuestionDis
      * @return
      */
     Page<QuestionDiscuss> findByQuestionId(Long questionId,Pageable pageable);
+
+    /**
+     * 通过questionId删除
+     * @param questionId
+     * @return
+     */
+    Long deleteByQuestionId(Long questionId);
+
+    /**
+     * delete By questionId in questionId
+     * @param questionId
+     * @return
+     */
+    Long deleteByQuestionIdIn(List<Long> questionId);
 }

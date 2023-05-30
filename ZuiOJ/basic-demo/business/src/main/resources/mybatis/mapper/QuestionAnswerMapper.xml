@@ -79,7 +79,7 @@
             question_id
         in
             <foreach collection="list" separator="," open="(" close=")" item="tmp">
-                #{id}
+                #{tmp}
             </foreach>
     </delete>
 

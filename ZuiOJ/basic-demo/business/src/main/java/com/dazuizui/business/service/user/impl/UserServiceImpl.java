@@ -84,10 +84,7 @@ public class UserServiceImpl implements UserService {
             keys.add(RedisKey.ZuiBlogUserUsername+user.getUsername());
             redisUtil.batchDeletion(keys);
 
-            /**
-             * redis用户数据减1
-             */
-            redisUtil.increment(RedisKey.ZuiBlogUserCount,RedisKey.OutTime,-1);
+
         } catch (Exception e) {
            // e.printStackTrace();
             return  JSONArray.toJSONString(new ResponseVo<>("物理删除失败",null,StatusCode.Error));

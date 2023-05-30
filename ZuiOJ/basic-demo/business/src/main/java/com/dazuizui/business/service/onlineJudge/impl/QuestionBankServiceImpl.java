@@ -13,6 +13,7 @@ import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.domain.vo.AdminGetQuestionByIdVo;
 import com.dazuizui.business.domain.vo.PagingToGetQuestionBankListByStatusAndDelFlagVo;
 import com.dazuizui.business.mapper.*;
+import com.dazuizui.business.mongodao.ArticleDiscussionRepository;
 import com.dazuizui.business.service.onlineJudge.ProblemLimitService;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.util.RedisUtil;
@@ -33,6 +34,8 @@ import java.util.Map;
  */
 @Service
 public class QuestionBankServiceImpl implements QuestionBankService {
+    @Autowired
+    private ArticleDiscussionRepository articleDiscussionRepository;
     @Autowired
     private QuestionBankMapper questionBankMapper;
     @Autowired
@@ -282,18 +285,20 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 redisUtil.setStringInRedis(RedisKey.ZuiOJQuestion+id,RedisKey.OutTime,questionBankVo);
             }
 
-            //数据库逻辑删除
+            //数据题目库逻辑删除
             Long numberOfOptions = questionBankMapper.deleteQuestionById(id);
             if (numberOfOptions == 0){
                 transactionUtils.rollback(begin);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCodeMessage.Error));
             }
+
             //减少题目数量
             numberOfOptions = questionBankAttributeMapper.updateQuestionAttribute(4,questionBankVo.getStatus(),1l);
             if (numberOfOptions == 0){
                 transactionUtils.rollback(begin);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCodeMessage.Error));
             }
+
             //redis缓存删除
             redisUtil.deleteKey(RedisKey.ZuiOJQuestion+id);  //题目信息
             redisUtil.deleteKey(RedisKey.ZuiOJQuestionCase); //删除问题案例
@@ -517,12 +522,12 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     }
 
     /**
-     * 批量删除题目
+     * 批量物理删除题目
      * @param list
      * @return
      */
     @Override
-    public String batchDeleteQuestions(List list) {
+    public String batchDeleteQuestions(List<Long> list) {
         //获取文章Mdtext Id
         List<Long> questionMdTesxtId = questionBankMapper.getQuestionMdTesxtId(list);
         TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
@@ -546,24 +551,30 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 transactionUtils.rollback(begin);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
             }
-            /*
-                //删除案例
-                questionCaseMapper.deleteByQuestionidList(list);
-                //删除案例个数
-                questionCaseAttributeMapper.deleteByQuestionidList(list);
-                //删除题解
-                questionAnswerMapper.deleteQuestionAnswerByQuestionIdList(list);
-                //删除题解属性
-                questionAnswerAttributeMapper.deleteQuestionAnswerAttributeByQuestionIdList(list);
-                //获取代码详细信息list
-                List<Long> CodeOfSummitByQuestionIdList = codeInContestMapper.queryTheCodeOfSummitByQuestionIdList(list);
-                //获取比赛时候提交的代码详细信息
-                codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
-                //删除代码详细信息页面
-                codeDetailedInContestMapper.deleteByQuestionIdList(list);
-                //删除比赛时提交记录
-                acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
-            */
+
+            //删除案例
+            questionCaseMapper.deleteByQuestionidList(list);
+            //删除案例个数
+            questionCaseAttributeMapper.deleteByQuestionidList(list);
+            //删除题解
+            questionAnswerMapper.deleteQuestionAnswerByQuestionIdList(list);
+            //删除题解属性
+            questionAnswerAttributeMapper.deleteQuestionAnswerAttributeByQuestionIdList(list);
+            //获取代码详细信息list
+            List<Long> CodeOfSummitByQuestionIdList = codeInContestMapper.queryTheCodeOfSummitByQuestionIdList(list);
+            //获取比赛时候提交的代码详细信息
+            codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
+            //获取代码详细主键
+            List<Long> longs = codeInContestMapper.queryMdTextIdByQuestionId(list);
+
+            //删除代码详细信息页面
+            codeDetailedInContestMapper.deleteByQuestionIdList(list);
+            //删除比赛时提交记录
+            acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
+            System.err.println(list);
+            //删除该题目的讨论
+            articleDiscussionRepository.deleteByQuestionIdIn(list);
+
         } catch (Exception e) {
             e.printStackTrace();
             transactionUtils.rollback(begin);

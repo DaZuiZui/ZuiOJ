@@ -7,16 +7,19 @@ import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
 import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
@@ -194,7 +197,7 @@ public class QuestionBankController {
     @ApiOperation("分页获取题库通过status and delflag")
     @PostMapping("/admin/pagingToGetQuestionBankListByStatusAndDelFlag")
     public String pagingToGetQuestionBankListByStatusAndDelFlag(@RequestBody PagingToGetQuestionBankListByStatusAndDelFlagBo pagingToGetQuestionBankListByStatusAndDelFlagBo){
-        System.err.println("222");
+
         //查看aop前置环绕是否出现问题
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
 
@@ -204,5 +207,23 @@ public class QuestionBankController {
         }
 
         return questionBankService.pagingToGetQuestionBankListByStatusAndDelFlag(pagingToGetQuestionBankListByStatusAndDelFlagBo);
+    }
+
+    /**
+     * 批量物理删除题库
+     * @return
+     */
+    @ApiOperation("批量物理删除题目")
+    @PostMapping("/admin/batchPhysicalDeleteQuestions")
+    public String batchDeleteQuestions(@RequestBody BatchPhysicalDeleteQuestionsBo batchPhysicalDeleteQuestionsBo){
+        //查看aop前置环绕是否出现问题
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return questionBankService.batchDeleteQuestions(batchPhysicalDeleteQuestionsBo.getQuestionList());
     }
 }

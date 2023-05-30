@@ -8,6 +8,7 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+                <el-button type="primary" v-if="batchPhysicalDeleteQuestionsButton" @click="batchPhysicalDeleteQuestions" >批量物理删除</el-button>
                 <table class="table">
                     <thead>
                       <tr>
@@ -29,7 +30,9 @@
                     </thead>
                     <tbody>
                       <tr v-for="(obj,index) in questionList" :key="index">
-                        <th scope="row"></th>
+                        <th scope="row">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="batchPhysicalDeleteQuestionsBo.questionList" :value="obj.id" v-if="batchPhysicalDeleteQuestionsButton" >
+                        </th>
                         <td>
                             <b>
                                 {{obj.shortName}} 
@@ -112,6 +115,15 @@
         questionList: [],
         //题目总数
         count: 0,
+        //批量物理删除
+        batchPhysicalDeleteQuestionsBo: {
+          token: '',
+          questionList: [],
+        },
+
+        //批量删除显示按钮
+        batchPhysicalDeleteQuestionsButton: false,
+
 
         questionInfo: {
             id: -1,
@@ -135,10 +147,23 @@
       }
     },
     mounted(){
+        this.batchPhysicalDeleteQuestionsBo.token = getCookie("token"); 
         //获取幂等性token
         this.getMerchantInformation(1);
     },
     methods: {
+        /*
+         *  批量物理删除
+         **/
+        async batchPhysicalDeleteQuestions(){
+          let obj = await synRequestPost("/question/admin/batchPhysicalDeleteQuestions",this.batchPhysicalDeleteQuestionsBo);
+          if(check(obj)){
+            this.batchPhysicalDeleteQuestionsBo.questionList = [];
+            this.curstatus = 3;
+            this.nextStatus();
+          }
+        },
+
         //切换下一个状态
         async nextStatus(){
           //查看公开题库
@@ -146,11 +171,13 @@
             //包含考试题库 普通题库
             this.curstatus += 1;
             this.getMerchantInformation(1);
+            this.batchPhysicalDeleteQuestionsButton = false;
           }
           //查看私有的题库
           else if(this.curstatus == 2){
             this.pagingToGetQuestionBankListByStatusAndDelFlagBo.status = 2;
             this.pagingToGetQuestion(1);
+            this.batchPhysicalDeleteQuestionsButton = false;
           }
           //查看被删除的题库
           else if(this.curstatus == 3){
@@ -158,6 +185,7 @@
             this.pagingToGetQuestionBankListByStatusAndDelFlagBo.delFlag = 1;
             this.pagingToGetQuestion(1);
             this.curstatus = -1;
+            this.batchPhysicalDeleteQuestionsButton = true;
           }
 
           this.pagingToGetQuestionBankListByStatusAndDelFlagBo.delFlag = 0;
@@ -174,10 +202,11 @@
               //获取当前数据为null的情况
               if(obj.data.questionBanks.length == 0){
                   if(this.curpage <= 1){
-                      alert("无数据");
-                      return ;
+                      this.curpage = 1;
+                  }else{
+                    this.pagingToGetQuestion(this.curpage-1);
                   }
-                  this.pagingToGetQuestion(this.curpage-1);
+                 
               }
 
               this.count = obj.data.count;

@@ -1,11 +1,14 @@
 package com.dazuizui.business.aop.onlineJudge;
 
+import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Aspect
@@ -53,4 +56,13 @@ public interface QuestionAop {
      * @throws Exception
      */
     public String deleteQuestionById(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 批量物理删除quesiton  主要查看是否拥有管理员权限
+     * @param joinpoint
+     * @throws Exception
+     */
+    @Before("execution(* com.dazuizui.business.controller.QuestionBankController.batchDeleteQuestions(..))")
+    public void batchDeleteQuestions(JoinPoint joinpoint) throws Exception;
 }

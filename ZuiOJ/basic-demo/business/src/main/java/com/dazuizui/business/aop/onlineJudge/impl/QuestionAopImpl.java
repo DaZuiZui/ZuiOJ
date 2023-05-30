@@ -6,8 +6,11 @@ import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionAop;
+import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
+import com.dazuizui.business.service.onlineJudge.SystemService;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -37,6 +40,8 @@ public class QuestionAopImpl implements QuestionAop {
     private SqlSessionFactory sqlSessionFactory;
     @Autowired
     private UserService userService;
+    @Autowired
+    private SystemVerifyService systemVerifyService;
 
     /**
      * 修改题目和题目limit
@@ -261,4 +266,20 @@ public class QuestionAopImpl implements QuestionAop {
 
         return null;
     }
+
+    /**
+     * 批量物理删除quesiton  主要查看是否拥有管理员权限
+     * @param joinpoint
+     * @throws Exception
+     */
+    @Override
+    public void batchDeleteQuestions(JoinPoint joinpoint) throws Exception {
+
+        Object[] args = joinpoint.getArgs();
+        BatchPhysicalDeleteQuestionsBo batchPhysicalDeleteQuestionsBo = (BatchPhysicalDeleteQuestionsBo) args[0];
+        String token  = batchPhysicalDeleteQuestionsBo.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
+
+    }
+
 }

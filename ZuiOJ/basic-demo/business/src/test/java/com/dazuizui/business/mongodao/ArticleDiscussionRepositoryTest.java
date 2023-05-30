@@ -58,4 +58,10 @@ public class ArticleDiscussionRepositoryTest {
         QuestionBankVo questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+10111);
         System.out.println(questionBankVo );
     }
+
+    @Test
+    void test3(){
+        Long aLong = articleDiscussionRepository.deleteByQuestionId(10084l);
+        System.out.println(aLong);
+    }
 }
