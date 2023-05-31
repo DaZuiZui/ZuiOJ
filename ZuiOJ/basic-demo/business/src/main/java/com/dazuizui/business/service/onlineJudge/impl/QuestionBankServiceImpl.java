@@ -565,7 +565,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             //获取比赛时候提交的代码详细信息
             codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
             //获取代码详细主键
-            List<Long> longs = codeInContestMapper.queryMdTextIdByQuestionId(list);
+            codeInContestMapper.queryMdTextIdByQuestionId(list)
 
             //删除代码详细信息页面
             codeDetailedInContestMapper.deleteByQuestionIdList(list);
