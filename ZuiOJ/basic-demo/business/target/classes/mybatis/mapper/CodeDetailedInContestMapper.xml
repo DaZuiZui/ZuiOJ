@@ -42,7 +42,8 @@
         删除code简介页面
     -->
     <delete id="deleteByQuestionIdList">
-        delete from
+        delete
+        from
             code_detailed_in_contest
         where
             id

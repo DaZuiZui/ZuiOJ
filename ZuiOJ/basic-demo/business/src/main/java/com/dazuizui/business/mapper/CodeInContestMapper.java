@@ -43,5 +43,5 @@ public interface CodeInContestMapper {
      * @param list
      * @return
      */
-    public List<Long> queryMdTextIdByQuestionId(@Param("list") List<Long> list);
+    public List<Long> queryMdTextIdByQuestionId(@Param("list") List list);
 }

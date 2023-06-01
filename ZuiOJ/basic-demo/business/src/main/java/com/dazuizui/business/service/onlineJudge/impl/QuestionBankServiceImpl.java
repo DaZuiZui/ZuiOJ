@@ -530,8 +530,13 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     public String batchDeleteQuestions(List<Long> list) {
         //获取文章Mdtext Id
         List<Long> questionMdTesxtId = questionBankMapper.getQuestionMdTesxtId(list);
-        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
+        //获取代码详细主键
+        List<Long> codeDetailedIdList = codeInContestMapper.queryMdTextIdByQuestionId(list);
+
+
+
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
         try {
             //批量删除mdtext
             Long numberOfOptions = questionBankDetailedMapper.batchDeleteMdtextOfQuestions(questionMdTesxtId);
@@ -564,14 +569,19 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             List<Long> CodeOfSummitByQuestionIdList = codeInContestMapper.queryTheCodeOfSummitByQuestionIdList(list);
             //获取比赛时候提交的代码详细信息
             codeInContestMapper.deleteTheCodeProfileInfoOfSummitByQuestionIdList(list);
-            //获取代码详细主键
-            codeInContestMapper.queryMdTextIdByQuestionId(list)
 
             //删除代码详细信息页面
-            codeDetailedInContestMapper.deleteByQuestionIdList(list);
+            if (!codeDetailedIdList.isEmpty()){
+                Long aLong = codeDetailedInContestMapper.deleteByQuestionIdList(codeDetailedIdList);
+            }
+
+
+
             //删除比赛时提交记录
             acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
             System.err.println(list);
+
+
             //删除该题目的讨论
             articleDiscussionRepository.deleteByQuestionIdIn(list);
 
@@ -580,7 +590,8 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             transactionUtils.rollback(begin);
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
         }
-        transactionUtils.commit(begin);
+        //transactionUtils.commit(begin);
+        transactionUtils.rollback(begin);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null,StatusCode.OK));
     }
 
