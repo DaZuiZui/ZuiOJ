@@ -590,8 +590,8 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             transactionUtils.rollback(begin);
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null,StatusCode.Error));
         }
-        //transactionUtils.commit(begin);
-        transactionUtils.rollback(begin);
+        transactionUtils.commit(begin);
+        //transactionUtils.rollback(begin);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null,StatusCode.OK));
     }
 

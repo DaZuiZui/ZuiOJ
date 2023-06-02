@@ -77,7 +77,8 @@
                             <el-link type="primary" @click="goQuestionCaseManagement(obj.id)">案例管理</el-link>
                             <el-link type="primary" @click="goUpdateQuestion(obj.id)">修改</el-link>
                             <el-link type="warning" v-if="obj.delFlag == 0" @click="tombstone(obj.id,obj.questionType)"  >逻辑删除</el-link>
-                            <el-link type="danger" v-if="obj.delFlag == 1" >物理删除</el-link>
+                            <el-link type="danger" v-if="obj.delFlag == 1"  @click="deleteOneQuestion(obj.id)" >物理删除</el-link>
+                            <el-link type="danger" v-if="obj.delFlag == 1"  @click="recover(obj.id)" >恢复</el-link>
                         </td>
                       </tr>
                     </tbody>
@@ -152,6 +153,21 @@
         this.getMerchantInformation(1);
     },
     methods: {
+      /**
+       *  恢复数据
+       **/ 
+      recover(id){
+          
+      },
+        /**
+         *  物理删除一个 
+         **/
+        deleteOneQuestion(id){
+          this.batchPhysicalDeleteQuestionsBo.questionList.push(id);
+          this.batchPhysicalDeleteQuestions();
+          this.batchPhysicalDeleteQuestionsBo.questionList = [];
+        },
+
         /*
          *  批量物理删除
          **/

@@ -226,4 +226,23 @@ public class QuestionBankController {
 
         return questionBankService.batchDeleteQuestions(batchPhysicalDeleteQuestionsBo.getQuestionList());
     }
+
+    /**
+     * 通过ID恢复题目数据
+     * @return
+     */
+    @ApiOperation("通过ID恢复题目数据")
+    @PostMapping("/admin/recoverQuestionById")
+    public String recoverQuestionById(){
+        //查看aop前置环绕是否出现问题
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+
+        return "";
+    }
 }
