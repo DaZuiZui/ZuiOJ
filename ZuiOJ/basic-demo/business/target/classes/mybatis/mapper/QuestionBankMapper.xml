@@ -291,4 +291,22 @@
                 #{tmp}
             </foreach>
     </delete>
+
+    <!--
+        批量恢复问题
+    -->
+    <update id="batchRecoveryQuestions">
+        update
+            question_bank
+        set
+            del_flag = 0 , update_by_id = #{userId}
+        <where>
+            <if test="list != null">
+                id  in
+                <foreach collection="list" item="tmp" close=")" open="(" separator=",">
+                    #{tmp}
+                </foreach>
+            </if>
+        </where>
+    </update>
 </mapper>
