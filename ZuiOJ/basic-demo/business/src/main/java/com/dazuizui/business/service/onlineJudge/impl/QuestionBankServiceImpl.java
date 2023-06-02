@@ -8,6 +8,7 @@ import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.QuestionPagingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.QuestionBankAttribute;
+import com.dazuizui.business.domain.bo.BatchRecoveryQuestionsBo;
 import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.domain.vo.AdminGetQuestionByIdVo;
@@ -575,8 +576,6 @@ public class QuestionBankServiceImpl implements QuestionBankService {
                 Long aLong = codeDetailedInContestMapper.deleteByQuestionIdList(codeDetailedIdList);
             }
 
-
-
             //删除比赛时提交记录
             acContestQuestionMapper.deleteAcContestQuestionByQuestionIdList(list);
             System.err.println(list);
@@ -593,6 +592,41 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         transactionUtils.commit(begin);
         //transactionUtils.rollback(begin);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null,StatusCode.OK));
+    }
+
+    /**
+     * 批量恢复数据 工程太紧 后续有时间在优化
+     * @param batchRecoveryQuestionsBo
+     * @return
+     */
+    @Override
+    public String batchRecoveryQuestions(BatchRecoveryQuestionsBo batchRecoveryQuestionsBo) {
+        //获取修改人id
+        String stringid = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        Long userId = Long.valueOf(stringid);
+
+        List<Long> list = batchRecoveryQuestionsBo.getList();
+        System.err.println(list);
+        //恢复逻辑删除题库数据
+        Long aLong = questionBankMapper.batchRecoveryQuestions(list,userId);
+        Long resForOptionOfNumbers = 0l;
+        //增加题库属性数量
+        for (Long tmp : list) {
+            //通过id获取题目
+            QuestionBankVo  questionBankVo = (QuestionBankVo) redisUtil.getStringInRedis(RedisKey.ZuiOJQuestion+tmp);
+            if (questionBankVo == null){
+                questionBankVo = questionBankMapper.adminGetQuestionById(tmp);
+                if (questionBankVo == null){
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+                redisUtil.setStringInRedis(RedisKey.ZuiOJQuestion+tmp,RedisKey.OutTime,questionBankVo);
+            }
+            //增加原有状态数量
+            Long optionOfNumbers = questionBankAttributeMapper.updateQuestionnumber(-1, questionBankVo.getStatus(), 0);
+            resForOptionOfNumbers+=optionOfNumbers;
+       }
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,resForOptionOfNumbers, StatusCode.OK));
     }
 
     /**

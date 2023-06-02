@@ -100,4 +100,5 @@
         from
             question_bank_attribute
     </select>
+
 </mapper>

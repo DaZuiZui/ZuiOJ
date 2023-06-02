@@ -2,6 +2,7 @@ package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
+import com.dazuizui.business.domain.bo.BatchRecoveryQuestionsBo;
 import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import io.swagger.annotations.ApiOperation;
@@ -100,5 +101,12 @@ public interface QuestionBankService {
      * @return
      */
     public String batchDeleteQuestions(@Param("list")List<Long> list);
+
+    /**
+     * 批量恢复问题
+     * @param batchRecoveryQuestionsBo
+     * @return
+     */
+    public String batchRecoveryQuestions(BatchRecoveryQuestionsBo batchRecoveryQuestionsBo);
 }
 

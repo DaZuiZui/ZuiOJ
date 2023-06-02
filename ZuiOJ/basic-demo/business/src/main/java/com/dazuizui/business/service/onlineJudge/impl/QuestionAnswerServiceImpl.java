@@ -59,7 +59,7 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
         String key = RedisKey.ZuiOJQuestionAnswerPrivicyOf + getQuestionAnswerByPageBo.getStatus() + ":" + getQuestionAnswerByPageBo.getQuestionId();
         //获取指定状态数据总数量
         Long count = redisUtil.getLongOfStringInRedis(key);
-        System.err.println(count);
+
         if (count == null) {
             count = questionAnswerAttributeMapper.queryNumberOfQuestionByStatus(getQuestionAnswerByPageBo.getQuestionId(), getQuestionAnswerByPageBo.getStatus());
             redisUtil.setLongOfStringInRedis(key, RedisKey.OutTime, count);

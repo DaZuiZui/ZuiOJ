@@ -122,4 +122,11 @@ public interface QuestionBankMapper {
      * @return
      */
     public Long batchDeleteQuestions(@Param("list") List list);
+
+    /**
+     * 批量恢复问题
+     * @param list
+     * @return
+     */
+    public Long batchRecoveryQuestions(@Param("list") List<Long> list,@Param("userId")Long userId);
 }

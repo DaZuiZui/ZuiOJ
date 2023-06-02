@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.onlineJudge;
 
 import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
+import com.dazuizui.business.domain.bo.BatchRecoveryQuestionsBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -65,4 +66,12 @@ public interface QuestionAop {
      */
     @Before("execution(* com.dazuizui.business.controller.QuestionBankController.batchDeleteQuestions(..))")
     public void batchDeleteQuestions(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 批量恢复数据
+     * @param joinpoint
+     * @return
+     */
+    @Before("execution(* com.dazuizui.business.controller.QuestionBankController.batchRecoveryQuestions(..))")
+    public void batchRecoveryQuestions(JoinPoint joinpoint) throws Exception;
 }

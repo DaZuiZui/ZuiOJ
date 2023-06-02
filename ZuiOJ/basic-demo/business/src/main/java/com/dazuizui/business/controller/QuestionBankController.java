@@ -8,6 +8,7 @@ import com.dazuizui.basicapi.entry.bo.PostQuestionBo;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
+import com.dazuizui.business.domain.bo.BatchRecoveryQuestionsBo;
 import com.dazuizui.business.domain.bo.PagingToGetQuestionBankListByStatusAndDelFlagBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
@@ -30,6 +31,30 @@ public class QuestionBankController {
 
     @Autowired
     private QuestionBankService questionBankService;
+
+    /**
+     * 批量恢复数据 工程太紧 后续有时间在优化
+     * @param batchRecoveryQuestionsBo
+     * @return
+     */
+    @ApiOperation("批量恢复数据")
+    @PostMapping("/batchRecoveryQuestions")
+    public String batchRecoveryQuestions(@RequestBody BatchRecoveryQuestionsBo batchRecoveryQuestionsBo){
+        //身份验证过期或者权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        //报错排查
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        System.err.println(batchRecoveryQuestionsBo.getList());
+        if (batchRecoveryQuestionsBo.getList().isEmpty()){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null,StatusCode.IsNull));
+        }
+
+        return questionBankService.batchRecoveryQuestions(batchRecoveryQuestionsBo);
+    }
 
     /**
      * 修改题目限制和题目

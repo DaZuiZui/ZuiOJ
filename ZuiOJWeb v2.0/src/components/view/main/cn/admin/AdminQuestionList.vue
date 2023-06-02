@@ -144,21 +144,39 @@
           number: 50,
           start: 0,
           delFlag: 0
+        },
+
+        //恢复数据
+        batchRecoveryQuestionsBo: {
+          token: "",
+          list: [],
         }
       }
     },
     mounted(){
         this.batchPhysicalDeleteQuestionsBo.token = getCookie("token"); 
+
         //获取幂等性token
         this.getMerchantInformation(1);
     },
     methods: {
-      /**
-       *  恢复数据
-       **/ 
-      recover(id){
-          
-      },
+        /**
+         *  恢复数据
+         **/ 
+        async recover(id){
+            this.batchRecoveryQuestionsBo.list.push(id);
+            //获取操作者token
+            this.batchRecoveryQuestionsBo.token = getCookie("token");
+            let obj = await synRequestPost("/question/batchRecoveryQuestions",this.batchRecoveryQuestionsBo);
+
+            if(check(obj)){
+               alert("成功恢复"+obj.data+"条数据");
+               this.batchRecoveryQuestionsBo.list = [];
+               this.curstatus = 3;
+               //更新数据
+               this.nextStatus();
+            }
+        },
         /**
          *  物理删除一个 
          **/
@@ -166,6 +184,7 @@
           this.batchPhysicalDeleteQuestionsBo.questionList.push(id);
           this.batchPhysicalDeleteQuestions();
           this.batchPhysicalDeleteQuestionsBo.questionList = [];
+          
         },
 
         /*

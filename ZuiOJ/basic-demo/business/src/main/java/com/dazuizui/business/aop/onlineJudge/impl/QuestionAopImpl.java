@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
 import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionAop;
 import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
+import com.dazuizui.business.domain.bo.BatchRecoveryQuestionsBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.service.onlineJudge.SystemService;
@@ -274,12 +275,19 @@ public class QuestionAopImpl implements QuestionAop {
      */
     @Override
     public void batchDeleteQuestions(JoinPoint joinpoint) throws Exception {
-
         Object[] args = joinpoint.getArgs();
         BatchPhysicalDeleteQuestionsBo batchPhysicalDeleteQuestionsBo = (BatchPhysicalDeleteQuestionsBo) args[0];
         String token  = batchPhysicalDeleteQuestionsBo.getToken();
         systemVerifyService.veryfiAdmin(token,2);
 
+    }
+
+    @Override
+    public void batchRecoveryQuestions(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        BatchRecoveryQuestionsBo batchRecoveryQuestionsBo = (BatchRecoveryQuestionsBo) args[0];
+        String token  = batchRecoveryQuestionsBo.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
     }
 
 }
