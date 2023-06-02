@@ -138,6 +138,7 @@
   
   <script>
   import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+  import { MainUrl,MainPort} from '../../../../../../static/entry'
 import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/Top.vue'
   export default {
@@ -195,7 +196,7 @@ import Foot from '../../../../frame/blog/Foot.vue';
             //月份集合
             monthArray: [1,2,3,4,5,6,7,8,9,10,11,12],
 
-            action: "http://127.0.0.1:8001/system/imgUpDown?token="+getCookie("token"),
+            action: this.MainUrl+":"+this.MainPort+"/system/imgUpDown?token="+getCookie("token"),
         }
         },
 
