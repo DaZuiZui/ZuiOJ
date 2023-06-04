@@ -96,17 +96,7 @@
     -->
     <select id="queryUserById" resultType="com.dazuizui.basicapi.entry.User">
         select
-            id,
-            username,
-            email,
-            name,
-            sex,
-            password,
-            year,
-            mouth,
-            role,
-            status,
-            head_portrait
+            *
         from
             user
         where
