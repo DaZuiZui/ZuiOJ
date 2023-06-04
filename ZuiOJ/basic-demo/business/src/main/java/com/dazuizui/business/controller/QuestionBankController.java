@@ -48,7 +48,6 @@ public class QuestionBankController {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
-        System.err.println(batchRecoveryQuestionsBo.getList());
         if (batchRecoveryQuestionsBo.getList().isEmpty()){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null,StatusCode.IsNull));
         }
