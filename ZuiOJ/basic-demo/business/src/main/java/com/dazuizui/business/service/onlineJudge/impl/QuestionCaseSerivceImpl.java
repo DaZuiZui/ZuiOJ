@@ -2,7 +2,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.QuestionCase;
-import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.business.domain.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
@@ -16,12 +16,10 @@ import com.dazuizui.business.service.onlineJudge.QuestionCaseSerivce;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.List;

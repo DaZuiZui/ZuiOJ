@@ -1,4 +1,4 @@
-package com.dazuizui.basicapi.entry;
+package com.dazuizui.business.domain;
 
 public class RedisKey {
     //状态是0的题库数量

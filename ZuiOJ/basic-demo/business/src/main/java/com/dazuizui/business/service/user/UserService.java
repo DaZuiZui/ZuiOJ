@@ -7,6 +7,7 @@ import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
+import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -106,4 +107,11 @@ public interface UserService {
      * 获取用户信息通过token
      */
     public User getUserInfoByTokenForUserEntry(String token);
+
+    /**
+     * 管理员获取用户信息
+     * @param adminGetUserinfo
+     * @return
+     */
+    public String adminGetUserInfo(AdminGetUserinfo adminGetUserinfo);
 }

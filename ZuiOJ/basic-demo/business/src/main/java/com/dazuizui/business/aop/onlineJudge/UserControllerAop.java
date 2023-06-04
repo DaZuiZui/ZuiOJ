@@ -4,7 +4,10 @@ import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
+import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * User aop controller
  */
 @Component
+@Aspect
 public interface UserControllerAop {
     /**
      * 查询网站管理人员 主要查看是否为管理员权限
@@ -55,4 +59,14 @@ public interface UserControllerAop {
      * @throws Exception
      */
     public String deleteUserById(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 管理员获取用户信息
+     *      主要做了是否存在管理员权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Before("execution(* com.dazuizui.business.controller.UserController.adminGetUserInfo(..))")
+    public String adminGetUserInfo(JoinPoint joinpoint) throws Exception;
 }

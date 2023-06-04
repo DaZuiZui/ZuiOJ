@@ -8,6 +8,8 @@ import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.PagingToGetUserDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.RedisKey;
+import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import com.dazuizui.business.mapper.AttributeMapper;
 import com.dazuizui.business.mapper.UserArticleAttributeMapper;
 import com.dazuizui.business.mapper.UserMapper;
@@ -359,8 +361,8 @@ public class UserServiceImpl implements UserService {
             userInDB = userMapper.queryUserById(id);
             //如果数据库获取到了就存入redis
             if (userInDB != null){
-                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
-                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId+id,RedisKey.OutTime,userInDB);
+                //redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
             }
 
             //没有获取到数据 in DB
@@ -420,8 +422,8 @@ public class UserServiceImpl implements UserService {
             userInDB = userMapper.queryUserById(id);
             //如果数据库获取到了就存入redis
             if (userInDB != null){
-                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
-                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
+                redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId+id,RedisKey.OutTime,userInDB);
+                //redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId,RedisKey.OutTime,userInDB);
             }
             //没有获取到数据 in DB
             else{
@@ -430,6 +432,30 @@ public class UserServiceImpl implements UserService {
         }
 
         return userInDB;
+    }
+
+    /**
+     * 管理员获取用户信息
+     * @param adminGetUserinfo
+     * @return
+     */
+    @Override
+    public String adminGetUserInfo(AdminGetUserinfo adminGetUserinfo) {
+
+        User userInDB = (User) redisUtil.getStringInRedis(RedisKey.ZuiBlogUserId+adminGetUserinfo.getUserId());
+        //redis没找到去mysql找
+        if (userInDB == null){
+            userInDB = userMapper.queryUserById(adminGetUserinfo.getUserId());
+
+            if (userInDB == null){
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.ThisUsernameDoesNotExist,userInDB, StatusCode.ThisUsernameDoesNotExist));
+            }
+
+            redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId+adminGetUserinfo.getUserId(),RedisKey.OutTime,userInDB);
+            redisUtil.setStringInRedis(RedisKey.ZuiBlogUserUsername+userInDB.getUsername(),RedisKey.OutTime,userInDB);
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,userInDB,StatusCode.OK));
     }
 
 

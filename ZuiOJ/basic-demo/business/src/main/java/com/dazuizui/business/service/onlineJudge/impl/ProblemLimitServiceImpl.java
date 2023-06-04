@@ -2,7 +2,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.ProblemLimit;
-import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.business.domain.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;

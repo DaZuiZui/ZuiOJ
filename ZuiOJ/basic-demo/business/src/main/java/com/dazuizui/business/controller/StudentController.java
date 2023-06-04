@@ -1,9 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.StudentCertification;
 import com.dazuizui.basicapi.entry.bo.StudentCertificationBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.service.student.StudentService;

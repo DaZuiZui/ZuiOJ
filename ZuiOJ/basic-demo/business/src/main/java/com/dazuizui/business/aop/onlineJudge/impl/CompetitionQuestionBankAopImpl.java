@@ -2,6 +2,7 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.business.aop.onlineJudge.CompetitionQuestionBankAop;
+import com.dazuizui.business.domain.RedisKey;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
@@ -14,7 +15,6 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 
 

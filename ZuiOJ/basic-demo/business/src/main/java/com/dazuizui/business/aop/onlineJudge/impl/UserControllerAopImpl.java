@@ -4,6 +4,8 @@ import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.*;
 import com.dazuizui.business.aop.onlineJudge.UserControllerAop;
+import com.dazuizui.business.domain.bo.AdminGetUserinfo;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -25,7 +27,8 @@ import java.util.Map;
 public class UserControllerAopImpl implements UserControllerAop {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private SystemVerifyService systemVerifyService;
     /**
      * 查询管理员人员，查询是否为管理员身份
      * @param joinpoint
@@ -219,6 +222,23 @@ public class UserControllerAopImpl implements UserControllerAop {
             ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.insufficientPermissions);
             return null;
         }
+
+        return null;
+    }
+
+    /**
+     * 管理员获取用户信息
+     *      主要做了是否存在管理员权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String adminGetUserInfo(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        AdminGetUserinfo adminGetUserinfo = (AdminGetUserinfo) args[0];
+        String token = adminGetUserinfo.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
 
         return null;
     }

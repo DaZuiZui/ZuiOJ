@@ -44,7 +44,8 @@ import ProctorCompetitionInfoList from '@/components/view/main/cn/proctor/Procto
 import ProctorViewCodeOfContestants from '@/components/view/main/cn/proctor/ProctorViewCodeOfContestants'
 import ProctorCodeDetailedInContest from '@/components/view/main/cn/proctor/ProctorCodeDetailedInContest'
 import ManageBlog                   from '@/components/view/main/cn/admin/ManageBlog'
- 
+import AdminCheckUserInfo from '@/components/view/main/cn/admin/AdminCheckUserInfo' 
+
 Vue.use(Router)
 
 export default new Router({
@@ -56,7 +57,12 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDazui
     },
- 
+    //管理员查看用户
+    {
+      path: '/cn/admin/check/user',
+      name: 'AdminCheckUser',
+      component: AdminCheckUserInfo
+    },
     //管理博文页面
     {
       path: '/cn/admin/manageBlog',

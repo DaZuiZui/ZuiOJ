@@ -3,7 +3,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.dazuizui.basicapi.entry.ArticleJSON;
-import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.business.domain.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;

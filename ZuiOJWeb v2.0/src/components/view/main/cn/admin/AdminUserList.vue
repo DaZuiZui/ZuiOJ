@@ -101,7 +101,7 @@
                         <td>
                             <div>
                                 <el-link type="primary">封禁</el-link>
-                                <el-link type="success">修改</el-link>
+                                <el-link type="success" @click="toCheckUserInfo(obj.id)">修改</el-link>
                                 <el-link type="danger" @click="tombstoneUserById(obj.id)">逻辑删除</el-link>
                                 <el-link type="danger" @click="deleteUserById(obj.id)">物理删除</el-link>
                             </div>
@@ -177,6 +177,11 @@
         this.getMerchantInformation(1);
     },
     methods: {
+        //查看用户信息
+        toCheckUserInfo(userId){
+            this.$router.push("/cn/admin/check/user?userId="+userId);
+        },
+
         //跳转指定页面
         async getMerchantInformation(val){   
             this.pagingToGetUserDateBo.pages = (val - 1) * this.pagingToGetUserDateBo.numbers;

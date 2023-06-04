@@ -1,7 +1,7 @@
 package com.dazuizui.business.service.invigilator.impl;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.RedisKey;
+import com.dazuizui.business.domain.RedisKey;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -11,7 +11,6 @@ import com.dazuizui.business.mapper.InvigilatorMapper;
 import com.dazuizui.business.service.invigilator.InvigilatorService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.TransactionUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
 package com.dazuizui.business.util;
 
-import com.dazuizui.basicapi.entry.RedisKey;
-import org.omg.CORBA.TIMEOUT;
+import com.dazuizui.business.domain.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;

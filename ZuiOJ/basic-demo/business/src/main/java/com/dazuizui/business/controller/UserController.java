@@ -10,6 +10,7 @@ import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -106,7 +107,7 @@ public class UserController {
     public String pagingToGetUserDate(@RequestBody PagingToGetUserDateBo pagingToGetUserDateBo){
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        ThreadLocalUtil.mapThreadLocal.remove();
+
         if ( map.get("error") != null) {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
@@ -124,7 +125,7 @@ public class UserController {
     public String deleteUsersInBulk(@RequestBody DeleteUsersInBulkBo deleteUsersInBulkBo){
         //查看是否权限不足
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        ThreadLocalUtil.mapThreadLocal.remove();
+
         if ( map.get("error") != null) {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
@@ -171,5 +172,24 @@ public class UserController {
     @PostMapping("/updateUserInfoById")
     public String updateUserInfoById(@RequestBody UpdateUserInfoByIdBo updateUserInfoByIdBo){
         return userService.updateUserInfoById( updateUserInfoByIdBo);
+    }
+
+    /**
+     * 管理员获取用户信息
+     * @param adminGetUserinfo
+     * @return
+     */
+    @ApiOperation("管理员获取用户信息")
+    @PostMapping("/admin/getUserInfo")
+    public String adminGetUserInfo(@RequestBody AdminGetUserinfo adminGetUserinfo){
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+
+        return userService.adminGetUserInfo(adminGetUserinfo);
     }
 }
