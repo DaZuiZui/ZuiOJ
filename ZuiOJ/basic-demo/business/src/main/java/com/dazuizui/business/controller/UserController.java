@@ -192,4 +192,23 @@ public class UserController {
 
         return userService.adminGetUserInfo(adminGetUserinfo);
     }
+
+
+    /**
+     * 管理员通过id修改用户信息
+     * @param updateUserInfoByIdBo
+     * @return
+     */
+    @ApiOperation("修改用户信息根据id")
+    @PostMapping("/admin/updateUserInfoById")
+    public String adminUpdateUserInfoById(@RequestBody UpdateUserInfoByIdBo updateUserInfoByIdBo){
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return userService.updateUserInfoById( updateUserInfoByIdBo);
+    }
 }

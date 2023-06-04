@@ -16,6 +16,7 @@ import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.RedisUtil;
+import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -380,23 +381,29 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @Transactional
     public String updateUserInfoById(UpdateUserInfoByIdBo updateUserInfoByIdBo) {
         User user = updateUserInfoByIdBo.getUser();
-       // System.err.println(0/10);
+
+        //设置修改人和修改时间
+        String idString = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
+        Long id = Long.valueOf(idString);
+        user.setUpdateById(id);
+        user.setUpdateTime(new Date());
+
         //进行修改数据库
         Long aLong = userMapper.updateUserInfoById(user);
 
         //修改失败
         if(aLong <= 0){
-            return JSONArray.toJSONString(new ResponseVo<>("修改失败",null, StatusCode.Error));
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
+
         //设置数据库
         user = userMapper.queryUserById(user.getId());
         redisUtil.setStringInRedis(RedisKey.ZuiBlogUserId+user.getId(),RedisKey.OutTime,user);
         redisUtil.setStringInRedis(RedisKey.ZuiBlogUserUsername+user.getUsername(), RedisKey.OutTime,user);
 
-        return JSONArray.toJSONString(new ResponseVo<>("修改成功",null, StatusCode.OK));
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 
     /**

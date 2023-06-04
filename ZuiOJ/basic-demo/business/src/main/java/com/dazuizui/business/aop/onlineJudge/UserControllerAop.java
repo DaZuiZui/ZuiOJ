@@ -1,5 +1,6 @@
 package com.dazuizui.business.aop.onlineJudge;
 
+import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
@@ -69,4 +70,14 @@ public interface UserControllerAop {
      */
     @Before("execution(* com.dazuizui.business.controller.UserController.adminGetUserInfo(..))")
     public String adminGetUserInfo(JoinPoint joinpoint) throws Exception;
+
+    /**
+     * 管理员修改用户信息
+     *      主要做了是否存在管理员权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Before("execution(* com.dazuizui.business.controller.UserController.adminUpdateUserInfoById(..))")
+    public String adminUpdateUserInfoById(JoinPoint joinpoint) throws Exception;
 }

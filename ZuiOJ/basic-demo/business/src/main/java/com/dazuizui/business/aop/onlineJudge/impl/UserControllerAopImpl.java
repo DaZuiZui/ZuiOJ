@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.*;
 import com.dazuizui.business.aop.onlineJudge.UserControllerAop;
@@ -239,6 +240,25 @@ public class UserControllerAopImpl implements UserControllerAop {
         AdminGetUserinfo adminGetUserinfo = (AdminGetUserinfo) args[0];
         String token = adminGetUserinfo.getToken();
         systemVerifyService.veryfiAdmin(token,2);
+
+        return null;
+    }
+
+    /**
+     * 管理员修改用户信息
+     *      主要做了是否存在管理员权限
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String adminUpdateUserInfoById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        UpdateUserInfoByIdBo updateUserInfoByIdBo = (UpdateUserInfoByIdBo) args[0];
+        String token = updateUserInfoByIdBo.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
+
+
 
         return null;
     }
