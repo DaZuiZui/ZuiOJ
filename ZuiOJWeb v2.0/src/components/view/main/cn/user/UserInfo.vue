@@ -236,7 +236,7 @@ import Foot from '../../../../frame/blog/Foot.vue';
                     check(obj);
                 }
                 
-            
+                
                 this.user = obj.data;
                 this.user.password = "***********";
 
