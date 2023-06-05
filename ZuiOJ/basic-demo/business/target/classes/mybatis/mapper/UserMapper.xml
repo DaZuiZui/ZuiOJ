@@ -225,4 +225,27 @@
         where
             id = #{id}
     </update>
+
+    <!--
+    管理员分页获取学生数据
+-->
+    <select id="adminGetUserList" resultType="com.dazuizui.basicapi.entry.User">
+        select
+            *
+        from
+            user
+        <where>
+            <if test="status != null">
+                status = #{status} and
+            </if>
+            <if test="role != null">
+                role = #{role} and 
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag}
+            </if>
+        </where>
+        limit
+            #{start},#{size}
+    </select>
 </mapper>

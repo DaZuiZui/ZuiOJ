@@ -11,7 +11,8 @@
                 <br>
                 <button type="button" class="btn btn-primary" @click="deleteUsersInBulk">批量删除</button>
 
-                <button type="button" class="btn btn-primary"  >仅查看管理员</button>
+                <button type="button" class="btn btn-primary" @click="getAdminList()" >仅查看管理员</button>
+                <button type="button" class="btn btn-primary" @click="getUserList()" >仅查看用户</button>
                 <br>
           
                 <table class="table">
@@ -114,7 +115,7 @@
                   <el-pagination
                     :page-size="50"
                     :pager-count="11"
-                    @current-change="getMerchantInformation"
+                    @current-change="getUserlist"
                     layout="prev, pager, next"
                     :total="count">
                   </el-pagination>
@@ -167,16 +168,62 @@
         userList: [],
         //题目总数
         count: 0,
-        
 
+        //管理员获取用户通过ROle
+        adminFindUserByRoleBo: {
+            token: "",
+            role: 1,
+            start: 0,
+            size: 50,
+            status: 0,
+            delFlag: 0,
+        }
       
       }
     },
     mounted(){
         //获取幂等性token
-        this.getMerchantInformation(1);
+        //this.getMerchantInformation(1);
+        this.getUserlist(1);
     },
     methods: {
+        /**
+         *  只查看管理员
+         */
+        async getAdminList(){
+            this.adminFindUserByRoleBo.role = 5;
+            this.adminFindUserByRoleBo.start = 0;
+            this.curpage = 1;
+            this.getUserlist(1);
+        },
+        /**
+         *  获取用户集合
+         **/
+        async getUserlist(val){
+ 
+            this.adminFindUserByRoleBo.start = (val - 1) * this.adminFindUserByRoleBo.size;
+            //alert(this.adminFindUserByRole.pages);
+            //记录当前选择的页面
+            this.curpage = val;
+            this.adminFindUserByRoleBo.token = getCookie("token");
+
+            let obj = await synRequestPost("/user/admin/adminFindUserByRole",this.adminFindUserByRoleBo);
+            console.log(obj.data);
+            if(check(obj)){
+                if(obj.data.users.length == 0){
+                //数据库真的没数据了
+                if(this.curpage <= 1){
+                    alert("无数据");
+                    return ;
+                }
+                    this.getUserlist(this.curpage-1);
+                }
+
+                this.count = obj.data.numberOfUsersByRole;
+                this.userList = obj.data.users;
+            }
+        },
+
         //查看用户信息
         toCheckUserInfo(userId){
             this.$router.push("/cn/admin/check/user?userId="+userId);
