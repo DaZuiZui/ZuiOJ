@@ -1,12 +1,10 @@
 package com.dazuizui.business.mapper;
 
-import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
 import com.dazuizui.basicapi.entry.User;
-import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -93,4 +91,11 @@ public interface UserMapper {
      * @return
      */
     public Long updateUserInfoById(User user);
+
+    /**
+     * 管理员获取用户集合
+     * @param adminFindUserByRole
+     * @return
+     */
+    public List<User> adminGetUserList(AdminFindUserByRoleBo adminFindUserByRole);
 }

@@ -10,6 +10,7 @@ import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
 import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -210,5 +211,24 @@ public class UserController {
         }
 
         return userService.updateUserInfoById( updateUserInfoByIdBo);
+    }
+
+
+    /**
+     * 管理员通过指定角色查询用户
+     * @param adminFindUserByRole
+     * @return
+     */
+    @ApiOperation("管理员通过指定角色查询用户")
+    @PostMapping("/admin/adminFindUserByRole")
+    public String adminFindUserByRole(@RequestBody AdminFindUserByRoleBo adminFindUserByRole){
+        //查看是否权限不足
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return userService.adminFindUserByRole(adminFindUserByRole);
     }
 }

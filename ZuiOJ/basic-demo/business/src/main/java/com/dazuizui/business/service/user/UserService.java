@@ -7,16 +7,12 @@ import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
+import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
 import com.dazuizui.business.domain.bo.AdminGetUserinfo;
-import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Service
 public interface UserService {
@@ -114,4 +110,12 @@ public interface UserService {
      * @return
      */
     public String adminGetUserInfo(AdminGetUserinfo adminGetUserinfo);
+
+
+    /**
+     * 管理员通过指定装备查询用户
+     * @param adminFindUserByRole
+     * @return
+     */
+    public String adminFindUserByRole(AdminFindUserByRoleBo adminFindUserByRole);
 }

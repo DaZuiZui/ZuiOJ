@@ -20,6 +20,7 @@ public class BlogrollSerivceImpl implements BlogrollSerivce {
     @Autowired
     private BlogrollMapper blogrollMapper;
 
+
     /**
      * 获取全部的连接
      * @param status

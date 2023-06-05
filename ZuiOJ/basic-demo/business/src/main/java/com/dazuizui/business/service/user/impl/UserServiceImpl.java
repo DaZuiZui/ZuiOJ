@@ -9,9 +9,12 @@ import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
 import com.dazuizui.basicapi.entry.vo.PagingToGetUserDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.RedisKey;
+import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
 import com.dazuizui.business.domain.bo.AdminGetUserinfo;
+import com.dazuizui.business.domain.vo.AdminFindUserByRoleVo;
 import com.dazuizui.business.mapper.AttributeMapper;
 import com.dazuizui.business.mapper.UserArticleAttributeMapper;
+import com.dazuizui.business.mapper.UserAttributeMapper;
 import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
@@ -44,7 +47,8 @@ public class UserServiceImpl implements UserService {
     private AttributeMapper attributeMapper;
     @Autowired
     private TransactionUtils transactionUtils;
-
+    @Autowired
+    private UserAttributeMapper userAttributeMapper;
 
     /**
      * 查询网站管理人员
@@ -463,6 +467,28 @@ public class UserServiceImpl implements UserService {
         }
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,userInDB,StatusCode.OK));
+    }
+
+
+
+    /**
+     * 管理员通过指定角色查询用户
+     * @param adminFindUserByRole
+     * @return
+     */
+    @Override
+    public String adminFindUserByRole(AdminFindUserByRoleBo adminFindUserByRole) {
+
+        //查询指定权限的人数
+        Long numberOfUsersByRole = userAttributeMapper.findNumberOfUsersByRole(adminFindUserByRole.getRole());
+        //分野获取数据
+        List<User> users = userMapper.adminGetUserList(adminFindUserByRole);
+        AdminFindUserByRoleVo adminFindUserByRoleVo = new AdminFindUserByRoleVo();
+        adminFindUserByRoleVo.setNumberOfUsersByRole(numberOfUsersByRole);
+        adminFindUserByRoleVo.setUsers(users);
+
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,adminFindUserByRoleVo,StatusCode.OK));
     }
 
 
