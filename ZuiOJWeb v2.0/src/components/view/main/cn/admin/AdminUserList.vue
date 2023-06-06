@@ -187,6 +187,13 @@
         this.getUserlist(1);
     },
     methods: {
+        async getUserList(){
+            this.adminFindUserByRoleBo.role = 1;
+            this.adminFindUserByRoleBo.start = 0;
+            this.curpage = 1;
+            this.getUserlist(1);
+        },
+
         /**
          *  只查看管理员
          */
