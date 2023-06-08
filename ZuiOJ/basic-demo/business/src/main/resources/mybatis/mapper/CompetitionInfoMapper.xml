@@ -3,8 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.CompetitionInfoMapper">
-
-
     <!--
         删除比赛选手通过iD
     -->
@@ -88,6 +86,9 @@
             contest_id = #{id}
     </delete>
 
+    <!--
+
+    -->
     <select id="getTotal" resultType="com.dazuizui.basicapi.entry.GetTotal">
         SELECT
             count(q1.contest_id) as 'count',

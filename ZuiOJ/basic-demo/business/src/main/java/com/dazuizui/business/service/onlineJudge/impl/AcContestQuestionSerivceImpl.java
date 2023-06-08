@@ -29,7 +29,7 @@ import java.util.List;
 @Service
 public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     @Autowired
-        private AcContestQuestionMapper acContestQuestionMapper;
+    private AcContestQuestionMapper acContestQuestionMapper;
     @Autowired
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
 
