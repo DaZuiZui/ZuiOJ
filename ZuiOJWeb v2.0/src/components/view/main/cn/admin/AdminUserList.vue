@@ -23,13 +23,17 @@
                         <th scope="col">名字</th>
                         <th scope="col">性别</th>
                         <th scope="col">管理权限 
-                            <a @click="nextRole()">
+                            <a @click="nextDelFlagStatus()">
                                 <svg t="1680530967416" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2753" width="20" height="20"><path d="M170.666667 392.533333L349.866667 213.333333l29.866666 29.866667-149.333333 149.333333h669.866667v42.666667H128l42.666667-42.666667z m682.666666 213.333334l-179.2 179.2-29.866666-29.866667 149.333333-149.333333H132.266667v-42.666667H896l-42.666667 42.666667z" fill="#1296db" p-id="2754"></path></svg>    
                             </a>    
                         </th>
                         <th scope="col">头像 </th>
                         <th scope="col"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入时间</th>
-                        <th scope="col">逻辑删除</th>
+                        <th scope="col">逻辑删除
+                            <a @click="nextDelFlagStatus()">
+                                <svg t="1680530967416" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2753" width="20" height="20"><path d="M170.666667 392.533333L349.866667 213.333333l29.866666 29.866667-149.333333 149.333333h669.866667v42.666667H128l42.666667-42.666667z m682.666666 213.333334l-179.2 179.2-29.866666-29.866667 149.333333-149.333333H132.266667v-42.666667H896l-42.666667 42.666667z" fill="#1296db" p-id="2754"></path></svg>    
+                            </a> 
+                        </th>
                         <th scope="col">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -184,7 +188,8 @@
         },
         //权限角色状态
         rolestatus: 0,
-      
+        //逻辑删除状态
+        delFlagStatus: 0,
       }
     },
     mounted(){
@@ -193,6 +198,34 @@
         this.getUserlist(1);
     },
     methods: {
+        /**
+         *  下一个逻辑删除装备
+         */ 
+        nextDelFlagStatus(){
+            this.delFlagStatus++;
+            if(this.delFlagStatus % 2 == 1){
+                this.gerHasBeenDeleteUser();
+            }else{
+                this.getUnDeletedUser();
+            }
+        },
+        
+        //获取被删除的用户
+        async gerHasBeenDeleteUser(){
+            this.adminFindUserByRoleBo.delFlag = 1;
+            this.adminFindUserByRoleBo.start = 0;
+            this.curpage = 1;
+            this.getUserlist(1);
+        },
+
+        //获取未删除的用户
+        async getUnDeletedUser(){
+            this.adminFindUserByRoleBo.delFlag = 0;
+            this.adminFindUserByRoleBo.start = 0;
+            this.curpage = 1;
+            this.getUserlist(1);
+        },
+
         /**
          *  下一个权限
          */ 
