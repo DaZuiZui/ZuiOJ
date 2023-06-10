@@ -8,7 +8,8 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
-                <el-button type="primary" disabled>生成监考账号</el-button>  <el-button type="primary" @click="AddProctorDrawer = true">添加监考账号</el-button>   <el-button type="success">前往监考页面</el-button>
+                <el-button type="primary" disabled>生成监考账号</el-button>  <el-button type="primary" @click="AddProctorDrawer = true">添加监考账号</el-button> 
+                  <el-button type="success" @click="goToProctoringPage()">前往监考页面</el-button>
                 <el-drawer
                     title="添加监考人员"
                     :visible.sync="AddProctorDrawer"
@@ -158,6 +159,11 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         this.getMerchantInformation(1);
     },
     methods: {
+        //前往监考页面
+        async goToProctoringPage(){
+            this.$router.push("/cn/invigilator/index");
+        },
+
         //物理删除监考人员数据
         async deleteProctor(userId,proctorId){
             //获取参数
