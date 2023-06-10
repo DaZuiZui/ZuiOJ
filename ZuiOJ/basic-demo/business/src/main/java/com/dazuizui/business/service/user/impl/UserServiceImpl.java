@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserAttributeMapper userAttributeMapper;
 
+
     /**
      * 查询网站管理人员
      * todo 缓存层优化
@@ -266,26 +267,30 @@ public class UserServiceImpl implements UserService {
                 return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
             }
 
+            //增加用户属性表数量
+            aLong = userAttributeMapper.increaseTheNumberOfUserByRole(1,1);
+            if (aLong <= 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
+            }
+
             //创建用户博文数量
-            userArticleAttributeMapper.AddUserArticleAttribute(user.getId());
-            //写入用户表的用户个数
-            attributeMapper.increaseTheNumberOfTable(AttributeKey.user,1L);
+            aLong = userArticleAttributeMapper.AddUserArticleAttribute(user.getId());
+            if (aLong <= 0){
+                transactionUtils.rollback(transactionStatus);
+                return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
+            }
+
         } catch (Exception e) {
+            e.printStackTrace();
             transactionUtils.rollback(transactionStatus);
             return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
-            //e.printStackTrace();
+
         }
 
         transactionUtils.commit(transactionStatus);
 
-        /**
-         * 写入用户数量
-         *     如果key过期了，那么就不做处理，如果没过期则
-         */
-        Long longOfStringInRedis = redisUtil.getLongOfStringInRedis(RedisKey.ZuiBlogUserCount);
-        if (longOfStringInRedis != null){
-            redisUtil.increment(RedisKey.ZuiBlogUserCount,RedisKey.OutTime,1);
-        }
+
 
         return JSONArray.toJSONString(new ResponseVo<>("注册成功",null,StatusCode.OK));
     }

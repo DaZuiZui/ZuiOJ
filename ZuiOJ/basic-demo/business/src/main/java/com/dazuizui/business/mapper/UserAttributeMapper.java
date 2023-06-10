@@ -13,4 +13,9 @@ public interface UserAttributeMapper {
      */
     @Select("select number from user_attribute where role = #{role}")
     public Long findNumberOfUsersByRole(@Param("role")Integer role);
+
+    /**
+     * 增加用户数量
+     */
+    public Long increaseTheNumberOfUserByRole(@Param("role") Integer role,@Param("number")Integer number);
 }

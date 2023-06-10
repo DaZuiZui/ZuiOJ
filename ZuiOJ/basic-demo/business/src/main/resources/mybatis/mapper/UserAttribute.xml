@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.UserAttributeMapper">
+    <update id="increaseTheNumberOfUserByRole">
+        update
+            user_attribute
+        set
+            number = number + #{number}
+        <where>
+           <choose>
+               <when test="role == 1">
+                   id = 1
+               </when>
+                <when test="role == 2">
+                    id = 2
+                </when>
+                <when test="role == 3">
+                    id = 3
+                </when>
+                <when test="role == 4">
+                    id = 4
+                </when>
+                <when test="role == 5">
+                    id = 5
+                </when>
+           </choose>
+        </where>
+    </update>
+</mapper>

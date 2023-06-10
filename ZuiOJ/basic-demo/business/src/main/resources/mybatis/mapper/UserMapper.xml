@@ -228,7 +228,7 @@
 
     <!--
     管理员分页获取学生数据
--->
+    -->
     <select id="adminGetUserList" resultType="com.dazuizui.basicapi.entry.User">
         select
             *
