@@ -144,6 +144,9 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         //监考人员集合
         proctorList: [],
         numberOfProctors: 0,
+
+ 
+ 
       }
     },
     mounted(){
@@ -155,10 +158,12 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         this.deleteProctoBo.contestId = getQueryVariable("contestId");
         //获取幂等性token
         this.getNonPowerToken();
-        //分页获取监考人员
-        this.getMerchantInformation(1);
+ 
+       
     },
     methods: {
+ 
+
         //前往监考页面
         async goToProctoringPage(){
             this.$router.push("/cn/invigilator/index");
