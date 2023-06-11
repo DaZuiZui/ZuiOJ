@@ -26,7 +26,7 @@ public class QuestionDiscussController {
      * 通过问题id查询评论
      */
     @ApiOperation("查询评论")
-    @GetMapping("/queryDiscuss")
+    @PostMapping("/queryDiscuss")
     public String queryQuestionDiscuss(@RequestBody QueryQuestionDiscussBo queryQuestionDiscussBo){
         if (queryQuestionDiscussBo == null){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null,StatusCodeMessage.IsNull));

@@ -32,6 +32,27 @@
                     <hr>
                     
                 </div>
+
+                <div>
+                    <div v-for="obj in questionDiscusses">
+                      <div>
+                        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                      </div>
+                      <b>{{usersMap.get(obj.createById).name}}</b>   sayed :
+                      <mavon-editor v-model="obj.content  "
+                            :subfield="false"
+                            :defaultOpen="'preview'"
+                            :editable="false"
+                            :toolbarsFlag="false"
+                            :boxShadow=false
+                            style="height:100px !important "
+                            >
+                    </mavon-editor>
+                      <el-link type="primary" disabled>点赞</el-link>
+                      <el-link type="primary" disabled>查看回复</el-link>
+                      <br>    <br>    <br>
+                  </div>   
+                </div>
             </div>
             <br>
         </section>
@@ -56,6 +77,10 @@
         msg: 'Welcome to Your Vue.js App',
         mdText: "Hello",
  
+        //题目讨论个数
+        totalElements: 0,
+        //讨论集合
+        questionDiscusses: [],
 
         submitDiscussBo: {
           discuss: {
@@ -65,7 +90,18 @@
           },
           token: "",
           nonPowerToken: "",
-        }
+        },
+
+        //分页查询评论
+        queryQuestionDiscussBo: {
+          questionId: -1,
+          page: 0,
+          size: 50,
+        },
+
+        //评论人信息
+        users: [],
+        usersMap: new Map(),
       }
     },
  
@@ -79,9 +115,29 @@
         this.submitDiscussBo.discuss.questionId = getQueryVariable("id");
         //获取幂等性token
         this.getNonPowerToken();
+        //获取题目讨论
+        this.getQuestionDiscuss(1);
     },
 
     methods: {
+        //获取该题目的讨论
+        async getQuestionDiscuss(start){
+            this.queryQuestionDiscussBo.questionId = getQueryVariable("id");
+            this.queryQuestionDiscussBo.page = (start-1) * 50;
+            let obj = await synRequestPost("/discuss/queryDiscuss",this.queryQuestionDiscussBo);
+
+            if(check(obj)){
+              this.totalElements = obj.data.totalElements;
+              this.questionDiscusses = obj.data.questionDiscusses;
+              this.users = obj.data.users;
+              console.log(obj);
+              //将users转换为map集合
+              for(let i = 0 ; i < this.users.length ; i++){
+                this.usersMap.set(this.users[i].id,this.users[i]);
+              }
+            }
+        },
+
         //防止幂等性
         async getNonPowerToken(){
             var object = await synRequestGet("/system/getNonPowerTokenString");
@@ -125,8 +181,13 @@
 
         //发布评论
         async submitDiscuss(){
+      
           if(this.submitDiscussBo.discuss.content == ""){
             alert("评论不可为空")
+            return;
+          }
+          if(this.submitDiscussBo.discuss.content.length >= 200){
+            alert("长度过长不可以大于200字符");
             return;
           }
           let obj = await synRequestPost("/discuss/submit",this.submitDiscussBo);
@@ -135,6 +196,7 @@
             this.submitDiscussBo.discuss.content ="";
             //获取幂等性token
             this.getNonPowerToken();
+            this.getQuestionDiscuss(1);
           }
         }
         

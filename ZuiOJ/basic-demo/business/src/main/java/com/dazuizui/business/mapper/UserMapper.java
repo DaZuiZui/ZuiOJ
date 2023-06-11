@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
+import com.dazuizui.business.domain.QuestionDiscuss;
 import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -98,4 +99,10 @@ public interface UserMapper {
      * @return
      */
     public List<User> adminGetUserList(AdminFindUserByRoleBo adminFindUserByRole);
+
+    /**
+     * 获取用户信息集合通过QuestionDiscuss
+     * @return
+     */
+    public List<User> getUserInfoListByUserIdInQuestionDiscussList(@Param("list") List<QuestionDiscuss> list);
 }

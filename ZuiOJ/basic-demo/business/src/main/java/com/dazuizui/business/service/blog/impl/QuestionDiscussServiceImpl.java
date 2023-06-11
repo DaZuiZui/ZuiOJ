@@ -3,10 +3,12 @@ package com.dazuizui.business.service.blog.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.QuestionDiscuss;
 import com.dazuizui.business.domain.bo.QueryQuestionDiscussBo;
 import com.dazuizui.business.domain.vo.QueryQuestionDiscussVo;
+import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.mongodao.ArticleDiscussionRepository;
 import com.dazuizui.business.service.blog.QuestionDiscussService;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -19,10 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.PageRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 /**
  * 评论控制器业务实现层
@@ -32,7 +32,8 @@ public class QuestionDiscussServiceImpl implements QuestionDiscussService {
     //dao
     @Autowired
     private ArticleDiscussionRepository articleDiscussionRepository;
-
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 通过问题id查询评论
@@ -43,9 +44,18 @@ public class QuestionDiscussServiceImpl implements QuestionDiscussService {
         Page<QuestionDiscuss> byQuestionId = articleDiscussionRepository.findByQuestionId(queryQuestionDiscussBo.getQuestionId(), PageRequest.of(queryQuestionDiscussBo.getPage(), queryQuestionDiscussBo.getSize()));
         long totalElements = byQuestionId.getTotalElements();
         List<QuestionDiscuss> content = byQuestionId.getContent();
-        QueryQuestionDiscussVo queryQuestionDiscussVo =new QueryQuestionDiscussVo(totalElements,content);
+        List<User> userInfoListByUserIdInQuestionDiscussList = new ArrayList<>();
+        //去数据库查询用户的名字和头像通过userId list
+        if (content != null){
+            userInfoListByUserIdInQuestionDiscussList = userMapper.getUserInfoListByUserIdInQuestionDiscussList(content);
+        }
+
+        QueryQuestionDiscussVo queryQuestionDiscussVo =new QueryQuestionDiscussVo(totalElements,content,userInfoListByUserIdInQuestionDiscussList);
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryQuestionDiscussVo, StatusCode.OK));
     }
+
+
+
     /**
      * 提交评论
      * @param discuss

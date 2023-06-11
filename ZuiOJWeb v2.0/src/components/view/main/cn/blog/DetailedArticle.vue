@@ -26,7 +26,7 @@
                     :toolbarsFlag="false"
                     :boxShadow=false
                     >
-             </mavon-editor>
+                </mavon-editor>
             </div>
 
 
