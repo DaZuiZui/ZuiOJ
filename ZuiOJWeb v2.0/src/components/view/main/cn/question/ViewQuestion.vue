@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row row-cols-2" style="background-color: rgb(248 248 248);  ">
                     <div class="col">
-                        <br>
+                      <br>
                       <!--md text-->
                       <mavon-editor v-model="question.mdCn"
                           :subfield="false"
@@ -28,7 +28,7 @@
                     <el-row>
                         <el-button type="primary" @click="submit()" :disabled="switchbutton" >提交</el-button>
                         <el-button type="success" v-if="program.contestId == -1">Debug</el-button>
-                        <el-button type="info" v-if="program.contestId == -1">讨论区</el-button>
+                        <el-button type="info" v-if="program.contestId == -1" @click="goDiscuss()">讨论区</el-button>
                         <el-button type="warning" @click="goQuestionAnser(question.id)" v-if="program.contestId == -1">题解</el-button>
                     </el-row>
 
@@ -138,6 +138,11 @@
        },
   
        methods: {
+            //跳转讨论区
+            goDiscuss(){
+                this.$router.push("/cn/question/discuss?id="+getQueryVariable("id"));
+            },
+
             //代码高亮
             highlighter(code) {
                 return highlight(code, languages.js); //returns html

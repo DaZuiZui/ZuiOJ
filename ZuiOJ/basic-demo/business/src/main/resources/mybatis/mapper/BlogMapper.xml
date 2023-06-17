@@ -3,6 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogMapper">
+    <select id="userGetMyselfArticle" resultType="com.dazuizui.basicapi.entry.ArticleJSON">
+        select
+            *
+        from
+            article a
+        where
+            create_by = #{id} and
+            status = #{status} and
+            del_flag = #{delFlag}
+        limit
+            #{start},#{size}
+    </select>
 
     <!--
         获取博文详细数据
@@ -241,4 +253,15 @@
                 #{tmp}
             </foreach>
     </delete>
+
+    <select id="getCountOfArticleOfUser" resultType="long">
+        select
+            count(*)
+        from
+            article
+        where
+            create_by = #{id} and
+            status = #{status} and
+            del_flag = #{delFlag}
+    </select>
 </mapper>

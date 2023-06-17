@@ -45,6 +45,7 @@ import ProctorViewCodeOfContestants from '@/components/view/main/cn/proctor/Proc
 import ProctorCodeDetailedInContest from '@/components/view/main/cn/proctor/ProctorCodeDetailedInContest'
 import ManageBlog                   from '@/components/view/main/cn/admin/ManageBlog'
 import AdminCheckUserInfo from '@/components/view/main/cn/admin/AdminCheckUserInfo' 
+import MyBlogList from '@/components/view/main/cn/blog/MyBlogList'
 
 Vue.use(Router)
 
@@ -56,6 +57,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //我的博客列表
+    {
+      path: '/cn/blog/MyBlogList',
+      name: 'MyBlogList',
+      component: MyBlogList
     },
     //管理员查看用户
     {

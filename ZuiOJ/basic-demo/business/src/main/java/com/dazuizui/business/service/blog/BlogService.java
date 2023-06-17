@@ -88,5 +88,10 @@ public interface BlogService {
      */
     public String physicallyDeleteArticles(@RequestBody PhysicallyDeleteArticlesBo physicallyDeleteArticlesBo);
 
-
+    /**
+     * 用户获取自己的文章
+     * @param userGetMyselfArticleBo
+     * @return
+     */
+    public String userGetMyselfArticle(UserGetMyselfArticleBo userGetMyselfArticleBo);
 }

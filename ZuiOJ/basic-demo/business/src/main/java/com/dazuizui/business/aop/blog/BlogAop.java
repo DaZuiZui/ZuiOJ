@@ -4,6 +4,8 @@ import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,8 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * 博客Aop接口实现
  */
+@Aspect
 @Component
 public interface BlogAop {
+    /**
+     * 用户鉴权获取自己的token
+     * todo 改成用户解析
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Before("execution(* com.dazuizui.business.controller.BlogController.userGetMyselfArticle(..))")
+    public String userGetMyselfArticle(JoinPoint joinpoint) throws Exception;
 
     /**
      * 创建博文AOP，主要做了防止非幂等操作和token鉴权

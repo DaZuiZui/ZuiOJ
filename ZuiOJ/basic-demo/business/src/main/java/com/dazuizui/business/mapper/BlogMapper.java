@@ -9,6 +9,7 @@ import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
+import com.dazuizui.business.domain.bo.UserGetMyselfArticleBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -100,4 +101,18 @@ public interface BlogMapper {
      * @return
      */
     public Long physicallyDeleteArticleInType(@Param("list")List<Long> list);
+
+    /**
+     * 用户获取自己的文章
+     * @param userGetMyselfArticleBo
+     * @return
+     */
+    public List<ArticleJSON> userGetMyselfArticle(UserGetMyselfArticleBo userGetMyselfArticleBo);
+
+    /**
+     * 获取用户发布的文章数量
+     * @param userGetMyselfArticleBo
+     * @return
+     */
+    public Long getCountOfArticleOfUser(UserGetMyselfArticleBo userGetMyselfArticleBo);
 }

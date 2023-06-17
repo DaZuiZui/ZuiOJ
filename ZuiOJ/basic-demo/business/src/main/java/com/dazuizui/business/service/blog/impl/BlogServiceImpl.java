@@ -14,6 +14,7 @@ import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.vo.UserGetMyselfArticleVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.messageQueue.cofnig.MessageSource;
 import com.dazuizui.business.service.blog.BlogService;
@@ -123,10 +124,6 @@ public class BlogServiceImpl implements BlogService {
          */
         redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+articleBo.getId(),RedisKey.OutTime,articleBo);
 
-        //添加总题解数量
-        //redisUtil.increment(RedisKey.ZuiOJNumberOfQustionAnswer,RedisKey.OutTime,1);
-        //添加总题解指定状态的数量
-        //redisUtil.increment(RedisKey.ZuiOJQuestionAnswerPrivicy+articleBo.getPrivacy(),RedisKey.OutTime,1);
 
         /**
          * 消息队列，处理分类内容，和个人文件夹的分类管理
@@ -327,7 +324,6 @@ public class BlogServiceImpl implements BlogService {
         //判断是否有查看权限
         if (detailedArticleBo.getPrivacy() != 0){
             //查看是否没有登入，如果没有登入无权访问
-            System.err.println(ThreadLocalUtil.DataOfThreadLocal.get());
             Boolean userauth = (Boolean) ThreadLocalUtil.DataOfThreadLocal.get().get("userauth");
             if (userauth != null && userauth == false){
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.NotAuthorizedToView,detailedArticleBo, StatusCode.NotAuthorizedToView));
@@ -517,6 +513,26 @@ public class BlogServiceImpl implements BlogService {
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 
+    /**
+     * 获取用户发布的文章
+     * @param userGetMyselfArticleBo
+     * @return
+     */
+    @Override
+    public String userGetMyselfArticle(UserGetMyselfArticleBo userGetMyselfArticleBo) {
+        //用户id
+        Long userId = Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+"");
+        userGetMyselfArticleBo.setId(userId);
+        //分页查询数据
+        List<ArticleJSON> articleJSONS = blogMapper.userGetMyselfArticle(userGetMyselfArticleBo);
+        //查询数据数量
+        List<ArticleVo> articleVos = this.ArticleJSONtoList(articleJSONS);
+        //查询用户发布的数据个数
+        Long countOfArticleOfUser = blogMapper.getCountOfArticleOfUser(userGetMyselfArticleBo);
+        UserGetMyselfArticleVo userGetMyselfArticleVo = new UserGetMyselfArticleVo(countOfArticleOfUser,articleVos);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,userGetMyselfArticleVo, StatusCode.OK));
+    }
 
 
 }

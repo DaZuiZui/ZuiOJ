@@ -15,7 +15,7 @@
         <foreach collection="list" close=")" open="(" separator="," item="tmp">
             #{tmp.createById}
         </foreach>
-        
+
     </select>
 
     <select id="queryUserByUsername" resultType="com.dazuizui.basicapi.entry.User">
