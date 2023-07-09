@@ -229,7 +229,7 @@
         async userGetMyselfArticle(val){
             this.userGetMyselfArticleBo.start = (val - 1)  *50;
             let obj = await synRequestPost("/blog/userGetMyselfArticle",this.userGetMyselfArticleBo);
-            
+            console.log(obj);
             if(check(obj)){
                 this.count = obj.data.count;
                 this.articleList = obj.data.articleVos;
