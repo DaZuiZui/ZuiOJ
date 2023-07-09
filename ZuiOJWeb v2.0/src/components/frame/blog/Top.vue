@@ -108,7 +108,7 @@
                           
                                             <div style="margin: auto;"  >                              
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="goUserInfo" ><i class="el-icon-user"></i>我的个人信息</li>
-                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"   ><i class="el-icon-user"></i>我的个人博客</li>
+                                                <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="goMyBlog"  ><i class="el-icon-user"></i>我的个人博客</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="goAdminManagement()" v-if="user.role > 2" ><i class="el-icon-user"></i>管理操作页面</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center"  v-if="user.role > 2"  ><i class="el-icon-user"   ></i>站长人员操作</li>
                                                 <li tabindex="-1" class="el-dropdown-menu__item" style="text-align:center" @click="quite()" ><i class="el-icon-back"></i>退出我的账户</li>
@@ -248,6 +248,10 @@ import { synRequestGet } from '../../../../static/request';
         //前往友情链接
         goBlogRoll(){
             this.$router.push('/cn/blogroll/index')
+        },
+        //前往个人博客页面
+        goMyBlog(){
+            this.$router.push('/cn/blog/MyBlogList');
         },
     }
   }
