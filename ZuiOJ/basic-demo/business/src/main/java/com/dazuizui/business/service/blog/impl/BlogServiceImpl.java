@@ -14,6 +14,7 @@ import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.basicapi.entry.vo.QuestionBankVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.vo.GetMyArticleVo;
 import com.dazuizui.business.domain.vo.UserGetMyselfArticleVo;
 import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.messageQueue.cofnig.MessageSource;
@@ -63,6 +64,8 @@ public class BlogServiceImpl implements BlogService {
     private BlogAttributeMapper blogAttributeMapper;
     @Autowired
     private QuestionAnswerService questionAnswerService;
+
+
 
     /**
      * 创建博文
@@ -471,6 +474,8 @@ public class BlogServiceImpl implements BlogService {
             article.setCreateByName(articleJSON.getCreateByName());
             article.setMdTextId(articleJSON.getMdTextId());
             article.setLikes(articleJSON.getLikes());
+            article.setStatus(articleJSON.getStatus());
+            article.setDelFlag(article.getDelFlag());
 
             res.add(article);
         }
@@ -532,6 +537,19 @@ public class BlogServiceImpl implements BlogService {
         UserGetMyselfArticleVo userGetMyselfArticleVo = new UserGetMyselfArticleVo(countOfArticleOfUser,articleVos);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,userGetMyselfArticleVo, StatusCode.OK));
+    }
+
+    /**
+     * 获取自己发布的文章
+     * @param getMyArticleVo
+     * @return
+     */
+    @Override
+    public String getMyArticle(GetMyArticleVo getMyArticleVo) {
+        Long userId = Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+"");
+
+
+        return null;
     }
 
 

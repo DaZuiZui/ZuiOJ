@@ -6,6 +6,7 @@ import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.vo.GetMyArticleVo;
 import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -167,5 +168,16 @@ public class BlogController {
         }
 
         return blogService.physicallyDeleteArticles(physicallyDeleteArticlesBo);
+    }
+
+    /**
+     * 获取我发布的文章
+     * @param
+     * @return
+     */
+    @ApiOperation("查看我发布的所有文章")
+    @PostMapping("/user/getMyArticle")
+    public String getMyArticle(@RequestBody GetMyArticleVo getMyArticleVo){
+        return "";
     }
 }

@@ -254,6 +254,9 @@
             </foreach>
     </delete>
 
+    <!--
+        查看发布自己的博文
+    -->
     <select id="getCountOfArticleOfUser" resultType="long">
         select
             count(*)

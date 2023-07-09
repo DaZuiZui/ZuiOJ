@@ -6,6 +6,7 @@ import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.basicapi.entry.bo.GetBlogPostsByPageBo;
 import com.dazuizui.business.domain.vo.ArticleVo;
+import com.dazuizui.business.domain.vo.GetMyArticleVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,4 +95,11 @@ public interface BlogService {
      * @return
      */
     public String userGetMyselfArticle(UserGetMyselfArticleBo userGetMyselfArticleBo);
+
+    /**
+     * 获取
+     * @param getMyArticleVo
+     * @return
+     */
+    public String getMyArticle(@RequestBody GetMyArticleVo getMyArticleVo);
 }
