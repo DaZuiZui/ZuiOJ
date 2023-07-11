@@ -145,4 +145,25 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
 
         return true;
     }
+
+    /**
+     * 通过token获取用户id
+     * @param token
+     * @return
+     */
+    @Override
+    public boolean getUserIdByToken(String token){
+        //非空判断
+        if (token == null || token == ""){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+        //身份校验
+        Map<String, Object> map = null;
+        map = JwtUtil.analysis(token);
+        ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+
+        return true;
+    }
 }

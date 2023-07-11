@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public interface SystemVerifyService {
     /**
+     * 通过token获取userid
+     * @param token
+     * @return
+     */
+    public boolean getUserIdByToken(String token);
+    /**
      * 验证监考人员
      * 如果是监考人员就返回true，否则返回false
      * @return boolean

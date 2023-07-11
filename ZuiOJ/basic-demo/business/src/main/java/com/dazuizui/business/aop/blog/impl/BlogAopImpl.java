@@ -30,13 +30,18 @@ public class BlogAopImpl implements BlogAop {
     @Autowired
     private SystemVerifyService systemVerifyService;
 
-
+    /**
+     * 用户获取自己发布的文章
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
     @Override
     public String userGetMyselfArticle(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         UserGetMyselfArticleBo userGetMyselfArticleBo  = (UserGetMyselfArticleBo) args[0];
         String token = userGetMyselfArticleBo.getToken();
-        systemVerifyService.veryfiAdmin(token,2);
+        systemVerifyService.getUserIdByToken(token);
         return null;
     }
 
