@@ -104,9 +104,6 @@
                                 <div v-else-if="obj.status == 2">
                                     封禁
                                 </div>
-                                <div v-else-if="obj.status == 3">
-                                    置顶
-                                </div>
                                 <div v-else-if="obj.status == 0">
                                     Public
                                 </div>
@@ -123,9 +120,7 @@
                                     <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
                                 </div>
                                 <div v-else>
-                                    <el-link type="primary" @click="topTheArticle(obj.id)">置顶</el-link>
                                     <el-link type="primary">修改</el-link>
-                                    <el-link type="danger">封禁</el-link>
                                     <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
                                 </div>
                             </div>
