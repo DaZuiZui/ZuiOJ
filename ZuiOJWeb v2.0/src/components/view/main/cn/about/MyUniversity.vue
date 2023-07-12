@@ -42,7 +42,7 @@
                 <div class="row mb-5 justify-content-center text-center">
                     <div class="col-lg-6">
                         <span class="badge badge-soft-success badge-pill badge-lg">
-                            梦想在代码里
+                            大学日志
                         </span>
                         <h2 class=" mt-4">我的大学主要经历</h2>
                         <div class="mt-2">
