@@ -46,6 +46,7 @@ import ProctorCodeDetailedInContest from '@/components/view/main/cn/proctor/Proc
 import ManageBlog                   from '@/components/view/main/cn/admin/ManageBlog'
 import AdminCheckUserInfo from '@/components/view/main/cn/admin/AdminCheckUserInfo' 
 import MyBlogList from '@/components/view/main/cn/blog/MyBlogList'
+import MyUniversity from '@/components/view/main/cn/about/MyUniversity'
 
 Vue.use(Router)
 
@@ -55,8 +56,15 @@ export default new Router({
   routes: [
     {
       path: '/',
+
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //我的大学
+    {
+      path: '/cn/blog/MyUniversity',
+      name: 'MyUniversity',
+      component: MyUniversity
     },
     //我的博客列表
     {
