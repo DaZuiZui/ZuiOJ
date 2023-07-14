@@ -115,4 +115,11 @@ public interface BlogMapper {
      * @return
      */
     public Long getCountOfArticleOfUser(UserGetMyselfArticleBo userGetMyselfArticleBo);
+
+    /**
+     * 通过博文id获取发布者
+     * @param articleId
+     * @return
+     */
+    public Long getCreatByById(@Param("articleId") Long articleId);
 }

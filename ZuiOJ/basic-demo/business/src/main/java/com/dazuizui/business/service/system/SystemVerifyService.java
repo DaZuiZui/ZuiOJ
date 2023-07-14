@@ -50,4 +50,13 @@ public interface SystemVerifyService {
      * @return
      */
     public boolean verfiNonPowerTokenAndAdminToken(String nonPowerToken,String token,Integer leave);
+
+
+    /**
+     * 查看是否为自己的文章
+     * @param token
+     * @param id
+     * @return
+     */
+    public boolean isMyArticle(String token,Long id);
 }

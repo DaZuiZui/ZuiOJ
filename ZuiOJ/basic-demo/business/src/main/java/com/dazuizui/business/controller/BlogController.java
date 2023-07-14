@@ -28,6 +28,24 @@ public class BlogController {
     private BlogService blogService;
 
     /**
+     * 用户逻辑删除博文通过Id
+     * @return
+     */
+    @PostMapping("/user/DeleteAritcleById")
+    @ApiOperation("用户逻辑删除博文通过Id")
+    public String userDeleteAritcleById(@RequestBody AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBo){
+        //身份验证过期或者权限不足的校验
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        return blogService.adminDeleteAritcleById(adminDeleteAritcleByIdBo);
+    }
+
+
+    /**
      * 获取用户发布的文章
      * @param userGetMyselfArticleBo
      * @return

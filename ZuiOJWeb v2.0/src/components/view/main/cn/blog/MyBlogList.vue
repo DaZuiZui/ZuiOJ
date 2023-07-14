@@ -223,6 +223,7 @@
          */ 
         async userGetMyselfArticle(val){
             this.userGetMyselfArticleBo.start = (val - 1)  *50;
+            this.currentPage = val;
             let obj = await synRequestPost("/blog/userGetMyselfArticle",this.userGetMyselfArticleBo);
             console.log(obj);
             if(check(obj)){
@@ -284,9 +285,9 @@
 
             this.adminDeleteAritcleByIdBo.id = id;
             this.adminDeleteAritcleByIdBo.status = status;
-            let obj = await synRequestPost("/blog/admin/adminDeleteAritcleById",this.adminDeleteAritcleByIdBo);
+            let obj = await synRequestPost("/blog/user/DeleteAritcleById",this.adminDeleteAritcleByIdBo);
             if(check(obj)){
-                this.getMerchantInformation(this.currentPage);
+                this.userGetMyselfArticle(this.currentPage);
             }
         },
 

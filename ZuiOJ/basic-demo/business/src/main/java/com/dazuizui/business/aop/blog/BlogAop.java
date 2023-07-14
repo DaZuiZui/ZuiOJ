@@ -1,6 +1,7 @@
 package com.dazuizui.business.aop.blog;
 
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
+import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
 import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
@@ -16,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Aspect
 @Component
 public interface BlogAop {
+    /**
+     * 用户逻辑删除博文通过Id
+     * @return
+     */
+    @Before("execution(* com.dazuizui.business.controller.BlogController.userDeleteAritcleById(..))")
+    public String userDeleteAritcleById(JoinPoint joinpoint) throws Exception;
+
     /**
      * 用户鉴权获取自己的token
      * todo 改成用户解析

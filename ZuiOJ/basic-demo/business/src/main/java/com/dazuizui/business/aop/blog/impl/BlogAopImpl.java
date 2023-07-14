@@ -1,12 +1,9 @@
 package com.dazuizui.business.aop.blog.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.business.domain.bo.AdminGetArticleByPaginBo;
-import com.dazuizui.business.domain.bo.CreateArticleBo;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.aop.blog.BlogAop;
-import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
-import com.dazuizui.business.domain.bo.UserGetMyselfArticleBo;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -29,6 +26,17 @@ public class BlogAopImpl implements BlogAop {
     private RedisTemplate redisTemplate;
     @Autowired
     private SystemVerifyService systemVerifyService;
+
+    @Override
+    public String userDeleteAritcleById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBos = (AdminDeleteAritcleByIdBo) args[0];
+
+        String token = adminDeleteAritcleByIdBos.getToken();
+        adminDeleteAritcleByIdBos.getId();
+
+        return null;
+    }
 
     /**
      * 用户获取自己发布的文章

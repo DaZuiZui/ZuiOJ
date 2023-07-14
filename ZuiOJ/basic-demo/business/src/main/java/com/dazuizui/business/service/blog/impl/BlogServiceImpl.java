@@ -552,5 +552,11 @@ public class BlogServiceImpl implements BlogService {
         return null;
     }
 
+    @Override
+    public Long getUserIdByArticleId(Long articleid) {
+        Long creatByById = blogMapper.getCreatByById(articleid);
+        return creatByById;
+    }
+
 
 }

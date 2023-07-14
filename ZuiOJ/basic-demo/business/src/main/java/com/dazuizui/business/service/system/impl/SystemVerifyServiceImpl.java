@@ -3,6 +3,7 @@ package com.dazuizui.business.service.system.impl;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.User;
 import com.dazuizui.business.domain.Proctor;
+import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.service.proctor.ProctorService;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
@@ -25,6 +26,8 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     private UserService userService;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private BlogService blogService;
     /**
      * 验证是否为监考人员
      * @param token
@@ -144,6 +147,38 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
         }
 
         return true;
+    }
+
+    /**
+     * 查看是否为自己的的文章
+     * @param token
+     * @param id
+     * @return
+     */
+    @Override
+    public boolean isMyArticle(String token, Long id) {
+        //非空判断
+        if (token == null || token == ""){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+        //身份校验
+        Map<String, Object> map = null;
+        map = JwtUtil.analysis(token);
+        ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+        //获取登入者id
+        String strId = (String) map.get("id");
+        Long userId = Long.valueOf(strId);
+        //获取该博文的发布者
+        Long userIdByArticleId = blogService.getUserIdByArticleId(id);
+        if (userIdByArticleId == userId){
+            return true;
+        }
+
+        ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+        ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+        return false;
     }
 
     /**

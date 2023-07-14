@@ -102,4 +102,11 @@ public interface BlogService {
      * @return
      */
     public String getMyArticle(@RequestBody GetMyArticleVo getMyArticleVo);
+
+    /**
+     * 通过博文Id查看发布者
+     * @param articleid  博文id
+     * @return Long
+     */
+    public Long getUserIdByArticleId(Long articleid);
 }
