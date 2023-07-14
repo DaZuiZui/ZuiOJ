@@ -16,7 +16,7 @@
             </div>
         </div>
         <a   class="btn btn-block btn-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;color:aliceblue" target="_blank">
-            <strong>Dazui的博客</strong>  @twitter.com/Dazui0225
+            <strong>Dazui的博客</strong>  @twitter.com/Dazui0225 ZuiOJ测试版本
         </a>
 
         <div>
