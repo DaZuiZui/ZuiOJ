@@ -6,5 +6,6 @@ import org.springframework.stereotype.Service;
  * 比赛队伍业务接口
  */
 @Service
-public class TeamService {
+public interface TeamService {
+
 }
