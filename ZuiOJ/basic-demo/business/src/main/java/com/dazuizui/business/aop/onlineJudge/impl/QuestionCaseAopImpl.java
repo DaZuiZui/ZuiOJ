@@ -1,9 +1,8 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.basicapi.entry.bo.AddQuestionCaseBo;
-import com.dazuizui.basicapi.entry.bo.StudentCertificationBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionCaseAop;
 import com.dazuizui.business.domain.bo.UpdateQuestionCaseBo;
 import com.dazuizui.business.service.user.UserService;

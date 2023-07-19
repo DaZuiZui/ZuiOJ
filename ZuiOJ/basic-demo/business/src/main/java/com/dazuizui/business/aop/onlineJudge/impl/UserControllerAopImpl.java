@@ -1,8 +1,8 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.bo.UpdateUserInfoByIdBo;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.basicapi.entry.bo.*;
 import com.dazuizui.business.aop.onlineJudge.UserControllerAop;
 import com.dazuizui.business.domain.bo.AdminGetUserinfo;
@@ -15,7 +15,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 

@@ -3,7 +3,7 @@ package com.dazuizui.business.service.blog.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.QuestionDiscuss;
 import com.dazuizui.business.domain.bo.QueryQuestionDiscussBo;
@@ -12,15 +12,10 @@ import com.dazuizui.business.mapper.UserMapper;
 import com.dazuizui.business.mongodao.ArticleDiscussionRepository;
 import com.dazuizui.business.service.blog.QuestionDiscussService;
 import com.dazuizui.business.util.ThreadLocalUtil;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.*;
 

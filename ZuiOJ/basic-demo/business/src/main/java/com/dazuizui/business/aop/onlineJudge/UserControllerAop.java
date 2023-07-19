@@ -1,17 +1,9 @@
 package com.dazuizui.business.aop.onlineJudge;
 
-import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
-import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
-import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
-import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
-import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
-import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 用户控制器切面

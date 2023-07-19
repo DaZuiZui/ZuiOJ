@@ -1,7 +1,7 @@
 package com.dazuizui.business.service.system.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.service.blog.BlogService;
 import com.dazuizui.business.service.proctor.ProctorService;

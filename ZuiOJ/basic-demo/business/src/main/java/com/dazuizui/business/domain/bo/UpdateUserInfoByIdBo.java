@@ -1,4 +1,6 @@
-package com.dazuizui.basicapi.entry;
+package com.dazuizui.business.domain.bo;
+
+import com.dazuizui.business.domain.User;
 
 import java.io.Serializable;
 

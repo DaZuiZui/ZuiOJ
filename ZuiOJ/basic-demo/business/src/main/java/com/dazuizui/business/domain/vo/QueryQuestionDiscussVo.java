@@ -1,6 +1,6 @@
 package com.dazuizui.business.domain.vo;
 
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.domain.QuestionDiscuss;
 
 import java.io.Serializable;

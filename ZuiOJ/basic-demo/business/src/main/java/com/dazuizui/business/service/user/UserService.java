@@ -1,7 +1,7 @@
 package com.dazuizui.business.service.user;
 
-import com.dazuizui.basicapi.entry.UpdateUserInfoByIdBo;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.bo.UpdateUserInfoByIdBo;
+import com.dazuizui.business.domain.User;
 
 import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;

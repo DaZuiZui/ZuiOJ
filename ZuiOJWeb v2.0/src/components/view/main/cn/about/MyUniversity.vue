@@ -96,6 +96,36 @@
         </section>
         
         <section class="slice slice-lg">
+
+                        <div class="container">
+                <div class="py-6">
+                    <div class="row row-grid justify-content-between align-items-center">
+                        <div class="col-lg-5">
+                            <h5 class="h3">2023 7.17离职 冲动与遗憾...</h5>
+                            <p class="lead my-4">
+                                今天我从我的公司辞职了因为一些不可抗拒的原因，可能是我一时冲动选择了离职，我应该去选择请假去给自己留一些后路，
+                                当然辞职最大的遗憾还是关于一个女孩，我很喜欢他，今天离职了晚上我闭上眼睛都是它的面孔，认识这么久了，我没有带她出去玩过一次
+                                而且我计划给他的草莓熊一直在我的背包里也没有亲手送给他，我不知道该如何表达我的心情，可我真的好喜欢他，我真的好想和她在一起
+                                我真的太冲动了,我觉得我很自私，我很对不起她，我很爱她，我想，去找她去弥补我的遗憾。我不知道我为什么自私，我后悔了，我真的好
+                                喜欢你，我不知道我为什么会这么喜欢你。我到底在想什么，我到底为什么会错过这么好的一个女孩，我不知道我们在一起了会不会有以后，当我们彼此
+                                实习时间结束，你在遥远的广州，我在哈尔滨相隔接近3000km
+                            </p>
+                            <ul class="list-unstyled mb-0">
+                              
+                     
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card mb-0 ml-lg-5">
+                           
+                                    <img alt="Image placeholder" style="height:500px" src="https://img2.baidu.com/it/u=3557404185,2414394847&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1689786000&t=5457187d6491b079b0bed4a7733ab0a6" class="img-fluid shadow rounded">
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="container">
                 <div class="py-6">
                     <div class="row row-grid justify-content-between align-items-center">

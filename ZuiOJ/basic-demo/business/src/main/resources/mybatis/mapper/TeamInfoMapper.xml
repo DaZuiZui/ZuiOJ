@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.TeamInfoMapper">
+    <insert id="insertTeamInfo">
+        insert into
+            team_info
+        value(
+            null,
+            #{teamId},
+            #{enTeamname},
+            #{zhTeamname},
+            #{zhName},
+            #{enName},
+            #{teacher},
+            #{teacherCall},
+            #{affiliationSystem},
+            #{email}
+        )
+    </insert>
+</mapper>

@@ -3,7 +3,7 @@ package com.dazuizui.business.service.onlineJudge.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.mapper.CodeDetailedInContestMapper;

@@ -6,16 +6,16 @@ import com.dazuizui.basicapi.entry.bo.DeleteUserByIdBo;
 import com.dazuizui.basicapi.entry.bo.DeleteUsersInBulkBo;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.basicapi.entry.bo.TombstoneUserByIdBo;
-import com.dazuizui.basicapi.entry.vo.PagingToGetUserDateVo;
+import com.dazuizui.business.domain.TeamInfo;
+import com.dazuizui.business.domain.bo.UpdateUserInfoByIdBo;
+import com.dazuizui.business.domain.vo.PagingToGetUserDateVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.RedisKey;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
 import com.dazuizui.business.domain.bo.AdminGetUserinfo;
 import com.dazuizui.business.domain.vo.AdminFindUserByRoleVo;
-import com.dazuizui.business.mapper.AttributeMapper;
-import com.dazuizui.business.mapper.UserArticleAttributeMapper;
-import com.dazuizui.business.mapper.UserAttributeMapper;
-import com.dazuizui.business.mapper.UserMapper;
+import com.dazuizui.business.mapper.*;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.RedisUtil;
@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
     private TransactionUtils transactionUtils;
     @Autowired
     private UserAttributeMapper userAttributeMapper;
-
+    @Autowired
+    private TeamInfoMapper teamInfoMapper;
 
     /**
      * 查询网站管理人员
@@ -259,6 +260,13 @@ public class UserServiceImpl implements UserService {
         TransactionStatus transactionStatus =  transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
         try {
+            //如果是比赛账号则记录该比赛账号的信息到TeamInfo表中
+            if (user.getStatus() == -1){
+                TeamInfo teamInfo = new TeamInfo();
+                TeamInfo teaminfo = (TeamInfo) ThreadLocalUtil.DataOfThreadLocal.get().get("teaminfo");
+                teamInfoMapper.insertTeamInfo(teamInfo);
+            }
+
             //写入mysql
             user.setCreateTime(new Date());
             Long aLong = userMapper.register(user);
@@ -268,11 +276,12 @@ public class UserServiceImpl implements UserService {
             }
 
             //增加用户属性表数量
-            aLong = userAttributeMapper.increaseTheNumberOfUserByRole(1,1);
-            if (aLong <= 0){
-                transactionUtils.rollback(transactionStatus);
-                return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
-            }
+//            aLong = userAttributeMapper.increaseTheNumberOfUserByRole(1,1);
+//            if (aLong <= 0){
+//                transactionUtils.rollback(transactionStatus);
+//                return JSONArray.toJSONString(new ResponseVo<>("注册失败",null,StatusCode.Error));
+//            }
+            //todo 改为根据状态
 
             //创建用户博文数量
             aLong = userArticleAttributeMapper.AddUserArticleAttribute(user.getId());

@@ -1,6 +1,8 @@
-package com.dazuizui.basicapi.entry.vo;
+package com.dazuizui.business.domain.vo;
 
-import com.dazuizui.basicapi.entry.User;
+
+
+import com.dazuizui.business.domain.User;
 
 import java.io.Serializable;
 import java.util.List;

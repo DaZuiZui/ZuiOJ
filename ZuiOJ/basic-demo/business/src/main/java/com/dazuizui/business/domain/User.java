@@ -1,4 +1,7 @@
-package com.dazuizui.basicapi.entry;
+package com.dazuizui.business.domain;
+
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,10 +11,16 @@ import java.util.Date;
  */
 public class User implements Serializable {
     private Long id;
+    @ColumnWidth(25)
+    @ExcelProperty("username")
     private String username;
+    @ColumnWidth(25)
+    @ExcelProperty("name")
     private String name;
     private String email;
     private Integer sex;
+    @ColumnWidth(25)
+    @ExcelProperty("name")
     private String password;
     private Date createTime;
     private String createByName;

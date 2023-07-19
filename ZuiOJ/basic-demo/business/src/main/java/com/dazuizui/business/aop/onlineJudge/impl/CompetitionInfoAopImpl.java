@@ -1,7 +1,7 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.aop.onlineJudge.CompetitionInfoAop;
 import com.dazuizui.business.domain.bo.AdminAddCompetitionInfoBo;
 import com.dazuizui.business.domain.bo.DeleteAllCompetitionInfoByContestIdBo;

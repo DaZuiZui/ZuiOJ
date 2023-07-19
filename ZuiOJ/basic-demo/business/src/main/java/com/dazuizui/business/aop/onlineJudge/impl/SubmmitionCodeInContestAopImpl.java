@@ -1,7 +1,7 @@
 package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.aop.onlineJudge.SubmmitionCodeInContestAop;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import com.dazuizui.business.service.user.UserService;

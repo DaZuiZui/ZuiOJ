@@ -1,6 +1,6 @@
 package com.dazuizui.business.mapper;
 
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.basicapi.entry.bo.PagingToGetUserDateBo;
 import com.dazuizui.business.domain.QuestionDiscuss;
 import com.dazuizui.business.domain.bo.AdminFindUserByRoleBo;
@@ -11,6 +11,11 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
+    /**
+     * 通过Name和status创建角色
+     * @return
+     */
+    public Long insertUserByTeamInfo(User user);
     /**
      * 通过username查询用户
      * @param username

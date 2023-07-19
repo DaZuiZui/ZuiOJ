@@ -3,6 +3,7 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.business.aop.onlineJudge.CompetitionQuestionBankAop;
 import com.dazuizui.business.domain.RedisKey;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;

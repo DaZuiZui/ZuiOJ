@@ -6,6 +6,7 @@ import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CompetitionInfoInContest;
 import com.dazuizui.business.domain.RedisKey;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.business.domain.vo.PaglingQueryContestantsInThisContestVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;

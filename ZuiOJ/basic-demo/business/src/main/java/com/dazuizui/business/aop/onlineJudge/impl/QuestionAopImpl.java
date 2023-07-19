@@ -2,21 +2,17 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import com.dazuizui.basicapi.entry.bo.DeleteQuestion;
-import com.dazuizui.basicapi.entry.bo.QuestionBankBo;
 import com.dazuizui.business.aop.onlineJudge.QuestionAop;
 import com.dazuizui.business.domain.bo.BatchPhysicalDeleteQuestionsBo;
 import com.dazuizui.business.domain.bo.BatchRecoveryQuestionsBo;
 import com.dazuizui.business.domain.bo.UpdateQuestionAndLimitByQuestionIdBo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
-import com.dazuizui.business.service.onlineJudge.SystemService;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
-import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,9 +20,6 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
 

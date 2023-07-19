@@ -9,16 +9,28 @@
             <div class="container">
                 <br>
                   
-                  <el-button @click="drawer = true" type="primary" style="margin-left: 16px;" >
+                  <el-button @click="drawer = true" type="primary" style="margin-left: 16px;float:left" >
                     添加新的参赛人员
                   </el-button>
                   
-                  <el-button @click="deleteAllCompetitionInfoByContestIdFun()" type="primary" style="margin-left: 16px;"  :dispatch="deleteAllCompetitionInfoByContestIdFunButton">
+                  <el-button @click="deleteAllCompetitionInfoByContestIdFun()" type="primary" style="margin-left: 16px;float:left"  :dispatch="deleteAllCompetitionInfoByContestIdFunButton">
                     清除所有比赛选手
                   </el-button>
-                  
-
-
+          
+          
+                    <el-upload 
+                        style="float:left;margin-left:16px;"
+                        class="upload-demo"
+                        :action="getUploadAction()"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                        :multiple="false"
+                        :on-exceed="handleExceed"
+                        :file-list="fileList">
+                        <el-button size="small" style="height:40px" type="primary">通过name or team in Excel 生成比赛账号</el-button>
+                    </el-upload>
+          
                   <el-drawer
                     title="我是标题"
                     :visible.sync="drawer"
@@ -115,6 +127,7 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
       },
     data () {
       return {
+        token: "",  //管理员token
         msg: 'Welcome to Your Vue.js App',
         paglingQueryContestantsInThisContestBo: {
             contestId: -1,
@@ -141,6 +154,9 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
           id: -1.
         },
 
+        //上传文件集合
+        fileList: null,
+
         list: [], //数据集合
         count: 0, //个数
         //当前页号
@@ -157,6 +173,7 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
       }
     },
     mounted(){
+        this.token = getCookie("token");
         //初始化数据
         this.adminAddCompetitionInfoBo.contestId = getQueryVariable("id");
         this.paglingQueryContestantsInThisContestBo.token = getCookie("token");
@@ -172,6 +189,26 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
         
     },
     methods: {
+      /**
+       *  上传文件请求地址
+       */
+      getUploadAction(){
+        return "http://127.0.0.1:8001/team/generateMatchTeamsByExcel?token="+getCookie("token");
+      },
+
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handleExceed(files, fileList) {
+        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      beforeRemove(file, fileList) {
+        return this.$confirm(`确定移除 ${ file.name }？`);
+      },
+
       //通过id删除比赛选手
       async deleteTheCompetitionById(id){
           //超链接不可点击

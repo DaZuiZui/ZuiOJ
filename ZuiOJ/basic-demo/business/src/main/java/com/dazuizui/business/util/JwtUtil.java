@@ -1,7 +1,7 @@
 package com.dazuizui.business.util;
 
 import com.dazuizui.basicapi.entry.ApplicationKey;
-import com.dazuizui.basicapi.entry.User;
+import com.dazuizui.business.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
