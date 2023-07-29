@@ -12,41 +12,47 @@ public class TeamInfo implements Serializable {
     private Long id;
     @ColumnWidth(25)
     @ExcelProperty("zh_teamname")
-    private String zh_teamname;    //队伍名字_中文
+    private String zhTeamname;    //队伍名字_中文
     @ColumnWidth(25)
     @ExcelProperty("en_teamname")
-    private String en_teamname;    //队伍名字英文
+    private String enTeamname;    //队伍名字英文
     @ColumnWidth(25)
     @ExcelProperty("zh_name")
-    private String zh_name;        //成员中文名字
+    private String zhName;        //成员中文名字
     @ColumnWidth(25)
     @ExcelProperty("en_name")
-    private String en_name;        //成员英文名字
+    private String enName;        //成员英文名字
     @ColumnWidth(25)
     @ExcelProperty("teacher")
     private String teacher;        //指导教师
     @ColumnWidth(25)
     @ExcelProperty("teacher_call")
-    private String teacher_call;        //指导教师联系方式
+    private String teacherCall;        //指导教师联系方式
     @ColumnWidth(25)
     @ExcelProperty("affiliation_system")
-    private String affiliation_system;        //所属
+    private String affiliationSystem;        //所属
     @ColumnWidth(25)
     @ExcelProperty("email")
     private String email;        //email
+    private Long teamId;
+    private String remark;
+    private Integer status;
 
     @Override
     public String toString() {
         return "TeamInfo{" +
                 "id=" + id +
-                ", zh_teamname='" + zh_teamname + '\'' +
-                ", en_teamname='" + en_teamname + '\'' +
-                ", zh_name='" + zh_name + '\'' +
-                ", en_name='" + en_name + '\'' +
+                ", zhTeamname='" + zhTeamname + '\'' +
+                ", enTeamname='" + enTeamname + '\'' +
+                ", zhName='" + zhName + '\'' +
+                ", enName='" + enName + '\'' +
                 ", teacher='" + teacher + '\'' +
-                ", teacher_call='" + teacher_call + '\'' +
-                ", affiliation_system='" + affiliation_system + '\'' +
+                ", teacherCall='" + teacherCall + '\'' +
+                ", affiliationSystem='" + affiliationSystem + '\'' +
                 ", email='" + email + '\'' +
+                ", teamId=" + teamId +
+                ", remark='" + remark + '\'' +
+                ", status=" + status +
                 '}';
     }
 
@@ -58,36 +64,36 @@ public class TeamInfo implements Serializable {
         this.id = id;
     }
 
-    public String getZh_teamname() {
-        return zh_teamname;
+    public String getZhTeamname() {
+        return zhTeamname;
     }
 
-    public void setZh_teamname(String zh_teamname) {
-        this.zh_teamname = zh_teamname;
+    public void setZhTeamname(String zhTeamname) {
+        this.zhTeamname = zhTeamname;
     }
 
-    public String getEn_teamname() {
-        return en_teamname;
+    public String getEnTeamname() {
+        return enTeamname;
     }
 
-    public void setEn_teamname(String en_teamname) {
-        this.en_teamname = en_teamname;
+    public void setEnTeamname(String enTeamname) {
+        this.enTeamname = enTeamname;
     }
 
-    public String getZh_name() {
-        return zh_name;
+    public String getZhName() {
+        return zhName;
     }
 
-    public void setZh_name(String zh_name) {
-        this.zh_name = zh_name;
+    public void setZhName(String zhName) {
+        this.zhName = zhName;
     }
 
-    public String getEn_name() {
-        return en_name;
+    public String getEnName() {
+        return enName;
     }
 
-    public void setEn_name(String en_name) {
-        this.en_name = en_name;
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
     public String getTeacher() {
@@ -98,20 +104,20 @@ public class TeamInfo implements Serializable {
         this.teacher = teacher;
     }
 
-    public String getTeacher_call() {
-        return teacher_call;
+    public String getTeacherCall() {
+        return teacherCall;
     }
 
-    public void setTeacher_call(String teacher_call) {
-        this.teacher_call = teacher_call;
+    public void setTeacherCall(String teacherCall) {
+        this.teacherCall = teacherCall;
     }
 
-    public String getAffiliation_system() {
-        return affiliation_system;
+    public String getAffiliationSystem() {
+        return affiliationSystem;
     }
 
-    public void setAffiliation_system(String affiliation_system) {
-        this.affiliation_system = affiliation_system;
+    public void setAffiliationSystem(String affiliationSystem) {
+        this.affiliationSystem = affiliationSystem;
     }
 
     public String getEmail() {
@@ -122,18 +128,45 @@ public class TeamInfo implements Serializable {
         this.email = email;
     }
 
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public TeamInfo() {
     }
 
-    public TeamInfo(Long id, String zh_teamname, String en_teamname, String zh_name, String en_name, String teacher, String teacher_call, String affiliation_system, String email) {
+    public TeamInfo(Long id, String zhTeamname, String enTeamname, String zhName, String enName, String teacher, String teacherCall, String affiliationSystem, String email, Long teamId, String remark, Integer status) {
         this.id = id;
-        this.zh_teamname = zh_teamname;
-        this.en_teamname = en_teamname;
-        this.zh_name = zh_name;
-        this.en_name = en_name;
+        this.zhTeamname = zhTeamname;
+        this.enTeamname = enTeamname;
+        this.zhName = zhName;
+        this.enName = enName;
         this.teacher = teacher;
-        this.teacher_call = teacher_call;
-        this.affiliation_system = affiliation_system;
+        this.teacherCall = teacherCall;
+        this.affiliationSystem = affiliationSystem;
         this.email = email;
+        this.teamId = teamId;
+        this.remark = remark;
+        this.status = status;
     }
 }

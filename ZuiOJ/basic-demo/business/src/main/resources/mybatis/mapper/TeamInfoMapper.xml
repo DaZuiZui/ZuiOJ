@@ -16,7 +16,9 @@
             #{teacher},
             #{teacherCall},
             #{affiliationSystem},
-            #{email}
+            #{email},
+            #{remark},
+            #{status}
         )
     </insert>
 </mapper>

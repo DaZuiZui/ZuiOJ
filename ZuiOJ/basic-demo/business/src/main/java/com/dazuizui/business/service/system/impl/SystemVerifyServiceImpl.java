@@ -182,6 +182,24 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     }
 
     /**
+     * 鉴权是否为管理员或者该内容的主人
+     * @param token
+     * @param leave
+     * @return
+     */
+    @Override
+    public boolean isOwnerOrAdmin(String token, Integer leave, Long id) {
+        boolean myArticle = this.isMyArticle(token, id);
+        if (myArticle == false){
+            ThreadLocalUtil.mapThreadLocalOfJWT.remove();
+            boolean isAdmin = this.veryfiAdmin(token, leave);
+            return isAdmin;
+        }
+
+        return true;
+    }
+
+    /**
      * 通过token获取用户id
      * @param token
      * @return

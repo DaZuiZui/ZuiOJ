@@ -10,6 +10,9 @@
             number = number + #{number}
         <where>
            <choose>
+               <when test="role == -1">
+                   id = -1
+               </when>
                <when test="role == 1">
                    id = 1
                </when>

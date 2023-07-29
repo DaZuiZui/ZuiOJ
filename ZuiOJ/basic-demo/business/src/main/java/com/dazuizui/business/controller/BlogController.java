@@ -198,4 +198,17 @@ public class BlogController {
     public String getMyArticle(@RequestBody GetMyArticleVo getMyArticleVo){
         return "";
     }
+
+    /**
+     * 通过id修改文章
+     * @param
+     * @return
+     */
+    @ApiOperation("查看我发布的所有文章")
+    @PostMapping("/user/getMyArticle")
+    public String UpdateArticleByid(@RequestBody CreateArticleBo createArticleBo,@RequestParam("token")String token){
+        System.out.println(createArticleBo);
+        return "";
+    }
+
 }

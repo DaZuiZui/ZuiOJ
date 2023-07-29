@@ -193,7 +193,7 @@ import { synRequestPost,synRequestGet } from '../../../../../../static/request';
        *  上传文件请求地址
        */
       getUploadAction(){
-        return "http://127.0.0.1:8001/team/generateMatchTeamsByExcel?token="+getCookie("token");
+        return "http://127.0.0.1:8001/team/generateMatchTeamsByExcel?token="+getCookie("token")+"&contestId="+getQueryVariable("id");
       },
 
       handleRemove(file, fileList) {

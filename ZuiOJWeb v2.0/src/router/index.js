@@ -47,6 +47,7 @@ import ManageBlog                   from '@/components/view/main/cn/admin/Manage
 import AdminCheckUserInfo from '@/components/view/main/cn/admin/AdminCheckUserInfo' 
 import MyBlogList from '@/components/view/main/cn/blog/MyBlogList'
 import MyUniversity from '@/components/view/main/cn/about/MyUniversity'
+import UpdateArticle from '@/components/view/main/cn/blog/UserUpdateArticle'
 
 Vue.use(Router)
 
@@ -56,9 +57,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //修改博文
+    {
+      path: '/user/update/article',
+      name: 'userUpdateArticle',
+      component: UpdateArticle
     },
     //我的大学
     {

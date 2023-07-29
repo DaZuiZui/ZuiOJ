@@ -13,4 +13,6 @@ public interface TeamInfoMapper {
      * @return
      */
     public Long insertTeamInfo(TeamInfo teamInfo);
+
+ 
 }

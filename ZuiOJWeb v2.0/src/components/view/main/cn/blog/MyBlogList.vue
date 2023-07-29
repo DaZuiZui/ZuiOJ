@@ -120,8 +120,8 @@
                                     <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
                                 </div>
                                 <div v-else>
-                                    <el-link type="primary">修改</el-link>
-                                    <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
+                                    <el-link type="primary" @click="updateTheArticleById(obj.id)">修改</el-link>
+                                    <el-link type="danger"  @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
                                 </div>
                             </div>
                         </td>
@@ -218,6 +218,13 @@
     },
 
     methods: {
+        /**
+         * 修改博文通过id
+         */
+        updateTheArticleById(id){
+            this.$router.push("/user/update/article?articleId="+id);
+        }, 
+
         /**
          *  获取用户发布的文章
          */ 

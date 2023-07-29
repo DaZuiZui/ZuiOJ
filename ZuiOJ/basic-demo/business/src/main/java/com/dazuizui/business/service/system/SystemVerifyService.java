@@ -59,4 +59,12 @@ public interface SystemVerifyService {
      * @return
      */
     public boolean isMyArticle(String token,Long id);
+
+    /**
+     * 鉴权是否为管理员或者该内容的主人
+     * @param token
+     * @param leave
+     * @return
+     */
+    public boolean isOwnerOrAdmin(String token,Integer leave,Long id);
 }
