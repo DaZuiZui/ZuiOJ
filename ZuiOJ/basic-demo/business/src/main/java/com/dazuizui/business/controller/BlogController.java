@@ -204,11 +204,18 @@ public class BlogController {
      * @param
      * @return
      */
-    @ApiOperation("查看我发布的所有文章")
+    @ApiOperation("修改文章")
     @PostMapping("/user/getMyArticleByUserId")
-    public String UpdateArticleByid(@RequestBody CreateArticleBo createArticleBo,@RequestParam("token")String token){
-        System.out.println(createArticleBo);
-        return "";
+    public String updateArticleByid(@RequestBody CreateArticleBo createArticleBo,@RequestParam("token")String token,@RequestParam("oldPrivacy") Integer oldPrivacy){
+        //身份验证过期或者权限不足的校验
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return blogService.updateArticleByid(createArticleBo,oldPrivacy);
     }
 
 }

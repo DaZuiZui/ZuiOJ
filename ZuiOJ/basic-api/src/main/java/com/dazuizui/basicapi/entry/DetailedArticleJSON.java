@@ -20,6 +20,7 @@ public class DetailedArticleJSON implements Serializable {
     private String createByName;
     private Long likes;
     private Integer privacy;
+    private Long mdTextId;
 
     @Override
     public String toString() {
@@ -40,6 +41,7 @@ public class DetailedArticleJSON implements Serializable {
                 ", createByName='" + createByName + '\'' +
                 ", likes=" + likes +
                 ", privacy=" + privacy +
+                ", mdTextId=" + mdTextId +
                 '}';
     }
 
@@ -171,10 +173,18 @@ public class DetailedArticleJSON implements Serializable {
         this.privacy = privacy;
     }
 
+    public Long getMdTextId() {
+        return mdTextId;
+    }
+
+    public void setMdTextId(Long mdTextId) {
+        this.mdTextId = mdTextId;
+    }
+
     public DetailedArticleJSON() {
     }
 
-    public DetailedArticleJSON(Long id, String title, String introduce, String articleType, String language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, String mdText, String createByName, Long likes, Integer privacy) {
+    public DetailedArticleJSON(Long id, String title, String introduce, String articleType, String language, Integer technologyType, Date createTime, Long createBy, Date updateTime, Long updateBy, Integer status, Integer delFlag, String mdText, String createByName, Long likes, Integer privacy, Long mdTextId) {
         this.id = id;
         this.title = title;
         this.introduce = introduce;
@@ -191,5 +201,6 @@ public class DetailedArticleJSON implements Serializable {
         this.createByName = createByName;
         this.likes = likes;
         this.privacy = privacy;
+        this.mdTextId = mdTextId;
     }
 }

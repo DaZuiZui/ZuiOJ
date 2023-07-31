@@ -198,4 +198,19 @@ public class BlogAopImpl implements BlogAop {
         systemVerifyService.veryfiAdmin(token,2);
         return null;
     }
+
+    /**
+     * 管理员或者作者修改博文通过博文id
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String updateArticleByid(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        CreateArticleBo createArticleBo = (CreateArticleBo) args[0];
+        String token = (String) args[1];
+        systemVerifyService.isOwnerOrAdmin(token,2,createArticleBo.getId());
+        return null;
+    }
 }

@@ -12,6 +12,7 @@ import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.business.domain.bo.UserGetMyselfArticleBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -122,4 +123,25 @@ public interface BlogMapper {
      * @return
      */
     public Long getCreatByById(@Param("articleId") Long articleId);
+
+    /**
+     * 通过博文id修改博文
+     * @param createArticleBo
+     * @param articleList
+     * @param oldPrivacy
+     * @param languageList
+     * @return
+     */
+    public Long updateArticleByid(@RequestParam("createArticleBo") CreateArticleBo createArticleBo
+            ,@Param("oldPrivacy") Integer oldPrivacy
+            ,@Param("articleList")String articleList
+            ,@Param("languageList")String languageList);
+
+    /**
+     * 通过博文id修改博文Mdtext
+     * @param mdText
+     * @param articleId
+     * @return
+     */
+    public Long updateMdTextByArticleId(@Param("mdText")String mdText,@Param("articleId") Long articleId);
 }

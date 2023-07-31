@@ -99,31 +99,11 @@
                           </div>
 
                           <br><br>
-                          <div style="float:left;margin-top:5px;">
-                              我的文件夹分类: &nbsp;
-                          </div> 
-                          <div style="float:left;">
-                              <el-select
-                                  v-model="article.myFileList"
-                                  multiple
-                                  filterable
-                                  allow-create
-                                  default-first-option
-                                  placeholder="请选择文章标签">
-                              
-                                  <el-option
-                                  
-                                  v-for="item in MyFilesList"
-                                      :key="item.value"
-                                      :label="item.label"
-                                      :value="item.value">
-                                  </el-option>
-                              </el-select>
-                          </div>
+                    
 
                           <div style="float:right;margin-right:30px">
                               <button type="button" class="btn btn-success">保存</button>
-                              <button type="button" class="btn btn-primary" @click="submit">提交</button>
+                              <button type="button" class="btn btn-primary" @click="update()">提交</button>
                           </div>
                           
                           <div style="clear:both">
@@ -277,6 +257,9 @@ export default {
         label: 'JS'
       },],
 
+      //旧的权限
+      oldPrivacy: 0,
+
       //通过id获取博文
       getArticleByIdBo: {
             id: -1,      //博文id
@@ -318,8 +301,10 @@ export default {
             this.getArticleByIdBo.token = getCookie("token");
             this.getArticleByIdBo.id = getQueryVariable("articleId");
             let obj = await synRequestPost("/blog/getArticleById",this.getArticleByIdBo);
-            if(check(obj)){
+            console.log(obj);
+            if(check(obj)){ 
                 this.article = obj.data;
+                this.oldPrivacy = obj.data.privacy;
             }
       },
       
@@ -338,12 +323,12 @@ export default {
           this.article.nonPowerToken = object.data;
       },
 
-      //提交
-      async submit(){
-          console.log(this.article);
-          var object = await synRequestPost("/blog/createArticle",this.article);
+      //修改
+      async update(){
+          this.article.createTime = null;
+          var object = await synRequestPost("/blog/user/getMyArticleByUserId?token="+getCookie("token")+"&oldPrivacy="+this.oldPrivacy,this.article);
           if(check(object)){
-            alert("添加成功");
+              alert("修改成功");
           }
       },
 
@@ -354,7 +339,7 @@ export default {
            this.$router.push("/cn/user/login");
         }
         var object = await synRequestGet("/user/analysis?token="+getCookie("token"));
-        check(obj)
+        check(object)
       },
   },
   //自启动

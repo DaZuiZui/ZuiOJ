@@ -311,7 +311,7 @@ public class BlogServiceImpl implements BlogService {
             List<Integer> languageType = (List<Integer>) JSONObject.parseObject(articleById.getLanguage(),Object.class);
             detailedArticleBo.setLanguageTypeArray(languageType);
             detailedArticleBo.setTechnologyType(articleById.getTechnologyType());
-            detailedArticleBo.setMdTextId(articleById.getId());
+            detailedArticleBo.setMdTextId(articleById.getMdTextId());
             detailedArticleBo.setCreateBy(articleById.getCreateBy());
             detailedArticleBo.setCreateTime(articleById.getCreateTime());
             detailedArticleBo.setLikes(articleById.getLikes());
@@ -553,6 +553,56 @@ public class BlogServiceImpl implements BlogService {
     public Long getUserIdByArticleId(Long articleid) {
         Long creatByById = blogMapper.getCreatByById(articleid);
         return creatByById;
+    }
+
+    /**
+     * 管理员或者作者修改博文通过博文id
+     *    首先先修改简介内容和详细mdtext内容，然后去更新redis，如果用户需改的查看权限则操作一下对应的权限的文章数量
+     * @param createArticleBo
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String updateArticleByid(CreateArticleBo createArticleBo,Integer oldPrivacy) {
+        createArticleBo.setCreateTime(new Date());
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
+        createArticleBo.setCreateBy(Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+""));
+
+        Long numberOfOperations = blogMapper.updateArticleByid(createArticleBo
+                ,oldPrivacy
+                ,JSONArray.toJSONString(createArticleBo.getArticleTypeArray())
+                ,JSONArray.toJSONString(createArticleBo.getLanguageTypeArray()));
+
+        if (numberOfOperations == 0){
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        numberOfOperations = blogMapper.updateMdTextByArticleId(createArticleBo.getMdText(),createArticleBo.getMdTextId());
+        if (numberOfOperations == 0){
+            System.err.println(createArticleBo.getMdTextId());
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        if (createArticleBo.getPrivacy() != oldPrivacy){
+            numberOfOperations = blogAttributeMapper.articleQuantitManagement(oldPrivacy,-1l);
+            if (numberOfOperations == 0) {
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+            numberOfOperations = blogAttributeMapper.articleQuantitManagement(createArticleBo.getPrivacy(),1l);
+            if (numberOfOperations == 0) {
+                transactionUtils.rollback(begin);
+                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+            }
+        }
+
+        transactionUtils.commit(begin);
+        redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+createArticleBo.getId(),RedisKey.OutTime,createArticleBo);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 
 

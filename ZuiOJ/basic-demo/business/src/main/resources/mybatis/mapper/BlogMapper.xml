@@ -3,6 +3,44 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogMapper">
+    <update id="updateMdTextByArticleId">
+        update
+            articleMdText
+        set
+            mdText = #{mdText}
+        where
+            id = #{articleId}
+    </update>
+
+    <update id="updateArticleByid">
+        update
+            article
+        <set>
+            <if test="articleList != null and articleList != ''">
+                article_type = #{articleList},
+            </if>
+            <if test="createArticleBo.privacy != null">
+                status = #{createArticleBo.privacy},
+            </if>
+            <if test="languageList != null and languageList != ''">
+                language = #{languageList},
+            </if>
+            <if test="createArticleBo.technologyType != null">
+                technology_type = #{createArticleBo.technologyType},
+            </if>
+            <if test="createArticleBo.title != null">
+                title = #{createArticleBo.title},
+            </if>
+            <if test="createArticleBo.introduce != null">
+                introduce = #{createArticleBo.introduce},
+            </if>
+            update_time = #{createArticleBo.createTime},
+            update_by   = #{createArticleBo.createBy}
+        </set>
+        where
+            id = #{createArticleBo.id}
+    </update>
+
     <select id="getCreatByById" resultType="long">
         select
             create_by
@@ -36,7 +74,7 @@
             article_type,
             language,
             technology_type,
-            md_text_id,
+            md_text_id ,
             create_time,
             create_by,
             likes,

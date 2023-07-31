@@ -2,6 +2,7 @@ package com.dazuizui.business.aop.blog;
 
 import com.dazuizui.basicapi.entry.bo.GetArticleByIdBo;
 import com.dazuizui.business.domain.bo.AdminDeleteAritcleByIdBo;
+import com.dazuizui.business.domain.bo.CreateArticleBo;
 import com.dazuizui.business.domain.bo.PhysicallyDeleteArticlesBo;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
@@ -10,6 +11,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 博客Aop接口实现
@@ -73,4 +75,14 @@ public interface BlogAop {
      * @throws Exception
      */
     public String physicallyDeleteArticles(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 管理员或者作者修改博文通过博文id
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Before("execution(* com.dazuizui.business.controller.BlogController.updateArticleByid(..))")
+    public String updateArticleByid(JoinPoint joinpoint) throws Exception;
 }

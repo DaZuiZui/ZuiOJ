@@ -9,6 +9,7 @@ import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.business.domain.vo.GetMyArticleVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
+import org.aspectj.lang.JoinPoint;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -109,4 +110,12 @@ public interface BlogService {
      * @return Long
      */
     public Long getUserIdByArticleId(@Param("articleId") Long articleid);
+
+    /**
+     * 管理员或者作者修改博文通过博文id
+     * @param createArticleBo
+     * @return
+     * @throws Exception
+     */
+    public String updateArticleByid(CreateArticleBo createArticleBo,Integer oldPrivacy);
 }
