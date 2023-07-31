@@ -140,26 +140,30 @@ public class BlogAopImpl implements BlogAop {
         Object[] args = joinpoint.getArgs();
         GetArticleByIdBo articleBo = (GetArticleByIdBo) args[0];
         String token = articleBo.getToken();
+        Long articleId = articleBo.getId();
         //如果未登入
         if (token == null || token == ""){
             ThreadLocalUtil.DataOfThreadLocal.get().put("userauth",false);
             return "";
         }
-
-        //鉴权
-        Map<String, Object> map = null;
-        if (token != null){
-            try {
-                map = JwtUtil.analysis(token);
-                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
-                //System.err.println("????????");
-            } catch (Exception e) {
-                //System.out.println("??");
-                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
-                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
-                return null;
-            }
-        }
+//
+//        //鉴权
+//        Map<String, Object> map = null;
+//        if (token != null){
+//            try {
+//                map = JwtUtil.analysis(token);
+//                ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+//                //System.err.println("????????");
+//            } catch (Exception e) {
+//                //System.out.println("??");
+//                ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
+//                ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
+//                return null;
+//            }
+//        }
+//
+//        return null;
+        systemVerifyService.isOwnerOrAdmin(token,2,articleId);
 
         return null;
     }

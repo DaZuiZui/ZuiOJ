@@ -3,6 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogMapper">
+    <select id="getCreatByById" resultType="long">
+        select
+            create_by
+        from
+            article
+        where
+            id = #{articleId}
+    </select>
+
     <select id="userGetMyselfArticle" resultType="com.dazuizui.basicapi.entry.ArticleJSON">
         select
             *

@@ -108,5 +108,5 @@ public interface BlogService {
      * @param articleid  博文id
      * @return Long
      */
-    public Long getUserIdByArticleId(Long articleid);
+    public Long getUserIdByArticleId(@Param("articleId") Long articleid);
 }

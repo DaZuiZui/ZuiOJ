@@ -205,7 +205,7 @@ public class BlogController {
      * @return
      */
     @ApiOperation("查看我发布的所有文章")
-    @PostMapping("/user/getMyArticle")
+    @PostMapping("/user/getMyArticleByUserId")
     public String UpdateArticleByid(@RequestBody CreateArticleBo createArticleBo,@RequestParam("token")String token){
         System.out.println(createArticleBo);
         return "";
