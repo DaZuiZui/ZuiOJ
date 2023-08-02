@@ -2,12 +2,21 @@ package com.dazuizui.business.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 用户文章属性
  */
 @Mapper
 public interface UserArticleAttributeMapper {
+    /**
+     * 查看该用户数据是否存在
+     * @param userid
+     * @return
+     */
+    @Select("select count(*) from user_article_attribute where user_id = #{userId}")
+    public Long queryUserByUserId(@Param("userId")Long userId);
+
     /**
      * 添加用户文章属性
      * @param userId

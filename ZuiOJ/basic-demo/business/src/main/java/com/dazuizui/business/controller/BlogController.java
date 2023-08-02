@@ -68,7 +68,6 @@ public class BlogController {
     @PostMapping("/createArticle")
     public String createArticle(@RequestBody CreateArticleBo articleBo){
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
-        ThreadLocalUtil.mapThreadLocal.remove();
 
         if (map.get("error") != null){
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));

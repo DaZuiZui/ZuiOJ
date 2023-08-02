@@ -109,8 +109,12 @@ public class BlogServiceImpl implements BlogService {
             Long userId = Long.valueOf(ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id")+"");
             aLong = userArticleAttributeMapper.increaseTheNumberOfUserActicle(articleBo.getPrivacy(),userId,1L,1);
             if (aLong == 0){
-                transactionUtils.rollback(transactionStatus);
-                return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                //判断账号是否存在在文章属性表中如果存在则创建对应属性
+                if ( userArticleAttributeMapper.queryUserByUserId(userId) != 0) {
+                    transactionUtils.rollback(transactionStatus);
+                    return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+                }
+                userArticleAttributeMapper.AddUserArticleAttribute(userId);
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
