@@ -37,8 +37,12 @@
                           </div> 
                           <div style="float:left;">
                               <el-select v-model="article.privacy" placeholder="请选择">
-                                  <el-option value="0" key="0" label="Public"></el-option>
-                                  <el-option value="1" key="1" label="Private"></el-option>
+                                  <el-option
+                                    v-for="item in privacyTypeOptions"
+                                    :key="item.key"
+                                    :label="item.label"
+                                    :value="item.value">
+                                </el-option>
                               </el-select>
                           </div>
 
@@ -145,7 +149,18 @@ export default {
     },
   data () {
     return {
-            
+      privacyTypeOptions: [
+        {
+          value: 0,
+          key: 0,
+          label: "Public"
+        },
+        {
+          value: 1,
+          key: 1,
+          label: "Private"
+        }
+      ],
       //讨论分类
       technologyTypeOptions: [
       {
