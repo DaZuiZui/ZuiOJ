@@ -70,7 +70,7 @@
         async getArticleById(){
             this.getArticleByIdBo.token = getCookie("token");
             this.getArticleByIdBo.id = getQueryVariable("id");
-            let obj = await synRequestPost("/blog/getArticleById",this.getArticleByIdBo);
+            let obj = await synRequestPost("/blog/browseArticleById",this.getArticleByIdBo);
             if(check(obj)){
                 this.article = obj.data;
             }
