@@ -128,7 +128,6 @@ public class BlogServiceImpl implements BlogService {
          */
         redisUtil.setStringInRedis(RedisKey.ZuiBlogArticle+articleBo.getId(),RedisKey.OutTime,articleBo);
 
-
         /**
          * 消息队列，处理分类内容，和个人文件夹的分类管理
          */

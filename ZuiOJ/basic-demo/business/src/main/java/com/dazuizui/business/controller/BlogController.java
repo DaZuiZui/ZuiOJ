@@ -104,6 +104,24 @@ public class BlogController {
         return blogService.getBlogPostsByPage(getBlogPostsByPageBo);
     }
 
+    /**
+     * 浏览文章
+     * @param getArticleByIdBo
+     * @return
+     */
+    @ApiOperation("浏览文章")
+    @PostMapping("/browseArticleById")
+    public String browseArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo){
+        //身份验证过期
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+
+        if (map.get("error") != null){
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+        return blogService.getArticleById(getArticleByIdBo);
+    }
+
     @ApiOperation("获取文章详细数据")
     @PostMapping("/getArticleById")
     public String getArticleById(@RequestBody GetArticleByIdBo getArticleByIdBo){
