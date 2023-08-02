@@ -44,7 +44,15 @@ public class ContestSerivceImpl implements ContestSerivce {
     private ProctorAttributeMapper proctorAttributeMapper;
 
     /**
-     * 移除比赛页面
+     * 移除比赛信息
+     * remove the competition
+     * @param id 比赛id competition ID
+     *
+     *    在进行删除了比赛的简介信息和比赛的详细信息和该考场的监考人员和redis中缓存的比赛内容信息数据和所有参赛选手的记录。
+     *
+     *    on the business layer,the profile info and detailed info of the competition,the invigilators of the
+     *    examination room ,the contest info date of competition cached in redis and records of contestands are deleted
+     *
      * @Param id 比赛id
      */
     @Override
@@ -67,9 +75,9 @@ public class ContestSerivceImpl implements ContestSerivce {
 
             //删除参赛选手信息
             List<String> competitionInfos = competitionInfoMapper.selectAllUserInTheContestByContestId(id);
-            /**
-             * 删除redis中的缓存数据
-             */
+
+            //删除redis中的缓存数据
+
             redisUtil.batchDeletion(competitionInfos);
             //删除数据库
             competitionInfoMapper.deleteCompetitionInfoByContestId(id);

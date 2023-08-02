@@ -30,15 +30,33 @@ public class ConTestController {
 
 
     /**
-     * 移除比赛页面
+     * @author Bryan Yang(杨易达)
+     * remove the contest
+     *     in terms of aop:
+     *        in terms of aop,it is mainly done to ensure that the operation authority is an admin
+     *     on the business layer:
+     *        on the business layer,the profile info and detailed info of the competition,the invigilators of the
+     *     examination room ,the contest info date of competition cached in redis and records of contestands are deleted
+     *
+     *
+     * 移除比赛信息
+     *     在aop层:
+     *        在Aop方面主要做了确保操作权限为管理员。
+     *     在业务层
+     *        在业务层上进行删除了比赛的简介信息和比赛的详细信息和该考场的监考人员和redis中缓存的比赛内容信息数据和所有参赛选手的记录。
+     *
+     * @return String
      */
     @ApiOperation("移除比赛页面")
     @PostMapping("/admin/removeTheContestById")
     public String removeTheContestById(@RequestParam("token") String token,@RequestParam("id")Long id){
+
+
         return conTestSerivce.removeTheContestById(id);
     }
 
     /**
+     *
      * 修改比赛信息
      */
     @ApiOperation("修改比赛信息")

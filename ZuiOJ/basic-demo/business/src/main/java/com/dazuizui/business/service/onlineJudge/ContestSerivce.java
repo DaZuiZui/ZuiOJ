@@ -18,9 +18,19 @@ import java.util.List;
 @Service
 public interface ContestSerivce {
     /**
-     * 移除比赛简介页面
+     * 移除比赛信息
+     * remove the competition
+     * @param id 比赛id competition ID
+     *
+     *    在进行删除了比赛的简介信息和比赛的详细信息和该考场的监考人员和redis中缓存的比赛内容信息数据和所有参赛选手的记录。
+     *
+     *    on the business layer,the profile info and detailed info of the competition,the invigilators of the
+     *    examination room ,the contest info date of competition cached in redis and records of contestands are deleted
+     *
+     * @Param id 比赛id
      */
     public String removeTheContestById(@Param("id")Long id);
+
     /**
      * 修改比赛信息
      * @param contest
