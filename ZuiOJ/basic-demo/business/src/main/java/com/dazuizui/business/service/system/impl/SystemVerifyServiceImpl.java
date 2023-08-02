@@ -172,7 +172,7 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
         Long userId = Long.valueOf(strId);
         //获取该博文的发布者
         Long userIdByArticleId = blogService.getUserIdByArticleId(id);
-        if (userIdByArticleId == userId){
+        if (userIdByArticleId.longValue() == userId.longValue()){
             return true;
         }
 
