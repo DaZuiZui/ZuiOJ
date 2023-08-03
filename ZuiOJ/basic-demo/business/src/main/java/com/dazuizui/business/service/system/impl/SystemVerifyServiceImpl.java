@@ -191,7 +191,7 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     public boolean isOwnerOrAdmin(String token, Integer leave, Long id) {
         boolean myArticle = this.isMyArticle(token, id);
         if (myArticle == false){
-            ThreadLocalUtil.mapThreadLocalOfJWT.remove();
+            ThreadLocalUtil.mapThreadLocal.remove();
             boolean isAdmin = this.veryfiAdmin(token, leave);
             return isAdmin;
         }

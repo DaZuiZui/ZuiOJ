@@ -127,7 +127,7 @@
                                 </div>
                                 <div v-else>
                                     <el-link type="primary" @click="topTheArticle(obj.id)">置顶</el-link>
-                                    <el-link type="primary">修改</el-link>
+                                    <el-link type="primary" @click="updateTheArticleById(obj.id)">修改</el-link>
                                     <el-link type="danger">封禁</el-link>
                                     <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
                                 </div>
@@ -219,6 +219,12 @@
     },
 
     methods: {
+        /**
+         * 修改博文通过id
+         */
+         updateTheArticleById(id){
+            this.$router.push("/user/update/article?articleId="+id);
+        }, 
         /*
          * 批量逻辑删除
          */
