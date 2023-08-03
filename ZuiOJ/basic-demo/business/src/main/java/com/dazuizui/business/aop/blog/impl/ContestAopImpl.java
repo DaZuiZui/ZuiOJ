@@ -2,6 +2,7 @@ package com.dazuizui.business.aop.blog.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.business.aop.blog.ContestAop;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.aspectj.lang.JoinPoint;
@@ -20,6 +21,8 @@ import java.util.Map;
 public class ContestAopImpl implements ContestAop {
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private SystemVerifyService systemVerifyService;
 
     /**
      * 提交比赛AOP接口实现，主要做了身份验证和幂等性操作
@@ -53,6 +56,21 @@ public class ContestAopImpl implements ContestAop {
                 return null;
             }
         }
+        return null;
+    }
+
+    /**
+     * @author Bryan Yang(Dazui)
+     * 保证操作身份为admin
+     * @param joinpoint
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String removeTheContestById(JoinPoint joinpoint) throws Exception {
+        Object[] args = joinpoint.getArgs();
+        String token = (String) args[0];
+        systemVerifyService.veryfiAdmin(token,2);
         return null;
     }
 }

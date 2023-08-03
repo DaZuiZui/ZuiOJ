@@ -44,6 +44,7 @@ public class ContestSerivceImpl implements ContestSerivce {
     private ProctorAttributeMapper proctorAttributeMapper;
 
     /**
+     * @author Bryan Yang(杨易达)
      * 移除比赛信息
      * remove the competition
      * @param id 比赛id competition ID
@@ -53,7 +54,7 @@ public class ContestSerivceImpl implements ContestSerivce {
      *    on the business layer,the profile info and detailed info of the competition,the invigilators of the
      *    examination room ,the contest info date of competition cached in redis and records of contestands are deleted
      *
-     * @Param id 比赛id
+     * @Param id 比赛id Competition ID
      */
     @Override
     public String removeTheContestById(Long id){

@@ -50,7 +50,11 @@ public class ConTestController {
     @ApiOperation("移除比赛页面")
     @PostMapping("/admin/removeTheContestById")
     public String removeTheContestById(@RequestParam("token") String token,@RequestParam("id")Long id){
-
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
 
         return conTestSerivce.removeTheContestById(id);
     }

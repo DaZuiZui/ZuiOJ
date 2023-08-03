@@ -27,6 +27,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
     private RedisTemplate redisTemplate;
     @Autowired
     private UserService userService;
+
     /**
      * 非幂等性问题代码aop增强
      * @param joinpoint
