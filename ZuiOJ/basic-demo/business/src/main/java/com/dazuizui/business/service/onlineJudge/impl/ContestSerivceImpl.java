@@ -96,35 +96,41 @@ public class ContestSerivceImpl implements ContestSerivce {
     }
 
     /**
+     * @author Bryan Yang(杨易达 Dazui)
      * 修改比赛信息
-     * @param contest
+     *    修改了比赛的简介信息和详细信息和更新redis事务
+     *
+     * Modify contest info
+     *    modifyed the profile info and details of the contet and updated the redis data
+     *
+     * @param contest 比赛数据实体
      * @return
      */
     @Override
     public String updateContest(Contest contest){
         TransactionStatus transactionStatus = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
 
-        Long aLong = 0l;
+        //操作熟练
+        Long numbersOfOpention = 0l;
 
         try {
             //修改竞赛简介信息
-            aLong = conTestMapper.updateContest(contest);
+            numbersOfOpention = conTestMapper.updateContest(contest);
             //添加失败
-            if (aLong == 0){
+            if (numbersOfOpention.longValue() == 0){
                transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
             //修改竞赛详细Md文档信息
-            aLong = conTestMapper.updateContestDetailed(contest);
+            numbersOfOpention = conTestMapper.updateContestDetailed(contest);
             //添加失败
-            if (aLong == 0){
+            if (numbersOfOpention.longValue() == 0){
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
             //修改redis
             redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo+contest.getId(),RedisKey.OutTime,contest);
 
-            //提交事物
             transactionUtils.commit(transactionStatus);
         } catch (Exception e) {
             transactionUtils.rollback(transactionStatus);

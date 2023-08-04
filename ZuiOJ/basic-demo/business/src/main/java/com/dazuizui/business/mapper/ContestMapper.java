@@ -24,11 +24,14 @@ public interface ContestMapper {
     public Long removeTheContestDetailedById(@Param("id")Long id);
 
     /**
+     * @author Yida Yang(杨易达)
      * 修改比赛信息
+     * @param contest 比赛信息实体
      */
     public Long updateContest(Contest contest);
 
     /**
+     * @author Yida Yang(杨易达)
      * 修改比赛详细信息
      * @param contest
      * @return

@@ -60,8 +60,18 @@ public class ConTestController {
     }
 
     /**
-     *
+     * @auhtor Bryan Yang
      * 修改比赛信息
+     *     Aop层
+     *        确保了操作身份必须为管理员
+     *     业务层
+     *        修改了比赛的简介信息和详细信息和更新redis事务
+     *
+     * modifyed contest data
+     *     in term of aop
+     *        in terms of aop,it is mainly done to ensure that the operation authority is an admin
+     *     on the business layer:
+     *        modifyed the profile info and details of the contet and updated the redis data
      */
     @ApiOperation("修改比赛信息")
     @PostMapping("/updateContest")

@@ -32,8 +32,14 @@ public interface ContestSerivce {
     public String removeTheContestById(@Param("id")Long id);
 
     /**
+     * @author Bryan Yang(杨易达 Dazui)
      * 修改比赛信息
-     * @param contest
+     *    修改了比赛的简介信息和详细信息和更新redis事务
+     *
+     * Modify contest info
+     *    modifyed the profile info and details of the contet and updated the redis data
+     *
+     * @param contest 比赛数据实体
      * @return
      */
     public String updateContest(Contest contest);
