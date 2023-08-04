@@ -1,16 +1,14 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
-import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
+import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -88,13 +86,16 @@ public class ConTestController {
     }
 
     /**
+     * @authro Bryan Yang(Dazui)
      * 管理员分页查询比赛数据
-     * @param adminQueryGameInformationByPageBo
-     * @return
+     * Admin query game data by page
+     *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询
+     * @param adminQueryGameInformationByPageBo 分页
+     * @return String
      */
     @PostMapping("/adminQueryGameInformationByPage")
     @ApiOperation("管理员分页获取数据")
-    public String adminQueryGameInformationByPage(@RequestBody AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo){
+    public String adminQueryGameInformationByPage(@RequestBody AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo){
         return conTestSerivce.adminQueryGameInformationByPage(adminQueryGameInformationByPageBo);
     }
 

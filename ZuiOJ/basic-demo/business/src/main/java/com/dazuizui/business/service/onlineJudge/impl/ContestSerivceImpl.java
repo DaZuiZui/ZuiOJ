@@ -5,8 +5,7 @@ import com.dazuizui.basicapi.entry.*;
 import com.dazuizui.basicapi.entry.vo.ContestInfoVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.RedisKey;
-import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
-import com.dazuizui.business.domain.vo.AdminQueryGameInformationByPageVo;
+import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.mapper.ProctorAttributeMapper;
@@ -144,20 +143,23 @@ public class ContestSerivceImpl implements ContestSerivce {
     }
 
     /**
-     * 管理员分页查询数据
-     * @param adminQueryGameInformationByPageBo
-     * @return
+     * @authro Bryan Yang(Dazui)
+     * 管理员分页查询比赛数据
+     * Admin query game data by page
+     *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询
+     * @param adminQueryGameInformationByPageBo 分页
+     * @return String
      */
     @Override
-    public String adminQueryGameInformationByPage( AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo){
-
+    public String adminQueryGameInformationByPage( AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo){
         //获取比赛数据
         List<Contest> contests = conTestMapper.adminQueryGameInformationByPage(adminQueryGameInformationByPageBo);
         //查询多少个比赛
         Long count = conTestMapper.queryCoubtOfContest();
-        AdminQueryGameInformationByPageVo adminQueryGameInformationByPageVo = new AdminQueryGameInformationByPageVo();
+        com.dazuizui.business.domain.vo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageVo = new com.dazuizui.business.domain.vo.AdminQueryGameInformationByPageVo();
         adminQueryGameInformationByPageVo.setList(contests);
         adminQueryGameInformationByPageVo.setCount(count);
+
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,adminQueryGameInformationByPageVo, StatusCode.OK));
     }
 

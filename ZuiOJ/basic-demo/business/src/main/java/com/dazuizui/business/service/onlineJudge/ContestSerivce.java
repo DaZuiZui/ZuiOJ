@@ -1,14 +1,10 @@
 package com.dazuizui.business.service.onlineJudge;
 
-import com.dazuizui.basicapi.entry.CompetitionInfo;
 import com.dazuizui.basicapi.entry.Contest;
-import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
+import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 
 /**
@@ -43,12 +39,16 @@ public interface ContestSerivce {
      * @return
      */
     public String updateContest(Contest contest);
+
     /**
-     * 管理员分页查询数据
-     * @param adminQueryGameInformationByPageBo
-     * @return
+     * @authro Bryan Yang(Dazui)
+     * 管理员分页查询比赛数据
+     * Admin query game data by page
+     *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询
+     * @param adminQueryGameInformationByPageBo 分页
+     * @return String
      */
-    public String adminQueryGameInformationByPage(AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo);
+    public String adminQueryGameInformationByPage(AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo);
     /**
      * 提交赛制
      * @param conTest

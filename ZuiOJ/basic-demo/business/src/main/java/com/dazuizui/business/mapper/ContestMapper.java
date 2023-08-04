@@ -3,12 +3,10 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.basicapi.entry.QuestionBank;
-import com.dazuizui.business.domain.bo.AdminQueryGameInformationByPageBo;
+import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -45,11 +43,14 @@ public interface ContestMapper {
     public Long queryCoubtOfContest();
 
     /**
-     * 管理员分页查询数据
-     * @param adminQueryGameInformationByPageBo
-     * @return
+     * @authro Bryan Yang(Dazui)
+     * 管理员分页查询比赛数据
+     * Admin query game data by page
+     *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询
+     * @param adminQueryGameInformationByPageBo 分页
+     * @return List<Contest>
      */
-    public List<Contest> adminQueryGameInformationByPage(AdminQueryGameInformationByPageBo adminQueryGameInformationByPageBo);
+    public List<Contest> adminQueryGameInformationByPage(AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo);
 
     /**
      * 插入比赛记录
