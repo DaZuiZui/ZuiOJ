@@ -87,14 +87,28 @@ public class ConTestController {
 
     /**
      * @authro Bryan Yang(Dazui)
-     * 管理员分页查询比赛数据
+     *
+     * 分页查询竞赛数据
      * Admin query game data by page
-     *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询
+     *
+     * Aop层：
+     *    无Aop层鉴权操作，因为在最开始设计的时候出现的疏忽，如果需要进行改动则任务量太大。用户、游客、管理员共享此接口。
+     * 业务层：
+     *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询。
+     *
+     *    要进行改动则任务量太大。用户、游客、管理员共享此接口。
+     *
+     * Aop layer:
+     *    There is no Aop layer authentication operation, because of the negligence in the initial design, if changes
+     *    are required, the workload will be too large. Users, visitors, administrators share this interface.
+     * Business Layer:
+     *    Perform pagination query according to AdminQueryGameInformationByPageVo query conditions
+     *
      * @param adminQueryGameInformationByPageBo 分页
      * @return String
      */
     @PostMapping("/adminQueryGameInformationByPage")
-    @ApiOperation("管理员分页获取数据")
+    @ApiOperation("分页查询竞赛数据")
     public String adminQueryGameInformationByPage(@RequestBody AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo){
         return conTestSerivce.adminQueryGameInformationByPage(adminQueryGameInformationByPageBo);
     }

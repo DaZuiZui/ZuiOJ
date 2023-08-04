@@ -144,9 +144,14 @@ public class ContestSerivceImpl implements ContestSerivce {
 
     /**
      * @authro Bryan Yang(Dazui)
+     *
      * 管理员分页查询比赛数据
      * Admin query game data by page
+     *
      *    根据AdminQueryGameInformationByPageVo查询条件进行分页查询
+     *
+     *     Perform pagination query according to AdminQueryGameInformationByPageVo query conditions
+     *
      * @param adminQueryGameInformationByPageBo 分页
      * @return String
      */
