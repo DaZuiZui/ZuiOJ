@@ -17,7 +17,7 @@ public interface ProctorAttributeMapper {
     /**
      * 创建监考数量
      * @param contestId
-     * @return
+     * @return Long
      */
     public Long createAttributeOfProctors(@Param("contestId")Long contestId);
 }

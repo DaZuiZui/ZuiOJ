@@ -53,18 +53,19 @@ public interface ContestMapper {
     public List<Contest> adminQueryGameInformationByPage(AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo);
 
     /**
+     * @author Bryan Yang（杨易达）
      * 插入比赛记录
-     * @param conTest
-     * @return
+     * @param conTest   比赛实体信息
+     * @return long
      */
-    public long insertConTest(Contest conTest);
+    public Long insertConTest(Contest conTest);
 
     /**
-     * 比赛详细记录
-     * @param conTest
+     * 插入比赛详细记录
+     * @param conTest 比赛实体信息
      * @return
      */
-    public long insertConTestDetailed(Contest conTest);
+    public Long insertConTestDetailed(Contest conTest);
 
     /**
      * 通过id
