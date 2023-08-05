@@ -249,6 +249,7 @@ public class ContestSerivceImpl implements ContestSerivce {
 
     /**
      * 比赛选手举报
+     * todo
      * @param reportMessageText
      * @return
      */
@@ -258,7 +259,10 @@ public class ContestSerivceImpl implements ContestSerivce {
     }
 
     /**
+     * @author 03/10/2022  Bryan
+     *
      * 通过id获取赛制
+     * get event by id
      * @param id 赛制id
      * @return
      */
@@ -273,7 +277,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         competitionInfo.setUserId(idInJWt);
         competitionInfo.setContestId(id);
 
-        //获取比赛介绍
+        //获取比赛
         Contest contest = (Contest) redisUtil.getStringInRedis(RedisKey.ZuiOJContestId+id);
         if (contest == null) {
             contest = conTestMapper.getEventById(id);
@@ -282,9 +286,6 @@ public class ContestSerivceImpl implements ContestSerivce {
         }
 
         //查看是否已经报名
- //       System.err.println(competitionInfo.getUserId()+"idInJWt="+idInJWt+"abd "+id);
-//        CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
-
         CompetitionInfo competitionInfoInDB
                 = (CompetitionInfo) redisUtil.getStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + competitionInfo.getUserId());
         if (competitionInfoInDB == null){
@@ -294,20 +295,18 @@ public class ContestSerivceImpl implements ContestSerivce {
             }
         }
 
-        //数据库
-        System.out.println(competitionInfoInDB);
+        //如果已经报名了则检查检测是否被封禁和是否满足获取题库
         if (competitionInfoInDB != null){
             contestInfoVo.setCheckForEntry(true);
             //todo 检测是否被封禁
 
             //todo 是否满足获取题库
-            System.err.println("????");
 
             return JSONArray.toJSONString(new ResponseVo<>("获取赛制通过id",contestInfoVo,"666"));
         }
         //todo 是否满足获取题库
 
-        //未报名
+        //未报名的结果
         return JSONArray.toJSONString(new ResponseVo<>("获取赛制通过id",contestInfoVo,"200"));
     }
 

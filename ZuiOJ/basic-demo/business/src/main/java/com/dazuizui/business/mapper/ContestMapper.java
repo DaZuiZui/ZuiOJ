@@ -56,7 +56,7 @@ public interface ContestMapper {
      * @author Bryan Yang（杨易达）
      * 插入比赛记录
      * @param conTest   比赛实体信息
-     * @return long
+     * @return Long
      */
     public Long insertConTest(Contest conTest);
 
@@ -88,9 +88,10 @@ public interface ContestMapper {
 
 
     /**
-     * 通过id获取赛事
-     * @param id
-     * @return
+     * @author 13/10/2022 Bryan Yang（Dazui）
+     * 通过id获取全部赛事（包含详细信息）
+     * @param id 比赛id
+     * @return Contest.class
      */
     public Contest getEventById(@Param("id")Long id);
 

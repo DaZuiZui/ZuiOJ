@@ -81,9 +81,13 @@ public interface ContestSerivce {
      * @return
      */
     public String competitorReport(@RequestParam("reportMessageText") String reportMessageText);
+
     /**
-     * 通过id获取赛事
-     * @param id
+     * @author 03/10/2022  Bryan
+     *
+     * 通过id获取赛制
+     * get event by id
+     * @param id 赛制id
      * @return
      */
     public String getEventById(@RequestParam("id")Long id);

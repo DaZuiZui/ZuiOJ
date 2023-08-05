@@ -83,6 +83,8 @@ public interface CompetitionInfoMapper {
     public Long deleteCompetitionInfoByContestId(@Param("id")Long id);
 
     /**
+     * @author
+     *    13/10/2022    Bryan Yang
      * 查看用户是否参赛
      * @return
      */
