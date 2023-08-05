@@ -6,6 +6,8 @@ import java.io.Serializable;
  * 返回状态代码
  */
 public class StatusCode  {
+    //创建比赛成功
+    public static final String SuccessfullyCreatedTheCompetition = "0x1001";
     //身份验证过期
     public static final String authenticationExpired   = "0x444";
     //权限不足

@@ -54,5 +54,10 @@ public class RedisKey {
     public static final String ZuiBlogUserToken = "ZuiBlog:User:Token:";
     //监考人员
     public static final String ZuiBlogInvigilatorUserId = "ZuiBlog:Invigilator:userid:";
+    /**
+     * 查询比赛数据通过该ContestId返回一个Contest实体
+     * query contest By ContrestId for return Contest.class
+     */
+    public static final String ZuiOJContestId = "ZuiOJ:Contest:";
 
 }

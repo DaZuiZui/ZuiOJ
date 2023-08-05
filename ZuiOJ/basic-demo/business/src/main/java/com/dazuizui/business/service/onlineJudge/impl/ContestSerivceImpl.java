@@ -169,36 +169,53 @@ public class ContestSerivceImpl implements ContestSerivce {
     }
 
     /**
+     * @author Bryan Yang(Dazui)
      * 创建比赛
+     * Creat Contest
+     *      该接口实现做了将比赛信息添加到数据库和初始化当前赛事的监考信息和设置对应的比赛信息缓存。
+     *      this interface impl adds competition info to the DB,initialize the invigilation info for the current competition
+     *      ,and sets the corresponding competition info Redis cache.
+     *
      * @param conTest
      * @return
      */
     @Override
     @Transactional
     public String postContest(Contest conTest) {
+        TransactionStatus begin = transactionUtils.begin(TransactionDefinition.ISOLATION_READ_COMMITTED);
+
         //设置创建人
         String strId = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
         Long id = Long.valueOf(strId);
         conTest.setCreateById(id);
         conTest.setCreateTime(new Date());
+
         //添加比赛简略信息
-        long l = conTestMapper.insertConTest(conTest);
-        if (l == 0){
-            //todo error
-        }
-        //添加contest详细页面
-        l = conTestMapper.insertConTestDetailed(conTest);
-        if (l == 0){
-            //todo error
-        }
-        System.err.println(conTest.getId());
-        //添加监考信息
-        l = proctorAttributeMapper.createAttributeOfProctors(conTest.getId());
-        if (l == 0){
-            //todo error
+        long numbersOfOpetion = conTestMapper.insertConTest(conTest);
+        if (numbersOfOpetion == 0){
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
 
-        return JSONArray.toJSONString(new ResponseVo<>("创建比赛成功",null,"0x1001"));
+        //添加contest详细页面
+        numbersOfOpetion = conTestMapper.insertConTestDetailed(conTest);
+        if (numbersOfOpetion == 0){
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        //添加监考信息
+        numbersOfOpetion = proctorAttributeMapper.createAttributeOfProctors(conTest.getId());
+        if (numbersOfOpetion == 0){
+            transactionUtils.rollback(begin);
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        transactionUtils.commit(begin);
+
+        redisUtil.setStringInRedis(RedisKey.ZuiOJContestId+conTest.getId(),RedisKey.OutTime,conTest);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.SuccessfullyCreatedTheCompetition,null,StatusCode.SuccessfullyCreatedTheCompetition));
     }
 
     /**
@@ -256,13 +273,17 @@ public class ContestSerivceImpl implements ContestSerivce {
         competitionInfo.setUserId(idInJWt);
         competitionInfo.setContestId(id);
 
-        //获取比赛介绍 todo redis缓存层优化
-        Contest contest = conTestMapper.getEventById(id);
-        contestInfoVo.setContest(contest);
+        //获取比赛介绍
+        Contest contest = (Contest) redisUtil.getStringInRedis(RedisKey.ZuiOJContestId+id);
+        if (contest == null) {
+            contest = conTestMapper.getEventById(id);
+            contestInfoVo.setContest(contest);
+            redisUtil.setStringInRedis(RedisKey.ZuiOJContestId+id,RedisKey.OutTime,contest);
+        }
 
         //查看是否已经报名
-        System.err.println(competitionInfo.getUserId()+"idInJWt="+idInJWt+"abd "+id);
-        //CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
+ //       System.err.println(competitionInfo.getUserId()+"idInJWt="+idInJWt+"abd "+id);
+//        CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
 
         CompetitionInfo competitionInfoInDB
                 = (CompetitionInfo) redisUtil.getStringInRedis(RedisKey.ZuiOJConetstCompetitionInfo + competitionInfo.getContestId() + ":" + competitionInfo.getUserId());
@@ -306,7 +327,7 @@ public class ContestSerivceImpl implements ContestSerivce {
         competitionInfo.setUserId(idInJWt);
         //todo 查看此人是否为封禁状态
 
-        System.err.println(competitionInfo);
+
         //查看此人是否有报名此比赛
         CompetitionInfo competitionInfoInDB = competitionInfoMapper.checkForEntry(competitionInfo);
         if (competitionInfoInDB != null){

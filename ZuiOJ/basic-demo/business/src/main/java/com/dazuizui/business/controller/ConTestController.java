@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
+ * @Auhtor 杨易达
  * 竞赛接口
  */
-
 @CrossOrigin
 @RestController
 @RequestMapping("/contest")
@@ -115,8 +115,23 @@ public class ConTestController {
 
     /**
      * 提交比赛
-     * @param conTest
-     * @return
+     * Creat Contest
+     *
+     * Aop层:
+     *     保证操作者是Admin
+     * 业务层
+     *     该接口实现做了将比赛信息添加到数据库和初始化当前赛事的监考信息和设置对应的比赛信息缓存。
+     *
+     * Aop layer:
+     *     in terms of aop,it is mainly done to ensure that the operation authority is an admin
+     * Business layer:
+     *      this interface impl adds competition info to the DB,initialize the invigilation info for the current competition
+     *      ,and sets the corresponding competition info Redis cache.
+     *
+     * @param conTest   比赛实体
+     * @param token     操作者token
+     * @param Idemtoken 验证幂等性操作token
+     * @return String
      */
     @ApiOperation("提交比赛")
     @PostMapping("/postContest")
@@ -124,7 +139,6 @@ public class ConTestController {
         //身份验证过期
         Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
         ThreadLocalUtil.mapThreadLocal.remove();
-        //报错排查
         if ( map.get("error") != null) {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }

@@ -15,13 +15,16 @@ public interface ConTestServiceAop {
      * 修改比赛信息
      */
     public void updateContest(JoinPoint joinpoint) throws Exception;
+
     /**
      * 提交竞赛
+     *      保证了操作身份是管理员
      * @param joinpoint
+     *
      * @return
      * @throws Exception
      */
-    public String postContest(JoinPoint joinpoint) throws Exception;
+    public void postContest(JoinPoint joinpoint) throws Exception;
 
     /**
      * 报名aop
@@ -37,7 +40,7 @@ public interface ConTestServiceAop {
      * @return
      * @throws Exception
      */
-    public String getEventById(JoinPoint joinpoint) throws Exception;
+    public void getEventById(JoinPoint joinpoint) throws Exception;
 
 
 }

@@ -36,7 +36,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
      */
     @Override
     @Before("execution(* com.dazuizui.business.controller.ConTestController.postContest(..))")
-    public String postContest(JoinPoint joinpoint) throws Exception {
+    public void postContest(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         String nonPowerToken = (String) args[0];
         //1.防止非幂等性操作
@@ -44,7 +44,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
         if (!b){
             ThreadLocalUtil.mapThreadLocal.get().put("error","异常幂等性操作，请刷新网页重新操作");
             ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.Idempotency);
-            return null;
+            return ;
         }
 
         //2.鉴权
@@ -57,10 +57,10 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
             } catch (Exception e) {
                 ThreadLocalUtil.mapThreadLocal.get().put("error","身份验证过期");
                 ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.authenticationExpired);
-                return null;
+                return ;
             }
         }
-        return null;
+        return ;
     }
 
     /**
@@ -104,7 +104,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
      */
     @Override
     @Before("execution(* com.dazuizui.business.controller.ConTestController.getEventById(..))")
-    public String getEventById(JoinPoint joinpoint) throws Exception {
+    public void getEventById(JoinPoint joinpoint) throws Exception {
         //鉴权 todo 优化
         Object[] args = joinpoint.getArgs();
         String token = (String) args[0];
@@ -120,7 +120,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
         }
 
 
-        return null;
+        return ;
     }
 
 
@@ -143,7 +143,7 @@ public class ConTestServiceAopImpl implements ConTestServiceAop {
                 Long id = Long.valueOf(strId);
                 //查看是否为管理员
                 User user = userService.queryUserById(id);
-                System.err.println(user.getRole() < 2);
+
                 if (user.getRole() < 2){
                     ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
                     ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);

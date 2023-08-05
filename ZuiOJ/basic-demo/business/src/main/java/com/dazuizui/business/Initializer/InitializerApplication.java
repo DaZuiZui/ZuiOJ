@@ -26,6 +26,7 @@ public class InitializerApplication {
     private LanguageCommandMapper languageCommandMapper;
     @Autowired
     private SystemMapper systemMapper;
+
     /**
      * 让系统支持gourp by排序
      */

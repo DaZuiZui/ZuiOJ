@@ -28,6 +28,7 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     private RedisTemplate redisTemplate;
     @Autowired
     private BlogService blogService;
+
     /**
      * 验证是否为监考人员
      * @param token

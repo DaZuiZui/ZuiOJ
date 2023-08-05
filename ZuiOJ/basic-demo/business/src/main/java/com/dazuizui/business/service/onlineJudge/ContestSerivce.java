@@ -54,6 +54,7 @@ public interface ContestSerivce {
      * @return String
      */
     public String adminQueryGameInformationByPage(AdminGetArticleByPaginVo.AdminQueryGameInformationByPageVo adminQueryGameInformationByPageBo);
+
     /**
      * 提交赛制
      * @param conTest
