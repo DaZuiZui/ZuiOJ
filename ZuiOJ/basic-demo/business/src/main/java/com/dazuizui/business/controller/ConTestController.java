@@ -214,7 +214,16 @@ public class ConTestController {
     }
 
     /**
+     * @author Bryan Yang(Dazui) 17/10/2022
+     *
      * 报名比赛
+     * sign up for the competition
+     *
+     * 业务层:
+     *    首先检测参赛人的id是否已经报名，如果没有报名则写入数据库。
+     * Business Layer
+     *    First check whether the id of the contestant has registered, and if not, write it into the database.
+     * @param contestId
      * @return
      */
     @ApiOperation("报名比赛")
