@@ -235,8 +235,16 @@ public class ContestSerivceImpl implements ContestSerivce {
 
 
     /**
+     * @author Bryan Yang(Dazui)
      * 获取全部赛制
-     * @return
+     *
+     * 业务层
+     *  获取未来进行时赛事和以前进行时赛事。
+     *
+     * Business Layer
+     *   Get future on-going events and previous on-going events.
+     *
+     * @return String
      */
     @Override
     public String getAllEvents() {

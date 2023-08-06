@@ -161,8 +161,22 @@ public class ConTestController {
     }
 
     /**
+     * @author Bryan Yang(Dazui)
      * 获取全部赛制
-     * @return
+     *
+     * Aop
+     *   无处理
+     *
+     * 业务层
+     *  获取未来进行时赛事和以前进行时赛事。
+     *
+     * Aop
+     *   no processing
+     *
+     * Business Layer
+     *   Get future on-going events and previous on-going events.
+     *
+     * @return String
      */
     @ApiOperation("查看全部赛事")
     @GetMapping("/allEvents")
