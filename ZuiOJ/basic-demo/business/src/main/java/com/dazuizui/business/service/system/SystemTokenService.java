@@ -1,10 +1,13 @@
 package com.dazuizui.business.service.system;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author Bryan yang
  *         05/8/2023
  * 该业务接口用于使用服务于系统操作
  */
+@Service
 public interface SystemService {
     /**
      * 幂等性验证
