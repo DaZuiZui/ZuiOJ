@@ -219,12 +219,16 @@ public class ContestSerivceImpl implements ContestSerivce {
     }
 
     /**
+     * @authro Bryan Yang(大嘴) 16/010/2022
+     *
      * 获取未来赛制
-     * @return
+     * get future events
+     *
+     * @return String
      */
     @Override
     public String getFutureEvents() {
-        //获取服务器时间
+        //获取未来时间比赛
         List<Contest> futureEvents = conTestMapper.getFutureEvents();
         return JSONArray.toJSONString(new ResponseVo<>("获取未来赛制",futureEvents,"0x1003"));
     }

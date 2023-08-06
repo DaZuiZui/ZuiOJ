@@ -75,6 +75,8 @@ public interface ContestMapper {
     public Contest queryTheContestById(@Param("id")long id);
 
     /**
+     * @author Bryan Yang 16/10/2022
+     *
      * 获取未来赛事
      * @return
      */

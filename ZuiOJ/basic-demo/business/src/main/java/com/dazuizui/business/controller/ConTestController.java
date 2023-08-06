@@ -147,9 +147,12 @@ public class ConTestController {
     }
 
     /**
-     * @author
+     * @authro Bryan Yang(大嘴) 16/010/2022
+     *
      * 获取未来赛制
-     * @return
+     * get future events
+     *
+     * @return String
      */
     @ApiOperation("查询未开始的比赛或者赛制")
     @GetMapping("/futureEvents")
