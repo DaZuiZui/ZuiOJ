@@ -185,8 +185,11 @@ public class ConTestController {
     }
 
     /**
-     * 通过id获取比赛赛事
-     * @param id
+     * @author 03/10/2022  Bryan
+     *
+     * 通过id获取赛制
+     * get event by id
+     * @param id 赛制id
      * @return
      */
     @ApiOperation("通过id获取比赛赛事")
