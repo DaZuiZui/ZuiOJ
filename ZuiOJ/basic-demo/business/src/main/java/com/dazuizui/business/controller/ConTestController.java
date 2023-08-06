@@ -199,8 +199,11 @@ public class ConTestController {
     }
 
     /**
-     * @author (Bryan yang)杨易达
+     * @author (Bryan yang)杨易达 03/10/2022
+     * todo
      * 比赛选手举报
+     * competitor peport
+     *
      * @param reportMessageText 举报信息文本
      * @return
      */
