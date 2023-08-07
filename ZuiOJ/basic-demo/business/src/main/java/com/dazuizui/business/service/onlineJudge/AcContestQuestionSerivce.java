@@ -54,8 +54,12 @@ public interface AcContestQuestionSerivce {
     public String queryCountByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo);
 
     /**
-     * 通过比赛id和问题id查询指定日志
-     * @param elementOfQueryLogBo
+     * @author Bryan Yang(Dazui) 06/08/2022 22:00:00 PM
+     *
+     * 通过比赛id还有问题id查询提交日志
+     * query log by contestId and questionId
+     *
+     * @param elementOfQueryLogBo 查询元素实体
      * @return
      */
     public String queryLogByContestIdAndQuestionId(ElementOfQueryLogBo elementOfQueryLogBo);

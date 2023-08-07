@@ -1,7 +1,7 @@
 package com.dazuizui.business.service.system.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
-import com.dazuizui.business.service.system.SystemService;
+import com.dazuizui.business.service.system.SystemTokenService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * 该业务接口用于使用服务于系统操作
  */
 @Service
-public class SystemServiceImpl implements SystemService {
+public class SystemTokenServiceImpl implements SystemTokenService {
     @Autowired
     private RedisTemplate redisTemplate;
     /**

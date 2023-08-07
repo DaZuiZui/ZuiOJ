@@ -34,8 +34,12 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
 
     /**
-     * 通过比赛id和问题id分页查询指定日志
-     * @param elementOfQueryLogBo
+     * @author Bryan Yang(Dazui) 06/08/2022 22:00:00 PM
+     *
+     * 通过比赛id还有问题id查询提交日志
+     * query log by contestId and questionId
+     *
+     * @param elementOfQueryLogBo 查询元素实体
      * @return
      */
     @Override
@@ -66,9 +70,19 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     }
 
     /**
-     * 通过比赛和名字元素筛选查询元素
-     * @param elementOfQueryLogBo
-     * @return
+     * @author Bryan Yang(Dazui) 07/08/2022 22:00:00 PM
+     *
+     * 查看提交日志
+     * query commition log
+     *
+     * 业务层
+     *    通过比赛id和用户名
+     *
+     * Business
+     *    query log by contestId and username
+     *
+     * @param elementOfQueryLogBo 查询元素实体
+     * @return String
      */
     @Override
     public String queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo) {

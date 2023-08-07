@@ -23,21 +23,43 @@ public class AcContestQuestionController {
     private AcContestQuestionSerivce acContestQuestionSerivce;
 
     /**
-     * 通过比赛id还有问题id查询提交日志
-     * @param elementOfQueryLogBo
-     * @return
+     * @author Bryan Yang(Dazui) 06/08/2022 22:00:00 PM
+     *
+     * 查看提交日志
+     * query commition log
+     *
+     * 业务层
+     *    通过比赛id还有问题id查询提交日志
+     *
+     * Business
+     *    query log by contestId and questionId
+     *
+     * @param elementOfQueryLogBo 查询元素实体
+     * @return String
      */
     @PostMapping("/queryLogByContestIdAndQuestionId")
     @ApiOperation("通过比赛id还有问题id查询提交日志")
     public String queryLogByContestIdAndQuestionId(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
+
         return acContestQuestionSerivce.queryLogByContestIdAndQuestionId(elementOfQueryLogBo);
     }
 
     /**
-     * 通过比赛和名字元素筛选查询元素
-     * @return
+     * @author Bryan Yang(Dazui) 07/08/2022 22:00:00 PM
+     *
+     * 查看提交日志
+     * query commition log
+     *
+     * 业务层
+     *    通过比赛id和用户名
+     *
+     * Business
+     *    query log by contestId and username
+     *
+     * @param elementOfQueryLogBo 查询元素实体
+     * @return String
      */
-    @ApiOperation("通过比赛和名字元素筛选查询元素")
+    @ApiOperation("通过比赛和用户名元素筛选查询元素")
     @PostMapping("/queryLogByElement")
     public String queryLogByElement(@RequestBody ElementOfQueryLogBo elementOfQueryLogBo){
 

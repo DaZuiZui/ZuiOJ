@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * 该业务接口用于使用服务于系统操作
  */
 @Service
-public interface SystemService {
+public interface SystemTokenService {
     /**
      * 幂等性验证
      *    如果当前存在幂等性问题则返回true，不存在则返回false
