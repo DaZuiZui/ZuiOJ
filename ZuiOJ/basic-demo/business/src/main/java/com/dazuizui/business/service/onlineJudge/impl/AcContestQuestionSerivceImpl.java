@@ -112,8 +112,19 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     }
 
     /**
-     * 查看本题提交日志
-     * @return
+     * @author Bryan Yang(Dazui) 07/08/2022 22:00:00 PM
+     *
+     * 查看本体提交日志
+     * query commition log
+     *
+     * 业务层
+     *    通过比赛id查询提交日志
+     *
+     * Business
+     *    Query submission logs through competition ID
+     *
+     * @param queryContestSubmissionLogBo 查询元素实体
+     * @return String
      */
     public String queryContestSubmissionLog(QueryContestSubmissionLogBo queryContestSubmissionLogBo){
         //查询分页数据
@@ -130,6 +141,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     }
 
     /**
+     *
      * 移除当前比赛提交数据
      * @param id
      * @return
