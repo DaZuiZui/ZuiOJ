@@ -106,7 +106,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
-import { synRequestPost,synRequestGet } from '../../../../../../static/request';
+  import { synRequestPost,synRequestGet } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {

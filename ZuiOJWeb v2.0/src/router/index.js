@@ -48,6 +48,7 @@ import AdminCheckUserInfo from '@/components/view/main/cn/admin/AdminCheckUserIn
 import MyBlogList from '@/components/view/main/cn/blog/MyBlogList'
 import MyUniversity from '@/components/view/main/cn/about/MyUniversity'
 import UpdateArticle from '@/components/view/main/cn/blog/UserUpdateArticle'
+import AdminManagementBlogRoll from '@/components/view/main/cn/admin/AdminManagementBlogRoll'
 
 Vue.use(Router)
 
@@ -59,6 +60,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //友情链接管理列表
+    {
+      path: '/admin/blog/roll',
+      name: 'AdminManagementBlogRoll',
+      component: AdminManagementBlogRoll
     },
     //修改博文
     {
