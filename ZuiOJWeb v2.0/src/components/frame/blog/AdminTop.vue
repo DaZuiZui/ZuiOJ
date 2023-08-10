@@ -74,8 +74,8 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item " v-if="user.role < 2">
-                                <a class="nav-link" href="" @click="goContestList()" >友情链接</a>
+                            <li class="nav-item " >
+                                <a class="nav-link" href="" @click="goBlogRollList()" >友情链接</a>
                             </li>
                         </ul>
 
@@ -270,6 +270,10 @@ import { synRequestGet } from '../../../../static/request';
         //前往社区管理页面
         goMenegeBlog(){
             this.$router.push('/cn/admin/manageBlog');
+        },
+        //前往友情链接
+        goBlogRollList(){
+            this.$router.push('/admin/blog/roll');
         }
     }
   }
