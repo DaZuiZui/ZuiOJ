@@ -85,7 +85,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
      * @return String
      */
     @Override
-    public String queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo) {
+    public String   queryLogByElement(ElementOfQueryLogBo elementOfQueryLogBo) {
         List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.queryLogByElement(elementOfQueryLogBo);
         Long count =  acContestQuestionMapper.queryCountByElement(elementOfQueryLogBo);
         QueryLogByElementVo queryLogByElementVo = new QueryLogByElementVo();
