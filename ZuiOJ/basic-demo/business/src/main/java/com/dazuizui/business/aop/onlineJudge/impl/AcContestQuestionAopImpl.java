@@ -27,6 +27,7 @@ public class AcContestQuestionAopImpl implements AcContestQuestionAop {
     private UserService userService;
     @Autowired
     private SystemVerifyService systemVerifyService;
+
     /**
      * 查询竞赛提交记录日记aop接口，主要负责管理员身份的鉴权
      * @param joinpoint

@@ -96,7 +96,10 @@ public class AcContestQuestionController {
     }
 
     /**
+     * @author Bryan Yang(Dazui) 2022/10/18
+     *
      * 移除当前比赛所有提交数据
+     * remove Contest
      * @param id
      * @return
      */
