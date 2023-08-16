@@ -18,4 +18,11 @@ public interface BlogrollMapper {
      * @return
      */
     public List<Blogroll> getAllBlogroll(@Param("status")Integer status,@Param("delFlag")Integer delFlag);
+
+    /**
+     * @author Bryan Yang(Dazui)
+     * 插入友情链接
+     * insert blogroll
+     */
+    public Long inserBlogRoll(Blogroll blogroll);
 }

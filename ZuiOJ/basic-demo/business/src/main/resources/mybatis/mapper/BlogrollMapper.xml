@@ -3,7 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.BlogrollMapper">
+
     <!--
+        get all blogroll
         获取全部友情链接
     -->
     <select id="getAllBlogroll" resultType="com.dazuizui.basicapi.entry.Blogroll">
@@ -25,4 +27,29 @@
             status = #{status} and
             delFlag = #{delFlag}
     </select>
+
+    <!--
+        insert blogroll
+        插入友情连接
+    -->
+    <insert id="inserBlogRoll">
+            INSERT INTO blogroll
+
+            VALUES
+                (
+                    null,
+                    #{chineseName},
+                    #{englishName},
+                    #{englishIntroduce},
+                    #{chineseIntroduce},
+                    #{introduceImage},
+                    #{toLink},
+                    #{createTime},
+                    #{createBy},
+                    null,
+                    null,
+                    #{status},
+                    0
+                )
+    </insert>
 </mapper>

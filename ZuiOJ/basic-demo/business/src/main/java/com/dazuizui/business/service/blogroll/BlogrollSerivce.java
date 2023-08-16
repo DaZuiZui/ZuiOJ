@@ -18,4 +18,11 @@ public interface BlogrollSerivce {
      * @return
      */
     public String getAllBlogroll(Integer status,Integer delFlag);
+
+    /**
+     * @author Bryan Yang(Dazui) 16/8/2022
+     * 插入友情链接
+     * insert blogroll
+     */
+    public String inserBlogRoll(Blogroll blogroll);
 }

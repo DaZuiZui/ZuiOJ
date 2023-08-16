@@ -1,6 +1,7 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.Blogroll;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
@@ -36,5 +37,20 @@ public class BlogrollController {
         }
 
         return blogrollSerivce.getAllBlogroll(status,delFlag);
+    }
+
+    /**
+     * @author Bryan Yang(Dazui) 16/8/2022
+     * 插入友情链接
+     * insert blogroll
+     */
+    @PostMapping("/inserBlogRoll")
+    @ApiOperation("插入友情链接")
+    public String applyForBlogRoll(@RequestParam("nonPowerToken") String nonPowerToken,@RequestParam("token")String token,@RequestBody Blogroll blogroll){
+        if (blogroll == null){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null, StatusCode.IsNull));
+        }
+
+        return blogrollSerivce.inserBlogRoll(blogroll);
     }
 }

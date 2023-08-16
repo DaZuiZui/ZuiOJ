@@ -7,6 +7,25 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface SystemVerifyService {
+
+    /**
+     * @author Byran yang(Dazui)
+     *
+     * 校验用户是否登入且是否存在幂等性问题
+     * @param nonPowerToken
+     * @param token
+     * @return
+     */
+    public boolean veryfiUserAndNonPowerToken(String nonPowerToken,String token);
+
+    /**
+     * 查看是否登入
+     * 如果登入了就返回true，否则就返回false
+     * @param token 用户token
+     * @return
+     */
+    public boolean veryfiUser(String token);
+
     /**
      * 通过token获取userid
      * @param token

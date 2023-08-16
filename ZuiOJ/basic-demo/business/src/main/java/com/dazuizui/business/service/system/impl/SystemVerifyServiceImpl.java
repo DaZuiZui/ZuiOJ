@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.system.impl;
 
 import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.business.domain.User;
 import com.dazuizui.business.domain.Proctor;
 import com.dazuizui.business.service.blog.BlogService;
@@ -28,6 +29,56 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     private RedisTemplate redisTemplate;
     @Autowired
     private BlogService blogService;
+
+    /**
+     * 查看是否登入
+     * 如果登入了就返回true，否则就返回false
+     * @param token 用户token
+     * @return
+     */
+    @Override
+    public boolean veryfiUser(String token) {
+        //非空判断
+        if (token == null || token == ""){
+            ThreadLocalUtil.mapThreadLocal.get().put("error","权限不足");
+            ThreadLocalUtil.mapThreadLocal.get().put("code", StatusCode.insufficientPermissions);
+            return false;
+        }
+        //身份校验
+        Map<String, Object> map = null;
+        try {
+            map = JwtUtil.analysis(token);
+        } catch (Exception e) {
+            ThreadLocalUtil.mapThreadLocal.get().put("code",StatusCode.authenticationExpired);
+            ThreadLocalUtil.mapThreadLocal.get().put("error", StatusCodeMessage.authenticationExpired);
+            return false;
+        }
+
+
+        ThreadLocalUtil.mapThreadLocalOfJWT.get().put("userinfo",map);
+        System.out.println( ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo"));
+        return true;
+    }
+
+    /**
+     * @author Byran yang(Dazui)
+     *
+     * 校验用户是否登入且是否存在幂等性问题
+     * @param nonPowerToken
+     * @param token
+     * @return
+     */
+    @Override
+    public boolean veryfiUserAndNonPowerToken(String nonPowerToken,String token){
+        if (veryfiUser(token) == false){
+            return false;
+        }
+
+        if (verfiNonPowerToken(nonPowerToken) == false){
+            return false;
+        }
+        return true;
+    }
 
     /**
      * 验证是否为监考人员
@@ -130,7 +181,7 @@ public class SystemVerifyServiceImpl implements SystemVerifyService {
     }
 
     /**
-     * 鉴权用户权限和接口幂等性问题
+     * 鉴权管理员角色和接口幂等性问题
      * @param nonPowerToken
      * @param token
      * @return
