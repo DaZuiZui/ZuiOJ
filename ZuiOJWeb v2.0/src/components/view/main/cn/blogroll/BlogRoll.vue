@@ -48,6 +48,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/Top.vue'
+  import { MainUrl,MainPort} from '../../../../../../static/entry'
   import { synRequestGet, synRequestPost } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
