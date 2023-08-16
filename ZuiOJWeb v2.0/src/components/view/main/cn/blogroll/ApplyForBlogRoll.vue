@@ -120,7 +120,7 @@
             ) {
                 let obj = await synRequestPost("/blogroll/inserBlogRoll?nonPowerToken="+this.nonPowerToken+"&token="+getCookie("token"),this.BlogRoll);
                 if(check(obj)){
-                    alert("ok");
+                    alert("申请成功，请等待！");
                 }
             } else {
                 alert("长度必须在2-100之间");
