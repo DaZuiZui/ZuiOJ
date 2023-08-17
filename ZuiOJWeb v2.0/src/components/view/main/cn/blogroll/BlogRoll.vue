@@ -4,7 +4,8 @@
             <Top></Top>
         </div>
 
-        <!-- Main content -->
+ 
+
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <div class="row mb-5 justify-content-center text-center">
@@ -66,6 +67,8 @@
     },
 
     methods: {
+ 
+
         //跳转指定页面
         async getBlogroll(){   
             let obj = await synRequestGet("/blogroll/getAllBlogroll?status=0&delFlag=0");
