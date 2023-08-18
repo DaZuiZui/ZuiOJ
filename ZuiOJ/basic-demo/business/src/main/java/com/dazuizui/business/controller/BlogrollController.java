@@ -73,7 +73,7 @@ public class BlogrollController {
      */
     @PostMapping("/tombstoneLink")
     @ApiOperation("逻辑删除友情链接")
-    public String tombstoneLink(DeleteBlogRollBo deleteBlogRollBo){
+    public String tombstoneLink(@RequestBody DeleteBlogRollBo deleteBlogRollBo){
         if (deleteBlogRollBo == null){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null, StatusCode.IsNull));
         }
@@ -96,7 +96,7 @@ public class BlogrollController {
      */
     @PostMapping("/deleteBlogRoll")
     @ApiOperation("物理删除友情链接")
-    public String deleteBlogRoll(DeleteBlogRollBo deleteBlogRollBo){
+    public String deleteBlogRoll(@RequestBody DeleteBlogRollBo deleteBlogRollBo){
         if (deleteBlogRollBo == null){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null, StatusCode.IsNull));
         }

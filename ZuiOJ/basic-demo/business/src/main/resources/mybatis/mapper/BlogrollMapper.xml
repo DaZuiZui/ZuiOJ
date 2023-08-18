@@ -61,7 +61,7 @@
         update
             blogroll
         set
-            del_flag = 1
+            delFlag = 1
         where
             id = #{id}
     </update>
