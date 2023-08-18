@@ -49,7 +49,7 @@
                             <div>
                                 <el-link type="primary">取消公布</el-link>
                                 <el-link type="success">修改</el-link>
-                                <el-link type="danger">逻辑删除</el-link>
+                                <el-link type="danger" @click="tombstoneBlogRoll(obj.id)">逻辑删除</el-link>
                                 <el-link type="danger">物理删除</el-link>
                             </div>
                         </td>
@@ -79,6 +79,10 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         blogrollList: [],
+        deleteBlogRollBo: {
+          token: "",
+          id: 0,
+        }
       }
     },
     mounted(){
@@ -96,6 +100,19 @@
         insertBlogRoll(){
             this.$router.push("/admin/blogroll/add");
         },  
+
+        //逻辑删除
+        async tombstoneBlogRoll(id){
+          this.deleteBlogRollBo.id = id;
+          this.deleteBlogRollBo.token = getCookie("token");
+          let obj = await synRequestPost("/blogroll/tombstoneLink",this.deleteBlogRollBo);
+          
+          if(check(obj)){
+            alert("逻辑删除成功");
+            this.getBlogroll();
+          }
+
+        }
     }
   }
   </script>
