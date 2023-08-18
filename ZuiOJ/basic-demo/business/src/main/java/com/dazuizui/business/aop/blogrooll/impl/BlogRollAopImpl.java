@@ -2,6 +2,7 @@ package com.dazuizui.business.aop.blogrooll.impl;
 
 import com.dazuizui.basicapi.entry.Blogroll;
 import com.dazuizui.business.aop.blogrooll.BlogRollAop;
+import com.dazuizui.business.domain.bo.DeleteBlogRollBo;
 import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.aspectj.lang.JoinPoint;
@@ -19,6 +20,32 @@ public class BlogRollAopImpl implements BlogRollAop {
     private SystemVerifyService systemVerifyService;
 
     /**
+     * @auhtor Bryan Yang(Dazui)
+     * 逻辑删除友情链接
+     * Tombstone link
+     */
+    @Before("execution(* com.dazuizui.business.controller.BlogrollController.tombstoneLink(..))")
+    public void tombstoneLink(JoinPoint joinpoint){
+        Object[] args = joinpoint.getArgs();
+        DeleteBlogRollBo arg = (DeleteBlogRollBo) args[0];
+        String token = arg.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
+    }
+
+    /**
+     * @author Bryan yang(Dazui)
+     * 物理删除友情链接
+     * Delete BlogRoll
+     */
+    @Before("execution(* com.dazuizui.business.controller.BlogrollController.deleteBlogRoll(..))")
+    public void deleteBlogRoll(JoinPoint joinpoint){
+        Object[] args = joinpoint.getArgs();
+        DeleteBlogRollBo arg = (DeleteBlogRollBo) args[0];
+        String token = arg.getToken();
+        systemVerifyService.veryfiAdmin(token,2);
+    }
+
+    /**
      * @author Bryan Yang(Dazui) 16/8/2023
      * 申请友情连接
      * @param joinpoint
@@ -29,9 +56,6 @@ public class BlogRollAopImpl implements BlogRollAop {
         Object[] args = joinpoint.getArgs();
         String nonPowerToken = (String) args[0];
         String token = (String) args[1];
-        System.err.println("666");
         systemVerifyService.veryfiUserAndNonPowerToken(nonPowerToken,token);
-
-        System.out.println(ThreadLocalUtil.mapThreadLocalOfJWT.get());
     }
 }

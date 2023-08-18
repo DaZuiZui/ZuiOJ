@@ -25,4 +25,18 @@ public interface BlogrollMapper {
      * insert blogroll
      */
     public Long inserBlogRoll(Blogroll blogroll);
+
+    /**
+     * @auhtor Bryan Yang(Dazui)
+     * 逻辑删除友情链接
+     * Tombstone link
+     */
+    public Long tombstoneLink(@Param("id") Long id);
+
+    /**
+     * @author Bryan yang(Dazui)
+     * 物理删除友情链接
+     * Delete BlogRoll
+     */
+    public Long deleteBlogRoll(@Param("id") Long id);
 }

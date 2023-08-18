@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.Blogroll;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.DeleteBlogRollBo;
 import com.dazuizui.business.mapper.BlogrollMapper;
 import com.dazuizui.business.service.blogroll.BlogrollSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -50,6 +51,39 @@ public class BlogrollSerivceImpl implements BlogrollSerivce {
         blogroll.setCreateTime(new Date());
 
         Long aLong = blogrollMapper.inserBlogRoll(blogroll);
+
+        if (aLong.longValue() == 0){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+
+    /**
+     * @auhtor Bryan Yang(Dazui)
+     * 逻辑删除友情链接
+     * Tombstone link
+     */
+    @Override
+    public String tombstoneLink(DeleteBlogRollBo deleteBlogRollBo){
+        Long aLong = blogrollMapper.tombstoneLink(deleteBlogRollBo.getId());
+
+        if (aLong.longValue() == 0){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
+     * @author Bryan yang(Dazui)
+     * 物理删除友情链接
+     * Delete BlogRoll
+     */
+    @Override
+    public String deleteBlogRoll(DeleteBlogRollBo deleteBlogRollBo){
+        Long aLong = blogrollMapper.deleteBlogRoll(deleteBlogRollBo.getId());
 
         if (aLong.longValue() == 0){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));

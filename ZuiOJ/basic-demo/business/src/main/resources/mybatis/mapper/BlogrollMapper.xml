@@ -52,4 +52,28 @@
                     0
                 )
     </insert>
+
+    <!--
+        逻辑删除友情链接
+        tombstone link
+    -->
+    <update id="tombstoneLink">
+        update
+            blogroll
+        set
+            del_flag = 1
+        where
+            id = #{id}
+    </update>
+
+    <!--
+        物理删除友情链接
+        delete blogroll
+    -->
+    <delete id="deleteBlogRoll">
+        delete from
+            blogroll
+        where
+            id = #{id}
+    </delete>
 </mapper>

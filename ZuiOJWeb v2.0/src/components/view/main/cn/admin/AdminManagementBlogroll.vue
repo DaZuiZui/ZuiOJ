@@ -8,6 +8,8 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+                <!-- Main content -->
+                <el-button type="primary" @click="insertBlogRoll">添加友情链接</el-button>
                 <table class="table">
                     <thead>
                       <tr>
@@ -90,7 +92,10 @@
                 this.blogrollList = obj.data;
             }
         },
-        
+         //添加友情链接
+        insertBlogRoll(){
+            this.$router.push("/admin/blogroll/add");
+        },  
     }
   }
   </script>

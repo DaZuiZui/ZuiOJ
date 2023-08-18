@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.blogroll;
 
 import com.dazuizui.basicapi.entry.Blogroll;
+import com.dazuizui.business.domain.bo.DeleteBlogRollBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,19 @@ public interface BlogrollSerivce {
      * insert blogroll
      */
     public String inserBlogRoll(Blogroll blogroll);
+
+
+    /**
+     * @auhtor Bryan Yang(Dazui)
+     * 逻辑删除友情链接
+     * Tombstone link
+     */
+    public String tombstoneLink(DeleteBlogRollBo deleteBlogRollBo);
+
+    /**
+     * @author Bryan yang(Dazui)
+     * 物理删除友情链接
+     * Delete BlogRoll
+     */
+    public String deleteBlogRoll(DeleteBlogRollBo deleteBlogRollBo);
 }
