@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dazuizui.business.mapper.OrgMemberMapper">
+    <!--
+        插入成员信息
+    -->
+    <insert id="insertMember">
+        insert into
+            org_member
+        VALUES (
+                   null, #{name}, #{numberId}, #{ord_id}, #{pre_org}, #{current_org},
+                   #{createBy}, #{createTime}, null, null ,
+                   #{status}, 0
+               )
+    </insert>
+
+</mapper>
