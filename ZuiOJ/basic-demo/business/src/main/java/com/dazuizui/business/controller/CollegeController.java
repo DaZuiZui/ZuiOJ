@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "学院控制器",tags = {"学院控制器"})
 public class CollegeController {
 
-    //学院业务
     @Autowired
     private CollegeService collegeService;
 
