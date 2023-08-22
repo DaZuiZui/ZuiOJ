@@ -10,6 +10,8 @@ import com.dazuizui.business.service.org.OrgMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author Bryan yang 2023 21/8/2023
  * 该业务主要对组织成员管理进行操作
@@ -28,6 +30,9 @@ public class OrgMemberServiceImpl implements OrgMemberService {
      */
     @Override
     public String insertMember(OrgMember orgMember){
+
+        orgMember.setCreateTime(new Date());
+
         Long numbersOfOption = orgMemberMapper.insertMember(orgMember);
 
         if (numbersOfOption.longValue() == 0){

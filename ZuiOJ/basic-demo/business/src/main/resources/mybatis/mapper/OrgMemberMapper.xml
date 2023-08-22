@@ -10,7 +10,7 @@
         insert into
             org_member
         VALUES (
-                   null, #{name}, #{numberId}, #{ord_id}, #{pre_org}, #{current_org},
+                   null, #{name}, #{email}, #{numberId}, #{ordId}, #{preOrg}, #{currentOrg},
                    #{createBy}, #{createTime}, null, null ,
                    #{status}, 0
                )

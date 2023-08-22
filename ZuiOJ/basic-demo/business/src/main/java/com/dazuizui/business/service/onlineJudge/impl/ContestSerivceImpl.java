@@ -296,6 +296,7 @@ public class ContestSerivceImpl implements ContestSerivce {
             contestInfoVo.setContest(contest);
             redisUtil.setStringInRedis(RedisKey.ZuiOJContestId+id,RedisKey.OutTime,contest);
         }
+        contestInfoVo.setContest(contest);
 
         //查看是否已经报名
         CompetitionInfo competitionInfoInDB

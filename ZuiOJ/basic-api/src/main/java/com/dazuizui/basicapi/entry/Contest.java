@@ -19,6 +19,7 @@ public class Contest implements Serializable {
     private String htmlText;//html文档
     private Long createById; //创建者ID
     private String createByName; //创建者name
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "Asia/Shanghai")
     private Date createTime; //创建时间
     private String updateById; //修改者ID
     private String updateByName; //修改者name

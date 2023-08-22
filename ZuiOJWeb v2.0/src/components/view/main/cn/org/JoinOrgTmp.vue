@@ -29,6 +29,12 @@
                         </div>
 
                         <div class="form-group">
+                          <label for="exampleInputEmail1">Email</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="orgMember.email">
+                          <small id="emailHelp" class="form-text text-muted">请输入您的Email,Please enter your email.</small>
+                        </div>
+
+                        <div class="form-group">
                           <label for="exampleInputEmail1">要加入的组织</label>
                           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="信息学院专业社团"  :disabled="true">
                           <small id="emailHelp" class="form-text text-muted">要加入的组织.organization to join.</small>
@@ -39,7 +45,7 @@
                         </div>
                          
                         <div style="float:left;">
-                          <el-select v-model="orgMember.preOrg" placeholder="请选择高中来源">
+                          <el-select v-model="orgMember.preOrg " placeholder="请选择高中来源">
                             <el-option
                               v-for="item in preOrg"
                               :key="item.value"
@@ -48,8 +54,9 @@
                             </el-option>
                           </el-select>
                         </div>
-                        <div style="float:left;margin-left:100px">
-                          <el-select v-model="orgMember.preOrg" placeholder="请选择班级来源">
+
+                        <div style="float:left;margin-left:130px">
+                          <el-select v-model="orgMember.currentOrg" placeholder="请选择班级来源">
                             <el-option
                               v-for="item in currentOrg"
                               :key="item.value"
@@ -58,9 +65,11 @@
                             </el-option>
                           </el-select>
                         </div>
+
                         <br>
                         <br>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"  v-bind:hidden="formbutton" style="width:540px;height: 50px;"> 注册</button> 
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"  v-bind:hidden="formbutton" style="width:540px;height: 50px;" @click="submit()"> 注册</button> 
                         <button class="btn btn-primary" type="button" disabled v-bind:hidden="!formbutton" style="width:540px;height: 50px;"> 
                             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                             正在注册中，请稍后......
@@ -79,8 +88,10 @@
   </template>
   
   <script>
+  import { synRequestPost, synRequestGet} from '../../../../../../static/request';
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/TmpTop.vue'
+
   export default {
     name: 'HelloWorld',
     components: {
@@ -89,7 +100,11 @@
     data () {
       return {
         //讨论分类
-        preOrg: [{
+        preOrg: [
+        {
+          value: -1,
+          label: '请选择升学来源'
+        },{
           value: 1,
           label: '中职'
         }, {
@@ -98,10 +113,8 @@
         }, {
           value: 3,
           label: '专升本'
-        }, {
-          value: -1,
-          label: '请选择升学来源'
         }],
+
         //幂函数按钮
         formbutton: false,
 
@@ -140,18 +153,63 @@
 
         orgMember: {
             name: "",
+            email: "",
             numberId: "",
             orgId: 1,
             preOrg: -1,
-        }
+            currentOrg: -1,
+        },
+        nonPowerToken: "",
       }
     },
+
+    mounted(){
+      this.getNonPowerToken();
+    },
+
     methods: {
         //跳转指定页面
         getMerchantInformation(val){   
             alert(val);
         },
         
+
+        //防止幂等性
+        async getNonPowerToken(){
+            var object = await synRequestGet("/system/getNonPowerTokenString");
+            this.nonPowerToken = object.data;
+        },
+
+        async submit(){
+          if(this.orgMember.name.length < 2 || this.orgMember.name.length > 20){
+              alert("昵称长度必须要在2到20区间");
+              return;
+          }
+          if(this.orgMember.email.length < 2 || this.orgMember.email.length > 30){
+              alert("邮箱长度必须要在2到30区间");
+              return;
+          }
+          if(this.orgMember.numberId.length < 2 || this.orgMember.numberId.length > 20){
+              alert("学号长度必须要在2到30区间");
+              return ;
+          }
+          if(this.orgMember.preOrg.length == -1){
+              alert("必须选择升学来源");
+              return;
+          }
+          if(this.orgMember.currentOrg.length == -1){
+              alert("必须选择班级来源");
+              return;
+          }
+
+          let obj = await synRequestPost("/org/insertmenber?nonPowerToken="+this.nonPowerToken,this.orgMember);
+
+          if(check(obj)){
+            alert("申请成功，请等待通知,请前往主站浏览一下吧，以后会经常用的");
+          }else{
+            this.getNonPowerToken();
+          }
+        }
     }
   }
   </script>

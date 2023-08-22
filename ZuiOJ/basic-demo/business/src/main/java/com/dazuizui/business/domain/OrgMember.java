@@ -10,15 +10,16 @@ public class OrgMember implements Serializable {
     private Long id;
     private String name;
     private String numberId;
-    private Long ord_id;
-    private Long pre_org;
-    private Long current_org;
+    private Long ordId;
+    private Long preOrg;
+    private Long currentOrg;
     private Long createBy;
     private Date createTime;
     private Long updateBy;
     private Date updateTime;
     private Integer status;
     private Integer delFlag;
+    private String email;
 
     @Override
     public String toString() {
@@ -26,15 +27,16 @@ public class OrgMember implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", numberId='" + numberId + '\'' +
-                ", ord_id=" + ord_id +
-                ", pre_org=" + pre_org +
-                ", current_org=" + current_org +
+                ", ordId=" + ordId +
+                ", preOrg=" + preOrg +
+                ", currentOrg=" + currentOrg +
                 ", createBy=" + createBy +
                 ", createTime=" + createTime +
                 ", updateBy=" + updateBy +
                 ", updateTime=" + updateTime +
                 ", status=" + status +
                 ", delFlag=" + delFlag +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -62,28 +64,28 @@ public class OrgMember implements Serializable {
         this.numberId = numberId;
     }
 
-    public Long getOrd_id() {
-        return ord_id;
+    public Long getOrdId() {
+        return ordId;
     }
 
-    public void setOrd_id(Long ord_id) {
-        this.ord_id = ord_id;
+    public void setOrdId(Long ordId) {
+        this.ordId = ordId;
     }
 
-    public Long getPre_org() {
-        return pre_org;
+    public Long getPreOrg() {
+        return preOrg;
     }
 
-    public void setPre_org(Long pre_org) {
-        this.pre_org = pre_org;
+    public void setPreOrg(Long preOrg) {
+        this.preOrg = preOrg;
     }
 
-    public Long getCurrent_org() {
-        return current_org;
+    public Long getCurrentOrg() {
+        return currentOrg;
     }
 
-    public void setCurrent_org(Long current_org) {
-        this.current_org = current_org;
+    public void setCurrentOrg(Long currentOrg) {
+        this.currentOrg = currentOrg;
     }
 
     public Long getCreateBy() {
@@ -134,21 +136,30 @@ public class OrgMember implements Serializable {
         this.delFlag = delFlag;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public OrgMember() {
     }
 
-    public OrgMember(Long id, String name, String numberId, Long ord_id, Long pre_org, Long current_org, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag) {
+    public OrgMember(Long id, String name, String numberId, Long ordId, Long preOrg, Long currentOrg, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String email) {
         this.id = id;
         this.name = name;
         this.numberId = numberId;
-        this.ord_id = ord_id;
-        this.pre_org = pre_org;
-        this.current_org = current_org;
+        this.ordId = ordId;
+        this.preOrg = preOrg;
+        this.currentOrg = currentOrg;
         this.createBy = createBy;
         this.createTime = createTime;
         this.updateBy = updateBy;
         this.updateTime = updateTime;
         this.status = status;
         this.delFlag = delFlag;
+        this.email = email;
     }
 }

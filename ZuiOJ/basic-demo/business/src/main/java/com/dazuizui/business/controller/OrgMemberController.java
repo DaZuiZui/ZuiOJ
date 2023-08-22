@@ -6,11 +6,9 @@ import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.OrgMember;
 import com.dazuizui.business.service.org.OrgMemberService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 组织成员控制器
@@ -28,8 +26,9 @@ public class OrgMemberController {
      * @param orgMember
      * @return
      */
+    @ApiOperation("添加组织成员")
     @PostMapping("/insertmenber")
-    public String insertMember(@RequestBody OrgMember orgMember){
+    public String insertMember(@RequestParam("nonPowerToken")String nonPowerToken ,@RequestBody OrgMember orgMember){
         if (orgMember == null){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.IsNull,null, StatusCode.IsNull));
         }
