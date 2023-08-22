@@ -51,6 +51,7 @@ import UpdateArticle from '@/components/view/main/cn/blog/UserUpdateArticle'
 import AdminManagementBlogRoll from '@/components/view/main/cn/admin/AdminManagementBlogRoll'
 import ApplyForBlogRoll from '@/components/view/main/cn/blogroll/ApplyForBlogRoll'
 import AdminInsertBlogRoll from '@/components/view/main/cn/admin/AdminInsertBlogRoll'
+import JoinOrg from '@/components/view/main/cn/org/JoinOrgTmp'
 
 Vue.use(Router)
 
@@ -62,6 +63,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //临时添加组织
+    {
+      path: "/org/join/tmp",
+      name: 'orgJoin',
+      component: JoinOrg
     },
     //添加友情链接
     {
