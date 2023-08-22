@@ -60,8 +60,8 @@
                         </div>
                         <br>
                         <br>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"  v-bind:hidden="formbutton" style="width:600px;height: 50px;"> 注册</button> 
-                        <button class="btn btn-primary" type="button" disabled v-bind:hidden="!formbutton" style="width:600px;height: 50px;"> 
+                        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="sub"  v-bind:hidden="formbutton" style="width:540px;height: 50px;"> 注册</button> 
+                        <button class="btn btn-primary" type="button" disabled v-bind:hidden="!formbutton" style="width:540px;height: 50px;"> 
                             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                             正在注册中，请稍后......
                         </button>

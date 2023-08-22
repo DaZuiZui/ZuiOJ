@@ -47,7 +47,7 @@
                         <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
                             <h6 class="heading mb-3">Author</h6>
                             <ul class="list-unstyled">
-                                <li><a href="#"> </a></li>
+                                <li><a href="#">杨易达</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
