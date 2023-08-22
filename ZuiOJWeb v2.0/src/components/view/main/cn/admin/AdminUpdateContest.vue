@@ -111,7 +111,6 @@
   import {synRequestPost,synRequestGet} from "../../../../../../static/request"
 
   export default {
-    name: 'CreateContest',
     components: {
            Foot,Top
       },
@@ -147,6 +146,7 @@
 
                conTestInfo:{
                     id: -1,
+                    name: "",
                     postMatchProcessing: -1,
                     mdText: "",
                     htmlText: "",
@@ -155,6 +155,7 @@
                     endTime: new Date(),
                     contestType: -1,
                     parsingRule: -1,
+                    Idemtoken: "",
                },
 
                //按钮选择器
@@ -183,16 +184,17 @@
             async getContestInfo(){
                 let contest = await synRequestGet("/contest/getEventById?toekn="+getCookie("token")+"&id="+getQueryVariable("contestId"));
                 this.conTestInfo = contest.data.contest;
-                
-                //alert("??");
-                //console.log(this.conTestInfo);
+
+                //console.log(contest.data);
                 return [null,null];
             },
+
             //防止幂等性
             async getNonPowerToken(){
                 var object = await synRequestGet("/system/getNonPowerTokenString");
                 this.nonPowerToken = object.data;
             },
+
             //Markdown解析
             change(value, render) {
                 // render 为 markdown 解析后的结果
