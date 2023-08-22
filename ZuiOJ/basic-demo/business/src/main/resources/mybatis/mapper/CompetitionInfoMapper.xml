@@ -141,7 +141,7 @@
         where
             contest_id = #{contestId} and
             user_id    = #{userId}
-            limit 1
+        limit 1
     </select>
 
     <!--
