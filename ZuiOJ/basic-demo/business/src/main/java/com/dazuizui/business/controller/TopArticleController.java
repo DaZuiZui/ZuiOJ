@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
+ * @author Bryan yang 30/10/2022
+ *
  * 比赛时提交代码的存储控制器
+ *
  */
 @CrossOrigin
 @RequestMapping("/topArticle")
@@ -24,6 +27,8 @@ public class TopArticleController {
     private TopArticleService topArticleService;
 
     /**
+     * @author Bryan yang 30/10/2022
+     *
      * 增加置顶文章
      * @param addTopArticleBo
      * @return
@@ -38,11 +43,12 @@ public class TopArticleController {
             return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
         }
 
-        System.err.println(addTopArticleBo);
         return topArticleService.addTopArticle(addTopArticleBo);
     }
 
     /**
+     * @author Bryan yang 30/10/2022
+     *
      * 获取公开文章
      * @return
      */
