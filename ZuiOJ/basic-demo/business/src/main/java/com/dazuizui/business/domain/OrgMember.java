@@ -9,8 +9,10 @@ import java.util.Date;
 public class OrgMember implements Serializable {
     private Long id;
     private String name;
+    private String otherOrg;
+    private String purpose;
     private String numberId;
-    private Long ordId;
+    private Long orgId;
     private Long preOrg;
     private Long currentOrg;
     private Long createBy;
@@ -26,8 +28,10 @@ public class OrgMember implements Serializable {
         return "OrgMember{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", otherOrg='" + otherOrg + '\'' +
+                ", purpose='" + purpose + '\'' +
                 ", numberId='" + numberId + '\'' +
-                ", ordId=" + ordId +
+                ", orgId=" + orgId +
                 ", preOrg=" + preOrg +
                 ", currentOrg=" + currentOrg +
                 ", createBy=" + createBy +
@@ -56,6 +60,22 @@ public class OrgMember implements Serializable {
         this.name = name;
     }
 
+    public String getOtherOrg() {
+        return otherOrg;
+    }
+
+    public void setOtherOrg(String otherOrg) {
+        this.otherOrg = otherOrg;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+
     public String getNumberId() {
         return numberId;
     }
@@ -64,12 +84,12 @@ public class OrgMember implements Serializable {
         this.numberId = numberId;
     }
 
-    public Long getOrdId() {
-        return ordId;
+    public Long getOrgId() {
+        return orgId;
     }
 
-    public void setOrdId(Long ordId) {
-        this.ordId = ordId;
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
     }
 
     public Long getPreOrg() {
@@ -147,11 +167,13 @@ public class OrgMember implements Serializable {
     public OrgMember() {
     }
 
-    public OrgMember(Long id, String name, String numberId, Long ordId, Long preOrg, Long currentOrg, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String email) {
+    public OrgMember(Long id, String name, String otherOrg, String purpose, String numberId, Long orgId, Long preOrg, Long currentOrg, Long createBy, Date createTime, Long updateBy, Date updateTime, Integer status, Integer delFlag, String email) {
         this.id = id;
         this.name = name;
+        this.otherOrg = otherOrg;
+        this.purpose = purpose;
         this.numberId = numberId;
-        this.ordId = ordId;
+        this.orgId = orgId;
         this.preOrg = preOrg;
         this.currentOrg = currentOrg;
         this.createBy = createBy;

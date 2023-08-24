@@ -79,15 +79,14 @@
         删除该比赛的所有参赛选手
     -->
     <delete id="deleteCompetitionInfoByContestId">
-        delete
-        from
+        delete from
             ac_contest_question
         where
             contest_id = #{id}
     </delete>
 
     <!--
-
+        获得总数
     -->
     <select id="getTotal" resultType="com.dazuizui.basicapi.entry.GetTotal">
         SELECT
@@ -141,7 +140,7 @@
         where
             contest_id = #{contestId} and
             user_id    = #{userId}
-            limit 1
+        limit 1
     </select>
 
     <!--
