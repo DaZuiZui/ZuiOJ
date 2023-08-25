@@ -1,5 +1,5 @@
 # OJ system
-
+最近研究查重系统，更新较慢
 ## Developer
  
 ## Environment preparation
