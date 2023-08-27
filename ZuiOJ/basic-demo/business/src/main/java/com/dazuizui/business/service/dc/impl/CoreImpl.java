@@ -1,8 +1,13 @@
 package com.dazuizui.business.service.dc.impl;
 
+import com.dazuizui.business.domain.CodeInContest;
+import com.dazuizui.business.domain.bo.DCCoreRunBo;
+import org.springframework.stereotype.Service;
+
 import java.math.BigInteger;
 import java.util.*;
 
+@Service
 public class CoreImpl {
     private static Set<String> whitelist; // 白名单集合，存放不需要查重的代码片段
 
@@ -45,17 +50,21 @@ public class CoreImpl {
         // 添加更多白名单条目...
     }
 
-    public Double run(List<String> studentCodes){
+    public List<DCCoreRunBo> run(List<CodeInContest> studentCodes){
+        List<DCCoreRunBo> res = new ArrayList<>();
         // 检查每对学生代码的相似性，并输出结果
         int totalComparisons = 0;
         int similarPairs = 0;
 
         for (int i = 0; i < studentCodes.size(); i++) {
-            for (int j = i + 1; j < studentCodes.size(); j++) {
+            for (int j = 0; j < studentCodes.size(); j++) {
+                if (i == j){
+                    continue;
+                }
                 totalComparisons++;
 
-                String code1 = studentCodes.get(i);
-                String code2 = studentCodes.get(j);
+                String code1 = studentCodes.get(i).getCode();
+                String code2 = studentCodes.get(j).getCode();
 
                 // 检查代码片段是否在白名单中
                 if (isWhitelisted(code1) || isWhitelisted(code2)) {
@@ -78,14 +87,26 @@ public class CoreImpl {
                 double threshold = 0.5; // 设置相似性阈值
                 if (combinedSimilarity >= threshold) {
                     similarPairs++;
-                    System.out.println("存在代码查重：");
-                    System.out.println("代码片段1：");
-                    System.out.println(code1);
-                    System.out.println("代码片段2：");
-                    System.out.println(code2);
+//                    System.out.println("存在代码查重：");
+//                    System.out.println("代码片段1：");
+//                    System.out.println(code1);
+//                    System.out.println("代码片段2：");
+//                    System.out.println(code2);
 
                 }
-                System.out.println("综合相似性：" + combinedSimilarity);
+
+                //记录返回数据
+                DCCoreRunBo dcCoreRunBo = new DCCoreRunBo();
+                dcCoreRunBo.setMaster(studentCodes.get(i).getCreateByName());
+                dcCoreRunBo.setMasterId(studentCodes.get(i).getUserId());
+                dcCoreRunBo.setGuestId(studentCodes.get(j).getUserId());
+                dcCoreRunBo.setGuest(studentCodes.get(j).getCreateByName());
+                dcCoreRunBo.setCoverage(combinedSimilarity);
+                dcCoreRunBo.setMasterCodeId(studentCodes.get(i).getCodeId());
+                dcCoreRunBo.setGuestCodeId(studentCodes.get(j).getCodeId());
+                res.add(dcCoreRunBo);
+
+                System.out.println(studentCodes.get(i).getCreateByName() + "抄袭"+studentCodes.get(j).getCreateByName()+"的文章综合相似性：" + combinedSimilarity);
                 System.out.println("------------------------");
             }
         }
@@ -93,7 +114,7 @@ public class CoreImpl {
         // 计算最终查重率
         double duplicationRate = (double) similarPairs / totalComparisons;
         System.out.println("最终查重率：" + duplicationRate);
-        return duplicationRate;
+        return res;
     }
 
 

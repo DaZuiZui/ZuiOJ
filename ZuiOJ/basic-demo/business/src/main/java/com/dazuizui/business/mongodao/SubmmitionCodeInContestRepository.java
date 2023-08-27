@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * Mongodao 比赛时提交的代码dao
  */
 public interface SubmmitionCodeInContestRepository extends MongoRepository<CodeInContest,String> {
+
+
     /**
      * 通过比赛id还有题目id还有用户id指定提交代码数据
      * @param contestId
@@ -36,4 +38,13 @@ public interface SubmmitionCodeInContestRepository extends MongoRepository<CodeI
      * 查看该用户本题是否有2个及以上的ac记录
      */
     Page<CodeInContest> findByContestIdAndQuestionIdAndUserIdAndDelFlagAndStatus(Long contestId,Long questionId,Long userId,Integer delFlag,Integer status, Pageable pageable);
+
+
+    /**
+     * 通过题号和状态查询
+     * @param questionId
+     * @param status
+     * @return
+     */
+    Page<CodeInContest> findByQuestionIdAndStatus(Long questionId,Integer status, Pageable pageable);
 }

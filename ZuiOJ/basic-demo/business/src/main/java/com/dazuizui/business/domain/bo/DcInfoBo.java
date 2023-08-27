@@ -28,6 +28,9 @@ public class DcInfoBo {
         this.questionId = questionId;
     }
 
+    public DcInfoBo() {
+    }
+
     public DcInfoBo(Long contestId, Long questionId) {
         this.contestId = contestId;
         this.questionId = questionId;
