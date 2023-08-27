@@ -35,6 +35,18 @@
                         </div>
 
                         <div class="form-group">
+                          <label for="exampleInputEmail1">是否其他社团或学生会等组织</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="orgMember.otherOrg">
+                          <small id="emailHelp" class="form-text text-muted">你是否加入了其他社团或学生会，如果有请填写其他社团或学生会的名字，如果没参加就为空</small>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">加入本社团的目的</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="orgMember.purpose">
+                          <small id="emailHelp" class="form-text text-muted">请输入加入本社团的目的</small>
+                        </div>
+
+                        <div class="form-group">
                           <label for="exampleInputEmail1">要加入的组织</label>
                           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="信息学院专业社团"  :disabled="true">
                           <small id="emailHelp" class="form-text text-muted">要加入的组织.organization to join.</small>
@@ -55,7 +67,7 @@
                           </el-select>
                         </div>
 
-                        <div style="float:left;margin-left:130px">
+                        <div style="float:left;margin-left:100px">
                           <el-select v-model="orgMember.currentOrg" placeholder="请选择班级来源">
                             <el-option
                               v-for="item in currentOrg"
@@ -148,7 +160,7 @@
           label: '23级软件工程本硕'
         }, {
           value: -1,
-          label: '请选择升学来源'
+          label: '请选择班级来源'
         }],
 
         orgMember: {
@@ -158,6 +170,9 @@
             orgId: 1,
             preOrg: -1,
             currentOrg: -1,
+            otherOrg: "",
+            purpose: "",
+            status: 1,
         },
         nonPowerToken: "",
       }
@@ -193,11 +208,16 @@
               alert("学号长度必须要在2到30区间");
               return ;
           }
-          if(this.orgMember.preOrg.length == -1){
+ 
+          if(this.orgMember.purpose.length < 2 || this.orgMember.purpose.length > 300){
+              alert("加入目的长度必须要在2到300区间");
+              return ;
+          }
+          if(this.orgMember.preOrg == -1){
               alert("必须选择升学来源");
               return;
           }
-          if(this.orgMember.currentOrg.length == -1){
+          if(this.orgMember.currentOrg == -1){
               alert("必须选择班级来源");
               return;
           }
@@ -206,6 +226,7 @@
 
           if(check(obj)){
             alert("申请成功，请等待通知,请前往主站浏览一下吧，以后会经常用的");
+            this.$router.push("/");
           }else{
             this.getNonPowerToken();
           }

@@ -193,16 +193,17 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
      */
     public boolean checkIfTheCurrentGameIsOver(Long contestId){
         //获取比赛数据
-        Contest contest = (Contest) redisUtil.getStringInRedis(RedisKey.ZuiOJContestInfo + contestId);
-        if (contest == null){
-            contest = contestMapper.getEventById(contestId);
-            if (contest == null){
-                return false;
-            }else{
-                redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo + contestId,RedisKey.OutTime,contest);
-            }
-        }
-
+//       因redis Key混乱 后续优化
+//        Contest contest = (Contest) redisUtil.getStringInRedis(RedisKey.ZuiOJContestInfo + contestId);
+//        if (contest == null){
+//            contest = contestMapper.getEventById(contestId);
+//            if (contest == null){
+//                return false;
+//            }else{
+//                redisUtil.setStringInRedis(RedisKey.ZuiOJContestInfo + contestId,RedisKey.OutTime,contest);
+//            }
+//        }
+        Contest  contest = contestMapper.getEventById(contestId);;
 
         //查看是否结束
         Date endTime = contest.getEndTime();
