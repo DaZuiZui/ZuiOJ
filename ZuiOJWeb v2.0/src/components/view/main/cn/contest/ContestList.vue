@@ -13,7 +13,7 @@
                         <h4 class="alert-heading">Hello!</h4>
                         <p>This is GuangSha TLMOJ，以下为你展示的是未来赛制， 祝你好运。</p>
                         <hr>
-                        <p class="mb-0">请参赛选手/考试选手遵守比赛规则，若发现bug或者问题请联系TLM Team团队email:y51288033@outlook.com</p>
+                        <p class="mb-0">请参赛选手/考试选手遵守比赛规则，若发现bug或者问题请联系email:y51288033@outlook.com</p>
                     </div>
           
            
