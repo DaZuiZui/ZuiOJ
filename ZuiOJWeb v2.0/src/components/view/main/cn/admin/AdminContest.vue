@@ -44,14 +44,14 @@
              
                         <td>
                             <div>   
-                              <el-link type="primary" >查重</el-link>
+                              <el-link type="primary"   @click="DuplicateCheckSystem(obj.id)">查重</el-link>
                                 <el-link type="primary" @click="toProctorManagement(obj.id)">监考人员</el-link>
                                 <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
-                                <el-link type="danger" @click="removeTheContestById(obj.id)">移除比赛</el-link>
-                                <el-link type="danger" @click="goCompetitioninfo(obj.id)">参赛人员</el-link>
-                                <el-link type="danger" @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
+                                <el-link type="danger"  @click="removeTheContestById(obj.id)">移除比赛</el-link>
+                                <el-link type="danger"  @click="goCompetitioninfo(obj.id)">参赛人员</el-link>
+                                <el-link type="danger"  @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
                             </div>
                         </td>
                       </tr>
@@ -102,6 +102,9 @@
         this.getMerchantInformation(1);
     },
     methods: {
+        DuplicateCheckSystem(contestId){
+
+        },
         /**
          *  查看监考人员页面
          */

@@ -4,7 +4,7 @@ package com.dazuizui.business.service.dc;
 import com.dazuizui.business.domain.bo.DcInfoBo;
 import com.dazuizui.business.domain.bo.GetCheckDcInfoByRankingBo;
 
-public interface DcInfo {
+public interface DcInfoSerivce {
     /**
      * 进行查重
      * @param dcInfoBo

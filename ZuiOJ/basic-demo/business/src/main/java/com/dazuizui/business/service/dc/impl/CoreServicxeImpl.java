@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.util.*;
 
 @Service
-public class CoreImpl {
+public class CoreServicxeImpl {
     private static Set<String> whitelist; // 白名单集合，存放不需要查重的代码片段
 
     static {

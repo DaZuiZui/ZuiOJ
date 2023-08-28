@@ -7,7 +7,7 @@ import com.dazuizui.basicapi.entry.Ranking;
 import com.dazuizui.business.domain.UserMaxCoverageRate;
 import com.dazuizui.business.domain.bo.DcInfoBo;
 import com.dazuizui.business.domain.bo.GetCheckDcInfoByRankingBo;
-import com.dazuizui.business.service.dc.impl.DcInfoImpl;
+import com.dazuizui.business.service.dc.impl.DcInfoServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ import java.util.List;
 @SpringBootTest
 public class DCTest {
     @Autowired
-    private DcInfoImpl dcInfo;
+    private DcInfoServiceImpl dcInfo;
 
     @Test
     public void dcTest(){

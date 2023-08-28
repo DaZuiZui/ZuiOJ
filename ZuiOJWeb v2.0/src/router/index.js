@@ -52,6 +52,7 @@ import AdminManagementBlogRoll from '@/components/view/main/cn/admin/AdminManage
 import ApplyForBlogRoll from '@/components/view/main/cn/blogroll/ApplyForBlogRoll'
 import AdminInsertBlogRoll from '@/components/view/main/cn/admin/AdminInsertBlogRoll'
 import JoinOrg from '@/components/view/main/cn/org/JoinOrgTmp'
+import DuplicateCheckSystem from '@/components/view/main/cn/admin/DuplicateCheckSystem'
 
 Vue.use(Router)
 
@@ -63,6 +64,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //查重系统
+    {
+      path: '/dc/contest/index',
+      name: 'CodeDuplicateCheckSystem',
+      component: DuplicateCheckSystem
     },
     //临时添加组织
     {

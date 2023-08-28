@@ -1,4 +1,4 @@
 package com.dazuizui.business.service.dc;
 
-public interface Core {
+public interface CoreService {
 }

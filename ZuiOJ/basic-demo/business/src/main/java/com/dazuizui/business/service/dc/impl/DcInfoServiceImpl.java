@@ -19,7 +19,7 @@ import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.mapper.CoverageMapper;
 import com.dazuizui.business.mongodao.SubmmitionCodeInContestRepository;
-import com.dazuizui.business.service.dc.DcInfo;
+import com.dazuizui.business.service.dc.DcInfoSerivce;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,13 +31,13 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class DcInfoImpl implements DcInfo {
+public class DcInfoServiceImpl implements DcInfoSerivce {
     @Autowired
     private AcContestQuestionMapper acContestQuestionMapper;
     @Autowired
     private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
     @Autowired
-    private CoreImpl coreImpl;
+    private CoreServicxeImpl coreImpl;
     @Autowired
     private CompetitionInfoService competitionInfoService;
     @Autowired
