@@ -44,7 +44,8 @@ public interface SubmmitionCodeInContestRepository extends MongoRepository<CodeI
      * 通过题号和状态查询
      * @param questionId
      * @param status
+     * @param contestId
      * @return
      */
-    Page<CodeInContest> findByQuestionIdAndStatus(Long questionId,Integer status, Pageable pageable);
+    Page<CodeInContest> findByContestIdAndQuestionIdAndStatus(Long contestId ,Long questionId,Integer status, Pageable pageable);
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dazuizui.business.mapper.CoverageMapper">
+
+    <!-- 插入语句 -->
+    <insert id="insertCoverageData">
+        INSERT INTO
+            coverage
+        VALUES (
+                     #{id}, #{contestId}, #{questionId}, #{masterId}, #{masterCodeId}, #{guestId}, #{guestCodeId},
+                     #{coverageRate}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, 0, 0
+                 )
+    </insert>
+
+    <!--
+        findByContestIdAndQuestionid
+    -->
+    <select id="findByContestIdAndQuestionid" resultType="com.dazuizui.business.domain.Coverage">
+        select  * from coverage where contest_id = #{contestId} and question_id = #{questionId} = #{questionId} limit 1
+    </select>
+
+    <delete id="deleteByContestIdAndQuestionid">
+        delete from
+            coverage
+        where
+            contest_id = #{contestId} and question_id = #{questionId}
+    </delete>
+
+
+    <!--
+        获取用户每个题的最大重复度
+    -->
+    <select id="getUserMaxCoverageRateByContestIdAndMasterId" resultType="com.dazuizui.business.domain.UserMaxCoverageRate">
+        SELECT
+            question_id,
+            (SELECT chinese_name from question_bank where id = question_id limit 1) as 'questionName',
+            MAX( coverage_rate ) as 'coverageRate'
+        FROM
+             coverage
+        WHERE
+            contest_id = #{contestId}
+            AND master_id = #{masterId}
+        GROUP BY
+            question_id
+    </select>
+</mapper>

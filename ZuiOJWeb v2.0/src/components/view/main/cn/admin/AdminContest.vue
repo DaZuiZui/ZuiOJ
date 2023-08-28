@@ -44,6 +44,7 @@
              
                         <td>
                             <div>   
+                              <el-link type="primary" >查重</el-link>
                                 <el-link type="primary" @click="toProctorManagement(obj.id)">监考人员</el-link>
                                 <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>

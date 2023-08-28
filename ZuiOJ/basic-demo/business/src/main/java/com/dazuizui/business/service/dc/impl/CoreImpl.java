@@ -58,9 +58,11 @@ public class CoreImpl {
 
         for (int i = 0; i < studentCodes.size(); i++) {
             for (int j = 0; j < studentCodes.size(); j++) {
+                //查重时去除自己提交的内容
                 if (i == j){
                     continue;
                 }
+
                 totalComparisons++;
 
                 String code1 = studentCodes.get(i).getCode();
