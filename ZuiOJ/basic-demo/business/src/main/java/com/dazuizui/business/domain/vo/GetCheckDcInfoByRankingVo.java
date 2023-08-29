@@ -14,13 +14,15 @@ public class GetCheckDcInfoByRankingVo implements Serializable {
     private List<List<UserMaxCoverageRate>> userMaxCoverageRateRes;
     //用户排名
     private List<Ranking> rankings;
-
+    //有效比赛选手个数
+    private Integer total;
 
     @Override
     public String toString() {
         return "GetCheckDcInfoByRankingVo{" +
                 "userMaxCoverageRateRes=" + userMaxCoverageRateRes +
                 ", rankings=" + rankings +
+                ", total=" + total +
                 '}';
     }
 
@@ -40,11 +42,20 @@ public class GetCheckDcInfoByRankingVo implements Serializable {
         this.rankings = rankings;
     }
 
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
     public GetCheckDcInfoByRankingVo() {
     }
 
-    public GetCheckDcInfoByRankingVo(List<List<UserMaxCoverageRate>> userMaxCoverageRateRes, List<Ranking> rankings) {
+    public GetCheckDcInfoByRankingVo(List<List<UserMaxCoverageRate>> userMaxCoverageRateRes, List<Ranking> rankings, Integer total) {
         this.userMaxCoverageRateRes = userMaxCoverageRateRes;
         this.rankings = rankings;
+        this.total = total;
     }
 }

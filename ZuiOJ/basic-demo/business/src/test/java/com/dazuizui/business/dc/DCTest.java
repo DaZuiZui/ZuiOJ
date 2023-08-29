@@ -30,9 +30,9 @@ public class DCTest {
     @Test
     public void getCheckDcInfoByRanking(){
         GetCheckDcInfoByRankingBo getCheckDcInfoByRankingBo = new GetCheckDcInfoByRankingBo();
-        getCheckDcInfoByRankingBo.setSize(10l);
+        getCheckDcInfoByRankingBo.setSize(10);
         getCheckDcInfoByRankingBo.setContestId(58l);
-        getCheckDcInfoByRankingBo.setStart(0l);
+        getCheckDcInfoByRankingBo.setStart(0);
         String json = dcInfo.getCheckDcInfoByRanking(getCheckDcInfoByRankingBo);
 //        GetCheckDcInfoByRankingVo getCheckDcInfoByRankingVo = JSON.parseObject(checkDcInfoByRanking, GetCheckDcInfoByRankingVo.class);
 

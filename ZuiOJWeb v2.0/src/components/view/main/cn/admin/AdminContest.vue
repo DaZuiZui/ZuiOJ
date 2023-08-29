@@ -103,7 +103,7 @@
     },
     methods: {
         DuplicateCheckSystem(contestId){
-
+            this.$router.push("/dc/contest/index?contestId="+contestId)
         },
         /**
          *  查看监考人员页面

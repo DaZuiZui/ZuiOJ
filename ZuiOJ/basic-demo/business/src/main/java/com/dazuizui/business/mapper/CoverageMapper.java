@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.business.domain.Coverage;
 import com.dazuizui.business.domain.UserMaxCoverageRate;
+import com.dazuizui.business.domain.bo.FindByContestIdAndQuestionIdAndMasterOdBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -41,4 +42,10 @@ public interface CoverageMapper {
      */
     public List<UserMaxCoverageRate> getUserMaxCoverageRateByContestIdAndMasterId(
             @Param("contestId")Long contestId, @Param("masterId")Long masterId);
+
+    /**
+     *
+     * @return
+     */
+    public List<Coverage> findByContestIdAndQuestionIdAndMasterOd(FindByContestIdAndQuestionIdAndMasterOdBo findByContestIdAndQuestionIdAndMasterOdBo);
 }

@@ -91,9 +91,13 @@ public class DcInfoServiceImpl implements DcInfoSerivce {
 
     @Override
     public String getCheckDcInfoByRanking(GetCheckDcInfoByRankingBo getCheckDcInfoByRankingBo) {
+        System.err.println(getCheckDcInfoByRankingBo);
         //获取比赛排名
-        String json = competitionInfoService.viewRanking(58l, 0, 10);
+        String json = competitionInfoService.viewRanking(getCheckDcInfoByRankingBo.getContestId(), getCheckDcInfoByRankingBo.getStart(), getCheckDcInfoByRankingBo.getSize());
         System.out.println(json);
+
+        //没有设计好，导致的繁琐
+        getCheckDcInfoByRankingBo.setStart(getCheckDcInfoByRankingBo.getStart() * 25);
 //
 //        ObjectMapper objectMapper = new ObjectMapper();
 //
@@ -101,6 +105,8 @@ public class DcInfoServiceImpl implements DcInfoSerivce {
 
         JSONObject jsonObject = JSON.parseObject(json);
         JSONArray rankinglistArray = jsonObject.getJSONObject("data").getJSONArray("rankinglist");
+        Integer total = jsonObject.getJSONObject("data").getInteger("total");
+
 
         List<Ranking> rankings = rankinglistArray.toJavaList(Ranking.class);
 
@@ -121,6 +127,7 @@ public class DcInfoServiceImpl implements DcInfoSerivce {
         GetCheckDcInfoByRankingVo getCheckDcInfoByRankingVo = new GetCheckDcInfoByRankingVo();
         getCheckDcInfoByRankingVo.setRankings(rankings);
         getCheckDcInfoByRankingVo.setUserMaxCoverageRateRes(userMaxCoverageRateRes);
+        getCheckDcInfoByRankingVo.setTotal(total);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK ,getCheckDcInfoByRankingVo , StatusCode.OK));
     }

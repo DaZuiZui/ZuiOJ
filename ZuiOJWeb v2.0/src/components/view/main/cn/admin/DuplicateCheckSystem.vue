@@ -8,6 +8,13 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+            
+
+                <div class="btn-group" role="group" aria-label="Basic example" style="width:100%">
+                  <button type="button" class="btn btn-primary" @click="startChecking()">Start Chcking</button>
+                  <button type="button" class="btn btn-danger">Clear</button>
+      
+                </div>
                 <table class="table table-hover">
                     <thead style="background-color: bisque;">
                       <tr>
@@ -46,6 +53,14 @@
                     </tbody>
                   </table>
                 
+                  <!--分页部分-->
+                  <el-pagination
+                    :page-size="25"
+                    :pager-count="11"
+                    @current-change="getMerchantInformation"
+                    layout="prev, pager, next"
+                    :total="total">
+                  </el-pagination>
             </div>
         </section>
  
@@ -58,7 +73,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue';
-  import { synRequestGet, synRequestPost } from '../../../../../../static/request';
+  import { synRequestGet, synRequestPost,requestGet  ,requestPost} from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
     components: {
@@ -69,27 +84,56 @@
         msg: 'Welcome to Your Vue.js App',
         getCheckDcInfoByRankingBo: {
             token: "",
-            contestId: 58,
+            contestId: -1,
             start: 0,
-            size: 10
+            size: 25
         },
-        dcData: null
+
+        dcData: null, //查重判决数据结合
+
+        total: 0, //有效比赛选手个数
+
+        nonPowerToken: "", //幂等性
+
+        startCheckingBo: {
+          contestId: 0,
+          token: "",
+          nonPowerToken: "",
+        }
       }
     },
 
     mounted(){
+        this.getCheckDcInfoByRankingBo.contestId = getQueryVariable("contestId");
+        this.startCheckingBo.contestId = getQueryVariable("contestId");
+        this.startCheckingBo.token = getCookie("token");
         //获取幂等性token
         this.getMerchantInformation(1);
     },
     methods: {
+        //防止幂等性
+        async getNonPowerToken(){
+              var object = await synRequestGet("/system/getNonPowerTokenString"); 
+              this.startCheckingBo.nonPowerToken = object.data;
+        },
+
+        //开始查重
+        async startChecking(){
+           alert("已经在进行查重，请在5分钟后进行访问，获取查重结果。");
+           let obj  =  await synRequestPost("/DC/admin/startChecking",this.startCheckingBo);
+           if(check(obj)){
+              this.$router.push("/dc/contest/index?contestId="+getQueryVariable("contestId"));
+           }
+        },
+
         //跳转指定页面
         async getMerchantInformation(val){   
-            this.getCheckDcInfoByRankingBo.start = (val - 1) * 10;
+            this.getCheckDcInfoByRankingBo.start = (val - 1);
 
             let obj = await synRequestPost("/DC/getCheckDcInfoByRanking",this.getCheckDcInfoByRankingBo);
             if(check(obj)){
                 this.dcData = obj.data;
-             
+                this.total = obj.data.total;
             }
         },
         

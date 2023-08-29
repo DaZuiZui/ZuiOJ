@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class GetCheckDcInfoByRankingBo implements Serializable {
     private String token;
     public Long contestId;
-    private Long start;
-    private Long size;
+    private Integer start;
+    private Integer size;
 
     @Override
     public String toString() {
@@ -19,9 +19,6 @@ public class GetCheckDcInfoByRankingBo implements Serializable {
                 ", start=" + start +
                 ", size=" + size +
                 '}';
-    }
-
-    public GetCheckDcInfoByRankingBo() {
     }
 
     public String getToken() {
@@ -40,23 +37,26 @@ public class GetCheckDcInfoByRankingBo implements Serializable {
         this.contestId = contestId;
     }
 
-    public Long getStart() {
+    public Integer getStart() {
         return start;
     }
 
-    public void setStart(Long start) {
+    public void setStart(Integer start) {
         this.start = start;
     }
 
-    public Long getSize() {
+    public Integer getSize() {
         return size;
     }
 
-    public void setSize(Long size) {
+    public void setSize(Integer size) {
         this.size = size;
     }
 
-    public GetCheckDcInfoByRankingBo(String token, Long contestId, Long start, Long size) {
+    public GetCheckDcInfoByRankingBo() {
+    }
+
+    public GetCheckDcInfoByRankingBo(String token, Long contestId, Integer start, Integer size) {
         this.token = token;
         this.contestId = contestId;
         this.start = start;
