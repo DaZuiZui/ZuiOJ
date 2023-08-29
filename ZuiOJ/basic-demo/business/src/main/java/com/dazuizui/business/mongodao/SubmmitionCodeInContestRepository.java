@@ -48,4 +48,5 @@ public interface SubmmitionCodeInContestRepository extends MongoRepository<CodeI
      * @return
      */
     Page<CodeInContest> findByContestIdAndQuestionIdAndStatus(Long contestId ,Long questionId,Integer status, Pageable pageable);
+
 }

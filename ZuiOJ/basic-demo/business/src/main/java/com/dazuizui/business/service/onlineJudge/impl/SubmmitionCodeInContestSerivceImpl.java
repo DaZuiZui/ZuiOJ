@@ -6,7 +6,9 @@ import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CodeInContest;
+import com.dazuizui.business.domain.bo.DuplicateCodeBo;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
+import com.dazuizui.business.domain.vo.DuplicateCodeVo;
 import com.dazuizui.business.domain.vo.FilterQueryMatchSaveCodeVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.mapper.CodeDetailedInContestMapper;
@@ -40,6 +42,24 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
     private AcContestQuestionMapper acContestQuestionMapper;
     @Autowired
     private TransactionUtils transactionUtils;
+
+    /**
+     * 获取涉嫌重复的代码
+     * @param duplicateCode
+     * @return
+     */
+    @Override
+    public String getDuplicateCode(DuplicateCodeBo duplicateCode){
+
+        CodeInContest guestCode = codeDetailedInContestMapper.findOneById(duplicateCode.getGuestCodeId());
+        CodeInContest masterCOde = codeDetailedInContestMapper.findOneById(duplicateCode.getMasterCodeId());
+
+        DuplicateCodeVo duplicateCodeVo = new DuplicateCodeVo();
+        duplicateCodeVo.setGuestCode(guestCode.getCode());
+        duplicateCodeVo.setMasterCode(masterCOde.getCode());
+
+        return  JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,duplicateCodeVo, StatusCode.OK));
+    }
 
     /**
      * 通过比赛id还有题目id还有用户id指定提交代码数据业务接口

@@ -10,10 +10,9 @@ import com.dazuizui.basicapi.entry.vo.ContestQuestionVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.domain.Coverage;
+import com.dazuizui.business.domain.FindDcOfUser;
 import com.dazuizui.business.domain.UserMaxCoverageRate;
-import com.dazuizui.business.domain.bo.DCCoreRunBo;
-import com.dazuizui.business.domain.bo.DcInfoBo;
-import com.dazuizui.business.domain.bo.GetCheckDcInfoByRankingBo;
+import com.dazuizui.business.domain.bo.*;
 import com.dazuizui.business.domain.vo.GetCheckDcInfoByRankingVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
@@ -25,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,17 +91,12 @@ public class DcInfoServiceImpl implements DcInfoSerivce {
 
     @Override
     public String getCheckDcInfoByRanking(GetCheckDcInfoByRankingBo getCheckDcInfoByRankingBo) {
-        System.err.println(getCheckDcInfoByRankingBo);
         //获取比赛排名
         String json = competitionInfoService.viewRanking(getCheckDcInfoByRankingBo.getContestId(), getCheckDcInfoByRankingBo.getStart(), getCheckDcInfoByRankingBo.getSize());
-        System.out.println(json);
 
         //没有设计好，导致的繁琐
         getCheckDcInfoByRankingBo.setStart(getCheckDcInfoByRankingBo.getStart() * 25);
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//
-//        ResponseVo responseVo = JSON.parseObject(json,ResponseVo.class);
+
 
         JSONObject jsonObject = JSON.parseObject(json);
         JSONArray rankinglistArray = jsonObject.getJSONObject("data").getJSONArray("rankinglist");
@@ -151,4 +146,24 @@ public class DcInfoServiceImpl implements DcInfoSerivce {
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK ,null , StatusCode.OK));
     }
+
+    /**
+     * @author Bryan Yang(Dazui) 30/8/20223
+     * @param findByContestIdAndQuestionIdAndMasterOdBo
+     * @return
+     */
+    @Override
+    public String findByContestIdAndQuestionIdAndMasterId( FindByContestIdAndQuestionIdAndMasterOdBo findByContestIdAndQuestionIdAndMasterOdBo) {
+        List<FindDcOfUser> byContestIdAndQuestionIdAndMasterId = coverageMapper.findByContestIdAndQuestionIdAndMasterId(findByContestIdAndQuestionIdAndMasterOdBo);
+        Long count = coverageMapper.findCountByContestIdAndQuestionIdAndMasterId(findByContestIdAndQuestionIdAndMasterOdBo);
+
+        FindDcOfUserListBo findDcOfUserListBo = new FindDcOfUserListBo();
+        findDcOfUserListBo.setList(byContestIdAndQuestionIdAndMasterId);
+        findDcOfUserListBo.setCount(count);
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK ,findDcOfUserListBo , StatusCode.OK));
+    }
+
+
+
 }

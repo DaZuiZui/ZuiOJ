@@ -3,7 +3,9 @@ package com.dazuizui.business.aop.onlineJudge.impl;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.business.domain.User;
 import com.dazuizui.business.aop.onlineJudge.SubmmitionCodeInContestAop;
+import com.dazuizui.business.domain.bo.DuplicateCodeBo;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
+import com.dazuizui.business.service.system.SystemVerifyService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.JwtUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -26,6 +28,26 @@ public class SubmmitionCodeInContestAopImpl implements SubmmitionCodeInContestAo
     private UserService userService;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private SystemVerifyService systemVerifyService;
+
+    /**
+     * @author Bryan Yang(Dazui) 30 8/2023
+     *
+     * 获取涉嫌重复的代码
+     *    主要做了鉴权是否为管理员
+     * @param joinpoint
+     * @return
+     */
+    @Override
+    @Before("execution(* com.dazuizui.business.controller.SubmmitionCodeInContestController.getDuplicateCode(..))")
+    public void getDuplicateCode(JoinPoint joinpoint){
+        Object[] args = joinpoint.getArgs();
+        DuplicateCodeBo duplicateCodeBo = (DuplicateCodeBo) args[0];
+        String token = duplicateCodeBo.getToken();
+
+        systemVerifyService.veryfiAdmin(token,2);
+    }
 
     /**
      * 筛选查询数据，主要做了身份验证，查看是否符合权限查看

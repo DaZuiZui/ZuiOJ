@@ -8,7 +8,7 @@
         INSERT INTO
             coverage
         VALUES (
-                     #{id}, #{contestId}, #{questionId}, #{masterId}, #{masterCodeId}, #{guestId}, #{guestCodeId},
+                     null, #{contestId}, #{questionId}, #{masterId}, #{guestId}, #{masterCodeId}, #{guestCodeId},
                      #{coverageRate}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, 0, 0
                  )
     </insert>
@@ -34,6 +34,7 @@
     <select id="getUserMaxCoverageRateByContestIdAndMasterId" resultType="com.dazuizui.business.domain.UserMaxCoverageRate">
         SELECT
             question_id,
+            master_id,
             (SELECT chinese_name from question_bank where id = question_id limit 1) as 'questionName',
             MAX( coverage_rate ) as 'coverageRate',
             (select name from user where id =  master_id limit 1) as 'name'
@@ -44,5 +45,51 @@
             AND master_id = #{masterId}
         GROUP BY
             question_id
+    </select>
+
+    <!--
+        查询对应的详细信息
+    -->
+    <select id="findByContestIdAndQuestionIdAndMasterId" resultType="com.dazuizui.business.domain.FindDcOfUser">
+        SELECT
+            c.id,
+            um.name AS masterName,
+            ug.name AS guestName,
+            qb.chinese_name AS questionName,
+            c.master_id,
+            c.guest_id,
+            c.master_code_id,
+            c.guest_code_id,
+            c.create_time,
+            c.coverage_rate
+        FROM coverage c
+                 JOIN user um ON c.master_id = um.id
+                 JOIN user ug ON c.guest_id = ug.id
+                 JOIN question_bank qb ON c.question_id = qb.id
+        WHERE
+            c.contest_id = #{contestId}
+          AND c.question_id = #{questionId}
+          AND c.master_id = #{masterId}
+          AND c.status = 0
+          AND c.del_flag = 0
+        ORDER BY c.coverage_rate DESC
+            LIMIT #{start}, #{size}
+
+    </select>
+
+    <!--
+        查询对应的详细信息
+    -->
+    <select id="findCountByContestIdAndQuestionIdAndMasterId" resultType="long">
+        SELECT
+            count(*)
+        from
+            coverage
+        where
+            contest_id = #{contestId} and
+            question_id = #{questionId} and
+            master_id = #{masterId} and
+            status = 0 and
+            del_flag = 0
     </select>
 </mapper>

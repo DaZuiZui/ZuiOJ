@@ -7,6 +7,18 @@ public class UserMaxCoverageRate implements Serializable {
     private Double coverageRate;
     private String questionName;
     private String name;
+    private Long masterId;
+
+    @Override
+    public String toString() {
+        return "UserMaxCoverageRate{" +
+                "questionId=" + questionId +
+                ", coverageRate=" + coverageRate +
+                ", questionName='" + questionName + '\'' +
+                ", name='" + name + '\'' +
+                ", masterId=" + masterId +
+                '}';
+    }
 
     public Long getQuestionId() {
         return questionId;
@@ -40,23 +52,22 @@ public class UserMaxCoverageRate implements Serializable {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "UserMaxCoverageRate{" +
-                "questionId=" + questionId +
-                ", coverageRate=" + coverageRate +
-                ", questionName='" + questionName + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+    public Long getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(Long masterId) {
+        this.masterId = masterId;
     }
 
     public UserMaxCoverageRate() {
     }
 
-    public UserMaxCoverageRate(Long questionId, Double coverageRate, String questionName, String name) {
+    public UserMaxCoverageRate(Long questionId, Double coverageRate, String questionName, String name, Long masterId) {
         this.questionId = questionId;
         this.coverageRate = coverageRate;
         this.questionName = questionName;
         this.name = name;
+        this.masterId = masterId;
     }
 }

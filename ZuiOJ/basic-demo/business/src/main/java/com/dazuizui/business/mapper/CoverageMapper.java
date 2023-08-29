@@ -1,6 +1,7 @@
 package com.dazuizui.business.mapper;
 
 import com.dazuizui.business.domain.Coverage;
+import com.dazuizui.business.domain.FindDcOfUser;
 import com.dazuizui.business.domain.UserMaxCoverageRate;
 import com.dazuizui.business.domain.bo.FindByContestIdAndQuestionIdAndMasterOdBo;
 import org.apache.ibatis.annotations.Mapper;
@@ -44,8 +45,14 @@ public interface CoverageMapper {
             @Param("contestId")Long contestId, @Param("masterId")Long masterId);
 
     /**
-     *
+     * 通过比赛id和问题id和主人id进行查找对应的详细数据
      * @return
      */
-    public List<Coverage> findByContestIdAndQuestionIdAndMasterOd(FindByContestIdAndQuestionIdAndMasterOdBo findByContestIdAndQuestionIdAndMasterOdBo);
+    public List<FindDcOfUser> findByContestIdAndQuestionIdAndMasterId(FindByContestIdAndQuestionIdAndMasterOdBo findByContestIdAndQuestionIdAndMasterOdBo);
+
+    /**
+     * 通过比赛id和问题id和主人id进行查找对应的详细数据数量
+     * @return
+     */
+    public Long findCountByContestIdAndQuestionIdAndMasterId(FindByContestIdAndQuestionIdAndMasterOdBo findByContestIdAndQuestionIdAndMasterOdBo);
 }

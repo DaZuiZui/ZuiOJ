@@ -2,6 +2,7 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.DuplicateCodeBo;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -22,6 +23,23 @@ import java.util.Map;
 public class SubmmitionCodeInContestController {
     @Autowired
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
+    /**
+     * 获取涉嫌重复的代码
+     * @param duplicateCode
+     * @return
+     */
+    @ApiOperation("获取涉嫌查重的代码")
+    @PostMapping("/getDuplicateCode")
+    public String getDuplicateCode(@RequestBody DuplicateCodeBo duplicateCode){
+        //身份验证过期和权限鉴别
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return submmitionCodeInContestSerivce.getDuplicateCode(duplicateCode);
+    }
 
     /**
      * 通过id查询代码详细信息

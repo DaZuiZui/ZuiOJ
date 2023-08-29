@@ -53,6 +53,8 @@ import ApplyForBlogRoll from '@/components/view/main/cn/blogroll/ApplyForBlogRol
 import AdminInsertBlogRoll from '@/components/view/main/cn/admin/AdminInsertBlogRoll'
 import JoinOrg from '@/components/view/main/cn/org/JoinOrgTmp'
 import DuplicateCheckSystem from '@/components/view/main/cn/admin/DuplicateCheckSystem'
+import AdminViewDetailedDataOfDC from '@/components/view/main/cn/admin/AdminViewDetailedDataOfDC'
+import DuplicateCode from '@/components/view/main/cn/admin/DuplicateCode'
 
 Vue.use(Router)
 
@@ -64,6 +66,18 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //查看涉及重复的代码
+    {
+      path: "/dc/DuplicateCode",
+      name: "DuplicateCode",
+      component: DuplicateCode
+    },
+    //管理员查看详细的用户数据
+    {
+      path: '/dc/admin/AdminViewDetailedDataOfDCList',
+      name: "AdminViewDetailedDataOfDC",
+      component: AdminViewDetailedDataOfDC,
     },
     //查重系统
     {

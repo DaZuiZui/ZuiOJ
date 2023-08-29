@@ -48,7 +48,7 @@
                                     需要检查处理
                                 </b>
                             </td>
-                            <td style="color: chocolate;">  <el-link type="primary">查看详细查重分析</el-link></td>
+                            <td style="color: chocolate;">  <el-link type="primary" @click="viewDetailedData(dc.questionId,dc.masterId)">查看详细查重分析</el-link></td>
                           </tr>
                     </tbody>
                   </table>
@@ -108,9 +108,17 @@
         this.startCheckingBo.contestId = getQueryVariable("contestId");
         this.startCheckingBo.token = getCookie("token");
         //获取幂等性token
+        this.getNonPowerToken();
+
         this.getMerchantInformation(1);
     },
     methods: {
+ 
+        //查看详细
+        viewDetailedData(questionId,masterId){
+          this.$router.push("/dc/admin/AdminViewDetailedDataOfDCList?contestId="+getQueryVariable("contestId")+"&questionId="+questionId+"&masterId="+masterId);
+        },
+      
         //防止幂等性
         async getNonPowerToken(){
               var object = await synRequestGet("/system/getNonPowerTokenString"); 
@@ -128,7 +136,7 @@
 
         //跳转指定页面
         async getMerchantInformation(val){   
-            this.getCheckDcInfoByRankingBo.start = (val - 1);
+            this.getCheckDcInfoByRankingBo.start = (val - 1 );
 
             let obj = await synRequestPost("/DC/getCheckDcInfoByRanking",this.getCheckDcInfoByRankingBo);
             if(check(obj)){

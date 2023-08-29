@@ -3,6 +3,7 @@ package com.dazuizui.business.mapper;
 import com.dazuizui.business.domain.CodeInContest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -11,6 +12,9 @@ import java.util.List;
  */
 @Mapper
 public interface CodeDetailedInContestMapper {
+
+
+
     /**
      * 添加代码详细信息
      * @return

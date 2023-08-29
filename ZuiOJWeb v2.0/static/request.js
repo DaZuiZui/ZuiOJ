@@ -43,7 +43,7 @@ export async function  synRequestPost(controller,data) {
 
 
 /**
- * 提交代码 同步请求 post
+ * 提交代码 非同步请求 post
  * @param {*} controller 
  * @param {*} data 
  * @returns 
@@ -61,4 +61,23 @@ export function requestGet(controller,data) {
        return arr;
 }
 
+
+/**
+ * 提交代码 同步请求 post
+ * @param {*} controller 
+ * @param {*} data 
+ * @returns 
+ */
+export function requestPost(controller,data) {
+    var arr = '';
+    Axios.post(global.MainUrl+":"+global.MainPort+controller,data)
+      .then(res =>{
+            arr = res.data;
+        }).catch(res =>{
+        alert("服务器繁忙");
+        return null;
+    })
+
+       return arr;
+}
 
