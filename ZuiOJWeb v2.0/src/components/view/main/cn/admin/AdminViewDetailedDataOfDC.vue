@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="primary" @click="goDuplicateCode(obj.masterId,obj.guestId,obj.masterCodeId,obj.guestCodeId)">查看对比</el-link>
+                                <el-link type="primary" @click="goDuplicateCode(obj.masterId,obj.guestId,obj.masterCodeId,obj.guestCodeId,obj.masterName,obj.guestName,obj.coverageRate)">查看对比</el-link>
                               
                             </div>
                         </td>
@@ -120,8 +120,8 @@
     },
     methods: {
         //查看重复代码
-        goDuplicateCode(masterId,guestId,masterCodeId,guestCodeId) {
-          this.$router.push("/dc/DuplicateCode?masterId="+masterId+"&guestId="+guestId+"&masterCodeId="+masterCodeId+"&guestCodeId="+guestCodeId);
+        goDuplicateCode(masterId,guestId,masterCodeId,guestCodeId,masterName,guestName,coverageRate) {
+          this.$router.push("/dc/DuplicateCode?masterId="+masterId+"&guestId="+guestId+"&masterCodeId="+masterCodeId+"&guestCodeId="+guestCodeId+"&masterName="+masterName+"&guestName="+guestName+"&coverageRate="+coverageRate);
         },
         //跳转指定页面
         async getMerchantInformation(val){   

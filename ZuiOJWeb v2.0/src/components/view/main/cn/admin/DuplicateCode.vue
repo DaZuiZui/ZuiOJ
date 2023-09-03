@@ -8,6 +8,17 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+                <div>
+                    <div style="float: left; width:50%">
+                        <b>{{masterName}}</b>的代码
+                    </div>
+                    <div style="float: left; width:50%">
+                        <b>{{guestName}}</b> 的代码
+                        <div style="float:right">
+                            <b>查重率： </b> <b style="color:red;size:20px">{{coverageRate}} (满值1.00)</b>
+                        </div>
+                    </div>
+                </div>
                 <prism-editor
                     class="my-editor height-300"
                     style="height:600px;width:50%;float:left"
@@ -66,9 +77,17 @@
         masterLineNumbers: true,
         guestCode: "",
         guestLineNumbers: true,
+
+        masterName: "", //主人名字
+        guestName: "",  //客人名字
+
+        coverageRate: 0.00, //查重率
       }
     },
     mounted(){
+        this.masterName = decodeURIComponent(getQueryVariable("masterName"));
+        this.guestName = decodeURIComponent(getQueryVariable("guestName"));
+        this.coverageRate = getQueryVariable("coverageRate");
         this.duplicateCode.token = getCookie("token");
         this.duplicateCode.guestCodeId = getQueryVariable("guestCodeId");
         this.duplicateCode.masterCodeId = getQueryVariable("masterCodeId");
