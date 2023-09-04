@@ -1,11 +1,6 @@
 package com.dazuizui.business.aop.onlineJudge;
 
-import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
-import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
-import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 竞赛提交记录AOp接口
