@@ -19,6 +19,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <prism-editor
                     class="my-editor height-300"
                     style="height:600px;width:50%;float:left"
@@ -29,13 +30,13 @@
                 ></prism-editor>    
 
                 <prism-editor
-                class="my-editor height-300"
-                style="height:600px;width:50%"
-                v-model="guestCode"
-                :highlight="highlighter"
-                readonly="true"
-                :line-numbers="guestLineNumbers"
-            ></prism-editor>  
+                  class="my-editor height-300"
+                  style="height:600px;width:50%"
+                  v-model="guestCode"
+                  :highlight="highlighter"
+                  readonly="true"
+                  :line-numbers="guestLineNumbers"
+                ></prism-editor>  
             </div>
         </section>
  
