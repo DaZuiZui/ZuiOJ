@@ -47,7 +47,10 @@ public class ProctorServiceImpl implements ProctorService {
     private ProctorAttributeMapper proctorAttributeMapper;
 
     /**
+     * @author Bryan yang 3/7/2023
      * 添加一个面试官
+     *    首先查看该用户username是否存在，如果存在就判断该用户是否为当前比赛的监考人员，如果是就不进行操作告诉clent该用户已经是监考人员
+     *    如果不是监考人员则添加该信息到监考人员表中。
      * @param addProctorBo
      * @return
      */
@@ -79,6 +82,7 @@ public class ProctorServiceImpl implements ProctorService {
         if (aLong == 0){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
         }
+
         //增加监考数量
         aLong = proctorAttributeMapper.increaseTheNumberOfProctors(addProctorBo.getContestId(),1l);
         if (aLong == 0){
@@ -178,9 +182,9 @@ public class ProctorServiceImpl implements ProctorService {
         proctorAnalysisVo.setProctor(true);
         proctorAnalysisVo.setUser(userInfoByTokenForUserEntry);
 
-
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,proctorAnalysisVo, StatusCode.OK));
     }
+
 
     /**
      * 分页获取监考人员
@@ -190,8 +194,10 @@ public class ProctorServiceImpl implements ProctorService {
     public String adminGetProctorsByPagin(AdminGetProctorsByPaginBo adminGetProctorsByPaginBo){
         //获取当前比赛监考人员人数
         Long theNumberOfProctorForThisCOmpetition = proctorMapper.getTheNumberOfProctorForThisCOmpetition(adminGetProctorsByPaginBo.getContestId());
+
         //分页获取监考人员
         List<ProctorInfo> proctors = proctorMapper.getProctorsByPagin(adminGetProctorsByPaginBo);
+
         //封装返回数据
         AdminGetProctorsByPaginVo adminGetProctorsByPaginVo = new AdminGetProctorsByPaginVo();
         adminGetProctorsByPaginVo.setProctors(proctors);
