@@ -12,7 +12,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.component("mavon-editor", mavonEditor);
-
+Vue.component("mavon-editor", mavonEditor);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -29,7 +29,6 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
     @Override
     public String addCompetitionQuestion(CompetitionQuestionBank competitionQuestionBank){
         //校验题目是否存在
-
         Long aLong = competitionQuestionBankMapper.addQuestionInContest(competitionQuestionBank);
         if (aLong == 0){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));

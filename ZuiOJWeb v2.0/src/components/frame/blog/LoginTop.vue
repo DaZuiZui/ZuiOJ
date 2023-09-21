@@ -16,7 +16,7 @@
             </div>
         </div>
         <a   class="btn btn-block btn-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;color:aliceblue" target="_blank">
-            <strong>ZuiBlog </strong>   From www.dazuizui.com 
+            <strong>哈尔滨广厦学院</strong>   GusnagshaOJ V0.1 版本 通过 信息学院专业社团 TLM开发组 打造
         </a>
 
         <div>

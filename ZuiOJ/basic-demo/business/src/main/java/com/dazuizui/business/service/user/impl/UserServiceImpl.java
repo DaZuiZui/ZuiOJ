@@ -268,7 +268,7 @@ public class UserServiceImpl implements UserService {
             int role = 1;
 
             //如果是比赛账号则记录该比赛账号的信息到TeamInfo表中
-            if (user.getStatus() == -1){
+            if (user.getStatus() != null && user.getStatus() == -1){
                 role = -1;
             }
 
