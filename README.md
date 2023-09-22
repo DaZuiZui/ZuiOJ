@@ -1,6 +1,6 @@
 # OJ system
 ## Developer
- 
+ 我现在暂时在开发查重系统这个先告一段落
 ## Environment preparation
 
  To run this program, you must have **Ubuntu** system,
