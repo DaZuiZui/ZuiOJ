@@ -255,7 +255,10 @@
                     window.clearInterval(this.clock);
                     //请求比赛题库
                     var object = await synRequestGet("/CompetitionQuestionBank/getQuestionListInContest?token="+getCookie("token")+"&contestId="+this.contestId);
-        
+                    if(object.code == '0x945'){
+                        // 刷新当前页面
+                        window.location.reload();
+                    }
                     this.questionList = object.data;
                     return;
                 }
