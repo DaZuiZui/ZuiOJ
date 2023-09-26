@@ -49,7 +49,21 @@
                                 <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
                                 <el-link type="primary">取消比赛</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
-                                <el-link type="danger"  @click="removeTheContestById(obj.id)">移除比赛</el-link>
+
+                                <el-dialog
+                                  title="删除确认窗口"
+                                  :visible.sync="dialogVisible"
+                                  width="30%"
+                                  :before-close="handleClose">
+                                  <span>您要删除的是<span style="color: red;">{{obj.name}}</span>赛事，这一切的操作都是不可逆的</span>
+                                  <span slot="footer" class="dialog-footer">
+                                    <el-button @click="dialogVisible = false">取 消</el-button>
+                                    <el-button type="primary" @click="dialogVisible = false;removeTheContestById(obj.id)">确 定</el-button>
+                                  </span>
+                                </el-dialog>
+
+
+                                <el-link type="danger"  @click="dialogVisible = true">移除比赛</el-link>
                                 <el-link type="danger"  @click="goCompetitioninfo(obj.id)">参赛人员</el-link>
                                 <el-link type="danger"  @click="AdminViewContestSubmissionLog(obj.id)">查看日记</el-link>
                             </div>
@@ -96,12 +110,19 @@
         list: [],
         count: 0,
         page: 1,
+
+        dialogVisible: false, //删除确认按钮
       }
     },
     mounted(){
         this.getMerchantInformation(1);
     },
     methods: {
+        
+
+        /**
+         *  查重面板
+         */
         DuplicateCheckSystem(contestId){
             this.$router.push("/dc/contest/index?contestId="+contestId)
         },
