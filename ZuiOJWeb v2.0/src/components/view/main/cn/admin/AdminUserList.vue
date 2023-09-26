@@ -111,7 +111,22 @@
                             <div>
                                 <el-link type="primary">封禁</el-link>
                                 <el-link type="success" @click="toCheckUserInfo(obj.id)">修改</el-link>
-                                <el-link type="danger" @click="tombstoneUserById(obj.id)">逻辑删除</el-link>
+                                <!-- Button trigger modal -->
+                                <el-dialog
+                                  title="删除确认窗口"
+                                  :visible.sync="tomDialogVisible"
+                                  width="30%"
+                                  >
+                                  <span>您要删除的是<span style="color: red;">{{tomName}}</span>用户，这一切的操作都是不可逆的</span>
+                                  <span slot="footer" class="dialog-footer">
+                                    <el-button @click="tomDialogVisible = false">取 消</el-button>
+                                    <el-button type="primary" @click="tomDialogVisible = false;tombstoneUserById(tomId)">确 定</el-button>
+                                  </span>
+                                </el-dialog>
+
+
+                                <el-link type="danger"  @click="tomDialogVisibleRemove(obj.name,obj.id)">逻辑删除用户</el-link>
+                        
                                 <el-link type="danger" @click="deleteUserById(obj.id)">物理删除</el-link>
                             </div>
                         </td>
@@ -140,6 +155,7 @@
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
   import {synRequestPost,synRequestGet} from "../../../../../../static/request"
+import { formToJSON } from 'axios';
   
   export default {
     name: 'HelloWorld',
@@ -177,6 +193,9 @@
         //题目总数
         count: 0,
 
+        //逻辑删除弹窗控制
+        tomDialogVisible: false,
+
         //管理员获取用户通过ROle
         adminFindUserByRoleBo: {
             token: "",
@@ -190,6 +209,9 @@
         rolestatus: 0,
         //逻辑删除状态
         delFlagStatus: 0,
+
+        tomName: "",
+        tomid: -1,
       }
     },
     mounted(){
@@ -198,6 +220,11 @@
         this.getUserlist(1);
     },
     methods: {
+        tomDialogVisibleRemove(name,id){
+            this.tomDialogVisible = true;
+            this.tomName = name;
+            this.tomId   = id;
+        },
         /**
          *  下一个逻辑删除装备
          */ 
@@ -349,7 +376,7 @@
             }
 
             alert(obj.message);
-            this.getMerchantInformation(this.curpage);
+            window.location.reload();
         },
 
         //查看是否出现无法执行的情况
