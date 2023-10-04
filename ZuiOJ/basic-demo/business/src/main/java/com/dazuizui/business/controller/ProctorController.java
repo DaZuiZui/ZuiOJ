@@ -3,6 +3,7 @@ package com.dazuizui.business.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.*;
+import com.dazuizui.business.service.invigilator.InvigilatorService;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.service.onlineJudge.QuestionBankService;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
@@ -15,6 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * @author yangyida
+ *
+ */
 @CrossOrigin
 @Api(value = "面试官版块控制器",tags = {"面试官版块控制器"})
 @RequestMapping("/proctor")
@@ -28,6 +33,8 @@ public class ProctorController {
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
     @Autowired
     private QuestionBankService questionBankService;
+    @Autowired
+    private InvigilatorService invigilatorService;
 
     /**
      * 添加一个面试官
@@ -191,5 +198,22 @@ public class ProctorController {
     @PostMapping("/adminDeleteProctorByIdOfProctor")
     public String adminDeleteProctorByIdOfProctor(@RequestBody AdminDeleteProctorByIdBo adminDeleteProctorByIdBo){
         return proctorService.adminDeleteProctorByIdOfProctor(adminDeleteProctorByIdBo);
+    }
+
+
+    /**
+     * 根据id删除监考人员
+     */
+    @ApiOperation("通过id删除监考人员")
+    @PostMapping("/deleteById")
+    public String deleteById(@RequestParam("token")String token,@RequestParam("id")Long id){
+        //身份验证过期和权限鉴别
+        Map<String, String> map = ThreadLocalUtil.mapThreadLocal.get();
+        ThreadLocalUtil.mapThreadLocal.remove();
+        if ( map.get("error") != null) {
+            return JSONArray.toJSONString(new ResponseVo<>(map.get("error"),null,map.get("code")));
+        }
+
+        return invigilatorService.deleteById(id);
     }
 }

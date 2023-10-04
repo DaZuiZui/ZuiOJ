@@ -80,7 +80,20 @@
                         </td>
                         <td>
                             <div>
-                                <el-link type="danger" @click="deleteProctor(obj.userId,obj.proctorId)">物理删除(该操作不可逆转)</el-link>
+                                <el-dialog
+                                  title="删除确认窗口"
+                                  :visible.sync="dialogVisible"
+                                  width="30%"
+                                  :before-close="handleClose">
+                                  <span>您要删除的是<span style="color: red;">{{obj.name}}</span>赛事，这一切的操作都是不可逆的</span>
+                                  <span slot="footer" class="dialog-footer">
+                                    <el-button @click="dialogVisible = false">取 消</el-button>
+                                    <el-button type="primary" @click="dialogVisible = false;deleteProctor(obj.userId,obj.proctorId)">确 定</el-button>
+                                  </span>
+                              </el-dialog>
+
+                              <el-link type="danger"  @click="dialogVisible = true">移除比赛</el-link>
+
                             </div>
                         </td>
                       </tr>
@@ -145,8 +158,7 @@
         proctorList: [],
         numberOfProctors: 0,
 
- 
- 
+        dialogVisible: false,
       }
     },
     mounted(){
@@ -159,7 +171,7 @@
         //获取幂等性token
         this.getNonPowerToken();
  
-       
+        this.getMerchantInformation(1);
     },
     methods: {
  

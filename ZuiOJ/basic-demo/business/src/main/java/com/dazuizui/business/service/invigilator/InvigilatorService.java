@@ -22,4 +22,11 @@ public interface InvigilatorService {
      * @return
      */
     public String findByUserIdAndStatusAndDelFlag(FindByUserIdAndStatusAndDelFlagBo findByUserIdAndStatusAndDelFlagBo );
+
+    /**
+     * 通过id删除面试官
+     * @param id
+     * @return
+     */
+    public String deleteById(@Param("id")Long id);
 }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 监考业务实现类
+ * 该类和Proctor为同一业务类，因为设计出现的问题，以后慢慢优化
  */
 @Service
 public class InvigilatorServiceImpl implements InvigilatorService {
@@ -59,5 +60,24 @@ public class InvigilatorServiceImpl implements InvigilatorService {
         }
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.insufficientPermissions,null, StatusCode.insufficientPermissions));
+    }
+
+    /**
+     * 通过id删除面试官
+     * @param id
+     * @return
+     */
+    @Override
+    public String deleteById(Long id) {
+        //删除redis缓存
+        redisUtil.deleteKey(RedisKey.ZuiBlogInvigilatorUserId + id);
+        //删除mysql
+        Long numbersOfOpertions = invigilatorMapper.deleteById(id);
+
+        if (numbersOfOpertions.longValue() == 0l){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
     }
 }

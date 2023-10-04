@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Component
 public interface ProctorAop {
     /**
+     * 删除监考人员通过id 主要做了鉴权查看是否为管理员
+     * @param joinpoint
+     * @return
+     */
+    public String deleteById(JoinPoint joinpoint);
+
+    /**
      * 添加一个面试官Aop 前置切面，主要负责了鉴别是否为管理员
      * @param joinpoint
      * @return
