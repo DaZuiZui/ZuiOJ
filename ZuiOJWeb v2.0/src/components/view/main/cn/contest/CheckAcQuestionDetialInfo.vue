@@ -24,8 +24,8 @@
                           <tr v-for="obj in acData">
                             <th scope="row"></th>
                             <td>{{obj.createByName}}</td>
-                            <td>{{obj.questionName}}</td>
-                            <td>{{obj.createTime}}</td>
+                            <td>{{obj.questionName}} </td>
+                            <td> {{obj.createTime}} </td>
                             <td> {{obj.numberOfAttempts}} </td>
                             <td>{{obj.firstAc}}</td>
                             <td></td>

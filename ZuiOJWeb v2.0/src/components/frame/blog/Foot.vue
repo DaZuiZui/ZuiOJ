@@ -15,7 +15,7 @@
                         <div class="col-lg-4 mb-5 mb-lg-0">
                             <!-- Theme's logo -->
                             <a href="index.html">
-                                www.dazuizui.com      
+                                Hi Good luck for you     
                             </a>
                             <!-- Webpixels' mission -->
                             <p class="mt-4 text-sm opacity-8 pr-lg-4">

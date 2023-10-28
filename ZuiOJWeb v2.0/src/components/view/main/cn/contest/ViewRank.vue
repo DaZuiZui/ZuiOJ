@@ -84,7 +84,7 @@
                                         </td>
                                         <td rowspan="1" colspan="1" class="el-table_4_column_13   el-table__cell">
                                             <div class="cell">
-                                                <el-link type="primary">查看详细信息</el-link>
+                                                <el-link type="primary" @click="checkacqustionDetialinfo(rank.userId)">查看详细信息</el-link>
                                             </div>
                                         </td>
                                     </tr>
@@ -146,6 +146,10 @@
        },
   
        methods: {
+            checkacqustionDetialinfo(userId){
+                this.$router.push("/cn/contest/CheckAcQuestionDetialInfo?contestId="+getQueryVariable("contestId")+"&userId="+userId);
+            },
+
             // 天 时 分 秒 格式化函数
             countDown(seconds) {
                 let d = parseInt(seconds / (24 * 60 * 60))

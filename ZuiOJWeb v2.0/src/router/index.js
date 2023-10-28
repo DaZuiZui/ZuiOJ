@@ -55,6 +55,7 @@ import JoinOrg from '@/components/view/main/cn/org/JoinOrgTmp'
 import DuplicateCheckSystem from '@/components/view/main/cn/admin/DuplicateCheckSystem'
 import AdminViewDetailedDataOfDC from '@/components/view/main/cn/admin/AdminViewDetailedDataOfDC'
 import DuplicateCode from '@/components/view/main/cn/admin/DuplicateCode'
+import CheckAcQuestionDetialInfo from '@/components/view/main/cn/contest/CheckAcQuestionDetialInfo'
 
 Vue.use(Router)
 
@@ -66,6 +67,12 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: AboutDazui
+    },
+    //查看提交的项目代码
+    {
+      path: '/cn/contest/CheckAcQuestionDetialInfo',
+      name: 'CheckAcQuestionDetialInfo',
+      component: CheckAcQuestionDetialInfo
     },
     //查看涉及重复的代码
     {

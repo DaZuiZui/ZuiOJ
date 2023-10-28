@@ -31,7 +31,7 @@
                         <el-button type="info" v-if="program.contestId == -1" @click="goDiscuss()">讨论区</el-button>
                         <el-button type="warning" @click="goQuestionAnser(question.id)" v-if="program.contestId == -1">题解</el-button>
                     </el-row>
-
+                      
                       <div v-if="res != null">
                           <div v-if="res.status == 'Accepted'">
                               运行结果： <b style="color:green;font-size:16px">{{res.status}}</b> 
@@ -39,7 +39,8 @@
                               所用内存 <b style="font-size:16px">{{res.memory}}</b>B(byte)
                           </div>
                           <div v-else>
-                              请在此处编码： <b style="color:red;font-size:16px">{{res.status}}</b> 
+                              请在此处编码： <b style="color:red;font-size:16px" v-if="!switchbutton">{{res.status}}</b> 
+                                           <b style="color:red;font-size:16px" v-else>Judgment pending.......</b> 
                           </div>
                       </div>
                  
