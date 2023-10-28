@@ -4,6 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dazuizui.business.mapper.AcContestQuestionMapper">
     <!--
+        查看详细信息通过user_id contest_id
+    -->
+    <select id="checkTheDetailInfoByUserIdAndContestId" resultType="com.dazuizui.business.domain.vo.CheckTheSubmitQuesitonDetailInfoVo">
+        SELECT
+             (select chinese_name from question_bank where id = t1.question_id limit 1) as 'questionName',
+             t1.user_id as 'userId',
+             t1.number_of_attempts as 'numberOfAttempts',
+             t1.first_ac as 'firstAc',
+             t1.create_by_name as 'createByName',
+             t1.create_time as 'createTime',
+             t1.status as 'status'
+        from
+             ac_contest_question t1
+        where
+             contest_id = #{contestId} and
+             user_id = #{userId}
+    </select>
+
+    <!--
         通过contestid and questionId 查询
     -->
     <select id="queryLogByContestIdAndQuestionId" resultType="com.dazuizui.basicapi.entry.AcContestQuestion">

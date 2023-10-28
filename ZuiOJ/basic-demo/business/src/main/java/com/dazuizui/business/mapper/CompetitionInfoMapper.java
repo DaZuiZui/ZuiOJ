@@ -52,6 +52,7 @@ public interface CompetitionInfoMapper {
      */
     public Long adminAddCompetitionInfo(@Param("contestId")Long contestId, @Param("userId")Long id);
 
+
     /**
      * 查询参赛选手的数量
      * todo 因为赶项目，等忙完主线开发在回来优化

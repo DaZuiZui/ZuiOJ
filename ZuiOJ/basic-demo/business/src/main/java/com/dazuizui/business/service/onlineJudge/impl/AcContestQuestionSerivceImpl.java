@@ -5,9 +5,10 @@ import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
-import com.dazuizui.business.domain.bo.QueryCountByContestIdAndQuestionIdBo;
+import com.dazuizui.business.domain.vo.CheckTheSubmitQuesitonDetailInfoVo;
 import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
 import com.dazuizui.business.domain.vo.QueryLogByContestIdAndQuestionIdVo;
 import com.dazuizui.business.domain.vo.QueryLogByElementVo;
@@ -18,7 +19,6 @@ import com.dazuizui.business.util.ThreadLocalUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.List;
@@ -67,6 +67,18 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
         queryLogByElementVo.setCount(count);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,queryLogByElementVo, StatusCode.OK));
+    }
+
+    /**
+     * @author Bryan Yang y51288033@outlook.com
+     * 查看详细信息通过user_id contest_id
+     * @param checkTheDetailInfoBo
+     * @return
+     */
+    @Override
+    public String checkTheDetailInfoByUserIdAndContestId(CheckTheSubmitQuesitonDetailInfoBo checkTheDetailInfoBo) {
+        List<CheckTheSubmitQuesitonDetailInfoVo> checkTheSubmitQuesitonDetailInfoBos = acContestQuestionMapper.checkTheDetailInfoByUserIdAndContestId(checkTheDetailInfoBo);
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,checkTheSubmitQuesitonDetailInfoBos, StatusCode.OK));
     }
 
     /**

@@ -1,20 +1,26 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.AcContestQuestion;
+import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
-import com.dazuizui.business.domain.bo.QueryCountByContestIdAndQuestionIdBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
 
 /**
  * 比赛题目提交业务层操作接口
  */
 @Service
 public interface AcContestQuestionSerivce {
+    /**
+     * @author Bryan Yang y51288033@outlook.com
+     * 查看详细信息通过user_id contest_id
+     * @param checkTheDetailInfoBo
+     * @return
+     */
+    public String checkTheDetailInfoByUserIdAndContestId(CheckTheSubmitQuesitonDetailInfoBo checkTheDetailInfoBo);
+
     /**
      * @author Bryan Yang(Dazui) 07/08/2022 22:00:00 PM
      *

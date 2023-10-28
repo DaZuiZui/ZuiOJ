@@ -127,6 +127,7 @@ public class ContestSerivceImpl implements ContestSerivce {
                 transactionUtils.rollback(transactionStatus);
                 return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
             }
+            System.err.println(RedisKey.ZuiOJContestId+contest.getId());
             //修改redis
             redisUtil.setStringInRedis(RedisKey.ZuiOJContestId+contest.getId(),RedisKey.OutTime,contest);
 //            System.err.println(redisUtil.getStringInRedis(RedisKey.ZuiOJContestId+contest.getId()));
@@ -214,6 +215,7 @@ public class ContestSerivceImpl implements ContestSerivce {
 
         transactionUtils.commit(begin);
 
+        System.err.println(RedisKey.ZuiOJContestId+conTest.getId());
         redisUtil.setStringInRedis(RedisKey.ZuiOJContestId+conTest.getId(),RedisKey.OutTime,conTest);
 
         return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.SuccessfullyCreatedTheCompetition,null,StatusCode.SuccessfullyCreatedTheCompetition));

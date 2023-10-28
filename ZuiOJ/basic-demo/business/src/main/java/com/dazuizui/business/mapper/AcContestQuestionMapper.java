@@ -1,8 +1,10 @@
 package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.AcContestQuestion;
+import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
+import com.dazuizui.business.domain.vo.CheckTheSubmitQuesitonDetailInfoVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -14,6 +16,15 @@ import java.util.List;
  */
 @Mapper
 public interface AcContestQuestionMapper {
+
+    /**
+     * @author Bryan Yang y51288033@outlook.com
+     * 查看详细信息通过user_id contest_id
+     * @param checkTheDetailInfoBo
+     * @return
+     */
+    public List<CheckTheSubmitQuesitonDetailInfoVo> checkTheDetailInfoByUserIdAndContestId(CheckTheSubmitQuesitonDetailInfoBo checkTheDetailInfoBo);
+
     /**
      * 通过比赛id和问题id查询指定日志
      * @param elementOfQueryLogBo

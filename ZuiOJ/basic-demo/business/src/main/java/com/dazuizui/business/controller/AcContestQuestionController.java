@@ -1,7 +1,10 @@
 package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.dazuizui.basicapi.entry.StatusCode;
+import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
@@ -12,6 +15,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
@@ -21,6 +25,18 @@ import java.util.Map;
 public class AcContestQuestionController {
     @Autowired
     private AcContestQuestionSerivce acContestQuestionSerivce;
+
+    /**
+     * @author Bryan Yang y51288033@outlook.com
+     * 查看详细信息通过user_id contest_id
+     * @param checkTheDetailInfoBo
+     * @return
+     */
+    @PostMapping("/checkTheDetailInfoByUserIdAndContestId")
+    @ApiOperation("查看详细信息通过user_id and contest_id")
+    public String checkTheDetailInfoByUserIdAndContestId(@RequestBody CheckTheSubmitQuesitonDetailInfoBo checkTheDetailInfoBo) {
+        return acContestQuestionSerivce.checkTheDetailInfoByUserIdAndContestId(checkTheDetailInfoBo);
+    }
 
     /**
      * @author Bryan Yang(Dazui) 06/08/2022 22:00:00 PM
