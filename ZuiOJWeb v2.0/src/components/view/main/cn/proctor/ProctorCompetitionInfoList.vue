@@ -8,17 +8,6 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
-                  
-                  <el-button @click="drawer = true" type="primary" style="margin-left: 16px;" >
-                    添加新的参赛人员
-                  </el-button>
-                  
-                  <el-button @click="deleteAllCompetitionInfoByContestIdFun()" type="primary" style="margin-left: 16px;"  :dispatch="deleteAllCompetitionInfoByContestIdFunButton">
-                    清除所有比赛选手
-                  </el-button>
-                  
-
-
                   <el-drawer
                     title="我是标题"
                     :visible.sync="drawer"
@@ -78,9 +67,6 @@
                         <td>
                             <div>
                                 <el-link type="primary">查看提交代码</el-link>
-                                <el-link type="primary">查看该选手日志</el-link>
-                                <el-link type="success">取消参赛资格</el-link>
-                                <el-link type="danger"  :disabled="deleteTheCompetitionByIdButton" @click="deleteTheCompetitionById(obj.id)">物理删除</el-link>
                             </div>
                         </td>
                       </tr>

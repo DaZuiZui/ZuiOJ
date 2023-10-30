@@ -51,7 +51,7 @@
                           <option value="2">C++</option>
                       </select>
                   
-                      <input type="checkbox" v-model="lineNumbers"> Linenumbers  <a href="#">帮助手册</a>    <a href="#">各大语言api</a> <a href="#">作弊惩罚</a> 
+                      <input type="checkbox" v-model="lineNumbers"> Linenumbers  <a href="#">帮助手册</a>    <a href="#">各大语言api</a> <a href="/h/cn/blog/view?id=106">作弊惩罚</a> 
                       <prism-editor
                         class="my-editor height-300"
                         style="height:600px"

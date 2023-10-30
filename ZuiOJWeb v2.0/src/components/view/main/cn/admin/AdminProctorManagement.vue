@@ -8,9 +8,12 @@
         <section  style="background-color:#f9f9f9">
             <div class="container">
                 <br>
+      
                 <el-button type="primary" disabled>生成监考账号</el-button>  <el-button type="primary" @click="AddProctorDrawer = true">添加监考账号</el-button> 
                   <el-button type="success" @click="goToProctoringPage()">前往监考页面</el-button>
-                <el-drawer
+                  <br>
+                  <b>Share link:</b><a>{{ proctorIndexUrl }}:8080/h/cn/invigilator/ProctorViewContestSubmissionLog?id={{ getQueryVariableFun("contestId") }}</a>
+                  <el-drawer
                     title="添加监考人员"
                     :visible.sync="AddProctorDrawer"
                     :with-header="false">
@@ -119,6 +122,7 @@
   <script>
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue'
+  import globle from '../../../../../../static/entry';
   import { synRequestPost,synRequestGet } from '../../../../../../static/request';
   export default {
     name: 'HelloWorld',
@@ -127,6 +131,7 @@
       },
     data () {
       return {
+        proctorIndexUrl: "",
         msg: 'Welcome to Your Vue.js App',
         //添加监考人员抽屉
         AddProctorDrawer: false,
@@ -159,9 +164,12 @@
         numberOfProctors: 0,
 
         dialogVisible: false,
+        proctorAdminUrl: "",
       }
     },
     mounted(){
+        this.proctorAdminUrl = this.getUrl();
+        this.proctorIndexUrl = globle.MainUrl;
         //获取参数
         this.addProctorBo.contestId = getQueryVariable("contestId");
         this.addProctorBo.token = getCookie("token");
@@ -174,6 +182,13 @@
         this.getMerchantInformation(1);
     },
     methods: {
+       getUrl(){
+         return this.proctorIndexUrl+":8080/h/cn/invigilator/ProctorViewContestSubmissionLog?id="+this.getQueryVariableFun("contestId") 
+       },
+       //获取参数
+       getQueryVariableFun(key){
+        return getQueryVariable(key);
+       },
  
 
         //前往监考页面

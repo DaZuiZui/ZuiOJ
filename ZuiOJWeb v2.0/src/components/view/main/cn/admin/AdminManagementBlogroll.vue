@@ -70,6 +70,8 @@
   import Foot from '../../../../frame/blog/Foot.vue';
   import Top  from '../../../../frame/blog/AdminTop.vue';
   import { synRequestPost,synRequestGet } from '../../../../../../static/request';
+  import globle from '../../../../../../static/entry';
+
   export default {
     name: 'HelloWorld',
     components: {
@@ -77,6 +79,7 @@
       },
     data () {
       return {
+        proctorIndexUrl: "",
         msg: 'Welcome to Your Vue.js App',
         blogrollList: [],
         deleteBlogRollBo: {
@@ -86,6 +89,7 @@
       }
     },
     mounted(){
+        this.proctorIndexUrl = globle.MainUrl;
         //获取幂等性token
         this.getBlogroll(0);
     },
