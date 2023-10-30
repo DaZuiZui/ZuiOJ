@@ -95,7 +95,7 @@
                                   </span>
                               </el-dialog>
 
-                              <el-link type="danger"  @click="dialogVisible = true">移除比赛</el-link>
+                              <el-link type="danger"  @click="dialogVisible = true">移除监考人员</el-link>
 
                             </div>
                         </td>
