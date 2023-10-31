@@ -35,7 +35,7 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
             <div class="container">
                 <!-- Title -->
@@ -51,6 +51,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- Card -->
                 <div class="row mt-5">
                     <div class="col-md-4">
@@ -379,6 +380,8 @@
       },
 
     created() {
+ 
+
        this.calculateDaysDifference();
     },
     methods: {
