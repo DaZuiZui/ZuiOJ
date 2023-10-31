@@ -32,6 +32,7 @@
                 </div>
             </div>
         </section>
+
         <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
             <div class="container">
                 <!-- Title -->
@@ -41,9 +42,9 @@
                         <span class="badge badge-soft-success badge-pill badge-lg">
                              TLM Team团队
                         </span>
-                        <h2 class=" mt-4">我们的第一批团队成员</h2>
+                        <h2 class=" mt-4">我们团队成员</h2>
                         <div class="mt-2">
-                            <p class="lead lh-180">Our First Team Members.</p>
+                            <p class="lead lh-180">Our Team Members.按照加入TLM Team顺序排序</p>
                         </div>
                     </div>
                 </div>
@@ -53,38 +54,175 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/34531698731729_.pic.jpg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3">李春莹 Chunying Li
+                                    <svg t="1698731526881" style="margin-buttom:30px" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7136" width="35" height="30"><path d="M430.1 927.7h-278v-571l89 182.7z" fill="#F7BC3A" p-id="7137"></path><path d="M524 245.3v683H227.8v-5.5h-0.1V555.6l0.1-0.1 92.7-97.1z" fill="#F7BC3A" p-id="7138"></path><path d="M618.1 928.3h278.1v-571h-0.1L807.2 540z" fill="#E89E01" p-id="7139"></path><path d="M522.4 245.2v683h296.2V555.5l-92.7-97.2z" fill="#E89E01" p-id="7140"></path><path d="M522.8 452l-62.7 69.8 62.3 58.1 65.7-61.5z" fill="#900058" p-id="7141"></path><path d="M916 782.1H140.7c-6.6 0-12-5.4-12-12v-4.6c0-6.6 5.4-12 12-12H916c6.6 0 12 5.4 12 12v4.6c0 6.6-5.4 12-12 12z" fill="#E8E8E8" p-id="7142"></path><path d="M192 767.8m-14.3 0a14.3 14.3 0 1 0 28.6 0 14.3 14.3 0 1 0-28.6 0Z" fill="#BFBFBF" p-id="7143"></path><path d="M320.1 768m-14.3 0a14.3 14.3 0 1 0 28.6 0 14.3 14.3 0 1 0-28.6 0Z" fill="#BFBFBF" p-id="7144"></path><path d="M448.1 768m-14.3 0a14.3 14.3 0 1 0 28.6 0 14.3 14.3 0 1 0-28.6 0Z" fill="#BFBFBF" p-id="7145"></path><path d="M576.1 768m-14.3 0a14.3 14.3 0 1 0 28.6 0 14.3 14.3 0 1 0-28.6 0Z" fill="#BFBFBF" p-id="7146"></path><path d="M707.5 768m-14.3 0a14.3 14.3 0 1 0 28.6 0 14.3 14.3 0 1 0-28.6 0Z" fill="#BFBFBF" p-id="7147"></path><path d="M834.1 767.8m-14.3 0a14.3 14.3 0 1 0 28.6 0 14.3 14.3 0 1 0-28.6 0Z" fill="#BFBFBF" p-id="7148"></path></svg>
+                                </h5>
+                                <p class="text-muted mb-0"> 
+                                    <b>23年专业社团社长、23级TLM Team(舔了么开发组)组长</b>，技术方向前端。代表项目查重系统(DC)、社团管理系统等。  
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                             
+                                    <img src="../../../../../../static/image/aboutTLMTeam/WeChataec9b8d1623c539de2a0ee263003404a.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                                <br>
+                                <h5 class="h4 lh-130 mb-3">朱新宇 Yuxin Zhu</h5>
+                                <p class="text-muted mb-0">
+                                    <b>23年专业社团副社长</b>，技术方向后端。代表项目查重系统(DC)、社团管理系统等。  
+                                    &nbsp; &nbsp; &nbsp;
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                                
+                                    <img src="../../../../../../static/image/aboutTLMTeam/WeChatee469273afc9742aa8b5a6588ecb22d4.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                                <br>
+                                <h5 class="h4 lh-130 mb-3">杨易达(Bryan yang)</h5>
+                                <p class="text-muted mb-0">
+                                    TLM Team建立者(现在跑路了),ACM退役比赛选手,主要方向全栈开发。代表作品OJ、DC等。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/WeChat1ee6b8d24200162ab52df371f1e6c369.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3"> 张泽宇 Yuze Zhang
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    专业社团主要管理人员之一，技术方向后端，代表项目查重系统(DC)。  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/116168671.jpeg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3">李文龙 Longwen Li
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    专业社团主要负责人、ACM比赛选手，技术方向后端，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/3551698734653_.pic.jpg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3"> 韩来凝 Ninglai Han
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    专业社团主要负责人、ACM比赛选手。技术方向后端，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/3551698734653_.pic.jpg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3"> 韩来凝 Ninglai Han
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    专业社团主要负责人、ACM比赛选手。技术方向后端，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/WeChatf1a8120782e9c29561b8dd4761931ba7.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3"> 陈志祥 Xiangchen Zhi
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    TLM Team 吉祥物。技术方向前端，前端小头头，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/WeChatb06fffb53ce6be30548e4b2aafcf3f6b.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3"> 田雷宇 Yulei Tian
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    学校前端核心力量抗腰，代表项目查重系统(DC)、社团管理系统等。  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
+                      
+                                <img src="../../../../../../static/image/aboutTLMTeam/WeChatf2e19a01d57091c2ea41d183842d223f.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
+                          
+                                <br>
+                                <h5 class="h4 lh-130 mb-3"> 樊轩 Xuan Fan
+                                 </h5>
+                                <p class="text-muted mb-0"> 
+                                    TLm Team所有项目的运维、策划。专业社团的主要管理人员。  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body pb-5">
                                 <div class="pt-4 pb-5">
-                                    <img src="../../../../../../static/assets/img/svg/illustrations/illustration-5.svg" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
+                                    <img src="../../../../../../static/image/aboutTLMTeam/WeChat078f74198d601dbf33c959b94a2db08c.png" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
                                 </div>
                                 <h5 class="h4 lh-130 mb-3">20级刘港(Gang Liu)</h5>
                                 <p class="text-muted mb-0"> 
-                                    常用语言Java，擅长开发后端前端，简称全干工程师。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body pb-5">
-                                <div class="pt-4 pb-5">
-                                    <img src="../../../../../../static/assets/img/svg/illustrations/illustration-6.svg" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
-                                </div>
-                                <h5 class="h4 lh-130 mb-3">20级刘朝甲(JiaZhao Liu)</h5>
-                                <p class="text-muted mb-0">
-                                     TLM Team建立者，常用语言Java，擅长开发后端前端，简称全干工程师。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body pb-5">
-                                <div class="pt-4 pb-5">
-                                    <img src="../../../../../../static/assets/img/svg/illustrations/illustration-7.svg" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
-                                </div>
-                                <h5 class="h4 lh-130 mb-3">21级杨易达(Bryan yang)</h5>
-                                <p class="text-muted mb-0">
-                                    常用语言Java、Golang，擅长开发后端前端，简称全干工程师。
+                                    <b>23年专业社团社长</b>常用语言Java，擅长开发后端前端，简称全干工程师。
                                 </p>
                             </div>
                         </div>
@@ -116,6 +254,10 @@
         
             </div>
         </section>
+
+ 
+      
+ 
 
         <section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
             <!-- SVG separator -->

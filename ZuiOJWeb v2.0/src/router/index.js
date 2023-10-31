@@ -56,6 +56,7 @@ import DuplicateCheckSystem from '@/components/view/main/cn/admin/DuplicateCheck
 import AdminViewDetailedDataOfDC from '@/components/view/main/cn/admin/AdminViewDetailedDataOfDC'
 import DuplicateCode from '@/components/view/main/cn/admin/DuplicateCode'
 import CheckAcQuestionDetialInfo from '@/components/view/main/cn/contest/CheckAcQuestionDetialInfo'
+import AboutLin  from '@/components/view/main/cn/about/ABoutLin'
 
 Vue.use(Router)
 
@@ -68,6 +69,13 @@ export default new Router({
       name: 'HelloWorld',
       component: AboutDazui
     },
+    //About Lin
+    {
+      path: '/about/lin',
+      name: 'AboutLin',
+      component: AboutLin
+    },
+
     //查看提交的项目代码
     {
       path: '/cn/contest/CheckAcQuestionDetialInfo',
