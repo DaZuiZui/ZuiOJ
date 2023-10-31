@@ -23,7 +23,7 @@
                         <th scope="row"></th>
                         <td>
                             <b>
-                                {{obj.shortName}} 
+                                {{(index)*currentPage+1}} 
                               </b>
                         </td>
                         <td>
@@ -83,6 +83,8 @@
         questionList: [],
         //题目总数
         count: 0,
+        //当前页数
+        currentPage: 0
       }
     },
     mounted(){
@@ -91,7 +93,7 @@
     methods: {
         //跳转指定页面
         async getMerchantInformation(val){   
-             
+            this.currentPage = 1;
             let obj = await synRequestGet("/question/pagingToGetQuestion?pages="+((val-1)*50)+"&number=50");
             this.count = obj.data.countOfQuestion;
             this.questionList = obj.data.questionBanks;

@@ -44,10 +44,7 @@
                                     <a href="about.html" class="dropdown-item">哈尔滨广厦学院社团特定版本</a>
                                 </div>
                             </li>
-
-                            <li class="nav-item ">
-                                <a class="nav-link"  href="#" @click="goAbout()">About管理 </a>
-                            </li>
+ 
                     
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" @click="goMenegeBlog()">社区管理</a>
