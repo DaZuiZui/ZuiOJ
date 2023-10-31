@@ -35,7 +35,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
             <div class="container">
                 <!-- Title -->
@@ -51,7 +51,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Card -->
                 <div class="row mt-5">
                     <div class="col-md-4">
@@ -380,7 +379,7 @@
       },
 
     created() {
- 
+       this.setupWebSocket();
 
        this.calculateDaysDifference();
     },
@@ -393,11 +392,36 @@
         const timeDifference = targetDate - currentDate;
         this.daysDifference = Math.floor(timeDifference / oneDay);
         },
+
+        setupWebSocket() {
+            const contestId = 80; // 用于示例的contest_id
+
+            this.socket = new WebSocket(`ws://127.0.0.1:8001/api/zuioj/${contestId}/1/25`);
+
+            this.socket.onopen = () => {
+                this.socketStatus = '已连接';
+            };
+
+            this.socket.onmessage = (event) => {
+                this.receivedMessage = event.data;
+                console.log(event);
+            };
+
+            this.socket.onclose = () => {
+                this.socketStatus = '已关闭';
+            };
+        },
     },
 
     data () {
       
       return {
+        socket: null,
+        socketStatus: '未连接',
+        receivedMessage: '',
+
+
+
         msg: 'Welcome to Your Vue.js App',
         currentDate: new Date(),
         targetDate: new Date("2023-02-19"),
