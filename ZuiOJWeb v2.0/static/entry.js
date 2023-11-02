@@ -1,8 +1,9 @@
 // 接口地址
-const MainUrl = "http://127.0.0.1";
+const MainUrl = "http://192.168.204.170";
 const MainPort = 8001;
 const Developer = "Dazui"
 const TechnicalSupport = "Dazui from ZuiBlog Team";
+const WebSocketIp = "192.168.204.170";
 
 const user = {
   username: "",
@@ -19,5 +20,5 @@ const user = {
   grade: 0,
 }
 export default {
-  MainUrl,MainPort,Developer,TechnicalSupport
+  MainUrl,MainPort,Developer,TechnicalSupport,WebSocketIp
 };

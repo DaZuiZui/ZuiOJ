@@ -116,7 +116,7 @@
                 this.BlogRoll.englishIntroduce.length >= 2 &&
                 this.BlogRoll.englishIntroduce.length <= 1000 &&
                 this.BlogRoll.to_link.length >= 2 &&
-                this.BlogRoll.to_link.length <= 100
+                this.BlogRoll.to_link.length <= 100 
             ) {
                 let obj = await synRequestPost("/blogroll/inserBlogRoll?nonPowerToken="+this.nonPowerToken+"&token="+getCookie("token"),this.BlogRoll);
                 if(check(obj)){

@@ -199,7 +199,7 @@ import { synRequestGet } from '../../../../static/request';
         },
         //go About
         goAbout(){
-            this.$router.push('/cn/about/dazui');
+            this.$router.push('/cn/about/guangsha/TLM');
         },
         
         //前往编程题QuestionList

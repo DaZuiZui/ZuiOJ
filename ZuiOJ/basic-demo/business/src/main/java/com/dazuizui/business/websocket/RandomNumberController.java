@@ -44,8 +44,10 @@ public class RandomNumberController {
         this.session   = session;
 
         RankingVo rankingVo = competitionInfoService.viewRankingReturnList(contestId, this.page-1, size);
+        if (session != null){
+            session.getBasicRemote().sendText(JSONArray.toJSONString(rankingVo));
+        }
 
-        session.getBasicRemote().sendText(JSONArray.toJSONString(rankingVo));
     }
 
     /**
@@ -63,7 +65,6 @@ public class RandomNumberController {
 
     @OnMessage
     public void onMessage(String message, Session session) throws IOException, EncodeException, InterruptedException {
-        System.err.println(message);
         Integer page = Integer.valueOf(message);
         this.page = page;
         this.onOpen(session,this.contestId,this.page,25);

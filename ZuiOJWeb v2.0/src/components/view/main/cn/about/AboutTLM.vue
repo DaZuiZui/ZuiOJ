@@ -104,7 +104,7 @@
                                 <img src="../../../../../../static/image/aboutTLMTeam/WeChat1ee6b8d24200162ab52df371f1e6c369.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
                           
                                 <br>
-                                <h5 class="h4 lh-130 mb-3"> 张泽宇 Yuze Zhang
+                                <h5 class="h4 lh-130 mb-3"> 张泽宇 Zeyu Zhang
                                  </h5>
                                 <p class="text-muted mb-0"> 
                                     专业社团主要管理人员之一，技术方向后端，代表项目查重系统(DC)。  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
@@ -122,7 +122,7 @@
                                 <img src="../../../../../../static/image/aboutTLMTeam/116168671.jpeg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
                           
                                 <br>
-                                <h5 class="h4 lh-130 mb-3">李文龙 Longwen Li
+                                <h5 class="h4 lh-130 mb-3">李文龙 Wenlong Li
                                  </h5>
                                 <p class="text-muted mb-0"> 
                                     专业社团主要负责人、ACM比赛选手，技术方向后端，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
@@ -141,7 +141,7 @@
                                 <img src="../../../../../../static/image/aboutTLMTeam/3551698734653_.pic.jpg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
                           
                                 <br>
-                                <h5 class="h4 lh-130 mb-3"> 韩来凝 Ninglai Han
+                                <h5 class="h4 lh-130 mb-3"> 韩来凝 Laining Han
                                  </h5>
                                 <p class="text-muted mb-0"> 
                                     专业社团主要负责人、ACM比赛选手。技术方向后端，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
@@ -158,7 +158,7 @@
                                 <img src="../../../../../../static/image/aboutTLMTeam/WeChatf1a8120782e9c29561b8dd4761931ba7.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
                           
                                 <br>
-                                <h5 class="h4 lh-130 mb-3"> 陈志祥 Xiangchen Zhi
+                                <h5 class="h4 lh-130 mb-3"> 陈志祥 Zhixiang Chen
                                  </h5>
                                 <p class="text-muted mb-0"> 
                                     TLM Team 吉祥物。技术方向前端，前端小头头，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
@@ -174,7 +174,7 @@
                                 <img src="../../../../../../static/image/aboutTLMTeam/WeChatb06fffb53ce6be30548e4b2aafcf3f6b.png" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
                           
                                 <br>
-                                <h5 class="h4 lh-130 mb-3"> 田雷宇 Yulei Tian
+                                <h5 class="h4 lh-130 mb-3"> 田雷宇 Leiyu Tian
                                  </h5>
                                 <p class="text-muted mb-0"> 
                                     学校前端核心力量抗腰，代表项目查重系统(DC)、社团管理系统等。  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -205,7 +205,7 @@
                                 <div class="pt-4 pb-5">
                                     <img src="../../../../../../static/image/aboutTLMTeam/WeChat078f74198d601dbf33c959b94a2db08c.png" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
                                 </div>
-                                <h5 class="h4 lh-130 mb-3">20级刘港(Gang Liu)</h5>
+                                <h5 class="h4 lh-130 mb-3">20级刘港(Gang Liu) 毕业了</h5>
                                 <p class="text-muted mb-0"> 
                                     <b>23年专业社团社长</b>常用语言Java，擅长开发后端前端，简称全干工程师。
                                 </p>
