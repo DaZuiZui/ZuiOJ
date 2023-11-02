@@ -57,6 +57,7 @@ import AdminViewDetailedDataOfDC from '@/components/view/main/cn/admin/AdminView
 import DuplicateCode from '@/components/view/main/cn/admin/DuplicateCode'
 import CheckAcQuestionDetialInfo from '@/components/view/main/cn/contest/CheckAcQuestionDetialInfo'
 import AboutLin  from '@/components/view/main/cn/about/ABoutLin'
+import GetRankingInRealTime from '@/components/view/main/cn/contest/GetRankingInRealTime'
 
 Vue.use(Router)
 
@@ -64,6 +65,12 @@ export default new Router({
   mode: 'history',
   base: '/h',
   routes: [
+    //实时刷新的排榜
+    {
+      path: "/GetRankingInRealTime",
+      name: 'GetRankingInRealTime',
+      component: GetRankingInRealTime
+    },
     {
       path: '/',
       name: 'HelloWorld',

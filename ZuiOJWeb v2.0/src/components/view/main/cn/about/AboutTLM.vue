@@ -132,22 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body pb-5">
-                      
-                                <img src="../../../../../../static/image/aboutTLMTeam/3551698734653_.pic.jpg" class="img-fluid img-center" style="height: 170px;" alt="Illustration" />
-                          
-                                <br>
-                                <h5 class="h4 lh-130 mb-3"> 韩来凝 Ninglai Han
-                                 </h5>
-                                <p class="text-muted mb-0"> 
-                                    专业社团主要负责人、ACM比赛选手。技术方向后端，代表项目查重系统(DC)、社团管理系统等。  &nbsp; 
-                                </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+              
 
                     <div class="col-md-4">
                         <div class="card">

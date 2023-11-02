@@ -1,36 +1,59 @@
 package com.dazuizui.business.websocket;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
+import com.dazuizui.basicapi.entry.Ranking;
+import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.SpringContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import static com.alibaba.druid.sql.ast.SQLPartitionValue.Operator.List;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/{contest_id}/{page}/{size}")
 @Component
+@EnableScheduling
 public class RandomNumberController {
+
+    private Integer  page = 1;//当前页面
+    private Long contestId;
+    private Session session;
+
 
     private CompetitionInfoService competitionInfoService = SpringContextUtil.getBean(CompetitionInfoService.class);
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("contest_id") Long contestId , @PathParam("page")Integer page , @PathParam("size")Integer size) throws IOException, InterruptedException {
-        System.out.println("连接成功" + contestId+" and "+page+" "+size);
-        String returnJSON = competitionInfoService.viewRanking(contestId, page, size);
-        while (true){
-            Thread.sleep(1000);
-            session.getBasicRemote().sendText(returnJSON);
-        }
+    public void onOpen(Session session, @PathParam("contest_id") Long contestId , @PathParam("page")Integer page , @PathParam("size")Integer size) throws IOException, InterruptedException, EncodeException {
+        this.contestId = contestId;
+        this.session   = session;
 
+        RankingVo rankingVo = competitionInfoService.viewRankingReturnList(contestId, this.page-1, size);
+
+        session.getBasicRemote().sendText(JSONArray.toJSONString(rankingVo));
+    }
+
+    /**
+     * 宣传定时任务
+     */
+    @Scheduled(fixedRate = 1000)
+    private void configureTasks() throws EncodeException, IOException, InterruptedException {
+        this.onOpen(this.session,this.contestId,this.page,25);
     }
 
     @OnClose
@@ -39,7 +62,11 @@ public class RandomNumberController {
     }
 
     @OnMessage
-    public void onMessage(String message, Session session) throws IOException {
-        session.getBasicRemote().sendText("asd");
+    public void onMessage(String message, Session session) throws IOException, EncodeException, InterruptedException {
+        System.err.println(message);
+        Integer page = Integer.valueOf(message);
+        this.page = page;
+        this.onOpen(session,this.contestId,this.page,25);
+//        session.getBasicRemote().sendText("asd"+message );
     }
 }

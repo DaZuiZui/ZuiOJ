@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.CompetitionInfo;
+import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.business.domain.bo.*;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface CompetitionInfoService {
 
-
+    /**
+     * 获取榜单返回实体
+     * @param contestId
+     * @param page
+     * @param numbers
+     * @return
+     */
+    public RankingVo viewRankingReturnList(Long contestId, Integer page, Integer numbers);
     /**
      * 检查选手是否有参赛数据
      * @param ContestId

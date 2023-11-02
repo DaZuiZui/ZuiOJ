@@ -183,4 +183,27 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
         return JSONArray.toJSONString(new ResponseVo<>("获取榜单成功获取页数page is"+contestId ,rankingVo,"200"));
     }
 
+    /**
+     * 获取榜单 返回list实体
+     * @param contestId
+     * @param page
+     * @param numbers
+     * @return
+     */
+    @Override
+    public RankingVo viewRankingReturnList(Long contestId,Integer page,Integer numbers) {
+
+        //有效选手个数
+        RankingVo rankingVo = new RankingVo();
+        GetTotal getTotalEntry = competitionInfoMapper.getTotal(contestId);
+        Long total = getTotalEntry.getCount();
+
+        //获取榜单
+        List<Ranking> rankingVos = competitionInfoMapper.viewRanking(getTotalEntry.getStartTime(),contestId, page*25, numbers);
+
+        rankingVo.setRankinglist(rankingVos);
+        rankingVo.setTotal(total);
+
+        return  rankingVo;
+    }
 }
