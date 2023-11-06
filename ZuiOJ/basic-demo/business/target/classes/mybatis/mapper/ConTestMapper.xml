@@ -136,7 +136,8 @@
         where
             now() &gt;= end_time and
             del_flag = 0 and
-            status = 0;
+            status = 0
+        order by end_time desc;
     </select>
 
     <!--

@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String next = scanner.next();
-        StringBuilder stringBuilder =new StringBuilder(next);
-        StringBuilder reverse = stringBuilder.reverse();
-        System.out.println(reverse.toString().equals(next));
+        String string = scanner.next();
+        StringBuilder stringBuilder = new StringBuilder(string);
+        System.out.println(stringBuilder.reverse().toString());
     }
 }
 
