@@ -19,8 +19,8 @@
                                       <h4> 
                                         <el-link type="primary" style="font-size:20px" @click="viewBlog(obj.id)">
                                           {{obj.title}}
-                                          <svg t="1683720580613" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3982" width="45" height="45"><path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777" fill="#d81e06" p-id="3983"></path></svg>
-                                        </el-link>
+                                          🔝 
+                                         </el-link>
                                         <span v-for="o in obj.language" class="badge badge-secondary"  style="margin-left:5px">
                                           <a v-if="o==1">Java</a> 
                                           <a v-else-if="o==2">C</a>
