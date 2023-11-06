@@ -15,4 +15,12 @@ public interface TopArticleAop {
      * @return
      */
     public String addTopArticle(JoinPoint joinpoint) throws Exception;
+
+
+    /**
+     * 取消置顶
+     * @param joinpoint
+     * @throws Exception
+     */
+    public void untopTheArticle(JoinPoint joinpoint) throws Exception;
 }

@@ -1,8 +1,10 @@
 package com.dazuizui.business.controller;
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.AddTopArticleBo;
+import com.dazuizui.business.domain.bo.UntopTheArticleBo;
 import com.dazuizui.business.service.blog.TopArticleService;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
@@ -25,6 +27,12 @@ import java.util.Map;
 public class TopArticleController {
     @Autowired
     private TopArticleService topArticleService;
+
+    @ApiOperation("取消置顶文章")
+    @PostMapping("/untopTheArticle")
+    public String untopTheArticle(@RequestBody UntopTheArticleBo untopTheArticleBo){
+        return JSONArray.toJSONString(topArticleService.untopTheArticle(untopTheArticleBo));
+    }
 
     /**
      * @author Bryan yang 30/10/2022

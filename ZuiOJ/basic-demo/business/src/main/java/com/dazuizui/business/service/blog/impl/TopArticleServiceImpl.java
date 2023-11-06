@@ -4,9 +4,11 @@ import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.TopArticle;
 import com.dazuizui.business.domain.bo.AddTopArticleBo;
+import com.dazuizui.business.domain.bo.UntopTheArticleBo;
 import com.dazuizui.business.domain.vo.ArticleVo;
 import com.dazuizui.business.mapper.BlogMapper;
 import com.dazuizui.business.mapper.TopArticleMapper;
@@ -38,6 +40,29 @@ public class TopArticleServiceImpl implements TopArticleService {
     private TransactionUtils transactionUtils;
     @Autowired
     private BlogService blogService;
+
+    /**
+     * 取消置顶博文
+     * todo 添加事物
+     * @param untopTheArticleBo
+     * @return
+     */
+    @Override
+    public ResponseVo untopTheArticle(UntopTheArticleBo untopTheArticleBo) {
+        Long aLong = topArticleMapper.untopTheArticle(untopTheArticleBo.getId());
+
+        if (aLong == 0){
+            return new ResponseVo<>("取消失败",null,"0x500");
+        }
+        aLong = blogMapper.updateStatusById(untopTheArticleBo.getId(), 0);
+        if (aLong == 0){
+            return new ResponseVo<>("取消失败" +
+                    "",null,"0x500");
+        }
+
+        return new ResponseVo<>("取消成功",null,"0x200");
+    }
+
     /**
      * 增加置顶文章
      * @param addTopArticleBo

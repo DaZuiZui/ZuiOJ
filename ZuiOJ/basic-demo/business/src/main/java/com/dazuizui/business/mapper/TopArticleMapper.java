@@ -2,6 +2,7 @@ package com.dazuizui.business.mapper;
 
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.business.domain.TopArticle;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,6 +13,10 @@ import java.util.List;
  */
 @Mapper
 public interface TopArticleMapper {
+
+    @Delete("delete from top_article where article_id = #{id}")
+    public Long untopTheArticle(@Param("id")Long id);
+
     /**
      * 插入置顶文章
      * @param topArticle
