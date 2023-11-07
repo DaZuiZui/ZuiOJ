@@ -1,5 +1,6 @@
 package com.dazuizui.business.mapper;
 
+import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.ArticleJSON;
 import com.dazuizui.basicapi.entry.DetailedArticleJSON;
 import com.dazuizui.business.domain.Article;
@@ -12,6 +13,7 @@ import com.dazuizui.basicapi.entry.bo.GetQuestionAnswerByPageBo;
 import com.dazuizui.business.domain.bo.UserGetMyselfArticleBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -22,6 +24,15 @@ import java.util.List;
  */
 @Mapper
 public interface BlogMapper {
+
+    /**
+     * websocket查看日志
+     * @param id
+     * @return
+     */
+    @Select("SELECT * from ac_contest_question where contest_id = #{contest_id} ORDER BY create_time desc limit 20")
+    public List<AcContestQuestion> findRowForWebSocket(@Param("contest_id")Long id);
+
     /**
      * 插入MD文档
      * @return

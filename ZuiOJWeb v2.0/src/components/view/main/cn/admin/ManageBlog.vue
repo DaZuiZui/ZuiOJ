@@ -122,7 +122,7 @@
                             </div>  
                             <div v-else>
                                 <div v-if="obj.status == 3">
-                                    <el-link type="primary">取消置顶</el-link>
+                                    <el-link type="primary" @click="untopTheArticle(obj.id)">取消置顶</el-link>
                                     <el-link type="danger" @click="deleteArticleByIdAndStatus(obj.id,obj.status)">删除</el-link>
                                 </div>
                                 <div v-else>
@@ -203,6 +203,12 @@
         },
         //逻辑删除按钮显示
         physicallyDeleteArticleButton: false,
+
+        //取消置顶
+        untopTheArticleBo: {
+            token: "",
+            id: -1,
+        }
       }
     },
 
@@ -219,6 +225,20 @@
     },
 
     methods: {
+        /**
+         *  取消置顶 
+         */
+        async untopTheArticle(id){
+            this.untopTheArticleBo.id = id;
+            this.untopTheArticleBo.token = getCookie("token");
+
+            let obj = await synRequestPost("/topArticle/untopTheArticle",this.untopTheArticleBo);
+            if(check(obj)){
+                alert("取消成功");
+                this.getMerchantInformation(1);
+            }
+        },
+
         /**
          * 修改博文通过id
          */
@@ -281,6 +301,8 @@
             let obj = await synRequestPost("/blog/admin/adminDeleteAritcleById",this.adminDeleteAritcleByIdBo);
             if(check(obj)){
                 this.getMerchantInformation(this.currentPage);
+                //获取数据
+                this.getMerchantInformation(1);
             }
         },
 
