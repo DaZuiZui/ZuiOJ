@@ -1,6 +1,5 @@
 # OJ system
 ## Developer 
-作者比较懒
 ## Environment preparation
 
  To run this program, you must have **Ubuntu** system,
