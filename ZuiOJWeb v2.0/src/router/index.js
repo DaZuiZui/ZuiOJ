@@ -57,6 +57,7 @@ import AdminViewDetailedDataOfDC from '@/components/view/main/cn/admin/AdminView
 import DuplicateCode from '@/components/view/main/cn/admin/DuplicateCode'
 import CheckAcQuestionDetialInfo from '@/components/view/main/cn/contest/CheckAcQuestionDetialInfo'
 import AboutLin  from '@/components/view/main/cn/about/ABoutLin'
+import AboutXue from '@/components/view/main/cn/about/AboutXue'
 import GetRankingInRealTime from '@/components/view/main/cn/contest/GetRankingInRealTime'
 
 Vue.use(Router)
@@ -82,7 +83,12 @@ export default new Router({
       name: 'AboutLin',
       component: AboutLin
     },
-
+    //About Xue
+    {
+      path: '/about/xue',
+      name: 'Aboutxue',
+      component: AboutXue
+    },
     //查看提交的项目代码
     {
       path: '/cn/contest/CheckAcQuestionDetialInfo',

@@ -181,7 +181,7 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
         String idstring = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
         acContestQuestion.setCreateById(Long.valueOf(idstring));
         acContestQuestion.setCreateTime(new Date());
-
+        acContestQuestion.setUpdateTime(new Date());
         /**
          * 如果没有提交记录就创建提交记录
          * 如果有提交记录，就当前比赛的题目的提交次数++
@@ -192,10 +192,10 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
             if (status.equals("Accepted")){
                 acContestQuestion.setFirstAc(new Date());
                 acContestQuestion.setNumberOfAttempts(0);
-                acContestQuestionMapper.acTheQuestionInDB(acContestQuestion,1);
+                acContestQuestionMapper.acTheQuestionInDB(acContestQuestion,1,acContestQuestion.getUpdateTime());
             }else{
                 acContestQuestion.setNumberOfAttempts(1);
-                acContestQuestionMapper.acTheQuestionInDB(acContestQuestion,0);
+                acContestQuestionMapper.acTheQuestionInDB(acContestQuestion,0,acContestQuestion.getUpdateTime());
             }
             return acContestQuestion.getId();
         }else{
@@ -208,13 +208,13 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
             if (acContestQuestionInDB.getStatus() == 1 && !status.equals("Accepted")){
                 acContestQuestion.setFirstAc(acContestQuestionInDB.getFirstAc() == null ? null : acContestQuestionInDB.getFirstAc());
                 acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts()+1);
-                acContestQuestionMapper.recordSubmissions(acContestQuestion,1);
+                acContestQuestionMapper.recordSubmissions(acContestQuestion,1,acContestQuestion.getUpdateTime());
             }
             //
             else if (acContestQuestionInDB.getStatus() == 0 && !status.equals("Accepted")) {
                 acContestQuestion.setFirstAc(acContestQuestionInDB.getFirstAc() == null ? null : acContestQuestionInDB.getFirstAc());
                 acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts()+1);
-                acContestQuestionMapper.recordSubmissions(acContestQuestion,0);
+                acContestQuestionMapper.recordSubmissions(acContestQuestion,0,acContestQuestion.getUpdateTime());
             }
             /**
              * 如果是首次通过
@@ -222,8 +222,11 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
             else if (status.equals("Accepted") && acContestQuestionInDB.getStatus() == 0){
                 acContestQuestion.setFirstAc(new Date());
                 acContestQuestion.setNumberOfAttempts(acContestQuestionInDB.getNumberOfAttempts());
-                acContestQuestionMapper.recordSubmissions(acContestQuestion,1);
+                acContestQuestionMapper.recordSubmissions(acContestQuestion,1,acContestQuestion.getUpdateTime());
             }
+
+
+
             return acContestQuestionInDB.getId();
         }
     }

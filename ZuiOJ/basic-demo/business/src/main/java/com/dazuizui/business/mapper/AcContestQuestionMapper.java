@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -92,14 +93,14 @@ public interface AcContestQuestionMapper {
      * @param acContestQuestion
      * @return
      */
-    public Long acTheQuestionInDB(@Param("acContestQuestion") AcContestQuestion acContestQuestion,@Param("status") int status);
+    public Long acTheQuestionInDB(@Param("acContestQuestion") AcContestQuestion acContestQuestion, @Param("status") int status,@Param("updateTime") Date updateTime);
 
     /**
      * 增加提交量
      * @param acContestQuestion
      * @return
      */
-    public Long recordSubmissions(@Param("acContestQuestion") AcContestQuestion acContestQuestion,@Param("status") int status);
+    public Long recordSubmissions(@Param("acContestQuestion") AcContestQuestion acContestQuestion,@Param("status") int status,@Param("updateTime") Date updateTime);
 
 
     /**

@@ -215,7 +215,8 @@
         set
             t1.number_of_attempts = #{acContestQuestion.numberOfAttempts} ,
             status = #{status},
-            first_ac = #{acContestQuestion.firstAc}
+            first_ac = #{acContestQuestion.firstAc} ,
+            update_time = #{updateTime}
         where
             contest_id  = #{acContestQuestion.contestId}  and
             question_id = #{acContestQuestion.questionId} and

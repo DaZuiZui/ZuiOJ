@@ -174,6 +174,11 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
                 codeInContest.setCreateBy(id);
                 codeInContest.setUserId(id);
                 codeInContest.setCreateTime(new Date());
+
+                System.err.println();
+                System.err.println(codeInContest.getCreateByName()+"");
+                System.err.println();
+
                 //放入消息队列
                 source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload(codeInContest).build());
             }
