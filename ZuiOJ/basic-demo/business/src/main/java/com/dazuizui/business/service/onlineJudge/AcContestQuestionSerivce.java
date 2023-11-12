@@ -1,6 +1,7 @@
 package com.dazuizui.business.service.onlineJudge;
 
 import com.dazuizui.basicapi.entry.AcContestQuestion;
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
@@ -8,11 +9,21 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 /**
  * 比赛题目提交业务层操作接口
  */
 @Service
 public interface AcContestQuestionSerivce {
+
+    /**
+     * 此业务用于websokcet OJ数据大屏的提交日志的数据交互使用
+     * @param contestId 比赛id
+     * @return
+     */
+    public ResponseVo querySubmitLogByContestIdOrderUpdateTimeDesc(@Param("contestId")Long contestId);
+
     /**
      * @author Bryan Yang y51288033@outlook.com
      * 查看详细信息通过user_id contest_id

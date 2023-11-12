@@ -122,6 +122,6 @@ public interface AcContestQuestionMapper {
      */
     public Long deleteAcContestQuestionByQuestionIdList(@Param("list")List list);
 
-
-
+    @Select("select * from ac_contest_question where contestId = #{contestId} order by contest_id desc limit 20")
+    public List<AcContestQuestion> querySubmitLogByContestIdOrderUpdateTimeDesc(@Param("contestId")Long contestId);
 }

@@ -33,6 +33,20 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     @Autowired
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
 
+
+    /**
+     * @author Bryan yang 2023 11 11
+     * 此业务用于websokcet OJ数据大屏的提交日志的数据交互使用
+     *    在一次获取数据中只会获取20条
+     * @param contestId 比赛id
+     * @return
+     */
+    public ResponseVo querySubmitLogByContestIdOrderUpdateTimeDesc(Long contestId){
+        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.querySubmitLogByContestIdOrderUpdateTimeDesc(contestId);
+
+        return new ResponseVo<>(StatusCodeMessage.OK,acContestQuestions,StatusCode.OK);
+    }
+
     /**
      * @author Bryan Yang(Dazui) 06/08/2022 22:00:00 PM
      *

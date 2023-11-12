@@ -160,7 +160,6 @@
                         this.socket.send(message);
                     }
                 }, 1000);
-
        },
   
        methods: {

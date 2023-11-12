@@ -1,14 +1,9 @@
 package com.dazuizui.business.websocket;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
-import com.dazuizui.basicapi.entry.Ranking;
 import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
-import com.dazuizui.business.service.user.UserService;
 import com.dazuizui.business.util.SpringContextUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,18 +13,12 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import static com.alibaba.druid.sql.ast.SQLPartitionValue.Operator.List;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/{contest_id}/{page}/{size}")
 @Component
 @EnableScheduling
-public class RandomNumberController {
+public class CompetitionInfoWebSocketController {
 
     private Integer  page = 1;//当前页面
     private Long contestId;
