@@ -10,10 +10,7 @@ import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
-import com.dazuizui.business.domain.vo.CheckTheSubmitQuesitonDetailInfoVo;
-import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
-import com.dazuizui.business.domain.vo.QueryLogByContestIdAndQuestionIdVo;
-import com.dazuizui.business.domain.vo.QueryLogByElementVo;
+import com.dazuizui.business.domain.vo.*;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
 import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
 import com.dazuizui.business.mongodao.SubmmitionCodeInContestRepository;
@@ -43,6 +40,18 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
     @Autowired
     private CompetitionQuestionBankMapper competitionQuestionBankMapper;
+
+    /**
+     * 提供给oj大屏使用，查看每个题的通过人数量
+     * @param contestId
+     * @return
+     */
+    @Override
+    public ResponseVo findAcCountEveryQuestionByContestIdAndStatus(@Param("contestId")Long contestId){
+        List<FindAcCountEveryQuestionByContestIdAndStatusVo> acCountEveryQuestionByContestIdAndStatus = acContestQuestionMapper.findAcCountEveryQuestionByContestIdAndStatus(contestId);
+
+        return new ResponseVo<>(StatusCodeMessage.OK,acCountEveryQuestionByContestIdAndStatus,StatusCode.OK);
+    }
 
     /**
      * @author Bryan yang 2023 11 11

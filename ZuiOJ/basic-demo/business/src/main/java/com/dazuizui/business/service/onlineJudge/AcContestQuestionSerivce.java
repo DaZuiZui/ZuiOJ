@@ -5,6 +5,7 @@ import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
+import com.dazuizui.business.domain.vo.FindAcCountEveryQuestionByContestIdAndStatusVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,12 @@ import java.util.List;
  */
 @Service
 public interface AcContestQuestionSerivce {
+    /**
+     * 提供给oj大屏使用，查看每个题的通过人数量
+     * @param contestId
+     * @return
+     */
+    public ResponseVo findAcCountEveryQuestionByContestIdAndStatus(@Param("contestId")Long contestId);
 
     /**
      * 此业务用于websokcet OJ数据大屏的提交日志的数据交互使用

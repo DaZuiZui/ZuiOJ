@@ -5,6 +5,7 @@ import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
 import com.dazuizui.business.domain.vo.CheckTheSubmitQuesitonDetailInfoVo;
+import com.dazuizui.business.domain.vo.FindAcCountEveryQuestionByContestIdAndStatusVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -18,8 +19,8 @@ import java.util.List;
 @Mapper
 public interface AcContestQuestionMapper {
 
-    @Select("SELECT question_id ,COUNT(*) AS 'num' FROM ac_contest_question WHERE contest_id = #{contestId} and status = 1 GROUP BY question_id  ;")
-    public List<Object> findAcCountEveryQuestionByContestIdAndStatus(@Param("contestId")Long contestId);
+    @Select(" SELECT\t( SELECT t2.chinese_name FROM question_bank t2 WHERE t2.id = t1.question_id ) AS 'name', COUNT(*) AS 'value' FROM ac_contest_question t1  WHERE contest_id = #{contestId} AND status = 1  GROUP BY t1.question_id;\n")
+    public List<FindAcCountEveryQuestionByContestIdAndStatusVo> findAcCountEveryQuestionByContestIdAndStatus(@Param("contestId")Long contestId);
 
     /**
      * @author Bryan Yang y51288033@outlook.com
