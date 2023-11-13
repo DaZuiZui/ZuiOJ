@@ -1,11 +1,13 @@
 package com.dazuizui.business.service.onlineJudge.impl;
 
+import cn.hutool.core.lang.hash.Hash;
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.CodeInContest;
+import com.dazuizui.business.domain.StatusCountMapEntry;
 import com.dazuizui.business.domain.bo.DuplicateCodeBo;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import com.dazuizui.business.domain.vo.DuplicateCodeVo;
@@ -20,12 +22,16 @@ import com.dazuizui.business.util.TransactionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * 存储在比赛时候提交的代码的表业务接口
@@ -42,6 +48,43 @@ public class SubmmitionCodeInContestSerivceImpl implements SubmmitionCodeInConte
     private AcContestQuestionMapper acContestQuestionMapper;
     @Autowired
     private TransactionUtils transactionUtils;
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    /**
+     * 该业务接口主要给websocket OJ数据大屏使用.
+     * 查询当前比赛status所有状态的数量，
+     * @param contestId
+     * @return
+     */
+    @Override
+    public ResponseVo findStatusCountsByContestId(Long contestId) {
+        TypedAggregation<CodeInContest> typedAggregation =  TypedAggregation.newAggregation(CodeInContest.class,
+                Aggregation.match(Criteria.where("contestId").is(contestId)),Aggregation.group("status").count().as("count"));
+
+        AggregationResults<Map> aggregate = mongoTemplate.aggregate(typedAggregation, Map.class);
+        List<Map> mappedResults = aggregate.getMappedResults();
+        System.err.println(mappedResults);
+
+        List<StatusCountMapEntry> statusCountLists  = new ArrayList<>();
+
+        for (Map map : mappedResults) {
+            Object status = map.get("_id"); // Assuming "_id" is the key for the grouped field
+            Integer count = (Integer) map.get("count");
+            String key = status.toString();
+            StatusCountMapEntry entry = new StatusCountMapEntry();
+            entry.setKey(key);
+            entry.setCount(count);
+            statusCountLists.add(entry);
+
+        }
+
+
+        HashMap res = new HashMap();
+        res.put("statusCountMap",statusCountLists);
+
+        return new ResponseVo(StatusCodeMessage.OK,res,StatusCode.OK);
+    }
 
     /**
      * 获取涉嫌重复的代码

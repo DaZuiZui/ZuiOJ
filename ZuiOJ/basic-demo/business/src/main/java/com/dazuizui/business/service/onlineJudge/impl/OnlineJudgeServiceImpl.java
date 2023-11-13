@@ -143,6 +143,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
             if (checkIfTheCurrentGameIsOver(acContestQuestion.getContestId())){
                 //在比赛中标记记
                 Long acContestQuestionId = acContestQuestionSerivce.submitAnswer(acContestQuestion, (String) request.get("status"));
+
                 //封装竞赛id
                 codeInContest.setContestId(programBo.getContestId());
 
@@ -175,9 +176,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
                 codeInContest.setUserId(id);
                 codeInContest.setCreateTime(new Date());
 
-                System.err.println();
-                System.err.println(codeInContest.getCreateByName()+"");
-                System.err.println();
+
 
                 //放入消息队列
                 source.addContestSubmittionCodeOutput().send(MessageBuilder.withPayload(codeInContest).build());

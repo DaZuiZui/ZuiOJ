@@ -18,6 +18,9 @@ import java.util.List;
 @Mapper
 public interface AcContestQuestionMapper {
 
+    @Select("SELECT question_id ,COUNT(*) AS 'num' FROM ac_contest_question WHERE contest_id = #{contestId} and status = 1 GROUP BY question_id  ;")
+    public List<Object> findAcCountEveryQuestionByContestIdAndStatus(@Param("contestId")Long contestId);
+
     /**
      * @author Bryan Yang y51288033@outlook.com
      * 查看详细信息通过user_id contest_id

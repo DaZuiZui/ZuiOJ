@@ -2,15 +2,23 @@ package com.dazuizui.business.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.domain.bo.DuplicateCodeBo;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
+import com.dazuizui.business.mongodao.SubmmitionCodeInContestRepository;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +31,26 @@ import java.util.Map;
 public class SubmmitionCodeInContestController {
     @Autowired
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
+
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    /***
+     * @author Bryan Yang 2023 11 12
+     * @param contestId
+     * @return
+     */
+    @ApiOperation("测试")
+    @PostMapping("/findStatusCountsByContestId")
+    public String findStatusCountsByContestId(@RequestParam("contestId")Long contestId){
+
+//        return JSONArray.toJSONString(submmitionCodeInContestSerivce.findStatusCountsByContestId(contestId));
+        return null;
+    }
+
+
+
     /**
      * 获取涉嫌重复的代码
      * @param duplicateCode

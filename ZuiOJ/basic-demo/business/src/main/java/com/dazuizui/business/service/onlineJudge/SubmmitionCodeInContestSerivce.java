@@ -1,12 +1,22 @@
 package com.dazuizui.business.service.onlineJudge;
 
+import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.bo.DuplicateCodeBo;
 import com.dazuizui.business.domain.bo.FilterQueryMatchSaveCodeBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public interface SubmmitionCodeInContestSerivce {
+    /**
+     * 该业务接口主要给websocket OJ数据大屏使用.
+     * 查询当前比赛status所有状态的数量，
+     * @param contestId
+     * @return
+     */
+    public ResponseVo findStatusCountsByContestId(@RequestParam("contestId")Long contestId);
+
     /**
      * 获取涉嫌重复的代码
      * @param duplicateCode

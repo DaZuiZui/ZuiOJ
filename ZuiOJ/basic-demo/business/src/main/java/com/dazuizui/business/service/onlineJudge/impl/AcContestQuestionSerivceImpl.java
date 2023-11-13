@@ -4,7 +4,9 @@ import com.alibaba.fastjson2.JSONArray;
 import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.StatusCode;
 import com.dazuizui.basicapi.entry.StatusCodeMessage;
+import com.dazuizui.basicapi.entry.vo.ContestQuestionVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
+import com.dazuizui.business.domain.CodeInContest;
 import com.dazuizui.business.domain.bo.CheckTheSubmitQuesitonDetailInfoBo;
 import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import com.dazuizui.business.domain.bo.QueryContestSubmissionLogBo;
@@ -13,14 +15,19 @@ import com.dazuizui.business.domain.vo.QueryContestSubmissionLogVo;
 import com.dazuizui.business.domain.vo.QueryLogByContestIdAndQuestionIdVo;
 import com.dazuizui.business.domain.vo.QueryLogByElementVo;
 import com.dazuizui.business.mapper.AcContestQuestionMapper;
+import com.dazuizui.business.mapper.CompetitionQuestionBankMapper;
+import com.dazuizui.business.mongodao.SubmmitionCodeInContestRepository;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.service.onlineJudge.SubmmitionCodeInContestSerivce;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,7 +39,10 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
     private AcContestQuestionMapper acContestQuestionMapper;
     @Autowired
     private SubmmitionCodeInContestSerivce submmitionCodeInContestSerivce;
-
+    @Autowired
+    private SubmmitionCodeInContestRepository submmitionCodeInContestRepository;
+    @Autowired
+    private CompetitionQuestionBankMapper competitionQuestionBankMapper;
 
     /**
      * @author Bryan yang 2023 11 11
@@ -42,9 +52,19 @@ public class AcContestQuestionSerivceImpl implements AcContestQuestionSerivce {
      * @return
      */
     public ResponseVo querySubmitLogByContestIdOrderUpdateTimeDesc(Long contestId){
-        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.querySubmitLogByContestIdOrderUpdateTimeDesc(contestId);
+//        List<AcContestQuestion> acContestQuestions = acContestQuestionMapper.querySubmitLogByContestIdOrderUpdateTimeDesc(contestId);
+        //获取提交日志
+        Page<CodeInContest> byContestIdOrderByCreateTimeDesc = submmitionCodeInContestRepository.findByContestIdOrderByCreateTimeDesc(contestId, PageRequest.of(0, 100));
+        byContestIdOrderByCreateTimeDesc.getTotalElements();
+        List<CodeInContest> content = byContestIdOrderByCreateTimeDesc.getContent();
+        //获取比赛题目
+        List<ContestQuestionVo> questionListByContestId = competitionQuestionBankMapper.getQuestionListByContestId(contestId);
 
-        return new ResponseVo<>(StatusCodeMessage.OK,acContestQuestions,StatusCode.OK);
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("questionList",questionListByContestId);
+        map.put("codingLog",content);
+
+        return new ResponseVo<>(StatusCodeMessage.OK,map,StatusCode.OK);
     }
 
     /**
