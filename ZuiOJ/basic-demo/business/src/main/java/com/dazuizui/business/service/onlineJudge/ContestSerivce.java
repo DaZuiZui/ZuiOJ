@@ -1,10 +1,14 @@
 package com.dazuizui.business.service.onlineJudge;
 
+import com.dazuizui.basicapi.entry.AcContestQuestion;
 import com.dazuizui.basicapi.entry.Contest;
 import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
+import com.dazuizui.business.domain.vo.GetContestDateVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 
 
 /**
@@ -13,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Service
 public interface ContestSerivce {
+    /**
+     * 用户oj数据大屏获取比赛详细信息
+     *      需要获取判决日志、参赛人数、每个题的通关
+     * @return
+     */
+    public GetContestDateVo getContestData(Long contestId);
+
     /**
      * 移除比赛信息
      * remove the competition

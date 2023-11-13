@@ -6,9 +6,11 @@ import com.dazuizui.basicapi.entry.vo.ContestInfoVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
 import com.dazuizui.business.domain.RedisKey;
 import com.dazuizui.business.domain.vo.AdminGetArticleByPaginVo;
+import com.dazuizui.business.domain.vo.GetContestDateVo;
 import com.dazuizui.business.mapper.CompetitionInfoMapper;
 import com.dazuizui.business.mapper.ContestMapper;
 import com.dazuizui.business.mapper.ProctorAttributeMapper;
+import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
 import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
@@ -19,10 +21,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author yida yang
@@ -41,6 +40,17 @@ public class ContestSerivceImpl implements ContestSerivce {
     private TransactionUtils transactionUtils;
     @Autowired
     private ProctorAttributeMapper proctorAttributeMapper;
+    @Autowired
+    private AcContestQuestionSerivce acContestQuestionSerivce;
+
+    @Override
+    public GetContestDateVo getContestData(Long contestId) {
+        GetContestDateVo getContestDateVo = new GetContestDateVo();
+        //获取日志
+        ResponseVo responseVo = acContestQuestionSerivce.querySubmitLogByContestIdOrderUpdateTimeDesc(contestId);
+        getContestDateVo.setAcContestQuestions(getContestDateVo.getAcContestQuestions());
+        return getContestDateVo;
+    }
 
     /**
      * @author Bryan Yang(杨易达)
