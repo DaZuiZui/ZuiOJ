@@ -34,7 +34,7 @@ export default {
         if (this.socket && this.socket.readyState === WebSocket.OPEN) {
         this.socket.send(message);
       }
-    }, 1000 * 10);
+    }, 1000);
 
   },
   computed: {
