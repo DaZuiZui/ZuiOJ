@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "node_modules/.bin/vue-cli-service serve --mode dev",
-    "start": "node_modules/.bin/vue-cli-service serve --mode dev ",
-    "build": "node_modules/.bin/vue-cli-service build --mode production",
-    "report": "node_modules/.bin/vue-cli-service build --report",
-    "build:test": "node_modules/.bin/vue-cli-service build --mode test"
+    "serve": "vue-cli-service serve --mode dev",
+    "start": "vue-cli-service serve --mode dev ",
+    "build": "vue-cli-service build --mode production",
+    "report": "vue-cli-service build --report",
+    "build:test": "vue-cli-service build --mode test"
   },
   "dependencies": {
     "@jiaminghi/data-view": "^2.10.0",

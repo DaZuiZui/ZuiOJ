@@ -22,7 +22,7 @@ const routes = [  {
     {
       path: '/index',
       name: 'index',
-      component: () => import(/* webpackChunkName: "LSD.bighome" */ '../views/indexs'),
+      component: () => import(/* webpackChunkName: "LSD.bighome" */ '../views/indexs/index.vue'),
     }
   ]
 }, 

@@ -23,7 +23,7 @@ export default {
 
       socket: null,
 
-      webSocketIp: "172.30.34.67",
+      webSocketIp: "127.0.0.1",
       webSocketPort: 8001,
 
       Accepted: 0,

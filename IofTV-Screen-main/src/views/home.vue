@@ -54,12 +54,6 @@ export default {
       dateYear: null,
       dateWeek: null,
       weekday: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
-      socket: null,
-
-      webSocketIp: "172.30.34.67",
-      webSocketPort: 8001,
-      //数据
-      contestDate: null,
     };
   },
   filters: {
@@ -77,8 +71,6 @@ export default {
     clearInterval(this.timing);
   },
   methods: {
-    
-
     showSetting() {
       this.$refs.setting.init();
     },
