@@ -38,6 +38,7 @@ public class SubmmitionCodeInContestWebSocketController {
 
     @OnMessage
     public void onMessage(String message, Session session) throws IOException, EncodeException, InterruptedException {
+
         Long contestId = Long.valueOf(message);
         HashMap<String,Object> map =  this.getContestDate(session, contestId);
         session.getBasicRemote().sendText(JSONArray.toJSONString(map));
@@ -48,7 +49,7 @@ public class SubmmitionCodeInContestWebSocketController {
      */
     private HashMap<String,Object> getContestDate(Session session, Long contestId){
        ResponseVo responseVo = submmitionCodeInContestSerivce.findStatusCountsByContestId(contestId);
-
+        System.err.println("?? huoqu ");
        return (HashMap<String,Object>) responseVo.getData();
 
     }

@@ -29,8 +29,6 @@ public class FindAcCountEveryQuestionByContestIdAndStatusWebSocket {
         System.err.println(contestId);
         List<FindAcCountEveryQuestionByContestIdAndStatusVo> contestDate = this.getContestDate(session, contestId);
         session.getBasicRemote().sendText(JSONArray.toJSONString(contestDate));
-
-
     }
 
     @OnClose

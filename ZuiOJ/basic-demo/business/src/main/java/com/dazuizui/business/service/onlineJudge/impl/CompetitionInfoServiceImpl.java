@@ -15,6 +15,7 @@ import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
 import com.dazuizui.business.util.RedisUtil;
 import com.dazuizui.business.util.ThreadLocalUtil;
 import com.dazuizui.business.util.TransactionUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
@@ -35,6 +36,18 @@ public class CompetitionInfoServiceImpl implements CompetitionInfoService {
     private RedisUtil redisUtil;
     @Autowired
     private TransactionUtils transactionUtils;
+
+    /**
+     * OJ大屏查看参赛选手数量大屏幕
+     * @param contestId
+     * @return
+     */
+    @Override
+    public ResponseVo queryCountByContestId(@Param("contestId")Long contestId){
+        Long count = competitionInfoMapper.queryCountByContestId(contestId);
+
+        return new ResponseVo<>(StatusCodeMessage.OK,count, StatusCode.OK);
+    }
 
     /**
      * 删除所有比赛选手通过比赛Id

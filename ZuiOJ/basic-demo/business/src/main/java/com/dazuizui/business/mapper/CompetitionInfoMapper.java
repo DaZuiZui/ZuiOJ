@@ -19,6 +19,10 @@ import java.util.List;
  */
 @Mapper
 public interface CompetitionInfoMapper {
+
+    @Select("SELECT count(*) from competition_info where contest_id = #{contestId} GROUP BY contest_id")
+    public Long queryCountByContestId(@Param("contestId")Long contestId);
+
     /**
      * 删除比赛选手通过主键id
      * @param deleteTheCompetitionByIdBo
