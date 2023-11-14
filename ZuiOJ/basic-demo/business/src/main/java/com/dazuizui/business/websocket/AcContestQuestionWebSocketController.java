@@ -1,29 +1,18 @@
 package com.dazuizui.business.websocket;
 
-
-import cn.hutool.core.lang.hash.Hash;
 import com.alibaba.fastjson2.JSONArray;
-import com.dazuizui.basicapi.entry.AcContestQuestion;
-import com.dazuizui.basicapi.entry.vo.RankingVo;
 import com.dazuizui.basicapi.entry.vo.ResponseVo;
-import com.dazuizui.business.domain.CodeInContest;
-import com.dazuizui.business.domain.vo.GetContestDateVo;
 import com.dazuizui.business.service.onlineJudge.AcContestQuestionSerivce;
-import com.dazuizui.business.service.onlineJudge.CompetitionInfoService;
-import com.dazuizui.business.service.onlineJudge.ContestSerivce;
 import com.dazuizui.business.util.SpringContextUtil;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import javax.swing.*;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/codingLog/{contest_id}")
