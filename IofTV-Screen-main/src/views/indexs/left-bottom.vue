@@ -29,9 +29,9 @@
 
               <span v-if="item.status == 0" style="color: green;">{{ "Accepted" }}</span>
               <span v-if="item.status == 3" style="color: red;">{{ "Answer error" }}</span>
-              <span v-if="item.status == 2" style="color: red;">{{ "Nonzero Exit Status" }}</span>   
+              <span v-if="item.status == 2" style="color: red;">{{ "Nonzero Exit" }}</span>   
               <span v-if="item.status == 1" style="color: red;">{{ "File Error" }}</span>  
-              <span v-if="item.status == 1" style="color: red;">{{ "Time Limit Exceeded" }}</span>  
+              <span v-if="item.status == 1" style="color: red;">{{ "Time Limit" }}</span>  
           </div>
         </li>
       </ul>
