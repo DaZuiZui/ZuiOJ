@@ -16,6 +16,15 @@ import java.util.List;
  */
 @Service
 public interface CompetitionQuestionBankService {
+
+    /**
+     * 删除比赛关联题目
+     * @param questionId
+     * @param contestId
+     * @return
+     */
+    public String removeQuestion(Long questionId,Long contestId);
+
     /**
      * 添加比赛关联题目
      * @return

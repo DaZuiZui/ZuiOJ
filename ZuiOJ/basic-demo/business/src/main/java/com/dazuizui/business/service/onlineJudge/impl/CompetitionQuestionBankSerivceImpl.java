@@ -28,12 +28,28 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
     private ContestMapper contestMapper;
 
     /**
+     * 删除比赛关联题目
+     * @param questionId
+     * @param contestId
+     * @return
+     */
+    @Override
+    public String removeQuestion(Long questionId, Long contestId) {
+        Long aLong = competitionQuestionBankMapper.removeQuestion(questionId, contestId);
+        if (aLong == 0){
+            return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));
+        }
+        return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.OK,null, StatusCode.OK));
+    }
+
+    /**
      * 添加比赛关联题目
      * @return
      */
     @Override
     public String addCompetitionQuestion(CompetitionQuestionBank competitionQuestionBank){
-        //校验题目是否存在
+        //todo 校验题目是否存在
+
         Long aLong = competitionQuestionBankMapper.addQuestionInContest(competitionQuestionBank);
         if (aLong == 0){
             return JSONArray.toJSONString(new ResponseVo<>(StatusCodeMessage.Error,null, StatusCode.Error));

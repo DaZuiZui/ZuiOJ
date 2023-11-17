@@ -23,6 +23,19 @@ public class CompetitionQuestionBankController {
     private CompetitionQuestionBankService competitionQuestionBankService;
 
     /**
+     * 删除比赛关联题目
+     * todo aop鉴权
+     * @param questionId
+     * @param contestId
+     * @return
+     */
+    @ApiOperation("移除比赛关联题目")
+    @PostMapping("/removeQuestion")
+    public String removeQuestion(@RequestParam("questionId") Long questionId,@RequestParam("contestId") Long contestId){
+        return competitionQuestionBankService.removeQuestion(questionId,contestId);
+    }
+
+    /**
      * 添加比赛关联题目
      * @return
      */
