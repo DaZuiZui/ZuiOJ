@@ -73,8 +73,7 @@
                             <div>
                                 <el-link type="primary" @click="goQuestionCaseManagement(obj.id)">案例管理</el-link>
                                 <el-link type="success" @click="goUpdateQuestion(obj.id)">修改</el-link>
-                                <el-link type="danger">取消比赛题目</el-link>
-                               
+                                <el-link type="danger" @click="removeQuestion(obj.id)">取消比赛题目</el-link>
                             </div>
                         </td>
                       </tr>
@@ -120,12 +119,20 @@ import { synRequestPost } from '../../../../../../static/request';
         this.getMerchantInfgetQuestionListormation();
     },
     methods: {
+        //移除比赛题目
+        async removeQuestion(questionId){
+          let obj = await synRequestPost("/CompetitionQuestionBank/removeQuestion?questionId="+questionId+"&contestId="+getQueryVariable("contestId"));
+
+          if(check(obj)){
+               this.getMerchantInfgetQuestionListormation();
+          }
+        },
         //获取比赛题目
         async getMerchantInfgetQuestionListormation(){   
             let obj = await synRequestPost("/CompetitionQuestionBank/getQuestionListByContestId?token="+getCookie("token")+"&contestId="+getQueryVariable("contestId"));
             if(check(obj)){
                 this.list = obj.data;
-                console.log(this.list);
+ 
             }
         },
 
