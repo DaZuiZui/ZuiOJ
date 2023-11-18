@@ -1,5 +1,4 @@
 # OJ system
-这几天忙过几天维护
 ## Developer 
 ## Environment preparation
 
