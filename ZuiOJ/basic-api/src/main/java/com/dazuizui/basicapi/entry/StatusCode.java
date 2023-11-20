@@ -32,4 +32,6 @@ public class StatusCode  {
     public static final String IsProctor = "0x507";
     //不为监考人员
     public static final String NotProctor = "0x508";
+    //当前比赛题目已经存在
+    public static final String QuestionExists = "0x509";
 }

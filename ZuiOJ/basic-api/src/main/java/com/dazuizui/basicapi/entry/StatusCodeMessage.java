@@ -38,4 +38,6 @@ public class StatusCodeMessage implements Serializable {
     public static final String IsProctor = "该用户已经是监考人员";
     //不为监考人员
     public static final String NotProctor = "不为监考人员";
+    //当前比赛题目已经存在
+    public static final String QuestionExists = "当前题目已经存在";
 }

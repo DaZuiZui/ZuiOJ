@@ -6,6 +6,7 @@ import com.dazuizui.business.domain.bo.ElementOfQueryLogBo;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -14,6 +15,12 @@ import java.util.List;
  */
 @Mapper
 public interface CompetitionQuestionBankMapper {
+
+    /**
+     * 查看当前题目id是否存在
+     */
+    @Select("select count(*) from competition_question_bank where contest_id = #{contestId} and question_id = #{questionId} limit 1")
+    public Long findCountByContestIdAndQeustionId(@Param("contestId")Long contestId,@Param("questionId")Long questionId);
 
     /**
      * 删除比赛关联题目
