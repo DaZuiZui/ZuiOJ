@@ -72,7 +72,7 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
 
     /**
      * 添加题在比赛题库中
-     * out
+     * out 淘汰计划
      * @return
      */
     @Override
@@ -88,8 +88,6 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
      */
     @Override
     public String getQuestionListInContest(Long contestId) {
-
-
         //获取比赛人ID
         String idstring = (String) ThreadLocalUtil.mapThreadLocalOfJWT.get().get("userinfo").get("id");
 
@@ -100,11 +98,8 @@ public class CompetitionQuestionBankSerivceImpl implements CompetitionQuestionBa
             return JSONArray.toJSONString(new ResponseVo<>("未到达获取题目时间",null,"0x945"));
         }
 
-
         //获取题库
         List<ContestQuestionVo> questionListInContest = competitionQuestionBankMapper.getQuestionListInContest(contestId,Long.valueOf(idstring));
-
-
 
         return JSONArray.toJSONString(new ResponseVo<>("获取比赛中的题库",questionListInContest,"200"));
     }

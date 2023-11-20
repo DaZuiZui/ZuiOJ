@@ -81,6 +81,9 @@
             //跳转首页
             window.location.href="/h";
             return false;
+        }else if(obj.code == '0x509'){
+            alert(obj.message);
+            return false;
         }
 
         return true;
