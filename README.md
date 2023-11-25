@@ -1,5 +1,4 @@
 # OJ system
-停更几天
 ## Developer 
 ## Environment preparation
 
