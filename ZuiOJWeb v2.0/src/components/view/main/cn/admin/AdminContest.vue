@@ -47,9 +47,8 @@
                               <el-link type="primary"   @click="DuplicateCheckSystem(obj.id)">查重</el-link>
                                 <el-link type="primary" @click="toProctorManagement(obj.id)">监考人员</el-link>
                                 <el-link type="primary" @click="toCompetitionQuestionBank(obj.id)">查看题目</el-link>
-                                <el-link type="primary">取消比赛</el-link>
+                                <el-link type="primary" @click="goDataCount(obj.id)">比赛数据大屏</el-link>
                                 <el-link type="success" @click="updateContest(obj.id,obj.startTime)">修改比赛</el-link>
-
                                 <el-dialog
                                   title="删除确认窗口"
                                   :visible.sync="dialogVisible"
@@ -118,6 +117,12 @@
         this.getMerchantInformation(1);
     },
     methods: {
+        /**
+         *  前往比赛数据大屏
+         */ 
+        goDataCount(id){
+            window.location.href="http://127.0.0.1:8081/#/index?contestId="+id;
+        },
         
 
         /**
