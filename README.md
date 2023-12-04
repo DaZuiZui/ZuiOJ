@@ -1,5 +1,5 @@
 # OJ system
-中文
+中文 英文
 ## Developer 
 ## Environment preparation
 
