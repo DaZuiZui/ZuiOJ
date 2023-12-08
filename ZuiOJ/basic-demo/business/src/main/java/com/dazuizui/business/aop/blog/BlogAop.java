@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Aspect
 @Component
 public interface BlogAop {
+    @Before("execution(* com.dazuizui.business.controller.BlogController.browseArticleById(..))")
+    public void browseArticleById(JoinPoint joinPoint) throws Exception;
+
     /**
      * 用户逻辑删除博文通过Id
      * @return

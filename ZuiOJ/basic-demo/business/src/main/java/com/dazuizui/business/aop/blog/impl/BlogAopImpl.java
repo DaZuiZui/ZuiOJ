@@ -28,6 +28,22 @@ public class BlogAopImpl implements BlogAop {
     private SystemVerifyService systemVerifyService;
 
     @Override
+    public void browseArticleById(JoinPoint joinPoint) throws Exception {
+        //获取token
+        Object[] args = joinPoint.getArgs();
+        GetArticleByIdBo articleBo = (GetArticleByIdBo) args[0];
+        String token = articleBo.getToken();
+        Long articleId = articleBo.getId();
+        //如果未登入
+        if (token == null || token == ""){
+            ThreadLocalUtil.DataOfThreadLocal.get().put("userauth",false);
+            return ;
+        }
+
+        systemVerifyService.isOwnerOrAdmin(token,2,articleId);
+    }
+
+    @Override
     public String userDeleteAritcleById(JoinPoint joinpoint) throws Exception {
         Object[] args = joinpoint.getArgs();
         AdminDeleteAritcleByIdBo adminDeleteAritcleByIdBos = (AdminDeleteAritcleByIdBo) args[0];
