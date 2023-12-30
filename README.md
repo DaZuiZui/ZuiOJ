@@ -1,5 +1,4 @@
 # OJ system
-💼
 ## Developer 
 ## Environment preparation
 
