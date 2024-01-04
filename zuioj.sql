@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 哈尔滨广厦学院0418服务器
+ Source Server         : 
  Source Server Type    : MySQL
  Source Server Version : 50515
  Source Host           : 172.20.0.147:3306
