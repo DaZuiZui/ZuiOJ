@@ -1,25 +1,18 @@
 package com.dazuizui.business.config;
 
+import com.dazuizui.business.intercept.AuthorizationInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * @author
- *
- * 跨域访问配置
- */
 @Configuration
+@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT")
-                .maxAge(3600);
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AuthorizationInterceptor())
+                .addPathPatterns("/**"); // 指定拦截的路径
     }
-
 }
-
