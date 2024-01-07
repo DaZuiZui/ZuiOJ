@@ -1,5 +1,5 @@
 # OJ system
-## Developer  hi 2024
+## Developer 
 ## Environment preparation
 
  To run this program, you must have **Ubuntu** system,
