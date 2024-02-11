@@ -1,5 +1,4 @@
 # OJ system
-新年快乐
 ## Developer 
 
 
