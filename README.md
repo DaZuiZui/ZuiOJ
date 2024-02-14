@@ -1,6 +1,6 @@
 # OJ system
 ## Developer 
-过年休息啦
+过年休息啦！
 
 ## Environment preparation
 
