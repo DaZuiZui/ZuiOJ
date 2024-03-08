@@ -18,7 +18,6 @@ import java.util.List;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/contestperson/{contest_id}")
-@Component
 @EnableScheduling
 public class QueryCountByContestIdWebSocket {
     private CompetitionInfoService competitionInfoService = SpringContextUtil.getBean(CompetitionInfoService.class);

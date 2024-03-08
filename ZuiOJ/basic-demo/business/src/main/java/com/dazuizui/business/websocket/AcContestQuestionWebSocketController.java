@@ -16,7 +16,6 @@ import java.util.HashMap;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/codingLog/{contest_id}")
-@Component
 @EnableScheduling
 public class AcContestQuestionWebSocketController {
 

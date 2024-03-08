@@ -7,6 +7,7 @@ import cn.hutool.json.JSONUtil;
 import com.dazuizui.basicapi.entry.bo.ProgramBo;
 import com.dazuizui.online_judge.service.OnlineJudgeService;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -24,6 +25,8 @@ import java.util.List;
  */
 @Service
 public class OnlineJudgeServiceImpl implements OnlineJudgeService {
+    @Value("${OJServer}")
+    private String url;
     /**
      * 判决代码业务实现类
      * @param programBo
@@ -125,7 +128,7 @@ public class OnlineJudgeServiceImpl implements OnlineJudgeService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(JSONUtil.toJsonStr(cmd1), headers);
         System.out.println(request);
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://192.168.171.128:5050/run",request,String.class);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,request,String.class);
         System.out.println(responseEntity);
         return JSONUtil.parseArray(responseEntity.getBody());
     }

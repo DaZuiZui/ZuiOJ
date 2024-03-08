@@ -38,8 +38,7 @@ public class SystemServiceImpl implements SystemService {
     /**
      * 文件下载
      */
-    @ApiOperation("文件下载")
-    @GetMapping(value ="/getimage",produces = MediaType.IMAGE_JPEG_VALUE)
+    @Override
     public byte[] getPhoto(@RequestParam("imgUrl") String imgUrl) throws IOException{
 
         File file = new File(path+"/"+imgUrl);

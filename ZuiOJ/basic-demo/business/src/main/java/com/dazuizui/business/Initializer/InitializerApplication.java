@@ -32,7 +32,7 @@ public class InitializerApplication {
      */
     @PostConstruct
     public void supportGroupSorting(){
-        systemMapper.supportGroupSorting();
+       // systemMapper.supportGroupSorting();
         System.out.println("已经支持Mysql8.0支持group by排序");
     }
 

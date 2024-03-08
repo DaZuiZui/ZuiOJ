@@ -168,7 +168,7 @@
                                     <img
                                     style="width:500px"
 
-                                    alt="Image placeholder" src="../../../../../../static/ZuiOJ/image/about/881671204987_.pic.jpg" class="img-fluid shadow rounded">
+                                    alt="Image placeholder" src="../../../../../../static/ZuiOJ/image/about/881671204987.jpg" class="img-fluid shadow rounded">
                                 </div>
                             </div>
                         </div>

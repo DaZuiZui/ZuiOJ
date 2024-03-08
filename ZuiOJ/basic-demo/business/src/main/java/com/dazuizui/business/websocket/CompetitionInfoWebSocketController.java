@@ -16,7 +16,6 @@ import java.io.IOException;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/{contest_id}/{page}/{size}")
-@Component
 @EnableScheduling
 public class CompetitionInfoWebSocketController {
 

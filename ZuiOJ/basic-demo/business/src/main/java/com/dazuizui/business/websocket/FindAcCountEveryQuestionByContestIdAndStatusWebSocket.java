@@ -18,7 +18,6 @@ import java.util.List;
 
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/AcQuestion/{contest_id}")
-@Component
 @EnableScheduling
 public class FindAcCountEveryQuestionByContestIdAndStatusWebSocket {
     private AcContestQuestionSerivce  acContestQuestionSerivce= SpringContextUtil.getBean(AcContestQuestionSerivce.class);
