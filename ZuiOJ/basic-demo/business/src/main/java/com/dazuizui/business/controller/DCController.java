@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Scanner;
 
 @CrossOrigin
 @RestController
@@ -19,6 +20,7 @@ public class DCController {
     @Autowired
     private DcInfoServiceImpl dcInfoService;
 
+    
     /**
      * 通过比赛排名获取每题查重最高因子内容
      * @param getCheckDcInfoByRankingBo
