@@ -16,7 +16,7 @@
                     <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
                         <!-- Heading -->
                         <h1 class="display-4 text-center text-md-left mb-3">
-                            这是一个在线评测系统 <strong class="text-primary">Zui OJ System</strong>
+                            这是一个在线评测系统 <strong class="text-primary">Zui OJ System</strong> By 杨易达
                         </h1>
                         <!-- Text -->
                         <p class="lead text-center text-md-left text-muted">

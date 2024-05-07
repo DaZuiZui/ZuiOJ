@@ -14,6 +14,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.HashMap;
 
+@Component
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/scicws/{contest_id}")
 @EnableScheduling

@@ -3,18 +3,25 @@ server:
 spring:
   data:
     mongodb:
-      host: 192.168.171.128
-      database: ZuiBlog
+#      host: 192.168.171.128
+      host: 192.168.0.211
+#      database: ZuiBlog
+      database: gsoj
       port: 27017
-      username: dazuizui
-      password: admin
+#      username: dazuizui
+      username: gsoj
+#      password: admin
+      password: xiangjiaochuanmei
   application:
     name: app-user
   rabbitmq:
-    host: 192.168.171.128
+#    host: 192.168.171.128
+    host: 192.168.0.211
     port: 5672
+#    username: dazui
+#    password: admin
     username: dazui
-    password: admin
+    password: xiangjiaochuanmei
     virtual-host: /             #虚拟主机地址
   cloud:
     stream:
@@ -32,16 +39,20 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # set @@GLOBAL.sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-    url: jdbc:mysql://127.0.0.1:3306/zuioj
-    username: root
-    password: admin
+#    url: jdbc:mysql://127.0.0.1:3306/zuioj
+    url: jdbc:mysql://192.168.0.211:3306/guangshaoj
+#    username: root
+#    password: admin
+    username: yangyida
+    password: wasd123..wasd
   redis:
     # Redis Url
-    host: 127.0.0.1
+    host: 192.168.0.211
     # Redis 端口
     port: 6379
     # Redis 密码
     # password: 您的密码
+    password: xiangjiaochuanmei
     # 设置数据库序号
     database: 0
 
@@ -56,4 +67,4 @@ spring:
 # 选择api项目下的resouces路径下的user文件夹
 filePath: "/Users/yangyida/Documents/project/ZuiOJ/ZuiOJ/basic-api/src/main/resources/users/"
 # 服务器url路径
-projecturl: "http://127.0.0.1:8001"
+projecturl: "http://192.168.0.211:8001"

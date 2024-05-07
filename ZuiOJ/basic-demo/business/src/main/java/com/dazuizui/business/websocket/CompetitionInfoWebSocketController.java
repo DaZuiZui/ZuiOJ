@@ -14,6 +14,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
+@Component
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/{contest_id}/{page}/{size}")
 @EnableScheduling

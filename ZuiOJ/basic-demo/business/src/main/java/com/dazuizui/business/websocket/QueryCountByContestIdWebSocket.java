@@ -16,6 +16,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.List;
 
+@Component
 @CrossOrigin
 @ServerEndpoint("/api/zuioj/contestperson/{contest_id}")
 @EnableScheduling
