@@ -1,16 +1,17 @@
-OJServer: http://192.168.0.211:5050/run
+#OJServer: http://192.168.0.211:5050/run
+OJServer: http://192.168.171.128:5050/run
 
 server:
   port: 8005
 spring:
   data:
     mongodb:
-      #      host: 192.168.171.128
-      host: 192.168.0.211
-      #      database: ZuiBlog
-      database: gsoj
+      host: 192.168.171.128
+      #host: 192.168.0.211
+      database: ZuiBlog
+      #database: gsoj
       port: 27017
-      #      username: dazuizui
-      username: gsoj
-      #      password: admin
-      password: xiangjiaochuanmei
+      username: dazuizui
+      #username: gsoj
+      password: admin
+      #password: xiangjiaochuanmei

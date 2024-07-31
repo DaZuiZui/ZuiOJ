@@ -3,8 +3,8 @@ server:
 spring:
   data:
     mongodb:
-#      host: 192.168.171.128
-      host: 192.168.0.211
+      host: 192.168.171.128
+#      host: 192.168.0.211
 #      database: ZuiBlog
       database: gsoj
       port: 27017
@@ -15,13 +15,13 @@ spring:
   application:
     name: app-user
   rabbitmq:
-#    host: 192.168.171.128
-    host: 192.168.0.211
+    host: 192.168.171.128
+#    host: 192.168.0.211
     port: 5672
-#    username: dazui
-#    password: admin
     username: dazui
-    password: xiangjiaochuanmei
+    password: admin
+#    username: dazui
+#    password: xiangjiaochuanmei
     virtual-host: /             #虚拟主机地址
   cloud:
     stream:
@@ -39,20 +39,20 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # set @@GLOBAL.sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-#    url: jdbc:mysql://127.0.0.1:3306/zuioj
-    url: jdbc:mysql://192.168.0.211:3306/guangshaoj
-#    username: root
-#    password: admin
-    username: yangyida
-    password: wasd123..wasd
+    url: jdbc:mysql://127.0.0.1:3306/zuioj
+#    url: jdbc:mysql://192.168.0.211:3306/guangshaoj
+    username: root
+    password: admin
+#    username: yangyida
+#    password: wasd123..wasd
   redis:
     # Redis Url
-    host: 192.168.0.211
+    host: 127.0.0.1
     # Redis 端口
     port: 6379
     # Redis 密码
     # password: 您的密码
-    password: xiangjiaochuanmei
+#    password: xiangjiaochuanmei
     # 设置数据库序号
     database: 0
 
