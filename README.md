@@ -1,5 +1,5 @@
 # OJ system
-恢复更新
+精力有限停止更新
 ## Developer 
 ## Environment preparation
 
